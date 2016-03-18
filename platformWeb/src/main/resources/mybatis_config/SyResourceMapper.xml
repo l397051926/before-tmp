@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gennlife.platform.dao.SyResourceMapper" >
+  <resultMap id="com.gennlife.platform.bean.SyResource" type="com.gennlife.platform.bean.SyResource" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="syresourcetype" property="syresourcetype" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="syresourceid" property="syresourceid" jdbcType="INTEGER" />
+    <result column="seq" property="seq" jdbcType="INTEGER" />
+    <result column="sign" property="sign" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, description, url, syresourcetype, createtime, updatetime, syresourceid, 
+    seq, sign
+  </sql>
+
+	
+  <select id="getAllSyResourceByRole" resultMap="com.gennlife.platform.bean.SyResource" parameterType="Integer" >
+		select <include refid="Base_Column_List"/>
+		from p_resource p
+		inner join syresource_syrole t ON p.id = t.syresoureceid
+		where t.syroleid = #{id}  
+		
+  </select>
+  <select id="getAllSyResource" resultMap="com.gennlife.platform.bean.SyResource" >
+    select <include refid="Base_Column_List"/>
+    from p_resource  order by seq
+  </select>
+
+</mapper>

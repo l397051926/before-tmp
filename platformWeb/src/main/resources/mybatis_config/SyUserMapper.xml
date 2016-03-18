@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gennlife.platform.dao.SyUserMapper">
+	<resultMap id="com.gennlife.platform.bean.SyUser" type="com.gennlife.platform.bean.SyUser">
+		<result column="p_user.id" property="id" jdbcType="INTEGER" />
+		<result column="p_user.uid" property="uid" jdbcType="VARCHAR" />
+		<result column="uname" property="uname" jdbcType="VARCHAR" />
+		<result column="pwd" property="pwd" jdbcType="VARCHAR" />
+		<result column="uposition" property="uposition" jdbcType="VARCHAR" />
+		<result column="p_user.orgID" property="hospitalID" jdbcType="VARCHAR" />
+		<result column="orgName" property="hospitalName" jdbcType="VARCHAR" />
+		<result column="lab" property="lab" jdbcType="VARCHAR" />
+		<result column="telphone" property="telphone" jdbcType="VARCHAR" />
+		<result column="uemail" property="uemail" jdbcType="VARCHAR" />
+		<result column="age" property="age" jdbcType="INTEGER" />
+		<result column="sex" property="sex" jdbcType="INTEGER" />
+		<result column="ctime" property="ctime" jdbcType="TIMESTAMP"/>
+		<result column="uptime" property="uptime" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		p_user.id,p_user.uid,uname,uemail,pwd ,uposition ,p_user.orgID ,orgName,lab ,telphone ,age ,sex ,ctime ,uptime
+	</sql>
+
+
+	<select id="login" resultMap="com.gennlife.platform.bean.SyUser"  parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from p_user JOIN p_org o on o.orgID = p_user.orgID
+		<where>uid=#{loginname} and pwd=#{pwd} </where>
+	</select>
+
+	<select id="getProjectMemberList" resultMap="com.gennlife.platform.bean.SyUser"  parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		FROM p_user
+		JOIN pro_user ON p_user.uid = pro_user.uid JOIN p_org o ON o.orgID = p_user.orgID
+		<where> pro_user.projectID = #{projectID} AND (p_user.uid LIKE '%${searchMemberkey}%' OR o.orgName LIKE '%${searchMemberkey}%' OR p_user.uname LIKE '%${searchMemberkey}%')
+		ORDER BY ctime DESC  limit #{startIndex},#{maxNum} </where>
+	</select>
+
+	<select id="getProjectMemberCounter" resultType="java.lang.Integer"  parameterType="map">
+		select
+		count(p_user.uid)
+		FROM p_user
+		JOIN pro_user ON p_user.uid = pro_user.uid JOIN p_org o ON o.orgID = p_user.orgID
+		<where> pro_user.projectID = #{projectID} AND (p_user.uid LIKE '%${searchMemberkey}%' OR o.orgName LIKE '%${searchMemberkey}%' OR p_user.uname LIKE '%${searchMemberkey}%')
+			ORDER BY ctime DESC  limit #{startIndex},#{maxNum} </where>
+	</select>
+
+	<select id="searchMemberList" resultMap="com.gennlife.platform.bean.SyUser"  parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		FROM p_user JOIN p_org o ON o.orgID = p_user.orgID
+		<where>(p_user.uid LIKE '%${searchMemberkey}%' OR o.orgName LIKE '%${searchMemberkey}%' OR p_user.uname LIKE '%${searchMemberkey}%' OR lab LIKE '%${searchMemberkey}%') AND
+			p_user.uid NOT in(
+			select p_user.uid
+			FROM pro_user JOIN p_user ON p_user.uid = pro_user.uid
+			WHERE pro_user.projectID = #{projectID}
+		)
+		ORDER BY ctime DESC  limit #{startIndex},#{maxNum}
+		</where>
+	</select>
+
+	<select id="searchMemberCounter" resultType="java.lang.Integer"  parameterType="map">
+		select
+		count(p_user.uid)
+		FROM p_user JOIN p_org o ON o.orgID = p_user.orgID
+		<where>(p_user.uid LIKE '%${searchMemberkey}%' OR o.orgName LIKE '%${searchMemberkey}%' OR p_user.uname LIKE '%${searchMemberkey}%' OR lab LIKE '%${searchMemberkey}%') AND
+			p_user.uid NOT in(
+			select p_user.uid
+			FROM pro_user JOIN p_user ON p_user.uid = pro_user.uid
+			WHERE pro_user.projectID = #{projectID}
+			)
+		</where>
+	</select>
+
+	<select id="getOneUser" resultMap="com.gennlife.platform.bean.SyUser"  parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from p_user  JOIN p_org o on o.orgID = p_user.orgID
+		<where>uid=#{loginname} </where>
+	</select>
+	<update id="updateByUid" parameterType="com.gennlife.platform.bean.SyUser">
+		update p_user
+		<set>
+			<if test="age != null">
+				age = #{age,jdbcType=INTEGER},
+			</if>
+			<if test="uname != null">
+				uname = #{uname,jdbcType=VARCHAR},
+			</if>
+			<if test="pwd != null and pwd != ''" >
+				pwd = #{pwd,jdbcType=VARCHAR},
+			</if>
+			<if test="uposition != null">
+				uposition = #{uposition,jdbcType=VARCHAR},
+			</if>
+			<if test="lab != null">
+				lab = #{lab,jdbcType=VARCHAR},
+			</if>
+			<if test="telphone != null">
+				telphone = #{telphone,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=INTEGER},
+			</if>
+			<if test="uptime != null" >
+				uptime = #{uptime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where uid = #{uid,jdbcType=INTEGER}
+	</update>
+
+	<sql id="FinishedProjectSelect">
+		p.projectID,projectName,creater,startTime,endTime
+	</sql>
+	<resultMap id="com.gennlife.platform.bean.projectBean.FinishedProject" type="com.gennlife.platform.bean.projectBean.FinishedProject">
+		<result column="p.projectID" property="projectID" jdbcType="VARCHAR" />
+		<result column="issueName" property="projectName" jdbcType="VARCHAR" />
+		<result column="creater" property="creater" jdbcType="VARCHAR" />
+		<result column="startTime" property="startTime" jdbcType="TIMESTAMP"/>
+		<result column="endTime" property="endTime" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	<select id="getFinishedProjects" resultMap="com.gennlife.platform.bean.projectBean.FinishedProject"
+			parameterType="map">
+		select
+		<include refid="FinishedProjectSelect" />
+		from p_project p JOIN pro_user u on u.projectID = p.projectID
+		<where>u.uid=#{loginname} and p.pstatus = 5 order by createTime desc limit #{startIndex},#{maxNum}</where>
+
+	</select>
+
+	<select id="getFinishedProjectCounter" resultType="java.lang.Integer" parameterType="map">
+		select
+		count(*)
+		from p_project p JOIN pro_user u on u.projectID = p.projectID
+		<where>u.uid=#{loginname} and p.pstatus = 5 </where>
+	</select>
+
+
+	<sql id="UnfinishedProjectSelect">
+		p.projectID,projectName,creater,startTime,pstatus
+	</sql>
+	<resultMap id="com.gennlife.platform.bean.projectBean.UnfinishedProject" type="com.gennlife.platform.bean.projectBean.UnfinishedProject">
+		<result column="p.projectID" property="projectID" jdbcType="VARCHAR" />
+		<result column="issueName" property="projectName" jdbcType="VARCHAR" />
+		<result column="creater" property="creater" jdbcType="VARCHAR" />
+		<result column="startTime" property="startTime" jdbcType="TIMESTAMP"/>
+		<result column="pstatus" property="pstatus" jdbcType="INTEGER"/>
+	</resultMap>
+	<select id="getUnfinishedProjects" resultMap="com.gennlife.platform.bean.projectBean.UnfinishedProject"
+			parameterType="map">
+		select
+		<include refid="UnfinishedProjectSelect" />
+		from p_project p JOIN pro_user u on u.projectID = p.projectID
+		<where>u.uid=#{loginname} and p.pstatus != 5  order by createTime desc limit #{startIndex},#{maxNum}</where>
+	</select>
+
+	<select id="getUnfinishedProjectCounter" resultType="java.lang.Integer" parameterType="map">
+		select
+		count(*)
+		from p_project p JOIN pro_user u on u.projectID = p.projectID
+		<where>u.uid=#{loginname} and p.pstatus != 5 </where>
+	</select>
+
+
+	<resultMap id="com.gennlife.platform.bean.projectBean.MyProjectList" type="com.gennlife.platform.bean.projectBean.MyProjectList">
+		<result column="creater" property="creater" jdbcType="VARCHAR" />
+		<result column="p.projectID" property="projectID" jdbcType="VARCHAR" />
+		<result column="issueName" property="issueName" jdbcType="VARCHAR" />
+		<result column="projectName" property="projectName" jdbcType="VARCHAR" />
+		<result column="researchArea" property="researchArea" jdbcType="VARCHAR" />
+		<result column="createTime" property="createTime" jdbcType="TIMESTAMP"/>
+		<result column="pstatus" property="pstatus" jdbcType="INTEGER"/>
+		<result column="members" property="members" jdbcType="INTEGER"/>
+		<result column="planNum" property="planNum" jdbcType="INTEGER"/>
+	</resultMap>
+
+	<sql id="MyProjectListSelect">
+		creater,p.projectID,projectName,issueName,researchArea,pstatus,createTime,members,planNum
+	</sql>
+	<select id="getMyProjectListNoPstatus" resultMap="com.gennlife.platform.bean.projectBean.MyProjectList"
+			parameterType="map">
+		select
+		<include refid="MyProjectListSelect" />
+		from p_project p JOIN pro_user u on u.projectID = p.projectID
+		<where>u.uid=#{loginname}  order by createTime  desc limit #{startIndex},#{maxNum}</where>
+	</select>
+
+	<select id="getMyProjectList" resultMap="com.gennlife.platform.bean.projectBean.MyProjectList"
+			parameterType="map">
+		select
+		<include refid="MyProjectListSelect" />
+		from p_project p JOIN pro_user u on u.projectID = p.projectID
+		<where>u.uid=#{loginname} and p.pstatus = #{pstatus,jdbcType=INTEGER}  order by createTime  desc limit #{startIndex},#{maxNum}</where>
+	</select>
+
+
+	<select id="getProjectCounter" resultType="java.lang.Integer" parameterType="map">
+		select
+		count(*)
+		from p_project p JOIN pro_user u on u.projectID = p.projectID
+		<where>u.uid=#{loginname} </where>
+	</select>
+
+	<resultMap id="com.gennlife.platform.bean.projectBean.ProjectPstatus" type="com.gennlife.platform.bean.projectBean.ProjectPstatus">
+		<result column="p.projectID" property="projectID" jdbcType="VARCHAR" />
+		<result column="pstatus" property="pstatus" jdbcType="INTEGER"/>
+	</resultMap>
+	<select id="getProjectPstatus" resultType="com.gennlife.platform.bean.projectBean.ProjectPstatus" parameterType="map">
+		select
+		p.projectID,pstatus
+		from p_project p JOIN pro_user u on u.projectID = p.projectID
+		<where>u.uid=#{loginname}</where>
+	</select>
+
+
+	<select id="getHistoryWords" resultType="java.lang.String" parameterType="map">
+		select
+		keywords
+		from p_userWords p
+		<where>p.uid=#{uid} and keywords like '%${keywords}%' order by counter desc</where>
+	</select>
+	<select id="getHistoryWordsCounter" resultType="java.lang.Integer" parameterType="map">
+		select
+		counter
+		from p_userWords p
+		<where>p.uid=#{uid} and keywords = #{keywords}</where>
+	</select>
+
+
+	<insert id="insertHistoryWords" parameterType="com.gennlife.platform.bean.projectBean.HistoryWords" >
+		insert into p_userWords
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="uid != null" >
+				uid,
+			</if>
+			<if test="keywords != null" >
+				keywords,
+			</if>
+			<if test="counter != null" >
+				counter,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="uid != null" >
+				#{uid,jdbcType=VARCHAR},
+			</if>
+			<if test="keywords != null" >
+				#{keywords,jdbcType=VARCHAR},
+			</if>
+			<if test="counter != null" >
+				#{counter,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateHistoryWordsCounter" parameterType="map">
+		update p_userWords
+		<set>
+				counter = #{counter,jdbcType=INTEGER},
+		</set>
+		where uid = #{uid,jdbcType=INTEGER} and  keywords = #{keywords}
+	</update>
+</mapper>

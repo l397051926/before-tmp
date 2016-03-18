@@ -1,0 +1,336 @@
+{
+  "seer_read" : {
+	"DISEASE" : {
+	  "dataType": "string",
+	  "needAnalyz": true,
+	  "boost": 1,
+	  "IndexFieldName": "DISEASE",
+	  "UIFieldName": "疾病",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}]
+	},
+	"ID" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "ID",
+	  "UIFieldName": "病人编号",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"病人基本信息"}, {"pageName":"detailBrowse", "groupName":"总览信息"}]
+	},
+	"MAR_STAT" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "MAR_STAT",
+	  "UIFieldName": "婚姻",
+	  "startIndex" : 19,
+	  "length" : 1,
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"病人基本信息"}]
+	},
+	"RACE" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "RACE",
+	  "UIFieldName": "种族",
+	  "startIndex" : 20,
+	  "length" : 2,
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"病人基本信息"}]
+	},
+	"SEX" : {
+	  "dataType": "string",
+	  "needAnalyz": true,
+	  "boost": 1,
+	  "IndexFieldName": "SEX",
+	  "UIFieldName": "性别",
+	  "startIndex" : 24,
+	  "length" : 1,
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"病人基本信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+	},
+	"AGE" : {
+	  "dataType": "long",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "AGE",
+	  "UIFieldName": "年龄",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"病人基本信息"}]
+	},
+	"AGE_DX" : {
+	  "dataType": "long",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "AGE_DX",
+	  "UIFieldName": "确诊年龄",
+	  "startIndex" : 25,
+	  "length" : 3,
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+	},
+	"YR_BRTH" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "YR_BRTH",
+	  "UIFieldName": "出生年份",
+	  "startIndex" : 28,
+	  "length" : 4,
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"病人基本信息"}, {"pageName":"detailBrowse", "groupName":"总览信息"}]
+	},
+	"DATE_yr_mo" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "DATE_yr_mo",
+	  "UIFieldName": "诊断日期",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+	},
+	"ICDOT10V" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "ICDOT10V",
+	  "UIFieldName": "ICD-10 编号",
+	  "startIndex" : 208,
+	  "length" : 4,
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+	},
+	"STAT_REC" : {
+	  "dataType": "string",
+	  "needAnalyz": true,
+	  "boost": 1,
+	  "IndexFieldName": "STAT_REC",
+	  "UIFieldName": "生存状态",
+	  "startIndex" : 265,
+	  "length" : 1,
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"随访信息"}, {"pageName":"detailBrowse", "groupName":"随访信息"}]
+	},
+	"SRV_TIME_DAY" : {
+	  "dataType": "long",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "SRV_TIME_DAY",
+	  "UIFieldName": "生存时间（天）",
+	  "startIndex" : 301,
+	  "length" : 4,
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"随访信息"}, {"pageName":"detailBrowse", "groupName":"随访信息"}]
+	},
+	"DAJCC7T" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "DAJCC7T",
+	  "UIFieldName": "肿瘤分期 T",
+	  "startIndex" : 312,
+	  "length" : 3,
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+	},
+	"DAJCC7N" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "DAJCC7N",
+	  "UIFieldName": "肿瘤分期 N",
+	  "startIndex" : 315,
+	  "length" : 3,
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+	},
+	"DAJCC7M" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "DAJCC7M",
+	  "UIFieldName": "肿瘤分期 M",
+	  "startIndex" : 318,
+	  "length" : 3,
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+	},
+	"DAJCC7STG" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "DAJCC7STG",
+	  "UIFieldName": "肿瘤分期",
+	  "startIndex" : 321,
+	  "length" : 3,
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+	},
+	"GRADE" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "GRADE",
+	  "UIFieldName": "肿瘤分级",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+	},
+	"TYPEFUP" : {
+	  "dataType": "string",
+	  "needAnalyz": true,
+	  "boost": 1,
+	  "IndexFieldName": "TYPEFUP",
+	  "UIFieldName": "随访情况",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"随访信息"}, {"pageName":"detailBrowse", "groupName":"随访信息"}]
+	},
+	"TUMOR_STAGE_REFERENCE_SYSTEM" : {
+	  "dataType": "string",
+	  "needAnalyz": true,
+	  "boost": 1,
+	  "IndexFieldName": "TUMOR_STAGE_REFERENCE_SYSTEM",
+	  "UIFieldName": "肿瘤诊断分期参考系统",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+	},
+	"SITEO2V" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "SITEO2V",
+	  "UIFieldName": "原发肿瘤位置",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"病人基本信息"}, {"pageName":"detailBrowse", "groupName":"总览信息"}]
+	},
+	"LOCATION" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "LOCATION",
+	  "UIFieldName": "肿瘤位置",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+	},
+	"LATERAL" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "LATERAL",
+	  "UIFieldName": "肿瘤偏侧",
+	  "startIndex" : 47,
+	  "length" : 1,
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"随访信息"}, {"pageName":"detailBrowse", "groupName":"随访信息"}]
+	},
+	"HISTOLOGY_TYPE" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "HISTOLOGY_TYPE",
+	  "UIFieldName": "组织学类型",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+	},
+	"TUMOR_SIZE" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "TUMOR_SIZE",
+	  "UIFieldName": "肿瘤大小",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+	},
+	"REGIONAL_NODES_POSITIVE" : {
+	  "dataType": "string",
+	  "needAnalyz": true,
+	  "boost": 1,
+	  "IndexFieldName": "REGIONAL_NODES_POSITIVE",
+	  "UIFieldName": "LN 总数",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+	},
+	"TUMOR_NUMBER" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "TUMOR_NUMBER",
+	  "UIFieldName": "肿瘤数目",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+	},
+	"RADIATN" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "RADIATN",
+	  "UIFieldName": "放疗",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"随访信息"}, {"pageName":"detailBrowse", "groupName":"随访信息"}]
+	},
+	"RAD_SURG" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "RAD_SURG",
+	  "UIFieldName": "放疗与随访的顺序",
+	  "startIndex" : 169,
+	  "length" : 1,
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"随访信息"}, {"pageName":"detailBrowse", "groupName":"随访信息"}]
+	},
+	"SURGERY_OF_PRIMARY_SITE" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "SURGERY_OF_PRIMARY_SITE",
+	  "UIFieldName": "术式",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"随访信息"}, {"pageName":"detailBrowse", "groupName":"随访信息"}]
+	},
+	"EOD10_SZ" : {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "EOD10_SZ",
+	  "UIFieldName": "最大直径",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName":"随访信息"}, {"pageName":"detailBrowse", "groupName":"随访信息"}]
+	},
+	"sequencing_type.SM-S": {
+	  "dataType": "boolean",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "sequencing_type.SM-S",
+	  "UIFieldName": "SM-S",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+	},
+	"sequencing_type.SCNA-A": {
+	  "dataType": "boolean",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "sequencing_type.SCNA-A",
+	  "UIFieldName": "SCNA-A",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+	},
+	"sequencing_type.SCNA-S": {
+	  "dataType": "boolean",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "sequencing_type.SCNA-S",
+	  "UIFieldName": "SCNA-S",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+	},
+	"sequencing_type.EXP-A": {
+	  "dataType": "boolean",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "sequencing_type.EXP-A",
+	  "UIFieldName": "Array-based mRNA Expression",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+	},
+	"sequencing_type.EXP-S": {
+	  "dataType": "boolean",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "sequencing_type.EXP-S",
+	  "UIFieldName": "EXP-S",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+	},
+	"sequencing_type.miRNA-S": {
+	  "dataType": "boolean",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "sequencing_type.miRNA-S",
+	  "UIFieldName": "miRNA-S",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+	},
+	"sequencing_type.METH-A": {
+	  "dataType": "boolean",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "sequencing_type.METH-A",
+	  "UIFieldName": "METH-A",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+	},
+	"sequencing_type.PEXP-A": {
+	  "dataType": "boolean",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "sequencing_type.PEXP-A",
+	  "UIFieldName": "PEXP-A",
+	  "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+	}
+  }
+}

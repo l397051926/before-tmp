@@ -1,0 +1,191 @@
+{
+  "tcga_read": {
+    "病人基本信息": [
+      {
+        "病人编号": "clinical_followup_biospecimen.patient.bcr_patient_barcode"
+      },
+      {
+        "种族": "clinical_followup_biospecimen.patient.ethnicity"
+      },
+      {
+        "性别": "clinical_followup_biospecimen.patient.gender"
+      },
+      {
+        "年龄": "#年龄"
+      },
+      {
+        "婚姻": "#婚姻"
+      }
+    ],
+    "临床信息": [
+      {
+        "疾病": "clinical_followup_biospecimen.admin.disease_code"
+      },
+      {
+        "确诊年龄": "clinical_followup_biospecimen.patient.age_at_initial_pathologic_diagnosis"
+      },
+      {
+        "分期": "clinical_followup_biospecimen.patient.stage_event.system_version"
+      }
+    ],
+    "随访信息": [
+      {
+        "生存状态": "clinical_followup_biospecimen.patient.follow_ups.final_follow_up.vital_status"
+      },
+      {
+        "生存时间（天）": "clinical_followup_biospecimen.patient.follow_ups.final_follow_up.days_to_death"
+      }
+    ],
+    "生物标本信息": [
+      {
+        "血液": "#血液"
+      },
+      {
+        "癌组织": "#癌组织"
+      },
+      {
+        "癌旁组织": "#癌旁组织"
+      }
+    ],
+    "组学信息": [
+      {
+        "SM-S": "clinical_followup_biospecimen.patient.sequencing_type.SM-S"
+      },
+      {
+        "miRNA-S": "clinical_followup_biospecimen.patient.sequencing_type.miRNA-S"
+      },
+      {
+        "SCNA-A": "clinical_followup_biospecimen.patient.sequencing_type.SCNA-A"
+      },
+      {
+        "SCNA-S": "clinical_followup_biospecimen.patient.sequencing_type.SCNA-S"
+      },
+      {
+        "EXP-S": "clinical_followup_biospecimen.patient.sequencing_type.EXP-S"
+      },
+      {
+        "EXP-A": "clinical_followup_biospecimen.patient.sequencing_type.EXP-A"
+      },
+      {
+        "METH-A": "clinical_followup_biospecimen.patient.sequencing_type.METH-A"
+      },
+      {
+        "MSI": "clinical_followup_biospecimen.patient.msi_status_flag"
+      },
+      {
+        "PEXP-A":"clinical_followup_biospecimen.patient.sequencing_type.PEXP-A"
+      }
+    ]
+  },
+  "CosmicMutantExport_v70": {
+    "基础信息": [
+      {
+        "检索号": "Accession Number"
+      },
+      {
+        "样本号": "ID_sample"
+      },
+      {
+        "样本名": "Sample name"
+      },
+      {
+        "年龄": "Age"
+      },
+      {
+        "肿瘤号": "ID_tumour"
+      },
+      {
+        "样本来源": "Sample source"
+      }
+    ],
+    "基因信息": [
+      {
+        "基因名": "Gene name"
+      },
+      {
+        "是否SNP": "SNP"
+      },
+      {
+        "突变号": "Mutation ID"
+      }
+    ]
+  },
+  "seer_read": {
+    "病人基本信息": [
+      {
+        "病人编号": "ID"
+      },
+      {
+        "种族": "RACE"
+      },
+      {
+        "性别": "SEX"
+      },
+      {
+        "年龄": "AGE"
+      },
+      {
+        "婚姻": "MAR_STAT"
+      }
+    ],
+    "临床信息": [
+      {
+        "疾病": "DISEASE"
+      },
+      {
+        "确诊年龄": "AGE_DX"
+      },
+      {
+        "分期": "DAJCC7STG"
+      }
+    ],
+    "随访信息": [
+      {
+        "生存状态": "STAT_REC"
+      },
+      {
+        "生存时间（天）": "SRV_TIME_DAY"
+      }
+    ],
+    "生物标本信息": [
+      {
+        "血液": "#血液"
+      },
+      {
+        "癌组织": "#癌组织"
+      },
+      {
+        "癌旁组织": "#癌旁组织"
+      }
+    ],
+    "组学信息": [
+      {
+        "SM-S": "sequencing_type.SM-S"
+      },
+      {
+        "miRNA-S": "sequencing_type.miRNA-S"
+      },
+      {
+        "SCNA-A": "sequencing_type.SCNA-A"
+      },
+      {
+        "SCNA-S": "sequencing_type.SCNA-S"
+      },
+      {
+        "EXP-S": "sequencing_type.EXP-S"
+      },
+      {
+        "EXP-A": "sequencing_type.PEXP-A"
+      },
+      {
+        "METH-A": "sequencing_type.METH-A"
+      },
+      {
+        "MSI": ""
+      },
+      {
+        "PEXP-A":"sequencing_type.PEXP-A"
+      }
+    ]
+  }
+}

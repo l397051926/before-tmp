@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gennlife.platform.dao.SyRoleMapper" >
+  <resultMap id="com.gennlife.platform.bean.SyRole" type="com.gennlife.platform.bean.SyRole" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="iconcls" property="iconcls" jdbcType="VARCHAR" />
+    <result column="seq" property="seq" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, description, iconcls, seq, createtime, updatetime
+  </sql>
+	
+	<select id="getAllSyRoleByUser" resultMap="com.gennlife.platform.bean.SyRole" parameterType="Integer" >
+		select <include refid="Base_Column_List"/>
+		from p_role p inner join syuser_syrole t ON p.id = t.syroleid
+		where t.syuserid = #{id}
+	</select>
+	
+	
+
+</mapper>

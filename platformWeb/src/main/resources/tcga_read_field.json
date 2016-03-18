@@ -1,0 +1,938 @@
+{
+  "tcga_read" : {
+    "clinical_followup_biospecimen" : {
+      "patient.height": {
+        "dataType": "double",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.height",
+        "UIFieldName": "身高",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"病人基本信息"}]
+      },
+      "patient.weight": {
+        "dataType": "double",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.weight",
+        "UIFieldName": "体重",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"病人基本信息"}]
+      },
+      "patient.bmi": {
+        "dataType": "double",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.bmi",
+        "UIFieldName": "BMI",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"病人基本信息"}]
+      },
+      "admin.disease_code": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.admin.disease_code",
+        "UIFieldName": "疾病",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}]
+      },
+      "admin.project_code": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.admin.project_code",
+        "UIFieldName": "项目名称",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"病人基本信息"}, {"pageName":"detailBrowse", "groupName":"总览信息"}]
+      },
+      "patient.age": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.age",
+        "UIFieldName": "年龄",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"病人基本信息"}]
+      },
+      "patient.age_at_initial_pathologic_diagnosis": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.age_at_initial_pathologic_diagnosis",
+        "UIFieldName": "确诊年龄",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+      },
+      "patient.marriage": {
+        "dataType": "string",
+        "needAnalyz": true,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.marriage",
+        "UIFieldName": "婚姻",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"病人基本信息"}]
+      },
+      "patient.number_of_first_degree_relatives_with_cancer_diagnosis": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.number_of_first_degree_relatives_with_cancer_diagnosis",
+        "UIFieldName": "直系亲属患病人数",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"随访信息"}, {"pageName":"detailBrowse", "groupName":"随访信息"}]
+      },
+      "patient.bcr_patient_barcode": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.bcr_patient_barcode",
+        "UIFieldName": "病人编号",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"病人基本信息"}, {"pageName":"detailBrowse", "groupName":"总览信息"}]
+      },
+      "patient.clinical_cqcf.diagnosis_subtype": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.clinical_cqcf.diagnosis_subtype",
+        "UIFieldName": "疾病亚型",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"总览信息"}]
+      },
+      "patient.clinical_cqcf.histological_type": {
+        "dataType": "string",
+        "needAnalyz": true,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.clinical_cqcf.histological_type",
+        "UIFieldName": "疾病类型",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"总览信息"}]
+      },
+      "patient.clinical_cqcf.history_of_prior_malignancy": {
+        "dataType": "string",
+        "needAnalyz": true,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.clinical_cqcf.history_of_prior_malignancy",
+        "UIFieldName": "先前的恶性肿瘤",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+      },
+      "patient.ethnicity": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.ethnicity",
+        "UIFieldName": "种族",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"病人基本信息"}]
+      },
+      "patient.gender": {
+        "dataType": "string",
+        "needAnalyz": true,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.gender",
+        "UIFieldName": "性别",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"病人基本信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+      },
+      "patient.circumferential_resection_margin": {
+        "dataType": "double",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.circumferential_resection_margin",
+        "UIFieldName": "环周切缘",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"病人基本信息"}]
+      },
+      "patient.icd_10": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.icd_10",
+        "UIFieldName": "ICD-10 编号",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+      },
+      "patient.tnm_categories.pathologic_categories.pathologic_m": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.tnm_categories.pathologic_categories.pathologic_m",
+        "UIFieldName": "肿瘤分级 M",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.tnm_categories.pathologic_categories.pathologic_n": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.tnm_categories.pathologic_categories.pathologic_n",
+        "UIFieldName": "肿瘤分级 N",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.tnm_categories.pathologic_categories.pathologic_t": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.tnm_categories.pathologic_categories.pathologic_t",
+        "UIFieldName": "肿瘤分级 T",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.lymph_node_examined_count": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.lymph_node_examined_count",
+        "UIFieldName": "LN 总数",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+      },
+      "patient.lymphatic_invasion": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.lymphatic_invasion",
+        "UIFieldName": "淋巴侵入",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+      },
+      "patient.venous_invasion": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.venous_invasion",
+        "UIFieldName": "静脉侵入",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}]
+      },
+      "patient.stage_event.pathologic_stage": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.stage_event.pathologic_stage",
+        "UIFieldName": "肿瘤分期",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.stage_event.system_version": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.stage_event.system_version",
+        "UIFieldName": "肿瘤诊断分期参考系统",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.tissue_source_site": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.tissue_source_site",
+        "UIFieldName": "标本所在的生物样本库",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.biospecimen_cqcf.method_of_sample_procurement": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.biospecimen_cqcf.method_of_sample_procurement",
+        "UIFieldName": "术式",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.biospecimen_cqcf.site_of_disease": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.biospecimen_cqcf.site_of_disease",
+        "UIFieldName": "疾病部位",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"临床信息"}, {"pageName":"detailBrowse", "groupName":"总览信息"}]
+      },
+      "patient.samples.sample-2.days_to_sample_procurement": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample-2.days_to_sample_procurement",
+        "UIFieldName": "样本 2 采集时间",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample-2.freezing_method": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample-2.freezing_method",
+        "UIFieldName": "样本 2 处理方式",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample-2.preservation_method": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample-2.preservation_method",
+        "UIFieldName": "样本 2 存储条件",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample-2.time_between_excision_and_freezing": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample-2.time_between_excision_and_freezing",
+        "UIFieldName": "样本 2 热缺血时长",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample-3.days_to_sample_procurement": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample-3.days_to_sample_procurement",
+        "UIFieldName": "样本 3 采集时间",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample-3.freezing_method": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample-3.freezing_method",
+        "UIFieldName": "样本 3 处理方式",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample-3.preservation_method": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample-3.preservation_method",
+        "UIFieldName": "样本 3 存储条件",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample-3.time_between_excision_and_freezing": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample-3.time_between_excision_and_freezing",
+        "UIFieldName": "样本 3 热缺血时长",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample.days_to_sample_procurement": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample.days_to_sample_procurement",
+        "UIFieldName": "样本 1 采集时间",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample.freezing_method": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample.freezing_method",
+        "UIFieldName": "样本 1 处理方式",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample.preservation_method": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample.preservation_method",
+        "UIFieldName": "样本 1 存储条件",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample.time_between_excision_and_freezing": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample.time_between_excision_and_freezing",
+        "UIFieldName": "样本 1 热缺血时长",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.follow_ups.final_follow_up.vital_status": {
+        "dataType": "string",
+        "needAnalyz": true,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.follow_ups.final_follow_up.vital_status",
+        "UIFieldName": "生存状态",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"随访信息"}, {"pageName":"detailBrowse", "groupName":"随访信息"}]
+      },
+      "patient.follow_ups.final_follow_up.days_to_death": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.follow_ups.final_follow_up.days_to_death",
+        "UIFieldName": "生存时间（天）",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"随访信息"}, {"pageName":"detailBrowse", "groupName":"随访信息"}]
+      },
+      "patient.follow_ups.final_follow_up.person_neoplasm_cancer_status": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.follow_ups.final_follow_up.person_neoplasm_cancer_status",
+        "UIFieldName": "最后一次随访时的疾病状态",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"随访信息"}, {"pageName":"detailBrowse", "groupName":"随访信息"}]
+      },
+      "patient.follow_ups.final_follow_up.followup_treatment_success": {
+        "dataType": "string",
+        "needAnalyz": true,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.follow_ups.final_follow_up.followup_treatment_success",
+        "UIFieldName": "是否根治",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"随访信息"}, {"pageName":"detailBrowse", "groupName":"随访信息"}]
+      },
+      "patient.icd_o_3_site": {
+        "dataType": "string",
+        "needAnalyz": true,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.icd_o_3_site",
+        "UIFieldName": "肿瘤位置",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"随访信息"}, {"pageName":"detailBrowse", "groupName":"随访信息"}]
+      },
+      "patient.icd_o_3_histology": {
+        "dataType": "string",
+        "needAnalyz": true,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.icd_o_3_histology",
+        "UIFieldName": "病理类型",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"随访信息"}, {"pageName":"detailBrowse", "groupName":"随访信息"}]
+      },
+      "patient.samples.sample.tumor_classfication": {
+        "dataType": "string",
+        "needAnalyz": true,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample.tumor_classfication",
+        "UIFieldName": "样本 1 肿瘤类型",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample.tissue_classfication": {
+        "dataType": "string",
+        "needAnalyz": true,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample.tissue_classfication",
+        "UIFieldName": "样本 1 组织类型",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample.portion_count": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample.portion_count",
+        "UIFieldName": "样本 1 份数",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample.dna_aliquot_count": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample.dna_aliquot_count",
+        "UIFieldName": "样本 1 DNA 份数",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample.rna_aliquot_count": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample.rna_aliquot_count",
+        "UIFieldName": "样本 1 RNA 份数",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample-2.tumor_classfication": {
+        "dataType": "string",
+        "needAnalyz": true,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample-2.tumor_classfication",
+        "UIFieldName": "样本 2 肿瘤类型",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample-2.tissue_classfication": {
+        "dataType": "string",
+        "needAnalyz": true,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample-2.tissue_classfication",
+        "UIFieldName": "样本 2 组织类型",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample-2.portion_count": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample-2.portion_count",
+        "UIFieldName": "样本 2 份数",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample-2.dna_aliquot_count": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample-2.dna_aliquot_count",
+        "UIFieldName": "样本 2 DNA 份数",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample-2.rna_aliquot_count": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample-2.rna_aliquot_count",
+        "UIFieldName": "样本 2 RNA 份数",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample-3.tumor_classfication": {
+        "dataType": "string",
+        "needAnalyz": true,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample-3.tumor_classfication",
+        "UIFieldName": "样本 3 肿瘤类型",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample-3.tissue_classfication": {
+        "dataType": "string",
+        "needAnalyz": true,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample-3.tissue_classfication",
+        "UIFieldName": "样本 3 组织类型",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample-3.portion_count": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample-3.portion_count",
+        "UIFieldName": "样本 3 份数",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample-3.dna_aliquot_count": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample-3.dna_aliquot_count",
+        "UIFieldName": "样本 3 DNA 份数",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.samples.sample-3.rna_aliquot_count": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.samples.sample-3.rna_aliquot_count",
+        "UIFieldName": "样本 3 RNA 份数",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName":"生物标本信息"}, {"pageName":"detailBrowse", "groupName":"生物标本信息"}]
+      },
+      "patient.mutation_count": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.mutation_count",
+        "UIFieldName": "基因突变总数",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.silent_mutation_rate": {
+        "dataType": "double",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.silent_mutation_rate",
+        "UIFieldName": "silent mutation rate",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.nonsilent_mutation_rate": {
+        "dataType": "double",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.nonsilent_mutation_rate",
+        "UIFieldName": "non-silent mutation rate",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.sequencing_type.SM-S": {
+        "dataType": "boolean",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.sequencing_type.SM-S",
+        "UIFieldName": "SM-S",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.sequencing_type.SCNA-A": {
+        "dataType": "boolean",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.sequencing_type.SCNA-A",
+        "UIFieldName": "SCNA-A",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.sequencing_type.SCNA-S": {
+        "dataType": "boolean",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.sequencing_type.SCNA-S",
+        "UIFieldName": "SCNA-S",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.sequencing_type.EXP-A": {
+        "dataType": "boolean",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.sequencing_type.EXP-A",
+        "UIFieldName": "Array-based mRNA Expression",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.sequencing_type.EXP-S": {
+        "dataType": "boolean",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.sequencing_type.EXP-S",
+        "UIFieldName": "EXP-S",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.sequencing_type.miRNA-S": {
+        "dataType": "boolean",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.sequencing_type.miRNA-S",
+        "UIFieldName": "miRNA-S",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.sequencing_type.METH-A": {
+        "dataType": "boolean",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.sequencing_type.METH-A",
+        "UIFieldName": "METH-A",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.sequencing_type.PEXP-A": {
+        "dataType": "boolean",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.sequencing_type.PEXP-A",
+        "UIFieldName": "PEXP-A",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.msi_status_flag": {
+        "dataType": "boolean",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.msi_status_flag",
+        "UIFieldName": "MSI",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.msi_status": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.msi_status",
+        "UIFieldName": "MSI 状态",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.tumor_site": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.tumor_site",
+        "UIFieldName": "肿瘤部位",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "临床信息"}]
+      },
+      "patient.cimp_status": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.cimp_status",
+        "UIFieldName": "CIMP 状态",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.MLH1_silencing": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.MLH1_silencing",
+        "UIFieldName": "MLH1 silencing",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.whether_hypermutated": {
+        "dataType": "string",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.whether_hypermutated",
+        "UIFieldName": "mutation hypermutated",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.MLH1_mutation": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.MLH1_mutation",
+        "UIFieldName": "MLH1 mutation",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.MLH3_mutation": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.MLH3_mutation",
+        "UIFieldName": "MLH3 mutation",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.MSH2_mutation": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.MSH2_mutation",
+        "UIFieldName": "MSH2 mutation",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.MSH3_mutation": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.MSH3_mutation",
+        "UIFieldName": "MSH3 mutation",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.MSH6_mutation": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.MSH6_mutation",
+        "UIFieldName": "MSH6 mutation",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.PMS2_mutation": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.PMS2_mutation",
+        "UIFieldName": "PMS2 mutation",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      },
+      "patient.POLE_mutation": {
+        "dataType": "long",
+        "needAnalyz": false,
+        "boost": 1,
+        "IndexFieldName": "clinical_followup_biospecimen.patient.POLE_mutation",
+        "UIFieldName": "POLE mutation",
+        "groupInfo":[{"pageName":"searchReuslt", "groupName": "组学信息"}]
+      }
+    },
+    "gene" : {
+      "READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3" : {
+        "Hugo_Symbol": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Hugo_Symbol",
+          "UIFieldName": "基因名称",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Entrez_Gene_Id": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Entrez_Gene_Id",
+          "UIFieldName": "基因编号",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "NCBI_Build": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.NCBI_Build",
+          "UIFieldName": "NCBI 基因组版本号",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Chromosome": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Chromosome",
+          "UIFieldName": "染色体",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Start_position": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Start_position",
+          "UIFieldName": "突变起始位置",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "End_position": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.End_position",
+          "UIFieldName": "突变终止位置",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Strand": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Strand",
+          "UIFieldName": "基因组链",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Variant_Classification": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Variant_Classification",
+          "UIFieldName": "突变结果",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Variant_Type": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Variant_Type",
+          "UIFieldName": "突变类型",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Reference_Allele": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Reference_Allele",
+          "UIFieldName": "参考基因组等位基因",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Tumor_Seq_Allele1": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Tumor_Seq_Allele1",
+          "UIFieldName": "肿瘤等位基因 1",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Tumor_Seq_Allele2": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Tumor_Seq_Allele2",
+          "UIFieldName": "肿瘤等位基因 2",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "dbSNP_RS": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.dbSNP_RS",
+          "UIFieldName": "dbSNP RS 号",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Tumor_Sample_Barcode": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Tumor_Sample_Barcode",
+          "UIFieldName": "肿瘤样本 barcode",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Matched_Norm_Sample_Barcode": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Matched_Norm_Sample_Barcode",
+          "UIFieldName": "正常组织 barcode",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Match_Norm_Seq_Allele1": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Match_Norm_Seq_Allele1",
+          "UIFieldName": "正常组织等位基因 1",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Match_Norm_Seq_Allele2": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Match_Norm_Seq_Allele2",
+          "UIFieldName": "正常组织等位基因 2",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Mutation_Status": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Mutation_Status",
+          "UIFieldName": "突变状态",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Sequencer": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Sequencer",
+          "UIFieldName": "测序仪器",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Tumor_Sample_UUID": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Tumor_Sample_UUID",
+          "UIFieldName": "肿瘤样本 UUID",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Matched_Norm_Sample_UUID": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Matched_Norm_Sample_UUID",
+          "UIFieldName": "正常组织 UUID",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Genome_Change": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Genome_Change",
+          "UIFieldName": "DNA 改变",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "cDNA_Change": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.cDNA_Change",
+          "UIFieldName": "cDNA 突变",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Codon_Change": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Codon_Change",
+          "UIFieldName": "密码子突变",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "Protein_Change": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.Protein_Change",
+          "UIFieldName": "蛋白质突变",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "GO_Biological_Process": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.GO_Biological_Process",
+          "UIFieldName": "GO 生物学过程",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "GO_Cellular_Component": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.GO_Cellular_Component",
+          "UIFieldName": "GO 细胞组分",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "GO_Molecular_Function": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.GO_Molecular_Function",
+          "UIFieldName": "GO 分子功能",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "COSMIC_tissue_types_affected": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.COSMIC_tissue_types_affected",
+          "UIFieldName": "COSMIC 肿瘤部位",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "i_HGNC_Chromosome": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.i_HGNC_Chromosome",
+          "UIFieldName": "染色体区域",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        },
+        "i_gene_type": {
+          "dataType": "string",
+          "needAnalyz": false,
+          "boost": 1,
+          "IndexFieldName": "gene.READ.Mutation_Packager_Oncotated_Raw_Calls.Level_3.i_gene_type",
+          "UIFieldName": "基因类型",
+          "groupInfo": [{"pageName":"searchReuslt", "groupName": "组学信息"}, {"pageName":"detailBrowse", "groupName":"基因突变"}]
+        }
+      }
+    }
+  }
+}
