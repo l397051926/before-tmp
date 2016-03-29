@@ -50,6 +50,7 @@ public class CrfProcessor {
     public void model(HttpServletRequest request, HttpServletResponse resps) {
         String param = ParamUtils.getParam(request);
         String category = "4";//默认模板类别
+        String crf_id = null;
         logger.info("model =" + param);
         ResultBean resultBean = new ResultBean();
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
@@ -66,8 +67,8 @@ public class CrfProcessor {
         String uid = paramObj.get("uid").getAsString();
         String data = null;
         if (paramObj.get("crf_id") == null) {//客户端还不知道,crf_id
-            String crf_id = MongoManager.getCrfID(projectID);//去summary中查找该项目是否已经存在模板数据
-            if (crf_id == null) {//该项目还没有模板
+            SummaryBean summary = MongoManager.getSummaryByProjectID(projectID);//去summary中查找该项目是否已经存在模板数据
+            if (summary ==null || summary.getCrf_id() == null) {//该项目还没有模板
                 Set<String> users = new HashSet<String>();
                 //获取项目成员
                 List<SyUser> memberList = AllDao.getInstance().getSyUserDao().getProjectMemberSList(confMap);
@@ -102,14 +103,14 @@ public class CrfProcessor {
                     return;
                 }
             } else {//该项目有模板,从数据库中获取的crf_id不空
-                JsonObject modelObj = MongoManager.getModel(crf_id);
+                JsonObject modelObj = MongoManager.getModel(summary.getCrf_id());
                 data = gson.toJson(modelObj);
                 viewer.viewString(data, resps, request);
                 return;
             }
 
         } else {//前端请求的crf不空
-            String crf_id = paramObj.get("crf_id").getAsString();
+            crf_id = paramObj.get("crf_id").getAsString();
             JsonObject modelObj = MongoManager.getModel(crf_id);
             data = gson.toJson(modelObj);
             viewer.viewString(data, resps, request);
@@ -271,9 +272,15 @@ public class CrfProcessor {
             return;
         }
         //检验projectID与crf_id对应关系
-        String crf_idReal = MongoManager.getCrfID(projectID);
-        if (crf_id.equals(MongoManager.getCrfID(crf_idReal))) {
-            String err = "请求参数projectID与crf_id不对应,prjectID=" + projectID + " 对应的crf_id=" + crf_idReal;
+        SummaryBean summaryBean = MongoManager.getSummaryByProjectID(projectID);
+        if(summaryBean == null){
+            String err = "请求参数projectID与crf_id不对应,prjectID=" + projectID + " 对应的crf_id为空";
+            logger.error(err);
+            errorParam(err, req, resp);
+            return;
+        }
+        if (!crf_id.equals(summaryBean.getCrf_id())) {
+            String err = "请求参数projectID与crf_id不对应,prjectID=" + projectID + " 对应的crf_id=" + summaryBean.getCrf_id();
             logger.error(err);
             errorParam(err, req, resp);
             return;
@@ -594,15 +601,21 @@ public class CrfProcessor {
             errorParam("请求参数出错", req, resp);
             return;
         }
+        data.addProperty("code",1);
         data.addProperty("crf_id", crf_id);
-        if (caseID == null) {//还未上传数据,客户端不知道caseID,
-            caseID = MongoManager.getCaseID(crf_id);
-        }
-        if (caseID == null) {//summary结构中记录caseID的为null
-            //生成新的caseID
-            caseID = UUID.randomUUID().toString();
-            //更新summary结构体
-            MongoManager.updateSummaryCaseID(crf_id, caseID);
+
+        if (caseID == null) {
+            SummaryBean summaryBean = MongoManager.getSummary(crf_id);
+            if(summaryBean != null && summaryBean.getCaseID() != null){//summary结构中记录caseID的不为null
+                caseID = summaryBean.getCaseID();
+            }
+            //依旧是null,生成新的caseID
+            if(caseID == null){
+                UUID uuid = UUID.randomUUID();
+                caseID = uuid+"";
+                //更新summary结构体
+                MongoManager.updateSummaryCaseID(crf_id, caseID);
+            }
             data.addProperty("caseID", caseID);
             data.add("children", new JsonArray());
         } else {//在Summary中有记录caseID信息
@@ -706,5 +719,49 @@ public class CrfProcessor {
             }
         }
         return name;
+    }
+
+    /**
+     * crf数据录入完成后,点击录入完成出发的接口,请求参数crf_id,caseID,返回crf_id,新的caseID,空的数据格式
+     * @param req
+     * @param resp
+     */
+    public void saveData(HttpServletRequest req, HttpServletResponse resp) {
+        String crf_id = null;
+        String caseID = null;
+        JsonObject data = new JsonObject();
+        try {
+            String param = ParamUtils.getParam(req);
+            logger.info("upLoadData =" + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            crf_id = paramObj.get("crf_id").getAsString();
+            caseID = paramObj.get("caseID").getAsString();
+        } catch (Exception e) {
+            logger.error("请求参数出错", e);
+            errorParam("请求参数出错", req, resp);
+            return;
+        }
+        SummaryBean summary = MongoManager.getSummary(crf_id);
+        if(summary == null ){
+            String err = "没有对应crf_id的CRF数据";
+            logger.error(err);
+            errorParam(err, req, resp);
+            return;
+        }
+        if(summary.getCaseID() == null || !caseID.equals(summary.getCaseID())){
+            String err = "crf_id当前录入的数据caseID与录入完成传入的caseID的不对应";
+            logger.error(err);
+            errorParam(err, req, resp);
+            return;
+        }
+        UUID uuid = UUID.randomUUID();
+        String newCaseID = uuid +"";
+        summary.setCaseID(newCaseID);
+        summary.setMaxCaseNo(summary.getMaxCaseNo()+1);
+        MongoManager.updateNewSummary(summary);
+        data.addProperty("code",1);
+        data.addProperty("crf_id",crf_id);
+        data.addProperty("caseID",newCaseID);
+
     }
 }

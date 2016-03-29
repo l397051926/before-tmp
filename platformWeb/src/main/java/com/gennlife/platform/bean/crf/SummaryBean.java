@@ -19,13 +19,13 @@ public class SummaryBean {
     private Set<String> users;//项目的成员
     private String caseID = null;//当前录入的caseid
     private int maxCaseNo = 0;//病人编号最大值
-    private String _id;
+    private Object _id;
 
-    public String get_id() {
+    public Object get_id() {
         return _id;
     }
 
-    public void set_id(String _id) {
+    public void set_id(Object _id) {
         this._id = _id;
     }
 

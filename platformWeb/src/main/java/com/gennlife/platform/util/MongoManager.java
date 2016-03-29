@@ -85,51 +85,8 @@ public class MongoManager {
         defaultModel = defaultM;
     }
 
-    /**
-     * 通过查询summary结构,获取crf_id
-     *
-     * @param projectID
-     * @return
-     */
-    public static String getCrfID(String projectID) {
-        String crf_id = null;
-        BasicDBObject query = new BasicDBObject();
-        query.put("projectID", projectID);//获取项目模板
-        DBCursor cursor = summaryCollection.find(query);
-        DBObject baseModel = null;
-        while (cursor.hasNext()) {
-            baseModel = cursor.next();
-        }
-        if (baseModel == null) {
-            return crf_id;
-        } else {
-            crf_id = baseModel.get("crf_id").toString();
-        }
-        return crf_id;
-    }
 
-    /**
-     * 获取crf_id对应的caseID
-     *
-     * @param crf_id
-     * @return
-     */
-    public static String getCaseID(String crf_id) {
-        String caseID = null;
-        BasicDBObject query = new BasicDBObject();
-        query.put("crf_id", crf_id);//获取项目模板
-        DBCursor cursor = summaryCollection.find(query);
-        DBObject baseModel = null;
-        while (cursor.hasNext()) {
-            baseModel = cursor.next();
-        }
-        if (baseModel == null) {
-            return caseID;
-        } else {
-            caseID = baseModel.get("caseID").toString();
-        }
-        return caseID;
-    }
+
 
     /**
      * 更新summery数据
@@ -137,15 +94,14 @@ public class MongoManager {
      * @param caseID
      * @return
      */
-    public static boolean updateSummaryCaseID(String crf_id, String caseID) {
+    public static void updateSummaryCaseID(String crf_id, String caseID) {
         BasicDBObject query = new BasicDBObject();
         query.put("crf_id", crf_id);
         BasicDBObject newDocument = new BasicDBObject();
         newDocument.put("caseID", caseID);
         BasicDBObject updateObj = new BasicDBObject();
         updateObj.put("$set", newDocument);
-        WriteResult w = summaryCollection.update(query, updateObj);
-        return w.isUpdateOfExisting() && w.wasAcknowledged();
+        summaryCollection.update(query, updateObj);
     }
 
 
@@ -257,7 +213,24 @@ public class MongoManager {
     public static SummaryBean getSummary(String crf_id) {
         SummaryBean summaryBean = null;
         BasicDBObject query = new BasicDBObject();
-        query.put("crf_id", crf_id);//获取项目模板
+        query.put("crf_id", crf_id);
+        DBCursor cursor = summaryCollection.find(query);
+        DBObject baseModel = null;
+        while (cursor.hasNext()) {
+            baseModel = cursor.next();
+        }
+        if (baseModel == null) {
+            return null;
+        } else {
+            summaryBean = gson.fromJson(baseModel.toString(), SummaryBean.class);
+        }
+        return summaryBean;
+    }
+
+    public static SummaryBean getSummaryByProjectID(String projectID) {
+        SummaryBean summaryBean = null;
+        BasicDBObject query = new BasicDBObject();
+        query.put("projectID", projectID);
         DBCursor cursor = summaryCollection.find(query);
         DBObject baseModel = null;
         while (cursor.hasNext()) {

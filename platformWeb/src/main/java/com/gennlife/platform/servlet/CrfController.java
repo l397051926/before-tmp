@@ -25,35 +25,35 @@ public class CrfController extends HttpServlet {
             try{
                 processor.model(req, resp);
             }catch (Exception e){
-                logger.error("跳转",e);
+                logger.error("获取模型",e);
             }
             logger.info("获取模型 耗时:" + (System.currentTimeMillis()-start) +"ms");
         } else if ("/crf/SelectAttr".equals(uri)) {//勾选属性,修改模型
             try{
                 processor.selectAttr(req, resp);
             }catch (Exception e){
-                logger.error("跳转",e);
+                logger.error("勾选属性,修改模型",e);
             }
             logger.info("勾选属性,修改模型 耗时:" + (System.currentTimeMillis()-start) +"ms");
         } else if ("/crf/AddGroup".equals(uri)) {
             try{
                 processor.addGroup(req, resp);
             }catch (Exception e){
-                logger.error("跳转",e);
+                logger.error("模型增加组",e);
             }
             logger.info("模型增加组 耗时:" + (System.currentTimeMillis()-start) +"ms");
         } else if ("/crf/AddAttr".equals(uri)) {
             try{
                 processor.addAttr(req, resp);
             }catch (Exception e){
-                logger.error("跳转",e);
+                logger.error("模型增加属性",e);
             }
             logger.info("模型增加属性 耗时:" + (System.currentTimeMillis()-start) +"ms");
         } else if ("/crf/EditModel".equals(uri)) {//更新模板
             try{
                 processor.editModel(req, resp);
             }catch (Exception e){
-                logger.error("跳转",e);
+                logger.error("更新模板",e);
             }
             logger.info("更新模板 耗时:" + (System.currentTimeMillis()-start) +"ms");
 
@@ -61,24 +61,31 @@ public class CrfController extends HttpServlet {
             try{
                 processor.saveModel(req, resp);
             }catch (Exception e){
-                logger.error("跳转",e);
+                logger.error("保存模板",e);
             }
             logger.info("保存模板 耗时:" + (System.currentTimeMillis()-start) +"ms");
         } else if ("/crf/GetData".equals(uri)) {//数据录入时,请求某个case数据
             try{
                 processor.getData(req, resp);
             }catch (Exception e){
-                logger.error("跳转",e);
+                logger.error("数据录入时,请求某个case数据",e);
             }
             logger.info("数据录入时,请求某个case数据 耗时:" + (System.currentTimeMillis()-start) +"ms");
         } else if ("/crf/UpLoadData".equals(uri)) {
             try{
                 processor.upLoadData(req, resp);
             }catch (Exception e){
-                logger.error("跳转",e);
+                logger.error("上传crf数据",e);
             }
-            logger.info("上传crf数据接口 耗时:" + (System.currentTimeMillis()-start) +"ms");
+            logger.info("上传crf数据 耗时:" + (System.currentTimeMillis()-start) +"ms");
 
+        }else if("/crf/SaveData".equals(uri)){
+            try{
+                processor.saveData(req, resp);
+            }catch (Exception e){
+                logger.error("录入完成接口",e);
+            }
+            logger.info("录入完成接口 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }
     }
 
