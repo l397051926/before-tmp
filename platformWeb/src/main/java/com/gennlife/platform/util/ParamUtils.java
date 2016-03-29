@@ -19,8 +19,6 @@ public class ParamUtils {
         }else{
             param = getPostParm(request);
         }
-
-        //
         return cleanXSS(param);
     }
     private static String getPostParm(HttpServletRequest request){
@@ -64,6 +62,9 @@ public class ParamUtils {
     }
 
     private static String cleanXSS(String value){
+        if(value == null){
+            return null;
+        }
         value = value.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
         value = value.replaceAll("\\(", "&#40;").replaceAll("\\)", "&#41;");
         value = value.replaceAll("'", "&#39;");

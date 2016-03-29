@@ -87,7 +87,24 @@
         <servlet-name>File</servlet-name>
         <url-pattern>/file/*</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Crf</servlet-name>
+        <servlet-class>com.gennlife.platform.servlet.CrfController</servlet-class>
+    </servlet>
 
+    <servlet-mapping>
+        <servlet-name>Crf</servlet-name>
+        <url-pattern>/crf/*</url-pattern>
+    </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Base</servlet-name>
+        <servlet-class>com.gennlife.platform.servlet.BaseController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Base</servlet-name>
+        <url-pattern>/base/*</url-pattern>
+    </servlet-mapping>
   <display-name>Archetype Created Web Application</display-name>
 </web-app>

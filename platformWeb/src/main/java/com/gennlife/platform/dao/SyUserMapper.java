@@ -36,6 +36,13 @@ public interface SyUserMapper {
      */
     public List<SyUser> getProjectMemberList(Map<String,Object> likeCondition);
 
+    /**
+     * 项目成员列表:请求参数只是projectID
+     * @param likeCondition
+     * @return
+     */
+    public List<SyUser> getProjectMemberSList(Map<String,Object> likeCondition);
+
     public int getProjectMemberCounter(Map<String,Object> likeCondition);
 
     /**
@@ -46,4 +53,5 @@ public interface SyUserMapper {
     public List<SyUser> searchMemberList(Map<String,Object> likeCondition);
 
     public int searchMemberCounter(Map<String,Object> likeCondition);
+
 }

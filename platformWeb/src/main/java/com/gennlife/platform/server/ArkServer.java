@@ -1,6 +1,7 @@
 package com.gennlife.platform.server;
 
 import com.gennlife.platform.service.ArkService;
+import com.gennlife.platform.util.MongoManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

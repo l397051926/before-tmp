@@ -24,4 +24,10 @@
         <property name="SetDetailDataURL" value="http://192.168.1.111:8111/fs/sample/%s"/>
     </bean>
 
+    <bean id="com.gennlife.platform.util.MongoConf" class="com.gennlife.platform.util.MongoConf">
+        <property name="host" value="127.0.0.1"/>
+        <property name="port" value="27017"/>
+        <property name="poolSize" value="10"/>
+        <property name="blockSize" value="10"/>
+    </bean>
 </beans>

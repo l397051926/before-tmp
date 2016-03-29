@@ -2,10 +2,7 @@ package com.gennlife.platform.service;
 
 import com.gennlife.platform.bean.conf.ConfGroupInfo;
 import com.gennlife.platform.bean.conf.ConfItem;
-import com.gennlife.platform.util.Conf;
-import com.gennlife.platform.util.FilesUtils;
-import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.SpringContextUtil;
+import com.gennlife.platform.util.*;
 import com.google.gson.*;
 import com.google.gson.internal.LinkedHashTreeMap;
 import org.slf4j.Logger;
@@ -15,6 +12,7 @@ import org.w3c.dom.Element;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.UnknownHostException;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -25,6 +23,7 @@ import java.util.concurrent.Executors;
 public class ArkService {
     private static final Logger logger = LoggerFactory.getLogger(ArkService.class);
     private static Conf conf = null;
+    private static MongoConf mongoConf = null;
     private static ExecutorService executorService;
     private static String seerField;
     private static String CosmicMutantExport_v70;
@@ -51,11 +50,22 @@ public class ArkService {
         //过滤tcga搜索结果
         TcgaMapParser();
         DataService.init();
+        parseChain();
+        logger.info("开始初始化mongoDB相关配置,,,,");
+        mongoConf = (MongoConf) context.getBean("com.gennlife.platform.util.MongoConf");
+        try {
+
+            MongoManager.init(mongoConf);
+            MongoManager.initCollection();
+        } catch (UnknownHostException e) {
+            logger.error("",e);
+            throw new RuntimeException();
+        }
 
     }
 
     public void destroy() {
-
+        MongoManager.destory();
     }
 
     public static Conf getConf(){
@@ -193,27 +203,17 @@ public class ArkService {
                 }
             }
         }
-
-        logger.info(gson.toJson(GroupMap.get("tcga_read").containsKey("组学信息")));
     }
 
     /**
      * 解析配置文件：seer_read_field.json
      */
     private static void SeerConfigParser() {
-        InputStream inputStream1 = ArkService.class.getResourceAsStream("/seer_read_field.json");
         try {
-            seerField = FilesUtils.readString(inputStream1, "utf-8");
+            seerField = FilesUtils.readFile("/seer_read_field.json");
         } catch (IOException e) {
             logger.error("",e);
             throw new RuntimeException();
-        }finally {
-            try {
-                inputStream1.close();
-            } catch (IOException e) {
-                logger.error("",e);
-                throw new RuntimeException();
-            }
         }
         Map<String,ConfItem> tmpIndexMap = new HashMap<String, ConfItem>();
         IndexMap.put("seer_read",tmpIndexMap);
@@ -289,21 +289,12 @@ public class ArkService {
      * 解析配置文件：CosmicMutantExport_v70.json
      */
     private static void CosmicMutantExportConfigParser(){
-        InputStream inputStream3 =  ArkService.class.getResourceAsStream("/CosmicMutantExport_v70.json");
         try {
-            CosmicMutantExport_v70 = FilesUtils.readString(inputStream3,"utf-8");
+            CosmicMutantExport_v70 = FilesUtils.readFile("/CosmicMutantExport_v70.json");
         } catch (IOException e) {
             logger.error("",e);
             throw new RuntimeException();
-        }finally {
-            try {
-                inputStream3.close();
-            } catch (IOException e) {
-                logger.error("",e);
-                throw new RuntimeException();
-            }
         }
-
         Map<String,ConfItem> tmpIndexMap = new HashMap<String, ConfItem>();
         IndexMap.put("CosmicMutantExport_v70",tmpIndexMap);
         Map<String,Map<String,List<ConfItem>>> tmpGroupMap = new HashMap<String, Map<String, List<ConfItem>>>();
@@ -382,20 +373,12 @@ public class ArkService {
      * 解析部分属性值映射文件
      */
     private static void TcgaMapParser(){
-        InputStream inputStream5 =  ArkService.class.getResourceAsStream("/tcga_coadread_field.mapping.json");
         String data = null;
         try {
-            data = FilesUtils.readString(inputStream5, "utf-8");
+            data = FilesUtils.readFile("/tcga_coadread_field.mapping.json");
         } catch (IOException e) {
             logger.error("",e);
             throw new RuntimeException();
-        }finally {
-            try {
-                inputStream5.close();
-            } catch (IOException e) {
-                logger.error("",e);
-                throw new RuntimeException();
-            }
         }
         JsonObject jsonObject = jsonParser.parse(data).getAsJsonObject();
         JsonObject dataObject = jsonObject.getAsJsonObject("tcga_coadread");
@@ -414,7 +397,21 @@ public class ArkService {
             }
         }
     }
+    private static JsonObject chainJson = null;
 
+    public static void parseChain(){
+        try {
+            String data = FilesUtils.readFile("/chainConf.json");
+            chainJson = (JsonObject) jsonParser.parse(data);
+        } catch (IOException e) {
+            logger.error("",e);
+            throw new RuntimeException();
+        }
+    }
+
+    public static final JsonObject getChainJson(){
+        return chainJson;
+    }
     public static Map<String, Map<String, String>> getMapConf() {
         return mapConf;
     }
