@@ -34,12 +34,10 @@ public class View {
         response.setContentType("application/json");
     }
     public void writeResult(String reuslt,HttpServletResponse response,HttpServletRequest request){
-        String jsonpCallback = request.getParameter("jsonpCallback");
         PrintWriter writer = null;
-        String result = jsonpCallback +"(" +reuslt +")";
         try {
             writer = response.getWriter();
-            writer.write(result);
+            writer.write(reuslt);
             writer.flush();
         } catch (IOException e) {
             logger.error("",e);
