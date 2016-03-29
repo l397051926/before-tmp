@@ -762,6 +762,6 @@ public class CrfProcessor {
         data.addProperty("code",1);
         data.addProperty("crf_id",crf_id);
         data.addProperty("caseID",newCaseID);
-
+        viewer.viewString(gson.toJson(data),resp,req);
     }
 }
