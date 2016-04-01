@@ -143,6 +143,9 @@ public class MongoManager {
             while (cursor.hasNext()) {
                 baseModel = cursor.next();
             }
+            if(baseModel == null){
+                return null;
+            }
             MongoResultBean mongoResultBean = gson.fromJson(baseModel.toString(), MongoResultBean.class);
             mongoResultBean.set_id(null);
             MongoManager.setDefaultModel(baseModel.toString());

@@ -13,6 +13,7 @@ import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
 import com.google.gson.*;
 import com.mongodb.*;
+import org.apache.tools.ant.util.XMLFragment;
 import org.bson.BSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +50,7 @@ public class CrfProcessor {
      */
     public void model(HttpServletRequest request, HttpServletResponse resps) {
         String param = ParamUtils.getParam(request);
-        String category = "4";//默认模板类别
+        String category = "5";//默认模板类别
         String crf_id = null;
         logger.info("model =" + param);
         ResultBean resultBean = new ResultBean();
@@ -132,7 +133,7 @@ public class CrfProcessor {
         if (obj == null || obj.isJsonNull()) {
             return null;
         }
-        if (obj.get("isParent") != null) {
+        if (obj.get("attrID") == null) {//组
             String id = obj.get("id").getAsString();
             JsonArray jsonArray = obj.getAsJsonArray("children");
             for (int i = 0; i < jsonArray.size(); i++) {
@@ -170,7 +171,7 @@ public class CrfProcessor {
         if (obj == null || obj.isJsonNull()) {
             return null;
         }
-        if (obj.get("isParent") != null) {//当前是组
+        if (obj.get("attrID") == null) {//当前是组
             String id = obj.get("id").getAsString();
             JsonArray jsonArray = obj.getAsJsonArray("children");
             if (id.equals(parent)) {//找到父节点
@@ -200,7 +201,7 @@ public class CrfProcessor {
         if (obj == null || obj.isJsonNull()) {
             return null;
         }
-        if (obj.get("isParent") != null) {//当前是组
+        if (obj.get("attrID") == null) {//当前是组
             String id = obj.get("id").getAsString();
             JsonArray jsonArray = obj.getAsJsonArray("children");
             for (int i = 0; i < jsonArray.size(); i++) {
@@ -216,8 +217,37 @@ public class CrfProcessor {
     }
 
 
+    /**
+     *深度优先遍历去除掉叶子节点
+     * @param parent
+     * @return
+     */
+    public static JsonObject traversalCutDownLeaves(JsonObject parent){
+        if(parent == null||parent.isJsonNull()){
+            return null;
+        }
+        if(parent.get("attrID") != null || parent.get("children") == null || parent.get("children").isJsonNull()){
+            return null;
+        }
+        JsonArray children = parent.get("children").getAsJsonArray();
+        JsonArray newChildren = new JsonArray();
+        for(JsonElement child:children){
+            JsonObject childObj = child.getAsJsonObject();
+            if(childObj.get("attrID") == null){//是组
+                JsonObject newchildObj = traversalCutDownLeaves(childObj);
+                if(newchildObj != null){
+                    newChildren.add(newchildObj);
+                }
+            }
+        }
+        if(newChildren.size() == 0){
+            parent.remove("children");
+        }else{
+            parent.add("children",newChildren);
+        }
 
-
+        return parent;
+    }
 
 
 
@@ -498,7 +528,7 @@ public class CrfProcessor {
                 getAttrIDs(obj.getAsJsonObject(), set);
             }
         }
-        if (model.get("isParent") != null) {//当前是组
+        if (model.get("attrID") == null) {//当前是组
             JsonArray data = model.getAsJsonArray("children");
             for (JsonElement entity : data) {
                 JsonObject obj = entity.getAsJsonObject();
@@ -763,5 +793,32 @@ public class CrfProcessor {
         data.addProperty("crf_id",crf_id);
         data.addProperty("caseID",newCaseID);
         viewer.viewString(gson.toJson(data),resp,req);
+    }
+
+    /**
+     * 返回没有叶子节点的模型树
+     * @param req
+     * @param resp
+     */
+    public void modelTree(HttpServletRequest req, HttpServletResponse resp) {
+        String crf_id = null;
+        try {
+            String param = ParamUtils.getParam(req);
+            logger.info("modelTree =" + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            crf_id = paramObj.get("crf_id").getAsString();
+        } catch (Exception e) {
+            logger.error("请求参数出错", e);
+            errorParam("请求参数出错", req, resp);
+            return;
+        }
+        JsonObject modelJsonObject = MongoManager.getModel(crf_id);
+        if(modelJsonObject == null){
+            String err = "没有crf_id:"+crf_id +"对应的模型数据";
+            errorParam(err, req, resp);
+            return;
+        }
+        JsonObject modelTree = traversalCutDownLeaves(modelJsonObject);
+        viewer.viewString(gson.toJson(modelTree),resp,req);
     }
 }

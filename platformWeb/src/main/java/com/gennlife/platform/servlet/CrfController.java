@@ -86,6 +86,13 @@ public class CrfController extends HttpServlet {
                 logger.error("录入完成接口",e);
             }
             logger.info("录入完成接口 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/crf/ModelTree".equals(uri)){
+            try{
+                processor.modelTree(req, resp);
+            }catch (Exception e){
+                logger.error("获取模型树,没有叶子节点",e);
+            }
+            logger.info("获取模型树,没有叶子节点 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }
     }
 
