@@ -4,6 +4,7 @@ import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.SyUser;
 import com.gennlife.platform.bean.crf.DataBean;
 import com.gennlife.platform.bean.crf.MongoResultBean;
+import com.gennlife.platform.bean.crf.SampleListBean;
 import com.gennlife.platform.bean.crf.SummaryBean;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.util.ChineseToEnglish;
@@ -12,6 +13,7 @@ import com.gennlife.platform.util.MongoManager;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
 import com.google.gson.*;
+import com.google.gson.internal.ObjectConstructor;
 import com.mongodb.*;
 import org.apache.tools.ant.util.XMLFragment;
 import org.bson.BSONObject;
@@ -427,6 +429,7 @@ public class CrfProcessor {
         String eNName = null;
         String dataType = null;
         String groupID = "Root";
+        String uid = null;
         //结果
         String data = null;
         try {
@@ -444,6 +447,7 @@ public class CrfProcessor {
             if (paramObj.get("valueMap") != null) {
                 valueMap = paramObj.get("valueMap").getAsJsonObject();
             }
+            uid = paramObj.get("uid").getAsString();
         } catch (Exception e) {
             logger.error("请求参数出错", e);
             errorParam("请求参数出错", req, resp);
@@ -459,6 +463,7 @@ public class CrfProcessor {
         newAttr.addProperty("name", cNName);
         newAttr.addProperty("uIType", uIType);
         newAttr.addProperty("dataType", dataType);
+        newAttr.addProperty("addUser",uid);
         if (valueMap != null) {
             newAttr.add("valueMap", valueMap);
         }
@@ -691,6 +696,9 @@ public class CrfProcessor {
             if(name != null){
                 data.addProperty("patientName", name);
             }
+            Date today = new Date();
+            String todayStr = time.format(today).substring(0,10);
+            data.addProperty("createTime",todayStr);
             SummaryBean summaryBean = MongoManager.getSummary(crf_id);
             if(summaryBean == null){//还没有这个crf_id 对应数据,出错
                 errorParam("没有这个crf_id 对应数据summary,出错", req, resp);
@@ -713,6 +721,29 @@ public class CrfProcessor {
                 MongoManager.insertNewData(dataObj);
             }
 
+        }else{//已经插入一部分,这部分是更新同名的组信息
+            if(existData.get("children")!= null || !existData.get("children").isJsonArray()){
+                errorParam("上传的数据格式有误,无children或者children不是数组", req, resp);
+                return;
+            }
+            JsonArray jsonArr = existData.getAsJsonArray("children");
+            JsonArray newChildren = new JsonArray();
+            for(JsonElement entity:jsonArr){
+                JsonObject group = entity.getAsJsonObject();
+                String name = group.get("name") != null? group.get("name").getAsString():null;
+                for(JsonElement ent:children){
+                    JsonObject newGroup = ent.getAsJsonObject();
+                    String newName = newGroup.get("name") != null ? newGroup.get("name").getAsString():null;
+                    if(name != null && newName != null && name.equals(newName)){
+                        newChildren.add(newGroup);
+                    }else if(name != null && newName != null && !name.equals(newName)){
+                        newChildren.add(group);
+                    }
+                }
+            }
+            existData.add("children",newChildren);
+            DataBean dataBean = gson.fromJson(gson.toJson(existData), DataBean.class);
+            MongoManager.updateNewData(dataBean);
         }
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(1);
@@ -820,5 +851,58 @@ public class CrfProcessor {
         }
         JsonObject modelTree = traversalCutDownLeaves(modelJsonObject);
         viewer.viewString(gson.toJson(modelTree),resp,req);
+    }
+
+    /**
+     *返回病历列表数据
+     * @param req
+     * @param resp
+     */
+    public void sampleCaseList(HttpServletRequest req, HttpServletResponse resp) {
+        String crf_id = null;
+        String limit = null;
+        int[] result = null;
+        try {
+            String param = ParamUtils.getParam(req);
+            logger.info("sampleCaseList =" + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            crf_id = paramObj.get("crf_id").getAsString();
+            limit = paramObj.get("limit").getAsString();
+            result = ParamUtils.parseLimit(limit);
+        } catch (Exception e) {
+            logger.error("请求参数出错", e);
+            errorParam("请求参数出错", req, resp);
+            return;
+        }
+        List<SampleListBean> list = MongoManager.getSampleListData(crf_id,result[0],result[1]);
+        int count = MongoManager.getSampleListCount(crf_id);
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(1);
+        resultBean.setData(list);
+        Map<String,Integer> map = new HashMap<String, Integer>();
+        map.put("count",count);
+        resultBean.setInfo(map);
+        viewer.viewString(gson.toJson(resultBean),resp,req);
+    }
+
+    public void deleteSample(HttpServletRequest req, HttpServletResponse resp) {
+        String crf_id = null;
+        String caseID = null;
+        try {
+            String param = ParamUtils.getParam(req);
+            logger.info("sampleCaseList =" + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            crf_id = paramObj.get("crf_id").getAsString();
+            caseID = paramObj.get("caseID").getAsString();
+        } catch (Exception e) {
+            logger.error("请求参数出错", e);
+            errorParam("请求参数出错", req, resp);
+            return;
+        }
+        MongoManager.deleteSample(crf_id,caseID);
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(1);
+        resultBean.setInfo("删除成功");
+        viewer.viewString(gson.toJson(resultBean),resp,req);
     }
 }

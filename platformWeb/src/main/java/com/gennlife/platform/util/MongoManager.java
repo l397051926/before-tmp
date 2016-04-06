@@ -2,6 +2,7 @@ package com.gennlife.platform.util;
 
 import com.gennlife.platform.bean.crf.DataBean;
 import com.gennlife.platform.bean.crf.MongoResultBean;
+import com.gennlife.platform.bean.crf.SampleListBean;
 import com.gennlife.platform.bean.crf.SummaryBean;
 import com.gennlife.platform.enums.MongoCollectionNames;
 import com.gennlife.platform.enums.MongoDBNames;
@@ -16,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.UnknownHostException;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -256,5 +258,38 @@ public class MongoManager {
         updateObj.put("$set", newDocument);
         WriteResult w = metaCollection.update(query, updateObj);
         return;
+    }
+
+
+    public static void deleteSample(String crf_id,String caseID){
+        BasicDBObject query = new BasicDBObject();
+        query.put("crf_id", crf_id);
+        query.put("caseID", caseID);
+        dataCollection.findAndRemove(query);
+        return;
+    }
+
+    public static List<SampleListBean> getSampleListData(String crf_id,int start,int pageNo){
+        BasicDBObject query = new BasicDBObject();
+        query.put("crf_id", crf_id);
+        DBCursor cursor = dataCollection.find(query).skip((start - 1) * pageNo).limit(pageNo);
+        DBObject baseModel = null;
+        List<SampleListBean> list = new LinkedList<SampleListBean>();
+        while (cursor.hasNext()) {
+            baseModel = cursor.next();
+            if(baseModel != null){
+                SampleListBean sampleListBean = gson.fromJson(baseModel.toString(), SampleListBean.class);
+                list.add(sampleListBean);
+            }
+        }
+        return list;
+    }
+
+
+    public static int getSampleListCount(String crf_id){
+        BasicDBObject query = new BasicDBObject();
+        query.put("crf_id", crf_id);
+        int count = dataCollection.find(query).count();
+        return count;
     }
 }

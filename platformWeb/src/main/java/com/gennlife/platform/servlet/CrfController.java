@@ -93,6 +93,20 @@ public class CrfController extends HttpServlet {
                 logger.error("获取模型树,没有叶子节点",e);
             }
             logger.info("获取模型树,没有叶子节点 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if ("/crf/SampleCaseList".equals(uri)){
+            try{
+                processor.sampleCaseList(req, resp);
+            }catch (Exception e){
+                logger.error("病历列表数据",e);
+            }
+            logger.info("病历列表数据 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/crf/DeleteSample".equals(uri)){
+            try{
+                processor.deleteSample(req, resp);
+            }catch (Exception e){
+                logger.error("删除某个case数据",e);
+            }
+            logger.info("删除某个case数据 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }
     }
 
