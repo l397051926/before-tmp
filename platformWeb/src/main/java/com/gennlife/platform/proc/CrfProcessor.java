@@ -639,28 +639,28 @@ public class CrfProcessor {
         data.addProperty("code",1);
         data.addProperty("crf_id", crf_id);
 
-        if (caseID == null) {
+        if (caseID == null || "".equals(caseID)) {
             SummaryBean summaryBean = MongoManager.getSummary(crf_id);
             if(summaryBean != null && summaryBean.getCaseID() != null){//summary结构中记录caseID的不为null
                 caseID = summaryBean.getCaseID();
-            }
-            //依旧是null,生成新的caseID
-            if(caseID == null){
-                UUID uuid = UUID.randomUUID();
-                caseID = uuid+"";
-                //更新summary结构体
-                MongoManager.updateSummaryCaseID(crf_id, caseID);
-            }
-            data.addProperty("caseID", caseID);
-            data.add("children", new JsonArray());
-        } else {//在Summary中有记录caseID信息
-            JsonObject d = MongoManager.getCrfData(crf_id, caseID);
-            if (d == null || !d.has("children") || !d.get("children").isJsonArray()) {
-                data.add("children", new JsonArray());
-            } else {
-                JsonArray children = d.get("children").getAsJsonArray();
+                JsonObject d = MongoManager.getCrfData(crf_id, caseID);
+                if (d == null || !d.has("children") || !d.get("children").isJsonArray()) {
+                    data.add("children", new JsonArray());
+                } else {
+                    JsonArray children = d.get("children").getAsJsonArray();
+                    data.addProperty("caseID", caseID);
+                    data.add("children", children);
+                }
+            }else{
+                //依旧是null,生成新的caseID
+                if(caseID == null || "".equals(caseID)){
+                    UUID uuid = UUID.randomUUID();
+                    caseID = uuid+"";
+                    //更新summary结构体
+                    MongoManager.updateSummaryCaseID(crf_id, caseID);
+                }
                 data.addProperty("caseID", caseID);
-                data.add("children", children);
+                data.add("children", new JsonArray());
             }
         }
         String jsonStr = gson.toJson(data);
