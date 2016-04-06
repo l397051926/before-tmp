@@ -69,7 +69,7 @@ public class CrfProcessor {
         confMap.put("projectID", projectID);
         String uid = paramObj.get("uid").getAsString();
         String data = null;
-        if (paramObj.get("crf_id") == null) {//客户端还不知道,crf_id
+        if (paramObj.get("crf_id") == null || "".equals(paramObj.get("crf_id").getAsString())) {//客户端还不知道,crf_id
             SummaryBean summary = MongoManager.getSummaryByProjectID(projectID);//去summary中查找该项目是否已经存在模板数据
             if (summary ==null || summary.getCrf_id() == null) {//该项目还没有模板
                 Set<String> users = new HashSet<String>();
