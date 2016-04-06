@@ -643,12 +643,12 @@ public class CrfProcessor {
             SummaryBean summaryBean = MongoManager.getSummary(crf_id);
             if(summaryBean != null && summaryBean.getCaseID() != null){//summary结构中记录caseID的不为null
                 caseID = summaryBean.getCaseID();
+                data.addProperty("caseID", caseID);
                 JsonObject d = MongoManager.getCrfData(crf_id, caseID);
                 if (d == null || !d.has("children") || !d.get("children").isJsonArray()) {
                     data.add("children", new JsonArray());
                 } else {
                     JsonArray children = d.get("children").getAsJsonArray();
-                    data.addProperty("caseID", caseID);
                     data.add("children", children);
                 }
             }else{
