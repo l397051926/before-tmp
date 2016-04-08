@@ -210,10 +210,10 @@ public class MongoManager {
                 DataBean dataBean = gson.fromJson(baseModel.toString(), DataBean.class);
                 JsonObject dataObj = (JsonObject) jsonParser.parse(gson.toJson(dataBean));
                 JsonArray children = dataObj.getAsJsonArray("children");
-                String caseNo = baseModel.get("caseNo").toString();
-                String name = baseModel.get("name").toString();
-                data.addProperty("caseNo", caseNo);
-                data.addProperty("name", name);
+                String patientNo = baseModel.get("patientNo").toString();
+                String patientName = baseModel.get("patientName").toString();
+                data.addProperty("caseNo", patientNo);
+                data.addProperty("name", patientNo);
                 data.add("children", children);
             }
         }

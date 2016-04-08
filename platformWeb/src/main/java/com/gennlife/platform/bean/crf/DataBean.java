@@ -8,7 +8,7 @@ import java.util.List;
 public class DataBean {
     private String crf_id = null;
     private String caseID = null;
-    private Integer patientNo = 0;
+    private String patientNo = "0";
     private String patientName = null;
     private List<Object> children = null;
     public String getCrf_id() {
@@ -36,11 +36,11 @@ public class DataBean {
         this.caseID = caseID;
     }
 
-    public Integer getPatientNo() {
+    public String getPatientNo() {
         return patientNo;
     }
 
-    public void setPatientNo(Integer patientNo) {
+    public void setPatientNo(String patientNo) {
         this.patientNo = patientNo;
     }
 
