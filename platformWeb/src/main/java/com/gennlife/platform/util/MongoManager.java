@@ -11,14 +11,18 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mongodb.*;
+import com.mongodb.client.FindIterable;
 import org.bson.BSONObject;
 import org.bson.BsonDocument;
+import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.UnknownHostException;
 import java.util.LinkedList;
 import java.util.List;
+
+import static java.util.Arrays.asList;
 
 /**
  * Created by chen-song on 16/3/19.
@@ -291,5 +295,44 @@ public class MongoManager {
         query.put("crf_id", crf_id);
         int count = dataCollection.find(query).count();
         return count;
+    }
+
+    public static List<SampleListBean> searchSampleList(String crf_id,int start,int pageNo,String key){
+        BasicDBObject query = getSampleSearchQuery(crf_id,key);
+        DBCursor cursor = dataCollection.find(query).skip((start - 1) * pageNo).limit(pageNo);;
+        List<SampleListBean> list = new LinkedList<SampleListBean>();
+        DBObject baseModel = null;
+        while (cursor.hasNext()){
+            baseModel = cursor.next();
+            if(baseModel == null){
+                continue;
+            }
+            SampleListBean sampleListBean = gson.fromJson(baseModel.toString(), SampleListBean.class);
+            list.add(sampleListBean);
+
+        }
+        return list;
+    }
+
+    public static int searchSampleListintCount(String crf_id,String key){
+        BasicDBObject query = getSampleSearchQuery(crf_id,key);
+        int count = dataCollection.find(query).count();;
+        return count;
+    }
+
+    public static BasicDBObject getSampleSearchQuery(String crf_id,String key){
+        BasicDBObject query = new BasicDBObject();
+        BasicDBList queryList = new BasicDBList();
+        BasicDBObject patientName = new BasicDBObject();
+        BasicDBObject regexName = new BasicDBObject();
+        regexName.put("$regex",key);
+        patientName.put("patientName",regexName);
+        BasicDBObject patientNo = new BasicDBObject();
+        patientNo.put("patientNo",regexName);
+        queryList.add(patientName);
+        queryList.add(patientNo);
+        query.put("$or",queryList);
+        query.put("crf_id",crf_id);
+        return query;
     }
 }

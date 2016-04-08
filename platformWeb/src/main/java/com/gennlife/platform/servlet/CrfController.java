@@ -107,6 +107,20 @@ public class CrfController extends HttpServlet {
                 logger.error("删除某个case数据",e);
             }
             logger.info("删除某个case数据 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/crf/searchSampleList".equals(uri)){
+            try{
+                processor.searchSampleList(req, resp);
+            }catch (Exception e){
+                logger.error("病历列表",e);
+            }
+            logger.info("病历列表 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/crf/UpdateGroupName".equals(uri)){
+            try{
+                processor.searchSampleList(req, resp);
+            }catch (Exception e){
+                logger.error("更新",e);
+            }
+            logger.info("病历列表 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }
     }
 

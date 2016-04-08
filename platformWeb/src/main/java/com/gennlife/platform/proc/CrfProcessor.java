@@ -687,7 +687,7 @@ public class CrfProcessor {
 
         JsonObject existData = MongoManager.getCrfData(crf_id, caseID);
         String t = time.format(new Date());
-        if (existData == null) {
+        if (existData == null) {//数据collection中没有这个caseID的数据
             data = new JsonObject();
             data.addProperty("crf_id", crf_id);
             data.addProperty("caseID", caseID);
@@ -700,26 +700,23 @@ public class CrfProcessor {
             String todayStr = time.format(today).substring(0,10);
             data.addProperty("createTime",todayStr);
             SummaryBean summaryBean = MongoManager.getSummary(crf_id);
+            if(summaryBean == null){
+                summaryBean = new SummaryBean();
+            }
+            /*
             if(summaryBean == null){//还没有这个crf_id 对应数据,出错
                 errorParam("没有这个crf_id 对应数据summary,出错", req, resp);
                 return;
             }
-            if(crf_id.equals(summaryBean.getCrf_id())){//更新
-                Integer maxCaseNo = summaryBean.getMaxCaseNo();
-                data.addProperty("patientNo", maxCaseNo);
-                MongoManager.updateNewSummary(summaryBean);
-                DataBean dataBean = gson.fromJson(gson.toJson(data), DataBean.class);
-                MongoManager.updateNewData(dataBean);
-            }else{//插入
-                Integer maxCaseNo = summaryBean.getMaxCaseNo();
-                data.addProperty("patientNo", maxCaseNo+1);
-                summaryBean.setMaxCaseNo(maxCaseNo+1);
-                summaryBean.setCaseID(caseID);
-                summaryBean.setLastTime(t);
-                MongoManager.updateNewSummary(summaryBean);
-                String dataObj = gson.toJson(data);
-                MongoManager.insertNewData(dataObj);
-            }
+            */
+            Integer maxCaseNo = summaryBean.getMaxCaseNo();
+            data.addProperty("patientNo", maxCaseNo+1+"");
+            summaryBean.setMaxCaseNo(0);
+            summaryBean.setCaseID(caseID);
+            summaryBean.setLastTime(t);
+            MongoManager.updateNewSummary(summaryBean);
+            String dataObj = gson.toJson(data);
+            MongoManager.insertNewData(dataObj);
 
         }else{//已经插入一部分,这部分是更新同名的组信息
             if(existData.get("children")!= null || !existData.get("children").isJsonArray()){
@@ -903,6 +900,35 @@ public class CrfProcessor {
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(1);
         resultBean.setInfo("删除成功");
+        viewer.viewString(gson.toJson(resultBean),resp,req);
+    }
+
+    public void searchSampleList(HttpServletRequest req, HttpServletResponse resp) {
+        String crf_id = null;
+        String key = null;
+        String limit = null;
+        int[] result = null;
+        try {
+            String param = ParamUtils.getParam(req);
+            logger.info("sampleCaseList =" + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            crf_id = paramObj.get("crf_id").getAsString();
+            key = paramObj.get("key").getAsString();
+            limit = paramObj.get("limit").getAsString();
+            result = ParamUtils.parseLimit(limit);
+        } catch (Exception e) {
+            logger.error("请求参数出错", e);
+            errorParam("请求参数出错", req, resp);
+            return;
+        }
+        List<SampleListBean> list = MongoManager.searchSampleList(crf_id,result[0],result[1],key);
+        int count = MongoManager.searchSampleListintCount(crf_id,key);
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(1);
+        resultBean.setData(list);
+        Map<String,Integer> map = new HashMap<String, Integer>();
+        map.put("count",count);
+        resultBean.setInfo(map);
         viewer.viewString(gson.toJson(resultBean),resp,req);
     }
 }
