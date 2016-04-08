@@ -642,7 +642,7 @@ public class CrfProcessor {
         if (caseID == null || "".equals(caseID)) {
             if (summaryBean == null) {
                 String err = "crf_id 对应的模型数据为空";
-                errorParam("请求参数出错", req, resp);
+                errorParam(err, req, resp);
                 return;
             }
             if (summaryBean.getCaseID() == null || "".equals(summaryBean.getCaseID())) {//有结构,但是不是
