@@ -437,7 +437,7 @@ public class CrfProcessor {
             logger.info("addAttr =" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             cNName = paramObj.get("cNName").getAsString();
-            groupID = paramObj.get("groupID").getAsString();
+            groupID = paramObj.get("id").getAsString();
             if (paramObj.get("eNName") != null) {
                 eNName = paramObj.get("eNName").getAsString();
             }
@@ -714,10 +714,6 @@ public class CrfProcessor {
             MongoManager.insertNewData(dataObj);
 
         }else{//已经插入一部分,这部分是更新同名的组信息
-            if(existData.get("children")!= null || !existData.get("children").isJsonArray()){
-                errorParam("上传的数据格式有误,无children或者children不是数组", req, resp);
-                return;
-            }
             JsonArray jsonArr = existData.getAsJsonArray("children");
             JsonArray newChildren = new JsonArray();
             for(JsonElement entity:jsonArr){
