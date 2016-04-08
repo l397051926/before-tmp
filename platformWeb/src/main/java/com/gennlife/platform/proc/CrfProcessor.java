@@ -700,15 +700,10 @@ public class CrfProcessor {
             String todayStr = time.format(today).substring(0,10);
             data.addProperty("createTime",todayStr);
             SummaryBean summaryBean = MongoManager.getSummary(crf_id);
-            if(summaryBean == null){
-                summaryBean = new SummaryBean();
-            }
-            /*
             if(summaryBean == null){//还没有这个crf_id 对应数据,出错
                 errorParam("没有这个crf_id 对应数据summary,出错", req, resp);
                 return;
             }
-            */
             Integer maxCaseNo = summaryBean.getMaxCaseNo();
             data.addProperty("patientNo", maxCaseNo+1+"");
             summaryBean.setMaxCaseNo(0);
