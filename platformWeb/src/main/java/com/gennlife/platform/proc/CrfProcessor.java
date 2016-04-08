@@ -716,20 +716,18 @@ public class CrfProcessor {
         }else{//已经插入一部分,这部分是更新同名的组信息
             JsonArray jsonArr = existData.getAsJsonArray("children");
             JsonArray newChildren = new JsonArray();
-            for(JsonElement entity:jsonArr){
-                JsonObject group = entity.getAsJsonObject();
-                String name = group.get("name") != null? group.get("name").getAsString():null;
-                for(JsonElement ent:children){
-                    JsonObject newGroup = ent.getAsJsonObject();
-                    String newName = newGroup.get("name") != null ? newGroup.get("name").getAsString():null;
-                    if(name != null && newName != null && name.equals(newName)){
-                        newChildren.add(newGroup);
-                    }else if(name != null && newName != null && !name.equals(newName)){
-                        newChildren.add(group);
-                    }
-                }
+            Map<String,JsonObject> map = new LinkedHashMap<String, JsonObject>();
+            //现将原有的数据放入map
+            mergeNewData(jsonArr,map);
+            //将提交上来的数据放入map,新覆盖旧
+            mergeNewData(children,map);
+            for(String key:map.keySet()){
+                newChildren.add(map.get(key));
             }
+            existData.addProperty("crf_id", crf_id);
+            existData.addProperty("caseID", caseID);
             existData.add("children",newChildren);
+            existData.remove("_id");
             DataBean dataBean = gson.fromJson(gson.toJson(existData), DataBean.class);
             MongoManager.updateNewData(dataBean);
         }
@@ -738,7 +736,15 @@ public class CrfProcessor {
         resultBean.setInfo("上传数据成功");
         viewer.viewString(gson.toJson(resultBean),resp,req);
     }
-
+    private static void mergeNewData(JsonArray jsonArray,Map<String,JsonObject> map){
+        for(JsonElement en:jsonArray){
+            JsonObject group = en.getAsJsonObject();
+            String id = group.get("id") != null? group.get("id").getAsString():null;
+            if(id != null){
+                map.put(id,group);
+            }
+        }
+    }
 
     /**
      *
