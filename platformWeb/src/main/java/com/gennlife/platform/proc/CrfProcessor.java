@@ -638,33 +638,48 @@ public class CrfProcessor {
         }
         data.addProperty("code",1);
         data.addProperty("crf_id", crf_id);
-
+        SummaryBean summaryBean = MongoManager.getSummary(crf_id);
         if (caseID == null || "".equals(caseID)) {
-            SummaryBean summaryBean = MongoManager.getSummary(crf_id);
-            if(summaryBean != null && summaryBean.getCaseID() != null){//summary结构中记录caseID的不为null
-                caseID = summaryBean.getCaseID();
-                data.addProperty("caseID", caseID);
-                JsonObject d = MongoManager.getCrfData(crf_id, caseID);
-                if (d == null || !d.has("children") || !d.get("children").isJsonArray()) {
-                    data.add("children", new JsonArray());
-                } else {
-                    JsonArray children = d.get("children").getAsJsonArray();
-                    data.add("children", children);
-                }
-            }else{
-                //依旧是null,生成新的caseID
-                if(caseID == null || "".equals(caseID)){
-                    UUID uuid = UUID.randomUUID();
-                    caseID = uuid+"";
-                    //更新summary结构体
-                    MongoManager.updateSummaryCaseID(crf_id, caseID);
-                }
+            if (summaryBean == null) {
+                String err = "crf_id 对应的模型数据为空";
+                errorParam("请求参数出错", req, resp);
+                return;
+            }
+            if (summaryBean.getCaseID() == null || "".equals(summaryBean.getCaseID())) {//有结构,但是不是
+                UUID uuid = UUID.randomUUID();
+                caseID = uuid + "";
+                //更新summary结构体
+                MongoManager.updateSummaryCaseID(crf_id, caseID);
                 data.addProperty("caseID", caseID);
                 data.add("children", new JsonArray());
+                String jsonStr = gson.toJson(data);
+                viewer.viewString(jsonStr, resp, req);
+                return;
             }
+            JsonObject d = MongoManager.getCrfData(summaryBean.getCrf_id(), summaryBean.getCaseID());
+            data.addProperty("caseID", summaryBean.getCaseID());
+            if (d == null || !d.has("children") || !d.get("children").isJsonArray()) {
+                data.add("children", new JsonArray());
+            } else {
+                JsonArray children = d.get("children").getAsJsonArray();
+                data.add("children", children);
+            }
+            String jsonStr = gson.toJson(data);
+            viewer.viewString(jsonStr, resp, req);
+        }else {
+            JsonObject d = MongoManager.getCrfData(crf_id, caseID);
+            data.addProperty("caseID", caseID);
+            if (d == null || !d.has("children") || !d.get("children").isJsonArray()) {
+                data.add("children", new JsonArray());
+            } else {
+                JsonArray children = d.get("children").getAsJsonArray();
+                data.add("children", children);
+            }
+            String jsonStr = gson.toJson(data);
+            viewer.viewString(jsonStr, resp, req);
+
         }
-        String jsonStr = gson.toJson(data);
-        viewer.viewString(jsonStr, resp, req);
+
     }
 
     public void upLoadData(HttpServletRequest req, HttpServletResponse resp) {
