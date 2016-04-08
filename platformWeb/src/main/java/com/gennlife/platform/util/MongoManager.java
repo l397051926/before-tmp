@@ -207,7 +207,9 @@ public class MongoManager {
             return null;
         } else {
             if (baseModel.containsKey("children")) {
-                JsonArray children = (JsonArray) baseModel.get("children");
+                DataBean dataBean = gson.fromJson(baseModel.toString(), DataBean.class);
+                JsonObject dataObj = (JsonObject) jsonParser.parse(gson.toJson(dataBean));
+                JsonArray children = dataObj.getAsJsonArray("children");
                 String caseNo = baseModel.get("caseNo").toString();
                 String name = baseModel.get("name").toString();
                 data.addProperty("caseNo", caseNo);
