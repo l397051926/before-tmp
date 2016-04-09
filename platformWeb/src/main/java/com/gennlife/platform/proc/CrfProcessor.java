@@ -443,16 +443,23 @@ public class CrfProcessor {
             newGroup.addProperty("id", parentsID + "_" + groupName);
         }
         List<BSONObject> list = new LinkedList<BSONObject>();
-        for (JsonElement entity : dataObj) {
-            JsonObject obj = null;
-            if (!"Root".equals(parentsID)) {
-                obj = traversalAddGroup(parentsID, entity.getAsJsonObject(), newGroup);
-            } else {
-                obj = entity.getAsJsonObject();
+        if("Root".equals(parentsID)){//最底层添加
+            for (JsonElement entity : dataObj) {
+                JsonObject obj = entity.getAsJsonObject();
+                newDataObj.add(obj);
+                list.add(BasicDBObject.parse(gson.toJson(obj)));
             }
-            newDataObj.add(obj);
-            list.add(BasicDBObject.parse(gson.toJson(obj)));
+            newDataObj.add(newGroup);
+            list.add(BasicDBObject.parse(gson.toJson(newGroup)));
+        }else{
+            for (JsonElement entity : dataObj) {
+                JsonObject obj = traversalAddGroup(parentsID, entity.getAsJsonObject(), newGroup);
+                newDataObj.add(obj);
+                list.add(BasicDBObject.parse(gson.toJson(obj)));
+            }
         }
+
+
         //生成新的数据模型
         modelJsonObject.add("children", newDataObj);
         //将新的模型数据存入mongo
