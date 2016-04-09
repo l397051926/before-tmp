@@ -282,6 +282,43 @@ public class CrfProcessor {
 
         }
     }
+
+    public static void traversalDeleteGroup(JsonObject parent,String id,String parentID){
+        if(id.equals(parentID)){//删除的是最底层的组
+            JsonArray children = parent.getAsJsonArray("children");
+            JsonArray newchildren = new JsonArray();
+            for(JsonElement entity:children){
+                JsonObject obj = entity.getAsJsonObject();
+                if(obj.get("id") != null && !id.equals(obj.get("id").getAsString())){
+                    newchildren.add(obj);
+                }
+            }
+            parent.add("children",newchildren);
+        }else{//删除不是最底层的组
+            if(parent.get("children") != null){
+                String groupID = parent.get("id") == null ? "Root":parent.get("id").getAsString();
+                JsonArray children = parent.getAsJsonArray("children");
+                if(groupID.equals(parentID)){
+                    JsonArray newchildren = new JsonArray();
+                    for(JsonElement entity:children){
+                        JsonObject obj = entity.getAsJsonObject();
+                        if(obj.get("id") != null && !id.equals(obj.get("id").getAsString())){
+                            newchildren.add(obj);
+                        }
+                    }
+                    parent.add("children",newchildren);
+                }else{
+                    for(JsonElement entity:children) {
+                        JsonObject obj = entity.getAsJsonObject();
+                        traversalDeleteGroup(obj,id,parentID);
+                    }
+                }
+            }
+        }
+
+    }
+
+
     private static String getNewGroupID(String oldID,String newName){
         String[] groups = oldID.split("_");
         String groupID = "";
@@ -401,11 +438,13 @@ public class CrfProcessor {
         String parentsID = null;
         boolean isPackage = false;
         String data = null;
+        String addUser = null;
         try {
             String param = ParamUtils.getParam(req);
             logger.info("addGroup =" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             crf_id = paramObj.get("crf_id").getAsString();
+            addUser = paramObj.get("uid").getAsString();
             groupName = paramObj.get("groupName").getAsString();
             if (paramObj.get("package") != null && paramObj.get("package").getAsInt() == 1) {
                 isPackage = true;
@@ -427,14 +466,24 @@ public class CrfProcessor {
             return;
         }
         JsonArray dataObj = modelJsonObject.getAsJsonArray("children");
-
+        Set<String> RootIDs = new HashSet<String>();
+        for(JsonElement entity:dataObj){
+            RootIDs.add(entity.getAsJsonObject().get("id").getAsString());
+        }
+        if("Root".equals(parentsID) && RootIDs.contains(groupName)){
+            String err = "无法创建重名的属性组";
+            errorParam(err, req, resp);
+            return;
+        }
         JsonObject newGroup = new JsonObject();
         newGroup.addProperty("name", groupName);
         newGroup.addProperty("isParent", true);
+        newGroup.addProperty("addUser",addUser);
         if (isPackage) {
             newGroup.addProperty("package", 1);
         }
         newGroup.add("children", new JsonArray());
+
         JsonArray newDataObj = new JsonArray();
         if ("Root".equals(parentsID)) {
             newGroup.addProperty("rankID", dataObj.size());
@@ -1037,8 +1086,32 @@ public class CrfProcessor {
             errorParam(err, req, resp);
             return;
         }
-
-
+        String parentID = getParentID(groupID);
+        traversalDeleteGroup(modelJsonObject,groupID,parentID);
+        JsonArray children = modelJsonObject.get("children").getAsJsonArray();
+        List<BSONObject> list = new LinkedList<BSONObject>();
+        for(JsonElement ent:children){
+            JsonObject obj = ent.getAsJsonObject();
+            list.add(BasicDBObject.parse(gson.toJson(obj)));
+        }
+        MongoManager.updateNewModel(crf_id,list);
+        viewer.viewString(gson.toJson(modelJsonObject),resp,req);
+    }
+    private static String getParentID(String id){
+        String[] groups = id.split("_");
+        if(groups.length == 1){
+            return id;
+        }else {
+            String parentID = "";
+            for(int i=0;i<groups.length -1;i++){
+                if("".equals(parentID)){
+                    parentID = groups[i];
+                }else {
+                    parentID = parentID + "_" + groups[i];
+                }
+            }
+            return parentID;
+        }
     }
 
 
