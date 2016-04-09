@@ -251,8 +251,54 @@ public class CrfProcessor {
         return parent;
     }
 
+    public static void traversalUpdateGroupName(JsonObject parent,String id,String newName){
+        if(parent.get("children") != null){//是组
+            String groupID = null;
+            if(parent.get("id") != null){//有children,有id,是组
+                groupID = parent.get("id").getAsString();
+                if(groupID.equals(id)){//找到组,重新命名
+                    parent.addProperty("name",newName);
+                    String newID = getNewGroupID(id,newName);
+                    parent.addProperty("id",newID);
+                }else{//当前不是要找组,遍历子节点
+                    if(groupID.startsWith(id)){//当前组是要找组的子组
+                        String newID = getNewGroupID(id,newName);
+                        groupID = groupID.replace(id,newID);
+                        parent.addProperty("id",groupID);
+                    }
+                    JsonArray children = parent.get("children").getAsJsonArray();
+                    for(JsonElement entity:children){
+                        JsonObject json = entity.getAsJsonObject();
+                        traversalUpdateGroupName(json,id,newName);
+                    }
+                }
+            }else {//有children 无id,是根节点
+                JsonArray children = parent.get("children").getAsJsonArray();
+                for(JsonElement entity:children){
+                    JsonObject json = entity.getAsJsonObject();
+                    traversalUpdateGroupName(json,id,newName);
+                }
+            }
 
-
+        }
+    }
+    private static String getNewGroupID(String oldID,String newName){
+        String[] groups = oldID.split("_");
+        String groupID = "";
+        if(groups.length == 1){
+            groupID = newName;//新的组id
+        }else{
+            for(int i= 0;i <= groups.length -2;i++){
+                if(i == 0){
+                    groupID = groups[i];
+                }else{
+                    groupID = groupID + "_" + groups[i];
+                }
+            }
+            groupID = groupID + "_" + newName;
+        }
+        return groupID;
+    }
 
     /**
      * 生成默认的模板
@@ -645,25 +691,12 @@ public class CrfProcessor {
                 errorParam(err, req, resp);
                 return;
             }
-            if (summaryBean.getCaseID() == null || "".equals(summaryBean.getCaseID())) {//有结构,但是不是
-                UUID uuid = UUID.randomUUID();
-                caseID = uuid + "";
-                //更新summary结构体
-                MongoManager.updateSummaryCaseID(crf_id, caseID);
-                data.addProperty("caseID", caseID);
-                data.add("children", new JsonArray());
-                String jsonStr = gson.toJson(data);
-                viewer.viewString(jsonStr, resp, req);
-                return;
-            }
-            JsonObject d = MongoManager.getCrfData(summaryBean.getCrf_id(), summaryBean.getCaseID());
-            data.addProperty("caseID", summaryBean.getCaseID());
-            if (d == null || !d.has("children") || !d.get("children").isJsonArray()) {
-                data.add("children", new JsonArray());
-            } else {
-                JsonArray children = d.get("children").getAsJsonArray();
-                data.add("children", children);
-            }
+            UUID uuid = UUID.randomUUID();
+            caseID = uuid + "";
+            //更新summary结构体
+            MongoManager.updateSummaryCaseID(crf_id, caseID);
+            data.addProperty("caseID", caseID);
+            data.add("children", new JsonArray());
             String jsonStr = gson.toJson(data);
             viewer.viewString(jsonStr, resp, req);
         }else {
@@ -943,4 +976,64 @@ public class CrfProcessor {
         resultBean.setInfo(map);
         viewer.viewString(gson.toJson(resultBean),resp,req);
     }
+
+    public void updateGroupName(HttpServletRequest req, HttpServletResponse resp) {
+        String crf_id = null;
+        String groupID = null;
+        String groupName = null;
+        try {
+            String param = ParamUtils.getParam(req);
+            logger.info("updateGroupName =" + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            crf_id = paramObj.get("crf_id").getAsString();
+            groupID = paramObj.get("id").getAsString();
+            groupName = paramObj.get("groupName").getAsString();
+        } catch (Exception e) {
+            logger.error("请求参数出错", e);
+            errorParam("请求参数出错", req, resp);
+            return;
+        }
+        JsonObject modelJsonObject = MongoManager.getModel(crf_id);
+        if(modelJsonObject == null){
+            String err = "crf_id 对应模型 为空";
+            errorParam(err, req, resp);
+            return;
+        }
+        traversalUpdateGroupName(modelJsonObject,groupID,groupName);
+        JsonArray children = modelJsonObject.get("children").getAsJsonArray();
+        List<BSONObject> list = new LinkedList<BSONObject>();
+        for(JsonElement ent:children){
+            JsonObject obj = ent.getAsJsonObject();
+            list.add(BasicDBObject.parse(gson.toJson(obj)));
+        }
+        MongoManager.updateNewModel(crf_id,list);
+        viewer.viewString(gson.toJson(modelJsonObject),resp,req);
+    }
+
+    public void deleteGroup(HttpServletRequest req, HttpServletResponse resp) {
+        String crf_id = null;
+        String groupID = null;
+        try {
+            String param = ParamUtils.getParam(req);
+            logger.info("updateGroupName =" + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            crf_id = paramObj.get("crf_id").getAsString();
+            groupID = paramObj.get("id").getAsString();
+        } catch (Exception e) {
+            logger.error("请求参数出错", e);
+            errorParam("请求参数出错", req, resp);
+            return;
+        }
+        JsonObject modelJsonObject = MongoManager.getModel(crf_id);
+        if(modelJsonObject == null){
+            String err = "crf_id 对应模型 为空";
+            errorParam(err, req, resp);
+            return;
+        }
+
+
+    }
+
+
+
 }

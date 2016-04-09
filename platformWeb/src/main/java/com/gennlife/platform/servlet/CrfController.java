@@ -116,11 +116,18 @@ public class CrfController extends HttpServlet {
             logger.info("病历列表 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }else if("/crf/UpdateGroupName".equals(uri)){
             try{
-                processor.searchSampleList(req, resp);
+                processor.updateGroupName(req, resp);
             }catch (Exception e){
-                logger.error("更新",e);
+                logger.error("更新组名称异常",e);
             }
-            logger.info("病历列表 耗时:" + (System.currentTimeMillis()-start) +"ms");
+            logger.info("更新组名称 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if ("/crf/DeleteGroup".equals(uri)){
+            try{
+                processor.deleteGroup(req, resp);
+            }catch (Exception e){
+                logger.error("删除组异常",e);
+            }
+            logger.info("删除组 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }
     }
 
