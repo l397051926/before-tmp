@@ -677,19 +677,13 @@ public class CrfProcessor {
             JsonObject obj = entity.getAsJsonObject();
             list.add(BasicDBObject.parse(gson.toJson(obj)));
         }
-        JsonObject modelJsonObject = MongoManager.getModel(crf_id);
-        String status = modelJsonObject.get("status").getAsString();
-        if ("创建".equals(status)) {
-            MongoManager.updateNewModel(crf_id,list);
-            ResultBean resultBean = new ResultBean();
-            resultBean.setCode(1);
-            resultBean.setInfo("保存成功");
-            String data = gson.toJson(resultBean);
-            viewer.viewString(data, resp, req);
-        } else {
-            errorParam("当前crf_id对应的模板已经保存,不可以再次编辑", req, resp);
-            return;
-        }
+        MongoManager.updateNewModel(crf_id,list);
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(1);
+        resultBean.setInfo("保存");
+        String data = gson.toJson(resultBean);
+        viewer.viewString(data, resp, req);
+
 
 
     }
