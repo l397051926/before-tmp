@@ -107,7 +107,7 @@ public class CrfController extends HttpServlet {
                 logger.error("删除某个case数据",e);
             }
             logger.info("删除某个case数据 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if("/crf/searchSampleList".equals(uri)){
+        }else if("/crf/SearchSampleList".equals(uri)){
             try{
                 processor.searchSampleList(req, resp);
             }catch (Exception e){
