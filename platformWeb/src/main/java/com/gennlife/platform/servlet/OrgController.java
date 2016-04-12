@@ -41,4 +41,14 @@ public class OrgController extends HttpServlet {
             logger.info("组织机构列表成员 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }
     }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPut(req, resp);
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doDelete(req, resp);
+    }
 }

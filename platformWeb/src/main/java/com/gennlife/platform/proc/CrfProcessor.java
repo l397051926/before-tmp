@@ -344,16 +344,10 @@ public class CrfProcessor {
      * @return
      */
     public static JsonObject getDefaultModel(String category) {
-        MongoResultBean mongoResultBean = null;
         JsonObject resultObject = null;
-        if (MongoManager.getDefaultModel() == null) {
-            resultObject = MongoManager.getModel(category);
-            MongoManager.setDefaultModel(gson.toJson(resultObject));
-            resultObject = (JsonObject) jsonParser.parse(gson.toJson(resultObject));
-        } else {
-            mongoResultBean = gson.fromJson(MongoManager.getDefaultModel(), MongoResultBean.class);
-            resultObject = (JsonObject) jsonParser.parse(gson.toJson(mongoResultBean));
-        }
+        resultObject = MongoManager.getModel(category);
+        resultObject = (JsonObject) jsonParser.parse(gson.toJson(resultObject));
+        resultObject.remove("_id");
         UUID uuid = UUID.randomUUID();
         String crf_id = category + "_" + uuid;//生成新的模板
         resultObject.addProperty("crf_id", crf_id);
@@ -683,8 +677,6 @@ public class CrfProcessor {
         resultBean.setInfo("保存");
         String data = gson.toJson(resultBean);
         viewer.viewString(data, resp, req);
-
-
 
     }
 

@@ -35,7 +35,6 @@ public class MongoManager {
     private static int poolSize;
     private static int blockSize;
     private  static MongoConf mongoC;
-    public static String defaultModel;
     private static DBCollection summaryCollection = null;
     private static DBCollection metaCollection = null;
     private static DBCollection dataCollection = null;
@@ -82,13 +81,6 @@ public class MongoManager {
     public static void insertItem(String DBName,String collectionName,DBObject dbObject) throws UnknownHostException {
         DBCollection collection = get(DBName,collectionName);
         WriteResult writeResult = collection.insert(dbObject);
-    }
-
-    public static String getDefaultModel() {
-        return defaultModel;
-    }
-    public static void setDefaultModel(String defaultM){
-        defaultModel = defaultM;
     }
 
 
@@ -154,7 +146,6 @@ public class MongoManager {
             }
             MongoResultBean mongoResultBean = gson.fromJson(baseModel.toString(), MongoResultBean.class);
             mongoResultBean.set_id(null);
-            MongoManager.setDefaultModel(baseModel.toString());
             resultObject = (JsonObject) jsonParser.parse(gson.toJson(mongoResultBean));
         } catch (Exception e) {
             logger.error("", e);
