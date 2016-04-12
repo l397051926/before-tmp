@@ -972,21 +972,32 @@ public class CrfProcessor {
     public void deleteSample(HttpServletRequest req, HttpServletResponse resp) {
         String crf_id = null;
         String caseID = null;
+        String key = null;
+        String limit = null;
+        int[] result = null;
         try {
             String param = ParamUtils.getParam(req);
             logger.info("sampleCaseList =" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             crf_id = paramObj.get("crf_id").getAsString();
             caseID = paramObj.get("caseID").getAsString();
+            key = paramObj.get("key").getAsString();
+            limit = paramObj.get("limit").getAsString();
+            result = ParamUtils.parseLimit(limit);
         } catch (Exception e) {
             logger.error("请求参数出错", e);
             errorParam("请求参数出错", req, resp);
             return;
         }
         MongoManager.deleteSample(crf_id,caseID);
+        List<SampleListBean> list = MongoManager.searchSampleList(crf_id,result[0],result[1],key);
+        int count = MongoManager.getSampleListCount(crf_id);
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(1);
-        resultBean.setInfo("删除成功");
+        resultBean.setData(list);
+        Map<String,Integer> map = new HashMap<String, Integer>();
+        map.put("count",count);
+        resultBean.setInfo(map);
         viewer.viewString(gson.toJson(resultBean),resp,req);
     }
 
