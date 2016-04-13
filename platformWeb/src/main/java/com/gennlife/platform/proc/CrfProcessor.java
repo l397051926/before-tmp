@@ -980,7 +980,7 @@ public class CrfProcessor {
             logger.info("deleteSample =" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             crf_id = paramObj.get("crf_id").getAsString();
-            JsonArray caseIDArray = paramObj.get("caseID").getAsJsonArray();
+            JsonArray caseIDArray = paramObj.get("caseIDSet").getAsJsonArray();
             key = paramObj.get("key").getAsString();
             limit = paramObj.get("limit").getAsString();
             result = ParamUtils.parseLimit(limit);
