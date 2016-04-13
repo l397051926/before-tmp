@@ -289,7 +289,7 @@ public class CrfProcessor {
             JsonArray newchildren = new JsonArray();
             for(JsonElement entity:children){
                 JsonObject obj = entity.getAsJsonObject();
-                if(obj.get("id") != null && !id.equals(obj.get("id").getAsString())){
+                if(obj.get("id") == null ||(obj.get("id") != null && !id.equals(obj.get("id").getAsString()))){
                     newchildren.add(obj);
                 }
             }
