@@ -971,25 +971,36 @@ public class CrfProcessor {
 
     public void deleteSample(HttpServletRequest req, HttpServletResponse resp) {
         String crf_id = null;
-        String caseID = null;
+        Set<String> caseIDSet = null;
         String key = null;
         String limit = null;
         int[] result = null;
         try {
             String param = ParamUtils.getParam(req);
-            logger.info("sampleCaseList =" + param);
+            logger.info("deleteSample =" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             crf_id = paramObj.get("crf_id").getAsString();
-            caseID = paramObj.get("caseID").getAsString();
+            JsonArray caseIDArray = paramObj.get("caseID").getAsJsonArray();
             key = paramObj.get("key").getAsString();
             limit = paramObj.get("limit").getAsString();
             result = ParamUtils.parseLimit(limit);
+            for(JsonElement entity:caseIDArray){
+                String caseID = entity.getAsString();
+                caseIDSet.add(caseID);
+            }
         } catch (Exception e) {
             logger.error("请求参数出错", e);
             errorParam("请求参数出错", req, resp);
             return;
         }
-        MongoManager.deleteSample(crf_id,caseID);
+        if(caseIDSet.size() == 0){
+            String err = "删除caseID为空";
+            errorParam(err, req, resp);
+            return;
+        }
+        for(String caseID:caseIDSet){
+            MongoManager.deleteSample(crf_id,caseID);
+        }
         List<SampleListBean> list = MongoManager.searchSampleList(crf_id,result[0],result[1],key);
         int count = MongoManager.getSampleListCount(crf_id);
         ResultBean resultBean = new ResultBean();
@@ -1068,7 +1079,7 @@ public class CrfProcessor {
         String groupID = null;
         try {
             String param = ParamUtils.getParam(req);
-            logger.info("updateGroupName =" + param);
+            logger.info("deleteGroup =" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             crf_id = paramObj.get("crf_id").getAsString();
             groupID = paramObj.get("id").getAsString();
