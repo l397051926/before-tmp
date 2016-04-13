@@ -971,7 +971,7 @@ public class CrfProcessor {
 
     public void deleteSample(HttpServletRequest req, HttpServletResponse resp) {
         String crf_id = null;
-        Set<String> caseIDSet = null;
+        Set<String> caseIDSet = new HashSet<String>();
         String key = null;
         String limit = null;
         int[] result = null;
