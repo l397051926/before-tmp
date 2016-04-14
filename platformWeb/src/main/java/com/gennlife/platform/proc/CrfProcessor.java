@@ -796,7 +796,7 @@ public class CrfProcessor {
             }
             Integer maxCaseNo = summaryBean.getMaxCaseNo();
             data.addProperty("patientNo", maxCaseNo+1+"");
-            summaryBean.setMaxCaseNo(0);
+            summaryBean.setMaxCaseNo(maxCaseNo+1);
             summaryBean.setCaseID(caseID);
             summaryBean.setLastTime(t);
             MongoManager.updateNewSummary(summaryBean);
@@ -805,6 +805,7 @@ public class CrfProcessor {
 
         }else{//已经插入一部分,这部分是更新同名的组信息
             JsonArray jsonArr = existData.getAsJsonArray("children");
+            String name = getUpdateForName(jsonArr);
             JsonArray newChildren = new JsonArray();
             Map<String,JsonObject> map = new LinkedHashMap<String, JsonObject>();
             //现将原有的数据放入map
@@ -816,6 +817,9 @@ public class CrfProcessor {
             }
             existData.addProperty("crf_id", crf_id);
             existData.addProperty("caseID", caseID);
+            if(name != null){
+                existData.addProperty("patientName", name);
+            }
             existData.add("children",newChildren);
             existData.remove("_id");
             DataBean dataBean = gson.fromJson(gson.toJson(existData), DataBean.class);
@@ -845,17 +849,18 @@ public class CrfProcessor {
         String name = null;
         for (JsonElement entity : children) {
             JsonObject obj = entity.getAsJsonObject();
-            if (obj.get("name") != null && "患者基本信息".equals(obj.get("name").getAsString())) {
+            if (obj.get("id") != null && "患者基本信息".equals(obj.get("id").getAsString())) {
                 if (obj.get("children").isJsonArray()) {
                     JsonArray child = obj.getAsJsonArray("children");
                     for (JsonElement en : child) {
                         JsonObject object = en.getAsJsonObject();
-                        if (object.get("name") != null && "基本信息".equals(object.get("name").getAsString())) {
+                        if (object.get("id") != null && "患者基本信息_基本信息".equals(object.get("id").getAsString())) {
                             JsonArray child1 = object.getAsJsonArray("children");
                             for (JsonElement ent : child1) {
                                 JsonObject object1 = ent.getAsJsonObject();
                                 if (object1.get("attrID") != null && "name".equals(object1.get("attrID").getAsString())) {
                                     name = object1.get("data").getAsString();
+                                    return name;
                                 }
                             }
                         }
