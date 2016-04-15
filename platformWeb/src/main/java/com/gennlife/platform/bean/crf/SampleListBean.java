@@ -12,6 +12,15 @@ public class SampleListBean {
     private String createTime = null;
     private String patientName = null;
     private List<Object> children = null;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getCrf_id() {
         return crf_id;

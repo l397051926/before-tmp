@@ -789,6 +789,7 @@ public class CrfProcessor {
             Date today = new Date();
             String todayStr = time.format(today).substring(0,10);
             data.addProperty("createTime",todayStr);
+            data.addProperty("status","录入中");
             SummaryBean summaryBean = MongoManager.getSummary(crf_id);
             if(summaryBean == null){//还没有这个crf_id 对应数据,出错
                 errorParam("没有这个crf_id 对应数据summary,出错", req, resp);
@@ -797,7 +798,6 @@ public class CrfProcessor {
             Integer maxCaseNo = summaryBean.getMaxCaseNo();
             data.addProperty("patientNo", maxCaseNo+1+"");
             summaryBean.setMaxCaseNo(maxCaseNo+1);
-            summaryBean.setCaseID(caseID);
             summaryBean.setLastTime(t);
             MongoManager.updateNewSummary(summaryBean);
             String dataObj = gson.toJson(data);
@@ -898,12 +898,7 @@ public class CrfProcessor {
             errorParam(err, req, resp);
             return;
         }
-        if(summary.getCaseID() == null || !caseID.equals(summary.getCaseID())){
-            String err = "crf_id当前录入的数据caseID与录入完成传入的caseID的不对应";
-            logger.error(err);
-            errorParam(err, req, resp);
-            return;
-        }
+        MongoManager.updateNewDataStatus(crf_id,caseID,"录入完成");
         UUID uuid = UUID.randomUUID();
         String newCaseID = uuid +"";
         summary.setCaseID(newCaseID);

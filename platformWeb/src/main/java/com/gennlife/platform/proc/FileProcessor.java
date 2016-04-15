@@ -61,7 +61,6 @@ public class FileProcessor {
             }else {
                 newParam.append("&").append(key).append("=").append(ParamUtils.encodeURI(value));
             }
-
         }
         String data =  HttpRequestUtils.httpGet(host + "?" + newParam.toString());
         viewer.viewString(data,resps,request);

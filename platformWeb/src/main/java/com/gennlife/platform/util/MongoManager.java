@@ -171,7 +171,7 @@ public class MongoManager {
         BasicDBObject newDocument = BasicDBObject.parse(gson.toJson(summaryBean));
         BasicDBObject updateObj = new BasicDBObject();
         updateObj.put("$set", newDocument);
-        dataCollection.update(query, updateObj);
+        summaryCollection.update(query, updateObj);
     }
     public static void updateNewData(DataBean dataBean){
         BasicDBObject query = new BasicDBObject();
@@ -183,7 +183,16 @@ public class MongoManager {
         dataCollection.update(query, updateObj);
     }
 
-
+    public static void updateNewDataStatus(String crf_id,String caseID,String status){
+        BasicDBObject query = new BasicDBObject();
+        query.put("crf_id", crf_id);
+        query.put("caseID", caseID);
+        BasicDBObject newDocument = new BasicDBObject();
+        newDocument.put("status", status);
+        BasicDBObject updateObj = new BasicDBObject();
+        updateObj.put("$set", newDocument);
+        dataCollection.update(query, updateObj);
+    }
     public static JsonObject getCrfData(String crf_id, String caseID) {
         JsonObject data = new JsonObject();
         BasicDBObject query = new BasicDBObject();
@@ -203,15 +212,19 @@ public class MongoManager {
                 JsonArray children = dataObj.getAsJsonArray("children");
                 String patientNo = "";
                 String patientName = "";
+                String status = "";
                 if(baseModel.get("patientNo") != null){
                     patientNo = baseModel.get("patientNo").toString();
                 }
                 if(baseModel.get("patientName") != null){
                     patientName = baseModel.get("patientName").toString();
                 }
-
+                if(baseModel.get("status") != null){
+                    status = baseModel.get("status").toString();
+                }
                 data.addProperty("patientNo", patientNo);
                 data.addProperty("patientName", patientName);
+                data.addProperty("status",status);
                 data.add("children", children);
             }
         }
@@ -231,6 +244,7 @@ public class MongoManager {
         if (baseModel == null) {
             return null;
         } else {
+            baseModel.removeField("_id");
             summaryBean = gson.fromJson(baseModel.toString(), SummaryBean.class);
         }
         return summaryBean;
