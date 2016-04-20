@@ -24,7 +24,7 @@ public class ParamUtils {
     }
     private static String getPostParm(HttpServletRequest request){
         try {
-            request.setCharacterEncoding("utf-8");
+            request.setCharacterEncoding("UTF-8");
         } catch (UnsupportedEncodingException e) {
             logger.error("设置读取request出错",e);
             e.printStackTrace();
