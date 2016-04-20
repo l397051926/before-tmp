@@ -23,12 +23,6 @@ public class ParamUtils {
         return cleanXSS(param);
     }
     private static String getPostParm(HttpServletRequest request){
-        try {
-            request.setCharacterEncoding("UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            logger.error("设置读取request出错",e);
-            e.printStackTrace();
-        }
         StringBuffer jb = new StringBuffer();
         String line = null;
         BufferedReader reader = null;
@@ -73,7 +67,6 @@ public class ParamUtils {
             return null;
         }
         value = value.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
-        value = value.replaceAll("\\(", "&#40;").replaceAll("\\)", "&#41;");
         value = value.replaceAll("'", "&#39;");
         value = value.replaceAll("eval\\((.*)\\)", "");
         value = value.replaceAll("[\\\"\\\'][\\s]*javascript:(.*)[\\\"\\\']", "\"\"");
