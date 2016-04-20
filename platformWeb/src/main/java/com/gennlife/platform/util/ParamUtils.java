@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 /**
@@ -22,6 +23,12 @@ public class ParamUtils {
         return cleanXSS(param);
     }
     private static String getPostParm(HttpServletRequest request){
+        try {
+            request.setCharacterEncoding("utf-8");
+        } catch (UnsupportedEncodingException e) {
+            logger.error("设置读取request出错",e);
+            e.printStackTrace();
+        }
         StringBuffer jb = new StringBuffer();
         String line = null;
         BufferedReader reader = null;
@@ -30,7 +37,7 @@ public class ParamUtils {
             while ((line = reader.readLine()) != null)
                 jb.append(line);
         } catch (Exception e) {
-            logger.error("读取login请求参数出错",e);
+            logger.error("读取请求参数出错",e);
         }finally {
             if(reader != null){
                 try{
