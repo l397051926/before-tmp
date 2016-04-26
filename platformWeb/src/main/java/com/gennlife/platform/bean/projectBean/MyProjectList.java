@@ -9,49 +9,37 @@ import java.util.List;
  * Created by chensong on 2015/12/11.
  */
 public class MyProjectList {
-    private String creater;
+    /**
+     * creator,
+     * p.projectID,
+     * projectName,
+     * projectEngName,
+     * createTime,
+     * members,
+     * planNum,
+     * projectDesp,
+     * setCount,
+     * unit,
+     * manager,
+     * type,
+     * disease,
+     * registerNumber
+     */
+    private List<ProLog> logs;
+    private String creator;
     private String projectID;
     private String projectName;
-    private int pstatus;
-    private String researchArea = "";
+    private String projectEngName;
+    private String cTime;
     private int members;
     private int planNum;
-    private List<ProLog> logs = new LinkedList<ProLog>();
-    private String issueName = "";
-    private Date createTime;
-    private String cTime;
-
-    public String getcTime() {
-        return cTime;
-    }
-
-    public void setcTime(String cTime) {
-        this.cTime = cTime;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getCreater() {
-        return creater;
-    }
-
-    public void setCreater(String creater) {
-        this.creater = creater;
-    }
-
-    public String getIssueName() {
-        return issueName;
-    }
-
-    public void setIssueName(String issueName) {
-        this.issueName = issueName;
-    }
+    private String unit;
+    private String manager;
+    private String disease;
+    private String type;
+    private String registerNumber;
+    private String projectDesp;
+    private int setCount;
 
     public List<ProLog> getLogs() {
         return logs;
@@ -61,36 +49,20 @@ public class MyProjectList {
         this.logs = logs;
     }
 
-    public int getPlanNum() {
-        return planNum;
+    public String getCreator() {
+        return creator;
     }
 
-    public void setPlanNum(int planNum) {
-        this.planNum = planNum;
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 
-    public int getMembers() {
-        return members;
+    public String getProjectID() {
+        return projectID;
     }
 
-    public void setMembers(int members) {
-        this.members = members;
-    }
-
-    public String getResearchArea() {
-        return researchArea;
-    }
-
-    public void setResearchArea(String researchArea) {
-        this.researchArea = researchArea;
-    }
-
-    public int getPstatus() {
-        return pstatus;
-    }
-
-    public void setPstatus(int pstatus) {
-        this.pstatus = pstatus;
+    public void setProjectID(String projectID) {
+        this.projectID = projectID;
     }
 
     public String getProjectName() {
@@ -101,11 +73,91 @@ public class MyProjectList {
         this.projectName = projectName;
     }
 
-    public String getProjectID() {
-        return projectID;
+    public String getProjectEngName() {
+        return projectEngName;
     }
 
-    public void setProjectID(String projectID) {
-        this.projectID = projectID;
+    public void setProjectEngName(String projectEngName) {
+        this.projectEngName = projectEngName;
+    }
+
+    public String getcTime() {
+        return cTime;
+    }
+
+    public void setcTime(String cTime) {
+        this.cTime = cTime;
+    }
+
+    public int getMembers() {
+        return members;
+    }
+
+    public void setMembers(int members) {
+        this.members = members;
+    }
+
+    public int getPlanNum() {
+        return planNum;
+    }
+
+    public void setPlanNum(int planNum) {
+        this.planNum = planNum;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public String getManager() {
+        return manager;
+    }
+
+    public void setManager(String manager) {
+        this.manager = manager;
+    }
+
+    public String getDisease() {
+        return disease;
+    }
+
+    public void setDisease(String disease) {
+        this.disease = disease;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getRegisterNumber() {
+        return registerNumber;
+    }
+
+    public void setRegisterNumber(String registerNumber) {
+        this.registerNumber = registerNumber;
+    }
+
+    public String getProjectDesp() {
+        return projectDesp;
+    }
+
+    public void setProjectDesp(String projectDesp) {
+        this.projectDesp = projectDesp;
+    }
+
+    public int getSetCount() {
+        return setCount;
+    }
+
+    public void setSetCount(int setCount) {
+        this.setCount = setCount;
     }
 }

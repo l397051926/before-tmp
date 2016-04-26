@@ -313,7 +313,7 @@ public class MongoManager {
 
     public static List<SampleListBean> searchSampleList(String crf_id,int start,int pageNo,String key){
         BasicDBObject query = getSampleSearchQuery(crf_id,key);
-        DBCursor cursor = dataCollection.find(query).skip((start - 1) * pageNo).limit(pageNo);;
+        DBCursor cursor = dataCollection.find(query).skip((start - 1) * pageNo).limit(pageNo);
         List<SampleListBean> list = new LinkedList<SampleListBean>();
         DBObject baseModel = null;
         while (cursor.hasNext()){

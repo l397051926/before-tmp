@@ -1,5 +1,6 @@
 package com.gennlife.platform.proc;
 
+import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.SyUser;
 import com.gennlife.platform.bean.projectBean.*;
 import com.gennlife.platform.dao.AllDao;
@@ -32,77 +33,10 @@ public class ProjectProcessor {
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
     private static View viewer = new View();
-    /**
-     * 用户中心 完成项目列表 {"loginname":"chensong","startIndex":0,"maxNum":2}
-     * @param request
-     * @param resps
-     */
-    public void userFinishedSampleList(HttpServletRequest request, HttpServletResponse resps){
-        String param = ParamUtils.getParam(request);
-        logger.info("userFinishedSampleList param = " + param);
-        JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
-        String limit = jsonObject.get("limit").getAsString();
-        String uid =  jsonObject.get("uid").getAsString();
-        int[] ls = ParamUtils.parseLimit(limit);
-        Map<String,Object> conf = new HashMap<String, Object>();
-        conf.put("loginname",uid);
-        conf.put("startIndex",ls[0] * ls[1]);
-        conf.put("maxNum",ls[1]);
-        List<FinishedProject> list = AllDao.getInstance().getSyUserDao().getFinishedProjects(conf);
-        int counter = AllDao.getInstance().getSyUserDao().getFinishedProjectCounter(conf);
-        Map<String,Integer> info = new HashMap<String,Integer>();
-        info.put("counter",counter);
-        List<FinishedResultProject> resultlist = new LinkedList<FinishedResultProject>();
-        for(FinishedProject finishedProject:list){
-            FinishedResultProject finishedResultProject = new FinishedResultProject();
-            finishedResultProject.setCreater(finishedProject.getCreater());
-            finishedResultProject.setEndTime(time.format(finishedProject.getEndTime()));
-            finishedResultProject.setProjectID(finishedProject.getProjectID());
-            finishedResultProject.setStartTime(time.format(finishedProject.getStartTime()));
-            finishedResultProject.setProjectName(finishedProject.getProjectName());
-            resultlist.add(finishedResultProject);
-        }
-        viewer.viewList(list, info, true, resps, request);
-    }
+    private Map<String, Object> confMap;
 
     /**
-     * {"loginname":"chensong","startIndex":0,"maxNum":2}
-     * @param request
-     * @param resps
-     */
-    public void userUnfinishedSampleList(HttpServletRequest request, HttpServletResponse resps){
-        String param = ParamUtils.getParam(request);
-        logger.info("userUnfinishedSampleList param = " + param);
-        JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
-        String limit = jsonObject.get("limit").getAsString();
-        String uid =  jsonObject.get("uid").getAsString();
-        int[] ls = ParamUtils.parseLimit(limit);
-        Map<String,Object> conf = new HashMap<String, Object>();
-        conf.put("loginname",uid);
-        conf.put("startIndex",ls[0] * ls[1]);
-        conf.put("maxNum",ls[1]);
-        List<UnfinishedProject> list = AllDao.getInstance().getSyUserDao().getUnfinishedProjects(conf);
-        int counter = AllDao.getInstance().getSyUserDao().getUnfinishedProjectCounter(conf);
-        Map<String,Integer> info = new HashMap<String,Integer>();
-        info.put("counter",counter);
-        List<UnfinishedResultProject> resultlist = new LinkedList<UnfinishedResultProject>();
-        for(UnfinishedProject unfinishedProject:list){
-            UnfinishedResultProject unfinishedResultProject = new UnfinishedResultProject();
-            unfinishedResultProject.setProjectID(unfinishedProject.getProjectID());
-            unfinishedResultProject.setProjectName(unfinishedProject.getProjectName());
-            unfinishedResultProject.setPstatus(unfinishedProject.getPstatus());
-            if(null != unfinishedProject.getStartTime()){
-                unfinishedResultProject.setStartTime(time.format(unfinishedProject.getStartTime()));
-            }
-            unfinishedResultProject.setCreater(unfinishedProject.getCreater());
-            resultlist.add(unfinishedResultProject);
-        }
-
-        viewer.viewList(list, info, true, resps, request);
-    }
-
-    /**
-     * {uid:"",pstatus:"-1"}
+     * {}
      * 我的项目中 项目列表
      * @param request
      * @param resps
@@ -113,74 +47,34 @@ public class ProjectProcessor {
         JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
         String uid = jsonObject.get("uid").getAsString();
         String limit = jsonObject.get("limit").getAsString();
-        String pstatus = jsonObject.get("pstatus").getAsString();
+        String key = jsonObject.get("key").getAsString();
         int[] result = ParamUtils.parseLimit(limit);
         int startIndex = result[0];
         int maxNum = result[1];
         Map<String,Object> conf = new HashMap<String, Object>();
         conf.put("loginname",uid);
-        conf.put("pstatus",pstatus);
         conf.put("startIndex",startIndex * maxNum);
         conf.put("maxNum",maxNum);
+        conf.put("key",key);
         List<MyProjectList> list = null;
-        if("-1".equals(pstatus)){
-            list = AllDao.getInstance().getSyUserDao().getMyProjectListNoPstatus(conf);
-        }else {
-            list = AllDao.getInstance().getSyUserDao().getMyProjectList(conf);
-        }
+        int counter = 0;
+        list = AllDao.getInstance().getSyUserDao().getMyProjectList(conf);
+        counter  = AllDao.getInstance().getSyUserDao().getProjectCounter(conf);
         Map<String,Object> confMap = new HashMap<String, Object>();
         for(MyProjectList myProjectList:list){
             String projectID = myProjectList.getProjectID();
-            if(null != myProjectList.getCreateTime()){
-                myProjectList.setcTime(time.format(myProjectList.getCreateTime()));
-                myProjectList.setCreateTime(null);
-            }
-
             confMap.put("projectID",projectID);
             confMap.put("startIndex",0);
             confMap.put("maxNum",5);
             List<ProLog> logList = AllDao.getInstance().getProjectDao().getProjectLog(confMap);
             for(ProLog proLog:logList){
-                if(null != time.format(proLog.getLogTime())){
-                    proLog.setlTime(time.format(proLog.getLogTime()));
-                }
-                proLog.setLogTime(null);
                 proLog.setSampleName(null);
                 proLog.setProjectID(null);
             }
             myProjectList.setLogs(logList);
         }
-        int counter = 0;
-        List<ProjectPstatus> pstatuslist = AllDao.getInstance().getSyUserDao().getProjectPstatus(conf);
-        int[] pSatus = new int[6];
-        if(list != null){
-            for(ProjectPstatus projectPstatus:pstatuslist){
-                if("-1".equals(pstatus) && projectPstatus.getPstatus() >= 0 && projectPstatus.getPstatus() <= 5){
-                    counter ++;
-                }else if((projectPstatus.getPstatus()+"").equals(pstatus)){
-                    counter ++;
-                }
-                if(projectPstatus.getPstatus() == 0){
-                    pSatus[0] ++;
-                }else if(projectPstatus.getPstatus() == 1){
-                    pSatus[1] ++;
-                }else if(projectPstatus.getPstatus() == 2){
-                    pSatus[2] ++;
-                }else if(projectPstatus.getPstatus() == 3){
-                    pSatus[3] ++;
-                }else if(projectPstatus.getPstatus() == 4){
-                    pSatus[4] ++;
-                }else if(projectPstatus.getPstatus() == 5){
-                    pSatus[5] ++;
-                }
-            }
-        }
         Map<String,Integer> info = new HashMap<String,Integer>();
         info.put("counter", counter);
-        for(ProjectStageEnum projectStageEnum: ProjectStageEnum.values()){
-            int index = projectStageEnum.getIndex();
-            info.put(projectStageEnum.getName(), pSatus[index]);
-        }
         viewer.viewList(list, info, true, resps, request);
     }
 
@@ -198,7 +92,6 @@ public class ProjectProcessor {
             CreateProject createProject = createProjectQueryBean.getCreateProject();
             List<ProUser> proUserList = createProjectQueryBean.getProUserList();
             ProLog proLog = createProjectQueryBean.getProlog();
-
             int counter = AllDao.getInstance().getProjectDao().insertCreateProject(createProject);
             counter = AllDao.getInstance().getProjectDao().insertProUserList(proUserList);
             counter = AllDao.getInstance().getProjectDao().insertProLog(proLog);
@@ -279,6 +172,43 @@ public class ProjectProcessor {
      * @param resps
      */
     public void deleteProject(HttpServletRequest request, HttpServletResponse resps){
+        String param = ParamUtils.getParam(request);
+        logger.info("deleteProject param=" + param);
+        JsonArray ids = null;
+        String uid = null;
+
+        try{
+            JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
+            uid = jsonObject.get("uid").getAsString();
+            ids = jsonObject.get("projectIDSet").getAsJsonArray();
+        }catch(Exception e){
+            ParamUtils.errorParam(request,resps);
+            return;
+        }
+        Map<String,Object> confMap =  new HashMap<String, Object>();
+        SyUser syUser = UserProcessor.getUser(uid);
+        int c = 0;
+        confMap.put("uid",uid);
+        for(JsonElement jsonElement:ids){
+            String projectID = jsonElement.getAsString();
+            confMap.put("projectID",projectID);
+            int count = AllDao.getInstance().getProjectDao().deleteProjectMember(confMap);
+            c = c + count;
+            if(count == 1){
+                ProLog proLog = new ProLog();
+                proLog.setUid(uid);
+                proLog.setProjectID(projectID);
+                proLog.setAction(LogActionEnum.ExitProject.getName());
+                proLog.setLogTime(new Date());
+                proLog.setLogText(syUser.getUname()+ LogActionEnum.ExitProject.getName());
+                AllDao.getInstance().getProjectDao().insertProLog(proLog);
+            }
+        }
+
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(1);
+        resultBean.setInfo("成功删除"+ c + "个项目");
+        viewer.viewString(gson.toJson(resultBean),resps,request);
 
     }
 
@@ -301,7 +231,6 @@ public class ProjectProcessor {
             if(entry.getAsJsonObject().get("sampleID") != null){
                 uri = entry.getAsJsonObject().get("sampleID").getAsString();
             }
-
             Map<String,Object> confMap = new HashMap<String, Object>();
             confMap.put("projectID",projectID);
             confMap.put("uri",uri);
@@ -323,14 +252,6 @@ public class ProjectProcessor {
 
 
 
-    /**
-     *
-     * @param request
-     * @param resp
-     */
-    public void RenameSet(HttpServletRequest request, HttpServletResponse resp){
-        
-    }
 
     /**
      * 工作区的工具列表
@@ -342,32 +263,6 @@ public class ProjectProcessor {
         viewer.viewString(content,resp,request);
     }
 
-    /**
-     * 缩略图表区
-     * @param request
-     * @param resp
-     */
-    public void planMiniGrah(HttpServletRequest request, HttpServletResponse resp){
-
-    }
-
-    /**
-     * 数据展示区
-     * @param request
-     * @param resp
-     */
-    public void planTable(HttpServletRequest request, HttpServletResponse resp){
-
-    }
-
-    /**
-     * 图表展示区
-     * @param request
-     * @param resp
-     */
-    public void planGrah(HttpServletRequest request, HttpServletResponse resp){
-
-    }
 
     /**
      *某次动作的接口
@@ -646,5 +541,99 @@ public class ProjectProcessor {
         map.put("projectID",projectID);
         List<String> list = AllDao.getInstance().getProjectDao().getProjectSetNameList(map);
         viewer.viewList(list, null, true, resp, req);
+    }
+
+    public void editProject(HttpServletRequest req, HttpServletResponse resp) {
+        String param = ParamUtils.getParam(req);
+        logger.info("editProject param=" + param);
+        String uid = null;
+        String projectID = null;
+        String projectName = null;
+        String projectDesp = null;
+        String stime = null;
+        String etime = null;
+        String center = null;
+        String projectEngName = null;
+        String unit = null;
+        String manager = null;
+        String type = null;
+        String registerNumber = null;
+        Map<String,Object> map = new HashMap<String, Object>();
+        try{
+            JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
+            uid = jsonObject.get("uid").getAsString();
+            projectID = jsonObject.get("projectID").getAsString();
+            projectName = jsonObject.get("projectName").getAsString();
+            projectDesp = jsonObject.get("projectDesp").getAsString();
+            if(jsonObject.get("starttime") != null){
+                stime = jsonObject.get("starttime").getAsString();
+                Date startTime = null;
+                if(null != stime && !"".equals(stime)){
+                    startTime = time.parse(stime);
+                }
+
+                map.put("startTime",startTime);
+            }
+            if(jsonObject.get("endtime") != null){
+                etime = jsonObject.get("endtime").getAsString();
+                Date endTime = null;
+                if(null !=etime &&  !"".equals(etime)){
+                    endTime = time.parse(etime);
+                }
+                map.put("endtime",endTime);
+            }
+            if(jsonObject.get("projectEngName") != null){
+                projectEngName = jsonObject.get("endtime").getAsString();
+                map.put("projectEngName",projectEngName);
+            }
+            if(jsonObject.get("manager") != null){
+                manager = jsonObject.get("manager").getAsString();
+                map.put("manager",manager);
+            }
+            if(jsonObject.get("type") != null){
+                type = jsonObject.get("type").getAsString();
+                map.put("type",type);
+            }
+            if(jsonObject.get("registerNumber") != null){
+                registerNumber = jsonObject.get("registerNumber").getAsString();
+                map.put("registerNumber",registerNumber);
+            }
+            if(jsonObject.get("center") != null){
+                registerNumber = jsonObject.get("center").getAsString();
+                map.put("center",center);
+            }
+            if(jsonObject.get("unit") != null){
+                registerNumber = jsonObject.get("unit").getAsString();
+                map.put("unit",unit);
+            }
+            map.put("uid",uid);
+            map.put("projectID",projectID);
+            map.put("projectName",projectName);
+            map.put("projectDesp",projectDesp);
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
+        int count = AllDao.getInstance().getProjectDao().updateProject(map);
+        ProLog proLog = new ProLog();
+        proLog.setProjectID(projectID);
+        proLog.setUid(uid);
+        proLog.setAction(LogActionEnum.UpdateProject.getName());
+        SyUser syUser = UserProcessor.getUser(uid);
+        proLog.setLogText(syUser.getUname() + LogActionEnum.UpdateProject.getName());
+        proLog.setLogTime(new Date());
+        AllDao.getInstance().getProjectDao().insertProLog(proLog);
+        if(count == 1){
+            ResultBean resultBean = new ResultBean();
+            resultBean.setCode(1);
+            resultBean.setInfo("保存成功");
+            viewer.viewString(gson.toJson(resultBean),resp,req);
+        }else{
+            ResultBean resultBean = new ResultBean();
+            resultBean.setCode(0);
+            resultBean.setInfo("没有找到项目信息");
+            viewer.viewString(gson.toJson(resultBean),resp,req);
+        }
+
     }
 }

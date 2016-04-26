@@ -16,14 +16,8 @@ public interface SyUserMapper {
     public SyUser login(Map<String, Object> likeCondition);
     public SyUser getOneUser(Map<String, Object> likeCondition);
     public int updateByUid(SyUser record);
-    public List<FinishedProject> getFinishedProjects(Map<String,Object> likeCondition);
-    public List<UnfinishedProject> getUnfinishedProjects(Map<String,Object> likeCondition);
-    public int getFinishedProjectCounter(Map<String,Object> likeCondition);
-    public int getUnfinishedProjectCounter(Map<String,Object> likeCondition);
     public int getProjectCounter(Map<String,Object> likeCondition);
-    public List<MyProjectList> getMyProjectListNoPstatus(Map<String,Object> likeCondition);
     public List<MyProjectList> getMyProjectList(Map<String,Object> likeCondition);
-    public List<ProjectPstatus> getProjectPstatus(Map<String,Object> likeCondition);
     public List<String> getHistoryWords(Map<String,Object> likeCondition);
     public Integer getHistoryWordsCounter(Map<String,Object> likeCondition);
     public Integer insertHistoryWords(HistoryWords historyWords);

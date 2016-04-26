@@ -25,21 +25,7 @@ public class ProjectController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long start = System.currentTimeMillis();
         String uri = req.getRequestURI();
-        if("/project/UserFinishedSampleList".equals(uri)){
-            try{
-                processor.userFinishedSampleList(req,resp);
-            }catch (Exception e){
-                logger.error("", e);
-            }
-            logger.info("用户中心完成项目列表 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if("/project/UserUnfinishedSampleList".equals(uri)){
-            try{
-                processor.userUnfinishedSampleList(req,resp);
-            }catch (Exception e){
-                logger.error("", e);
-            }
-            logger.info("用户中心未完成项目列表 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if("/project/MyProjectList".equals(uri)){
+        if("/project/MyProjectList".equals(uri)){
             try{
                 processor.myProjectList(req,resp);
             }catch (Exception e){
@@ -149,6 +135,20 @@ public class ProjectController extends HttpServlet {
                 logger.error("", e);
             }
             logger.info("数据集合名称列表 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/project/EditProject".equals(uri)){
+            try{
+                processor.editProject(req, resp);
+            }catch (Exception e){
+                logger.error("", e);
+            }
+            logger.info("编辑项目信息 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/project/DeleteProject".equals(uri)){
+            try{
+                processor.deleteProject(req, resp);
+            }catch (Exception e){
+                logger.error("", e);
+            }
+            logger.info("退出项目 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }
 
     }

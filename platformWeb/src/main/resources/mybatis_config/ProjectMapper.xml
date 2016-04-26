@@ -10,17 +10,8 @@
             <if test="projectName != null" >
                 projectName,
             </if>
-            <if test="creater != null" >
-                creater,
-            </if>
-            <if test="issueType != null" >
-                issueType,
-            </if>
-            <if test="issueName != null" >
-                issueName,
-            </if>
-            <if test="issueEngName != null" >
-                issueEngName,
+            <if test="projectEngName != null" >
+                projectEngName,
             </if>
             <if test="startTime != null" >
                 startTime,
@@ -28,32 +19,8 @@
             <if test="endTime != null" >
                 endTime,
             </if>
-            <if test="CRO != null" >
-                CRO,
-            </if>
-            <if test="planVersion != null" >
-                planVersion,
-            </if>
-            <if test="abstractText != null" >
-                abstractText,
-            </if>
-            <if test="researchArea != null" >
-                researchArea,
-            </if>
             <if test="center != null" >
                 center,
-            </if>
-            <if test="typein != null" >
-                typein,
-            </if>
-            <if test="testType != null" >
-                testType,
-            </if>
-            <if test="testGroup != null" >
-                testGroup,
-            </if>
-            <if test="pstatus != null" >
-                pstatus,
             </if>
             <if test="members != null" >
                 members,
@@ -61,14 +28,32 @@
             <if test="planNum != null" >
                 planNum,
             </if>
-            <if test="randomMethod != null" >
-                randomMethod,
-            </if>
-            <if test="blindSetting != null" >
-                blindSetting,
-            </if>
             <if test="createTime != null" >
                 createTime,
+            </if>
+            <if test="projectDesp != null" >
+                projectDesp,
+            </if>
+            <if test="setCount != null" >
+                setCount,
+            </if>
+            <if test="creator != null" >
+                creator,
+            </if>
+            <if test="unit != null" >
+                unit,
+            </if>
+            <if test="disease != null" >
+                disease,
+            </if>
+            <if test="registerNumber != null" >
+                registerNumber,
+            </if>
+            <if test="type != null" >
+                type,
+            </if>
+            <if test="manager != null" >
+                manager,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -78,17 +63,8 @@
             <if test="projectName != null" >
                 #{projectName,jdbcType=VARCHAR},
             </if>
-            <if test="creater != null" >
-                #{creater,jdbcType=VARCHAR},
-            </if>
-            <if test="issueType != null" >
-                #{issueType,jdbcType=VARCHAR},
-            </if>
-            <if test="issueName != null" >
-                #{issueName,jdbcType=VARCHAR},
-            </if>
-            <if test="issueEngName != null" >
-                #{issueEngName,jdbcType=VARCHAR},
+            <if test="projectEngName != null" >
+                #{projectEngName,jdbcType=VARCHAR},
             </if>
             <if test="startTime != null" >
                 #{startTime,jdbcType=TIMESTAMP,javaType=java.util.Date},
@@ -96,47 +72,42 @@
             <if test="endTime != null" >
                 #{endTime,jdbcType=TIMESTAMP,javaType=java.util.Date},
             </if>
-            <if test="CRO != null" >
-                #{CRO,jdbcType=VARCHAR},
-            </if>
-            <if test="planVersion != null" >
-                #{planVersion,jdbcType=VARCHAR},
-            </if>
-            <if test="abstractText != null" >
-                #{abstractText,jdbcType=VARCHAR},
-            </if>
-            <if test="researchArea != null" >
-                #{researchArea,jdbcType=VARCHAR},
-            </if>
             <if test="center != null" >
                 #{center,jdbcType=VARCHAR},
-            </if>
-            <if test="typein != null" >
-                #{typein,jdbcType=VARCHAR},
-            </if>
-            <if test="testType != null" >
-                #{testType,jdbcType=VARCHAR},
-            </if>
-            <if test="testGroup != null" >
-                #{testGroup,jdbcType=VARCHAR},
-            </if>
-            <if test="pstatus != null" >
-                #{pstatus,jdbcType=INTEGER},
             </if>
             <if test="members != null" >
                 #{members,jdbcType=INTEGER},
             </if>
+
             <if test="planNum != null" >
                 #{planNum,jdbcType=INTEGER},
             </if>
-            <if test="randomMethod != null" >
-                #{randomMethod,jdbcType=VARCHAR},
-            </if>
-            <if test="blindSetting != null" >
-                #{blindSetting,jdbcType=VARCHAR},
-            </if>
             <if test="createTime != null" >
                 #{createTime,jdbcType=TIMESTAMP,javaType=java.util.Date},
+            </if>
+            <if test="projectDesp != null" >
+                #{projectDesp,jdbcType=VARCHAR},
+            </if>
+            <if test="setCount != null" >
+                #{setCount,jdbcType=INTEGER},
+            </if>
+            <if test="creator != null" >
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="unit != null" >
+                #{unit,jdbcType=VARCHAR},
+            </if>
+            <if test="disease != null" >
+                #{disease,jdbcType=VARCHAR},
+            </if>
+            <if test="registerNumber != null" >
+                #{registerNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null" >
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="manager != null" >
+                #{manager,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -220,12 +191,13 @@
         <result column="p.planName" property="planName" jdbcType="VARCHAR"/>
         <result column="action" property="action" jdbcType="VARCHAR"/>
         <result column="logText" property="logText" jdbcType="VARCHAR"/>
-        <result column="logTime" property="logTime" jdbcType="TIMESTAMP"/>
+        <result column="lTime" property="lTime" jdbcType="VARCHAR"/>
         <result column="p.sampleName" property="sampleName" jdbcType="VARCHAR"/>
+
     </resultMap>
     <select id="getProjectLog" resultType="com.gennlife.platform.bean.projectBean.ProLog" parameterType="map">
         select
-        p.projectID,p.planName,uid,action,logTime,logText,p.sampleName
+        p.projectID,p.planName,uid,action,date_format(logTime,"%Y-%m-%d") AS lTime,logText,p.sampleName
         from p_prolog p
         <where>p.projectID=#{projectID} order by logTime desc limit #{startIndex},#{maxNum}</where>
     </select>
@@ -467,4 +439,36 @@
     <select id="getPlanName" resultType="java.lang.String" parameterType="map">
         select planName from p_plan where projectID=#{projectID} and id = #{id}
     </select>
+
+    <update id="updateProject"  parameterType="map">
+        UPDATE p_project
+        <set> projectName= #{projectName},
+            projectDesp = #{projectDesp},
+            <if test="#{startTime} != null" >
+                startTime=#{startTime,jdbcType=TIMESTAMP,javaType=java.util.Date},
+            </if>
+            <if test="#{endtime} != null" >
+                endtime=#{endtime,jdbcType=TIMESTAMP,javaType=java.util.Date},
+            </if>
+            <if test="#{projectEngName} != null" >
+                projectEngName=#{projectEngName},
+            </if>
+            <if test="#{manager} != null" >
+                manager=#{manager},
+            </if>
+            <if test="#{type} != null" >
+                type=#{type},
+            </if>
+            <if test="#{registerNumber} != null" >
+                registerNumber=#{registerNumber},
+            </if>
+            <if test="#{center} != null" >
+                center=#{center},
+            </if>
+            <if test="#{unit} != null" >
+                unit=#{unit},
+            </if>
+        </set>
+        <where> projectID=#{projectID} </where>
+    </update>
 </mapper>

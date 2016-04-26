@@ -1,9 +1,13 @@
 package com.gennlife.platform.util;
 
+import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.view.View;
+import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -13,6 +17,8 @@ import java.net.URLEncoder;
  */
 public class ParamUtils {
     private static Logger logger = LoggerFactory.getLogger(ParamUtils.class);
+    private static Gson gson = GsonUtil.getGson();
+    private static View viewer = new View();
     public static String getParam(HttpServletRequest request){
         String param = null;
         if("GET".equals(request.getMethod())){
@@ -72,5 +78,12 @@ public class ParamUtils {
         value = value.replaceAll("[\\\"\\\'][\\s]*javascript:(.*)[\\\"\\\']", "\"\"");
         value = value.replaceAll("script", "");
         return value;
+    }
+    public static void errorParam(HttpServletRequest request, HttpServletResponse resps){
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(0);
+        resultBean.setInfo("请求参数出错");
+        viewer.viewString(gson.toJson(resultBean),resps,request);
+        return;
     }
 }

@@ -49,4 +49,11 @@ public class BaseProcessor {
         viewer.viewString(gson.toJson(resultBean),resps,request);
 
     }
+
+    public void projectDisease(HttpServletRequest req, HttpServletResponse resp) {
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(1);
+        resultBean.setData(ArkService.getProjectDisease());
+        viewer.viewString(gson.toJson(resultBean),resp,req);
+    }
 }

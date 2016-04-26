@@ -51,6 +51,7 @@ public class ArkService {
         TcgaMapParser();
         DataService.init();
         parseChain();
+        parseProjectDisease();
         logger.info("开始初始化mongoDB相关配置,,,,");
         mongoConf = (MongoConf) context.getBean("com.gennlife.platform.util.MongoConf");
         try {
@@ -408,6 +409,23 @@ public class ArkService {
             throw new RuntimeException();
         }
     }
+    private static JsonObject projectDisease = null;
+
+    public static JsonObject getProjectDisease() {
+        return projectDisease;
+    }
+
+    public static void parseProjectDisease(){
+        try {
+            String data = FilesUtils.readFile("/projectDisease.json");
+            JsonObject object = (JsonObject) jsonParser.parse(data);
+            projectDisease = object.getAsJsonObject("disease");
+        } catch (IOException e) {
+            logger.error("",e);
+            throw new RuntimeException();
+        }
+    }
+
 
     public static final JsonObject getChainJson(){
         return chainJson;

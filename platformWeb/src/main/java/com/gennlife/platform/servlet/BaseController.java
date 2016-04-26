@@ -22,6 +22,8 @@ public class BaseController extends HttpServlet {
         String uri = req.getRequestURI();
         if("/base/Chain".equals(uri)){//二级关联属性
             processor.chainItem(req,resp);
+        }else if("/base/ProjectDisease".equals(uri)){
+            processor.projectDisease(req,resp);
         }
 
     }

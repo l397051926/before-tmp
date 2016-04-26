@@ -9,7 +9,9 @@ public enum LogActionEnum {
     ImportSamples("导入样本集", 2),
     DeleteSamples("删除样本集", 3),
     StoreSat("存储数据集合", 4),
-    DeletePlan("删除方案", 5);
+    DeletePlan("删除方案", 5),
+    UpdateProject("更新项目信息", 6),
+    ExitProject("退出项目",7 );
     private String name;
     private int index;
 

@@ -30,67 +30,57 @@ public class JsonUtils {
         List<ProUser> proUserList = new LinkedList<ProUser>();
         JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
         String projectID = UUID.randomUUID().toString();
-        createProject.setProjectID(projectID);
-        createProject.setProjectName(jsonObject.get("projectName").getAsString());
-        String creater = jsonObject.get("creater").getAsString();
-        createProject.setCreater(creater);
+        String projectName = jsonObject.get("projectName").getAsString();
+        String projectEngName = jsonObject.get("projectEngName").getAsString();
+        String creator = jsonObject.get("uid").getAsString();
+        String stime = jsonObject.get("starttime").getAsString();
+        String etime = jsonObject.get("endtime").getAsString();
+        String center = jsonObject.get("center") == null?jsonObject.get("center").getAsString():null;
+        String projectDesp = jsonObject.get("projectDesp") != null? jsonObject.get("projectDesp").getAsString():"";
+        String manager = jsonObject.get("manager")!=null?jsonObject.get("manager").getAsString():"";
+        String unit = jsonObject.get("unit").getAsString();
+        String disease = jsonObject.get("disease").getAsString();
+        String registerNumber = jsonObject.get("registerNumber").getAsString();
+        String type = jsonObject.get("type").getAsString();
+        createProject.setCreator(creator);
         ProUser proUser = new ProUser();
         proUser.setProjectID(projectID);
         proUser.setRole(MemberEnum.Creater.getIndex());//创建者
-        proUser.setUid(creater);
+        proUser.setUid(creator);
         proUserList.add(proUser);
-        createProject.setIssueType(jsonObject.get("issueType").getAsString());
-        createProject.setIssueName(jsonObject.get("issueName").getAsString());
-        createProject.setIssueEngName(jsonObject.get("issueEngName").getAsString());
-        String stime = jsonObject.get("starttime").getAsString();
-        String etime = jsonObject.get("endtime").getAsString();
         Date startTime = null;
         Date endTime = null;
-        Integer caseNum = null;
+
+
         if(null != stime && !"".equals(stime)){
             startTime = time.parse(stime);
         }
         if(null !=etime &&  !"".equals(etime)){
             endTime = time.parse(etime);
         }
-        caseNum = jsonObject.get("caseNum").getAsInt();
-        createProject.setStartTime(startTime);
-        createProject.setEndTime(endTime);
-        createProject.setCaseNum(caseNum);
-        createProject.setCRO(jsonObject.get("CRO").getAsString());
-        createProject.setPlanVersion(jsonObject.get("planVersion") != null ? jsonObject.get("planVersion").getAsString() : null);
-        createProject.setAbstractText(jsonObject.get("abstractText") != null ? jsonObject.get("abstractText").getAsString() : null);
-        createProject.setResearchArea(jsonObject.get("researchArea") != null ? jsonObject.get("researchArea").getAsString() : null);
-        createProject.setResearchDesc(jsonObject.get("researchDesc") != null ? jsonObject.get("researchDesc").getAsString() : null);
-        createProject.setCenter(jsonObject.get("center") != null ? jsonObject.get("center").getAsString() : null);
-        createProject.setTypein(jsonObject.get("typein") != null ? jsonObject.get("typein").getAsString() : null);
-        createProject.setTestType(jsonObject.get("testType")!=null?jsonObject.get("testType").getAsString():null);
-        String testGroup = jsonObject.get("testGroup").getAsString();
-        createProject.setTestGroup(jsonObject.get("testGroup") != null? jsonObject.get("testGroup").getAsString():null);
-
-        String manager = jsonObject.get("manager")!=null?jsonObject.get("manager").getAsString():null;
-        if(creater.equals(manager)){
-            createProject.setMembers(1);
-        }else{
-            ProUser managerUser = new ProUser();
-            managerUser.setProjectID(projectID);
-            managerUser.setUid(manager);
-            managerUser.setRole(MemberEnum.Manager.getIndex());
-            proUserList.add(managerUser);
-            createProject.setMembers(2);
-        }
-        createProject.setPlanNum(0);
-        createProject.setManager(jsonObject.get("manager").getAsString());
-        createProject.setLeaderUnit(jsonObject.get("leaderUnit").getAsString());
-        createProject.setUnit(jsonObject.get("unit").getAsString());
-        createProject.setMonitorUnit(jsonObject.get("monitorUnit").getAsString());
-        createProject.setPstatus(0);//项目状态：0，创建，1代表样本未录入，2，部分样本就绪（部分数据测序中）3.样本已经就绪，4样本分析中，5已完结
+        createProject.setProjectID(projectID);
+        createProject.setProjectName(projectName);
+        createProject.setProjectEngName(projectEngName);
+        createProject.setProjectDesp(projectDesp);
+        createProject.setCreator(creator);
         Date createTime = new Date();
         createProject.setCreateTime(createTime);
+        createProject.setStartTime(startTime);
+        createProject.setEndTime(endTime);
+        createProject.setMembers(1);
+        createProject.setCenter(center);
+        createProject.setProjectDesp(manager);
+        createProject.setSetCount(0);
+        createProject.setPlanNum(0);
+        createProject.setManager(manager);
+        createProject.setUnit(unit);
+        createProject.setDisease(disease);
+        createProject.setRegisterNumber(registerNumber);
+        createProject.setType(type);
         //组建log日志
-        SyUser syUser = UserProcessor.getUser(creater);
+        SyUser syUser = UserProcessor.getUser(creator);
         ProLog proLog = new ProLog();
-        proLog.setUid(creater);
+        proLog.setUid(creator);
         proLog.setProjectID(projectID);
         proLog.setAction(LogActionEnum.CreateProject.getName());
         proLog.setLogTime(createTime);

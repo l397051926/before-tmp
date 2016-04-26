@@ -173,34 +173,33 @@
 
 
 	<resultMap id="com.gennlife.platform.bean.projectBean.MyProjectList" type="com.gennlife.platform.bean.projectBean.MyProjectList">
-		<result column="creater" property="creater" jdbcType="VARCHAR" />
+		<result column="creator" property="creator" jdbcType="VARCHAR" />
 		<result column="p.projectID" property="projectID" jdbcType="VARCHAR" />
-		<result column="issueName" property="issueName" jdbcType="VARCHAR" />
 		<result column="projectName" property="projectName" jdbcType="VARCHAR" />
-		<result column="researchArea" property="researchArea" jdbcType="VARCHAR" />
-		<result column="createTime" property="createTime" jdbcType="TIMESTAMP"/>
-		<result column="pstatus" property="pstatus" jdbcType="INTEGER"/>
+		<result column="projectEngName" property="projectEngName" jdbcType="VARCHAR" />
+		<result column="unit" property="unit" jdbcType="VARCHAR" />
+		<result column="cTime" property="cTime" jdbcType="VARCHAR"/>
 		<result column="members" property="members" jdbcType="INTEGER"/>
 		<result column="planNum" property="planNum" jdbcType="INTEGER"/>
+		<result column="setCount" property="setCount" jdbcType="INTEGER"/>
+		<result column="projectDesp" property="projectDesp" jdbcType="VARCHAR"/>
+		<result column="unit" property="unit" jdbcType="VARCHAR"/>
+		<result column="manager" property="manager" jdbcType="VARCHAR"/>
+		<result column="disease" property="disease" jdbcType="VARCHAR"/>
+		<result column="type" property="type" jdbcType="VARCHAR"/>
+		<result column="registerNumber" property="registerNumber" jdbcType="VARCHAR"/>
 	</resultMap>
 
 	<sql id="MyProjectListSelect">
-		creater,p.projectID,projectName,issueName,researchArea,pstatus,createTime,members,planNum
+		creator,p.projectID,projectName,date_format(endTime,"%Y-%m-%d") AS cTime,members,planNum,projectDesp,setCount,projectEngName,unit,manager,type,disease,registerNumber
 	</sql>
-	<select id="getMyProjectListNoPstatus" resultMap="com.gennlife.platform.bean.projectBean.MyProjectList"
-			parameterType="map">
-		select
-		<include refid="MyProjectListSelect" />
-		from p_project p JOIN pro_user u on u.projectID = p.projectID
-		<where>u.uid=#{loginname}  order by createTime  desc limit #{startIndex},#{maxNum}</where>
-	</select>
 
 	<select id="getMyProjectList" resultMap="com.gennlife.platform.bean.projectBean.MyProjectList"
 			parameterType="map">
 		select
 		<include refid="MyProjectListSelect" />
 		from p_project p JOIN pro_user u on u.projectID = p.projectID
-		<where>u.uid=#{loginname} and p.pstatus = #{pstatus,jdbcType=INTEGER}  order by createTime  desc limit #{startIndex},#{maxNum}</where>
+		<where>u.uid=#{loginname} and p.projectName like '%${key}%' order by createTime  desc limit #{startIndex},#{maxNum}</where>
 	</select>
 
 
@@ -208,7 +207,7 @@
 		select
 		count(*)
 		from p_project p JOIN pro_user u on u.projectID = p.projectID
-		<where>u.uid=#{loginname} </where>
+		<where>u.uid=#{loginname} and p.projectName like '%${key}%'</where>
 	</select>
 
 	<resultMap id="com.gennlife.platform.bean.projectBean.ProjectPstatus" type="com.gennlife.platform.bean.projectBean.ProjectPstatus">

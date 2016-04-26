@@ -80,4 +80,18 @@ public interface ProjectMapper {
      * @return
      */
     public String getPlanName(Map<String,Object> likeCondition);
+
+    /**
+     * 更新项目信息
+     * @param likeCondition
+     * @return
+     */
+    public int updateProject(Map<String,Object> likeCondition);
+
+    /**
+     * 用户主动退出项目
+     * @param likeCondition
+     * @return
+     */
+    public int deleteProject(Map<String,Object> likeCondition);
 }
