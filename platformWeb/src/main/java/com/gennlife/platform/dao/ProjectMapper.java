@@ -94,4 +94,11 @@ public interface ProjectMapper {
      * @return
      */
     public int deleteProject(Map<String,Object> likeCondition);
+
+    /**
+     * 获取项目对应的疾病类型
+     * @param likeCondition
+     * @return
+     */
+    public String getProjectDisease(Map<String,Object> likeCondition);
 }

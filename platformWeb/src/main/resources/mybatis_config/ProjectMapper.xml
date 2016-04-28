@@ -471,4 +471,11 @@
         </set>
         <where> projectID=#{projectID} </where>
     </update>
+
+    <select id="getProjectDisease" resultType="java.lang.String" parameterType="map">
+        select
+        disease
+        from p_project
+        <where>p_project.projectID=#{projectID} limit 1</where>
+    </select>
 </mapper>

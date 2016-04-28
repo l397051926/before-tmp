@@ -59,11 +59,10 @@ public class CrfProcessor {
         if (paramObj.get("crf_name") != null) {
             crf_name = paramObj.get("crf_name").getAsString();
         }
-        if (paramObj.get("category") != null) {
-            category = paramObj.get("category").getAsString();
-        }
+
         Map<String, Object> confMap = new HashMap<String, Object>();
         confMap.put("projectID", projectID);
+        category = AllDao.getInstance().getProjectDao().getProjectDisease(confMap);
         String uid = paramObj.get("uid").getAsString();
         String data = null;
         if (paramObj.get("crf_id") == null || "".equals(paramObj.get("crf_id").getAsString())) {//客户端还不知道,crf_id

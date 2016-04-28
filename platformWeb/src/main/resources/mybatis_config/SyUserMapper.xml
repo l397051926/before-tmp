@@ -140,7 +140,7 @@
 	</resultMap>
 
 	<sql id="MyProjectListSelect">
-		creator,p.projectID,projectName,date_format(endTime,"%Y-%m-%d") AS cTime,members,planNum,projectDesp,setCount,projectEngName,unit,manager,type,disease,registerNumber
+		creator,p.projectID,projectName,date_format(createTime,"%Y-%m-%d") AS cTime,members,planNum,projectDesp,setCount,projectEngName,unit,manager,type,disease,registerNumber
 	</sql>
 
 	<select id="getMyProjectList" resultMap="com.gennlife.platform.bean.projectBean.MyProjectList"
