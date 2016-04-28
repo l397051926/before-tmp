@@ -119,57 +119,6 @@
 		where uid = #{uid,jdbcType=INTEGER}
 	</update>
 
-	<sql id="FinishedProjectSelect">
-		p.projectID,projectName,creater,startTime,endTime
-	</sql>
-	<resultMap id="com.gennlife.platform.bean.projectBean.FinishedProject" type="com.gennlife.platform.bean.projectBean.FinishedProject">
-		<result column="p.projectID" property="projectID" jdbcType="VARCHAR" />
-		<result column="issueName" property="projectName" jdbcType="VARCHAR" />
-		<result column="creater" property="creater" jdbcType="VARCHAR" />
-		<result column="startTime" property="startTime" jdbcType="TIMESTAMP"/>
-		<result column="endTime" property="endTime" jdbcType="TIMESTAMP"/>
-	</resultMap>
-	<select id="getFinishedProjects" resultMap="com.gennlife.platform.bean.projectBean.FinishedProject"
-			parameterType="map">
-		select
-		<include refid="FinishedProjectSelect" />
-		from p_project p JOIN pro_user u on u.projectID = p.projectID
-		<where>u.uid=#{loginname} and p.pstatus = 5 order by createTime desc limit #{startIndex},#{maxNum}</where>
-
-	</select>
-
-	<select id="getFinishedProjectCounter" resultType="java.lang.Integer" parameterType="map">
-		select
-		count(*)
-		from p_project p JOIN pro_user u on u.projectID = p.projectID
-		<where>u.uid=#{loginname} and p.pstatus = 5 </where>
-	</select>
-
-
-	<sql id="UnfinishedProjectSelect">
-		p.projectID,projectName,creater,startTime,pstatus
-	</sql>
-	<resultMap id="com.gennlife.platform.bean.projectBean.UnfinishedProject" type="com.gennlife.platform.bean.projectBean.UnfinishedProject">
-		<result column="p.projectID" property="projectID" jdbcType="VARCHAR" />
-		<result column="issueName" property="projectName" jdbcType="VARCHAR" />
-		<result column="creater" property="creater" jdbcType="VARCHAR" />
-		<result column="startTime" property="startTime" jdbcType="TIMESTAMP"/>
-		<result column="pstatus" property="pstatus" jdbcType="INTEGER"/>
-	</resultMap>
-	<select id="getUnfinishedProjects" resultMap="com.gennlife.platform.bean.projectBean.UnfinishedProject"
-			parameterType="map">
-		select
-		<include refid="UnfinishedProjectSelect" />
-		from p_project p JOIN pro_user u on u.projectID = p.projectID
-		<where>u.uid=#{loginname} and p.pstatus != 5  order by createTime desc limit #{startIndex},#{maxNum}</where>
-	</select>
-
-	<select id="getUnfinishedProjectCounter" resultType="java.lang.Integer" parameterType="map">
-		select
-		count(*)
-		from p_project p JOIN pro_user u on u.projectID = p.projectID
-		<where>u.uid=#{loginname} and p.pstatus != 5 </where>
-	</select>
 
 
 	<resultMap id="com.gennlife.platform.bean.projectBean.MyProjectList" type="com.gennlife.platform.bean.projectBean.MyProjectList">
