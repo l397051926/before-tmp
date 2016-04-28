@@ -53,7 +53,7 @@ public class ProjectProcessor {
         int maxNum = result[1];
         Map<String,Object> conf = new HashMap<String, Object>();
         conf.put("loginname",uid);
-        conf.put("startIndex",startIndex * maxNum);
+        conf.put("startIndex",(startIndex + 1) * maxNum);
         conf.put("maxNum",maxNum);
         conf.put("key",key);
         List<MyProjectList> list = null;
