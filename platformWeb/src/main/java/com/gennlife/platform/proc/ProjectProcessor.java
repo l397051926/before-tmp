@@ -33,7 +33,7 @@ public class ProjectProcessor {
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
     private static View viewer = new View();
-    private Map<String, Object> confMap;
+
 
     /**
      * {}
@@ -142,28 +142,36 @@ public class ProjectProcessor {
      * @param resps
      */
     public void deletePlan(HttpServletRequest request, HttpServletResponse resps){
-        String param = ParamUtils.getParam(request);
-        JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
-        String projectID = jsonObject.get("projectID").getAsString();
-        String uid = jsonObject.get("uid").getAsString();
-        String id = jsonObject.get("id").getAsString();
-        Map<String,Object> mapConf = new HashMap<String, Object>();
-        mapConf.put("projectID", projectID);
-        mapConf.put("id", id);
-        String planName = AllDao.getInstance().getProjectDao().getPlanName(mapConf);
-        int counter = AllDao.getInstance().getProjectDao().deleteProPlan(mapConf);
-        ProLog proLog = new ProLog();
-        proLog.setProjectID(projectID);
-        proLog.setUid(uid);
-        proLog.setAction(LogActionEnum.DeletePlan.getName());
-        SyUser syUser = UserProcessor.getUser(uid);
-        proLog.setLogText(syUser.getUname() + LogActionEnum.DeletePlan.getName() + planName);
-        proLog.setLogTime(new Date());
-        AllDao.getInstance().getProjectDao().insertProLog(proLog);
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("projectID",projectID);
-        List<ProjectPlan> list = AllDao.getInstance().getProjectDao().getProjectPlan(map);
-        viewer.viewList(list, null, true, resps, request);
+        try{
+            String param = ParamUtils.getParam(request);
+            JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
+            String projectID = jsonObject.get("projectID").getAsString();
+            String uid = jsonObject.get("uid").getAsString();
+            JsonArray idSet = jsonObject.get("idSet").getAsJsonArray();
+            Map<String,Object> mapConf = new HashMap<String, Object>();
+            mapConf.put("projectID", projectID);
+            for(JsonElement id:idSet){
+                mapConf.put("id", id.getAsString());
+                String planName = AllDao.getInstance().getProjectDao().getPlanName(mapConf);
+                int counter = AllDao.getInstance().getProjectDao().deleteProPlan(mapConf);
+                ProLog proLog = new ProLog();
+                proLog.setProjectID(projectID);
+                proLog.setUid(uid);
+                proLog.setAction(LogActionEnum.DeletePlan.getName());
+                SyUser syUser = UserProcessor.getUser(uid);
+                proLog.setLogText(syUser.getUname() + LogActionEnum.DeletePlan.getName() + planName);
+                proLog.setLogTime(new Date());
+                AllDao.getInstance().getProjectDao().insertProLog(proLog);
+            }
+            Map<String,Object> map = new HashMap<String, Object>();
+            map.put("projectID",projectID);
+            List<ProjectPlan> list = AllDao.getInstance().getProjectDao().getProjectPlan(map);
+            viewer.viewList(list, null, true, resps, request);
+        }catch (Exception e){
+            ParamUtils.errorParam(request,resps);
+            return;
+        }
+
     }
 
     /**
@@ -227,10 +235,7 @@ public class ProjectProcessor {
         Date createTime = new Date();
         int counter = 0;
         for(JsonElement entry:users){
-            String uri = "";
-            if(entry.getAsJsonObject().get("sampleID") != null){
-                uri = entry.getAsJsonObject().get("sampleID").getAsString();
-            }
+            String uri = entry.getAsString();
             Map<String,Object> confMap = new HashMap<String, Object>();
             confMap.put("projectID",projectID);
             confMap.put("uri",uri);
@@ -409,7 +414,7 @@ public class ProjectProcessor {
         int[] ls = ParamUtils.parseLimit(limit);
         Map<String,Object> confMap = new HashMap<String, Object>();
         confMap.put("projectID",projectID);
-        confMap.put("startIndex",ls[0] * ls[1]);
+        confMap.put("startIndex",(ls[0]-1) * ls[1]);
         confMap.put("maxNum",ls[1]);
         List<ProLog> logList = AllDao.getInstance().getProjectDao().getProjectLog(confMap);
         for(ProLog proLog:logList){
@@ -433,7 +438,14 @@ public class ProjectProcessor {
         String param = ParamUtils.getParam(request);
         JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
         String projectID = jsonObject.get("projectID").getAsString();
+        String limit = "0,5";
+        if(jsonObject.get("limit") != null){
+            limit = jsonObject.get("limit").getAsString();
+        }
+        int[] ls = ParamUtils.parseLimit(limit);
         Map<String,Object> confMap = new HashMap<String, Object>();
+        confMap.put("startIndex",(ls[0]-1) * ls[1]);
+        confMap.put("maxNum",ls[1]);
         confMap.put("projectID", projectID);
         List<ProjectPlan> plansList = AllDao.getInstance().getProjectDao().getProjectPlan(confMap);
         viewer.viewList(plansList, null, true, resp, request);
@@ -563,15 +575,21 @@ public class ProjectProcessor {
             JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
             uid = jsonObject.get("uid").getAsString();
             projectID = jsonObject.get("projectID").getAsString();
-            projectName = jsonObject.get("projectName").getAsString();
-            projectDesp = jsonObject.get("projectDesp").getAsString();
+            if(jsonObject.get("projectName") != null){
+                projectName = jsonObject.get("projectName").getAsString();
+                map.put("projectName",projectName);
+            }
+            if(jsonObject.get("projectDesp") != null){
+                projectDesp = jsonObject.get("projectDesp").getAsString();
+                map.put("projectDesp",projectDesp);
+            }
+
             if(jsonObject.get("starttime") != null){
                 stime = jsonObject.get("starttime").getAsString();
                 Date startTime = null;
                 if(null != stime && !"".equals(stime)){
                     startTime = time.parse(stime);
                 }
-
                 map.put("startTime",startTime);
             }
             if(jsonObject.get("endtime") != null){
@@ -608,8 +626,6 @@ public class ProjectProcessor {
             }
             map.put("uid",uid);
             map.put("projectID",projectID);
-            map.put("projectName",projectName);
-            map.put("projectDesp",projectDesp);
         }catch (Exception e){
             ParamUtils.errorParam(req,resp);
             return;
@@ -634,6 +650,58 @@ public class ProjectProcessor {
             resultBean.setInfo("没有找到项目信息");
             viewer.viewString(gson.toJson(resultBean),resp,req);
         }
+
+    }
+
+    public void isExistProject(HttpServletRequest req, HttpServletResponse resp) {
+        String uid = null;
+        String projectName = null;
+        Map<String,Object> map = new HashMap<String, Object>();
+        ResultBean resultBean = new ResultBean();
+        try{
+            String param = ParamUtils.getParam(req);
+            logger.info("isExistProject param=" + param);
+            JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
+            uid = jsonObject.get("uid").getAsString();
+            projectName = jsonObject.get("uid").getAsString();
+            map.put("uid",uid);
+            map.put("projectName",projectName);
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
+        int count = AllDao.getInstance().getProjectDao().isExistProject(map);
+        resultBean.setCode(1);
+        Map<String,Integer> result = new HashMap<String, Integer>();
+        if(count >= 1){
+            result.put("count",1);
+        }else{
+            result.put("count",0);
+        }
+        resultBean.setData(map);
+        viewer.viewString(gson.toJson(resultBean),resp,req);
+    }
+
+    public void isExistPlan(HttpServletRequest req, HttpServletResponse resp) {
+        String projectID = null;
+        String planName = null;
+        Map<String,Object> map = new HashMap<String, Object>();
+        try{
+            String param = ParamUtils.getParam(req);
+            logger.info("IsExistPlan param=" + param);
+            JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
+            projectID = jsonObject.get("projectID").getAsString();
+            planName = jsonObject.get("planName").getAsString();
+            map.put("projectID",projectID);
+            map.put("planName",planName);
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
+        int count = AllDao.getInstance().getProjectDao().isExistPlan(map);
+    }
+
+    public void isExistSet(HttpServletRequest req, HttpServletResponse resp) {
 
     }
 }

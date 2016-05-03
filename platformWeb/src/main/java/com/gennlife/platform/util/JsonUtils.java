@@ -97,7 +97,7 @@ public class JsonUtils {
         String projectID = jsonObject.get("projectID").getAsString();
         String planName = jsonObject.get("planName").getAsString();
         String desc = jsonObject.get("desc").getAsString();
-        String creater = jsonObject.get("creater").getAsString();
+        String creater = jsonObject.get("creator").getAsString();
         Date createTime = new Date();
         projectPlan.setPlanDesc(desc);
         projectPlan.setPlanName(planName);

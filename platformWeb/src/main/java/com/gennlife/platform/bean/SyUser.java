@@ -27,6 +27,15 @@ public class SyUser {
     private String lastModifyTime;
     private Set<SyResource> resources = new HashSet<SyResource>();//权限
     private String role;//项目中的角色，manager，creater，member
+    private String unumber;//工号
+
+    public String getUnumber() {
+        return unumber;
+    }
+
+    public void setUnumber(String unumber) {
+        this.unumber = unumber;
+    }
 
     public String getRole() {
         return role;

@@ -423,7 +423,7 @@ public class SearchProcessor {
         logger.info("searchProjectMembers searchMemberkey=" + searchMemberkey + ",limit=" + limit);
         int[] ls = ParamUtils.parseLimit(limit);
         Map<String,Object> confMap = new HashMap<String, Object>();
-        confMap.put("startIndex",ls[0] * ls[1]);
+        confMap.put("startIndex",(ls[0]-1) * ls[1]);
         confMap.put("maxNum", ls[1]);
         confMap.put("searchMemberkey",searchMemberkey);
         confMap.put("projectID", projectID);

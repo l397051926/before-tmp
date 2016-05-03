@@ -16,9 +16,10 @@
 		<result column="sex" property="sex" jdbcType="INTEGER" />
 		<result column="ctime" property="ctime" jdbcType="TIMESTAMP"/>
 		<result column="uptime" property="uptime" jdbcType="TIMESTAMP"/>
+		<result column="unumber" property="unumber" jdbcType="VARCHAR"/>
 	</resultMap>
 	<sql id="Base_Column_List">
-		p_user.id,p_user.uid,uname,uemail,pwd ,uposition ,p_user.orgID ,orgName,lab ,telphone ,age ,sex ,ctime ,uptime
+		p_user.id,p_user.uid,uname,uemail,pwd,unumber,uposition ,p_user.orgID ,orgName,lab ,telphone ,age ,sex ,ctime ,uptime
 	</sql>
 
 

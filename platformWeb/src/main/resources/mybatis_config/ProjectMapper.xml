@@ -231,7 +231,7 @@
         select
         id,projectID,planName,planDesc,creater,planStatus,createTime,modifier,taskID,taskName
         from p_plan p
-        <where>p.projectID=#{projectID} and planStatus > 0 order by createTime asc</where>
+        <where>p.projectID=#{projectID} and planStatus > 0 order by createTime asc limit #{startIndex},#{maxNum}</where>
     </select>
 
 
@@ -477,5 +477,18 @@
         disease
         from p_project
         <where>p_project.projectID=#{projectID} limit 1</where>
+    </select>
+
+    <select id="isExistProject" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(p.projectID)
+        from p_project p JOIN pro_user u on u.projectID = p.projectID
+        <where>u.uid=#{uid} AND p.projectName=#{projectName}</where>
+    </select>
+    <select id="isExistPlan" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(*)
+        from p_plan
+        <where>p_plan.projectID=#{projectID} AND p_plan.planName=#{planName}</where>
     </select>
 </mapper>

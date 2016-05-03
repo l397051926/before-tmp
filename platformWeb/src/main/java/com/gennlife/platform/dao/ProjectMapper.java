@@ -101,4 +101,9 @@ public interface ProjectMapper {
      * @return
      */
     public String getProjectDisease(Map<String,Object> likeCondition);
+
+
+    public int isExistProject(Map<String,Object> likeCondition);
+
+    public int isExistPlan(Map<String, Object> map);
 }

@@ -149,6 +149,27 @@ public class ProjectController extends HttpServlet {
                 logger.error("", e);
             }
             logger.info("退出项目 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/project/IsExistProject".equals("uri")){
+            try{
+                processor.isExistProject(req, resp);
+            }catch (Exception e){
+                logger.error("", e);
+            }
+            logger.info("判定项目知否存在 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/project/IsExistPlan".equals(uri)){
+            try{
+                processor.isExistPlan(req, resp);
+            }catch (Exception e){
+                logger.error("", e);
+            }
+            logger.info("判定方案知否存在 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/project/IsExistSet".equals(uri)){
+            try{
+                processor.isExistSet(req, resp);
+            }catch (Exception e){
+                logger.error("", e);
+            }
+            logger.info("判定样本集知否存在 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }
 
     }
