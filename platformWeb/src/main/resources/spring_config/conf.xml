@@ -22,10 +22,11 @@
         <property name="detailGenURL" value="http://192.168.1.111:8111/fs/gene?table=%s&amp;key=%s&amp;fields=%s&amp;pagesize=%s&amp;page=%s"/>
         <property name="SetDetailURL" value="http://192.168.1.111:8111/fs/schema/%s"/>
         <property name="SetDetailDataURL" value="http://192.168.1.111:8111/fs/sample/%s"/>
+        <property name="knowledgeURL" value="http://localhost:8080/knowledge/graph"/>
     </bean>
 
     <bean id="com.gennlife.platform.util.MongoConf" class="com.gennlife.platform.util.MongoConf">
-        <property name="host" value="127.0.0.1"/>
+        <property name="host" value="192.168.1.111"/>
         <property name="port" value="27017"/>
         <property name="poolSize" value="10"/>
         <property name="blockSize" value="10"/>

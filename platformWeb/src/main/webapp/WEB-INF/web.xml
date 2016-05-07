@@ -106,5 +106,14 @@
         <servlet-name>Base</servlet-name>
         <url-pattern>/base/*</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>knowledge</servlet-name>
+        <servlet-class>com.gennlife.platform.servlet.KnowledgeController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>knowledge</servlet-name>
+        <url-pattern>/knowledge/*</url-pattern>
+    </servlet-mapping>
   <display-name>Archetype Created Web Application</display-name>
 </web-app>

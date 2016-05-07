@@ -86,4 +86,12 @@ public class ParamUtils {
         viewer.viewString(gson.toJson(resultBean),resps,request);
         return;
     }
+
+    public static void errorParam(String info, HttpServletRequest req, HttpServletResponse resp) {
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(0);
+        resultBean.setInfo(info);
+        String data = gson.toJson(resultBean);
+        viewer.viewString(data, resp, req);
+    }
 }

@@ -15,6 +15,15 @@ public class Conf {
     private String SetDetailURL;
     private String detailGenURL;
     private String SetDetailDataURL;
+    private String knowledgeURL;
+
+    public String getKnowledgeURL() {
+        return knowledgeURL;
+    }
+
+    public void setKnowledgeURL(String knowledgeURL) {
+        this.knowledgeURL = knowledgeURL;
+    }
 
     public String getSetDetailDataURL() {
         return SetDetailDataURL;
