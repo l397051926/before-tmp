@@ -35,8 +35,8 @@
 		<include refid="Base_Column_List" />
 		FROM p_user
 		JOIN pro_user ON p_user.uid = pro_user.uid JOIN p_org o ON o.orgID = p_user.orgID
-		<where> pro_user.projectID = #{projectID} AND (p_user.uid LIKE '%${searchMemberkey}%' OR o.orgName LIKE '%${searchMemberkey}%' OR p_user.uname LIKE '%${searchMemberkey}%')
-		ORDER BY ctime DESC  limit #{startIndex},#{maxNum} </where>
+		<where> pro_user.projectID = #{projectID}
+		ORDER BY ctime DESC </where>
 	</select>
 
 	<select id="getProjectMemberSList" resultMap="com.gennlife.platform.bean.SyUser"  parameterType="map">
@@ -50,10 +50,10 @@
 	<select id="getProjectMemberCounter" resultType="java.lang.Integer"  parameterType="map">
 		select
 		count(p_user.uid)
-		FROM p_user
-		JOIN pro_user ON p_user.uid = pro_user.uid JOIN p_org o ON o.orgID = p_user.orgID
-		<where> pro_user.projectID = #{projectID} AND (p_user.uid LIKE '%${searchMemberkey}%' OR o.orgName LIKE '%${searchMemberkey}%' OR p_user.uname LIKE '%${searchMemberkey}%')
-			ORDER BY ctime DESC  limit #{startIndex},#{maxNum} </where>
+		FROM p_user JOIN pro_user ON p_user.uid = pro_user.uid
+		JOIN p_org o ON o.orgID = p_user.orgID
+		<where> pro_user.projectID = #{projectID}
+			ORDER BY ctime DESC  </where>
 	</select>
 
 	<select id="searchMemberList" resultMap="com.gennlife.platform.bean.SyUser"  parameterType="map">

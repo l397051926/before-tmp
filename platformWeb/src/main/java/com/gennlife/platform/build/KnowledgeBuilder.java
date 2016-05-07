@@ -12,6 +12,12 @@ import java.util.Map;
  * Created by chen-song on 16/5/6.
  */
 public class KnowledgeBuilder {
+    /**
+     * 按照格式,构建最终结果
+     * @param param
+     * @param obj
+     * @return
+     */
     public JsonArray build(JsonObject param,JsonObject obj){
         JsonArray result = null;
         String to = param.get("to").getAsString();
@@ -25,18 +31,33 @@ public class KnowledgeBuilder {
             result = buildVariation(param,obj);
         }else if ("drug".equals(to)){
             result = buildDrug(param,obj);
+        }else if("".equals(to)){
+            result = buildPhenotype(param,obj);
         }
         return result;
     }
-    //分表
-    private JsonArray buildDrug(JsonObject param, JsonObject obj) {
+
+    private JsonArray buildPhenotype(JsonObject param, JsonObject obj) {
         JsonArray result = new JsonArray();
+        //head
         JsonObject head = buildHead(param,obj);
+        result.add(head);
+
         return result;
     }
 
+    //分表
+    private JsonArray buildDrug(JsonObject param, JsonObject obj) {
+        JsonArray result = new JsonArray();
+        String tableName = param.get("tableName").getAsString();
+        JsonObject head = buildHead(param,obj);
+
+        return result;
+    }
+
+
     /**
-     * 变异号：mutation_num |数组 url（all）
+     * 变异号：variation_num |数组 url（all）
      疾病ID: disease_id |数组 url（phenotype，disease）
      疾病：disease |string（phenotype，disease）
      基因：gene |数组 url（all）
@@ -66,7 +87,7 @@ public class KnowledgeBuilder {
             idObj.addProperty("name",dataObj.get("id").getAsString());
             idObj.addProperty("url",dataObj.get("idUrl").getAsString());
             idArray.add(idObj);
-            bodyEntity.add("mutation_num",idArray);
+            bodyEntity.add("variation_num",idArray);
             if("phenotype".equals(from) || "disease".equals(from)){
                 //补
                 JsonArray disease_idArray = new JsonArray();
@@ -99,8 +120,8 @@ public class KnowledgeBuilder {
 
             JsonArray refArray = new JsonArray();
             JsonObject refObj = new JsonObject();
-            refObj.addProperty("name",dataObj.get("geneSymbol").getAsString());
-            refObj.addProperty("url",dataObj.get("geneUrl").getAsString());
+            refObj.addProperty("name",dataObj.get("source").getAsString());
+            refObj.addProperty("url","");
             refArray.add(refObj);
             bodyEntity.add("ref",refArray);
 
@@ -200,8 +221,10 @@ public class KnowledgeBuilder {
 
     private JsonArray buildDisease(JsonObject param, JsonObject obj) {
         JsonArray result = new JsonArray();
+        //head
         JsonObject head = buildHead(param,obj);
         result.add(head);
+        //body
         JsonArray body = new JsonArray();
         JsonArray dataArray = obj.getAsJsonArray("data");
         for(JsonElement data:dataArray){
@@ -236,23 +259,81 @@ public class KnowledgeBuilder {
         return result;
     }
 
+    /**
+     * 构建疾病的Schema
+     * @param from
+     * @return
+     */
     private JsonArray diseaseSchema(String from){
         JsonArray schema = new JsonArray();
-        JsonObject entityid = new JsonObject();
-        entityid.addProperty("name","disease_id");
-        schema.add(entityid);
+        if("phenotype".equals(from) || "disease".equals(from)){
+            JsonObject entityid = new JsonObject();
+            entityid.addProperty("name","disease_id");
+            schema.add(entityid);
+        }
+
         JsonObject entityDisease = new JsonObject();
         entityDisease.addProperty("name","disease");
         schema.add(entityDisease);
-        JsonObject entityICD10 = new JsonObject();
-        entityICD10.addProperty("name","icd_10");
-        schema.add(entityICD10);
+
+        if("phenotype".equals(from)){
+            JsonObject phenotype_idDisease = new JsonObject();
+            phenotype_idDisease.addProperty("name","phenotype_id");
+            schema.add(phenotype_idDisease);
+
+            JsonObject phenotypeDisease = new JsonObject();
+            phenotypeDisease.addProperty("name","phenotype");
+            schema.add(phenotypeDisease);
+        }
+        if("phenotype".equals(from)||"gene".equals(from)||"protein".equals(from)){
+            JsonObject geneDisease = new JsonObject();
+            geneDisease.addProperty("name","gene");
+            schema.add(geneDisease);
+        }
+
+        if("drug".equals(from)){
+            JsonObject drugDisease = new JsonObject();
+            drugDisease.addProperty("name","drug");
+            schema.add(drugDisease);
+
+            JsonObject ncnn_refDisease = new JsonObject();
+            ncnn_refDisease.addProperty("name","ncnn_ref");
+            schema.add(ncnn_refDisease);
+
+            JsonObject nci_refDisease = new JsonObject();
+            nci_refDisease.addProperty("name","nci_ref");
+            schema.add(nci_refDisease);
+
+            JsonObject fda_refDisease = new JsonObject();
+            fda_refDisease.addProperty("name","fda_ref");
+            schema.add(fda_refDisease);
+        }
+
+        if("variation".equals(from)){
+            JsonObject variation_idDisease = new JsonObject();
+            variation_idDisease.addProperty("name","variation_id");
+            schema.add(variation_idDisease);
+        }
+
+        if("disease".equals(from)){
+            JsonObject entityICD10 = new JsonObject();
+            entityICD10.addProperty("name","icd_10");
+            schema.add(entityICD10);
+        }
+
         JsonObject entityRef = new JsonObject();
         entityRef.addProperty("name","ref");
         schema.add(entityRef);
+
         return schema;
     }
 
+    /**
+     * 构建返回数据的头部信息
+     * @param param
+     * @param obj
+     * @return
+     */
     private JsonObject buildHead(JsonObject param,JsonObject obj){
         JsonObject head = new JsonObject();
         int pageSize = param.get("pageSize").getAsInt();
@@ -281,21 +362,230 @@ public class KnowledgeBuilder {
             schema = geneSchema(from);
         }else if("variation".equals(to)){
             schema = variationSchema(from);
+        }else if("drug".equals(to)){
+            String tableName = param.get("tableName").getAsString();
+            if("drug".equals(tableName)){
+                schema = drugSchema(from);
+            }else if("drug_fda".equals(tableName)){
+                schema = drugUseSchema(from);
+            }else if("drug_nccn".equals(tableName)){
+                schema = drugUseSchema(from);
+            }else if("drug_gene".equals(tableName)){
+                schema = drugGENESchema(from);
+            }else if ("drug_target".equals(tableName)){
+                schema = drugTargetSchema(from);
+            }else if("drug_variation".equals(tableName)){
+                schema = drugVariationSchema(from);
+            }
+
+        }else if("phenotype".equals(to)){
+            schema = phenotypeSchema(from);
         }
         head.add("schema",schema);
         head.add("dimension",obj.getAsJsonArray("dimension"));
         return head;
     }
 
+    private JsonArray phenotypeSchema(String from) {
+        JsonArray schema = new JsonArray();
+
+        JsonObject phenotype_idPhenotype = new JsonObject();
+        phenotype_idPhenotype.addProperty("name","phenotype_id");
+        schema.add(phenotype_idPhenotype);
+
+        JsonObject phenotypePhenotype = new JsonObject();
+        phenotypePhenotype.addProperty("name","phenotype");
+        schema.add(phenotypePhenotype);
+
+        if("protein".equals(from)||"drug".equals(from)||"variation".equals(from)||"".equals(from)){
+            JsonObject genePhenotype = new JsonObject();
+            genePhenotype.addProperty("name","gene");
+            schema.add(genePhenotype);
+        }
+
+        JsonObject refPhenotype = new JsonObject();
+        refPhenotype.addProperty("name","ref");
+        schema.add(refPhenotype);
+        if("disease".equals(from)){
+            JsonObject disease_idPhenotype = new JsonObject();
+            disease_idPhenotype.addProperty("name","disease_id");
+            schema.add(disease_idPhenotype);
+
+            JsonObject diseasePhenotype = new JsonObject();
+            diseasePhenotype.addProperty("name","disease");
+            schema.add(diseasePhenotype);
+        }
+        return schema;
+    }
+
+    private JsonArray drugVariationSchema(String from) {
+        JsonArray schema = new JsonArray();
+        if("variation".equals(from)){
+            JsonObject drugDrug = new JsonObject();
+            drugDrug.addProperty("name","drug");
+            schema.add(drugDrug);
+
+            JsonObject variationDrug = new JsonObject();
+            variationDrug.addProperty("name","variation");
+            schema.add(variationDrug);
+
+            JsonObject refDrug = new JsonObject();
+            refDrug.addProperty("name","ref");
+            schema.add(refDrug);
+        }
+
+        return schema;
+    }
+
+    private JsonArray drugTargetSchema(String from) {
+        JsonArray schema = new JsonArray();
+        if("gene".equals(from)||"protein".equals(from)||"drug".equals(from)||"disease".equals(from)){
+            JsonObject drugDrug = new JsonObject();
+            drugDrug.addProperty("name","drug");
+            schema.add(drugDrug);
+
+            JsonObject brand_nameDrug = new JsonObject();
+            brand_nameDrug.addProperty("name","brand_name");
+            schema.add(brand_nameDrug);
+
+            JsonObject geneDrug = new JsonObject();
+            geneDrug.addProperty("name","gene");
+            schema.add(geneDrug);
+
+            JsonObject typeDrug = new JsonObject();
+            typeDrug.addProperty("name","type");
+            schema.add(typeDrug);
+
+            JsonObject approve_statusDrug = new JsonObject();
+            approve_statusDrug.addProperty("name","approve_status");
+            schema.add(approve_statusDrug);
+
+            JsonObject refDrug = new JsonObject();
+            refDrug.addProperty("name","ref");
+            schema.add(refDrug);
+        }
+        return schema;
+    }
+
+    private JsonArray drugUseSchema(String from) {
+        JsonArray schema = new JsonArray();
+        if("phenotype".equals(from) || "drug".equals(from) ||"disease".equals(from)){
+            JsonObject drugDrug = new JsonObject();
+            drugDrug.addProperty("name","drug");
+            schema.add(drugDrug);
+
+            JsonObject brand_nameDrug = new JsonObject();
+            brand_nameDrug.addProperty("name","brand_name");
+            schema.add(brand_nameDrug);
+
+            JsonObject typeDrug = new JsonObject();
+            typeDrug.addProperty("name","type");
+            schema.add(typeDrug);
+
+            JsonObject biomarkerDrug = new JsonObject();
+            biomarkerDrug.addProperty("name","biomarker");
+            schema.add(biomarkerDrug);
+
+            JsonObject referenced_subgroupDrug = new JsonObject();
+            referenced_subgroupDrug.addProperty("name","referenced_subgroup");
+            schema.add(referenced_subgroupDrug);
+
+            JsonObject indicationDrug = new JsonObject();
+            indicationDrug.addProperty("name","indication");
+            schema.add(indicationDrug);
+
+            JsonObject refDrug = new JsonObject();
+            refDrug.addProperty("name","ref");
+            schema.add(refDrug);
+        }
+
+        return schema;
+    }
+
+
+
+    private JsonArray drugGENESchema(String from) {
+        JsonArray schema = new JsonArray();
+        if("gene".equals(from)||"protein".equals(from)){
+            JsonObject drugDrug = new JsonObject();
+            drugDrug.addProperty("name","drug");
+            schema.add(drugDrug);
+
+            JsonObject brand_nameDrug = new JsonObject();
+            brand_nameDrug.addProperty("name","brand_name");
+            schema.add(brand_nameDrug);
+
+            JsonObject geneDrug = new JsonObject();
+            geneDrug.addProperty("name","gene");
+            schema.add(geneDrug);
+
+            JsonObject variationDrug = new JsonObject();
+            variationDrug.addProperty("name","variation");
+            schema.add(variationDrug);
+
+
+            JsonObject refDrug = new JsonObject();
+            refDrug.addProperty("name","ref");
+            schema.add(refDrug);
+        }
+
+        return schema;
+    }
+
+    private JsonArray drugSchema(String from) {
+        JsonArray schema = new JsonArray();
+        if("phenotype".equals(from)||"drug".equals(from)||"disease".equals(from)){
+            JsonObject drugDrug = new JsonObject();
+            drugDrug.addProperty("name","drug");
+            schema.add(drugDrug);
+
+            JsonObject brand_nameDrug = new JsonObject();
+            brand_nameDrug.addProperty("name","brand_name");
+            schema.add(brand_nameDrug);
+        }
+
+        if("disease_id".equals(from)){
+            JsonObject disease_idDrug = new JsonObject();
+            disease_idDrug.addProperty("name","disease_id");
+            schema.add(disease_idDrug);
+        }
+
+        if("phenotype".equals(from)||"drug".equals(from)||"disease".equals(from)){
+            JsonObject diseaseDrug = new JsonObject();
+            diseaseDrug.addProperty("name","disease");
+            schema.add(diseaseDrug);
+
+            JsonObject nccn_refDrug = new JsonObject();
+            nccn_refDrug.addProperty("name","nccn_ref");
+            schema.add(nccn_refDrug);
+
+            JsonObject nci_refDrug = new JsonObject();
+            nci_refDrug.addProperty("name","nci_ref");
+            schema.add(nci_refDrug);
+
+            JsonObject fda_refDrug = new JsonObject();
+            fda_refDrug.addProperty("name","fda_ref");
+            schema.add(fda_refDrug);
+
+            JsonObject refDrug = new JsonObject();
+            refDrug.addProperty("name","ref");
+            schema.add(refDrug);
+        }
+
+        return schema;
+    }
+
     private JsonArray variationSchema(String from) {
         JsonArray schema = new JsonArray();
-        JsonObject mutation_numVariation = new JsonObject();
-        mutation_numVariation.addProperty("name","mutation_num");
-        schema.add(mutation_numVariation);
+        JsonObject variation_numVariation = new JsonObject();
+        variation_numVariation.addProperty("name","variation_num");
+        schema.add(variation_numVariation);
+
         if("phenotype".equals(from) || "disease".equals(from)){
             JsonObject diseaseidVariation = new JsonObject();
             diseaseidVariation.addProperty("name","disease_id");
             schema.add(diseaseidVariation);
+
             JsonObject diseaseVariation = new JsonObject();
             diseaseVariation.addProperty("name","disease");
             schema.add(diseaseVariation);
@@ -304,6 +594,7 @@ public class KnowledgeBuilder {
         JsonObject geneVariation = new JsonObject();
         geneVariation.addProperty("name","gene");
         schema.add(geneVariation);
+
         if("phenotype".equals(from) || "gene".equals(from)){
             JsonObject typeVariation = new JsonObject();
             typeVariation.addProperty("name","type");
@@ -319,9 +610,11 @@ public class KnowledgeBuilder {
         JsonObject reference_alleleVariation = new JsonObject();
         reference_alleleVariation.addProperty("name","reference_allele");
         schema.add(reference_alleleVariation);
+
         JsonObject alternate_alleleVariation = new JsonObject();
         alternate_alleleVariation.addProperty("name","alternate_allele");
         schema.add(alternate_alleleVariation);
+
         JsonObject refVariation = new JsonObject();
         refVariation.addProperty("name","ref");
         schema.add(refVariation);
@@ -333,24 +626,29 @@ public class KnowledgeBuilder {
         JsonObject entityGene = new JsonObject();
         entityGene.addProperty("name","gene");
         schema.add(entityGene);
+
         if("phenotype".equals(from)){
             JsonObject entityPhenotypeID = new JsonObject();
             entityPhenotypeID.addProperty("name","phenotype_id");
             schema.add(entityPhenotypeID);
+
             JsonObject entityPhenotype = new JsonObject();
             entityPhenotype.addProperty("name","phenotype");
             schema.add(entityPhenotypeID);
         }
+
         JsonObject entityChromosome = new JsonObject();
         entityChromosome.addProperty("name","chromosome");
         schema.add(entityChromosome);
+
         JsonObject entityChromosomeLoc = new JsonObject();
         entityChromosomeLoc.addProperty("name","map_location");
         schema.add(entityChromosomeLoc);
+
         JsonObject entityTranscript = new JsonObject();
         entityTranscript.addProperty("name","transcript");
         schema.add(entityTranscript);
-        if("drug".equals(from)){
+        if("phenotype".equals(from)||"gene".equals(from)||"drug".equals(from)||"variation".equals(from)||"disease".equals(from)){
             JsonObject entityprotein = new JsonObject();
             entityprotein.addProperty("name","protein");
             schema.add(entityprotein);
@@ -363,15 +661,19 @@ public class KnowledgeBuilder {
 
     private JsonArray proteinSchema(String from) {
         JsonArray schema = new JsonArray();
+
         JsonObject entityprotein = new JsonObject();
         entityprotein.addProperty("name","protein");
         schema.add(entityprotein);
+
         JsonObject entityGene = new JsonObject();
         entityGene.addProperty("name","gene");
         schema.add(entityGene);
+
         JsonObject entityRef = new JsonObject();
         entityRef.addProperty("name","ref");
         schema.add(entityRef);
+
         return schema;
     }
 }

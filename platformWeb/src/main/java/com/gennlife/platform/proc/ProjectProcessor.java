@@ -417,12 +417,6 @@ public class ProjectProcessor {
         confMap.put("startIndex",(ls[0]-1) * ls[1]);
         confMap.put("maxNum",ls[1]);
         List<ProLog> logList = AllDao.getInstance().getProjectDao().getProjectLog(confMap);
-        for(ProLog proLog:logList){
-            if(null != time.format(proLog.getLogTime())){
-                proLog.setlTime(time.format(proLog.getLogTime()));
-            }
-            proLog.setLogTime(null);
-        }
         int counter =  AllDao.getInstance().getProjectDao().getProjectLogCounter(confMap);
         Map<String,Integer> info = new HashMap<String,Integer>();
         info.put("counter",counter);
@@ -460,15 +454,9 @@ public class ProjectProcessor {
         String param = ParamUtils.getParam(request);
         JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
         String projectID = jsonObject.get("projectID").getAsString();
-        String searchMemberkey = jsonObject.get("searchMemberkey").getAsString();
-        String limit = jsonObject.get("limit").getAsString();
-        logger.info("projectID=" + projectID + ",searchMemberkey=" + searchMemberkey + ",limit=" + limit);
-        int[] ls = ParamUtils.parseLimit(limit);
+        logger.info("projectID=" + projectID);
         Map<String,Object> confMap = new HashMap<String, Object>();
         confMap.put("projectID",projectID);
-        confMap.put("startIndex",ls[0] * ls[1]);
-        confMap.put("maxNum",ls[1]);
-        confMap.put("searchMemberkey",searchMemberkey);
         List<SyUser> list = AllDao.getInstance().getSyUserDao().getProjectMemberList(confMap);
         int counter = AllDao.getInstance().getSyUserDao().getProjectMemberCounter(confMap);
         Map<String,Integer> info = new HashMap<String,Integer>();
