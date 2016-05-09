@@ -491,4 +491,10 @@
         from p_plan
         <where>p_plan.projectID=#{projectID} AND p_plan.planName=#{planName}</where>
     </select>
+    <select id="isExistSet" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(*)
+        from pro_sample
+        <where>pro_sample.projectID=#{projectID} AND pro_sample.planName=#{planName} AND pro_sample.sampleName=#{sampleName}</where>
+    </select>
 </mapper>

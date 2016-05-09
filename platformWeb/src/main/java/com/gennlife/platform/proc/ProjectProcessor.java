@@ -651,7 +651,7 @@ public class ProjectProcessor {
             logger.info("isExistProject param=" + param);
             JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
             uid = jsonObject.get("uid").getAsString();
-            projectName = jsonObject.get("uid").getAsString();
+            projectName = jsonObject.get("projectName").getAsString();
             map.put("uid",uid);
             map.put("projectName",projectName);
         }catch (Exception e){
@@ -674,6 +674,7 @@ public class ProjectProcessor {
         String projectID = null;
         String planName = null;
         Map<String,Object> map = new HashMap<String, Object>();
+        ResultBean resultBean = new ResultBean();
         try{
             String param = ParamUtils.getParam(req);
             logger.info("IsExistPlan param=" + param);
@@ -687,9 +688,47 @@ public class ProjectProcessor {
             return;
         }
         int count = AllDao.getInstance().getProjectDao().isExistPlan(map);
+        resultBean.setCode(1);
+        Map<String,Integer> result = new HashMap<String, Integer>();
+        if(count >= 1){
+            result.put("count",1);
+        }else{
+            result.put("count",0);
+        }
+        resultBean.setData(result);
+        viewer.viewString(gson.toJson(resultBean),resp,req);
+
     }
 
     public void isExistSet(HttpServletRequest req, HttpServletResponse resp) {
-
+        String projectID = null;
+        String planName = null;
+        String sampleName = null;
+        Map<String,Object> map = new HashMap<String, Object>();
+        ResultBean resultBean = new ResultBean();
+        try{
+            String param = ParamUtils.getParam(req);
+            logger.info("isExistSet param=" + param);
+            JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
+            projectID = jsonObject.get("projectID").getAsString();
+            planName = jsonObject.get("planName").getAsString();
+            sampleName = jsonObject.get("sampleName").getAsString();
+            map.put("projectID",projectID);
+            map.put("planName",planName);
+            map.put("sampleName",sampleName);
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
+        int count = AllDao.getInstance().getProjectDao().isExistSet(map);
+        resultBean.setCode(1);
+        Map<String,Integer> result = new HashMap<String, Integer>();
+        if(count >= 1){
+            result.put("count",1);
+        }else{
+            result.put("count",0);
+        }
+        resultBean.setData(result);
+        viewer.viewString(gson.toJson(resultBean),resp,req);
     }
 }

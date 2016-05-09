@@ -106,4 +106,6 @@ public interface ProjectMapper {
     public int isExistProject(Map<String,Object> likeCondition);
 
     public int isExistPlan(Map<String, Object> map);
+
+    public int isExistSet(Map<String, Object> map);
 }
