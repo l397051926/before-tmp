@@ -231,7 +231,7 @@
         select
         id,projectID,planName,planDesc,creater,planStatus,createTime,modifier,taskID,taskName
         from p_plan p
-        <where>p.projectID=#{projectID} and planStatus > 0 order by createTime asc limit #{startIndex},#{maxNum}</where>
+        <where>p.projectID=#{projectID} and planStatus > 0 order by createTime asc</where>
     </select>
 
 
@@ -495,6 +495,6 @@
         select
         count(*)
         from pro_sample
-        <where>pro_sample.projectID=#{projectID} AND pro_sample.planName=#{planName} AND pro_sample.sampleName=#{sampleName}</where>
+        <where>pro_sample.projectID=#{projectID} AND pro_sample.sampleName=#{sampleName}</where>
     </select>
 </mapper>

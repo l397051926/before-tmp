@@ -711,10 +711,8 @@ public class ProjectProcessor {
             logger.info("isExistSet param=" + param);
             JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
             projectID = jsonObject.get("projectID").getAsString();
-            planName = jsonObject.get("planName").getAsString();
             sampleName = jsonObject.get("sampleName").getAsString();
             map.put("projectID",projectID);
-            map.put("planName",planName);
             map.put("sampleName",sampleName);
         }catch (Exception e){
             ParamUtils.errorParam(req,resp);
