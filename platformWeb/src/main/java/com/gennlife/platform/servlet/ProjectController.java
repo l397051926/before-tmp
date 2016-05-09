@@ -149,7 +149,7 @@ public class ProjectController extends HttpServlet {
                 logger.error("", e);
             }
             logger.info("退出项目 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if("/project/IsExistProject".equals("uri")){
+        }else if("/project/IsExistProject".equals(uri)){
             try{
                 processor.isExistProject(req, resp);
             }catch (Exception e){

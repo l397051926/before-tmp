@@ -666,7 +666,7 @@ public class ProjectProcessor {
         }else{
             result.put("count",0);
         }
-        resultBean.setData(map);
+        resultBean.setData(result);
         viewer.viewString(gson.toJson(resultBean),resp,req);
     }
 
