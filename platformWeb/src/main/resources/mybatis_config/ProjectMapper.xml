@@ -231,7 +231,7 @@
         select
         id,projectID,planName,planDesc,creater,planStatus,date_format(createTime,"%Y-%m-%d") AS createTime,modifier,taskID,taskName
         from p_plan p
-        <where>p.projectID=#{projectID} and planStatus > 0 order by createTime asc</where>
+        <where>p.projectID=#{projectID} and planStatus > 0 order by createTime asc limit #{startIndex},#{maxNum}</where>
     </select>
     <select id="getProjectPlanCounter" resultType="java.lang.Integer" parameterType="map">
         select
