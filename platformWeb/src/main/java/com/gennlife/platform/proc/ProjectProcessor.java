@@ -557,13 +557,22 @@ public class ProjectProcessor {
     public void editPlan(HttpServletRequest req, HttpServletResponse resp) {
         String param = ParamUtils.getParam(req);
         logger.info("editPlan param=" + param);
-        ProjectPlan projectPlan = JsonUtils.parseCreatePlan(param, true);
-        projectPlan.setPlanStatus(2);//初建状态
+        ProjectPlan projectPlan = null;
+        ResultBean resultBean = new ResultBean();
+        try{
+            projectPlan = JsonUtils.parseCreatePlan(param, true);
+            projectPlan.setPlanStatus(2);//初建状态
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
         int counter = AllDao.getInstance().getProjectDao().updateProPlan(projectPlan);
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("projectID",projectPlan.getProjectID());
-        List<ProjectPlan> list = AllDao.getInstance().getProjectDao().getProjectPlan(map);
-        viewer.viewList(list, null, true, resp, req);
+        if(counter == 1){
+            resultBean.setCode(1);
+        }else {
+            resultBean.setCode(0);
+        }
+        viewer.viewString(gson.toJson(resultBean), resp, req);
     }
 
 
