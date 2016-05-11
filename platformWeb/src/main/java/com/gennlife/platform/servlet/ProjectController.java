@@ -170,7 +170,7 @@ public class ProjectController extends HttpServlet {
                 logger.error("", e);
             }
             logger.info("判定样本集知否存在 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if("/project/BaiscInfo".equals(uri)){
+        }else if("/project/BasicInfo".equals(uri)){
             try{
                 processor.baiscInfo(req, resp);
             }catch (Exception e){
