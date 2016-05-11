@@ -130,10 +130,13 @@ public class ProjectProcessor {
         proLog.setLogText(syUser.getUname() + LogActionEnum.CreatePlan.getName() + projectPlan.getPlanName());
         proLog.setLogTime(new Date());
         AllDao.getInstance().getProjectDao().insertProLog(proLog);
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("projectID",projectPlan.getProjectID());
-        List<ProjectPlan> list = AllDao.getInstance().getProjectDao().getProjectPlan(map);
-        viewer.viewList(list, null, true, resps, request);
+        ResultBean resultBean = new ResultBean();
+        if(counter == 1){
+            resultBean.setCode(1);
+        }else{
+            resultBean.setCode(2);
+        }
+        viewer.viewString(gson.toJson(resultBean), resps, request);
     }
 
     /**
