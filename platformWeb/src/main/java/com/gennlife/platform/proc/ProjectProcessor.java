@@ -519,7 +519,7 @@ public class ProjectProcessor {
      * @param req
      * @param resp
      */
-    public void deleteMemeber(HttpServletRequest req, HttpServletResponse resp) {
+    public void deleteMember(HttpServletRequest req, HttpServletResponse resp) {
         String param = ParamUtils.getParam(req);
         logger.info("deleteMemeber param=" + param);
         JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();

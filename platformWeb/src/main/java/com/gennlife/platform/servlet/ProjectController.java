@@ -109,9 +109,9 @@ public class ProjectController extends HttpServlet {
                 logger.error("", e);
             }
             logger.info("某个工具请求 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if("/project/DeleteMemeber".equals(uri)){
+        }else if("/project/DeleteMember".equals(uri)){
             try{
-                processor.deleteMemeber(req, resp);
+                processor.deleteMember(req, resp);
             }catch (Exception e){
                 logger.error("", e);
             }
