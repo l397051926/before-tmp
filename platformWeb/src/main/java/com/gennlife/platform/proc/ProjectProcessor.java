@@ -491,7 +491,7 @@ public class ProjectProcessor {
         JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
         String projectID = jsonObject.get("projectID").getAsString();
         JsonArray users = jsonObject.getAsJsonArray("uidSet");
-        String uid = jsonObject.get("projectID").getAsString();
+        String uid = jsonObject.get("uid").getAsString();
         int counter = 0;
         for(JsonElement entry:users){
             String uidAdd = entry.getAsString();
