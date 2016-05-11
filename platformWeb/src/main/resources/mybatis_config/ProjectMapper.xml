@@ -223,17 +223,22 @@
         <result column="planDesc" property="planDesc" jdbcType="VARCHAR"/>
         <result column="creater" property="creater" jdbcType="VARCHAR"/>
         <result column="planStatus" property="planStatus" jdbcType="INTEGER"/>
-        <result column="createTime" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="createTime" property="createTime" jdbcType="VARCHAR"/>
         <result column="taskID" property="taskID" jdbcType="VARCHAR"/>
         <result column="taskName" property="taskName" jdbcType="VARCHAR"/>
     </resultMap>
     <select id="getProjectPlan" resultType="com.gennlife.platform.bean.projectBean.ProjectPlan" parameterType="map">
         select
-        id,projectID,planName,planDesc,creater,planStatus,createTime,modifier,taskID,taskName
+        id,projectID,planName,planDesc,creater,planStatus,date_format(createTime,"%Y-%m-%d") AS createTime,modifier,taskID,taskName
         from p_plan p
         <where>p.projectID=#{projectID} and planStatus > 0 order by createTime asc</where>
     </select>
-
+    <select id="getProjectPlanCounter" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(*)
+        from p_plan p
+        <where>p.projectID=#{projectID} and planStatus > 0 </where>
+    </select>
 
 
     <delete id="deleteProPlan"  parameterType="map">

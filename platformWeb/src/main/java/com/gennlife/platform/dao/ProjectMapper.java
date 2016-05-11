@@ -18,7 +18,15 @@ public interface ProjectMapper {
     public int insertProLog(ProLog proLog);
     public ArrayList<ProLog> getProjectLog(Map<String,Object> likeCondition);
     public int getProjectLogCounter(Map<String,Object> likeCondition);
+
+    /**
+     * 方案列表
+     * @param likeCondition
+     * @return
+     */
     public ArrayList<ProjectPlan> getProjectPlan(Map<String,Object> likeCondition);
+
+    public int getProjectPlanCounter(Map<String,Object> likeCondition);
     public int insertProPlan(ProjectPlan projectPlan);
     public int deleteProPlan(Map<String,Object> likeCondition);
     public int updateProPlan(ProjectPlan projectPlan);

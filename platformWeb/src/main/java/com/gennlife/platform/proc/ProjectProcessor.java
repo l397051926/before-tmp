@@ -430,19 +430,32 @@ public class ProjectProcessor {
      */
     public void projectPlanList(HttpServletRequest request, HttpServletResponse resp){
         String param = ParamUtils.getParam(request);
-        JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
-        String projectID = jsonObject.get("projectID").getAsString();
-        String limit = "0,5";
-        if(jsonObject.get("limit") != null){
-            limit = jsonObject.get("limit").getAsString();
-        }
-        int[] ls = ParamUtils.parseLimit(limit);
+        ResultBean resultBean = new ResultBean();
         Map<String,Object> confMap = new HashMap<String, Object>();
-        confMap.put("startIndex",(ls[0]-1) * ls[1]);
-        confMap.put("maxNum",ls[1]);
-        confMap.put("projectID", projectID);
+        try{
+            JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
+            String projectID = jsonObject.get("projectID").getAsString();
+            String limit = "0,5";
+            if(jsonObject.get("limit") != null){
+                limit = jsonObject.get("limit").getAsString();
+            }
+            int[] ls = ParamUtils.parseLimit(limit);
+
+            confMap.put("startIndex",(ls[0]-1) * ls[1]);
+            confMap.put("maxNum",ls[1]);
+            confMap.put("projectID", projectID);
+        }catch (Exception e){
+            ParamUtils.errorParam(request,resp);
+            return;
+        }
         List<ProjectPlan> plansList = AllDao.getInstance().getProjectDao().getProjectPlan(confMap);
-        viewer.viewList(plansList, null, true, resp, request);
+        int count = AllDao.getInstance().getProjectDao().getProjectPlanCounter(confMap);
+        Map<String,Object> info = new HashMap<String, Object>();
+        info.put("count",count);
+        resultBean.setCode(1);
+        resultBean.setData(plansList);
+        resultBean.setInfo(info);
+        viewer.viewString(gson.toJson(resultBean),resp, request);
     }
 
     /**
