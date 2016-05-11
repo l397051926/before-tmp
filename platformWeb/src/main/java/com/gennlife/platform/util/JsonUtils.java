@@ -35,7 +35,7 @@ public class JsonUtils {
         String creator = jsonObject.get("uid").getAsString();
         String stime = jsonObject.get("startTime") == null?"":jsonObject.get("startTime").getAsString();
         String etime = jsonObject.get("endTime")== null?"":jsonObject.get("endTime").getAsString();
-        String center = jsonObject.get("center") == null?jsonObject.get("center").getAsString():null;
+        String center = jsonObject.get("center") == null?"":jsonObject.get("center").getAsString();
         String projectDesp = jsonObject.get("projectDesp") != null? jsonObject.get("projectDesp").getAsString():"";
         String manager = jsonObject.get("manager")!=null?jsonObject.get("manager").getAsString():"";
         String unit = jsonObject.get("unit")== null?"":jsonObject.get("unit").getAsString();

@@ -86,9 +86,9 @@ public class ProjectProcessor {
     public void createNewProject(HttpServletRequest request, HttpServletResponse resps){
         String param = ParamUtils.getParam(request);
         logger.info("createNewProject param="+param);
-        boolean flag = true;
+        CreateProjectQueryBean createProjectQueryBean = null;
         try {
-            CreateProjectQueryBean createProjectQueryBean = JsonUtils.parseCreateProject(param);
+            createProjectQueryBean = JsonUtils.parseCreateProject(param);
             CreateProject createProject = createProjectQueryBean.getCreateProject();
             List<ProUser> proUserList = createProjectQueryBean.getProUserList();
             ProLog proLog = createProjectQueryBean.getProlog();
@@ -96,10 +96,10 @@ public class ProjectProcessor {
             counter = AllDao.getInstance().getProjectDao().insertProUserList(proUserList);
             counter = AllDao.getInstance().getProjectDao().insertProLog(proLog);
         } catch (ParseException e) {
-            logger.error("解析请求参数出错",e);
-            flag = false;
+            ParamUtils.errorParam(request,resps);
+            return;
         }
-        viewer.viewList(null, null, flag, resps, request);
+        viewer.viewString(gson.toJson(createProjectQueryBean),resps,request);
     }
 
     /**
@@ -474,14 +474,24 @@ public class ProjectProcessor {
         logger.info("addMember param=" + param);
         JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
         String projectID = jsonObject.get("projectID").getAsString();
-        JsonArray users = jsonObject.getAsJsonArray("users");
+        JsonArray users = jsonObject.getAsJsonArray("uidSet");
+        String uid = jsonObject.get("projectID").getAsString();
         int counter = 0;
         for(JsonElement entry:users){
-            String uid = entry.getAsJsonObject().get("uid").getAsString();
+            String uidAdd = entry.getAsString();
             Map<String,Object> confMap = new HashMap<String, Object>();
             confMap.put("projectID",projectID);
-            confMap.put("uid",uid);
+            confMap.put("uid",uidAdd);
             counter = counter + AllDao.getInstance().getProjectDao().insertProjectMember(confMap);
+            ProLog proLog =  new ProLog();
+            proLog.setProjectID(projectID);
+            proLog.setUid(uid);
+            proLog.setAction(LogActionEnum.AddProjectMember.getName());
+            SyUser syUser = UserProcessor.getUser(uid);
+            SyUser syAdd = UserProcessor.getUser(uidAdd);
+            proLog.setLogText(syUser.getUname() + LogActionEnum.AddProjectMember.getName()+syAdd.getUname());
+            proLog.setLogTime(new Date());
+            AllDao.getInstance().getProjectDao().insertProLog(proLog);
         }
         Map<String,Integer> info = new HashMap<String,Integer>();
         info.put("counter",counter);
@@ -498,15 +508,24 @@ public class ProjectProcessor {
         logger.info("deleteMemeber param=" + param);
         JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
         String projectID = jsonObject.get("projectID").getAsString();
-        JsonArray users = jsonObject.getAsJsonArray("users");
+        String uid = jsonObject.get("uid").getAsString();
+        JsonArray users = jsonObject.getAsJsonArray("uidSet");
         int counter = 0;
         for(JsonElement entry:users){
-            String uid = entry.getAsJsonObject().get("uid").getAsString();
+            String uidDelete = entry.getAsJsonObject().get("uid").getAsString();
             Map<String,Object> confMap = new HashMap<String, Object>();
             confMap.put("projectID",projectID);
-            confMap.put("uid",uid);
+            confMap.put("uid",uidDelete);
             counter = counter + AllDao.getInstance().getProjectDao().deleteProjectMember(confMap);
-
+            ProLog proLog =  new ProLog();
+            proLog.setProjectID(projectID);
+            proLog.setUid(uid);
+            proLog.setAction(LogActionEnum.DeleteProjectMember.getName());
+            SyUser syUser = UserProcessor.getUser(uid);
+            SyUser syDelete = UserProcessor.getUser(uidDelete);
+            proLog.setLogText(syUser.getUname() + LogActionEnum.DeleteProjectMember.getName()+syDelete.getUname());
+            proLog.setLogTime(new Date());
+            AllDao.getInstance().getProjectDao().insertProLog(proLog);
         }
         Map<String,Integer> info = new HashMap<String,Integer>();
         info.put("counter",counter);
@@ -605,11 +624,11 @@ public class ProjectProcessor {
                 map.put("registerNumber",registerNumber);
             }
             if(jsonObject.get("center") != null){
-                registerNumber = jsonObject.get("center").getAsString();
+                center = jsonObject.get("center").getAsString();
                 map.put("center",center);
             }
             if(jsonObject.get("unit") != null){
-                registerNumber = jsonObject.get("unit").getAsString();
+                unit = jsonObject.get("unit").getAsString();
                 map.put("unit",unit);
             }
             map.put("uid",uid);
@@ -702,7 +721,6 @@ public class ProjectProcessor {
 
     public void isExistSet(HttpServletRequest req, HttpServletResponse resp) {
         String projectID = null;
-        String planName = null;
         String sampleName = null;
         Map<String,Object> map = new HashMap<String, Object>();
         ResultBean resultBean = new ResultBean();
@@ -727,6 +745,40 @@ public class ProjectProcessor {
             result.put("count",0);
         }
         resultBean.setData(result);
+        viewer.viewString(gson.toJson(resultBean),resp,req);
+    }
+
+    /**
+     * 项目详情
+     * @param req
+     * @param resp
+     */
+    public void baiscInfo(HttpServletRequest req, HttpServletResponse resp) {
+        String projectID = null;
+        Map<String,Object> map = new HashMap<String, Object>();
+        ResultBean resultBean = new ResultBean();
+        try{
+            String param = ParamUtils.getParam(req);
+            logger.info("BaiscInfo param=" + param);
+            JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
+            projectID = jsonObject.get("projectID").getAsString();
+            map.put("projectID",projectID);
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
+        MyProjectList project = AllDao.getInstance().getSyUserDao().baiscInfo(map);
+        if(project != null){
+            SyUser creator = UserProcessor.getUser(project.getCreator());
+            if(creator != null){
+                project.setCreatorName(creator.getUname());
+            }
+            String disease = project.getDisease();
+            String diseaseName = ArkService.getDiseaseName(disease);
+            project.setDiseaseName(diseaseName);
+        }
+        resultBean.setCode(1);
+        resultBean.setData(project);
         viewer.viewString(gson.toJson(resultBean),resp,req);
     }
 }

@@ -411,6 +411,10 @@ public class ArkService {
     }
     private static JsonObject projectDisease = null;
 
+    private static Map<String,String> diseaseMap = new HashMap<String, String>();
+    public static String getDiseaseName(String key){
+        return diseaseMap.get(key);
+    }
     public static JsonObject getProjectDisease() {
         return projectDisease;
     }
@@ -420,6 +424,11 @@ public class ArkService {
             String data = FilesUtils.readFile("/projectDisease.json");
             JsonObject object = (JsonObject) jsonParser.parse(data);
             projectDisease = object.getAsJsonObject("disease");
+            for(Map.Entry<String, JsonElement> jsonElement:projectDisease.entrySet()){
+                String key = jsonElement.getKey();
+                String value = projectDisease.get(key).getAsString();
+                diseaseMap.put(value,key);
+            }
         } catch (IOException e) {
             logger.error("",e);
             throw new RuntimeException();

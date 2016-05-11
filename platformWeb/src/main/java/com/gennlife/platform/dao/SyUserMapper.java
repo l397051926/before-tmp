@@ -48,4 +48,10 @@ public interface SyUserMapper {
 
     public int searchMemberCounter(Map<String,Object> likeCondition);
 
+    /**
+     * 项目详情
+     * @param map
+     * @return
+     */
+    public MyProjectList baiscInfo(Map<String, Object> map);
 }

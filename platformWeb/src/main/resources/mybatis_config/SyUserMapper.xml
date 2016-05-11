@@ -60,7 +60,11 @@
 		select
 		<include refid="Base_Column_List" />
 		FROM p_user JOIN p_org o ON o.orgID = p_user.orgID
-		<where>(p_user.uid LIKE '%${searchMemberkey}%' OR o.orgName LIKE '%${searchMemberkey}%' OR p_user.uname LIKE '%${searchMemberkey}%' OR lab LIKE '%${searchMemberkey}%') AND
+		<where>(p_user.uid LIKE '%${searchMemberkey}%' OR
+			o.orgName LIKE '%${searchMemberkey}%' OR
+			p_user.uname LIKE '%${searchMemberkey}%' OR
+			lab LIKE '%${searchMemberkey}%' OR
+			unumber LIKE '%${searchMemberkey}%') AND
 			p_user.uid NOT in(
 			select p_user.uid
 			FROM pro_user JOIN p_user ON p_user.uid = pro_user.uid
@@ -133,25 +137,34 @@
 		<result column="planNum" property="planNum" jdbcType="INTEGER"/>
 		<result column="setCount" property="setCount" jdbcType="INTEGER"/>
 		<result column="projectDesp" property="projectDesp" jdbcType="VARCHAR"/>
-		<result column="unit" property="unit" jdbcType="VARCHAR"/>
 		<result column="manager" property="manager" jdbcType="VARCHAR"/>
 		<result column="disease" property="disease" jdbcType="VARCHAR"/>
 		<result column="type" property="type" jdbcType="VARCHAR"/>
 		<result column="registerNumber" property="registerNumber" jdbcType="VARCHAR"/>
+		<result column="startTime" property="startTime" jdbcType="VARCHAR"/>
+		<result column="endTime" property="endTime" jdbcType="VARCHAR"/>
 	</resultMap>
 
 	<sql id="MyProjectListSelect">
-		creator,p.projectID,projectName,date_format(createTime,"%Y-%m-%d") AS cTime,members,planNum,projectDesp,setCount,projectEngName,unit,manager,type,disease,registerNumber
+		creator,p.projectID,projectName,date_format(createTime,"%Y-%m-%d") AS cTime,date_format(startTime,"%Y-%m-%d") AS startTime,date_format(endTime,"%Y-%m-%d") AS endTime,members,planNum,projectDesp,setCount,projectEngName,unit,manager,type,disease,registerNumber
 	</sql>
 
 	<select id="getMyProjectList" resultMap="com.gennlife.platform.bean.projectBean.MyProjectList"
 			parameterType="map">
 		select
 		<include refid="MyProjectListSelect" />
-		from p_project p JOIN ƒ u on u.projectID = p.projectID
+		from p_project p JOIN pro_user u on u.projectID = p.projectID
 		<where>u.uid=#{loginname} and p.projectName like '%${key}%' order by createTime  desc limit #{startIndex},#{maxNum}</where>
 	</select>
 
+
+	<select id="baiscInfo" resultMap="com.gennlife.platform.bean.projectBean.MyProjectList"
+			parameterType="map">
+		select
+		<include refid="MyProjectListSelect" />
+		from p_project p JOIN pro_user u on u.projectID = p.projectID
+		<where>p.projectID=#{projectID} </where>
+	</select>
 
 	<select id="getProjectCounter" resultType="java.lang.Integer" parameterType="map">
 		select

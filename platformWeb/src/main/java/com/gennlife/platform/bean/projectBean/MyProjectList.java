@@ -27,6 +27,7 @@ public class MyProjectList {
      */
     private List<ProLog> logs;
     private String creator;
+    private String creatorName;
     private String projectID;
     private String projectName;
     private String projectEngName;
@@ -36,11 +37,46 @@ public class MyProjectList {
     private String unit;
     private String manager;
     private String disease;
+    private String diseaseName;
     private String type;
     private String registerNumber;
-    private String projectDesp;
-    private int setCount;
+    private String startTime;
+    private String endTime;
 
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getDiseaseName() {
+        return diseaseName;
+    }
+
+    public void setDiseaseName(String diseaseName) {
+        this.diseaseName = diseaseName;
+    }
+
+    public String getCreatorName() {
+        return creatorName;
+    }
+
+    public void setCreatorName(String creatorName) {
+        this.creatorName = creatorName;
+    }
+
+    private int setCount;
+    private String projectDesp;
     public List<ProLog> getLogs() {
         return logs;
     }

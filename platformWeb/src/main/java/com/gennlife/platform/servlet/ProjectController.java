@@ -25,7 +25,7 @@ public class ProjectController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long start = System.currentTimeMillis();
         String uri = req.getRequestURI();
-        if("/project/MyProjectList".equals(uri)){
+        if("/project/MyProjeƒctList".equals(uri)){
             try{
                 processor.myProjectList(req,resp);
             }catch (Exception e){
@@ -170,6 +170,13 @@ public class ProjectController extends HttpServlet {
                 logger.error("", e);
             }
             logger.info("判定样本集知否存在 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/project/BaiscInfo".equals(uri)){
+            try{
+                processor.baiscInfo(req, resp);
+            }catch (Exception e){
+                logger.error("", e);
+            }
+            logger.info("请求项目详情 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }
 
     }
