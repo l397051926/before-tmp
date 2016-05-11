@@ -147,16 +147,18 @@ public class ProjectProcessor {
     public void deletePlan(HttpServletRequest request, HttpServletResponse resps){
         try{
             String param = ParamUtils.getParam(request);
+            logger.info("deletePlan param="+param);
             JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
             String projectID = jsonObject.get("projectID").getAsString();
             String uid = jsonObject.get("uid").getAsString();
             JsonArray idSet = jsonObject.get("idSet").getAsJsonArray();
             Map<String,Object> mapConf = new HashMap<String, Object>();
+            int counter = 0;
             mapConf.put("projectID", projectID);
             for(JsonElement id:idSet){
                 mapConf.put("id", id.getAsString());
                 String planName = AllDao.getInstance().getProjectDao().getPlanName(mapConf);
-                int counter = AllDao.getInstance().getProjectDao().deleteProPlan(mapConf);
+                counter = counter+AllDao.getInstance().getProjectDao().deleteProPlan(mapConf);
                 ProLog proLog = new ProLog();
                 proLog.setProjectID(projectID);
                 proLog.setUid(uid);
@@ -166,10 +168,18 @@ public class ProjectProcessor {
                 proLog.setLogTime(new Date());
                 AllDao.getInstance().getProjectDao().insertProLog(proLog);
             }
-            Map<String,Object> map = new HashMap<String, Object>();
-            map.put("projectID",projectID);
-            List<ProjectPlan> list = AllDao.getInstance().getProjectDao().getProjectPlan(map);
-            viewer.viewList(list, null, true, resps, request);
+            if(counter >= 1){
+                ResultBean resultBean = new ResultBean();
+                resultBean.setCode(1);
+                resultBean.setInfo("成功删除"+ counter + "个项目");
+                viewer.viewString(gson.toJson(resultBean),resps,request);
+            }else{
+                ResultBean resultBean = new ResultBean();
+                resultBean.setCode(0);
+                resultBean.setInfo("删除项目失败");
+                viewer.viewString(gson.toJson(resultBean),resps,request);
+            }
+
         }catch (Exception e){
             ParamUtils.errorParam(request,resps);
             return;
