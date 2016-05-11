@@ -258,6 +258,11 @@
         <where> projectID=#{projectID} and uid = #{uid}</where>
     </delete>
 
+    <delete id="deleteProject"  parameterType="map">
+        DELETE from pro_user
+        <where> projectID=#{projectID}</where>
+    </delete>
+
     <update id="updateProPlan" parameterType="com.gennlife.platform.bean.projectBean.ProjectPlan">
         UPDATE p_plan
         <set>planStatus = #{planStatus},modifier = #{modifier},planName=#{planName},modifTime=#{modifTime},planDesc=#{planDesc},modifTime=#{modifTime,jdbcType=TIMESTAMP,javaType=java.util.Date}, </set>

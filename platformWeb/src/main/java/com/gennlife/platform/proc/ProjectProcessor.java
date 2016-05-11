@@ -200,7 +200,7 @@ public class ProjectProcessor {
         for(JsonElement jsonElement:ids){
             String projectID = jsonElement.getAsString();
             confMap.put("projectID",projectID);
-            int count = AllDao.getInstance().getProjectDao().deleteProjectMember(confMap);
+            int count = AllDao.getInstance().getProjectDao().deleteProject(confMap);
             c = c + count;
             if(count == 1){
                 ProLog proLog = new ProLog();
@@ -512,7 +512,7 @@ public class ProjectProcessor {
         JsonArray users = jsonObject.getAsJsonArray("uidSet");
         int counter = 0;
         for(JsonElement entry:users){
-            String uidDelete = entry.getAsJsonObject().get("uid").getAsString();
+            String uidDelete = entry.getAsString();
             Map<String,Object> confMap = new HashMap<String, Object>();
             confMap.put("projectID",projectID);
             confMap.put("uid",uidDelete);
