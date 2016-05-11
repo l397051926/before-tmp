@@ -25,7 +25,7 @@ public class ProjectController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long start = System.currentTimeMillis();
         String uri = req.getRequestURI();
-        if("/project/MyProjeƒctList".equals(uri)){
+        if("/project/MyProjectList".equals(uri)){
             try{
                 processor.myProjectList(req,resp);
             }catch (Exception e){
