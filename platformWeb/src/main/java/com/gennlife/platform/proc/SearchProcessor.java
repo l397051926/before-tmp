@@ -1,5 +1,6 @@
 package com.gennlife.platform.proc;
 
+import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.SyUser;
 import com.gennlife.platform.bean.conf.ConfGroupInfo;
 import com.gennlife.platform.bean.conf.ConfItem;
@@ -7,6 +8,7 @@ import com.gennlife.platform.bean.list.ColumnBean;
 import com.gennlife.platform.bean.list.ColumnPropetity;
 import com.gennlife.platform.bean.list.ColumnValue;
 import com.gennlife.platform.bean.projectBean.HistoryWords;
+import com.gennlife.platform.bean.projectBean.ProSample;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.parse.*;
 import com.gennlife.platform.service.ArkService;
@@ -578,4 +580,36 @@ public class SearchProcessor {
             "}" +
             "}";
 
+    /**
+     *
+     * @param req
+     * @param resp
+     */
+    public void searchSetList(HttpServletRequest req, HttpServletResponse resp) {
+        String param =  ParamUtils.getParam(req);
+        Map<String,Object> map = new HashMap<String, Object>();
+        try{
+            JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
+            String projectID = jsonObject.get("projectID").getAsString();
+            String key = jsonObject.get("key").getAsString();
+            String limit = jsonObject.get("limit").getAsString();
+            int[] ls = ParamUtils.parseLimit(limit);
+            map.put("projectID",projectID);
+            map.put("key",key);
+            map.put("startIndex",(ls[0]-1) * ls[1]);
+            map.put("maxNum",ls[1]);
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
+        List<ProSample> list= AllDao.getInstance().getProjectDao().searchSampleSetList(map);
+        int count = AllDao.getInstance().getProjectDao().searchSampleSetListCounter(map);
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(1);
+        Map<String,Integer> info = new HashMap<String, Integer>();
+        info.put("count",count);
+        resultBean.setData(list);
+        resultBean.setInfo(info);
+        viewer.viewString(gson.toJson(resultBean),resp,req);
+    }
 }

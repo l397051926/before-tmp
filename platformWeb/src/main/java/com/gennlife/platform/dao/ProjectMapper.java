@@ -108,4 +108,18 @@ public interface ProjectMapper {
     public int isExistPlan(Map<String, Object> map);
 
     public int isExistSet(Map<String, Object> map);
+
+    /**
+     * 搜索样本集
+     * @param map
+     * @return
+     */
+    public List<ProSample>  searchSampleSetList(Map<String, Object> map);
+
+    /**
+     * 搜索样本集计数
+     * @param map
+     * @return
+     */
+    public int searchSampleSetListCounter(Map<String, Object> map);
 }

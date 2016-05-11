@@ -31,7 +31,7 @@ public class KnowledgeBuilder {
             result = buildVariation(param,obj);
         }else if ("drug".equals(to)){
             result = buildDrug(param,obj);
-        }else if("".equals(to)){
+        }else if("phenotype".equals(to)){
             result = buildPhenotype(param,obj);
         }
         return result;
@@ -39,10 +39,47 @@ public class KnowledgeBuilder {
 
     private JsonArray buildPhenotype(JsonObject param, JsonObject obj) {
         JsonArray result = new JsonArray();
-        //head
         JsonObject head = buildHead(param,obj);
+        String from = param.get("from").getAsString();
         result.add(head);
+        JsonArray body = new JsonArray();
+        JsonArray dataArray = obj.getAsJsonArray("data");
+        for(JsonElement data:dataArray){
+            JsonObject bodyEntity = new JsonObject();
+            body.add(bodyEntity);
+            JsonObject dataObj = data.getAsJsonObject();
+            JsonArray idArray = new JsonArray();
+            JsonObject idObj = new JsonObject();
+            idObj.addProperty("name",dataObj.get("id").getAsString());
+            idObj.addProperty("url",dataObj.get("idUrl").getAsString());
+            idArray.add(idObj);
+            bodyEntity.add("phenotype_id",idArray);
+            bodyEntity.addProperty("phenotype",dataObj.get("term_name").getAsString());
+            if("gene".equals(from) || "drug".equals(from)||"variation".equals(from)||"disease".equals(from)){
+                //// TODO: 16/5/9
+                JsonArray geneArray = new JsonArray();
+                JsonArray Gene = dataObj.getAsJsonArray("Gene");
+                for (JsonElement jsonElement:Gene){
+                    JsonObject geneObj = jsonElement.getAsJsonObject();
+                    JsonObject gene = new JsonObject();
+                    gene.addProperty("name",geneObj.get("symbol").getAsString());
+                    gene.addProperty("url",geneObj.get("symbolUrl").getAsString());
+                    geneArray.add(geneObj);
+                }
+                bodyEntity.add("gene",geneArray);
+            }
+            JsonArray refArray = new JsonArray();
+            JsonObject refObj = new JsonObject();
+            refObj.addProperty("name",dataObj.get("source").getAsString());
+            refObj.addProperty("url","");
+            refArray.add(refObj);
+            bodyEntity.add("ref",refArray);
+            if("disease".equals(from)){
+                //// TODO: 16/5/9
+            }
 
+        }
+        result.add(body);
         return result;
     }
 
@@ -51,6 +88,7 @@ public class KnowledgeBuilder {
         JsonArray result = new JsonArray();
         String tableName = param.get("tableName").getAsString();
         JsonObject head = buildHead(param,obj);
+
 
         return result;
     }
@@ -136,6 +174,7 @@ public class KnowledgeBuilder {
         JsonObject head = buildHead(param,obj);
         result.add(head);
         JsonArray body = new JsonArray();
+        String from = param.get("from").getAsString();
         JsonArray dataArray = obj.getAsJsonArray("data");
         for(JsonElement data:dataArray){
             JsonObject bodyEntity = new JsonObject();

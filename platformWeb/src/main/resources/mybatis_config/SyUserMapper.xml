@@ -148,7 +148,7 @@
 			parameterType="map">
 		select
 		<include refid="MyProjectListSelect" />
-		from p_project p JOIN pro_user u on u.projectID = p.projectID
+		from p_project p JOIN ƒ u on u.projectID = p.projectID
 		<where>u.uid=#{loginname} and p.projectName like '%${key}%' order by createTime  desc limit #{startIndex},#{maxNum}</where>
 	</select>
 

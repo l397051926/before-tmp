@@ -430,6 +430,21 @@
         <where>p.projectID=#{projectID} and bstatus = 1</where>
     </select>
 
+    <select id="searchSampleSetList" resultType="com.gennlife.platform.bean.projectBean.ProSample" parameterType="map">
+        select
+        planName,sampleURI,sampleName,opTime,batchID,total,items,sampleDesc
+        from pro_sample p
+        <where>p.projectID=#{projectID} and sampleName LIKE '%${key}%'
+            order by opTime desc limit #{startIndex},#{maxNum}</where>
+    </select>
+
+    <select id="searchSampleSetListCounter" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(*)
+        from pro_sample p
+        <where>p.projectID=#{projectID} and sampleName LIKE '%${key}%'</where>
+    </select>
+
     <select id="getSampleDataListByPlanName" resultType="com.gennlife.platform.bean.projectBean.ProSample" parameterType="map">
         select
         planName,sampleURI,sampleName,opTime,batchID,total,items,sampleDesc

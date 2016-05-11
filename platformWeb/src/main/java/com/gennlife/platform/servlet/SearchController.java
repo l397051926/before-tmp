@@ -80,6 +80,13 @@ public class SearchController extends HttpServlet {
                 logger.error("", e);
             }
             logger.info("二维属性统计 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/search/SearchSetList".equals(uri)){
+            try{
+                processor.searchSetList(req, resp);
+            }catch (Exception e){
+                logger.error("", e);
+            }
+            logger.info("搜索样本集列表 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }
 
 
