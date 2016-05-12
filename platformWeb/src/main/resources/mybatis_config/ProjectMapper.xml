@@ -221,7 +221,7 @@
         <result column="pojectID" property="projectID" jdbcType="VARCHAR" />
         <result column="planName" property="planName" jdbcType="VARCHAR"/>
         <result column="planDesc" property="planDesc" jdbcType="VARCHAR"/>
-        <result column="creater" property="creater" jdbcType="VARCHAR"/>
+        <result column="creator" property="creator" jdbcType="VARCHAR"/>
         <result column="planStatus" property="planStatus" jdbcType="INTEGER"/>
         <result column="createTime" property="createTime" jdbcType="VARCHAR"/>
         <result column="taskID" property="taskID" jdbcType="VARCHAR"/>

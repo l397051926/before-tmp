@@ -40,9 +40,9 @@ public class MyProjectList {
     private String diseaseName;
     private String type;
     private String registerNumber;
-    private String startTime;
-    private String endTime;
-    private String center;
+    private String startTime="";
+    private String endTime="";
+    private String center="";
 
     public String getCenter() {
         return center;

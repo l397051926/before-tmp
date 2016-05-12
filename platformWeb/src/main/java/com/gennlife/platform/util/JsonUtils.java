@@ -97,19 +97,19 @@ public class JsonUtils {
         String projectID = jsonObject.get("projectID").getAsString();
         String planName = jsonObject.get("planName").getAsString();
         String desc = jsonObject.get("desc").getAsString();
-        String creater = jsonObject.get("creator").getAsString();
+        String creator = jsonObject.get("creator").getAsString();
         Date createTime = new Date();
         projectPlan.setPlanDesc(desc);
         projectPlan.setPlanName(planName);
         projectPlan.setProjectID(projectID);
         if(iSUpdate){
             String id = jsonObject.get("id").getAsString();
-            projectPlan.setModifier(creater);
+            projectPlan.setModifier(creator);
             projectPlan.setModifTime(createTime);
             int idInt = Integer.parseInt(id);
             projectPlan.setId(idInt);
         }else{
-            projectPlan.setCreator(creater);
+            projectPlan.setCreator(creator);
             projectPlan.setCreateTime(createTime);
         }
         return projectPlan;
