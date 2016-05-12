@@ -472,8 +472,8 @@
             <if test="#{startTime} != null" >
                 startTime=#{startTime,jdbcType=TIMESTAMP,javaType=java.util.Date},
             </if>
-            <if test="#{endtime} != null" >
-                endtime=#{endtime,jdbcType=TIMESTAMP,javaType=java.util.Date},
+            <if test="#{endTime} != null" >
+                endTime=#{endTime,jdbcType=TIMESTAMP,javaType=java.util.Date},
             </if>
             <if test="#{projectEngName} != null" >
                 projectEngName=#{projectEngName},
