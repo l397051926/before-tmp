@@ -30,6 +30,7 @@ import java.util.*;
 public class ProjectProcessor {
     private static Logger logger = LoggerFactory.getLogger(ProjectProcessor.class);
     private static SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    private static SimpleDateFormat day = new SimpleDateFormat("yyyy-MM-dd");
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
     private static View viewer = new View();
@@ -633,7 +634,7 @@ public class ProjectProcessor {
                 stime = jsonObject.get("startTime").getAsString();
                 Date startTime = null;
                 if(null != stime && !"".equals(stime)){
-                    startTime = time.parse(stime);
+                    startTime = day.parse(stime);
                 }
                 map.put("startTime",startTime);
             }
@@ -641,12 +642,12 @@ public class ProjectProcessor {
                 etime = jsonObject.get("endTime").getAsString();
                 Date endTime = null;
                 if(null !=etime &&  !"".equals(etime)){
-                    endTime = time.parse(etime);
+                    endTime = day.parse(etime);
                 }
                 map.put("endTime",endTime);
             }
             if(jsonObject.get("projectEngName") != null){
-                projectEngName = jsonObject.get("endtime").getAsString();
+                projectEngName = jsonObject.get("projectEngName").getAsString();
                 map.put("projectEngName",projectEngName);
             }
             if(jsonObject.get("manager") != null){
