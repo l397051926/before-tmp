@@ -2,6 +2,7 @@ package com.gennlife.platform.proc;
 
 
 import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.bean.SyUser;
 import com.gennlife.platform.bean.projectBean.ProLog;
 import com.gennlife.platform.bean.projectBean.ProSample;
 import com.gennlife.platform.dao.AllDao;
@@ -152,5 +153,55 @@ public class SampleProcessor {
                 viewer.viewString(str,resp,req);
             }
         }
+    }
+
+    /**
+     * 编译样本集
+     * @param req
+     * @param resp
+     */
+    public void editSet(HttpServletRequest req, HttpServletResponse resp) {
+        String param = ParamUtils.getParam(req);
+        logger.info("editSet param="+param);
+        String uid = null;
+        String projectID = null;
+        String sampleName = null;
+        Map<String,Object> map = new HashMap<String, Object>();
+        ResultBean resultBean = new ResultBean();
+
+        try{
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            projectID = paramObj.get("projectID").getAsString();
+            String sampleURI = paramObj.get("sampleURI").getAsString();
+            sampleName = paramObj.get("sampleName").getAsString();
+            String sampleDesc = paramObj.get("sampleDesc").getAsString();
+            uid = paramObj.get("uid").getAsString();
+            map.put("projectID",projectID);
+            map.put("sampleURI",sampleURI);
+            map.put("sampleName",sampleName);
+            map.put("sampleDesc",sampleDesc);
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
+
+        int count = AllDao.getInstance().getProjectDao().updateSetInfo(map);
+        if(count >= 1){
+            ProLog proLog = new ProLog();
+            proLog.setProjectID(projectID);
+            proLog.setUid(uid);
+            proLog.setAction(LogActionEnum.CreatePlan.getName());
+            SyUser syUser = UserProcessor.getUser(uid);
+            proLog.setLogText(syUser.getUname() + LogActionEnum.UpdateSetInfo +":"+sampleName);
+            proLog.setLogTime(new Date());
+            AllDao.getInstance().getProjectDao().insertProLog(proLog);
+            resultBean.setCode(1);
+        }else{
+            resultBean.setCode(0);
+            logger.error("更新样本集信息失败");
+        }
+        viewer.viewString(gson.toJson(resultBean),resp,req);
+
+
     }
 }

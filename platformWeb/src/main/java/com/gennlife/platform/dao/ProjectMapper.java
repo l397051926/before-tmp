@@ -131,5 +131,9 @@ public interface ProjectMapper {
      */
     public int searchSampleSetListCounter(Map<String, Object> map);
 
-
+    /**
+     * 更新样本集信息
+     * @param map
+     */
+    int updateSetInfo(Map<String, Object> map);
 }

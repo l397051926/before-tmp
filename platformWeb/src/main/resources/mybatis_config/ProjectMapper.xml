@@ -522,4 +522,9 @@
         from pro_sample
         <where>pro_sample.projectID=#{projectID} AND pro_sample.sampleName=#{sampleName}</where>
     </select>
+    <update id="updateSetInfo" parameterType="map">
+        UPDATE pro_sample
+        <set>sampleName = #{sampleName},sampleDesc=#{sampleDesc}</set>
+        <where> projectID=#{projectID} and sampleURI = #{sampleURI}</where>
+    </update>
 </mapper>

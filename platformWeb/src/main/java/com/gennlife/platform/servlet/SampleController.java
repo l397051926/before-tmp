@@ -45,6 +45,13 @@ public class SampleController extends HttpServlet {
                 logger.error("", e);
             }
             logger.info("样本集合数据详情查看 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/sample/EditSet".equals(uri)){
+            try{
+                processor.editSet(req,resp);
+            }catch (Exception e){
+                logger.error("", e);
+            }
+            logger.info("编辑样本集 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }
     }
 }

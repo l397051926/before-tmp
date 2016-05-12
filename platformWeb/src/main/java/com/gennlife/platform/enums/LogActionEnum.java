@@ -13,7 +13,8 @@ public enum LogActionEnum {
     UpdateProject("更新项目信息", 6),
     ExitProject("退出项目",7 ),
     DeleteProjectMember("移除项目成员",8 ),
-    AddProjectMember("添加项目成员",9 );
+    AddProjectMember("添加项目成员",9 ),
+    UpdateSetInfo("更新样本集信息",10);
     private String name;
     private int index;
 
