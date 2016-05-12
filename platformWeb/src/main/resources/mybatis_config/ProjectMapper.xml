@@ -285,8 +285,8 @@
             <if test="planDesc != null" >
                 planDesc,
             </if>
-            <if test="creater != null" >
-                creater,
+            <if test="creator != null" >
+                creator,
             </if>
             <if test="planStatus != null" >
                 planStatus,
@@ -311,8 +311,8 @@
             <if test="planDesc != null" >
                 #{planDesc,jdbcType=VARCHAR},
             </if>
-            <if test="creater != null" >
-                #{creater,jdbcType=VARCHAR},
+            <if test="creator != null" >
+                #{creator,jdbcType=VARCHAR},
             </if>
             <if test="planStatus != null" >
                 #{planStatus,jdbcType=INTEGER},

@@ -42,6 +42,15 @@ public class MyProjectList {
     private String registerNumber;
     private String startTime;
     private String endTime;
+    private String center;
+
+    public String getCenter() {
+        return center;
+    }
+
+    public void setCenter(String center) {
+        this.center = center;
+    }
 
     public String getEndTime() {
         return endTime;

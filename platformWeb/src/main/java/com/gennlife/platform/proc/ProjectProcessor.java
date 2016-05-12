@@ -99,7 +99,10 @@ public class ProjectProcessor {
             ParamUtils.errorParam(request,resps);
             return;
         }
-        viewer.viewString(gson.toJson(createProjectQueryBean),resps,request);
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(1);
+        resultBean.setData(createProjectQueryBean);
+        viewer.viewString(gson.toJson(resultBean),resps,request);
     }
 
     /**
@@ -124,9 +127,9 @@ public class ProjectProcessor {
         ProLog proLog = new ProLog();
         proLog.setProjectID(projectPlan.getProjectID());
         proLog.setPlanName(projectPlan.getPlanName());
-        proLog.setUid(projectPlan.getCreater());
+        proLog.setUid(projectPlan.getCreator());
         proLog.setAction(LogActionEnum.CreatePlan.getName());
-        SyUser syUser = UserProcessor.getUser(projectPlan.getCreater());
+        SyUser syUser = UserProcessor.getUser(projectPlan.getCreator());
         proLog.setLogText(syUser.getUname() + LogActionEnum.CreatePlan.getName() + projectPlan.getPlanName());
         proLog.setLogTime(new Date());
         AllDao.getInstance().getProjectDao().insertProLog(proLog);
@@ -626,21 +629,21 @@ public class ProjectProcessor {
                 map.put("projectDesp",projectDesp);
             }
 
-            if(jsonObject.get("starttime") != null){
-                stime = jsonObject.get("starttime").getAsString();
+            if(jsonObject.get("startTime") != null){
+                stime = jsonObject.get("startTime").getAsString();
                 Date startTime = null;
                 if(null != stime && !"".equals(stime)){
                     startTime = time.parse(stime);
                 }
                 map.put("startTime",startTime);
             }
-            if(jsonObject.get("endtime") != null){
-                etime = jsonObject.get("endtime").getAsString();
+            if(jsonObject.get("endTime") != null){
+                etime = jsonObject.get("endTime").getAsString();
                 Date endTime = null;
                 if(null !=etime &&  !"".equals(etime)){
                     endTime = time.parse(etime);
                 }
-                map.put("endtime",endTime);
+                map.put("endTime",endTime);
             }
             if(jsonObject.get("projectEngName") != null){
                 projectEngName = jsonObject.get("endtime").getAsString();

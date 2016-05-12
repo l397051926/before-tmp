@@ -143,10 +143,11 @@
 		<result column="registerNumber" property="registerNumber" jdbcType="VARCHAR"/>
 		<result column="startTime" property="startTime" jdbcType="VARCHAR"/>
 		<result column="endTime" property="endTime" jdbcType="VARCHAR"/>
+		<result column="center" property="center" jdbcType="VARCHAR"/>
 	</resultMap>
 
 	<sql id="MyProjectListSelect">
-		creator,p.projectID,projectName,date_format(createTime,"%Y-%m-%d") AS cTime,date_format(startTime,"%Y-%m-%d") AS startTime,date_format(endTime,"%Y-%m-%d") AS endTime,members,planNum,projectDesp,setCount,projectEngName,unit,manager,type,disease,registerNumber
+		creator,p.projectID,projectName,date_format(createTime,"%Y-%m-%d") AS cTime,date_format(startTime,"%Y-%m-%d") AS startTime,date_format(endTime,"%Y-%m-%d") AS endTime,members,planNum,projectDesp,setCount,projectEngName,unit,manager,type,disease,registerNumber,center
 	</sql>
 
 	<select id="getMyProjectList" resultMap="com.gennlife.platform.bean.projectBean.MyProjectList"

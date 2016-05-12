@@ -10,7 +10,7 @@ public class ProjectPlan {
     private String projectID;
     private String planName;
     private String planDesc;
-    private String creater;
+    private String creator;
     private int planStatus;
     private Date modifTime;
     private Date createTime;
@@ -74,12 +74,12 @@ public class ProjectPlan {
         this.createTime = createTime;
     }
 
-    public String getCreater() {
-        return creater;
+    public String getCreator() {
+        return creator;
     }
 
-    public void setCreater(String creater) {
-        this.creater = creater;
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 
     public String getPlanDesc() {

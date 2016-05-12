@@ -109,7 +109,7 @@ public class JsonUtils {
             int idInt = Integer.parseInt(id);
             projectPlan.setId(idInt);
         }else{
-            projectPlan.setCreater(creater);
+            projectPlan.setCreator(creater);
             projectPlan.setCreateTime(createTime);
         }
         return projectPlan;
