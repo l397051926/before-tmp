@@ -88,4 +88,48 @@ public class DetailProcessor {
         logger.info("PatientBasicTimeAxis result="+url);
         viewer.viewString(result,resp,req);
     }
+
+    /**
+     * 查看指标变化：可选列表
+     * @param req
+     * @param resp
+     */
+    public void choicesList(HttpServletRequest req, HttpServletResponse resp) {
+        String param = null;
+        try{
+            param = ParamUtils.getParam(req);
+            logger.info("ChoicesList param="+param);
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
+
+        String url = ConfigurationService.getUrlBean().getCasePhysical_examination_list();
+        logger.info("ChoicesList url="+url);
+        String result = HttpRequestUtils.httpPost(url,param);
+        logger.info("ChoicesList result="+url);
+        viewer.viewString(result,resp,req);
+    }
+
+    /**
+     * 查看指标变化：具体指标
+     * @param req
+     * @param resp
+     */
+    public void specificChoice(HttpServletRequest req, HttpServletResponse resp) {
+        String param = null;
+        try{
+            param = ParamUtils.getParam(req);
+            logger.info("SpecificChoice param="+param);
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
+
+        String url = ConfigurationService.getUrlBean().getCasePhysical_examination();
+        logger.info("SpecificChoice url="+url);
+        String result = HttpRequestUtils.httpPost(url,param);
+        logger.info("SpecificChoice result="+url);
+        viewer.viewString(result,resp,req);
+    }
 }

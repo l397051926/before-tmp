@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by chen-song on 16/5/13.
@@ -18,7 +20,8 @@ public class ConfigurationService {
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationService.class);
     private static JsonParser jsonParser = new JsonParser();
     private static URLBean urlBean = null;
-
+    //全量属性的jsonobject
+    private static Set<JsonObject> UINameSet = new HashSet<JsonObject>();
     public static void init() {
         try{
             ApplicationContext context = SpringContextUtil.getApplicationContext();
@@ -50,5 +53,9 @@ public class ConfigurationService {
 
     }
 
+
+    public static Set<JsonObject> getUINameSet() {
+        return UINameSet;
+    }
 
 }

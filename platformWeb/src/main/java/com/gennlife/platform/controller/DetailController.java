@@ -41,6 +41,20 @@ public class DetailController  extends HttpServlet {
                 logger.error("详情页时间轴信息接口",e);
             }
             logger.info("详情页时间轴信息接口 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/detail/ChoiceList".equals(uri)){
+            try{
+                processor.choicesList(req,resp);
+            }catch (Exception e){
+                logger.error("查看指标变化,可选列表",e);
+            }
+            logger.info("查看指标变化,可选列表 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/detail/SpecificChoice".equals(uri)){
+            try{
+                processor.specificChoice(req,resp);
+            }catch (Exception e){
+                logger.error("查看指标变化,具体指标",e);
+            }
+            logger.info("查看指标变化,具体指标 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }
 
     }
