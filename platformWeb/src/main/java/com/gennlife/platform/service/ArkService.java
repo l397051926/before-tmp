@@ -55,7 +55,6 @@ public class ArkService {
         logger.info("开始初始化mongoDB相关配置,,,,");
         mongoConf = (MongoConf) context.getBean("com.gennlife.platform.util.MongoConf");
         try {
-
             MongoManager.init(mongoConf);
             MongoManager.initCollection();
         } catch (UnknownHostException e) {
@@ -63,6 +62,13 @@ public class ArkService {
             throw new RuntimeException();
         }
 
+        try{
+            ConfigurationService.init();
+        }catch (Exception e){
+            logger.error("ConfigurationService 启动失败");
+            logger.error("",e);
+            throw new RuntimeException();
+        }
     }
 
     public void destroy() {

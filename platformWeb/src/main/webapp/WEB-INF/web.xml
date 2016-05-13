@@ -106,6 +106,7 @@
         <servlet-name>Base</servlet-name>
         <url-pattern>/base/*</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>knowledge</servlet-name>
         <servlet-class>com.gennlife.platform.servlet.KnowledgeController</servlet-class>
@@ -114,6 +115,24 @@
     <servlet-mapping>
         <servlet-name>knowledge</servlet-name>
         <url-pattern>/knowledge/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>detail</servlet-name>
+        <servlet-class>com.gennlife.platform.controller.DetailController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>detail</servlet-name>
+        <url-pattern>/detail/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>case</servlet-name>
+        <servlet-class>com.gennlife.platform.controller.CaseController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>case</servlet-name>
+        <url-pattern>/case/*</url-pattern>
     </servlet-mapping>
   <display-name>Archetype Created Web Application</display-name>
 </web-app>

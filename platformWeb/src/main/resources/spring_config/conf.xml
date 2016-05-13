@@ -31,4 +31,12 @@
         <property name="poolSize" value="10"/>
         <property name="blockSize" value="10"/>
     </bean>
+
+
+    <bean id="com.gennlife.platform.configuration.URLBean" class="com.gennlife.platform.configuration.URLBean">
+        <property name="caseSearchURL" value="http://192.168.1.111:8989/SearchServer/search"/>
+        <property name="caseDetailPatientBasicInfoURL" value=""/>
+        <property name="caseDetailPatientBasicFigureURL" value=""/>
+        <property name="casePatientBasicTimeAxisURL" value=""/>
+    </bean>
 </beans>

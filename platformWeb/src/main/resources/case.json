@@ -1,0 +1,361 @@
+{
+  "case": {
+    "defaultSelect": {
+      "A组": [
+        {
+          "field_type": "string",
+          "ui_field_name": "病人 ID",
+          "index_field_name": "basics.patient_id"
+        },
+        {
+          "field_type": "string",
+          "ui_field_name": "性别",
+          "index_field_name": "basics.gender"
+        },
+        {
+          "field_type": "date",
+          "date_format": "YYYY-MM-DD",
+          "ui_field_name": "出生日期",
+          "index_field_name": "basics.birth_date"
+        },
+        {
+          "field_type": "date",
+          "date_format": "YYYY-MM-DD h:mm:ss",
+          "ui_field_name": "最后生存日期",
+          "index_field_name": "basics.entity_date_time"
+        },
+        {
+          "field_type": "string",
+          "ui_field_name": "生存状态",
+          "index_field_name": "basics.entity_status"
+        }
+      ],
+      "B组": [
+        {
+          "field_type": "date",
+          "date_format": "YYYY-MM-DD h:mm:ss",
+          "ui_field_name": "诊断日期",
+          "index_field_name": "visits.diagnosis.diagnosis_date"
+        },
+        {
+          "field_type": "string",
+          "ui_field_name": "诊断类型名称",
+          "index_field_name": "visits.diagnosis.diagnosis_type_name",
+          "boost": 1,
+          "segment_flag": true,
+          "count_flag": false
+        },
+        {
+          "field_type": "string",
+          "ui_field_name": "疾病名称",
+          "index_field_name": "visits.diagnosis.disease_name",
+          "boost": 1,
+          "segment_flag": true,
+          "count_flag": true
+        },
+        {
+          "field_type": "boolean",
+          "ui_field_name": "是否主要诊断",
+          "index_field_name": "visits.diagnosis.main_diagnosis_flag",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": false
+        }
+      ],
+      "C组": [
+        {
+          "field_type": "date",
+          "date_format": "YYYY-MM-DD h:mm:ss",
+          "ui_field_name": "诊断日期",
+          "index_field_name": "visits.diagnosis.diagnosis_date",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": false
+        },
+        {
+          "field_type": "string",
+          "ui_field_name": "诊断类型名称",
+          "index_field_name": "visits.diagnosis.diagnosis_type_name",
+          "boost": 1,
+          "segment_flag": true,
+          "count_flag": false
+        },
+        {
+          "field_type": "string",
+          "ui_field_name": "疾病名称",
+          "index_field_name": "visits.diagnosis.disease_name",
+          "boost": 1,
+          "segment_flag": true,
+          "count_flag": true
+        },
+        {
+          "field_type": "boolean",
+          "ui_field_name": "是否主要诊断",
+          "index_field_name": "visits.diagnosis.main_diagnosis_flag",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": false
+        }
+      ]
+    },
+    "all": {
+    },
+    "all_default": {
+    }
+  },
+  "gene": {
+    "defaultSelect": {
+      "A组": {
+        "isgroup": true,
+        "病人 ID": {
+          "field_type": "string",
+          "ui_field_name": "病人 ID",
+          "index_field_name": "basics.patient_id",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": false
+        },
+        "性别": {
+          "field_type": "string",
+          "ui_field_name": "性别",
+          "index_field_name": "basics.gender",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": true
+        },
+        "出生日期": {
+          "field_type": "date",
+          "date_format": "YYYY-MM-DD",
+          "ui_field_name": "出生日期",
+          "index_field_name": "basics.birth_date",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": false
+        },
+        "最后生存日期": {
+          "field_type": "date",
+          "date_format": "YYYY-MM-DD h:mm:ss",
+          "ui_field_name": "最后生存日期",
+          "index_field_name": "basics.entity_date_time",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": false
+        },
+        "生存状态": {
+          "field_type": "string",
+          "ui_field_name": "生存状态",
+          "index_field_name": "basics.entity_status",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": true
+        }
+      },
+      "B组": {
+        "isgroup": true,
+        "诊断日期": {
+          "field_type": "date",
+          "date_format": "YYYY-MM-DD h:mm:ss",
+          "ui_field_name": "诊断日期",
+          "index_field_name": "visits.diagnosis.diagnosis_date",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": false
+        },
+        "诊断类型名称": {
+          "field_type": "string",
+          "ui_field_name": "诊断类型名称",
+          "index_field_name": "visits.diagnosis.diagnosis_type_name",
+          "boost": 1,
+          "segment_flag": true,
+          "count_flag": false
+        },
+        "疾病名称": {
+          "field_type": "string",
+          "ui_field_name": "疾病名称",
+          "index_field_name": "visits.diagnosis.disease_name",
+          "boost": 1,
+          "segment_flag": true,
+          "count_flag": true
+        },
+        "是否主要诊断": {
+          "field_type": "boolean",
+          "ui_field_name": "是否主要诊断",
+          "index_field_name": "visits.diagnosis.main_diagnosis_flag",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": false
+        }
+      },
+      "C组": {
+        "isgroup": true,
+        "诊断日期": {
+          "field_type": "date",
+          "date_format": "YYYY-MM-DD h:mm:ss",
+          "ui_field_name": "诊断日期",
+          "index_field_name": "visits.diagnosis.diagnosis_date",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": false
+        },
+        "诊断类型名称": {
+          "field_type": "string",
+          "ui_field_name": "诊断类型名称",
+          "index_field_name": "visits.diagnosis.diagnosis_type_name",
+          "boost": 1,
+          "segment_flag": true,
+          "count_flag": false
+        },
+        "疾病名称": {
+          "field_type": "string",
+          "ui_field_name": "疾病名称",
+          "index_field_name": "visits.diagnosis.disease_name",
+          "boost": 1,
+          "segment_flag": true,
+          "count_flag": true
+        },
+        "是否主要诊断": {
+          "field_type": "boolean",
+          "ui_field_name": "是否主要诊断",
+          "index_field_name": "visits.diagnosis.main_diagnosis_flag",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": false
+        }
+      }
+    },
+    "all": {
+    },
+    "defaultAll": {
+    }
+  },
+  "variation": {
+    "defaultSelect": {
+      "A组": {
+        "isgroup": true,
+        "病人 ID": {
+          "field_type": "string",
+          "ui_field_name": "病人 ID",
+          "index_field_name": "basics.patient_id",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": false
+        },
+        "性别": {
+          "field_type": "string",
+          "ui_field_name": "性别",
+          "index_field_name": "basics.gender",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": true
+        },
+        "出生日期": {
+          "field_type": "date",
+          "date_format": "YYYY-MM-DD",
+          "ui_field_name": "出生日期",
+          "index_field_name": "basics.birth_date",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": false
+        },
+        "最后生存日期": {
+          "field_type": "date",
+          "date_format": "YYYY-MM-DD h:mm:ss",
+          "ui_field_name": "最后生存日期",
+          "index_field_name": "basics.entity_date_time",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": false
+        },
+        "生存状态": {
+          "field_type": "string",
+          "ui_field_name": "生存状态",
+          "index_field_name": "basics.entity_status",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": true
+        }
+      },
+      "B组": {
+        "isgroup": true,
+        "诊断日期": {
+          "field_type": "date",
+          "date_format": "YYYY-MM-DD h:mm:ss",
+          "ui_field_name": "诊断日期",
+          "index_field_name": "visits.diagnosis.diagnosis_date",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": false
+        },
+        "诊断类型名称": {
+          "field_type": "string",
+          "ui_field_name": "诊断类型名称",
+          "index_field_name": "visits.diagnosis.diagnosis_type_name",
+          "boost": 1,
+          "segment_flag": true,
+          "count_flag": false
+        },
+        "疾病名称": {
+          "field_type": "string",
+          "ui_field_name": "疾病名称",
+          "index_field_name": "visits.diagnosis.disease_name",
+          "boost": 1,
+          "segment_flag": true,
+          "count_flag": true
+        },
+        "是否主要诊断": {
+          "field_type": "boolean",
+          "ui_field_name": "是否主要诊断",
+          "index_field_name": "visits.diagnosis.main_diagnosis_flag",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": false
+        }
+      },
+      "C组": {
+        "isgroup": true,
+        "诊断日期": {
+          "field_type": "date",
+          "date_format": "YYYY-MM-DD h:mm:ss",
+          "ui_field_name": "诊断日期",
+          "index_field_name": "visits.diagnosis.diagnosis_date",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": false
+        },
+        "诊断类型名称": {
+          "field_type": "string",
+          "ui_field_name": "诊断类型名称",
+          "index_field_name": "visits.diagnosis.diagnosis_type_name",
+          "boost": 1,
+          "segment_flag": true,
+          "count_flag": false
+        },
+        "疾病名称": {
+          "field_type": "string",
+          "ui_field_name": "疾病名称",
+          "index_field_name": "visits.diagnosis.disease_name",
+          "boost": 1,
+          "segment_flag": true,
+          "count_flag": true
+        },
+        "是否主要诊断": {
+          "field_type": "boolean",
+          "ui_field_name": "是否主要诊断",
+          "index_field_name": "visits.diagnosis.main_diagnosis_flag",
+          "boost": 1,
+          "segment_flag": false,
+          "count_flag": false
+        }
+      }
+    },
+    "all": {
+    },
+    "defaultAll": {
+    }
+  },
+  "all": {
+    "":{
+
+    }
+  }
+}
