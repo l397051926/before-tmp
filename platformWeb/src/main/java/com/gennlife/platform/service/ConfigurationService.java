@@ -2,7 +2,10 @@ package com.gennlife.platform.service;
 
 import com.gennlife.platform.configuration.URLBean;
 import com.gennlife.platform.util.FilesUtils;
+import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.SpringContextUtil;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
@@ -10,8 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by chen-song on 16/5/13.
@@ -21,7 +23,12 @@ public class ConfigurationService {
     private static JsonParser jsonParser = new JsonParser();
     private static URLBean urlBean = null;
     //全量属性的jsonobject
-    private static Set<JsonObject> UINameSet = new HashSet<JsonObject>();
+    private static List<JsonObject> allList = new LinkedList<JsonObject>();
+    //默认的搜索列表
+    private static JsonObject defaultObj = null;
+    //全部的搜索列表
+    private static JsonObject allObj = null;
+    private static Gson gson = GsonUtil.getGson();
     public static void init() {
         try{
             ApplicationContext context = SpringContextUtil.getApplicationContext();
@@ -50,12 +57,27 @@ public class ConfigurationService {
         String caseStr = FilesUtils.readFile("/case.json");
         logger.info("case.json="+caseStr);
         JsonObject jsonObject = (JsonObject) jsonParser.parse(caseStr);
-
+        JsonObject caseObj = jsonObject.getAsJsonObject("case");
+        defaultObj = caseObj.getAsJsonObject("default");
+        allObj = caseObj.getAsJsonObject("all");
+        for(Map.Entry<String, JsonElement> entity:allObj.entrySet()){
+            String key = entity.getKey();
+            JsonObject object = allObj.getAsJsonObject(key);
+            allList.add(object);
+        }
     }
 
-
-    public static Set<JsonObject> getUINameSet() {
-        return UINameSet;
+    public static JsonObject getAllObj() {
+        String copy = gson.toJson(allObj);
+        JsonObject target = (JsonObject) jsonParser.parse(copy);
+        return target;
     }
 
+    public static List<JsonObject> getAllList() {
+        return allList;
+    }
+
+    public static JsonObject getDefaultObj() {
+        return defaultObj;
+    }
 }

@@ -21,14 +21,7 @@ public class CaseController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long start = System.currentTimeMillis();
         String uri = req.getRequestURI();
-        if ("/case/KnowledgeTermSuggest".equals(uri)) {//1
-            try {
-                processor.knowledgeTermSuggestion(req, resp);
-            } catch (Exception e) {
-                logger.error("知识库搜索关键词提示", e);
-            }
-            logger.info("知识库搜索关键词提示 耗时:" + (System.currentTimeMillis() - start) + "ms");
-        }else if("/case/SearchItemSet".equals(uri)){//2
+        if("/case/SearchItemSet".equals(uri)){//2
             try {
                 processor.searchItemSet(req, resp);
             } catch (Exception e) {

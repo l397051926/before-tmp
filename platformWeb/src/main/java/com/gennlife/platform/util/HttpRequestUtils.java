@@ -91,7 +91,11 @@ public class HttpRequestUtils {
 		return null;
 	}
 
-
+	public static void main(String[] args){
+		String url = "http://localhost:8081/file/Rec";
+		String ch = "中国";
+		httpPost(url,ch);
+	}
 
 
 
