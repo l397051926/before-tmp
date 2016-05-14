@@ -185,27 +185,20 @@ public class KnowledgeBuilder {
             geneArray.add(geneObj);
             bodyEntity.add("gene",geneArray);
             geneObj.addProperty("name",dataObj.get("geneSymbol").getAsString());
-            geneObj.addProperty("url",dataObj.get("geneSymbolUrl").getAsString());
+            geneObj.addProperty("url",dataObj.get("symbolUrl").getAsString());
             bodyEntity.addProperty("chromosome",dataObj.get("chromosome").getAsString());
             bodyEntity.addProperty("map_location",dataObj.get("mapLocation").getAsString());
             JsonArray RNAArray = new JsonArray();
             JsonArray rnas = dataObj.get("RNA").getAsJsonArray();
-            JsonArray rnaArray = dataObj.get("RNAUrlArray").getAsJsonArray();
             Map<String,String> map = new HashMap<String, String>();
-            for(JsonElement rna:rnas){
-                String rnaStr = rna.getAsString();
-                for(JsonElement r:rnaArray){
-                    String rs = r.getAsString();
-                    if(rs.endsWith(rnaStr)){
-                        map.put(rnaStr,rs);
-                    }
-                }
-            }
-            for(String rna:map.keySet()){
-                JsonObject rnaObj = new JsonObject();
-                rnaObj.addProperty("name",rna);
-                rnaObj.addProperty("url",map.get(rna));
-                RNAArray.add(rnaObj);
+            for(JsonElement rnaElement:rnas){
+                JsonObject rnaObj = rnaElement.getAsJsonObject();
+                String rna = rnaObj.get("rna").getAsString();
+                String rnaUrl = rnaObj.get("rnaUrl").getAsString();
+                JsonObject rnaNewObj = new JsonObject();
+                rnaNewObj.addProperty("name",rna);
+                rnaNewObj.addProperty("url",rnaUrl);
+                RNAArray.add(rnaNewObj);
             }
             bodyEntity.add("transcript",RNAArray);
             JsonArray refArray = new JsonArray();
