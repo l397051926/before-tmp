@@ -4,10 +4,7 @@ import com.gennlife.platform.configuration.URLBean;
 import com.gennlife.platform.util.FilesUtils;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.SpringContextUtil;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -62,8 +59,11 @@ public class ConfigurationService {
         allObj = caseObj.getAsJsonObject("all");
         for(Map.Entry<String, JsonElement> entity:allObj.entrySet()){
             String key = entity.getKey();
-            JsonObject object = allObj.getAsJsonObject(key);
-            allList.add(object);
+            JsonArray object = allObj.getAsJsonArray(key);
+            for(JsonElement jsonElement:object){
+                allList.add(jsonElement.getAsJsonObject());
+            }
+
         }
     }
 

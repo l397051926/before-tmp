@@ -35,8 +35,8 @@ public class CaseProcessor {
     public void searchItemSet(HttpServletRequest req, HttpServletResponse resp) {
         String param = null;
         JsonObject paramObj = null;
-        String disease = null;
-        String key = null;
+        String searchKey = null;
+        String keywords = null;
         String status = null;
         Set<String> set = new HashSet<String>();
         ResultBean resultBean = new ResultBean();
@@ -44,8 +44,8 @@ public class CaseProcessor {
             param = ParamUtils.getParam(req);
             logger.info("SearchItemSet param="+param);
             paramObj = (JsonObject) jsonParser.parse(param);
-            //disease = paramObj.get("disease").getAsString();
-            key = paramObj.get("keywords").getAsString();
+            searchKey = paramObj.get("searchKey").getAsString();//病历搜索的关键词
+            keywords = paramObj.get("keywords").getAsString();//属性搜索的关键词
             status = paramObj.get("status").getAsString();
             if(!"0".equals(status) && !"1".equals(status) && !"2".equals(status)){
                 ParamUtils.errorParam("status参数出错",req,resp);
@@ -60,55 +60,62 @@ public class CaseProcessor {
             ParamUtils.errorParam(req,resp);
             return;
         }
-        if("0".equals(status)){//默认
-            JsonObject result = ConfigurationService.getDefaultObj();
-            resultBean.setCode(1);
-            resultBean.setData(result);
-        }else if("1".equals(status)){//可选
-            JsonObject all = ConfigurationService.getAllObj();
-            JsonObject allNew = new JsonObject();
-            for(Map.Entry<String, JsonElement> obj:all.entrySet()){
-                String groupName = obj.getKey();
-                JsonArray items = obj.getValue().getAsJsonArray();
-                JsonArray newGroup = new JsonArray();
-                for(JsonElement json:items){
-                    JsonObject item = json.getAsJsonObject();
-                    String index_field_name = item.get("index_field_name").getAsString();
-                    if(set.contains(index_field_name)){
-                        newGroup.add(item);
-                    }
-                }
-                if(newGroup.size() > 0){
-                    allNew.add(groupName,newGroup);
-                }
-            }
-            resultBean.setCode(1);
-            resultBean.setData(allNew);
-        }else if ("2".equals(status)){//所有
-            JsonObject all = ConfigurationService.getAllObj();
-            JsonObject allNew = new JsonObject();
-            for(Map.Entry<String, JsonElement> obj:all.entrySet()){
-                String groupName = obj.getKey();
-                JsonArray items = obj.getValue().getAsJsonArray();
-                JsonArray newGroup = new JsonArray();
-                for(JsonElement json:items){
-                    JsonObject item = json.getAsJsonObject();
-                    String ui_field_name = item.get("ui_field_name").getAsString();
-                    if("".equals(key) || ui_field_name.contains(key)){
-                        if(!"".equals(key)){
-                            ui_field_name = ui_field_name.replaceAll(key,"<span style='color:red'>"+key+"</span>");
-                            item.addProperty("ui_field_name",ui_field_name);
+        if("".equals(searchKey)){//general
+            if("0".equals(status)){//默认
+                JsonObject result = ConfigurationService.getDefaultObj();
+                resultBean.setCode(1);
+                resultBean.setData(result);
+            }else if("1".equals(status)){//可选
+                JsonObject all = ConfigurationService.getAllObj();
+                JsonObject allNew = new JsonObject();
+                for(Map.Entry<String, JsonElement> obj:all.entrySet()){
+                    String groupName = obj.getKey();
+                    JsonArray items = obj.getValue().getAsJsonArray();
+                    JsonArray newGroup = new JsonArray();
+                    for(JsonElement json:items){
+                        JsonObject item = json.getAsJsonObject();
+                        String IndexFieldName = item.get("IndexFieldName").getAsString();
+                        if(set.contains(IndexFieldName)){
+                            newGroup.add(item);
                         }
-                        newGroup.add(item);
+                    }
+                    if(newGroup.size() > 0){
+                        allNew.add(groupName,newGroup);
                     }
                 }
-                if(newGroup.size() > 0){
-                    allNew.add(groupName,newGroup);
+                resultBean.setCode(1);
+                resultBean.setData(allNew);
+            }else if ("2".equals(status)){//所有
+                JsonObject all = ConfigurationService.getAllObj();
+                JsonObject allNew = new JsonObject();
+                for(Map.Entry<String, JsonElement> obj:all.entrySet()){
+                    String groupName = obj.getKey();
+                    JsonArray items = obj.getValue().getAsJsonArray();
+                    JsonArray newGroup = new JsonArray();
+                    for(JsonElement json:items){
+                        JsonObject item = json.getAsJsonObject();
+                        String UIFieldName = item.get("UIFieldName").getAsString();
+                        if("".equals(keywords) || UIFieldName.contains(keywords)){
+                            if(!"".equals(keywords)){
+                                UIFieldName = UIFieldName.replaceAll(keywords,"<span style='color:red'>"+keywords+"</span>");
+                                item.addProperty("UIFieldName",UIFieldName);
+                            }
+                            newGroup.add(item);
+                        }
+                    }
+                    if(newGroup.size() > 0){
+                        allNew.add(groupName,newGroup);
+                    }
                 }
+                resultBean.setCode(1);
+                resultBean.setData(allNew);
             }
-            resultBean.setCode(1);
-            resultBean.setData(allNew);
+        }else if ("肺癌".equals(searchKey)){//返回肺癌
+
+        }else if("肾癌".equals(searchKey)){//返回肾癌
+
         }
+
         viewer.viewString(gson.toJson(resultBean),resp,req);
         return;
 
@@ -187,11 +194,12 @@ public class CaseProcessor {
             return;
         }
         List<JsonObject> list = new LinkedList<JsonObject>();
+
         if(null != keywords){
             List<JsonObject> set = ConfigurationService.getAllList();
             for(JsonObject jsonObject:set){
-                String ui_field_name = jsonObject.get("ui_field_name").getAsString();
-                if(ui_field_name.startsWith(keywords)){
+                String UIFieldName = jsonObject.get("UIFieldName").getAsString();
+                if(UIFieldName.startsWith(keywords)){
                     list.add(jsonObject);
                 }
             }
@@ -207,7 +215,7 @@ public class CaseProcessor {
      * @param req
      * @param resp
      */
-    public void searchKnowledge(HttpServletRequest req, HttpServletResponse resp) {
+    public void searchKnowledgeFirst(HttpServletRequest req, HttpServletResponse resp) {
         String param = null;
         try{
             param = ParamUtils.getParam(req);

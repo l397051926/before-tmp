@@ -42,6 +42,19 @@ public class URLBean {
      */
     private String casePhysical_examination_list = null;
 
+    /**
+     * 知识库搜索
+     */
+    private String knowledgeURL = null;
+
+    public String getKnowledgeURL() {
+        return knowledgeURL;
+    }
+
+    public void setKnowledgeURL(String knowledgeURL) {
+        this.knowledgeURL = knowledgeURL;
+    }
+
     public String getCasePhysical_examination_list() {
         return casePhysical_examination_list;
     }

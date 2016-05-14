@@ -42,9 +42,9 @@ public class CaseController extends HttpServlet {
                 logger.error("高级搜索关键词提示", e);
             }
             logger.info("高级搜索关键词提示 耗时:" + (System.currentTimeMillis() - start) + "ms");
-        }else if("/case/SearchKnowledge".equals(uri)){//5
+        }else if("/case/SearchKnowledgeFirst".equals(uri)){//5
             try {
-                processor.searchKnowledge(req, resp);
+                processor.searchKnowledgeFirst(req, resp);
             } catch (Exception e) {
                 logger.error("首页知识库搜索", e);
             }

@@ -2,6 +2,7 @@ package com.gennlife.platform.proc;
 
 import com.gennlife.platform.build.KnowledgeBuilder;
 import com.gennlife.platform.service.ArkService;
+import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
@@ -78,7 +79,7 @@ public class KnowledgeProcessor {
         JsonObject newJson = buildQueryJson(from,to,query,currentPage,pageSize,tableName);
         String newParam = gson.toJson(newJson);
         logger.info("knowledge req=" + newParam);
-        String url = ArkService.getConf().getKnowledgeURL();
+        String url = ConfigurationService.getUrlBean().getKnowledgeURL();
         logger.info("knowledge url=" + url);
         String resultStr = HttpRequestUtils.httpPost(url,newParam);
         logger.info("knowledge result=" + resultStr);

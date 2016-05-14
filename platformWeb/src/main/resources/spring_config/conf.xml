@@ -22,7 +22,7 @@
         <property name="detailGenURL" value="http://192.168.1.111:8111/fs/gene?table=%s&amp;key=%s&amp;fields=%s&amp;pagesize=%s&amp;page=%s"/>
         <property name="SetDetailURL" value="http://192.168.1.111:8111/fs/schema/%s"/>
         <property name="SetDetailDataURL" value="http://192.168.1.111:8111/fs/sample/%s"/>
-        <property name="knowledgeURL" value="http://192.168.1.107:8080/knowledge/graph"/>
+
     </bean>
 
     <bean id="com.gennlife.platform.util.MongoConf" class="com.gennlife.platform.util.MongoConf">
@@ -42,6 +42,6 @@
         <property name="casePhysical_examination_list" value="http://192.168.1.111:8111/FileService/physical_examination_list"/>
         <property name="casePhysical_examination" value="http://192.168.1.111:8111/FileService/physical_examination"/>
         <property name="synQueryURL" value="http://192.168.1.111:7070/nlp-service/api/v1.0/syn?q=%s"/>
-
+        <property name="knowledgeURL" value="http://192.168.1.111:9881/knowledge/graph"/>
     </bean>
 </beans>
