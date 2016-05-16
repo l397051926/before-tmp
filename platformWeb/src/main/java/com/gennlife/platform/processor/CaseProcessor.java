@@ -242,16 +242,23 @@ public class CaseProcessor {
             logger.info("SearchCase param="+param);
             paramObj = (JsonObject) jsonParser.parse(param);
             logger.info("处理前请求参数="+gson.toJson(paramObj));
-            boolean isAdv = paramObj.get("isAdv").getAsBoolean();
+            String from = paramObj.get("from").getAsString();
+            String to = paramObj.get("to").getAsString();
+            int currentPage = paramObj.get("page").getAsInt();
+            int pageSize = paramObj.get("size").getAsInt();
             String query = paramObj.get("query").getAsString();
-            if(!isAdv && !"".equals(query)){
-                QueryServerParser queryServerParser = new QueryServerParser(query);
-                Set<String> set = queryServerParser.parser();
-                for(String k:set){
-                    query = query +","+k;
+            if ("case".equals(from) && "case".equals(to)){
+                boolean isAdv = paramObj.get("isAdv").getAsBoolean();
+                if(!isAdv && !"".equals(query)){
+                    QueryServerParser queryServerParser = new QueryServerParser(query);
+                    Set<String> set = queryServerParser.parser();
+                    for(String k:set){
+                        query = query +","+k;
+                    }
                 }
             }
             paramObj.addProperty("query",query);
+            paramObj.addProperty("indexName","clinical_cases");
             newParam = gson.toJson(paramObj);
             logger.info("处理后请求参数="+newParam);
         }catch (Exception e){
