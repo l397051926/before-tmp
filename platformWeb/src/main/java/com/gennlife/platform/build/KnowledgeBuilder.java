@@ -299,18 +299,17 @@ public class KnowledgeBuilder {
             if("phenotype".equals(from)){
                 JsonArray Phenotype = dataObj.getAsJsonArray("Phenotype");
                 JsonArray phenotypeIDArray = new JsonArray();
-                JsonArray phenotypeArray = new JsonArray();
+                String phenotypename = "";
                 for(JsonElement phenotypeEntity:Phenotype){
                     JsonObject phenotype = phenotypeEntity.getAsJsonObject();
                     JsonObject phenotypeID = new JsonObject();
                     phenotypeID.addProperty("name",phenotype.get("id").getAsString());
                     phenotypeID.addProperty("url",phenotype.get("url").getAsString());
                     phenotypeIDArray.add(phenotypeID);
-
+                    phenotypename = phenotype.get("term_name").getAsString();
                 }
-
-
                 bodyEntity.add("phenotype_id",phenotypeIDArray);
+                bodyEntity.addProperty("phenotype",phenotypename);
             }
             JsonArray refArray = new JsonArray();
             JsonObject ref = new JsonObject();
