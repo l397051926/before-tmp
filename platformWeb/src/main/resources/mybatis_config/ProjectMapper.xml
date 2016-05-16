@@ -229,7 +229,7 @@
     </resultMap>
     <select id="getProjectPlan" resultType="com.gennlife.platform.bean.projectBean.ProjectPlan" parameterType="map">
         select
-        id,projectID,planName,planDesc,creater,planStatus,date_format(createTime,"%Y-%m-%d") AS createTime,modifier,taskID,taskName
+        id,projectID,planName,planDesc,creator,planStatus,date_format(createTime,"%Y-%m-%d") AS createTime,modifier,taskID,taskName
         from p_plan p
         <where>p.projectID=#{projectID} and planStatus > 0 order by createTime asc limit #{startIndex},#{maxNum}</where>
     </select>

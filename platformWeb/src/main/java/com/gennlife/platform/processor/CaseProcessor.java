@@ -259,6 +259,7 @@ public class CaseProcessor {
             }
             paramObj.addProperty("query",query);
             paramObj.addProperty("indexName","clinical_cases");
+            paramObj.addProperty("hospitalID","public");
             newParam = gson.toJson(paramObj);
             logger.info("处理后请求参数="+newParam);
         }catch (Exception e){
