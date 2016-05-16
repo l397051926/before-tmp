@@ -197,7 +197,7 @@
     </resultMap>
     <select id="getProjectLog" resultType="com.gennlife.platform.bean.projectBean.ProLog" parameterType="map">
         select
-        p.projectID,p.planName,uid,action,date_format(logTime,"%Y-%m-%d") AS lTime,logText,p.sampleName
+        p.projectID,p.planName,uid,action,date_format(logTime,"%Y-%m-%d %H:%i") AS lTime,logText,p.sampleName
         from p_prolog p
         <where>p.projectID=#{projectID} order by logTime desc limit #{startIndex},#{maxNum}</where>
     </select>
