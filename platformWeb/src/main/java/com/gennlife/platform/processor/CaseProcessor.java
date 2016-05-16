@@ -1,7 +1,9 @@
 package com.gennlife.platform.processor;
 
 import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.parse.CaseSearchParser;
 import com.gennlife.platform.parse.CaseSuggestParser;
+import com.gennlife.platform.parse.QueryServerParser;
 import com.gennlife.platform.service.ArkService;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
@@ -234,13 +236,33 @@ public class CaseProcessor {
     public void searchCase(HttpServletRequest req, HttpServletResponse resp) {
         String param = null;
         JsonObject paramObj = null;
+        String newParam = null;
         try{
             param = ParamUtils.getParam(req);
-            //logger.info("SearchCase param="+param);
             paramObj = (JsonObject) jsonParser.parse(param);
-            logger.info(gson.toJson(paramObj));
+            logger.info("处理前请求参数="+gson.toJson(paramObj));
+            boolean isAdv = paramObj.get("").getAsBoolean();
+            String query = paramObj.get("query").getAsString();
+            if(!isAdv && !"".equals(query)){
+                QueryServerParser queryServerParser = new QueryServerParser(query);
+                Set<String> set = queryServerParser.parser();
+                for(String k:set){
+                    query = query +","+k;
+                }
+            }
+            paramObj.addProperty("query",query);
+            newParam = gson.toJson(paramObj);
+            logger.info("处理后请求参数="+newParam);
         }catch (Exception e){
             ParamUtils.errorParam(req,resp);
+            return;
+        }
+        CaseSearchParser caseSearchParser = new CaseSearchParser(newParam);
+        try{
+            String searchResultStr = caseSearchParser.parser();
+            viewer.viewString(searchResultStr,resp,req);
+        }catch (Exception e){
+            ParamUtils.errorParam("搜索失败",req,resp);
             return;
         }
 

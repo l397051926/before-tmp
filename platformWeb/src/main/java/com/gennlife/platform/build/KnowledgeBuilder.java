@@ -257,6 +257,7 @@ public class KnowledgeBuilder {
         JsonObject head = buildHead(param,obj);
         result.add(head);
         String from = param.get("from").getAsString();
+        String query = param.get("query").getAsString();
         //body
         JsonArray body = new JsonArray();
         JsonArray dataArray = obj.getAsJsonArray("data");
@@ -320,6 +321,35 @@ public class KnowledgeBuilder {
                     GeneArray.add(geneNew);
                 }
                 bodyEntity.add("gene",GeneArray);
+            }
+            if("gene".equals(from)){
+                JsonArray phenotypeIDArray = new JsonArray();
+                String phenotypename = "";
+                JsonArray Phenotype = dataObj.getAsJsonArray("HPO");
+                for(JsonElement phenotypeEntity:Phenotype){
+                    JsonObject phenotype = phenotypeEntity.getAsJsonObject();
+                    String id = phenotype.get("hpo_id").getAsString();
+                    String hpo_term_name = phenotype.get("hpo_term_name").getAsString();
+                    JsonObject phenotypeID = new JsonObject();
+                    if(query.equals(hpo_term_name)){
+                        String url = phenotype.get("hpo_url").getAsString();
+                        phenotypeID.addProperty("name",id);
+                        phenotypeID.addProperty("url",url);
+                        phenotypename = hpo_term_name;
+                        phenotypeIDArray.add(phenotypeID);
+                    }
+                }
+                bodyEntity.add("phenotype_id",phenotypeIDArray);
+                bodyEntity.addProperty("phenotype",phenotypename);
+                String geneSymbol = dataObj.get("geneSymbol").getAsString();
+                String symbolUrl = dataObj.get("symbolUrl").getAsString();
+                JsonArray GeneArray = new JsonArray();
+                JsonObject geneObj = new JsonObject();
+                geneObj.addProperty("name",geneSymbol);
+                geneObj.addProperty("url",symbolUrl);
+                GeneArray.add(geneObj);
+                bodyEntity.add("gene",GeneArray);
+
             }
             JsonArray refArray = new JsonArray();
             JsonObject ref = new JsonObject();
