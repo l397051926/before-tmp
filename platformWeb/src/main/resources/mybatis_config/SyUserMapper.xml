@@ -163,8 +163,8 @@
 			parameterType="map">
 		select
 		<include refid="MyProjectListSelect" />
-		from p_project p JOIN pro_user u on u.projectID = p.projectID
-		<where>p.projectID=#{projectID} </where>
+		from p_project p
+		<where>p.projectID=#{projectID} limit 0,1</where>
 	</select>
 
 	<select id="getProjectCounter" resultType="java.lang.Integer" parameterType="map">

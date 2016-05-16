@@ -14,6 +14,7 @@ public class ProjectPlan {
     private int planStatus;
     private Date modifTime;
     private Date createTime;
+    private String cTime;
     private String modifier;
     private String taskID;
     private String taskName;
@@ -64,6 +65,14 @@ public class ProjectPlan {
 
     public void setPlanStatus(int planStatus) {
         this.planStatus = planStatus;
+    }
+
+    public String getcTime() {
+        return cTime;
+    }
+
+    public void setcTime(String cTime) {
+        this.cTime = cTime;
     }
 
     public Date getCreateTime() {

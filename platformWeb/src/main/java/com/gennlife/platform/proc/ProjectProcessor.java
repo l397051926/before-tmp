@@ -466,6 +466,9 @@ public class ProjectProcessor {
             return;
         }
         List<ProjectPlan> plansList = AllDao.getInstance().getProjectDao().getProjectPlan(confMap);
+        for(ProjectPlan projectPlan:plansList){
+
+        }
         int count = AllDao.getInstance().getProjectDao().getProjectPlanCounter(confMap);
         Map<String,Object> info = new HashMap<String, Object>();
         info.put("count",count);
