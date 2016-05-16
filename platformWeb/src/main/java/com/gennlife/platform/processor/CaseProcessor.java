@@ -239,6 +239,7 @@ public class CaseProcessor {
         String newParam = null;
         try{
             param = ParamUtils.getParam(req);
+            logger.info("SearchCase param="+param);
             paramObj = (JsonObject) jsonParser.parse(param);
             logger.info("处理前请求参数="+gson.toJson(paramObj));
             boolean isAdv = paramObj.get("isAdv").getAsBoolean();
