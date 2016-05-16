@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gennlife.platform.dao.ProjectMapper">
+    <insert id="insertCreateProject" parameterType="com.gennlife.platform.bean.projectBean.CreateProject" >
+        insert into p_project
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="projectID != null" >
+                projectID,
+            </if>
+            <if test="projectName != null" >
+                projectName,
+            </if>
+            <if test="projectEngName != null" >
+                projectEngName,
+            </if>
+            <if test="startTime != null" >
+                startTime,
+            </if>
+            <if test="endTime != null" >
+                endTime,
+            </if>
+            <if test="center != null" >
+                center,
+            </if>
+            <if test="members != null" >
+                members,
+            </if>
+            <if test="planNum != null" >
+                planNum,
+            </if>
+            <if test="createTime != null" >
+                createTime,
+            </if>
+            <if test="projectDesp != null" >
+                projectDesp,
+            </if>
+            <if test="setCount != null" >
+                setCount,
+            </if>
+            <if test="creator != null" >
+                creator,
+            </if>
+            <if test="unit != null" >
+                unit,
+            </if>
+            <if test="disease != null" >
+                disease,
+            </if>
+            <if test="registerNumber != null" >
+                registerNumber,
+            </if>
+            <if test="type != null" >
+                type,
+            </if>
+            <if test="manager != null" >
+                manager,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="projectID != null" >
+                #{projectID,jdbcType=VARCHAR},
+            </if>
+            <if test="projectName != null" >
+                #{projectName,jdbcType=VARCHAR},
+            </if>
+            <if test="projectEngName != null" >
+                #{projectEngName,jdbcType=VARCHAR},
+            </if>
+            <if test="startTime != null" >
+                #{startTime,jdbcType=TIMESTAMP,javaType=java.util.Date},
+            </if>
+            <if test="endTime != null" >
+                #{endTime,jdbcType=TIMESTAMP,javaType=java.util.Date},
+            </if>
+            <if test="center != null" >
+                #{center,jdbcType=VARCHAR},
+            </if>
+            <if test="members != null" >
+                #{members,jdbcType=INTEGER},
+            </if>
+
+            <if test="planNum != null" >
+                #{planNum,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP,javaType=java.util.Date},
+            </if>
+            <if test="projectDesp != null" >
+                #{projectDesp,jdbcType=VARCHAR},
+            </if>
+            <if test="setCount != null" >
+                #{setCount,jdbcType=INTEGER},
+            </if>
+            <if test="creator != null" >
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="unit != null" >
+                #{unit,jdbcType=VARCHAR},
+            </if>
+            <if test="disease != null" >
+                #{disease,jdbcType=VARCHAR},
+            </if>
+            <if test="registerNumber != null" >
+                #{registerNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null" >
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="manager != null" >
+                #{manager,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+
+    <insert id="insertProUserList" parameterType="java.util.List" >
+        insert into pro_user (uid,projectID,role)
+        values
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.uid},#{item.projectID},#{item.role})
+        </foreach>
+    </insert>
+
+    <insert id="insertProLog" parameterType="com.gennlife.platform.bean.projectBean.ProLog" >
+        insert into p_prolog
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="projectID != null" >
+                projectID,
+            </if>
+            <if test="planName != null" >
+                planName,
+            </if>
+            <if test="uid != null" >
+                uid,
+            </if>
+            <if test="action != null" >
+                action,
+            </if>
+            <if test="logTime != null" >
+                logTime,
+            </if>
+            <if test="logText != null" >
+                logText,
+            </if>
+            <if test="sampleName != null" >
+                sampleName,
+            </if>
+            <if test="sampleURI != null" >
+                sampleURI,
+            </if>
+            <if test="sampleURI != null" >
+                sampleURI,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="projectID != null" >
+                #{projectID,jdbcType=VARCHAR},
+            </if>
+            <if test="planName != null" >
+                #{planName,jdbcType=VARCHAR},
+            </if>
+            <if test="uid != null" >
+                #{uid,jdbcType=VARCHAR},
+            </if>
+            <if test="action != null" >
+                #{action,jdbcType=VARCHAR},
+            </if>
+            <if test="logTime != null" >
+                #{logTime,jdbcType=TIMESTAMP,javaType=java.util.Date},
+            </if>
+            <if test="logText != null" >
+                #{logText,jdbcType=VARCHAR},
+            </if>
+            <if test="sampleName != null" >
+                #{sampleName,jdbcType=VARCHAR},
+            </if>
+            <if test="sampleURI != null" >
+                #{sampleURI,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertProjectMember" parameterType="map" >
+        insert into pro_user
+        (uid,projectID,role) values (#{uid,,jdbcType=VARCHAR},#{projectID},2);
+    </insert>
+
+    <resultMap id="com.gennlife.platform.bean.projectBean.ProLog" type="com.gennlife.platform.bean.projectBean.ProLog">
+        <result column="p.projectID" property="projectID" jdbcType="VARCHAR" />
+        <result column="uid" property="uid" jdbcType="VARCHAR"/>
+        <result column="p.planName" property="planName" jdbcType="VARCHAR"/>
+        <result column="action" property="action" jdbcType="VARCHAR"/>
+        <result column="logText" property="logText" jdbcType="VARCHAR"/>
+        <result column="lTime" property="lTime" jdbcType="VARCHAR"/>
+        <result column="p.sampleName" property="sampleName" jdbcType="VARCHAR"/>
+
+    </resultMap>
+    <select id="getProjectLog" resultType="com.gennlife.platform.bean.projectBean.ProLog" parameterType="map">
+        select
+        p.projectID,p.planName,uid,action,date_format(logTime,"%Y-%m-%d %H:%i") AS lTime,logText,p.sampleName
+        from p_prolog p
+        <where>p.projectID=#{projectID} order by logTime desc limit #{startIndex},#{maxNum}</where>
+    </select>
+
+    <select id="getProjectLogCounter" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(*)
+        from p_prolog p
+        <where>p.projectID=#{projectID}</where>
+    </select>
+
+    <select id="getProjectSetNameList" resultType="java.lang.String" parameterType="map">
+        select
+        sampleName
+        from pro_sample p
+        <where>p.projectID=#{projectID} ORDER BY opTime desc</where>
+    </select>
+
+    <resultMap id="com.gennlife.platform.bean.projectBean.ProjectPlan" type="com.gennlife.platform.bean.projectBean.ProjectPlan">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="pojectID" property="projectID" jdbcType="VARCHAR" />
+        <result column="planName" property="planName" jdbcType="VARCHAR"/>
+        <result column="planDesc" property="planDesc" jdbcType="VARCHAR"/>
+        <result column="creator" property="creator" jdbcType="VARCHAR"/>
+        <result column="planStatus" property="planStatus" jdbcType="INTEGER"/>
+        <result column="createTime" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="cTime" property="cTime" jdbcType="VARCHAR"/>
+        <result column="taskID" property="taskID" jdbcType="VARCHAR"/>
+        <result column="taskName" property="taskName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="getProjectPlan" resultType="com.gennlife.platform.bean.projectBean.ProjectPlan" parameterType="map">
+        select
+        id,projectID,planName,planDesc,creator,planStatus,createTime,date_format(createTime,"%Y-%m-%d") AS cTime,modifier,taskID,taskName
+        from p_plan p
+        <where>p.projectID=#{projectID} and planStatus > 0 order by createTime asc limit #{startIndex},#{maxNum}</where>
+    </select>
+    <select id="getProjectPlanCounter" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(*)
+        from p_plan p
+        <where>p.projectID=#{projectID} and planStatus > 0 </where>
+    </select>
+
+
+    <delete id="deleteProPlan"  parameterType="map">
+        DELETE from p_plan
+        <where> projectID=#{projectID} and id = #{id}</where>
+    </delete>
+
+    <select id="getProjectSetName" resultType="java.lang.String" parameterType="map">
+        select
+        sampleName
+        from pro_sample
+        <where>pro_sample.projectID=#{projectID}  and sampleURI = #{uri}</where>
+    </select>
+
+    <delete id="deleteProjectSet"  parameterType="map">
+        DELETE from pro_sample
+        <where> projectID=#{projectID} and sampleURI = #{uri}</where>
+    </delete>
+
+    <delete id="deleteProjectMember"  parameterType="map">
+        DELETE from pro_user
+        <where> projectID=#{projectID} and uid = #{uid}</where>
+    </delete>
+
+    <delete id="deleteProject"  parameterType="map">
+        DELETE from pro_user
+        <where> projectID=#{projectID}</where>
+    </delete>
+
+    <update id="updateProPlan" parameterType="com.gennlife.platform.bean.projectBean.ProjectPlan">
+        UPDATE p_plan
+        <set>planStatus = #{planStatus},modifier = #{modifier},planName=#{planName},modifTime=#{modifTime},planDesc=#{planDesc},modifTime=#{modifTime,jdbcType=TIMESTAMP,javaType=java.util.Date}, </set>
+        <where> projectID=#{projectID} and id = #{id}</where>
+    </update>
+    <insert id="insertProPlan" parameterType="com.gennlife.platform.bean.projectBean.ProjectPlan" >
+        insert into p_plan
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="projectID != null" >
+                projectID,
+            </if>
+            <if test="planName != null" >
+                planName,
+            </if>
+            <if test="planDesc != null" >
+                planDesc,
+            </if>
+            <if test="creator != null" >
+                creator,
+            </if>
+            <if test="planStatus != null" >
+                planStatus,
+            </if>
+            <if test="createTime != null" >
+                createTime,
+            </if>
+            <if test="taskID != null" >
+                taskID,
+            </if>
+            <if test="taskName != null" >
+                taskName,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="projectID != null" >
+                #{projectID,jdbcType=VARCHAR},
+            </if>
+            <if test="planName != null" >
+                #{planName,jdbcType=VARCHAR},
+            </if>
+            <if test="planDesc != null" >
+                #{planDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null" >
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="planStatus != null" >
+                #{planStatus,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP,javaType=java.util.Date},
+            </if>
+            <if test="taskID != null" >
+                #{taskID,jdbcType=VARCHAR},
+            </if>
+            <if test="taskName != null" >
+                #{taskName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+
+    <resultMap id="com.gennlife.platform.bean.projectBean.SampleMember" type="com.gennlife.platform.bean.projectBean.SampleMember">
+        <result column="uid" property="uid" jdbcType="VARCHAR" />
+        <result column="role" property="role" jdbcType="INTEGER"/>
+    </resultMap>
+    <select id="getProjectSampleMembers" resultType="com.gennlife.platform.bean.projectBean.SampleMember" parameterType="map">
+        select
+        uid,role
+        from pro_user p
+        <where>p.projectID=#{projectID}</where>
+    </select>
+
+    <resultMap id="com.gennlife.platform.bean.projectBean.ProSample" type="com.gennlife.platform.bean.projectBean.ProSample">
+        <result column="projectID" property="projectID" jdbcType="VARCHAR" />
+        <result column="batchID" property="batchID" jdbcType="INTEGER"/>
+        <result column="planName" property="planName" jdbcType="VARCHAR" />
+        <result column="bstatus" property="bstatus" jdbcType="INTEGER" />
+        <result column="sampleURI" property="sampleURI" jdbcType="VARCHAR" />
+        <result column="sampleName" property="sampleName" jdbcType="VARCHAR" />
+        <result column="operator" property="operator" jdbcType="VARCHAR" />
+        <result column="opTime" property="opTime" jdbcType="TIMESTAMP"/>
+        <result column="total" property="total" jdbcType="INTEGER"/>
+        <result column="items" property="items" jdbcType="VARCHAR"/>
+        <result column="sampleDesc" property="sampleDesc" jdbcType="VARCHAR"/>
+    </resultMap>
+    <insert id="insertProSample" parameterType="com.gennlife.platform.bean.projectBean.ProSample" >
+        insert into pro_sample
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="projectID != null" >
+                projectID,
+            </if>
+            <if test="batchID != null" >
+                batchID,
+            </if>
+            <if test="bstatus != null" >
+                bstatus,
+            </if>
+            <if test="sampleURI != null" >
+                sampleURI,
+            </if>
+            <if test="sampleName != null" >
+                sampleName,
+            </if>
+            <if test="operator != null" >
+                operator,
+            </if>
+            <if test="opTime != null" >
+                opTime,
+            </if>
+            <if test="total != null" >
+                total,
+            </if>
+            <if test="items != null" >
+                items,
+            </if>
+            <if test="sampleDesc != null">
+                sampleDesc
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="projectID != null" >
+                #{projectID,jdbcType=VARCHAR},
+            </if>
+            <if test="batchID != null" >
+                #{batchID,jdbcType=INTEGER},
+            </if>
+            <if test="planName != null" >
+                #{planName,jdbcType=VARCHAR},
+            </if>
+            <if test="bstatus != null" >
+                #{bstatus,jdbcType=INTEGER},
+            </if>
+            <if test="sampleURI != null" >
+                #{sampleURI,jdbcType=VARCHAR},
+            </if>
+            <if test="sampleName != null" >
+                #{sampleName,jdbcType=VARCHAR},
+            </if>
+            <if test="operator != null" >
+                #{operator,jdbcType=VARCHAR},
+            </if>
+            <if test="opTime != null" >
+                #{opTime,jdbcType=TIMESTAMP,javaType=java.util.Date},
+            </if>
+            <if test="total != null" >
+                #{total,jdbcType=INTEGER},
+            </if>
+            <if test="items != null" >
+                #{items,jdbcType=VARCHAR},
+            </if>
+            <if test="sampleDesc != null" >
+                #{sampleDesc,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="getMaxBatchID" resultType="java.lang.Integer" parameterType="map">
+        select
+        max(batchID)
+        from pro_sample p
+        <where>p.projectID=#{projectID} </where>
+    </select>
+
+
+    <select id="getSampleDataInitList" resultType="com.gennlife.platform.bean.projectBean.ProSample" parameterType="map">
+        select
+        planName,sampleURI,sampleName,opTime,batchID,total,items,sampleDesc
+        from pro_sample p
+        <where>p.projectID=#{projectID} and bstatus = 1</where>
+    </select>
+
+    <select id="searchSampleSetList" resultType="com.gennlife.platform.bean.projectBean.ProSample" parameterType="map">
+        select
+        planName,sampleURI,sampleName,opTime,batchID,total,items,sampleDesc
+        from pro_sample p
+        <where>p.projectID=#{projectID} and sampleName LIKE '%${key}%'
+            order by opTime desc limit #{startIndex},#{maxNum}</where>
+    </select>
+
+    <select id="searchSampleSetListCounter" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(*)
+        from pro_sample p
+        <where>p.projectID=#{projectID} and sampleName LIKE '%${key}%'</where>
+    </select>
+
+    <select id="getSampleDataListByPlanName" resultType="com.gennlife.platform.bean.projectBean.ProSample" parameterType="map">
+        select
+        planName,sampleURI,sampleName,opTime,batchID,total,items,sampleDesc
+        from pro_sample p
+        <where>p.projectID=#{projectID} and p.planName=#{planName}</where>
+    </select>
+    <select id="getPlanName" resultType="java.lang.String" parameterType="map">
+        select planName from p_plan where projectID=#{projectID} and id = #{id}
+    </select>
+
+    <update id="updateProject"  parameterType="map">
+        UPDATE p_project
+        <set> projectName= #{projectName},
+            projectDesp = #{projectDesp},
+            <if test="#{startTime} != null" >
+                startTime=#{startTime,jdbcType=TIMESTAMP,javaType=java.util.Date},
+            </if>
+            <if test="#{endTime} != null" >
+                endTime=#{endTime,jdbcType=TIMESTAMP,javaType=java.util.Date},
+            </if>
+            <if test="#{projectEngName} != null" >
+                projectEngName=#{projectEngName},
+            </if>
+            <if test="#{manager} != null" >
+                manager=#{manager},
+            </if>
+            <if test="#{type} != null" >
+                type=#{type},
+            </if>
+            <if test="#{registerNumber} != null" >
+                registerNumber=#{registerNumber},
+            </if>
+            <if test="#{center} != null" >
+                center=#{center},
+            </if>
+            <if test="#{unit} != null" >
+                unit=#{unit},
+            </if>
+        </set>
+        <where> projectID=#{projectID} </where>
+    </update>
+
+    <select id="getProjectDisease" resultType="java.lang.String" parameterType="map">
+        select
+        disease
+        from p_project
+        <where>p_project.projectID=#{projectID} limit 1</where>
+    </select>
+
+    <select id="isExistProject" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(p.projectID)
+        from p_project p JOIN pro_user u on u.projectID = p.projectID
+        <where>u.uid=#{uid} AND p.projectName=#{projectName}</where>
+    </select>
+    <select id="isExistPlan" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(*)
+        from p_plan
+        <where>p_plan.projectID=#{projectID} AND p_plan.planName=#{planName}</where>
+    </select>
+    <select id="isExistSet" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(*)
+        from pro_sample
+        <where>pro_sample.projectID=#{projectID} AND pro_sample.sampleName=#{sampleName}</where>
+    </select>
+    <update id="updateSetInfo" parameterType="map">
+        UPDATE pro_sample
+        <set>sampleName = #{sampleName},sampleDesc=#{sampleDesc}</set>
+        <where> projectID=#{projectID} and sampleURI = #{sampleURI}</where>
+    </update>
+</mapper>

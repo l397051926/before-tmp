@@ -1,0 +1,202 @@
+{
+  "CosmicMutantExport_v70": {
+	"Gene name": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Gene name",
+	  "UIFieldName": "基因名"
+	},
+	"Accession Number": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Accession Number",
+	  "UIFieldName": "检索号"
+
+	},
+	"Gene CDS length": {
+	  "dataType": "long",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Gene CDS length",
+	  "UIFieldName": "基因编码区长度"
+	},
+	"HGNC ID": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "HGNC ID",
+	  "UIFieldName": "人类基因命名委员会号"
+	},
+	"Sample name": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Sample name",
+	  "UIFieldName": "样本名"
+
+	},
+	"ID_sample": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "ID_sample",
+	  "UIFieldName": "样本号"
+	},
+	"ID_tumour": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "ID_tumour",
+	  "UIFieldName": "肿瘤号"
+	},
+	"Primary site": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Primary site",
+	  "UIFieldName": "原发部位"
+	},
+	"Site subtype": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Site subtype",
+	  "UIFieldName": "部位亚型"
+	},
+	"Primary histology": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Primary histology",
+	  "UIFieldName": "原发组织学分类"
+	},
+	"Histology subtype": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Histology subtype",
+	  "UIFieldName": "组织学亚型"
+	},
+	"Genome-wide screen": {
+	  "dataType": "boolean",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Genome-wide screen",
+	  "UIFieldName": "基因组扫描"
+	},
+	"Mutation ID": {
+	  "dataType": "long",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Mutation ID",
+	  "UIFieldName": "突变号"
+	},
+	"Mutation CDS": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Mutation CDS",
+	  "UIFieldName": "编码区突变"
+	},
+	"Mutation AA": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Mutation AA",
+	  "UIFieldName": "氨基酸序列突变"
+	},
+	"Mutation Description": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Mutation Description",
+	  "UIFieldName": "突变类型"
+	},
+	"Mutation zygosity": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Mutation zygosity",
+	  "UIFieldName": "突变纯合性"
+	},
+	"Mutation GRCh37 genome position": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Mutation GRCh37 genome position",
+	  "UIFieldName": "突变基因组位置"
+	},
+	"Mutation GRCh37 strand": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Mutation GRCh37 strand",
+	  "UIFieldName": "突变所在DNA链"
+	},
+	"SNP": {
+	  "dataType": "boolean",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "SNP",
+	  "UIFieldName": "是否SNP"
+	},
+	"FATHMM prediction": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "FATHMM prediction",
+	  "UIFieldName": "功能分析预测"
+	},
+	"Mutation somatic status": {
+	  "dataType": "string",
+	  "needAnalyz": true,
+	  "boost": 1,
+	  "IndexFieldName": "Mutation somatic status",
+	  "UIFieldName": "体细胞突变状态"
+	},
+	"Pubmed_PMID": {
+	  "dataType": "long",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Pubmed_PMID",
+	  "UIFieldName": "Pubmed号"
+	},
+	"ID_STUDY": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "ID_STUDY",
+	  "UIFieldName": "研究号"
+	},
+	"Sample source": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Sample source",
+	  "UIFieldName": "样本来源"
+	},
+	"Tumour origin": {
+	  "dataType": "string",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Tumour origin",
+	  "UIFieldName": "肿瘤起源"
+	},
+	"Age": {
+	  "dataType": "double",
+	  "needAnalyz": false,
+	  "boost": 1,
+	  "IndexFieldName": "Age",
+	  "UIFieldName": "年龄"
+	},
+	"Comments": {
+	  "dataType": "string",
+	  "needAnalyz": true,
+	  "boost": 1,
+	  "IndexFieldName": "Comments",
+	  "UIFieldName": "注释"
+	}
+  }
+}

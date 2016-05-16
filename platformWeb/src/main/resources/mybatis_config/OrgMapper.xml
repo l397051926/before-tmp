@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gennlife.platform.dao.OrgMapper" >
+    <resultMap id="com.gennlife.platform.bean.OrgListBean" type="com.gennlife.platform.bean.OrgListBean" >
+        <result column="orgID" property="orgID" jdbcType="VARCHAR" />
+        <result column="orgName" property="orgName" jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="getOrgList" resultMap="com.gennlife.platform.bean.OrgListBean" >
+        select
+        orgID,orgName
+        from p_org
+        order by orgID
+    </select>
+    <resultMap id="com.gennlife.platform.bean.OrgMemberBean" type="com.gennlife.platform.bean.OrgMemberBean" >
+        <result column="o.orgID" property="orgID" jdbcType="VARCHAR" />
+        <result column="orgName" property="orgName" jdbcType="VARCHAR" />
+        <result column="u.uid" property="uid" jdbcType="VARCHAR" />
+        <result column="u.uname" property="uname" jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="getOneOrgList" resultMap="com.gennlife.platform.bean.OrgMemberBean" parameterType="String"  >
+        select
+        orgName,u.uid,u.uname,o.orgID
+        from p_org o join p_user u on o.orgID = u.orgID
+        where o.orgID =  #{orgID}
+    </select>
+
+</mapper>

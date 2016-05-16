@@ -1,0 +1,41 @@
+{
+  "tcga_coadread" : {
+	"patient.tumor_site" : {
+	  "0": "colon",
+	  "1": "rectum"
+	},
+	"patient.msi_status" : {
+	  "0": "MSI-L",
+	  "1": "MSI-H"
+	},
+	"patient.cimp_status" : {
+	  "0": "CIMP.L",
+	  "1": "CIMP.H"
+	},
+	"patient.MLH1_silencing" : {
+	  "0": "MLH1 not silenced",
+	  "1": "MLH1 silenced"
+	},
+	"patient.MLH1_mutation" : {
+	  "2": "missense/nonsense mutation"
+	},
+	"patient.MLH3_mutation" : {
+	  "2": "missense/nonsense mutation"
+	},
+	"patient.MSH2_mutation" : {
+	  "2": "missense/nonsense mutation"
+	},
+	"patient.MSH3_mutation" : {
+	  "2": "missense/nonsense mutation"
+	},
+	"patient.MSH6_mutation" : {
+	  "2": "missense/nonsense mutation"
+	},
+	"patient.PMS2_mutation" : {
+	  "2": "missense/nonsense mutation"
+	},
+	"patient.POLE_mutation" : {
+	  "2": "missense/nonsense mutation"
+	}
+  }
+}
