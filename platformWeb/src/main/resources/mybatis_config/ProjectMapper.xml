@@ -223,13 +223,13 @@
         <result column="planDesc" property="planDesc" jdbcType="VARCHAR"/>
         <result column="creator" property="creator" jdbcType="VARCHAR"/>
         <result column="planStatus" property="planStatus" jdbcType="INTEGER"/>
-        <result column="createTime" property="createTime" jdbcType="VARCHAR"/>
+        <result column="cTime" property="createTime" jdbcType="VARCHAR"/>
         <result column="taskID" property="taskID" jdbcType="VARCHAR"/>
         <result column="taskName" property="taskName" jdbcType="VARCHAR"/>
     </resultMap>
     <select id="getProjectPlan" resultType="com.gennlife.platform.bean.projectBean.ProjectPlan" parameterType="map">
         select
-        id,projectID,planName,planDesc,creator,planStatus,date_format(createTime,"%Y-%m-%d") AS createTime,modifier,taskID,taskName
+        id,projectID,planName,planDesc,creator,planStatus,date_format(createTime,"%Y-%m-%d") AS cTime,modifier,taskID,taskName
         from p_plan p
         <where>p.projectID=#{projectID} and planStatus > 0 order by createTime asc limit #{startIndex},#{maxNum}</where>
     </select>
