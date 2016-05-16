@@ -256,6 +256,7 @@ public class KnowledgeBuilder {
         //head
         JsonObject head = buildHead(param,obj);
         result.add(head);
+        String from = param.get("from").getAsString();
         //body
         JsonArray body = new JsonArray();
         JsonArray dataArray = obj.getAsJsonArray("data");
@@ -264,22 +265,53 @@ public class KnowledgeBuilder {
             body.add(bodyEntity);
             JsonObject dataObj = data.getAsJsonObject();
             JsonObject dObj = new JsonObject();
+
             JsonArray disease_id = new JsonArray();
             dObj.addProperty("name",dataObj.get("id").getAsString());
             dObj.addProperty("url",dataObj.get("url").getAsString());
             disease_id.add(dObj);
             bodyEntity.add("disease_id",disease_id);
+
             JsonObject diseaseObj = new JsonObject();
             JsonArray disease = new JsonArray();
             diseaseObj.addProperty("name",dataObj.get("name").getAsString());
             diseaseObj.addProperty("url","");
             disease.add(diseaseObj);
+
             bodyEntity.add("disease",disease);
+
             String icd_10 = "";
-            if(dataObj.get("icd_10") != null){
-                icd_10 = dataObj.get("icd_10").getAsString();
+            if(dataObj.get("ICD10") != null){
+                JsonArray Entity = dataObj.get("ICD10").getAsJsonArray();
+                for(JsonElement icdEntity:Entity){
+                    JsonObject icdObj = icdEntity.getAsJsonObject();
+                    String id = icdObj.get("icd_10").getAsString();
+                    if("".equals(icd_10)){
+                        icd_10 = id;
+                    }else{
+                        icd_10 = icd_10 +","+id;
+                    }
+                }
+                bodyEntity.addProperty("icd_10",icd_10);
+            }else{
+                bodyEntity.addProperty("icd_10","");
             }
-            bodyEntity.addProperty("icd_10",icd_10);
+            if("phenotype".equals(from)){
+                JsonArray Phenotype = dataObj.getAsJsonArray("Phenotype");
+                JsonArray phenotypeIDArray = new JsonArray();
+                JsonArray phenotypeArray = new JsonArray();
+                for(JsonElement phenotypeEntity:Phenotype){
+                    JsonObject phenotype = phenotypeEntity.getAsJsonObject();
+                    JsonObject phenotypeID = new JsonObject();
+                    phenotypeID.addProperty("name",phenotype.get("id").getAsString());
+                    phenotypeID.addProperty("url",phenotype.get("url").getAsString());
+                    phenotypeIDArray.add(phenotypeID);
+
+                }
+
+
+                bodyEntity.add("phenotype_id",phenotypeIDArray);
+            }
             JsonArray refArray = new JsonArray();
             JsonObject ref = new JsonObject();
             ref.addProperty("name",dataObj.get("source").getAsString());

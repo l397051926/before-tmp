@@ -5,64 +5,110 @@
         {
           "dataType": "string",
           "UIFieldName": "病人编号",
-          "IndexFieldName": "basics.patient_id"
+          "IndexFieldName": "basics.patient_sn"
         },
         {
           "dataType": "string",
           "UIFieldName": "性别",
           "IndexFieldName": "basics.gender"
+        },
+        {
+          "dataType": "long",
+          "UIFieldName": "年龄",
+          "IndexFieldName": "basics.age"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "民族",
+          "IndexFieldName": "basics.ethnicity"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "婚姻状态",
+          "IndexFieldName": "basics.marital_status"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "既往史",
+          "IndexFieldName": "basics.past_hisory"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "家族史",
+          "IndexFieldName": "basics.family_history"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "过敏史",
+          "IndexFieldName": "basics.allergic_history"
         }
       ],
       "临床信息": [
         {
-          "dataType": "date",
-          "date_format": "YYYY-MM-DD h:mm:ss",
-          "UIFieldName": "诊断日期",
-          "IndexFieldName": "visits.diagnosis.diagnosis_date"
-        },
-        {
           "dataType": "string",
-          "UIFieldName": "诊断类型名称",
-          "IndexFieldName": "visits.diagnosis.diagnosis_type_name"
-        },
-        {
-          "dataType": "string",
-          "UIFieldName": "疾病名称",
-          "IndexFieldName": "visits.diagnosis.disease_name"
-        },
-        {
-          "dataType": "boolean",
-          "UIFieldName": "是否主要诊断",
-          "IndexFieldName": "visits.diagnosis.main_diagnosis_flag"
+          "UIFieldName": "诊断记录",
+          "IndexFieldName": "basics.diagnosis_record"
         }
       ],
       "随访信息": [
         {
-          "dataType": "string",
+          "dataType": "boolean",
           "UIFieldName": "生存状态",
-          "IndexFieldName": "basics.entity_status"
+          "IndexFieldName": "basics.vital_status"
         },
         {
-          "dataType": "date",
-          "date_format": "YYYY-MM-DD h:mm:ss",
-          "UIFieldName": "最后生存日期",
-          "IndexFieldName": "basics.entity_date_time"
+          "dataType": "string",
+          "UIFieldName": "生存时间",
+          "IndexFieldName": "basics.survival_time"
         }
       ],
       "生物标本": [
         {
+          "dataType": "boolean",
+          "UIFieldName": "血样",
+          "IndexFieldName": "basics.blood_sample"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "癌组织",
+          "IndexFieldName": "basics.cancer_tissue"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "转移组织",
+          "IndexFieldName": "basics.metastatic_tissue"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "正常组织",
+          "IndexFieldName": "basics.normal_tissue"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "存储位置",
+          "IndexFieldName": "basics.storage_location"
         }
       ],
       "组学信息": [
         {
-          "dataType": "string",
-          "UIFieldName": "Reference Allele",
-          "IndexFieldName": "visits.biological_specimen.snv_indel.reference_allele"
+          "dataType": "boolean",
+          "UIFieldName": "SSM",
+          "IndexFieldName": "basics.ssm"
         },
         {
-          "dataType": "string",
-          "UIFieldName": "Control Genotype",
-          "IndexFieldName": "visits.biological_specimen.snv_indel.control_genotype"
+          "dataType": "boolean",
+          "UIFieldName": "CNSM",
+          "IndexFieldName": "basics.cnsm"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "CNGM",
+          "IndexFieldName": "basics.cngm"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "SGM",
+          "IndexFieldName": "basics.sgm"
         }
       ]
     },
@@ -76,285 +122,111 @@
         {
           "dataType": "string",
           "UIFieldName": "性别",
-          "IndexFieldName": "basics.gender",
-          "boost": 1,
-          "segment_flag": false,
-          "count_flag": true
+          "IndexFieldName": "basics.gender"
         },
         {
-          "dataType": "date",
-          "date_format": "yyyy-MM-dd",
-          "UIFieldName": "出生日期",
-          "IndexFieldName": "basics.birth_date",
-          "boost": 1,
-          "segment_flag": false,
-          "count_flag": false
+          "dataType": "long",
+          "UIFieldName": "年龄",
+          "IndexFieldName": "basics.age"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "民族",
+          "IndexFieldName": "basics.ethnicity"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "婚姻状态",
+          "IndexFieldName": "basics.marital_status"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "既往史",
+          "IndexFieldName": "basics.past_hisory"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "家族史",
+          "IndexFieldName": "basics.family_history"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "过敏史",
+          "IndexFieldName": "basics.allergic_history"
         }
       ],
       "临床信息": [
         {
           "dataType": "string",
-          "UIFieldName": "就诊号",
-          "IndexFieldName": "visits.visit_sn",
-          "boost": 1,
-          "segment_flag": false,
-          "count_flag": false
-        },
-        {
-          "dataType": "date",
-          "date_format": "yyyy-MM-dd HH:mm:ss",
-          "UIFieldName": "诊断日期",
-          "IndexFieldName": "visits.diagnosis.diagnosis_date",
-          "boost": 1,
-          "segment_flag": false,
-          "count_flag": false
-        },
-        {
-          "dataType": "string",
-          "UIFieldName": "诊断类型名称",
-          "IndexFieldName": "visits.diagnosis.diagnosis_type_name",
-          "boost": 1,
-          "segment_flag": true,
-          "count_flag": false
-        },
-        {
-          "dataType": "string",
-          "UIFieldName": "疾病名称",
-          "IndexFieldName": "visits.diagnosis.disease_name",
-          "boost": 1,
-          "segment_flag": true,
-          "count_flag": true
-        },
-        {
-          "dataType": "boolean",
-          "UIFieldName": "是否主要诊断",
-          "IndexFieldName": "visits.diagnosis.main_diagnosis_flag",
-          "boost": 1,
-          "segment_flag": false,
-          "count_flag": false
-        },
-        {
-          "dataType": "string",
-          "UIFieldName": "主诉",
-          "IndexFieldName": "visits.chief_complaint.complaint",
-          "boost": 1,
-          "segment_flag": true,
-          "count_flag": false
-        },
-        {
-          "dataType": "date",
-          "date_format": "yyyy-MM-dd HH:mm:ss",
-          "UIFieldName": "录入时间",
-          "IndexFieldName": "visits.course_of_disease.input_time",
-          "boost": 1,
-          "segment_flag": false,
-          "count_flag": false
-        },
-        {
-          "dataType": "string",
-          "UIFieldName": "记录",
-          "IndexFieldName": "visits.course_of_disease.record",
-          "boost": 1,
-          "segment_flag": true,
-          "count_flag": false
-        },
-        {
-          "dataType": "double",
-          "unit": "",
-          "UIFieldName": "抗核抗体",
-          "IndexFieldName": "visits.lab_result_item.MPV",
-          "boost": 1,
-          "segment_flag": false,
-          "count_flag": false
-        },
-        {
-          "dataType": "double",
-          "unit": "/uL",
-          "UIFieldName": "白细胞",
-          "IndexFieldName": "visits.lab_result_item.MPV",
-          "boost": 1,
-          "segment_flag": false,
-          "count_flag": false
-        },
-        {
-          "dataType": "double",
-          "unit": "/uL",
-          "UIFieldName": "红细胞",
-          "IndexFieldName": "visits.lab_result_item.MPV",
-          "boost": 1,
-          "segment_flag": false,
-          "count_flag": false
-        },
-        {
-          "dataType": "double",
-          "unit": "",
-          "UIFieldName": "红细胞形态",
-          "IndexFieldName": "visits.lab_result_item.MPV",
-          "boost": 1,
-          "segment_flag": false,
-          "count_flag": false
-        },
-        {
-          "dataType": "double",
-          "unit": "g/L",
-          "UIFieldName": "白蛋白",
-          "IndexFieldName": "visits.lab_result_item.MPV",
-          "boost": 1,
-          "segment_flag": false,
-          "count_flag": false
-        },
-        {
-          "dataType": "double",
-          "unit": "",
-          "UIFieldName": "白细胞形态",
-          "IndexFieldName": "visits.lab_result_item.MPV",
-          "boost": 1,
-          "segment_flag": false,
-          "count_flag": false
+          "UIFieldName": "诊断记录",
+          "IndexFieldName": "basics.diagnosis_record"
         }
       ],
       "随访信息": [
         {
-          "dataType": "string",
+          "dataType": "boolean",
           "UIFieldName": "生存状态",
-          "IndexFieldName": "basics.entity_status"
+          "IndexFieldName": "basics.vital_status"
         },
         {
-          "dataType": "date",
-          "date_format": "YYYY-MM-DD h:mm:ss",
-          "UIFieldName": "最后生存日期",
-          "IndexFieldName": "basics.entity_date_time"
+          "dataType": "string",
+          "UIFieldName": "生存时间",
+          "IndexFieldName": "basics.survival_time"
         }
       ],
-      "生物标本": [],
+      "生物标本": [
+        {
+          "dataType": "boolean",
+          "UIFieldName": "血样",
+          "IndexFieldName": "basics.blood_sample"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "癌组织",
+          "IndexFieldName": "basics.cancer_tissue"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "转移组织",
+          "IndexFieldName": "basics.metastatic_tissue"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "正常组织",
+          "IndexFieldName": "basics.normal_tissue"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "存储位置",
+          "IndexFieldName": "basics.storage_location"
+        }
+      ],
       "组学信息": [
-          {
-            "dataType": "string",
-            "UIFieldName": "Reference Allele",
-            "IndexFieldName": "visits.biological_specimen.snv_indel.reference_allele",
-            "boost": 1,
-            "segment_flag": true,
-            "count_flag": false
-          },
-          {
-            "dataType": "string",
-            "UIFieldName": "Control Genotype",
-            "IndexFieldName": "visits.biological_specimen.snv_indel.control_genotype",
-            "boost": 1,
-            "segment_flag": true,
-            "count_flag": false
-          },
-          {
-            "dataType": "string",
-            "UIFieldName": "Chromosome Name",
-            "IndexFieldName": "visits.biological_specimen.snv_indel.chromosome_name",
-            "boost": 1,
-            "segment_flag": true,
-            "count_flag": false
-          },
-           {
-            "dataType": "string",
-            "UIFieldName": "Variant Classification",
-            "IndexFieldName": "visits.biological_specimen.snv_indel.variant_classification",
-            "boost": 1,
-            "segment_flag": true,
-            "count_flag": false
-          },
-          {
-            "dataType": "string",
-            "UIFieldName": "dbSNP RS",
-            "IndexFieldName": "visits.biological_specimen.snv_indel.dbsnp_rs",
-            "boost": 1,
-            "segment_flag": true,
-            "count_flag": false
-          },
-          {
-            "dataType": "string",
-            "UIFieldName": "Sample Genotype",
-            "IndexFieldName": "visits.biological_specimen.snv_indel.sample_genotype",
-            "boost": 1,
-            "segment_flag": true,
-            "count_flag": false
-          },
-          {
-            "dataType": "string",
-            "UIFieldName": "Aa Mutation",
-            "IndexFieldName": "visits.biological_specimen.snv_indel.aa_mutation",
-            "boost": 1,
-            "segment_flag": true,
-            "count_flag": false
-          },
-          {
-            "dataType": "string",
-            "UIFieldName": "Type",
-            "IndexFieldName": "visits.biological_specimen.snv_indel.type",
-            "boost": 1,
-            "segment_flag": true,
-            "count_flag": false
-          },
-           {
-            "dataType": "string",
-            "UIFieldName": "Position",
-            "IndexFieldName": "visits.biological_specimen.snv_indel.pos",
-            "boost": 1,
-            "segment_flag": true,
-            "count_flag": false
-          },
-          {
-            "dataType": "string",
-            "UIFieldName": "Gene Symbol",
-            "IndexFieldName": "visits.biological_specimen.snv_indel.gene_symbol",
-            "boost": 1,
-            "segment_flag": true,
-            "count_flag": false
-          },
-          {
-            "dataType": "string",
-            "UIFieldName": "Alternate Allele",
-            "IndexFieldName": "visits.biological_specimen.snv_indel.alternate_allele",
-            "boost": 1,
-            "segment_flag": true,
-            "count_flag": false
-          },
-          {
-            "dataType": "string",
-            "UIFieldName": "Chromosome Name",
-            "IndexFieldName": "visits.biological_specimen.cnv.chromosome_name",
-            "boost": 1,
-            "segment_flag": true,
-            "count_flag": false
-          },
-           {
-            "dataType": "string",
-            "UIFieldName": "Start Position",
-            "IndexFieldName": "visits.biological_specimen.cnv.start_position",
-            "boost": 1,
-            "segment_flag": true,
-            "count_flag": false
-          },
-           {
-            "dataType": "string",
-            "UIFieldName": "End Position",
-            "IndexFieldName": "visits.biological_specimen.cnv.end_position",
-            "boost": 1,
-            "segment_flag": true,
-            "count_flag": false
-          },
-          {
-            "dataType": "double",
-            "UIFieldName": "logR",
-            "IndexFieldName": "visits.biological_specimen.cnv.logR",
-            "boost": 1,
-            "segment_flag": true,
-            "count_flag": false
-          }
+        {
+          "dataType": "boolean",
+          "UIFieldName": "SSM",
+          "IndexFieldName": "basics.ssm"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "CNSM",
+          "IndexFieldName": "basics.cnsm"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "CNGM",
+          "IndexFieldName": "basics.cngm"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "SGM",
+          "IndexFieldName": "basics.sgm"
+        }
       ]
     }
   },
-  "lung_cancer":{
-
+  "lung_cancer": {
   },
-  "renal carcinoma":{
-
+  "renal carcinoma": {
   }
 }
