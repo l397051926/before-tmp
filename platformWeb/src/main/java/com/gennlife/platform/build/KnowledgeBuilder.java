@@ -310,6 +310,16 @@ public class KnowledgeBuilder {
                 }
                 bodyEntity.add("phenotype_id",phenotypeIDArray);
                 bodyEntity.addProperty("phenotype",phenotypename);
+                JsonArray Gene = dataObj.getAsJsonArray("Gene");
+                JsonArray GeneArray = new JsonArray();
+                for(JsonElement geneElement:Gene){
+                    JsonObject gene = geneElement.getAsJsonObject();
+                    JsonObject geneNew = new JsonObject();
+                    geneNew.addProperty("name",gene.get("symbol").getAsString());
+                    geneNew.addProperty("url",gene.get("url").getAsString());
+                    GeneArray.add(geneNew);
+                }
+                bodyEntity.add("gene",GeneArray);
             }
             JsonArray refArray = new JsonArray();
             JsonObject ref = new JsonObject();
