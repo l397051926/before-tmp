@@ -241,7 +241,7 @@ public class CaseProcessor {
             param = ParamUtils.getParam(req);
             paramObj = (JsonObject) jsonParser.parse(param);
             logger.info("处理前请求参数="+gson.toJson(paramObj));
-            boolean isAdv = paramObj.get("").getAsBoolean();
+            boolean isAdv = paramObj.get("isAdv").getAsBoolean();
             String query = paramObj.get("query").getAsString();
             if(!isAdv && !"".equals(query)){
                 QueryServerParser queryServerParser = new QueryServerParser(query);
