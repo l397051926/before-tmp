@@ -56,6 +56,13 @@ public class CaseController extends HttpServlet {
                 logger.error("首页知识库搜索", e);
             }
             logger.info("首页知识库搜索 耗时:" + (System.currentTimeMillis() - start) + "ms");
+        }else if("/case/DiseaseSearchGenes".equals(uri)){
+            try {
+                processor.diseaseSearchGenes(req, resp);
+            } catch (Exception e) {
+                logger.error("返回该疾病相关基因", e);
+            }
+            logger.info("返回该疾病相关基因 耗时:" + (System.currentTimeMillis() - start) + "ms");
         }
     }
 

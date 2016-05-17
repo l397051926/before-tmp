@@ -54,6 +54,18 @@ public class URLBean {
      * 详情页体检接口:唐乾斌提供
      */
     private String caseLab_result_item = null;
+    /**
+     * 搜索首页,疾病搜索基因
+     */
+    private String knowledgeDiseaseSearchGenesURL = null;
+
+    public String getKnowledgeDiseaseSearchGenesURL() {
+        return knowledgeDiseaseSearchGenesURL;
+    }
+
+    public void setKnowledgeDiseaseSearchGenesURL(String knowledgeDiseaseSearchGenesURL) {
+        this.knowledgeDiseaseSearchGenesURL = knowledgeDiseaseSearchGenesURL;
+    }
 
     public String getCaseLab_result_item() {
         return caseLab_result_item;

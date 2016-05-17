@@ -48,5 +48,6 @@
 
         <property name="synQueryURL" value="http://192.168.1.111:7070/nlp-service/api/v1.0/syn?q=%s"/>
         <property name="knowledgeURL" value="http://192.168.1.111:9881/knowledge/graph"/>
+        <property name="knowledgeDiseaseSearchGenesURL" value="http://192.168.1.111:9881/knowledge/graph"/>
     </bean>
 </beans>
