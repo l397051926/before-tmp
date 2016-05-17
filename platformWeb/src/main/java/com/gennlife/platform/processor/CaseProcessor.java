@@ -307,7 +307,7 @@ public class CaseProcessor {
             JsonObject result = new JsonObject();
             result.addProperty("code",1);
             result.add("data",searchResult);
-            viewer.viewString(searchResultStr, resp, req);
+            viewer.viewString(gson.toJson(result), resp, req);
         } catch (Exception e) {
             ParamUtils.errorParam("搜索失败", req, resp);
             return;
