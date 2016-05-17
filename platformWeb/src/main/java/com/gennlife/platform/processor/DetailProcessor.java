@@ -132,4 +132,46 @@ public class DetailProcessor {
         logger.info("SpecificChoice result="+url);
         viewer.viewString(result,resp,req);
     }
+
+    /**
+     * 详情页总接口：唐乾斌提供
+     * @param req
+     * @param resp
+     */
+    public void visitDetail(HttpServletRequest req, HttpServletResponse resp) {
+        String param = null;
+        try{
+            param = ParamUtils.getParam(req);
+            logger.info("VisitDetail param="+param);
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
+        String url = ConfigurationService.getUrlBean().getCaseVisit_detail();
+        logger.info("VisitDetail url="+url);
+        String result = HttpRequestUtils.httpPost(url,param);
+        logger.info("VisitDetail result="+url);
+        viewer.viewString(result,resp,req);
+    }
+
+    /**
+     * 详情页体检接口:唐乾斌提供
+     * @param req
+     * @param resp
+     */
+    public void labResultItem(HttpServletRequest req, HttpServletResponse resp) {
+        String param = null;
+        try{
+            param = ParamUtils.getParam(req);
+            logger.info("LabResultItem param="+param);
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
+        String url = ConfigurationService.getUrlBean().getCaseLab_result_item();
+        logger.info("LabResultItem url="+url);
+        String result = HttpRequestUtils.httpPost(url,param);
+        logger.info("LabResultItem result="+url);
+        viewer.viewString(result,resp,req);
+    }
 }

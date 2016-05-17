@@ -25,12 +25,13 @@ public class CaseProcessor {
     private Logger logger = LoggerFactory.getLogger(CaseProcessor.class);
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
-    private static View viewer= new View();
-    private static  ExecutorService executorService = ArkService.getExecutorService();
+    private static View viewer = new View();
+    private static ExecutorService executorService = ArkService.getExecutorService();
 
 
     /**
      * 搜索结果列表展示的集合:done
+     *
      * @param req
      * @param resp
      */
@@ -42,89 +43,90 @@ public class CaseProcessor {
         String status = null;
         Set<String> set = new HashSet<String>();
         ResultBean resultBean = new ResultBean();
-        try{
+        try {
             param = ParamUtils.getParam(req);
-            logger.info("SearchItemSet param="+param);
+            logger.info("SearchItemSet param=" + param);
             paramObj = (JsonObject) jsonParser.parse(param);
             searchKey = paramObj.get("searchKey").getAsString();//病历搜索的关键词
             keywords = paramObj.get("keywords").getAsString();//属性搜索的关键词
             status = paramObj.get("status").getAsString();
-            if(!"0".equals(status) && !"1".equals(status) && !"2".equals(status)){
-                ParamUtils.errorParam("status参数出错",req,resp);
+            if (!"0".equals(status) && !"1".equals(status) && !"2".equals(status)) {
+                ParamUtils.errorParam("status参数出错", req, resp);
                 return;
             }
-            JsonArray arrange =  paramObj.get("arrange").getAsJsonArray();
-            for(JsonElement json:arrange){
+            JsonArray arrange = paramObj.get("arrange").getAsJsonArray();
+            for (JsonElement json : arrange) {
                 set.add(json.getAsString());
             }
 
-        }catch (Exception e){
-            ParamUtils.errorParam(req,resp);
+        } catch (Exception e) {
+            ParamUtils.errorParam(req, resp);
             return;
         }
-        if("".equals(searchKey)){//general
-            if("0".equals(status)){//默认
+        if ("".equals(searchKey)) {//general
+            if ("0".equals(status)) {//默认
                 JsonObject result = ConfigurationService.getDefaultObj();
                 resultBean.setCode(1);
                 resultBean.setData(result);
-            }else if("1".equals(status)){//可选
+            } else if ("1".equals(status)) {//可选
                 JsonObject all = ConfigurationService.getAllObj();
                 JsonObject allNew = new JsonObject();
-                for(Map.Entry<String, JsonElement> obj:all.entrySet()){
+                for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                     String groupName = obj.getKey();
                     JsonArray items = obj.getValue().getAsJsonArray();
                     JsonArray newGroup = new JsonArray();
-                    for(JsonElement json:items){
+                    for (JsonElement json : items) {
                         JsonObject item = json.getAsJsonObject();
                         String IndexFieldName = item.get("IndexFieldName").getAsString();
-                        if(set.contains(IndexFieldName)){
+                        if (set.contains(IndexFieldName)) {
                             newGroup.add(item);
                         }
                     }
-                    if(newGroup.size() > 0){
-                        allNew.add(groupName,newGroup);
+                    if (newGroup.size() > 0) {
+                        allNew.add(groupName, newGroup);
                     }
                 }
                 resultBean.setCode(1);
                 resultBean.setData(allNew);
-            }else if ("2".equals(status)){//所有
+            } else if ("2".equals(status)) {//所有
                 JsonObject all = ConfigurationService.getAllObj();
                 JsonObject allNew = new JsonObject();
-                for(Map.Entry<String, JsonElement> obj:all.entrySet()){
+                for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                     String groupName = obj.getKey();
                     JsonArray items = obj.getValue().getAsJsonArray();
                     JsonArray newGroup = new JsonArray();
-                    for(JsonElement json:items){
+                    for (JsonElement json : items) {
                         JsonObject item = json.getAsJsonObject();
                         String UIFieldName = item.get("UIFieldName").getAsString();
-                        if("".equals(keywords) || UIFieldName.contains(keywords)){
-                            if(!"".equals(keywords)){
-                                UIFieldName = UIFieldName.replaceAll(keywords,"<span style='color:red'>"+keywords+"</span>");
-                                item.addProperty("UIFieldName",UIFieldName);
+                        if ("".equals(keywords) || UIFieldName.contains(keywords)) {
+                            if (!"".equals(keywords)) {
+                                UIFieldName = UIFieldName.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
+                                item.addProperty("UIFieldName", UIFieldName);
                             }
                             newGroup.add(item);
                         }
                     }
-                    if(newGroup.size() > 0){
-                        allNew.add(groupName,newGroup);
+                    if (newGroup.size() > 0) {
+                        allNew.add(groupName, newGroup);
                     }
                 }
                 resultBean.setCode(1);
                 resultBean.setData(allNew);
             }
-        }else if ("肺癌".equals(searchKey)){//返回肺癌
+        } else if ("肺癌".equals(searchKey)) {//返回肺癌
 
-        }else if("肾癌".equals(searchKey)){//返回肾癌
+        } else if ("肾癌".equals(searchKey)) {//返回肾癌
 
         }
 
-        viewer.viewString(gson.toJson(resultBean),resp,req);
+        viewer.viewString(gson.toJson(resultBean), resp, req);
         return;
 
     }
 
     /**
      * 搜索关键词提示(包括知识库,搜索):done
+     *
      * @param req
      * @param resp
      */
@@ -136,35 +138,35 @@ public class CaseProcessor {
         String dicName = null;
         String page = null;
         ResultBean resultBean = new ResultBean();
-        try{
+        try {
             param = ParamUtils.getParam(req);
-            logger.info("SearchTermSuggest param="+param);
+            logger.info("SearchTermSuggest param=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            if(paramObj.get("indexName") != null){
+            if (paramObj.get("indexName") != null) {
                 indexName = paramObj.get("indexName").getAsString();
             }
             keywords = paramObj.get("keywords").getAsString();
-            if(paramObj.get("size") != null){
+            if (paramObj.get("size") != null) {
                 size = paramObj.get("size").getAsString();
             }
             dicName = paramObj.get("dicName").getAsString();
-            if(paramObj.get("page") != null){
+            if (paramObj.get("page") != null) {
                 page = paramObj.get("page").getAsString();
             }
-        }catch (Exception e){
-            ParamUtils.errorParam(req,resp);
+        } catch (Exception e) {
+            ParamUtils.errorParam(req, resp);
             return;
         }
-        if(indexName == null){
+        if (indexName == null) {
             indexName = "clinical_cases_dic";
         }
-        if(size == null){
+        if (size == null) {
             size = "5";
         }
-        if(page == null){
+        if (page == null) {
             page = "1";
         }
-        CaseSuggestParser parserIndex = new CaseSuggestParser(indexName,dicName,keywords,size,page);
+        CaseSuggestParser parserIndex = new CaseSuggestParser(indexName, dicName, keywords, size, page);
         Set<String> set = new HashSet<String>();
         int count = 0;
         try {
@@ -172,26 +174,27 @@ public class CaseProcessor {
             JsonObject dataObj = (JsonObject) jsonParser.parse(data);
             count = dataObj.get("total").getAsInt();
             JsonArray dataArray = dataObj.getAsJsonArray("words");
-            for(JsonElement json:dataArray){
+            for (JsonElement json : dataArray) {
                 String key = json.getAsString();
                 set.add(key);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error("",e);
-            ParamUtils.errorParam("请求出错",req,resp);
+            logger.error("", e);
+            ParamUtils.errorParam("请求出错", req, resp);
             return;
         }
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("counter",count);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("counter", count);
         resultBean.setCode(1);
         resultBean.setData(set);
         resultBean.setInfo(map);
-        viewer.viewString(gson.toJson(resultBean),resp,req);
+        viewer.viewString(gson.toJson(resultBean), resp, req);
     }
 
     /**
-     *高级搜索关键词提示:done
+     * 高级搜索关键词提示:done
+     *
      * @param req
      * @param resp
      */
@@ -199,50 +202,52 @@ public class CaseProcessor {
         String param = null;
         String keywords = null;
         ResultBean resultBean = new ResultBean();
-        try{
+        try {
             param = ParamUtils.getParam(req);
-            logger.info("AdvancedSearchTermSuggest param="+param);
+            logger.info("AdvancedSearchTermSuggest param=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             keywords = paramObj.get("keywords").getAsString();
-        }catch (Exception e){
-            ParamUtils.errorParam(req,resp);
+        } catch (Exception e) {
+            ParamUtils.errorParam(req, resp);
             return;
         }
         List<JsonObject> list = new LinkedList<JsonObject>();
 
-        if(null != keywords){
+        if (null != keywords) {
             List<JsonObject> set = ConfigurationService.getAllList();
-            for(JsonObject jsonObject:set){
+            for (JsonObject jsonObject : set) {
                 String UIFieldName = jsonObject.get("UIFieldName").getAsString();
-                if(UIFieldName.startsWith(keywords)){
+                if (UIFieldName.startsWith(keywords)) {
                     list.add(jsonObject);
                 }
             }
         }
         resultBean.setCode(1);
         resultBean.setData(list);
-        viewer.viewString(gson.toJson(resultBean),resp,req);
+        viewer.viewString(gson.toJson(resultBean), resp, req);
 
     }
 
     /**
      * 首页知识库搜索
+     *
      * @param req
      * @param resp
      */
     public void searchKnowledgeFirst(HttpServletRequest req, HttpServletResponse resp) {
         String param = null;
-        try{
+        try {
             param = ParamUtils.getParam(req);
-            logger.info("SearchKnowledge param="+param);
-        }catch (Exception e){
-            ParamUtils.errorParam(req,resp);
+            logger.info("SearchKnowledge param=" + param);
+        } catch (Exception e) {
+            ParamUtils.errorParam(req, resp);
             return;
         }
     }
 
     /**
      * 搜索病历
+     *
      * @param req
      * @param resp
      */
@@ -250,53 +255,173 @@ public class CaseProcessor {
         String param = null;
         JsonObject paramObj = null;
         String newParam = null;
-        try{
+        try {
             param = ParamUtils.getParam(req);
-            logger.info("SearchCase param="+param);
+            logger.info("SearchCase param=" + param);
             paramObj = (JsonObject) jsonParser.parse(param);
-            logger.info("处理前请求参数="+gson.toJson(paramObj));
+            logger.info("处理前请求参数=" + gson.toJson(paramObj));
             String from = paramObj.get("from").getAsString();
             String to = paramObj.get("to").getAsString();
             int currentPage = paramObj.get("page").getAsInt();
             int pageSize = paramObj.get("size").getAsInt();
             String query = paramObj.get("query").getAsString();
-            if ("case".equals(from) && "case".equals(to)){
+            if ("case".equals(from) && "case".equals(to)) {
                 boolean isAdv = paramObj.get("isAdv").getAsBoolean();
-                if(!isAdv && !"".equals(query)){
+                if (!isAdv && !"".equals(query)) {
                     QueryServerParser queryServerParser = new QueryServerParser(query);
                     Set<String> set = queryServerParser.parser();
-                    for(String k:set){
-                        query = query +","+k;
+                    for (String k : set) {
+                        query = query + "," + k;
                     }
                 }
-            }else if("gene".equals(from) && "case".equals(to)){//基因到病历
+            } else if ("gene".equals(from) && "case".equals(to)) {//基因到病历
 
-            }else if("variation".equals(from) && "case".equals(to)){//变异到病历
+            } else if ("variation".equals(from) && "case".equals(to)) {//变异到病历
 
-            }else if("".equals(from) && "case".equals(to)){
+            } else if ("".equals(from) && "case".equals(to)) {
 
             }
             JsonArray filters = paramObj.getAsJsonArray("filters");
-            for(JsonElement filerElement:filters){
-                JsonObject filer = filerElement.getAsJsonObject();
-                String dataType = filer.get("dataType").getAsString();
-                String type = filer.get("type").getAsString();
+            StringBuffer queryBuf = new StringBuffer();
+            for (JsonElement filterElement : filters) {
+                JsonObject filter = filterElement.getAsJsonObject();
+
+                String dataType = filter.get("dataType").getAsString();
+                String IndexFieldName = filter.get("IndexFieldName").getAsString();
+                int type = filter.get("type").getAsInt();
+                JsonArray values = filter.get("values").getAsJsonArray();
+                if (queryBuf.length() != 0) {
+                    queryBuf.append(" ")
+                            .append("AND")
+                            .append(" ");
+                }
+                queryBuf.append("(");
+                if (type == 0 || type == 1) {//type 取 0 或 1
+                    int count = 0;
+                    for (JsonElement valueElement : values) {
+                        count++;
+                        if (count > 1) {
+                            queryBuf.append(" ")
+                                    .append("OR")
+                                    .append(" ");
+                        }
+                        if ("string".equals(dataType)) {
+                            String value = valueElement.getAsString();
+                            queryBuf.append("[")
+                                    .append(IndexFieldName)
+                                    .append("]")
+                                    .append(" ")
+                                    .append("包含")
+                                    .append(" ")
+                                    .append(value);
+                        } else if ("long".equals(dataType)) {
+                            Long value = valueElement.getAsLong();
+                            queryBuf.append("[")
+                                    .append(IndexFieldName)
+                                    .append("]")
+                                    .append(" ")
+                                    .append("=")
+                                    .append(" ")
+                                    .append(value);
+                        }
+                    }
+
+                } else if (type == 2) {
+                    int count = 0;
+                    for (JsonElement valueElement : values) {
+                        count++;
+                        if (count > 1) {
+                            queryBuf.append(" ")
+                                    .append("OR")
+                                    .append(" ");
+                        }
+                        JsonArray subValues = valueElement.getAsJsonArray();
+                        int subCount = 0;
+                        for (JsonElement subElement : subValues) {
+                            subCount++;
+                            if ("string".equals(dataType)) {
+                                String value = subElement.getAsString();
+                                queryBuf.append("[")
+                                        .append(IndexFieldName)
+                                        .append("]")
+                                        .append(" ")
+                                        .append("包含")
+                                        .append(" ")
+                                        .append(value);
+                            } else if ("long".equals(dataType)) {
+                                Long value = subElement.getAsLong();
+                                if (subCount == 1) {
+                                    queryBuf.append("(")
+                                            .append("[")
+                                            .append(IndexFieldName)
+                                            .append("]")
+                                            .append(" ")
+                                            .append(">=")
+                                            .append(" ")
+                                            .append(value)
+                                            .append(" ");
+                                } else if (subCount == 2) {
+                                    queryBuf.append(" ")
+                                            .append("AND")
+                                            .append(" ")
+                                            .append("[")
+                                            .append(IndexFieldName)
+                                            .append("]")
+                                            .append(" ")
+                                            .append("<")
+                                            .append(" ")
+                                            .append(value)
+                                            .append(")");
+                                }
+
+                            } else if ("date".equals(dataType)) {
+                                String value = subElement.getAsString();
+                                if (subCount == 1) {
+                                    queryBuf.append("(")
+                                            .append("[")
+                                            .append(IndexFieldName)
+                                            .append("]")
+                                            .append(" ")
+                                            .append("早于")
+                                            .append(" ")
+                                            .append(value);
+                                } else if (subCount == 2) {
+                                    queryBuf.append(" ")
+                                            .append("AND")
+                                            .append(" ")
+                                            .append("[")
+                                            .append(IndexFieldName)
+                                            .append("]")
+                                            .append(" ")
+                                            .append("晚于")
+                                            .append(" ")
+                                            .append(value)
+                                            .append(")");
+                                }
+                            }
+                        }
+                    }
+
+                }
+                queryBuf.append(")");
             }
-            paramObj.addProperty("query",query);
-            paramObj.addProperty("indexName","clinical_cases");
-            paramObj.addProperty("hospitalID","public");
+            String queryBufStr = queryBuf.toString();
+            query = query + " AND " + queryBufStr;
+            paramObj.addProperty("query", query);
+            paramObj.addProperty("indexName", "clinical_cases");
+            paramObj.addProperty("hospitalID", "public");
             newParam = gson.toJson(paramObj);
-            logger.info("处理后请求参数="+newParam);
-        }catch (Exception e){
-            ParamUtils.errorParam(req,resp);
+            logger.info("处理后请求参数=" + newParam);
+        } catch (Exception e) {
+            ParamUtils.errorParam(req, resp);
             return;
         }
         CaseSearchParser caseSearchParser = new CaseSearchParser(newParam);
-        try{
+        try {
             String searchResultStr = caseSearchParser.parser();
-            viewer.viewString(searchResultStr,resp,req);
-        }catch (Exception e){
-            ParamUtils.errorParam("搜索失败",req,resp);
+            viewer.viewString(searchResultStr, resp, req);
+        } catch (Exception e) {
+            ParamUtils.errorParam("搜索失败", req, resp);
             return;
         }
     }

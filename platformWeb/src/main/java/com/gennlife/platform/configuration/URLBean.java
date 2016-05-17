@@ -46,6 +46,30 @@ public class URLBean {
      * 知识库搜索
      */
     private String knowledgeURL = null;
+    /**
+     * 详情页总接口：唐乾斌提供
+     */
+    private String caseVisit_detail = null;
+    /**
+     * 详情页体检接口:唐乾斌提供
+     */
+    private String caseLab_result_item = null;
+
+    public String getCaseLab_result_item() {
+        return caseLab_result_item;
+    }
+
+    public void setCaseLab_result_item(String caseLab_result_item) {
+        this.caseLab_result_item = caseLab_result_item;
+    }
+
+    public String getCaseVisit_detail() {
+        return caseVisit_detail;
+    }
+
+    public void setCaseVisit_detail(String caseVisit_detail) {
+        this.caseVisit_detail = caseVisit_detail;
+    }
 
     public String getKnowledgeURL() {
         return knowledgeURL;
