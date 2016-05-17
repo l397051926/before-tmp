@@ -174,4 +174,25 @@ public class DetailProcessor {
         logger.info("LabResultItem result="+url);
         viewer.viewString(result,resp,req);
     }
+
+    /**
+     * 检验项列表
+     * @param req
+     * @param resp
+     */
+    public void labResultItemList(HttpServletRequest req, HttpServletResponse resp) {
+        String param = null;
+        try{
+            param = ParamUtils.getParam(req);
+            logger.info("LabResultItemList param="+param);
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
+        String url = ConfigurationService.getUrlBean().getCaseLab_result_item_list();
+        logger.info("LabResultItemList url="+url);
+        String result = HttpRequestUtils.httpPost(url,param);
+        logger.info("LabResultItemList result="+url);
+        viewer.viewString(result,resp,req);
+    }
 }

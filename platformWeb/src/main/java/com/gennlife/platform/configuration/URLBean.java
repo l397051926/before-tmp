@@ -58,6 +58,18 @@ public class URLBean {
      * 搜索首页,疾病搜索基因
      */
     private String knowledgeDiseaseSearchGenesURL = null;
+    /**
+     * 检验项列表
+     */
+    private String caseLab_result_item_list = null;
+
+    public String getCaseLab_result_item_list() {
+        return caseLab_result_item_list;
+    }
+
+    public void setCaseLab_result_item_list(String caseLab_result_item_list) {
+        this.caseLab_result_item_list = caseLab_result_item_list;
+    }
 
     public String getKnowledgeDiseaseSearchGenesURL() {
         return knowledgeDiseaseSearchGenesURL;
