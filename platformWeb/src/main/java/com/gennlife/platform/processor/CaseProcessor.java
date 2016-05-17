@@ -284,12 +284,16 @@ public class CaseProcessor {
             }
             JsonArray filters = paramObj.getAsJsonArray("filters");
             String queryBufStr = ParamUtils.queryExpression(filters);
-            query = query + " AND " + queryBufStr;
+            if(!"".equals(query)){
+                query = query + " AND " + queryBufStr;
+            }
             paramObj.addProperty("query", query);
             paramObj.addProperty("indexName", "clinical_cases");
             paramObj.addProperty("hospitalID", "public");
             paramObj.remove("from");
             paramObj.remove("to");
+            paramObj.remove("filters");
+            paramObj.remove("isAdv");
             newParam = gson.toJson(paramObj);
             logger.info("处理后请求参数=" + newParam);
         } catch (Exception e) {
