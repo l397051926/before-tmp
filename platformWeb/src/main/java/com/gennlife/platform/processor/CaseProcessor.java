@@ -134,6 +134,7 @@ public class CaseProcessor {
         String indexName = null;
         String size = null;
         String dicName = null;
+        String page = null;
         ResultBean resultBean = new ResultBean();
         try{
             param = ParamUtils.getParam(req);
@@ -147,6 +148,9 @@ public class CaseProcessor {
                 size = paramObj.get("size").getAsString();
             }
             dicName = paramObj.get("dicName").getAsString();
+            if(paramObj.get("page") != null){
+                page = paramObj.get("page").getAsString();
+            }
         }catch (Exception e){
             ParamUtils.errorParam(req,resp);
             return;
@@ -157,11 +161,17 @@ public class CaseProcessor {
         if(size == null){
             size = "5";
         }
-        CaseSuggestParser parserIndex = new CaseSuggestParser(indexName,dicName,keywords,size);
+        if(page == null){
+            page = "1";
+        }
+        CaseSuggestParser parserIndex = new CaseSuggestParser(indexName,dicName,keywords,size,page);
         Set<String> set = new HashSet<String>();
+        int count = 0;
         try {
             String data = parserIndex.parser();
-            JsonArray dataArray = (JsonArray) jsonParser.parse(data);
+            JsonObject dataObj = (JsonObject) jsonParser.parse(data);
+            count = dataObj.get("total").getAsInt();
+            JsonArray dataArray = dataObj.getAsJsonArray("words");
             for(JsonElement json:dataArray){
                 String key = json.getAsString();
                 set.add(key);
@@ -172,8 +182,11 @@ public class CaseProcessor {
             ParamUtils.errorParam("请求出错",req,resp);
             return;
         }
+        Map<String,Object> map = new HashMap<String, Object>();
+        map.put("counter",count);
         resultBean.setCode(1);
         resultBean.setData(set);
+        resultBean.setInfo(map);
         viewer.viewString(gson.toJson(resultBean),resp,req);
     }
 
@@ -256,6 +269,18 @@ public class CaseProcessor {
                         query = query +","+k;
                     }
                 }
+            }else if("gene".equals(from) && "case".equals(to)){//基因到病历
+
+            }else if("variation".equals(from) && "case".equals(to)){//变异到病历
+
+            }else if("".equals(from) && "case".equals(to)){
+
+            }
+            JsonArray filters = paramObj.getAsJsonArray("filters");
+            for(JsonElement filerElement:filters){
+                JsonObject filer = filerElement.getAsJsonObject();
+                String dataType = filer.get("dataType").getAsString();
+                String type = filer.get("type").getAsString();
             }
             paramObj.addProperty("query",query);
             paramObj.addProperty("indexName","clinical_cases");
@@ -274,7 +299,5 @@ public class CaseProcessor {
             ParamUtils.errorParam("搜索失败",req,resp);
             return;
         }
-
-
     }
 }
