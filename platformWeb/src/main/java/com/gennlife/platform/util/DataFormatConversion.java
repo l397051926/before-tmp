@@ -25,7 +25,34 @@ public class DataFormatConversion {
 	static {
 		tmpJc.parse(template);
 	}
-//	@Test
+	/**
+	 * 知识库数据格式转换到ui service数据格式
+	 * @param fromAToB 例：fromAToB="disease_phenotype";表示从疾病查表型
+	 * @param ja
+	 * @return
+	 */
+	public static org.json.JSONArray knowledge2UIService(String fromAToB,JSONArray ja){
+		org.json.JSONArray data = new org.json.JSONArray();
+		if(null==ja||0==ja.size()){
+			return data;
+		}
+		Object formatObj = tmpJc.read("@."+fromAToB);
+		Map<String,Object> map = (Map<String,Object>) formatObj;
+		JSONObject metaData = new JSONObject(map);
+		for(int i=0,j=ja.size();i<j;i++){
+			Object oldObjTemp = ja.get(i);
+			JSONObject sourceData = null;
+			if(oldObjTemp instanceof Map){
+				sourceData = new JSONObject((Map)ja.get(i));
+			}else{
+				sourceData = (JSONObject)ja.get(i);
+			}
+			JSONObject newObj = tranlate(metaData, sourceData);
+			data.put(newObj);
+		}
+		return data;
+	}
+	
 	public static org.json.JSONArray testTemplate(String fromAToB,String json){
 		JsonContext jc = new JsonContext();
 		jc.parse(json);
