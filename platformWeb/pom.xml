@@ -181,8 +181,41 @@
       <groupId>com.belerweb</groupId>
       <artifactId>pinyin4j</artifactId>
     </dependency>
+    <dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<version>2.2.0</version>
+	</dependency>
+	<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20160212</version>
+	</dependency>
   </dependencies>
   <build>
     <finalName>ROOT</finalName>
   </build>
+  <repositories>
+		<repository>
+			<id>CN</id>
+			<name>OSChina Central</name>
+			<layout>default</layout>
+			<url>http://maven.oschina.net/content/groups/public/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>alibaba-opensource</id>
+			<name>alibaba-opensource</name>
+			<url>http://code.alibabatech.com/mvn/releases/</url>
+			<layout>default</layout>
+		</repository>
+		<repository>
+			<id>alibaba-opensource-snapshot</id>
+			<name>alibaba-opensource-snapshot</name>
+			<url>http://code.alibabatech.com/mvn/snapshots/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
 </project>
