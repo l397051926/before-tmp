@@ -1,6 +1,7 @@
 package com.gennlife.platform.util;
 
 import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.parse.QueryServerParser;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Set;
 
 /**
  * Created by chensong on 2015/12/9.
@@ -228,5 +230,38 @@ public class ParamUtils {
         }
         String queryBufStr = queryBuf.toString();
         return queryBufStr;
+    }
+
+
+    public static String buildQuery(JsonObject paramObj) throws Exception {
+        logger.info("处理前请求参数=" + gson.toJson(paramObj));
+        String from = paramObj.get("from").getAsString();
+        String to = paramObj.get("to").getAsString();
+        int currentPage = paramObj.get("page").getAsInt();
+        int pageSize = paramObj.get("size").getAsInt();
+        String query = paramObj.get("query").getAsString();
+        if ("case".equals(from) && "case".equals(to)) {
+            boolean isAdv = paramObj.get("isAdv").getAsBoolean();
+            if (!isAdv && !"".equals(query)) {
+                QueryServerParser queryServerParser = new QueryServerParser(query);
+                Set<String> set = queryServerParser.parser();
+                for (String k : set) {
+                    query = query + "," + k;
+                }
+            }
+        } else if ("gene".equals(from) && "case".equals(to)) {//基因到病历
+
+        } else if ("variation".equals(from) && "case".equals(to)) {//变异到病历
+
+        } else if ("disease".equals(from) && "case".equals(to)) {//疾病到病历
+
+        }
+        JsonArray filters = paramObj.getAsJsonArray("filters");
+        String queryBufStr = ParamUtils.queryExpression(filters);
+        if(!"".equals(query)){
+            query = query + " AND " + queryBufStr;
+        }
+
+        return query;
     }
 }

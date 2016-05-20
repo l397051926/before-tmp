@@ -260,35 +260,8 @@ public class CaseProcessor {
             param = ParamUtils.getParam(req);
             logger.info("SearchCase param=" + param);
             paramObj = (JsonObject) jsonParser.parse(param);
-            logger.info("处理前请求参数=" + gson.toJson(paramObj));
-            String from = paramObj.get("from").getAsString();
-            String to = paramObj.get("to").getAsString();
-            int currentPage = paramObj.get("page").getAsInt();
-            int pageSize = paramObj.get("size").getAsInt();
-            String query = paramObj.get("query").getAsString();
-            if ("case".equals(from) && "case".equals(to)) {
-                boolean isAdv = paramObj.get("isAdv").getAsBoolean();
-                if (!isAdv && !"".equals(query)) {
-                    QueryServerParser queryServerParser = new QueryServerParser(query);
-                    Set<String> set = queryServerParser.parser();
-                    for (String k : set) {
-                        query = query + "," + k;
-                    }
-                }
-            } else if ("gene".equals(from) && "case".equals(to)) {//基因到病历
-
-            } else if ("variation".equals(from) && "case".equals(to)) {//变异到病历
-
-            } else if ("disease".equals(from) && "case".equals(to)) {//疾病到病历
-
-            }
-            JsonArray filters = paramObj.getAsJsonArray("filters");
-            String queryBufStr = ParamUtils.queryExpression(filters);
-            if(!"".equals(query)){
-                query = query + " AND " + queryBufStr;
-            }
+            String query = ParamUtils.buildQuery(paramObj);
             paramObj.addProperty("query", query);
-            paramObj.addProperty("indexName", "clinical_cases");
             paramObj.addProperty("hospitalID", "public");
             paramObj.remove("from");
             paramObj.remove("to");
@@ -337,5 +310,31 @@ public class CaseProcessor {
         String url = ConfigurationService.getUrlBean().getKnowledgeDiseaseSearchGenesURL();
         String resultStr = HttpRequestUtils.httpPost(url,paramStr);
         viewer.viewString(resultStr,resp,req);
+    }
+
+    /**
+     * 导出样本集到项目空间
+     * @param req
+     * @param resp
+     */
+    public void sampleImport(HttpServletRequest req, HttpServletResponse resp) {
+        String param = null;
+        JsonObject paramObj = null;
+        try{
+            param = ParamUtils.getParam(req);
+            logger.info("SearchCase param=" + param);
+            paramObj = (JsonObject) jsonParser.parse(param);
+            String query = ParamUtils.buildQuery(paramObj);
+            paramObj.addProperty("query", query);
+            paramObj.addProperty("hospitalID", "public");
+            paramObj.remove("from");
+            paramObj.remove("to");
+            paramObj.remove("filters");
+            paramObj.remove("isAdv");
+        }catch (Exception e){
+            ParamUtils.errorParam(req, resp);
+            return;
+        }
+
     }
 }

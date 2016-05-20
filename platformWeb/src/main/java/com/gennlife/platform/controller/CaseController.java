@@ -63,6 +63,13 @@ public class CaseController extends HttpServlet {
                 logger.error("返回该疾病相关基因", e);
             }
             logger.info("返回该疾病相关基因 耗时:" + (System.currentTimeMillis() - start) + "ms");
+        }else if("/case/SampleImport".equals(uri)){
+            try {
+                processor.sampleImport(req, resp);
+            } catch (Exception e) {
+                logger.error("样本集导出到项目空间", e);
+            }
+            logger.info("样本集导出到项目空间 耗时:" + (System.currentTimeMillis() - start) + "ms");
         }
     }
 

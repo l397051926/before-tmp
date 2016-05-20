@@ -4,6 +4,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.internal.bind.DateTypeAdapter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +14,7 @@ import java.util.Map;
  * Created by chen-song on 16/5/6.
  */
 public class KnowledgeBuilder {
+    private Logger logger = LoggerFactory.getLogger(KnowledgeBuilder.class);
     /**
      * 按照格式,构建最终结果
      * @param param
@@ -43,6 +46,7 @@ public class KnowledgeBuilder {
         String from = param.get("from").getAsString();
         result.add(head);
         JsonArray body = new JsonArray();
+        long start = System.currentTimeMillis();
         JsonArray dataArray = obj.getAsJsonArray("data");
         for(JsonElement data:dataArray){
             JsonObject bodyEntity = new JsonObject();
@@ -79,6 +83,8 @@ public class KnowledgeBuilder {
             }
 
         }
+        long end = System.currentTimeMillis() -start;
+        logger.info("buildPhenotype="+end +"ms");
         result.add(body);
         return result;
     }
@@ -260,6 +266,7 @@ public class KnowledgeBuilder {
         String query = param.get("query").getAsString();
         //body
         JsonArray body = new JsonArray();
+
         JsonArray dataArray = obj.getAsJsonArray("data");
         for(JsonElement data:dataArray){
             JsonObject bodyEntity = new JsonObject();

@@ -62,6 +62,54 @@ public class URLBean {
      * 检验项列表
      */
     private String caseLab_result_item_list = null;
+    /**
+     * 基因信息接口:搜索首页
+     */
+    private String knowledgeGeneInfoURL = null;
+    /**
+     * 变异信息接口:搜索首页
+     */
+    private String knowledgeVariationInfoURL = null;
+    /**
+     *
+     */
+    private String knowledgeDetailVariationSearchDiseaseURL = null;
+    /**
+     *
+     */
+    private String knowledgeDetailVariationSearchDrugURL = null;
+
+    public String getKnowledgeDetailVariationSearchDiseaseURL() {
+        return knowledgeDetailVariationSearchDiseaseURL;
+    }
+
+    public void setKnowledgeDetailVariationSearchDiseaseURL(String knowledgeDetailVariationSearchDiseaseURL) {
+        this.knowledgeDetailVariationSearchDiseaseURL = knowledgeDetailVariationSearchDiseaseURL;
+    }
+
+    public String getKnowledgeDetailVariationSearchDrugURL() {
+        return knowledgeDetailVariationSearchDrugURL;
+    }
+
+    public void setKnowledgeDetailVariationSearchDrugURL(String knowledgeDetailVariationSearchDrugURL) {
+        this.knowledgeDetailVariationSearchDrugURL = knowledgeDetailVariationSearchDrugURL;
+    }
+
+    public String getKnowledgeVariationInfoURL() {
+        return knowledgeVariationInfoURL;
+    }
+
+    public void setKnowledgeVariationInfoURL(String knowledgeVariationInfoURL) {
+        this.knowledgeVariationInfoURL = knowledgeVariationInfoURL;
+    }
+
+    public String getKnowledgeGeneInfoURL() {
+        return knowledgeGeneInfoURL;
+    }
+
+    public void setKnowledgeGeneInfoURL(String knowledgeGeneInfoURL) {
+        this.knowledgeGeneInfoURL = knowledgeGeneInfoURL;
+    }
 
     public String getCaseLab_result_item_list() {
         return caseLab_result_item_list;

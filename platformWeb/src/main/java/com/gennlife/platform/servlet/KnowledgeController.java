@@ -33,6 +33,34 @@ public class KnowledgeController extends HttpServlet {
             }
             logger.info("知识库搜索 耗时:" + (System.currentTimeMillis()-start) +"ms");
 
+        }else if("/knowledge/GeneInfo".equals(uri)){
+            try{
+                processor.geneInfo(req,resp);
+            }catch (Exception e){
+                logger.error("搜索首页基因信息查询",e);
+            }
+            logger.info("搜索首页基因信息查询 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/knowledge/VariationInfo".equals(uri)){
+            try{
+                processor.variationInfo(req,resp);
+            }catch (Exception e){
+                logger.error("搜索首页变异信息查询",e);
+            }
+            logger.info("搜索首页知识库搜索 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/knowledge/DetailVariationSearchDisease".equals(uri)){
+            try{
+                processor.detailVariationSearchDisease(req,resp);
+            }catch (Exception e){
+                logger.error("详情页,变异信息查询疾病",e);
+            }
+            logger.info("详情页,变异信息查询疾病 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/knowledge/DetailVariationSearchDrug".equals(uri)){
+            try{
+                processor.detailVariationSearchDrug(req,resp);
+            }catch (Exception e){
+                logger.error("详情页,变异信息查询药物",e);
+            }
+            logger.info("详情页,变异信息查询药物 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }
     }
 }
