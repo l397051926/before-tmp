@@ -1,11 +1,10 @@
 package com.gennlife.platform.build;
 
+import com.gennlife.platform.util.DataFormatConversion;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.internal.bind.DateTypeAdapter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +13,6 @@ import java.util.Map;
  * Created by chen-song on 16/5/6.
  */
 public class KnowledgeBuilder {
-    private Logger logger = LoggerFactory.getLogger(KnowledgeBuilder.class);
     /**
      * 按照格式,构建最终结果
      * @param param
@@ -46,8 +44,17 @@ public class KnowledgeBuilder {
         String from = param.get("from").getAsString();
         result.add(head);
         JsonArray body = new JsonArray();
-        long start = System.currentTimeMillis();
         JsonArray dataArray = obj.getAsJsonArray("data");
+        
+        //add by 唐乾斌 05.20
+        String to = param.get("to").getAsString();
+        String fromAToB = from+"_"+to;
+        JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromAToB, dataArray);
+        if(null!=bodyRtn&&0<bodyRtn.size()){
+        	body = bodyRtn;
+        }
+        /**
+         * 
         for(JsonElement data:dataArray){
             JsonObject bodyEntity = new JsonObject();
             body.add(bodyEntity);
@@ -83,8 +90,7 @@ public class KnowledgeBuilder {
             }
 
         }
-        long end = System.currentTimeMillis() -start;
-        logger.info("buildPhenotype="+end +"ms");
+        */
         result.add(body);
         return result;
     }
@@ -122,6 +128,16 @@ public class KnowledgeBuilder {
         result.add(head);
         JsonArray body = new JsonArray();
         JsonArray dataArray = obj.getAsJsonArray("data");
+        //add by 唐乾斌 05.20
+        String to = param.get("to").getAsString();
+        String fromAToB = from+"_"+to;
+        JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromAToB, dataArray);
+        if(null!=bodyRtn&&0<bodyRtn.size()){
+        	body = bodyRtn;
+        }
+        /**
+         * 
+        
         for(JsonElement data:dataArray){
             JsonObject bodyEntity = new JsonObject();
             body.add(bodyEntity);
@@ -170,6 +186,7 @@ public class KnowledgeBuilder {
             bodyEntity.add("ref",refArray);
 
         }
+        */
         result.add(body);
         return result;
 
@@ -182,6 +199,15 @@ public class KnowledgeBuilder {
         JsonArray body = new JsonArray();
         String from = param.get("from").getAsString();
         JsonArray dataArray = obj.getAsJsonArray("data");
+        //add by 唐乾斌 05.20
+        String to = param.get("to").getAsString();
+        String fromAToB = from+"_"+to;
+        JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromAToB, dataArray);
+        if(null!=bodyRtn&&0<bodyRtn.size()){
+        	body = bodyRtn;
+        }
+        /**
+         * 
         for(JsonElement data:dataArray){
             JsonObject bodyEntity = new JsonObject();
             body.add(bodyEntity);
@@ -214,6 +240,7 @@ public class KnowledgeBuilder {
             refArray.add(ref);
             bodyEntity.add("ref",refArray);
         }
+        */
         result.add(body);
         return result;
     }
@@ -224,6 +251,16 @@ public class KnowledgeBuilder {
         result.add(head);
         JsonArray body = new JsonArray();
         JsonArray dataArray = obj.getAsJsonArray("data");
+        String from = param.get("from").getAsString();
+        //add by 唐乾斌 05.20
+        String to = param.get("to").getAsString();
+        String fromAToB = from+"_"+to;
+        JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromAToB, dataArray);
+        if(null!=bodyRtn&&0<bodyRtn.size()){
+        	body = bodyRtn;
+        }
+        /**
+         * 
         for(JsonElement data:dataArray){
             JsonObject bodyEntity = new JsonObject();
             body.add(bodyEntity);
@@ -253,6 +290,7 @@ public class KnowledgeBuilder {
             refArray.add(ref);
             bodyEntity.add("ref",refArray);
         }
+        */
         result.add(body);
         return result;
     }
@@ -263,11 +301,21 @@ public class KnowledgeBuilder {
         JsonObject head = buildHead(param,obj);
         result.add(head);
         String from = param.get("from").getAsString();
+        
         String query = param.get("query").getAsString();
         //body
         JsonArray body = new JsonArray();
-
         JsonArray dataArray = obj.getAsJsonArray("data");
+        //add by 唐乾斌 05.20
+        String to = param.get("to").getAsString();
+        String fromAToB = from+"_"+to;
+        JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromAToB, dataArray);
+        if(null!=bodyRtn&&0<bodyRtn.size()){
+        	body = bodyRtn;
+        }
+        /**
+         * 
+         
         for(JsonElement data:dataArray){
             JsonObject bodyEntity = new JsonObject();
             body.add(bodyEntity);
@@ -365,6 +413,7 @@ public class KnowledgeBuilder {
             refArray.add(ref);
             bodyEntity.add("ref",refArray);
         }
+        */
         result.add(body);
         return result;
     }
