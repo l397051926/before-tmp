@@ -55,6 +55,27 @@ public class DetailController  extends HttpServlet {
                 logger.error("查看指标变化,具体指标",e);
             }
             logger.info("查看指标变化,具体指标 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/detail/VisitDetail".equals(uri)){
+            try{
+                processor.visitDetail(req,resp);
+            }catch (Exception e){
+                logger.error("详情页总接口：唐乾斌提供",e);
+            }
+            logger.info("详情页总接口：唐乾斌提供 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/detail/LabResultItem".equals(uri)){
+            try{
+                processor.labResultItem(req,resp);
+            }catch (Exception e){
+                logger.error("详情页总接口：唐乾斌提供",e);
+            }
+            logger.info("详情页总接口：唐乾斌提供 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/detail/LabResultItemList".equals(uri)){
+            try{
+                processor.labResultItemList(req,resp);
+            }catch (Exception e){
+                logger.error("检验项列表",e);
+            }
+            logger.info("检验项列表 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }
 
     }

@@ -1,8 +1,12 @@
 package com.gennlife.platform.util;
 
 import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.parse.QueryServerParser;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Set;
 
 /**
  * Created by chensong on 2015/12/9.
@@ -93,5 +98,170 @@ public class ParamUtils {
         resultBean.setInfo(info);
         String data = gson.toJson(resultBean);
         viewer.viewString(data, resp, req);
+    }
+
+    /**
+     *
+     * @param filters 前端发过来的病历搜索 过滤条件
+     * @return
+     */
+    public static String queryExpression(JsonArray filters){
+        StringBuffer queryBuf = new StringBuffer();
+        for (JsonElement filterElement : filters) {
+            JsonObject filter = filterElement.getAsJsonObject();
+            String dataType = filter.get("dataType").getAsString();
+            String IndexFieldName = filter.get("IndexFieldName").getAsString();
+            int type = filter.get("type").getAsInt();
+            JsonArray values = filter.get("values").getAsJsonArray();
+            if (queryBuf.length() != 0) {
+                queryBuf.append(" ")
+                        .append("AND")
+                        .append(" ");
+            }
+            queryBuf.append("(");
+            if (type == 0 || type == 1) {//type 取 0 或 1
+                int count = 0;
+                for (JsonElement valueElement : values) {
+                    count++;
+                    if (count > 1) {
+                        queryBuf.append(" ")
+                                .append("OR")
+                                .append(" ");
+                    }
+                    if ("string".equals(dataType)) {
+                        String value = valueElement.getAsString();
+                        queryBuf.append("[")
+                                .append(IndexFieldName)
+                                .append("]")
+                                .append(" ")
+                                .append("包含")
+                                .append(" ")
+                                .append(value);
+                    } else if ("long".equals(dataType)) {
+                        Long value = valueElement.getAsLong();
+                        queryBuf.append("[")
+                                .append(IndexFieldName)
+                                .append("]")
+                                .append(" ")
+                                .append("=")
+                                .append(" ")
+                                .append(value);
+                    }
+                }
+
+            } else if (type == 2) {
+                int count = 0;
+                for (JsonElement valueElement : values) {
+                    count++;
+                    if (count > 1) {
+                        queryBuf.append(" ")
+                                .append("OR")
+                                .append(" ");
+                    }
+                    JsonArray subValues = valueElement.getAsJsonArray();
+                    int subCount = 0;
+                    for (JsonElement subElement : subValues) {
+                        subCount++;
+                        if ("string".equals(dataType)) {
+                            String value = subElement.getAsString();
+                            queryBuf.append("[")
+                                    .append(IndexFieldName)
+                                    .append("]")
+                                    .append(" ")
+                                    .append("包含")
+                                    .append(" ")
+                                    .append(value);
+                        } else if ("long".equals(dataType)) {
+                            Long value = subElement.getAsLong();
+                            if (subCount == 1) {
+                                queryBuf.append("(")
+                                        .append("[")
+                                        .append(IndexFieldName)
+                                        .append("]")
+                                        .append(" ")
+                                        .append(">=")
+                                        .append(" ")
+                                        .append(value)
+                                        .append(" ");
+                            } else if (subCount == 2) {
+                                queryBuf.append(" ")
+                                        .append("AND")
+                                        .append(" ")
+                                        .append("[")
+                                        .append(IndexFieldName)
+                                        .append("]")
+                                        .append(" ")
+                                        .append("<")
+                                        .append(" ")
+                                        .append(value)
+                                        .append(")");
+                            }
+
+                        } else if ("date".equals(dataType)) {
+                            String value = subElement.getAsString();
+                            if (subCount == 1) {
+                                queryBuf.append("(")
+                                        .append("[")
+                                        .append(IndexFieldName)
+                                        .append("]")
+                                        .append(" ")
+                                        .append("早于")
+                                        .append(" ")
+                                        .append(value);
+                            } else if (subCount == 2) {
+                                queryBuf.append(" ")
+                                        .append("AND")
+                                        .append(" ")
+                                        .append("[")
+                                        .append(IndexFieldName)
+                                        .append("]")
+                                        .append(" ")
+                                        .append("晚于")
+                                        .append(" ")
+                                        .append(value)
+                                        .append(")");
+                            }
+                        }
+                    }
+                }
+
+            }
+            queryBuf.append(")");
+        }
+        String queryBufStr = queryBuf.toString();
+        return queryBufStr;
+    }
+
+
+    public static String buildQuery(JsonObject paramObj) throws Exception {
+        logger.info("处理前请求参数=" + gson.toJson(paramObj));
+        String from = paramObj.get("from").getAsString();
+        String to = paramObj.get("to").getAsString();
+        int currentPage = paramObj.get("page").getAsInt();
+        int pageSize = paramObj.get("size").getAsInt();
+        String query = paramObj.get("query").getAsString();
+        if ("case".equals(from) && "case".equals(to)) {
+            boolean isAdv = paramObj.get("isAdv").getAsBoolean();
+            if (!isAdv && !"".equals(query)) {
+                QueryServerParser queryServerParser = new QueryServerParser(query);
+                Set<String> set = queryServerParser.parser();
+                for (String k : set) {
+                    query = query + "," + k;
+                }
+            }
+        } else if ("gene".equals(from) && "case".equals(to)) {//基因到病历
+
+        } else if ("variation".equals(from) && "case".equals(to)) {//变异到病历
+
+        } else if ("disease".equals(from) && "case".equals(to)) {//疾病到病历
+
+        }
+        JsonArray filters = paramObj.getAsJsonArray("filters");
+        String queryBufStr = ParamUtils.queryExpression(filters);
+        if(!"".equals(query)){
+            query = query + " AND " + queryBufStr;
+        }
+
+        return query;
     }
 }

@@ -12,13 +12,14 @@ import java.util.concurrent.Callable;
  */
 public class CaseSuggestParser implements Callable<String> {
     private String url ;
-    public CaseSuggestParser(String indexName,String dicName,String keywords,String size){
+    public CaseSuggestParser(String indexName,String dicName,String keywords,String size,String page){
         this.url = String.format(
                 ConfigurationService.getUrlBean().getCaseSuggestURL(),
                 ParamUtils.encodeURI(indexName),
                 ParamUtils.encodeURI(dicName),
                 ParamUtils.encodeURI(keywords),
-                ParamUtils.encodeURI(size)
+                ParamUtils.encodeURI(size),
+                ParamUtils.encodeURI(page)
         );
     }
 

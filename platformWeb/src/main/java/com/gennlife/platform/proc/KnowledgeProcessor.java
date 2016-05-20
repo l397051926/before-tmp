@@ -7,10 +7,7 @@ import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -104,4 +101,88 @@ public class KnowledgeProcessor {
         return set.contains(from);
     }
 
+    /**
+     * 查询基因相关信息
+     * @param req
+     * @param resp
+     */
+    public void geneInfo(HttpServletRequest req, HttpServletResponse resp) {
+        JsonArray Gene = null;
+        try{
+            String param = ParamUtils.getParam(req);
+            logger.info("GeneInfo param="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            Gene = paramObj.getAsJsonArray("Gene");
+        }catch (Exception e){
+            logger.error("请求参数出错", e);
+            ParamUtils.errorParam("请求参数出错", req, resp);
+            return;
+        }
+        JsonObject newParam = new JsonObject();
+        newParam.add("Gene",Gene);
+        String paramStr = gson.toJson(newParam);
+        String url = ConfigurationService.getUrlBean().getKnowledgeGeneInfoURL();
+        String resultStr = HttpRequestUtils.httpPost(url,paramStr);
+        viewer.viewString(resultStr,resp,req);
+    }
+
+    public void variationInfo(HttpServletRequest req, HttpServletResponse resp) {
+
+        JsonArray Variation = null;
+        try{
+            String param = ParamUtils.getParam(req);
+            logger.info("VariationInfo param="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            Variation = paramObj.getAsJsonArray("Variation");
+        }catch (Exception e){
+            logger.error("请求参数出错", e);
+            ParamUtils.errorParam("请求参数出错", req, resp);
+            return;
+        }
+        JsonObject newParam = new JsonObject();
+        newParam.add("Variation",Variation);
+        String paramStr = gson.toJson(newParam);
+        String url = ConfigurationService.getUrlBean().getKnowledgeVariationInfoURL();
+        String resultStr = HttpRequestUtils.httpPost(url,paramStr);
+        viewer.viewString(resultStr,resp,req);
+    }
+
+    public void detailVariationSearchDisease(HttpServletRequest req, HttpServletResponse resp) {
+        JsonArray Variation = null;
+        try{
+            String param = ParamUtils.getParam(req);
+            logger.info("DetailVariationSearchDisease param="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            Variation = paramObj.getAsJsonArray("Variation");
+        }catch (Exception e){
+            logger.error("请求参数出错", e);
+            ParamUtils.errorParam("请求参数出错", req, resp);
+            return;
+        }
+        JsonObject newParam = new JsonObject();
+        newParam.add("Variation",Variation);
+        String paramStr = gson.toJson(newParam);
+        String url = ConfigurationService.getUrlBean().getKnowledgeDetailVariationSearchDiseaseURL();
+        String resultStr = HttpRequestUtils.httpPost(url,paramStr);
+        viewer.viewString(resultStr,resp,req);
+    }
+
+    public void detailVariationSearchDrug(HttpServletRequest req, HttpServletResponse resp) {
+        JsonArray Variation = null;
+        try{
+            String param = ParamUtils.getParam(req);
+            logger.info("DetailVariationSearchDrug param="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            Variation = paramObj.getAsJsonArray("Variation");
+        }catch (Exception e){
+            logger.error("请求参数出错", e);
+            ParamUtils.errorParam("请求参数出错", req, resp);
+            return;
+        }
+        JsonObject newParam = new JsonObject();
+        newParam.add("Variation",Variation);
+        String paramStr = gson.toJson(newParam);
+
+
+    }
 }

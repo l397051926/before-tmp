@@ -46,6 +46,102 @@ public class URLBean {
      * 知识库搜索
      */
     private String knowledgeURL = null;
+    /**
+     * 详情页总接口：唐乾斌提供
+     */
+    private String caseVisit_detail = null;
+    /**
+     * 详情页体检接口:唐乾斌提供
+     */
+    private String caseLab_result_item = null;
+    /**
+     * 搜索首页,疾病搜索基因
+     */
+    private String knowledgeDiseaseSearchGenesURL = null;
+    /**
+     * 检验项列表
+     */
+    private String caseLab_result_item_list = null;
+    /**
+     * 基因信息接口:搜索首页
+     */
+    private String knowledgeGeneInfoURL = null;
+    /**
+     * 变异信息接口:搜索首页
+     */
+    private String knowledgeVariationInfoURL = null;
+    /**
+     *
+     */
+    private String knowledgeDetailVariationSearchDiseaseURL = null;
+    /**
+     *
+     */
+    private String knowledgeDetailVariationSearchDrugURL = null;
+
+    public String getKnowledgeDetailVariationSearchDiseaseURL() {
+        return knowledgeDetailVariationSearchDiseaseURL;
+    }
+
+    public void setKnowledgeDetailVariationSearchDiseaseURL(String knowledgeDetailVariationSearchDiseaseURL) {
+        this.knowledgeDetailVariationSearchDiseaseURL = knowledgeDetailVariationSearchDiseaseURL;
+    }
+
+    public String getKnowledgeDetailVariationSearchDrugURL() {
+        return knowledgeDetailVariationSearchDrugURL;
+    }
+
+    public void setKnowledgeDetailVariationSearchDrugURL(String knowledgeDetailVariationSearchDrugURL) {
+        this.knowledgeDetailVariationSearchDrugURL = knowledgeDetailVariationSearchDrugURL;
+    }
+
+    public String getKnowledgeVariationInfoURL() {
+        return knowledgeVariationInfoURL;
+    }
+
+    public void setKnowledgeVariationInfoURL(String knowledgeVariationInfoURL) {
+        this.knowledgeVariationInfoURL = knowledgeVariationInfoURL;
+    }
+
+    public String getKnowledgeGeneInfoURL() {
+        return knowledgeGeneInfoURL;
+    }
+
+    public void setKnowledgeGeneInfoURL(String knowledgeGeneInfoURL) {
+        this.knowledgeGeneInfoURL = knowledgeGeneInfoURL;
+    }
+
+    public String getCaseLab_result_item_list() {
+        return caseLab_result_item_list;
+    }
+
+    public void setCaseLab_result_item_list(String caseLab_result_item_list) {
+        this.caseLab_result_item_list = caseLab_result_item_list;
+    }
+
+    public String getKnowledgeDiseaseSearchGenesURL() {
+        return knowledgeDiseaseSearchGenesURL;
+    }
+
+    public void setKnowledgeDiseaseSearchGenesURL(String knowledgeDiseaseSearchGenesURL) {
+        this.knowledgeDiseaseSearchGenesURL = knowledgeDiseaseSearchGenesURL;
+    }
+
+    public String getCaseLab_result_item() {
+        return caseLab_result_item;
+    }
+
+    public void setCaseLab_result_item(String caseLab_result_item) {
+        this.caseLab_result_item = caseLab_result_item;
+    }
+
+    public String getCaseVisit_detail() {
+        return caseVisit_detail;
+    }
+
+    public void setCaseVisit_detail(String caseVisit_detail) {
+        this.caseVisit_detail = caseVisit_detail;
+    }
 
     public String getKnowledgeURL() {
         return knowledgeURL;
