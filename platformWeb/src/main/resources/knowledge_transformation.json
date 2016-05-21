@@ -108,7 +108,7 @@
       "data_type": "string",
       "path": "$.term_name"
     },
-    "Gene": {
+    "gene": {
       "data_type": "array",
       "path": "$.Gene",
       "name": "geneSymbol",
@@ -124,12 +124,18 @@
   },
   "phenotype_disease": {
     "disease_id": {
-      "data_type": "string",
-      "path": "$.id"
+      "data_type": "single_array",
+      "path_one": "$.id",
+      "path_two": "$.url",
+      "name_one": "name",
+      "name_two": "url"
     },
     "disease": {
-      "data_type": "string",
-      "path": "$.name"
+      "data_type": "single_array",
+      "path_one": "$.name",
+      "path_two": "$.url",
+      "name_one": "name",
+      "name_two": "url"
     },
     "phenotype_id": {
       "data_type": "single_array",
@@ -138,23 +144,26 @@
       "name_one": "name",
       "name_two": "url"
     },
+    "icd_10": {
+      "data_type": "string",
+      "path": "$.ICD10"
+    },
     "phenotype": {
       "data_type": "string",
       "path": "$.Phenotype[0].term_name"
     },
-    "Gene": {
+    "gene": {
       "data_type": "array",
       "path": "$.Gene",
       "name": "symbol",
       "url": "url"
     },
     "ref": {
-      "data_type": "array",
-      "path": "$.Disease",
-      "name": "name",
-      "url": "url",
-      "defaultVal": [
-      ]
+      "data_type": "single_array",
+      "path_one": "$.source",
+      "path_two": "$.sourceUrl",
+      "name_one": "name",
+      "name_two": "url"
     }
   },
   "gene_disease": {

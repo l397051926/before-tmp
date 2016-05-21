@@ -205,7 +205,12 @@ public class DataFormatConversion {
 	public static Object fieldValueStr(JSONObject meta,Object sourceData){
 		String path = (String)meta.get("path");
 		JSONObject sourceObj = (JSONObject)sourceData;
-		String strValue = JsonPath.read(sourceObj.toString(), path);
+		String strValue = null;
+		try {
+			strValue = JsonPath.read(sourceObj.toString(), path);
+		} catch (Exception e) {
+			strValue = "";
+		}
 
 		return  strValue;
 	}
@@ -230,8 +235,19 @@ public class DataFormatConversion {
 		String fieldOne = (String)meta.get("name_one");
 		String fieldTwo = (String)meta.get("name_two");
 		net.minidev.json.JSONObject jo = new net.minidev.json.JSONObject();
-		jo.put(fieldOne, JsonPath.read(jsonStr, pathOne));
-		jo.put(fieldTwo, JsonPath.read(jsonStr, pathTwo));
+		try {
+			jo.put(fieldOne, JsonPath.read(jsonStr, pathOne));
+		} catch (Exception e) {
+			jo.put(fieldOne, "");
+			logger.error(e.toString());
+		}
+		try {
+			jo.put(fieldTwo, JsonPath.read(jsonStr, pathTwo));
+		} catch (Exception e) {
+			jo.put(fieldTwo, "");
+			logger.error(e.toString());
+		}
+		
 		data.add(jo);
 
 		return  data;
@@ -261,6 +277,12 @@ public class DataFormatConversion {
 		JsonContext jc = new JsonContext();
 		jc.parse(sourceData.toString());
 		Object arrayObj = jc.read(path);
+		try {
+			arrayObj = jc.read(path);
+		} catch (Exception e) {
+			arrayObj = new JSONArray();
+			logger.error(e.toString());
+		}
 		JSONArray ja = (JSONArray) arrayObj;
 		if(null==ja||0==ja.size()){
 			return data;
@@ -279,15 +301,16 @@ public class DataFormatConversion {
 		//		String strData = "drug_phenotype	http://192.168.1.111:9881/knowledge/graph?param={\"from\":\"drug\",\"to\":\"phenotype\",\"query\":\"(R)-3-BROMO-2-HYDROXY-2-METHYL-N-[4-NITRO-3-(TRIFLUOROMETHYL)PHENYL]PROPANAMIDE\",\"currentPage\":1,\"pageSize\":12,\"DEBUG\":true}";
 		//		String strData = "protein_phenotype	http://192.168.1.111:9881/knowledge/graph?param={\"from\":\"protein\",\"to\":\"phenotype\",\"query\":\"Protoheme IX farnesyltransferase, mitochondrial\",\"currentPage\":1,\"pageSize\":12,\"DEBUG\":true}";
 //		Cone-shaped epiphysis
+//		String strData = "gene_disease	http://192.168.1.111:9881/knowledge/graph?param={\"from\":\"disease\",\"to\":\"disease\",\"query\":\"Cone-shaped epiphysis\",\"currentPage\":1,\"pageSize\":12,\"DEBUG\":true}";
 //				String strData = "phenotype_disease	http://192.168.1.111:9881/knowledge/graph?param={\"from\":\"phenotype\",\"to\":\"disease\",\"query\":\"Decreased nerve conduction velocity\",\"currentPage\":1,\"pageSize\":12,\"DEBUG\":true}";
-		String strData = "phenotype_disease	http://192.168.1.111:9881/knowledge/graph?param={\"from\":\"phenotype\",\"to\":\"disease\",\"query\":\"Cone-shaped epiphysis\",\"currentPage\":1,\"pageSize\":12,\"DEBUG\":true}";
+//		String strData = "phenotype_disease	http://192.168.1.111:9881/knowledge/graph?param={\"from\":\"phenotype\",\"to\":\"disease\",\"query\":\"Cone-shaped epiphysis\",\"currentPage\":1,\"pageSize\":12,\"DEBUG\":true}";
 //				String strData = "gene_disease	http://192.168.1.111:9881/knowledge/graph?param={\"from\":\"gene\",\"to\":\"disease\",\"query\":\"FASLG\",\"currentPage\":1,\"pageSize\":12,\"DEBUG\":true}";
-		//		String strData = "protein_disease	http://192.168.1.111:9881/knowledge/graph?param={\"from\":\"protein\",\"to\":\"disease\",\"query\":\"Myoblast determination protein 1\",\"currentPage\":1,\"pageSize\":12,\"DEBUG\":true}";
+//				String strData = "protein_disease	http://192.168.1.111:9881/knowledge/graph?param={\"from\":\"protein\",\"to\":\"disease\",\"query\":\"Myoblast determination protein 1\",\"currentPage\":1,\"pageSize\":12,\"DEBUG\":true}";
 		//		String strData = "variation_disease	http://192.168.1.111:9881/knowledge/graph?param={\"from\":\"variation\",\"to\":\"disease\",\"query\":\"CN187210\",\"currentPage\":1,\"pageSize\":12,\"DEBUG\":true}";
 
 //				String strData = "disease_gene	http://192.168.1.111:9881/knowledge/graph?param={\"from\":\"disease\",\"to\":\"gene\",\"query\":\"Burkitt lymphoma, B-NHL\",\"currentPage\":1,\"pageSize\":12,\"DEBUG\":true}";
 //				String strData = "drug_gene	http://192.168.1.111:9881/knowledge/graph?param={\"from\":\"drug\",\"to\":\"gene\",\"query\":\"Chlorcyclizine\",\"currentPage\":1,\"pageSize\":12,\"DEBUG\":true}";
-//				String strData = "phenotype_gene	http://192.168.1.111:9881/knowledge/graph?param={\"from\":\"phenotype\",\"to\":\"gene\",\"query\":\"Decreased nerve conduction velocity\",\"currentPage\":1,\"pageSize\":12,\"DEBUG\":true}";
+				String strData = "phenotype_gene	http://192.168.1.111:9881/knowledge/graph?param={\"from\":\"phenotype\",\"to\":\"gene\",\"query\":\"Decreased nerve conduction velocity\",\"currentPage\":1,\"pageSize\":12,\"DEBUG\":true}";
 		//		String strData = "protein_gene	http://192.168.1.111:9881/knowledge/graph?param={\"from\":\"protein\",\"to\":\"gene\",\"query\":\"Protoheme IX farnesyltransferase, mitochondrial\",\"currentPage\":1,\"pageSize\":12,\"DEBUG\":true}";
 		//		String strData = "variation_gene	http://192.168.1.111:9881/knowledge/graph?param={\"from\":\"variation\",\"to\":\"gene\",\"query\":\"rs144332606\",\"currentPage\":1,\"pageSize\":12,\"DEBUG\":true}";
 
@@ -307,12 +330,12 @@ public class DataFormatConversion {
 				System.out.println(json);
 		//		Object o = testTemplate(pair[0],json);
 //				Object o = testTemplate2(pair[0],json);
-//		JsonObject tmpResult = (JsonObject) jsonParser.parse(json);
-//		JsonArray dataArray = tmpResult.getAsJsonArray("data");
+		JsonObject tmpResult = (JsonObject) jsonParser.parse(json);
+		JsonArray dataArray = tmpResult.getAsJsonArray("data");
 //		long start = System.currentTimeMillis();
-//		Object o = knowledge2UIService(pair[0],dataArray);
+		Object o = knowledge2UIService(pair[0],dataArray);
 //		System.out.println("耗时->"+(System.currentTimeMillis()-start));
 
-//		System.out.println(o);
+		System.out.println(o);
 	}
 }

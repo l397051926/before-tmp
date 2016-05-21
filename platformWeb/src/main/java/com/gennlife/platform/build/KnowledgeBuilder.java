@@ -9,6 +9,8 @@ import com.google.gson.internal.bind.DateTypeAdapter;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.util.StringUtils;
+
 /**
  * Created by chen-song on 16/5/6.
  */
@@ -49,48 +51,51 @@ public class KnowledgeBuilder {
         //add by 唐乾斌 05.20
         String to = param.get("to").getAsString();
         String fromAToB = from+"_"+to;
-        JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromAToB, dataArray);
-        if(null!=bodyRtn&&0<bodyRtn.size()){
-        	body = bodyRtn;
-        }
-        /**
-         * 
-        for(JsonElement data:dataArray){
-            JsonObject bodyEntity = new JsonObject();
-            body.add(bodyEntity);
-            JsonObject dataObj = data.getAsJsonObject();
-            JsonArray idArray = new JsonArray();
-            JsonObject idObj = new JsonObject();
-            idObj.addProperty("name",dataObj.get("id").getAsString());
-            idObj.addProperty("url",dataObj.get("idUrl").getAsString());
-            idArray.add(idObj);
-            bodyEntity.add("phenotype_id",idArray);
-            bodyEntity.addProperty("phenotype",dataObj.get("term_name").getAsString());
-            if("gene".equals(from) || "drug".equals(from)||"variation".equals(from)||"disease".equals(from)){
-                //// TODO: 16/5/9
-                JsonArray geneArray = new JsonArray();
-                JsonArray Gene = dataObj.getAsJsonArray("Gene");
-                for (JsonElement jsonElement:Gene){
-                    JsonObject geneObj = jsonElement.getAsJsonObject();
-                    JsonObject gene = new JsonObject();
-                    gene.addProperty("name",geneObj.get("symbol").getAsString());
-                    gene.addProperty("url",geneObj.get("symbolUrl").getAsString());
-                    geneArray.add(geneObj);
-                }
-                bodyEntity.add("gene",geneArray);
+        
+        //基础查询
+        if(!StringUtils.isEmpty(from)&&!StringUtils.isEmpty(to)&&from.equals(to)){
+        	for(JsonElement data:dataArray){
+        		JsonObject bodyEntity = new JsonObject();
+        		body.add(bodyEntity);
+        		JsonObject dataObj = data.getAsJsonObject();
+        		JsonArray idArray = new JsonArray();
+        		JsonObject idObj = new JsonObject();
+        		idObj.addProperty("name",dataObj.get("id").getAsString());
+        		idObj.addProperty("url",dataObj.get("idUrl").getAsString());
+        		idArray.add(idObj);
+        		bodyEntity.add("phenotype_id",idArray);
+        		bodyEntity.addProperty("phenotype",dataObj.get("term_name").getAsString());
+        		if("gene".equals(from) || "drug".equals(from)||"variation".equals(from)||"disease".equals(from)){
+        			//// TODO: 16/5/9
+        			JsonArray geneArray = new JsonArray();
+        			JsonArray Gene = dataObj.getAsJsonArray("Gene");
+        			for (JsonElement jsonElement:Gene){
+        				JsonObject geneObj = jsonElement.getAsJsonObject();
+        				JsonObject gene = new JsonObject();
+        				gene.addProperty("name",geneObj.get("symbol").getAsString());
+        				gene.addProperty("url",geneObj.get("symbolUrl").getAsString());
+        				geneArray.add(geneObj);
+        			}
+        			bodyEntity.add("gene",geneArray);
+        		}
+        		JsonArray refArray = new JsonArray();
+        		JsonObject refObj = new JsonObject();
+        		refObj.addProperty("name",dataObj.get("source").getAsString());
+        		refObj.addProperty("url","");
+        		refArray.add(refObj);
+        		bodyEntity.add("ref",refArray);
+        		if("disease".equals(from)){
+        			//// TODO: 16/5/9
+        		}
+        		
+        	}
+        }else{
+        	//跨域查询
+        	JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromAToB, dataArray);
+            if(null!=bodyRtn&&0<bodyRtn.size()){
+            	body = bodyRtn;
             }
-            JsonArray refArray = new JsonArray();
-            JsonObject refObj = new JsonObject();
-            refObj.addProperty("name",dataObj.get("source").getAsString());
-            refObj.addProperty("url","");
-            refArray.add(refObj);
-            bodyEntity.add("ref",refArray);
-            if("disease".equals(from)){
-                //// TODO: 16/5/9
-            }
-
         }
-        */
         result.add(body);
         return result;
     }
@@ -130,63 +135,65 @@ public class KnowledgeBuilder {
         JsonArray dataArray = obj.getAsJsonArray("data");
         //add by 唐乾斌 05.20
         String to = param.get("to").getAsString();
-        String fromAToB = from+"_"+to;
-        JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromAToB, dataArray);
-        if(null!=bodyRtn&&0<bodyRtn.size()){
-        	body = bodyRtn;
+  
+        //基础查询
+        if(!StringUtils.isEmpty(from)&&!StringUtils.isEmpty(to)&&from.equals(to)){
+        	for(JsonElement data:dataArray){
+        		JsonObject bodyEntity = new JsonObject();
+        		body.add(bodyEntity);
+        		JsonObject dataObj = data.getAsJsonObject();
+        		JsonArray idArray = new JsonArray();
+        		JsonObject idObj = new JsonObject();
+        		idObj.addProperty("name",dataObj.get("id").getAsString());
+        		idObj.addProperty("url",dataObj.get("idUrl").getAsString());
+        		idArray.add(idObj);
+        		bodyEntity.add("variation_num",idArray);
+        		if("phenotype".equals(from) || "disease".equals(from)){
+        			//补
+        			JsonArray disease_idArray = new JsonArray();
+        			JsonObject disease_idObj = new JsonObject();
+        			disease_idObj.addProperty("name","补");
+        			disease_idObj.addProperty("url","");
+        			disease_idArray.add(disease_idObj);
+        			bodyEntity.add("disease_id",disease_idArray);
+
+        			bodyEntity.addProperty("disease","补");
+        		}
+        		JsonArray geneArray = new JsonArray();
+        		JsonObject geneObj = new JsonObject();
+        		geneObj.addProperty("name",dataObj.get("geneSymbol").getAsString());
+        		geneObj.addProperty("url",dataObj.get("geneUrl").getAsString());
+        		geneArray.add(geneObj);
+        		bodyEntity.add("gene",geneArray);
+
+        		if("phenotype".equals(from) || "gene".equals(from)){
+        			bodyEntity.addProperty("type","补");
+        		}
+
+        		bodyEntity.addProperty("chromosome",dataObj.get("chromosome").getAsString());
+
+        		bodyEntity.addProperty("start",dataObj.get("start").getAsString());
+
+        		bodyEntity.addProperty("reference_allele",dataObj.get("ref").getAsString());
+
+        		bodyEntity.addProperty("alternate_allele",dataObj.get("alt").getAsString());
+
+        		JsonArray refArray = new JsonArray();
+        		JsonObject refObj = new JsonObject();
+        		refObj.addProperty("name",dataObj.get("source").getAsString());
+        		refObj.addProperty("url","");
+        		refArray.add(refObj);
+        		bodyEntity.add("ref",refArray);
+        	}
+        }else {
+        	//跨域查询
+            String fromAToB = from+"_"+to;
+            JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromAToB, dataArray);
+            if(null!=bodyRtn&&0<bodyRtn.size()){
+            	body = bodyRtn;
+            }
         }
-        /**
-         * 
         
-        for(JsonElement data:dataArray){
-            JsonObject bodyEntity = new JsonObject();
-            body.add(bodyEntity);
-            JsonObject dataObj = data.getAsJsonObject();
-            JsonArray idArray = new JsonArray();
-            JsonObject idObj = new JsonObject();
-            idObj.addProperty("name",dataObj.get("id").getAsString());
-            idObj.addProperty("url",dataObj.get("idUrl").getAsString());
-            idArray.add(idObj);
-            bodyEntity.add("variation_num",idArray);
-            if("phenotype".equals(from) || "disease".equals(from)){
-                //补
-                JsonArray disease_idArray = new JsonArray();
-                JsonObject disease_idObj = new JsonObject();
-                disease_idObj.addProperty("name","补");
-                disease_idObj.addProperty("url","");
-                disease_idArray.add(disease_idObj);
-                bodyEntity.add("disease_id",disease_idArray);
-
-                bodyEntity.addProperty("disease","补");
-            }
-            JsonArray geneArray = new JsonArray();
-            JsonObject geneObj = new JsonObject();
-            geneObj.addProperty("name",dataObj.get("geneSymbol").getAsString());
-            geneObj.addProperty("url",dataObj.get("geneUrl").getAsString());
-            geneArray.add(geneObj);
-            bodyEntity.add("gene",geneArray);
-
-            if("phenotype".equals(from) || "gene".equals(from)){
-                bodyEntity.addProperty("type","补");
-            }
-
-            bodyEntity.addProperty("chromosome",dataObj.get("chromosome").getAsString());
-
-            bodyEntity.addProperty("start",dataObj.get("start").getAsString());
-
-            bodyEntity.addProperty("reference_allele",dataObj.get("ref").getAsString());
-
-            bodyEntity.addProperty("alternate_allele",dataObj.get("alt").getAsString());
-
-            JsonArray refArray = new JsonArray();
-            JsonObject refObj = new JsonObject();
-            refObj.addProperty("name",dataObj.get("source").getAsString());
-            refObj.addProperty("url","");
-            refArray.add(refObj);
-            bodyEntity.add("ref",refArray);
-
-        }
-        */
         result.add(body);
         return result;
 
@@ -201,46 +208,51 @@ public class KnowledgeBuilder {
         JsonArray dataArray = obj.getAsJsonArray("data");
         //add by 唐乾斌 05.20
         String to = param.get("to").getAsString();
-        String fromAToB = from+"_"+to;
-        JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromAToB, dataArray);
-        if(null!=bodyRtn&&0<bodyRtn.size()){
-        	body = bodyRtn;
-        }
-        /**
-         * 
-        for(JsonElement data:dataArray){
-            JsonObject bodyEntity = new JsonObject();
-            body.add(bodyEntity);
-            JsonObject dataObj = data.getAsJsonObject();
-            JsonArray geneArray = new JsonArray();
-            JsonObject geneObj = new JsonObject();
-            geneArray.add(geneObj);
-            bodyEntity.add("gene",geneArray);
-            geneObj.addProperty("name",dataObj.get("geneSymbol").getAsString());
-            geneObj.addProperty("url",dataObj.get("symbolUrl").getAsString());
-            bodyEntity.addProperty("chromosome",dataObj.get("chromosome").getAsString());
-            bodyEntity.addProperty("map_location",dataObj.get("mapLocation").getAsString());
-            JsonArray RNAArray = new JsonArray();
-            JsonArray rnas = dataObj.get("RNA").getAsJsonArray();
-            Map<String,String> map = new HashMap<String, String>();
-            for(JsonElement rnaElement:rnas){
-                JsonObject rnaObj = rnaElement.getAsJsonObject();
-                String rna = rnaObj.get("rna").getAsString();
-                String rnaUrl = rnaObj.get("rnaUrl").getAsString();
-                JsonObject rnaNewObj = new JsonObject();
-                rnaNewObj.addProperty("name",rna);
-                rnaNewObj.addProperty("url",rnaUrl);
-                RNAArray.add(rnaNewObj);
+        
+        
+        //基础查询
+        if(!StringUtils.isEmpty(from)&&!StringUtils.isEmpty(to)&&from.equals(to)){
+        	 for(JsonElement data:dataArray){
+                 JsonObject bodyEntity = new JsonObject();
+                 body.add(bodyEntity);
+                 JsonObject dataObj = data.getAsJsonObject();
+                 JsonArray geneArray = new JsonArray();
+                 JsonObject geneObj = new JsonObject();
+                 geneArray.add(geneObj);
+                 bodyEntity.add("gene",geneArray);
+                 geneObj.addProperty("name",dataObj.get("geneSymbol").getAsString());
+                 geneObj.addProperty("url",dataObj.get("geneSymbolUrl").getAsString());
+                 bodyEntity.addProperty("chromosome",dataObj.get("chromosome").getAsString());
+                 bodyEntity.addProperty("map_location",dataObj.get("mapLocation").getAsString());
+                 JsonArray RNAArray = new JsonArray();
+                 JsonArray rnas = dataObj.get("RNA").getAsJsonArray();
+                 Map<String,String> map = new HashMap<String, String>();
+                 for(JsonElement rnaElement:rnas){
+                     JsonObject rnaObj = rnaElement.getAsJsonObject();
+                     String rna = rnaObj.get("rna").getAsString();
+                     String rnaUrl = rnaObj.get("rnaUrl").getAsString();
+                     JsonObject rnaNewObj = new JsonObject();
+                     rnaNewObj.addProperty("name",rna);
+                     rnaNewObj.addProperty("url",rnaUrl);
+                     RNAArray.add(rnaNewObj);
+                 }
+                 bodyEntity.add("transcript",RNAArray);
+                 JsonArray refArray = new JsonArray();
+                 JsonObject ref = new JsonObject();
+                 ref.addProperty("name",dataObj.get("source").getAsString());
+                 ref.addProperty("url","");
+                 refArray.add(ref);
+                 bodyEntity.add("ref",refArray);
+             }
+        }else{
+        	//跨域查询	
+        	String fromAToB = from+"_"+to;
+            JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromAToB, dataArray);
+            if(null!=bodyRtn&&0<bodyRtn.size()){
+            	body = bodyRtn;
             }
-            bodyEntity.add("transcript",RNAArray);
-            JsonArray refArray = new JsonArray();
-            JsonObject ref = new JsonObject();
-            ref.addProperty("name",dataObj.get("source").getAsString());
-            ref.addProperty("url","");
-            refArray.add(ref);
-            bodyEntity.add("ref",refArray);
         }
-        */
+       
         result.add(body);
         return result;
     }
@@ -254,43 +266,48 @@ public class KnowledgeBuilder {
         String from = param.get("from").getAsString();
         //add by 唐乾斌 05.20
         String to = param.get("to").getAsString();
-        String fromAToB = from+"_"+to;
-        JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromAToB, dataArray);
-        if(null!=bodyRtn&&0<bodyRtn.size()){
-        	body = bodyRtn;
+     
+        //基础查询
+        if(!StringUtils.isEmpty(from)&&!StringUtils.isEmpty(to)&&from.equals(to)){
+        	for(JsonElement data:dataArray){
+        		JsonObject bodyEntity = new JsonObject();
+        		body.add(bodyEntity);
+        		JsonObject dataObj = data.getAsJsonObject();
+        		JsonArray proteinArray = new JsonArray();
+        		JsonObject proteinObj = new JsonObject();
+        		proteinArray.add(proteinObj);
+        		bodyEntity.add("protein",proteinArray);
+        		proteinObj.addProperty("name",dataObj.get("proteinName").getAsString());
+        		proteinObj.addProperty("url",dataObj.get("url").getAsString());
+        		JsonArray geneArray = new JsonArray();
+        		JsonArray gene = dataObj.getAsJsonArray("Gene");
+        		for(JsonElement json:gene){
+        			JsonObject g = json.getAsJsonObject();
+        			String symbol = g.get("symbol").getAsString();
+        			String url = g.get("url").getAsString();
+        			JsonObject gen = new JsonObject();
+        			gen.addProperty("name",symbol);
+        			gen.addProperty("url",url);
+        			geneArray.add(gen);
+        		}
+        		bodyEntity.add("gene",geneArray);
+        		JsonArray refArray = new JsonArray();
+        		JsonObject ref = new JsonObject();
+        		ref.addProperty("name",dataObj.get("source").getAsString());
+        		ref.addProperty("url","");
+        		refArray.add(ref);
+        		bodyEntity.add("ref",refArray);
+        	}
+        }else{
+        	//跨域查询
+        	String fromAToB = from+"_"+to;
+        	JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromAToB, dataArray);
+        	if(null!=bodyRtn&&0<bodyRtn.size()){
+        		body = bodyRtn;
+        	}
         }
-        /**
-         * 
-        for(JsonElement data:dataArray){
-            JsonObject bodyEntity = new JsonObject();
-            body.add(bodyEntity);
-            JsonObject dataObj = data.getAsJsonObject();
-            JsonArray proteinArray = new JsonArray();
-            JsonObject proteinObj = new JsonObject();
-            proteinArray.add(proteinObj);
-            bodyEntity.add("protein",proteinArray);
-            proteinObj.addProperty("name",dataObj.get("proteinName").getAsString());
-            proteinObj.addProperty("url",dataObj.get("url").getAsString());
-            JsonArray geneArray = new JsonArray();
-            JsonArray gene = dataObj.getAsJsonArray("Gene");
-            for(JsonElement json:gene){
-                JsonObject g = json.getAsJsonObject();
-                String symbol = g.get("symbol").getAsString();
-                String url = g.get("url").getAsString();
-                JsonObject gen = new JsonObject();
-                gen.addProperty("name",symbol);
-                gen.addProperty("url",url);
-                geneArray.add(gen);
-            }
-            bodyEntity.add("gene",geneArray);
-            JsonArray refArray = new JsonArray();
-            JsonObject ref = new JsonObject();
-            ref.addProperty("name",dataObj.get("source").getAsString());
-            ref.addProperty("url","");
-            refArray.add(ref);
-            bodyEntity.add("ref",refArray);
-        }
-        */
+        
+        
         result.add(body);
         return result;
     }
@@ -306,114 +323,119 @@ public class KnowledgeBuilder {
         //body
         JsonArray body = new JsonArray();
         JsonArray dataArray = obj.getAsJsonArray("data");
+       
         //add by 唐乾斌 05.20
         String to = param.get("to").getAsString();
-        String fromAToB = from+"_"+to;
-        JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromAToB, dataArray);
-        if(null!=bodyRtn&&0<bodyRtn.size()){
-        	body = bodyRtn;
+        
+        //基础查询
+        if(!StringUtils.isEmpty(from)&&!StringUtils.isEmpty(to)&&from.equals(to)){
+
+        	for(JsonElement data:dataArray){
+        		JsonObject bodyEntity = new JsonObject();
+        		body.add(bodyEntity);
+        		JsonObject dataObj = data.getAsJsonObject();
+        		JsonObject dObj = new JsonObject();
+        		
+        		JsonArray disease_id = new JsonArray();
+        		dObj.addProperty("name",dataObj.get("id").getAsString());
+        		dObj.addProperty("url",dataObj.get("url").getAsString());
+        		disease_id.add(dObj);
+        		bodyEntity.add("disease_id",disease_id);
+        		
+        		JsonObject diseaseObj = new JsonObject();
+        		JsonArray disease = new JsonArray();
+        		diseaseObj.addProperty("name",dataObj.get("name").getAsString());
+        		diseaseObj.addProperty("url","");
+        		disease.add(diseaseObj);
+        		
+        		bodyEntity.add("disease",disease);
+        		
+        		String icd_10 = "";
+        		if(dataObj.get("ICD10") != null){
+        			JsonArray Entity = dataObj.get("ICD10").getAsJsonArray();
+        			for(JsonElement icdEntity:Entity){
+        				JsonObject icdObj = icdEntity.getAsJsonObject();
+        				String id = icdObj.get("icd_10").getAsString();
+        				if("".equals(icd_10)){
+        					icd_10 = id;
+        				}else{
+        					icd_10 = icd_10 +","+id;
+        				}
+        			}
+        			bodyEntity.addProperty("icd_10",icd_10);
+        		}else{
+        			bodyEntity.addProperty("icd_10","");
+        		}
+        		if("phenotype".equals(from)){
+        			JsonArray Phenotype = dataObj.getAsJsonArray("Phenotype");
+        			JsonArray phenotypeIDArray = new JsonArray();
+        			String phenotypename = "";
+        			for(JsonElement phenotypeEntity:Phenotype){
+        				JsonObject phenotype = phenotypeEntity.getAsJsonObject();
+        				JsonObject phenotypeID = new JsonObject();
+        				phenotypeID.addProperty("name",phenotype.get("id").getAsString());
+        				phenotypeID.addProperty("url",phenotype.get("url").getAsString());
+        				phenotypeIDArray.add(phenotypeID);
+        				phenotypename = phenotype.get("term_name").getAsString();
+        			}
+        			bodyEntity.add("phenotype_id",phenotypeIDArray);
+        			bodyEntity.addProperty("phenotype",phenotypename);
+        			JsonArray Gene = dataObj.getAsJsonArray("Gene");
+        			JsonArray GeneArray = new JsonArray();
+        			for(JsonElement geneElement:Gene){
+        				JsonObject gene = geneElement.getAsJsonObject();
+        				JsonObject geneNew = new JsonObject();
+        				geneNew.addProperty("name",gene.get("symbol").getAsString());
+        				geneNew.addProperty("url",gene.get("url").getAsString());
+        				GeneArray.add(geneNew);
+        			}
+        			bodyEntity.add("gene",GeneArray);
+        		}
+        		if("gene".equals(from)){
+        			JsonArray phenotypeIDArray = new JsonArray();
+        			String phenotypename = "";
+        			JsonArray Phenotype = dataObj.getAsJsonArray("HPO");
+        			for(JsonElement phenotypeEntity:Phenotype){
+        				JsonObject phenotype = phenotypeEntity.getAsJsonObject();
+        				String id = phenotype.get("hpo_id").getAsString();
+        				String hpo_term_name = phenotype.get("hpo_term_name").getAsString();
+        				JsonObject phenotypeID = new JsonObject();
+        				if(query.equals(hpo_term_name)){
+        					String url = phenotype.get("hpo_url").getAsString();
+        					phenotypeID.addProperty("name",id);
+        					phenotypeID.addProperty("url",url);
+        					phenotypename = hpo_term_name;
+        					phenotypeIDArray.add(phenotypeID);
+        				}
+        			}
+        			bodyEntity.add("phenotype_id",phenotypeIDArray);
+        			bodyEntity.addProperty("phenotype",phenotypename);
+        			String geneSymbol = dataObj.get("geneSymbol").getAsString();
+        			String symbolUrl = dataObj.get("symbolUrl").getAsString();
+        			JsonArray GeneArray = new JsonArray();
+        			JsonObject geneObj = new JsonObject();
+        			geneObj.addProperty("name",geneSymbol);
+        			geneObj.addProperty("url",symbolUrl);
+        			GeneArray.add(geneObj);
+        			bodyEntity.add("gene",GeneArray);
+        			
+        		}
+        		JsonArray refArray = new JsonArray();
+        		JsonObject ref = new JsonObject();
+        		ref.addProperty("name",dataObj.get("source").getAsString());
+        		ref.addProperty("url","");
+        		refArray.add(ref);
+        		bodyEntity.add("ref",refArray);
+        	}
+        }else{
+        	//跨域查询
+        	String fromAToB = from+"_"+to;
+            JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromAToB, dataArray);
+            if(null!=bodyRtn&&0<bodyRtn.size()){
+            	body = bodyRtn;
+            }
         }
-        /**
-         * 
-         
-        for(JsonElement data:dataArray){
-            JsonObject bodyEntity = new JsonObject();
-            body.add(bodyEntity);
-            JsonObject dataObj = data.getAsJsonObject();
-            JsonObject dObj = new JsonObject();
-
-            JsonArray disease_id = new JsonArray();
-            dObj.addProperty("name",dataObj.get("id").getAsString());
-            dObj.addProperty("url",dataObj.get("url").getAsString());
-            disease_id.add(dObj);
-            bodyEntity.add("disease_id",disease_id);
-
-            JsonObject diseaseObj = new JsonObject();
-            JsonArray disease = new JsonArray();
-            diseaseObj.addProperty("name",dataObj.get("name").getAsString());
-            diseaseObj.addProperty("url","");
-            disease.add(diseaseObj);
-
-            bodyEntity.add("disease",disease);
-
-            String icd_10 = "";
-            if(dataObj.get("ICD10") != null){
-                JsonArray Entity = dataObj.get("ICD10").getAsJsonArray();
-                for(JsonElement icdEntity:Entity){
-                    JsonObject icdObj = icdEntity.getAsJsonObject();
-                    String id = icdObj.get("icd_10").getAsString();
-                    if("".equals(icd_10)){
-                        icd_10 = id;
-                    }else{
-                        icd_10 = icd_10 +","+id;
-                    }
-                }
-                bodyEntity.addProperty("icd_10",icd_10);
-            }else{
-                bodyEntity.addProperty("icd_10","");
-            }
-            if("phenotype".equals(from)){
-                JsonArray Phenotype = dataObj.getAsJsonArray("Phenotype");
-                JsonArray phenotypeIDArray = new JsonArray();
-                String phenotypename = "";
-                for(JsonElement phenotypeEntity:Phenotype){
-                    JsonObject phenotype = phenotypeEntity.getAsJsonObject();
-                    JsonObject phenotypeID = new JsonObject();
-                    phenotypeID.addProperty("name",phenotype.get("id").getAsString());
-                    phenotypeID.addProperty("url",phenotype.get("url").getAsString());
-                    phenotypeIDArray.add(phenotypeID);
-                    phenotypename = phenotype.get("term_name").getAsString();
-                }
-                bodyEntity.add("phenotype_id",phenotypeIDArray);
-                bodyEntity.addProperty("phenotype",phenotypename);
-                JsonArray Gene = dataObj.getAsJsonArray("Gene");
-                JsonArray GeneArray = new JsonArray();
-                for(JsonElement geneElement:Gene){
-                    JsonObject gene = geneElement.getAsJsonObject();
-                    JsonObject geneNew = new JsonObject();
-                    geneNew.addProperty("name",gene.get("symbol").getAsString());
-                    geneNew.addProperty("url",gene.get("url").getAsString());
-                    GeneArray.add(geneNew);
-                }
-                bodyEntity.add("gene",GeneArray);
-            }
-            if("gene".equals(from)){
-                JsonArray phenotypeIDArray = new JsonArray();
-                String phenotypename = "";
-                JsonArray Phenotype = dataObj.getAsJsonArray("HPO");
-                for(JsonElement phenotypeEntity:Phenotype){
-                    JsonObject phenotype = phenotypeEntity.getAsJsonObject();
-                    String id = phenotype.get("hpo_id").getAsString();
-                    String hpo_term_name = phenotype.get("hpo_term_name").getAsString();
-                    JsonObject phenotypeID = new JsonObject();
-                    if(query.equals(hpo_term_name)){
-                        String url = phenotype.get("hpo_url").getAsString();
-                        phenotypeID.addProperty("name",id);
-                        phenotypeID.addProperty("url",url);
-                        phenotypename = hpo_term_name;
-                        phenotypeIDArray.add(phenotypeID);
-                    }
-                }
-                bodyEntity.add("phenotype_id",phenotypeIDArray);
-                bodyEntity.addProperty("phenotype",phenotypename);
-                String geneSymbol = dataObj.get("geneSymbol").getAsString();
-                String symbolUrl = dataObj.get("symbolUrl").getAsString();
-                JsonArray GeneArray = new JsonArray();
-                JsonObject geneObj = new JsonObject();
-                geneObj.addProperty("name",geneSymbol);
-                geneObj.addProperty("url",symbolUrl);
-                GeneArray.add(geneObj);
-                bodyEntity.add("gene",GeneArray);
-
-            }
-            JsonArray refArray = new JsonArray();
-            JsonObject ref = new JsonObject();
-            ref.addProperty("name",dataObj.get("source").getAsString());
-            ref.addProperty("url","");
-            refArray.add(ref);
-            bodyEntity.add("ref",refArray);
-        }
-        */
+        
         result.add(body);
         return result;
     }
