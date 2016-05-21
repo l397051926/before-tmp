@@ -21,6 +21,9 @@ public class ConfigurationService {
     private static URLBean urlBean = null;
     //全量属性的jsonobject
     private static List<JsonObject> allList = new LinkedList<JsonObject>();
+    //ui name,index name
+    private static Map<String,String> nameMap = new HashMap<>();
+
     //默认的搜索列表
     private static JsonObject defaultObj = null;
     //全部的搜索列表
@@ -61,7 +64,11 @@ public class ConfigurationService {
             String key = entity.getKey();
             JsonArray object = allObj.getAsJsonArray(key);
             for(JsonElement jsonElement:object){
-                allList.add(jsonElement.getAsJsonObject());
+                JsonObject json = jsonElement.getAsJsonObject();
+                String UIFieldName = json.get("UIFieldName").getAsString();
+                String IndexFieldName = json.get("IndexFieldName").getAsString();
+                nameMap.put(UIFieldName,IndexFieldName);
+                allList.add(json);
             }
 
         }
@@ -79,5 +86,10 @@ public class ConfigurationService {
 
     public static JsonObject getDefaultObj() {
         return defaultObj;
+    }
+
+
+    public  static String getIndexFieldName(String UIFieldName){
+        return nameMap.get(UIFieldName);
     }
 }

@@ -2,6 +2,7 @@ package com.gennlife.platform.util;
 
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.parse.QueryServerParser;
+import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -13,9 +14,10 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Set;
+import java.util.*;
 
 /**
  * Created by chensong on 2015/12/9.
@@ -240,6 +242,30 @@ public class ParamUtils {
         int currentPage = paramObj.get("page").getAsInt();
         int pageSize = paramObj.get("size").getAsInt();
         String query = paramObj.get("query").getAsString();
+        StringBuffer sb = new StringBuffer();
+        Map<String,String> map = new HashMap<>();
+        boolean flag = false;
+        for (int i = 0; i < query.length(); i++) {
+            char  item =  query.charAt(i);
+            if(flag){
+                sb.append(item);
+            }
+            if(item == '['){
+                flag = true;
+            }else if(item == ']'){
+                flag = false;
+                String uiName = sb.toString();
+                String index = ConfigurationService.getIndexFieldName(uiName);
+                if(index != null){
+                    map.put(uiName,index);
+                }
+            }
+        }
+        for(String uiName:map.keySet()){
+            String indexName = map.get(uiName);
+            query.replaceAll(uiName,indexName);
+        }
+
         if ("case".equals(from) && "case".equals(to)) {
             boolean isAdv = paramObj.get("isAdv").getAsBoolean();
             if (!isAdv && !"".equals(query)) {
