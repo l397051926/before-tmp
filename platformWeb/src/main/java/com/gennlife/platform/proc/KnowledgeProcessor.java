@@ -54,7 +54,7 @@ public class KnowledgeProcessor {
             currentPage = li[0];
             pageSize = li[1];
             if("drug".equals(to)){
-                tableName = paramObj.get("tableName").getAsString();
+                tableName = paramObj.get("currentTable").getAsString();
             }
         }catch (Exception e){
             logger.error("请求参数出错", e);
@@ -92,7 +92,7 @@ public class KnowledgeProcessor {
         queryObj.addProperty("query",query);
         queryObj.addProperty("currentPage",currentPage);
         queryObj.addProperty("pageSize",pageSize);
-        queryObj.addProperty("tableName",tableName);
+        queryObj.addProperty("currentTable",tableName);
         queryObj.addProperty("DEBUG",false);
         return queryObj;
     }
