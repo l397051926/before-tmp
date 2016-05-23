@@ -57,6 +57,7 @@ public class DataFormatConversion implements Runnable{
 		if(null==ja||0==ja.size()){
 			return data;
 		}
+		logger.info("json path=====>@."+fromAToB);
 		org.json.JSONArray data2 = new org.json.JSONArray();
 		Object formatObj = tmpJc.read("@."+fromAToB);
 		Map<String,Object> map = (Map<String,Object>) formatObj;

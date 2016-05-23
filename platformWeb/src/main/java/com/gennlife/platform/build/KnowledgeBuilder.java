@@ -68,18 +68,25 @@ public class KnowledgeBuilder {
 		JsonObject head = buildHead(param,obj);
 		String from = param.get("from").getAsString();
 		String to = param.get("to").getAsString();
-		String fromA2BOnC = from+"_"+to+"_"+currentTable;
-
+		String fromA2BOnC = null;
+		if("drug".equals(to)){
+			fromA2BOnC = from+"_"+currentTable;
+		}else{
+			fromA2BOnC = from+"_"+to+"_"+currentTable;
+		}
 		result.add(head);
 		JsonArray body = new JsonArray();
 		JsonArray drugObjs = obj.getAsJsonArray("data");
 		
 		if(null!=drugObjs&&drugObjs.size()>0){
-			JsonArray dataArray = drugObjs.get(0).getAsJsonArray();
-			if(null!=dataArray){
-				JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromA2BOnC, dataArray);
-				if(null!=bodyRtn&&0<bodyRtn.size()){
-					body = bodyRtn;
+			JsonObject fdaObj = (JsonObject)drugObjs.get(0);
+			if(null!=fdaObj){
+				JsonArray dataArray = fdaObj.getAsJsonArray("fda");
+				if(null!=dataArray){
+					JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromA2BOnC, dataArray);
+					if(null!=bodyRtn&&0<bodyRtn.size()){
+						body = bodyRtn;
+					}
 				}
 			}
 		}
