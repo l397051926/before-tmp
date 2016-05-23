@@ -68,18 +68,33 @@ public class KnowledgeBuilder {
 		JsonObject head = buildHead(param,obj);
 		String from = param.get("from").getAsString();
 		String to = param.get("to").getAsString();
-		String fromA2BOnC = from+"_"+to+"_"+currentTable;
-
+		String fromA2BOnC = null;
+		if("drug".equals(to)){
+			fromA2BOnC = from+"_"+currentTable;
+		}else{
+			fromA2BOnC = from+"_"+to+"_"+currentTable;
+		}
 		result.add(head);
 		JsonArray body = new JsonArray();
 		JsonArray drugObjs = obj.getAsJsonArray("data");
 		
 		if(null!=drugObjs&&drugObjs.size()>0){
-			JsonArray dataArray = drugObjs.get(0).getAsJsonArray();
-			if(null!=dataArray){
-				JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromA2BOnC, dataArray);
-				if(null!=bodyRtn&&0<bodyRtn.size()){
-					body = bodyRtn;
+			JsonObject fdaObj = (JsonObject)drugObjs.get(0);
+			if(null!=fdaObj){
+				String currentTableName = null;
+				if("drug_fda".equals(currentTable)){
+					currentTableName = "fda";
+				}else if("drug_nccn".equals(currentTable)){
+					currentTableName = "nccn";
+				}else if("drug_target".equals(currentTable)){
+					currentTableName = "targetDrug";
+				}
+				JsonArray dataArray = fdaObj.getAsJsonArray(currentTableName);
+				if(null!=dataArray){
+					JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromA2BOnC, dataArray);
+					if(null!=bodyRtn&&0<bodyRtn.size()){
+						body = bodyRtn;
+					}
 				}
 			}
 		}
@@ -399,7 +414,7 @@ public class KnowledgeBuilder {
 
 	private JsonArray drugUseSchema(String from) {
 		JsonArray schema = new JsonArray();
-		if("phenotype".equals(from) || "drug".equals(from) ||"disease".equals(from)){
+		if("phenotype".equals(from) || "drug".equals(from) ||"disease".equals(from)||"gene".equals(from)){
 			JsonObject drugDrug = new JsonObject();
 			drugDrug.addProperty("name","drug");
 			schema.add(drugDrug);
