@@ -175,7 +175,7 @@ public class DataFormatConversion implements Runnable{
 		for(String key:meta.keySet()){
 			Object tempObj = meta.get(key);
 			JSONObject objMeta = null;
-			if(tempObj instanceof Map){
+  			if(tempObj instanceof Map){
 				objMeta = new JSONObject((Map)meta.get(key));
 			}else{
 				objMeta = (JSONObject) meta.get(key);
@@ -224,7 +224,15 @@ public class DataFormatConversion implements Runnable{
 		JSONObject sourceObj = (JSONObject)sourceData;
 		String strValue = null;
 		try {
-			strValue = JsonPath.read(sourceObj.toString(), path);
+			Object objStr = JsonPath.read(sourceObj.toString(), path);
+			if(null!=objStr){
+				strValue = objStr.toString();
+				strValue = StringUtils.replace(strValue, "[", "");
+				strValue = StringUtils.replace(strValue, "]", "");
+				strValue = StringUtils.replace(strValue, "\"", "");
+			}else{
+				strValue = "";
+			}
 		} catch (Exception e) {
 			strValue = "";
 		}
