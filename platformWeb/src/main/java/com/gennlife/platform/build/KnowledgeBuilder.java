@@ -212,7 +212,8 @@ public class KnowledgeBuilder {
 	 */
 	private JsonArray diseaseSchema(String from){
 		JsonArray schema = new JsonArray();
-		if("phenotype".equals(from) || "disease".equals(from)){
+//		if("phenotype".equals(from) || "disease".equals(from)){
+		if("phenotype".equals(from)){
 			JsonObject entityid = new JsonObject();
 			entityid.addProperty("name","disease_id");
 			schema.add(entityid);
@@ -424,7 +425,7 @@ public class KnowledgeBuilder {
 			schema.add(brand_nameDrug);
 
 			JsonObject typeDrug = new JsonObject();
-			typeDrug.addProperty("name","type");
+			typeDrug.addProperty("name","disease");
 			schema.add(typeDrug);
 
 			JsonObject biomarkerDrug = new JsonObject();
@@ -436,7 +437,7 @@ public class KnowledgeBuilder {
 			schema.add(referenced_subgroupDrug);
 
 			JsonObject indicationDrug = new JsonObject();
-			indicationDrug.addProperty("name","indication");
+			indicationDrug.addProperty("name","description");
 			schema.add(indicationDrug);
 
 			JsonObject refDrug = new JsonObject();
