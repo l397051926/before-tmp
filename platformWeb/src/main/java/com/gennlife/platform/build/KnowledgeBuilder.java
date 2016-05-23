@@ -283,7 +283,6 @@ public class KnowledgeBuilder {
 		head.addProperty("from",from);
 		head.addProperty("to",to);
 		head.addProperty("limit",currentPage+","+pageSize);
-		head.addProperty("currentTable","");
 		JsonArray schema = null;
 		if("disease".equals(to)){
 			schema = diseaseSchema(from);
@@ -294,7 +293,7 @@ public class KnowledgeBuilder {
 		}else if("variation".equals(to)){
 			schema = variationSchema(from);
 		}else if("drug".equals(to)){
-			String tableName = param.get("tableName").getAsString();
+			String tableName = param.get("currentTable").getAsString();
 			if("drug".equals(tableName)){
 				schema = drugSchema(from);
 			}else if("drug_fda".equals(tableName)){
