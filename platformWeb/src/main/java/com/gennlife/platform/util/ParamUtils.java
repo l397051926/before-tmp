@@ -247,9 +247,7 @@ public class ParamUtils {
         boolean flag = false;
         for (int i = 0; i < query.length(); i++) {
             char  item =  query.charAt(i);
-            if(flag){
-                sb.append(item);
-            }
+
             if(item == '['){
                 flag = true;
             }else if(item == ']'){
@@ -259,13 +257,16 @@ public class ParamUtils {
                 if(index != null){
                     map.put(uiName,index);
                 }
+                sb = new StringBuffer();
+            }else if(flag && item != '[' && item != ']'){
+                sb.append(item);
             }
         }
         for(String uiName:map.keySet()){
             String indexName = map.get(uiName);
-            query.replaceAll(uiName,indexName);
+            query = query.replaceAll(uiName,indexName);
         }
-
+        logger.info("query替换[] = "+query);
         if ("case".equals(from) && "case".equals(to)) {
             boolean isAdv = paramObj.get("isAdv").getAsBoolean();
             if (!isAdv && !"".equals(query)) {
