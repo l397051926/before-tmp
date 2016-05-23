@@ -5,295 +5,1145 @@
         {
           "dataType": "string",
           "UIFieldName": "病人编号",
-          "IndexFieldName": "basics.patient_sn"
+          "IndexFieldName": "clinicalCRF.MR_ID"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "所在医院",
+          "IndexFieldName": "clinicalCRF.Hospital"
         },
         {
           "dataType": "string",
           "UIFieldName": "性别",
-          "IndexFieldName": "basics.gender"
+          "IndexFieldName": "clinicalCRF.Sex"
         },
         {
           "dataType": "long",
           "UIFieldName": "年龄",
-          "IndexFieldName": "basics.age"
+          "IndexFieldName": "clinicalCRF.Age"
+        },
+        {
+          "dataType": "string",
+          "dateFormat": "yyyy-MM-dd",
+          "UIFieldName": "出生日期",
+          "IndexFieldName": "clinicalCRF.birth_date"
         },
         {
           "dataType": "string",
           "UIFieldName": "民族",
-          "IndexFieldName": "basics.ethnicity"
+          "IndexFieldName": "clinicalCRF.nation"
         },
         {
           "dataType": "string",
-          "UIFieldName": "婚姻状态",
-          "IndexFieldName": "basics.marital_status"
+          "UIFieldName": "文化程度",
+          "IndexFieldName": "clinicalCRF.education"
         },
         {
           "dataType": "string",
-          "UIFieldName": "既往史",
-          "IndexFieldName": "basics.past_hisory"
+          "UIFieldName": "婚姻",
+          "IndexFieldName": "clinicalCRF.marriage"
         },
         {
           "dataType": "string",
-          "UIFieldName": "家族史",
-          "IndexFieldName": "basics.family_history"
+          "UIFieldName": "患者Rh血型",
+          "IndexFieldName": "clinicalCRF.blood_type_Rh"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "患者ABO血型",
+          "IndexFieldName": "clinicalCRF.blood_type_ABO"
         },
         {
           "dataType": "string",
           "UIFieldName": "过敏史",
-          "IndexFieldName": "basics.allergic_history"
-        }
-      ],
-      "临床信息": [
+          "IndexFieldName": "clinicalCRF.allergy"
+        },
         {
           "dataType": "string",
-          "UIFieldName": "诊断记录",
-          "IndexFieldName": "basics.diagnosis_record"
+          "UIFieldName": "既往肿瘤史",
+          "IndexFieldName": "clinicalCRF.cancer_history"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "既往疾病史",
+          "IndexFieldName": "clinicalCRF.disease_history"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "肿瘤家族史",
+          "IndexFieldName": "clinicalCRF.stfami_cancer_history"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "吸烟史",
+          "IndexFieldName": "clinicalCRF.smoke_history"
         }
       ],
-      "随访信息": [
+      "临床信息":[
         {
-          "dataType": "boolean",
+          "dataType": "string",
+          "UIFieldName": "临床诊断",
+          "IndexFieldName": "clinicalCRF.Clinical_dx"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "临床分期",
+          "IndexFieldName": "clinicalCRF.Clin_Stage"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "病理诊断",
+          "IndexFieldName": "clinicalCRF.Path_dx"
+        },
+        {
+          "dataType": "date",
+          "UIFieldName": "病理确诊日期",
+          "dateFormat": "yyyy-MM-dd",
+          "IndexFieldName": "clinicalCRF.diag_date"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "病理组织学诊断1",
+          "IndexFieldName": "clinicalCRF.Tumor_histology_dx_ICDO3_1"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "病理分期",
+          "IndexFieldName": "clinicalCRF.Path_Stage"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "肿瘤类型",
+          "IndexFieldName": "clinicalCRF.cancer_type"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "肿瘤大小",
+          "IndexFieldName": "clinicalCRF.tumor_size"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "术前放疗",
+          "IndexFieldName": "clinicalCRF.pre_radio"
+        },
+        {
+          "dataType": "date",
+          "UIFieldName": "手术日期",
+          "dateFormat": "yyyy-MM-dd",
+          "IndexFieldName": "clinicalCRF.Specimen_date"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "手术名称",
+          "IndexFieldName": "clinicalCRF.surgery_name"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "完全根治切除",
+          "IndexFieldName": "clinicalCRF.complete_surgery"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "不是完全切除原因",
+          "IndexFieldName": "clinicalCRF.reason"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "术后化疗",
+          "IndexFieldName": "clinicalCRF.chemotherapy"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "术后放疗",
+          "IndexFieldName": "clinicalCRF.radiotherapy"
+        }
+      ],
+      "组学信息":[
+        {
+          "dataType": "date",
+          "UIFieldName": "检测日期",
+          "dateFormat": "yyyy-MM-dd",
+          "IndexFieldName": "clinicalCRF.Gene_detection_date"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "基因突变",
+          "IndexFieldName": "clinicalCRF.mutation"
+        }
+      ],
+      "随访":[
+        {
+          "dataType": "date",
+          "UIFieldName": "随访日期",
+          "dateFormat": "yyyy-MM-dd",
+          "IndexFieldName": "clinicalCRF.followup1_date"
+        },
+        {
+          "dataType": "string",
           "UIFieldName": "生存状态",
-          "IndexFieldName": "basics.vital_status"
+          "IndexFieldName": "clinicalCRF.followup1_outcome"
         },
         {
           "dataType": "string",
-          "UIFieldName": "生存时间",
-          "IndexFieldName": "basics.survival_time"
+          "UIFieldName": "是否复发",
+          "IndexFieldName": "clinicalCRF.recurrence"
+        },
+        {
+          "dataType": "date",
+          "UIFieldName": "首次复发日期",
+          "dateFormat": "yyyy-MM-dd",
+          "IndexFieldName": "clinicalCRF.fir_recur_date"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "是否远处转移",
+          "IndexFieldName": "clinicalCRF.metastasis"
+        },
+        {
+          "dataType": "date",
+          "UIFieldName": "首次转移日期",
+          "dateFormat": "yyyy-MM-dd",
+          "IndexFieldName": "clinicalCRF.fir_meta_date"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "转移部位",
+          "IndexFieldName": "clinicalCRF.fir_meta_loca"
         }
       ],
-      "生物标本": [
+      "生物标本":[
         {
-          "dataType": "boolean",
+          "dataType": "string",
           "UIFieldName": "血样",
-          "IndexFieldName": "basics.blood_sample"
+          "IndexFieldName": "clinicalCRF.blood_sample"
         },
         {
-          "dataType": "boolean",
+          "dataType": "string",
           "UIFieldName": "癌组织",
-          "IndexFieldName": "basics.cancer_tissue"
+          "IndexFieldName": "clinicalCRF.cancer_tissue"
         },
         {
-          "dataType": "boolean",
+          "dataType": "string",
           "UIFieldName": "转移组织",
-          "IndexFieldName": "basics.metastatic_tissue"
+          "IndexFieldName": "clinicalCRF.Transfer_tissue"
         },
         {
-          "dataType": "boolean",
+          "dataType": "string",
           "UIFieldName": "正常组织",
-          "IndexFieldName": "basics.normal_tissue"
+          "IndexFieldName": "clinicalCRF.normal_tissue"
         },
         {
           "dataType": "string",
           "UIFieldName": "存储位置",
-          "IndexFieldName": "basics.storage_location"
-        }
-      ],
-      "组学信息": [
-        {
-          "dataType": "boolean",
-          "UIFieldName": "SSM",
-          "IndexFieldName": "basics.ssm"
-        },
-        {
-          "dataType": "boolean",
-          "UIFieldName": "CNSM",
-          "IndexFieldName": "basics.cnsm"
-        },
-        {
-          "dataType": "boolean",
-          "UIFieldName": "CNGM",
-          "IndexFieldName": "basics.cngm"
-        },
-        {
-          "dataType": "boolean",
-          "UIFieldName": "SGM",
-          "IndexFieldName": "basics.sgm"
+          "IndexFieldName": "clinicalCRF.storage"
         }
       ]
+
     },
     "all": {
       "病人基本信息": [
         {
           "dataType": "string",
           "UIFieldName": "病人编号",
-          "IndexFieldName": "basics.patient_sn"
+          "IndexFieldName": "clinicalCRF.MR_ID"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "所在医院",
+          "IndexFieldName": "clinicalCRF.Hospital"
         },
         {
           "dataType": "string",
           "UIFieldName": "性别",
-          "IndexFieldName": "basics.gender"
+          "IndexFieldName": "clinicalCRF.Sex"
         },
         {
           "dataType": "long",
           "UIFieldName": "年龄",
-          "IndexFieldName": "basics.age"
+          "IndexFieldName": "clinicalCRF.Age"
+        },
+        {
+          "dataType": "string",
+          "dateFormat": "yyyy-MM-dd",
+          "UIFieldName": "出生日期",
+          "IndexFieldName": "clinicalCRF.birth_date"
         },
         {
           "dataType": "string",
           "UIFieldName": "民族",
-          "IndexFieldName": "basics.ethnicity"
+          "IndexFieldName": "clinicalCRF.nation"
         },
         {
           "dataType": "string",
-          "UIFieldName": "婚姻状态",
-          "IndexFieldName": "basics.marital_status"
+          "UIFieldName": "文化程度",
+          "IndexFieldName": "clinicalCRF.education"
         },
         {
           "dataType": "string",
-          "UIFieldName": "既往史",
-          "IndexFieldName": "basics.past_hisory"
+          "UIFieldName": "婚姻",
+          "IndexFieldName": "clinicalCRF.marriage"
         },
         {
           "dataType": "string",
-          "UIFieldName": "家族史",
-          "IndexFieldName": "basics.family_history"
+          "UIFieldName": "患者Rh血型",
+          "IndexFieldName": "clinicalCRF.blood_type_Rh"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "患者ABO血型",
+          "IndexFieldName": "clinicalCRF.blood_type_ABO"
         },
         {
           "dataType": "string",
           "UIFieldName": "过敏史",
-          "IndexFieldName": "basics.allergic_history"
-        }
-      ],
-      "临床信息": [
+          "IndexFieldName": "clinicalCRF.allergy"
+        },
         {
           "dataType": "string",
-          "UIFieldName": "诊断记录",
-          "IndexFieldName": "basics.diagnosis_record"
+          "UIFieldName": "既往肿瘤史",
+          "IndexFieldName": "clinicalCRF.cancer_history"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "既往疾病史",
+          "IndexFieldName": "clinicalCRF.disease_history"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "肿瘤家族史",
+          "IndexFieldName": "clinicalCRF.stfami_cancer_history"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "吸烟史",
+          "IndexFieldName": "clinicalCRF.smoke_history"
         }
       ],
-      "随访信息": [
+      "既往疾病史": [
         {
-          "dataType": "boolean",
-          "UIFieldName": "生存状态",
+          "dataType": "string",
+          "UIFieldName": "高血压",
+          "IndexFieldName": "clinicalCRF.HBP"
+        },
+        {
+          "dataType": "double",
+          "UIFieldName": "高血压年限",
+          "IndexFieldName": "clinicalCRF.HBP_year"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "糖尿病",
+          "IndexFieldName": "clinicalCRF.diabetes"
+        },
+        {
+          "dataType": "double",
+          "UIFieldName": "糖尿病年限",
+          "IndexFieldName": "clinicalCRF.diabetes_year"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "心脏疾病",
+          "IndexFieldName": "clinicalCRF.HD"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "心脏疾病名称",
+          "IndexFieldName": "clinicalCRF.HD_name"
+        },
+        {
+          "dataType": "double",
+          "UIFieldName": "心脏疾病年限",
+          "IndexFieldName": "clinicalCRF.HD_year"
+        },
+        {
+          "dataType": "long",
+          "UIFieldName": "肝炎",
+          "IndexFieldName": "clinicalCRF.hepatitis"
+        },
+        {
+          "dataType": "long",
+          "UIFieldName": "肝炎年限",
+          "IndexFieldName": "clinicalCRF.hepatitis_year"
+        },
+        {
+          "dataType": "long",
+          "UIFieldName": "外伤",
+          "IndexFieldName": "clinicalCRF.surgical trauma"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "外伤名称",
+          "IndexFieldName": "clinicalCRF.surgical trauma_name"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "结核",
+          "IndexFieldName": "clinicalCRF.tuberculosis"
+        },
+        {
+          "dataType": "long",
+          "UIFieldName": "结核年限",
+          "IndexFieldName": "clinicalCRF.tuberculosis_year"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "其他疾病",
+          "IndexFieldName": "clinicalCRF.others"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "疾病名称",
+          "IndexFieldName": "clinicalCRF.others_name"
+        }
+
+      ],
+      "既往肿瘤史": [
+        {
+          "dataType": "string",
+          "UIFieldName": "肿瘤部位",
+          "IndexFieldName": "clinicalCRF.Ca_His_Loc"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "肿瘤部位码",
+          "IndexFieldName": "clinicalCRF.Ca_His_ana_code"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "组织学类型",
+          "IndexFieldName": "clinicalCRF.Ca_His_type"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "组织学码",
           "IndexFieldName": "basics.vital_status"
         },
         {
-          "dataType": "string",
-          "UIFieldName": "生存时间",
-          "IndexFieldName": "basics.survival_time"
+          "dataType": "date",
+          "UIFieldName": "首次诊断时间",
+          "dateFormat": "yyyy-MM-dd",
+          "IndexFieldName": "clinicalCRF.Ca_His_date"
         }
       ],
-      "生物标本": [
+      "肿瘤家族史": [
         {
-          "dataType": "boolean",
+          "dataType": "string",
+          "UIFieldName": "父亲肿瘤类型",
+          "IndexFieldName": "clinicalCRF.father_ca"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "父亲患病年龄",
+          "IndexFieldName": "clinicalCRF.father_ca_age"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "母亲肿瘤类型",
+          "IndexFieldName": "clinicalCRF.mother_ca"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "母亲患病年龄",
+          "IndexFieldName": "clinicalCRF.mother_ca_age"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "兄弟肿瘤类型",
+          "IndexFieldName": "clinicalCRF.brother_ca"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "兄弟患病年龄",
+          "IndexFieldName": "clinicalCRF.brother_ca_age"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "姐妹肿瘤类型",
+          "IndexFieldName": "clinicalCRF.sister_ca"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "姐妹患病年龄",
+          "IndexFieldName": "clinicalCRF.sister_ca_age"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "子女肿瘤类型",
+          "IndexFieldName": "clinicalCRF.child_ca"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "子女患病年龄",
+          "IndexFieldName": "clinicalCRF.child_ca_age"
+        }
+      ],
+      "吸烟史":[
+        {
+          "dataType": "long",
+          "UIFieldName": "开始吸烟年龄",
+          "IndexFieldName": "clinicalCRF.smk_age"
+        },
+        {
+          "dataType": "double",
+          "UIFieldName": "吸烟量",
+          "IndexFieldName": "clinicalCRF.smk_amount"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "戒烟",
+          "IndexFieldName": "clinicalCRF.smk_quit"
+        },
+        {
+          "dataType": "double",
+          "UIFieldName": "戒烟年限",
+          "IndexFieldName": "clinicalCRF.smk_quit_year"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "家庭中被动吸烟",
+          "IndexFieldName": "clinicalCRF.pass_Fam_smk"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "接触香烟的频度",
+          "IndexFieldName": "clinicalCRF.pass_Wk_smk_fre"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "工作中被动吸烟",
+          "IndexFieldName": "clinicalCRF.pass_Wk_smk"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "接触香烟的频度",
+          "IndexFieldName": "clinicalCRF.pass_Wk_smk_fre"
+        }
+      ],
+      "临床信息":[
+        {
+          "dataType": "string",
+          "UIFieldName": "临床诊断",
+          "IndexFieldName": "clinicalCRF.Clinical_dx"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "临床T分期",
+          "IndexFieldName": "clinicalCRF.Clin_T"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "临床N分期",
+          "IndexFieldName": "clinicalCRF.Clin_N"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "临床M分期",
+          "IndexFieldName": "clinicalCRF.Clin_M"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "临床分期",
+          "IndexFieldName": "clinicalCRF.Clin_Stage"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "病理诊断",
+          "IndexFieldName": "clinicalCRF.Path_dx"
+        },
+        {
+          "dataType": "date",
+          "UIFieldName": "病理确诊日期",
+          "dateFormat": "yyyy-MM-dd",
+          "IndexFieldName": "clinicalCRF.diag_date"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "病理组织学诊断1",
+          "IndexFieldName": "clinicalCRF.Tumor_histology_dx_ICDO3_1"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "病理分期",
+          "IndexFieldName": "clinicalCRF.Path_Stage"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "病理T分期",
+          "IndexFieldName": "clinicalCRF.Path_T"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "病理N分期",
+          "IndexFieldName": "clinicalCRF.Path_N"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "病理M分期",
+          "IndexFieldName": "clinicalCRF.Path_M"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "肿瘤类型",
+          "IndexFieldName": "clinicalCRF.cancer_type"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "肿瘤大小",
+          "IndexFieldName": "clinicalCRF.tumor_size"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "术前放疗",
+          "IndexFieldName": "clinicalCRF.pre_radio"
+        },
+        {
+          "dataType": "date",
+          "UIFieldName": "手术日期",
+          "dateFormat": "yyyy-MM-dd",
+          "IndexFieldName": "clinicalCRF.Specimen_date"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "手术名称",
+          "IndexFieldName": "clinicalCRF.surgery_name"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "完全根治切除",
+          "IndexFieldName": "clinicalCRF.complete_surgery"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "不是完全切除原因",
+          "IndexFieldName": "clinicalCRF.reason"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "术后化疗",
+          "IndexFieldName": "clinicalCRF.chemotherapy"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "术后放疗",
+          "IndexFieldName": "clinicalCRF.radiotherapy"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "区域淋巴结阳性数",
+          "IndexFieldName": "clinicalCRF.LN+"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "区域淋巴结清扫数",
+          "IndexFieldName": "clinicalCRF.LN"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "断端",
+          "IndexFieldName": "clinicalCRF.margin"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "胸片",
+          "IndexFieldName": "clinicalCRF.meta_X_ray"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "CT",
+          "IndexFieldName": "clinicalCRF.meta_CT"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "骨扫描",
+          "IndexFieldName": "clinicalCRF.meta_bone_scan"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "MRI",
+          "IndexFieldName": "clinicalCRF.meta_MRI"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "B超",
+          "IndexFieldName": "clinicalCRF.meta_B_ultrasonography"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "手术记录",
+          "IndexFieldName": "clinicalCRF.meta_operation"
+        }
+      ],
+      "免疫组化检测":[
+        {
+          "dataType": "date",
+          "UIFieldName": "检测日期",
+          "dateFormat": "yyyy-MM-dd",
+          "IndexFieldName": "clinicalCRF.IH_detection_date"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "IH_P53",
+          "IndexFieldName": "clinicalCRF.IH_P53"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "IH_Her2",
+          "IndexFieldName": "clinicalCRF.IH_Her2"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "IH_VEGF",
+          "IndexFieldName": "clinicalCRF.IH_VEGF"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "IH_K-ras",
+          "IndexFieldName": "clinicalCRF.IH_K-ras"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "IH_oth1",
+          "IndexFieldName": "clinicalCRF.IH_oth1"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "IH_oth1_value",
+          "IndexFieldName": "clinicalCRF.IH_oth1_value"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "IH_oth2",
+          "IndexFieldName": "clinicalCRF.IH_oth2"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "IH_oth2_value",
+          "IndexFieldName": "clinicalCRF.IH_oth2_value"
+        }
+      ],
+      "肿瘤标志物检测":[
+        {
+          "dataType": "date",
+          "UIFieldName": "检测日期",
+          "dateFormat": "yyyy-MM-dd",
+          "IndexFieldName": "clinicalCRF.BM_detection_date"
+        },
+        {
+          "dataType": "double",
+          "UIFieldName": "BM_NSE",
+          "IndexFieldName": "clinicalCRF.BM_NSE"
+        },
+        {
+          "dataType": "double",
+          "UIFieldName": "BM_Cyfra21_1",
+          "IndexFieldName": "clinicalCRF.BM_Cyfra21_1"
+        },
+        {
+          "dataType": "double",
+          "UIFieldName": "BM_CEA",
+          "IndexFieldName": "clinicalCRF.BM_CEA"
+        },
+        {
+          "dataType": "double",
+          "UIFieldName": "BM_SCC",
+          "IndexFieldName": "clinicalCRF.BM_SCC"
+        },
+        {
+          "dataType": "double",
+          "UIFieldName": "BM_other",
+          "IndexFieldName": "clinicalCRF.BM_other"
+        },
+        {
+          "dataType": "double",
+          "UIFieldName": "BM_other_value",
+          "IndexFieldName": "clinicalCRF.BM_other_value"
+        }
+      ],
+      "组学信息":[
+        {
+          "dataType": "date",
+          "UIFieldName": "检测日期",
+          "dateFormat": "yyyy-MM-dd",
+          "IndexFieldName": "clinicalCRF.Gene_detection_date"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "基因突变",
+          "IndexFieldName": "clinicalCRF.mutation"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "Gene_EGFR_18",
+          "IndexFieldName": "clinicalCRF.Gene_EGFR_18"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "Gene_EGFR_19",
+          "IndexFieldName": "clinicalCRF.Gene_EGFR_19"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "Gene_EGFR_20",
+          "IndexFieldName": "clinicalCRF.Gene_EGFR_20"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "Gene_EGFR_21",
+          "IndexFieldName": "clinicalCRF.Gene_EGFR_21"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "Gene_K_RAS",
+          "IndexFieldName": "clinicalCRF.Gene_K_RAS"
+        },
+        {
+          "dataType": "date",
+          "UIFieldName": "GeneTest_date",
+          "dateFormat": "yyyy-MM-dd",
+          "IndexFieldName": "clinicalCRF.GeneTest_date"
+        },
+        {
+          "dataType": "double",
+          "UIFieldName": "CK19mRNA",
+          "IndexFieldName": "clinicalCRF.CK19mRNA"
+        },
+        {
+          "dataType": "double",
+          "UIFieldName": "CEAmRNA",
+          "IndexFieldName": "clinicalCRF.CEAmRNA"
+        }
+      ],
+      "术前放疗":[
+        {
+          "dataType": "string",
+          "UIFieldName": "放疗部位",
+          "IndexFieldName": "clinicalCRF.pre_radio_loc"
+        },
+        {
+          "dataType": "long",
+          "UIFieldName": "放疗总剂量",
+          "IndexFieldName": "clinicalCRF.pre_radio_dose"
+        }
+      ],
+      "术前化疗":[
+        {
+          "dataType": "string",
+          "UIFieldName": "化疗方案",
+          "IndexFieldName": "clinicalCRF.neochemo_1"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "化疗周期",
+          "IndexFieldName": "clinicalCRF.neochemo_1_dura"
+        }
+      ],
+      "术后化疗药物":[
+        {
+          "dataType": "string",
+          "UIFieldName": "chemo1",
+          "IndexFieldName": "clinicalCRF.chemo1"
+        },
+        {
+          "dataType": "long",
+          "UIFieldName": "chemo1_dura",
+          "IndexFieldName": "clinicalCRF.chemo1_dura"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "chemo2",
+          "IndexFieldName": "clinicalCRF.chemo2"
+        },
+        {
+          "dataType": "long",
+          "UIFieldName": "chemo2_dura",
+          "IndexFieldName": "clinicalCRF.chemo2_dura"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "chemo3",
+          "IndexFieldName": "clinicalCRF.chemo3"
+        },
+        {
+          "dataType": "long",
+          "UIFieldName": "chemo3_dura",
+          "IndexFieldName": "clinicalCRF.chemo3_dura"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "chemo4",
+          "IndexFieldName": "clinicalCRF.chemo4"
+        },
+        {
+          "dataType": "long",
+          "UIFieldName": "chemo4_dura",
+          "IndexFieldName": "clinicalCRF.chemo4_dura"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "chemo5",
+          "IndexFieldName": "clinicalCRF.chemo5"
+        },
+        {
+          "dataType": "long",
+          "UIFieldName": "chemo5_dura",
+          "IndexFieldName": "clinicalCRF.chemo5_dura"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "chemo6",
+          "IndexFieldName": "clinicalCRF.chemo6"
+        },
+        {
+          "dataType": "long",
+          "UIFieldName": "chemo6_dura",
+          "IndexFieldName": "clinicalCRF.chemo6_dura"
+        }
+      ],
+      "术后放疗药物":[
+        {
+          "dataType": "string",
+          "UIFieldName": "radio1_loc",
+          "IndexFieldName": "clinicalCRF.radio1_loc"
+        },
+        {
+          "dataType": "long",
+          "UIFieldName": "radio1_dose",
+          "IndexFieldName": "clinicalCRF.radio1_dose"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "radio1_date",
+          "IndexFieldName": "clinicalCRF.radio1_date"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "radio2_loc",
+          "IndexFieldName": "clinicalCRF.radio2_loc"
+        },
+        {
+          "dataType": "long",
+          "UIFieldName": "radio2_dose",
+          "IndexFieldName": "clinicalCRF.radio2_dose"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "radio2_date",
+          "IndexFieldName": "clinicalCRF.radio2_date"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "radio3_loc",
+          "IndexFieldName": "clinicalCRF.radio3_loc"
+        },
+        {
+          "dataType": "long",
+          "UIFieldName": "radio3_dose",
+          "IndexFieldName": "clinicalCRF.radio3_dose"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "radio3_date",
+          "IndexFieldName": "clinicalCRF.radio3_date"
+        }
+      ],
+      "其他治疗":[
+        {
+          "dataType": "long",
+          "UIFieldName": "中药治疗",
+          "IndexFieldName": "clinicalCRF.herbtherapy"
+        },
+        {
+          "dataType": "long",
+          "UIFieldName": "生物治疗",
+          "IndexFieldName": "clinicalCRF.immunotherapy"
+        },
+        {
+          "dataType": "long",
+          "UIFieldName": "靶向治疗",
+          "IndexFieldName": "clinicalCRF.targettherapy"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "靶向药物名称",
+          "IndexFieldName": "clinicalCRF.targettherapy_name"
+        }
+      ],
+      "随访":[
+        {
+          "dataType": "date",
+          "UIFieldName": "随访日期",
+          "dateFormat": "yyyy-MM-dd",
+          "IndexFieldName": "clinicalCRF.followup1_date"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "生存状态",
+          "IndexFieldName": "clinicalCRF.followup1_outcome"
+        },
+        {
+          "dataType": "date",
+          "UIFieldName": "死亡日期",
+          "dateFormat": "yyyy-MM-dd",
+          "IndexFieldName": "clinicalCRF.death_date"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "死因",
+          "IndexFieldName": "clinicalCRF.death_cause"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "其他死因",
+          "IndexFieldName": "clinicalCRF.death_cause_other"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "是否复发",
+          "IndexFieldName": "clinicalCRF.recurrence"
+        },
+        {
+          "dataType": "date",
+          "UIFieldName": "首次复发日期",
+          "dateFormat": "yyyy-MM-dd",
+          "IndexFieldName": "clinicalCRF.fir_recur_date"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "是否远处转移",
+          "IndexFieldName": "clinicalCRF.metastasis"
+        },
+        {
+          "dataType": "date",
+          "UIFieldName": "首次转移日期",
+          "dateFormat": "yyyy-MM-dd",
+          "IndexFieldName": "clinicalCRF.fir_meta_date"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "转移部位",
+          "IndexFieldName": "clinicalCRF.fir_meta_loca"
+        }
+      ],
+      "转移后治疗情况":[
+        {
+          "dataType": "string",
+          "UIFieldName": "转移后是否继续治疗",
+          "IndexFieldName": "clinicalCRF.meta_therapy"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "转移后手术治疗",
+          "IndexFieldName": "clinicalCRF.meta_surgery"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "转移后放疗",
+          "IndexFieldName": "clinicalCRF.meta_radio"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "转移后化疗",
+          "IndexFieldName": "clinicalCRF.meta_chemo"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "转移后中药治疗",
+          "IndexFieldName": "clinicalCRF.meta_herb"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "转移后免疫治疗",
+          "IndexFieldName": "clinicalCRF.meta_immu"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "转移后靶向治疗",
+          "IndexFieldName": "clinicalCRF.meta_tar"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "靶向药物名称",
+          "IndexFieldName": "clinicalCRF.meta_tar_name"
+        }
+      ],
+      "生物标本":[
+        {
+          "dataType": "string",
           "UIFieldName": "血样",
-          "IndexFieldName": "basics.blood_sample"
+          "IndexFieldName": "clinicalCRF.blood_sample"
         },
         {
-          "dataType": "boolean",
+          "dataType": "string",
           "UIFieldName": "癌组织",
-          "IndexFieldName": "basics.cancer_tissue"
+          "IndexFieldName": "clinicalCRF.cancer_tissue"
         },
         {
-          "dataType": "boolean",
+          "dataType": "string",
           "UIFieldName": "转移组织",
-          "IndexFieldName": "basics.metastatic_tissue"
+          "IndexFieldName": "clinicalCRF.Transfer_tissue"
         },
         {
-          "dataType": "boolean",
+          "dataType": "string",
           "UIFieldName": "正常组织",
-          "IndexFieldName": "basics.normal_tissue"
+          "IndexFieldName": "clinicalCRF.normal_tissue"
         },
         {
           "dataType": "string",
           "UIFieldName": "存储位置",
-          "IndexFieldName": "basics.storage_location"
-        }
-      ],
-      "组学信息": [
-        {
-          "dataType": "boolean",
-          "UIFieldName": "SSM",
-          "IndexFieldName": "basics.ssm"
-        },
-        {
-          "dataType": "boolean",
-          "UIFieldName": "CNSM",
-          "IndexFieldName": "basics.cnsm"
-        },
-        {
-          "dataType": "boolean",
-          "UIFieldName": "CNGM",
-          "IndexFieldName": "basics.cngm"
-        },
-        {
-          "dataType": "boolean",
-          "UIFieldName": "SGM",
-          "IndexFieldName": "basics.sgm"
+          "IndexFieldName": "clinicalCRF.storage"
         }
       ]
     }
   },
   "lung_cancer": {
-    "default":{
-      "病人基本信息":[
-
+    "default": {
+      "病人基本信息": [
       ],
-      "临床信息":[
-
+      "临床信息": [
       ],
-      "随访信息":[
-
+      "随访信息": [
       ],
-      "生物标本信息":[
-
+      "生物标本信息": [
       ],
-      "组学信息":[
-
+      "组学信息": [
       ]
     },
-    "all":{
-      "病人基本信息":[
-
+    "all": {
+      "病人基本信息": [
       ],
-      "临床信息":[
-
+      "临床信息": [
       ],
-      "随访信息":[
-
+      "随访信息": [
       ],
-      "生物标本信息":[
-
+      "生物标本信息": [
       ],
-      "组学信息":[
-
+      "组学信息": [
       ]
     }
   },
   "renal_carcinoma": {
-    "default":{
-      "病人基本信息":[
-
+    "default": {
+      "病人基本信息": [
       ],
-      "临床信息":[
-
+      "临床信息": [
       ],
-      "随访信息":[
-
+      "随访信息": [
       ],
-      "生物标本信息":[
-
+      "生物标本信息": [
       ],
-      "组学信息":[
-
+      "组学信息": [
       ]
     },
-    "all":{
-      "病人基本信息":[
-
+    "all": {
+      "病人基本信息": [
       ],
-      "临床信息":[
-
+      "临床信息": [
       ],
-      "随访信息":[
-
+      "随访信息": [
       ],
-      "生物标本信息":[
-
+      "生物标本信息": [
       ],
-      "组学信息":[
-
+      "组学信息": [
       ]
     }
   }
