@@ -526,8 +526,8 @@ public class KnowledgeBuilder {
 		JsonObject variation_numVariation = new JsonObject();
 		variation_numVariation.addProperty("name","variation_num");
 		schema.add(variation_numVariation);
-
-		if("phenotype".equals(from) || "disease".equals(from)){
+//		if("phenotype".equals(from) || "disease".equals(from)){
+		if("phenotype".equals(from)){
 			JsonObject diseaseidVariation = new JsonObject();
 			diseaseidVariation.addProperty("name","disease_id");
 			schema.add(diseaseidVariation);
