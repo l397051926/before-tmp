@@ -81,7 +81,15 @@ public class KnowledgeBuilder {
 		if(null!=drugObjs&&drugObjs.size()>0){
 			JsonObject fdaObj = (JsonObject)drugObjs.get(0);
 			if(null!=fdaObj){
-				JsonArray dataArray = fdaObj.getAsJsonArray("fda");
+				String currentTableName = null;
+				if("drug_fda".equals(currentTable)){
+					currentTableName = "fda";
+				}else if("drug_nccn".equals(currentTable)){
+					currentTableName = "nccn";
+				}else if("drug_target".equals(currentTable)){
+					currentTableName = "targetDrug";
+				}
+				JsonArray dataArray = fdaObj.getAsJsonArray(currentTableName);
 				if(null!=dataArray){
 					JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromA2BOnC, dataArray);
 					if(null!=bodyRtn&&0<bodyRtn.size()){
