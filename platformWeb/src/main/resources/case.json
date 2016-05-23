@@ -1146,5 +1146,231 @@
       "组学信息": [
       ]
     }
+  },
+  "caseOld":{
+    "default": {
+      "病人基本信息": [
+        {
+          "dataType": "string",
+          "UIFieldName": "病人编号",
+          "IndexFieldName": "basics.patient_sn"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "性别",
+          "IndexFieldName": "basics.gender"
+        },
+        {
+          "dataType": "long",
+          "UIFieldName": "年龄",
+          "IndexFieldName": "basics.age"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "民族",
+          "IndexFieldName": "basics.ethnicity"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "婚姻状态",
+          "IndexFieldName": "basics.marital_status"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "既往史",
+          "IndexFieldName": "basics.past_hisory"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "家族史",
+          "IndexFieldName": "basics.family_history"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "过敏史",
+          "IndexFieldName": "basics.allergic_history"
+        }
+      ],
+      "临床信息": [
+        {
+          "dataType": "string",
+          "UIFieldName": "诊断记录",
+          "IndexFieldName": "basics.diagnosis_record"
+        }
+      ],
+      "随访信息": [
+        {
+          "dataType": "boolean",
+          "UIFieldName": "生存状态",
+          "IndexFieldName": "basics.vital_status"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "生存时间",
+          "IndexFieldName": "basics.survival_time"
+        }
+      ],
+      "生物标本": [
+        {
+          "dataType": "boolean",
+          "UIFieldName": "血样",
+          "IndexFieldName": "basics.blood_sample"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "癌组织",
+          "IndexFieldName": "basics.cancer_tissue"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "转移组织",
+          "IndexFieldName": "basics.metastatic_tissue"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "正常组织",
+          "IndexFieldName": "basics.normal_tissue"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "存储位置",
+          "IndexFieldName": "basics.storage_location"
+        }
+      ],
+      "组学信息": [
+        {
+          "dataType": "boolean",
+          "UIFieldName": "SSM",
+          "IndexFieldName": "basics.ssm"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "CNSM",
+          "IndexFieldName": "basics.cnsm"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "CNGM",
+          "IndexFieldName": "basics.cngm"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "SGM",
+          "IndexFieldName": "basics.sgm"
+        }
+      ]
+    },
+    "all": {
+      "病人基本信息": [
+        {
+          "dataType": "string",
+          "UIFieldName": "病人编号",
+          "IndexFieldName": "basics.patient_sn"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "性别",
+          "IndexFieldName": "basics.gender"
+        },
+        {
+          "dataType": "long",
+          "UIFieldName": "年龄",
+          "IndexFieldName": "basics.age"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "民族",
+          "IndexFieldName": "basics.ethnicity"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "婚姻状态",
+          "IndexFieldName": "basics.marital_status"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "既往史",
+          "IndexFieldName": "basics.past_hisory"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "家族史",
+          "IndexFieldName": "basics.family_history"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "过敏史",
+          "IndexFieldName": "basics.allergic_history"
+        }
+      ],
+      "临床信息": [
+        {
+          "dataType": "string",
+          "UIFieldName": "诊断记录",
+          "IndexFieldName": "basics.diagnosis_record"
+        }
+      ],
+      "随访信息": [
+        {
+          "dataType": "boolean",
+          "UIFieldName": "生存状态",
+          "IndexFieldName": "basics.vital_status"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "生存时间",
+          "IndexFieldName": "basics.survival_time"
+        }
+      ],
+      "生物标本": [
+        {
+          "dataType": "boolean",
+          "UIFieldName": "血样",
+          "IndexFieldName": "basics.blood_sample"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "癌组织",
+          "IndexFieldName": "basics.cancer_tissue"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "转移组织",
+          "IndexFieldName": "basics.metastatic_tissue"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "正常组织",
+          "IndexFieldName": "basics.normal_tissue"
+        },
+        {
+          "dataType": "string",
+          "UIFieldName": "存储位置",
+          "IndexFieldName": "basics.storage_location"
+        }
+      ],
+      "组学信息": [
+        {
+          "dataType": "boolean",
+          "UIFieldName": "SSM",
+          "IndexFieldName": "basics.ssm"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "CNSM",
+          "IndexFieldName": "basics.cnsm"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "CNGM",
+          "IndexFieldName": "basics.cngm"
+        },
+        {
+          "dataType": "boolean",
+          "UIFieldName": "SGM",
+          "IndexFieldName": "basics.sgm"
+        }
+      ]
+    }
   }
 }
