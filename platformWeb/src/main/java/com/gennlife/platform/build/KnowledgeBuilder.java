@@ -406,7 +406,7 @@ public class KnowledgeBuilder {
 
 	private JsonArray drugUseSchema(String from) {
 		JsonArray schema = new JsonArray();
-		if("phenotype".equals(from) || "drug".equals(from) ||"disease".equals(from)){
+		if("phenotype".equals(from) || "drug".equals(from) ||"disease".equals(from)||"gene".equals(from)){
 			JsonObject drugDrug = new JsonObject();
 			drugDrug.addProperty("name","drug");
 			schema.add(drugDrug);
