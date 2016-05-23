@@ -212,7 +212,8 @@ public class KnowledgeBuilder {
 	 */
 	private JsonArray diseaseSchema(String from){
 		JsonArray schema = new JsonArray();
-		if("phenotype".equals(from) || "disease".equals(from)){
+//		if("phenotype".equals(from) || "disease".equals(from)){
+		if("phenotype".equals(from)){
 			JsonObject entityid = new JsonObject();
 			entityid.addProperty("name","disease_id");
 			schema.add(entityid);
