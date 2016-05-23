@@ -425,7 +425,7 @@ public class KnowledgeBuilder {
 			schema.add(brand_nameDrug);
 
 			JsonObject typeDrug = new JsonObject();
-			typeDrug.addProperty("name","type");
+			typeDrug.addProperty("name","disease");
 			schema.add(typeDrug);
 
 			JsonObject biomarkerDrug = new JsonObject();
@@ -437,7 +437,7 @@ public class KnowledgeBuilder {
 			schema.add(referenced_subgroupDrug);
 
 			JsonObject indicationDrug = new JsonObject();
-			indicationDrug.addProperty("name","indication");
+			indicationDrug.addProperty("name","description");
 			schema.add(indicationDrug);
 
 			JsonObject refDrug = new JsonObject();

@@ -101,7 +101,7 @@
 	"disease_drug_fda": {
 		"drug": {
 			"data_type": "single_array",
-			"path_one": "$.FdaReference.drugName",
+			"path_one": "$.drugName",
 			"path_two": "$.FdaReference.drugUrl",
 			"name_one": "name",
 			"name_two": "url"
@@ -128,7 +128,7 @@
 		},
 		"ref": {
 			"data_type": "array",
-			"path": "$.reference",
+			"path": "$.FdaReference.reference",
 			"name": "text",
 			"url": "url"
 		}
@@ -271,7 +271,7 @@
 		},
 		"ref": {
 			"data_type": "array",
-			"path": "$.reference",
+			"path": "$.NccnReference.reference",
 			"name": "text",
 			"url": "url"
 		}
