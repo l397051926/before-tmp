@@ -32,6 +32,9 @@ public class DataFormatConversion implements Runnable{
 	public static JsonParser jsonParser = new JsonParser();
 	public static JsonContext tmpJc = new JsonContext();
 	public static long start = System.currentTimeMillis();
+	public static int DATA_TYPE_STRING = 1;
+	public static int DATA_TYPE_SINGLE_ARRAY = 2;
+	public static int DATA_TYPE_ARRAY = 3;
 	static {
 		try {
 			template = FilesUtils.readFile("/knowledge_transformation.json");
@@ -178,23 +181,33 @@ public class DataFormatConversion implements Runnable{
 			}
 			String currentFieldName = key;
 			String dataType=(String) objMeta.get("data_type");
+			
 
 			Object currentFieldValue = null;
-
-			switch (dataType) {
-			case "string":
+			if("string".equals(dataType)){
 				currentFieldValue = fieldValueStr(objMeta,sourceData);
 				newObj.put(currentFieldName, currentFieldValue);
-				break;
-			case "single_array":
+			}else if("single_array".equals(dataType)){
 				currentFieldValue = fieldValueSingleArray(objMeta,sourceData);
-				break;
-			case "array":
+			}else if("array".equals(dataType)){
 				currentFieldValue = fieldValueArray(objMeta,sourceData);
-				break;
-			default:
-				break;
 			}
+			
+			
+//			switch (dataType) {
+//			case "string":
+//				currentFieldValue = fieldValueStr(objMeta,sourceData);
+//				newObj.put(currentFieldName, currentFieldValue);
+//				break;
+//			case "single_array":
+//				currentFieldValue = fieldValueSingleArray(objMeta,sourceData);
+//				break;
+//			case "array":
+//				currentFieldValue = fieldValueArray(objMeta,sourceData);
+//				break;
+//			default:
+//				break;
+//			}
 			newObj.put(currentFieldName, currentFieldValue);
 		}
 
