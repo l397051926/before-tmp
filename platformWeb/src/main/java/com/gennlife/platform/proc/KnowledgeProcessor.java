@@ -33,6 +33,7 @@ public class KnowledgeProcessor {
         set.add("drug");
         set.add("variation");
         set.add("protein");
+        set.add("diseaseGene");
     }
     public void search(HttpServletRequest req, HttpServletResponse resp) {
         String param = ParamUtils.getParam(req);
@@ -44,18 +45,27 @@ public class KnowledgeProcessor {
         int currentPage = 1;
         int pageSize = 12;
         String tableName = null;
+        JsonArray genes = null;
+        
         try{
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            from = paramObj.get("from").getAsString().toLowerCase();
-            to = paramObj.get("to").getAsString().toLowerCase();
+            from = paramObj.get("from").getAsString();
+            to = paramObj.get("to").getAsString();
             limit = paramObj.get("limit").getAsString();
             query = paramObj.get("query").getAsString();
+            
             int[] li = ParamUtils.parseLimit(limit);
             currentPage = li[0];
             pageSize = li[1];
             if("drug".equals(to)){
                 tableName = paramObj.get("currentTable").getAsString();
             }
+            
+            //额外参数 
+            if("diseaseGene".equals(from)&&"drug".equals(to)){
+            	genes = paramObj.getAsJsonArray("genes");
+            }
+            
         }catch (Exception e){
             logger.error("请求参数出错", e);
             ParamUtils.errorParam("请求参数出错", req, resp);
@@ -74,6 +84,10 @@ public class KnowledgeProcessor {
             return;
         }
         JsonObject newJson = buildQueryJson(from,to,query,currentPage,pageSize,tableName);
+        //额外参数 
+        if("diseaseGene".equals(from)&&"drug".equals(to)){
+        	newJson.add("genes", genes);
+        }
         String newParam = gson.toJson(newJson);
         logger.info("knowledge req=" + newParam);
         String url = ConfigurationService.getUrlBean().getKnowledgeURL();
