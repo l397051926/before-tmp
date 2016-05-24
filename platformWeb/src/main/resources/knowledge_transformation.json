@@ -508,17 +508,20 @@
 	},
 	"phenotype_variation": {
 		"variation_num": {
-			"data_type": "string",
-			"path": "$.id"
+			"data_type": "single_array",
+			"path_one": "$.id",
+			"path_two": "$.variantIdUrl",
+			"name_one": "name",
+			"name_two": "url"
 		},
-		"disease_id": {
+		"gene": {
 			"data_type": "single_array",
 			"path_one": "$.geneSymbol",
 			"path_two": "$.geneSymbolUrl",
 			"name_one": "name",
 			"name_two": "url"
 		},
-		"type": {
+		"chromosome": {
 			"data_type": "string",
 			"path": "$.chromosome"
 		},
