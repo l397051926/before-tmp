@@ -27,7 +27,7 @@
 			"data_type": "string",
 			"path": "$.FdaReference.referencedSubGroup"
 		},
-		"indication": {
+		"description": {
 			"data_type": "string",
 			"path": "$.FdaReference.indication"
 		}
@@ -35,34 +35,34 @@
 	"drug_drug_fda": {
 		"drug": {
 			"data_type": "single_array",
-			"path_one": "$.FdaReference.drugName",
-			"path_two": "$.FdaReference.drugUrl",
+			"path_one": "$.drugName",
+			"path_two": "$.drugUrl",
 			"name_one": "name",
 			"name_two": "url"
 		},
 		"disease": {
 			"data_type": "string",
-			"path": "$.FdaReference.disease"
+			"path": "$.disease"
 		},
 		"brand_name": {
 			"data_type": "string",
-			"path": "$.FdaReference.productName"
+			"path": "$.productName"
 		},
 		"type": {
 			"data_type": "string",
-			"path": "$.FdaReference.type"
+			"path": "$.type"
 		},
 		"biomarker": {
 			"data_type": "string",
-			"path": "$.FdaReference.biomarker"
+			"path": "$.biomarker"
 		},
 		"referenced_subgroup": {
 			"data_type": "string",
-			"path": "$.FdaReference.referencedSubGroup"
+			"path": "$.referencedSubGroup"
 		},
-		"indication": {
+		"description": {
 			"data_type": "string",
-			"path": "$.FdaReference.indication"
+			"path": "$.indication"
 		}
 	},
 	"protein_drug_fda": {
@@ -93,7 +93,7 @@
 			"data_type": "string",
 			"path": "$.FdaReference.referencedSubGroup"
 		},
-		"indication": {
+		"description": {
 			"data_type": "string",
 			"path": "$.FdaReference.indication"
 		}
@@ -161,7 +161,7 @@
 			"data_type": "string",
 			"path": "$.FdaReference.referencedSubGroup"
 		},
-		"indication": {
+		"description": {
 			"data_type": "string",
 			"path": "$.FdaReference.indication"
 		}
@@ -747,20 +747,20 @@
 			"name_one": "name",
 			"name_two": "url"
 		},
-        "chromosome": {
-            "data_type": "string",
-            "path": "$.chromosome"
-        },
-        "map_location": {
-            "data_type": "string",
-            "path": "$.mapLocation"
-        },
-        "transcript": {
-            "data_type": "array",
-            "path": "$.RNA",
-            "name": "rna",
-            "url": "rnaUrl"
-        },
+		"chromosome": {
+			"data_type": "string",
+			"path": "$.chromosome"
+		},
+		"map_location": {
+			"data_type": "string",
+			"path": "$.mapLocation"
+		},
+		"transcript": {
+			"data_type": "array",
+			"path": "$.RNA",
+			"name": "rna",
+			"url": "rnaUrl"
+		},
 		"protein": {
 			"data_type": "array",
 			"path": "$.protein",
@@ -1014,13 +1014,13 @@
 		}
 	},
 	"disease_variation": {
-	    "variation_num ":{
+		"variation_num ": {
 			"data_type": "single_array",
 			"path_one": "$.id",
 			"path_two": "$.variantIdUrl",
 			"name_one": "name",
 			"name_two": "url"
-	    },
+		},
 		"disease": {
 			"data_type": "string",
 			"path": "$.disease[0].name"
