@@ -411,7 +411,7 @@
         {
           "dataType": "string",
           "UIFieldName": "组织学码",
-          "IndexFieldName": "basics.vital_status"
+          "IndexFieldName": "basics.clinicalCRF.Ca_His_His_code"
         },
         {
           "dataType": "date",
@@ -764,7 +764,7 @@
         {
           "dataType": "string",
           "UIFieldName": "基因突变",
-          "IndexFieldName": "clinicalCRF.mutation"
+          "IndexFieldName": "clinicalCRF.mutant_gene"
         },
         {
           "dataType": "string",
@@ -827,7 +827,7 @@
           "IndexFieldName": "clinicalCRF.neochemo_1"
         },
         {
-          "dataType": "string",
+          "dataType": "long",
           "UIFieldName": "化疗周期",
           "IndexFieldName": "clinicalCRF.neochemo_1_dura"
         }
@@ -1026,32 +1026,32 @@
           "IndexFieldName": "clinicalCRF.meta_therapy"
         },
         {
-          "dataType": "string",
+          "dataType": "long",
           "UIFieldName": "转移后手术治疗",
           "IndexFieldName": "clinicalCRF.meta_surgery"
         },
         {
-          "dataType": "string",
+          "dataType": "long",
           "UIFieldName": "转移后放疗",
           "IndexFieldName": "clinicalCRF.meta_radio"
         },
         {
-          "dataType": "string",
+          "dataType": "long",
           "UIFieldName": "转移后化疗",
           "IndexFieldName": "clinicalCRF.meta_chemo"
         },
         {
-          "dataType": "string",
+          "dataType": "long",
           "UIFieldName": "转移后中药治疗",
           "IndexFieldName": "clinicalCRF.meta_herb"
         },
         {
-          "dataType": "string",
+          "dataType": "long",
           "UIFieldName": "转移后免疫治疗",
           "IndexFieldName": "clinicalCRF.meta_immu"
         },
         {
-          "dataType": "string",
+          "dataType": "long",
           "UIFieldName": "转移后靶向治疗",
           "IndexFieldName": "clinicalCRF.meta_tar"
         },
