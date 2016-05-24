@@ -192,6 +192,8 @@ public class DataFormatConversion implements Runnable{
 				currentFieldValue = fieldValueSingleArray(objMeta,sourceData);
 			}else if("array".equals(dataType)){
 				currentFieldValue = fieldValueArray(objMeta,sourceData);
+			}else if("array_rename".equals(dataType)){
+				currentFieldValue = fieldValueArrayRename(objMeta,sourceData);
 			}
 			
 			
@@ -321,6 +323,52 @@ public class DataFormatConversion implements Runnable{
 		}
 		return  data;
 	}
+	public static Object fieldValueArrayRename(JSONObject metaData,Object sourceData){
+
+		JSONArray data = new JSONArray();
+		if(null==sourceData ){
+			return data;
+		}
+
+		Object defaultVal = null;
+		try {
+			defaultVal=metaData.get("defaultVal");
+		} catch (JSONException e) {
+		}
+		if(null!=defaultVal){
+			return data;
+		}
+
+		String path = (String)metaData.get("path");
+		String name = (String)metaData.get("name");
+		String url = (String)metaData.get("url");
+		
+		String keyName = (String)metaData.get("keyName");
+		String valueName = (String)metaData.get("valueName");
+
+		JsonContext jc = new JsonContext();
+		jc.parse(sourceData.toString());
+		Object arrayObj = jc.read(path);
+		try {
+			arrayObj = jc.read(path);
+		} catch (Exception e) {
+			logger.error(e.toString());
+			return data;
+		}
+		JSONArray ja = (JSONArray) arrayObj;
+		if(null==ja||0==ja.size()){
+			return data;
+		}
+		for(int i=0,j=ja.size();i<j;i++){
+			net.minidev.json.JSONObject jo = new net.minidev.json.JSONObject();
+			Map<String,Object> o = (Map<String, Object>) ja.get(i);
+			jo.put(keyName, o.get(name));
+			jo.put(valueName, o.get(url));
+			data.add(jo);
+		}
+		return  data;
+	}
+	
 	/**
 	 * 定时更新模板
 	 */
