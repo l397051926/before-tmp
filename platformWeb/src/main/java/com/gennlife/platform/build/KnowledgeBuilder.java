@@ -33,12 +33,14 @@ public class KnowledgeBuilder {
 			result = buildGene(param,obj);
 		}else if("variation".equals(to)){
 			result = buildVariation(param,obj);
-		}else if ("drug".equals(to)&&!"diseaseGene".equals(from)){
+		}else if ("drug".equals(to)&&!"diseaseGene".equals(from)&&!"geneDisease".equals(from)){
 			result = buildDrug(param,obj);
 		}else if("phenotype".equals(to)){
 			result = buildPhenotype(param,obj);
 		}else if("diseaseGene".equals(from)&&"drug".equals(to)){
 			result = buildBiseaseGene(param,obj);
+		}else if("geneDisease".equals(from)&&"drug".equals(to)){
+			result = buildGeneBisease(param,obj);
 		}
 		return result;
 	}
@@ -69,6 +71,27 @@ public class KnowledgeBuilder {
 					if(null!=bodyRtn&&0<bodyRtn.size()){
 						body = bodyRtn;
 					}
+				}
+			}
+		}
+		result.add(body);
+		return result;
+	}
+	private JsonArray buildGeneBisease(JsonObject param, JsonObject obj) {
+		JsonArray result = new JsonArray();
+		JsonObject head = buildHead(param,obj);
+		String from = param.get("from").getAsString();
+		String to = param.get("to").getAsString();
+		String fromA2B = from+"_"+to;;
+		result.add(head);
+		JsonArray body = new JsonArray();
+		JsonArray dataArray = obj.getAsJsonArray("data");
+		
+		if(null!=dataArray&&dataArray.size()>0){
+			if(null!=dataArray){
+				JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromA2B, dataArray);
+				if(null!=bodyRtn&&0<bodyRtn.size()){
+					body = bodyRtn;
 				}
 			}
 		}
@@ -343,10 +366,16 @@ public class KnowledgeBuilder {
 			schema = geneSchema(from);
 		}else if("variation".equals(to)){
 			schema = variationSchema(from);
-		}else if("diseaseGene".equals(to)){
+		}else if("diseaseGene".equals(from)){
 			schema = diseaseGeneSchema(from);
-		}else if("drug".equals(to)){
-			String tableName = param.get("currentTable").getAsString();
+		}else if("geneDisease".equals(from)){
+			schema = geneDiseaseSchema(from);
+		}else if("drug".equals(to)&&!"diseaseGene".equals(from)&&!"geneDisease".equals(from)){
+			String tableName = null;
+			if(!"geneDisease".equals(from)
+				&&!"diseaseGene".equals(from) 	){
+				tableName=param.get("currentTable").getAsString();
+			}
 			if("drug".equals(tableName)){
 				schema = drugSchema(from);
 			}else if("drug_fda".equals(tableName)){
@@ -646,7 +675,41 @@ public class KnowledgeBuilder {
 
 		return schema;
 	}
+	private JsonArray geneDiseaseSchema(String from) {
+		JsonArray schema = new JsonArray();
+		
+		JsonObject typeDrug = new JsonObject();
+		typeDrug.addProperty("name","drug");
+		schema.add(typeDrug);
+		
+		JsonObject typeDisease = new JsonObject();
+		typeDisease.addProperty("name","disease");
+		schema.add(typeDisease);
+		
+		JsonObject typeBrandName = new JsonObject();
+		typeBrandName.addProperty("name","brand_name");
+		schema.add(typeBrandName);
+		
+		JsonObject typeBiomarker = new JsonObject();
+		typeBrandName.addProperty("name","biomarker");
+		schema.add(typeBiomarker);
+		
+		JsonObject typeBiomarkerDetail = new JsonObject();
+		typeBiomarkerDetail.addProperty("name","biomarker_detail");
+		schema.add(typeBiomarkerDetail);
+		
+		JsonObject typeDrugInstructions = new JsonObject();
+		typeDrugInstructions.addProperty("name","drug_instructions");
+		schema.add(typeDrugInstructions);
+		
+		JsonObject typeReference = new JsonObject();
+		typeReference.addProperty("name","ref");
+		schema.add(typeReference);
+		
+		
 
+		return schema;
+	}
 	private JsonArray geneSchema(String from) {
 		JsonArray schema = new JsonArray();
 		JsonObject entityGene = new JsonObject();

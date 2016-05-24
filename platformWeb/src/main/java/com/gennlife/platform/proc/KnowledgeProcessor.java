@@ -34,6 +34,7 @@ public class KnowledgeProcessor {
         set.add("variation");
         set.add("protein");
         set.add("diseaseGene");
+        set.add("geneDisease");
     }
     public void search(HttpServletRequest req, HttpServletResponse resp) {
         String param = ParamUtils.getParam(req);
@@ -42,28 +43,37 @@ public class KnowledgeProcessor {
         String to = null;
         String limit = null;
         String query = null;
+        JsonArray queryArry = null;
         int currentPage = 1;
         int pageSize = 12;
         String tableName = null;
         JsonArray genes = null;
-        
+        String diseaseParam = null;
         try{
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             from = paramObj.get("from").getAsString();
             to = paramObj.get("to").getAsString();
             limit = paramObj.get("limit").getAsString();
-            query = paramObj.get("query").getAsString();
+            if(!"geneDisease".equals(from)){
+            	query = paramObj.get("query").getAsString();
+            }else{
+            	queryArry = paramObj.getAsJsonArray("query");
+            }
+            
             
             int[] li = ParamUtils.parseLimit(limit);
             currentPage = li[0];
             pageSize = li[1];
-            if("drug".equals(to)){
+            if("drug".equals(to)&&!"geneDisease".equals(from)){
                 tableName = paramObj.get("currentTable").getAsString();
             }
             
             //额外参数 
             if("diseaseGene".equals(from)&&"drug".equals(to)){
             	genes = paramObj.getAsJsonArray("genes");
+            }
+            if("geneDisease".equals(from)&&"drug".equals(to)){
+            	diseaseParam = paramObj.get("disease").getAsString();
             }
             
         }catch (Exception e){
@@ -88,6 +98,12 @@ public class KnowledgeProcessor {
         if("diseaseGene".equals(from)&&"drug".equals(to)){
         	newJson.add("genes", genes);
         }
+        
+        if("geneDisease".equals(from)&&"drug".equals(to)){
+        	newJson.addProperty("disease", diseaseParam);
+        	newJson.add("query", queryArry);
+        }
+        
         String newParam = gson.toJson(newJson);
         logger.info("knowledge req=" + newParam);
         String url = ConfigurationService.getUrlBean().getKnowledgeURL();
@@ -104,6 +120,10 @@ public class KnowledgeProcessor {
         queryObj.addProperty("from",from);
         queryObj.addProperty("to",to);
         queryObj.addProperty("query",query);
+        if(!"geneDisease".equals(from)){
+        	 queryObj.addProperty("query",query);
+        }
+        
         queryObj.addProperty("currentPage",currentPage);
         queryObj.addProperty("pageSize",pageSize);
         queryObj.addProperty("currentTable",tableName);

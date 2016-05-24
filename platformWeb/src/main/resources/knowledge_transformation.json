@@ -202,6 +202,76 @@
 			"url": "url"
 		}
 	},
+	"diseaseGene_drug_nccn": {
+		"disease": {
+			"data_type": "string",
+			"path": "$.NccnReference.disease"
+		},
+		"drug": {
+			"data_type": "string",
+			"path": "$.drugName"
+		},
+		"brand_name": {
+			"data_type": "string",
+			"path": "$.NccnReference.productName"
+		},
+		"biomarker": {
+			"data_type": "array_rename",
+			"path": "$.NccnReference.biomarker",
+			"name": "name",
+			"url":"marker",
+			"keyName":"name",
+			"valueName":"marker"
+		},
+		"referenced_subgroup": {
+			"data_type": "string",
+			"path": "$.NccnReference.referencedSubGroup"
+		},
+		"description": {
+			"data_type": "string",
+			"path": "$.NccnReference.indication"
+		},
+		"ref": {
+			"data_type": "array",
+			"path": "$.NccnReference.reference",
+			"name": "text",
+			"url": "url"
+		}
+	},
+	"geneDisease_drug": {
+		"drug": {
+			"data_type": "string",
+			"path": "$.drugName"
+		},
+		"disease": {
+			"data_type": "string",
+			"path": "$.NccnReference.disease"
+		},
+		"brand_name": {
+			"data_type": "string",
+			"path": "$.productNames[*]"
+		},
+		"biomarker": {
+			"data_type": "string",
+			"path": "$.biomarker"
+		},
+		"referenced_subgroup": {
+			"data_type": "string",
+			"path": "$.referencedSubGroup"
+		},
+		"description": {
+			"data_type": "string",
+			"path": "$.indication"
+		},
+		"ref": {
+			"data_type": "array",
+			"path": "$.reference",
+			"name": "text",
+			"url": "url"
+		}
+	},
+	
+	
 	"gene_drug_nccn": {
 		"drug": {
 			"data_type": "string",
