@@ -736,6 +736,35 @@
 			"url": "proteinUrl"
 		}
 	},
+	"variation_gene": {
+		"gene": {
+			"data_type": "single_array",
+			"path_one": "$.geneSymbol",
+			"path_two": "$.geneSymbolUrl",
+			"name_one": "name",
+			"name_two": "url"
+		},
+        "chromosome": {
+            "data_type": "string",
+            "path": "$.chromosome"
+        },
+        "map_location": {
+            "data_type": "string",
+            "path": "$.mapLocation"
+        },
+        "transcript": {
+            "data_type": "array",
+            "path": "$.RNA",
+            "name": "rna",
+            "url": "rnaUrl"
+        },
+		"protein": {
+			"data_type": "array",
+			"path": "$.protein",
+			"name": "proteinName",
+			"url": "proteinUrl"
+		}
+	},
 	"phenotype_phenotype": {
 		"phenotype_id": {
 			"data_type": "single_array",
@@ -914,15 +943,24 @@
 	},
 	"drug_disease": {
 		"disease": {
-			"data_type": "single_array",
-			"path_one": "$.name",
-			"path_two": "$.idUrl",
-			"name_one": "name",
-			"name_two": "url"
-		},
-		"source": {
 			"data_type": "string",
-			"path": "$.source"
+			"path": "$.name"
+		},
+		"drug": {
+			"data_type": "string",
+			"path": "$.drugname"
+		},
+		"ncnn_ref": {
+			"data_type": "string",
+			"path": "$.nccn_reference"
+		},
+		"nci_ref": {
+			"data_type": "string",
+			"path": "$.nci_note"
+		},
+		"fda_ref": {
+			"data_type": "string",
+			"path": "$.FDA_drug_label"
 		}
 	},
 	"protein_disease": {

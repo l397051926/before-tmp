@@ -536,7 +536,11 @@ public class KnowledgeBuilder {
 			diseaseVariation.addProperty("name","disease");
 			schema.add(diseaseVariation);
 		}
-
+		if("disease".equals(from)){
+			JsonObject typeVariation = new JsonObject();
+			typeVariation.addProperty("name","disease");
+			schema.add(typeVariation);
+		}
 		JsonObject geneVariation = new JsonObject();
 		geneVariation.addProperty("name","gene");
 		schema.add(geneVariation);
@@ -546,6 +550,7 @@ public class KnowledgeBuilder {
 			typeVariation.addProperty("name","type");
 			schema.add(typeVariation);
 		}
+		
 		JsonObject chromosomeVariation = new JsonObject();
 		chromosomeVariation.addProperty("name","chromosome");
 		schema.add(chromosomeVariation);
