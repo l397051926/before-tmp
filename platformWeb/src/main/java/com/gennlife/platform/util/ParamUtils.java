@@ -285,7 +285,7 @@ public class ParamUtils {
         }
         JsonArray filters = paramObj.getAsJsonArray("filters");
         String queryBufStr = ParamUtils.queryExpression(filters);
-        if(!"".equals(query)){
+        if(!"".equals(queryBufStr)){
             query = query + " AND " + queryBufStr;
         }
 

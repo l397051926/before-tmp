@@ -79,6 +79,67 @@ public class URLBean {
      */
     private String knowledgeDetailVariationSearchDrugURL = null;
 
+    /**
+     * 遗传性疾病
+     */
+    private String caseGenetic_disease = null;
+    /**
+     * 药物反应
+     */
+    private String caseDrug_reaction = null;
+    /**
+     * 分类信息接口、及目录
+     */
+    private String caseCategory_catalog = null;
+    /**
+     * 分子检测
+     */
+    private String caseMolecular_detection = null;
+    /**
+     * 生物标本
+     */
+    private String caseBiological_specimen = null;
+
+    public String getCaseGenetic_disease() {
+        return caseGenetic_disease;
+    }
+
+    public void setCaseGenetic_disease(String caseGenetic_disease) {
+        this.caseGenetic_disease = caseGenetic_disease;
+    }
+
+    public String getCaseDrug_reaction() {
+        return caseDrug_reaction;
+    }
+
+    public void setCaseDrug_reaction(String caseDrug_reaction) {
+        this.caseDrug_reaction = caseDrug_reaction;
+    }
+
+    public String getCaseCategory_catalog() {
+        return caseCategory_catalog;
+    }
+
+    public void setCaseCategory_catalog(String caseCategory_catalog) {
+        this.caseCategory_catalog = caseCategory_catalog;
+    }
+
+    public String getCaseMolecular_detection() {
+        return caseMolecular_detection;
+    }
+
+    public void setCaseMolecular_detection(String caseMolecular_detection) {
+        this.caseMolecular_detection = caseMolecular_detection;
+    }
+
+    public String getCaseBiological_specimen() {
+        return caseBiological_specimen;
+    }
+
+    public void setCaseBiological_specimen(String caseBiological_specimen) {
+        this.caseBiological_specimen = caseBiological_specimen;
+    }
+
     public String getKnowledgeDetailVariationSearchDiseaseURL() {
         return knowledgeDetailVariationSearchDiseaseURL;
     }

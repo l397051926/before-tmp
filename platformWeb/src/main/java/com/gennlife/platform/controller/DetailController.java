@@ -76,6 +76,41 @@ public class DetailController  extends HttpServlet {
                 logger.error("检验项列表",e);
             }
             logger.info("检验项列表 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if ("/detail/GeneticDisease".equals(uri)){
+            try{
+                processor.geneticDisease(req,resp);
+            }catch (Exception e){
+                logger.error("遗传性疾病",e);
+            }
+            logger.info("遗传性疾病 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/detail/DrugReaction".equals(uri)){
+            try{
+                processor.drugReaction(req,resp);
+            }catch (Exception e){
+                logger.error("药物反应",e);
+            }
+            logger.info("药物反应 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/detail/CategoryCatalog".equals(uri)){
+            try{
+                processor.categoryCatalog(req,resp);
+            }catch (Exception e){
+                logger.error("分类信息接口及目录",e);
+            }
+            logger.info("分类信息接口及目录 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/detail/MolecularDetection".equals(uri)){
+            try{
+                processor.molecularDetection(req,resp);
+            }catch (Exception e){
+                logger.error("分子检测",e);
+            }
+            logger.info("分子检测 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/detail/BiologicalSpecimen".equals(uri)){
+            try{
+                processor.biologicalSpecimen(req,resp);
+            }catch (Exception e){
+                logger.error("生物标本",e);
+            }
+            logger.info("生物标本 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }
 
     }
