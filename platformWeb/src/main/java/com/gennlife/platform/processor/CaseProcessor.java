@@ -131,7 +131,7 @@ public class CaseProcessor {
         String indexName = null;
         String size = null;
         String dicName = null;
-        String page = null;
+        String page = "1";
         ResultBean resultBean = new ResultBean();
         try {
             param = ParamUtils.getParam(req);

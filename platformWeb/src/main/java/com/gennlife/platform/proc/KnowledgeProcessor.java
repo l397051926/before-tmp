@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -35,6 +36,7 @@ public class KnowledgeProcessor {
         set.add("protein");
         set.add("diseaseGene");
         set.add("geneDisease");
+        set.add("variationArray");
     }
     public void search(HttpServletRequest req, HttpServletResponse resp) {
         String param = ParamUtils.getParam(req);
@@ -54,10 +56,10 @@ public class KnowledgeProcessor {
             from = paramObj.get("from").getAsString();
             to = paramObj.get("to").getAsString();
             limit = paramObj.get("limit").getAsString();
-            if(!"geneDisease".equals(from)){
-            	query = paramObj.get("query").getAsString();
+            if("geneDisease".equals(from)||"variationArray".equals(from)){
+                queryArry = paramObj.getAsJsonArray("query");
             }else{
-            	queryArry = paramObj.getAsJsonArray("query");
+                query = paramObj.get("query").getAsString();
             }
             
             
@@ -102,6 +104,9 @@ public class KnowledgeProcessor {
         if("geneDisease".equals(from)&&"drug".equals(to)){
         	newJson.addProperty("disease", diseaseParam);
         	newJson.add("query", queryArry);
+        }
+        if("variationArray".equals(from)){
+            newJson.add("query", queryArry);
         }
         
         String newParam = gson.toJson(newJson);
@@ -202,20 +207,23 @@ public class KnowledgeProcessor {
     }
 
     public void detailVariationSearchDrug(HttpServletRequest req, HttpServletResponse resp) {
-        JsonArray Variation = null;
+        JsonObject paramObj = null;
         try{
             String param = ParamUtils.getParam(req);
             logger.info("DetailVariationSearchDrug param="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            Variation = paramObj.getAsJsonArray("Variation");
+            paramObj = (JsonObject) jsonParser.parse(param);
         }catch (Exception e){
             logger.error("请求参数出错", e);
             ParamUtils.errorParam("请求参数出错", req, resp);
             return;
         }
         JsonObject newParam = new JsonObject();
-        newParam.add("query",Variation);
-        newParam.addProperty("from","");
+
+        for(Map.Entry<String, JsonElement> entity:paramObj.entrySet()){
+            String key = entity.getKey();
+            String value = entity.getValue().getAsString();
+        }
+
         String paramStr = gson.toJson(newParam);
 
 
