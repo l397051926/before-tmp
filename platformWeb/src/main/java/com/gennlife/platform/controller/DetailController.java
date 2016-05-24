@@ -111,6 +111,20 @@ public class DetailController  extends HttpServlet {
                 logger.error("生物标本",e);
             }
             logger.info("生物标本 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/detail/ExamResult".equals(uri)){
+            try{
+                processor.examResult(req,resp);
+            }catch (Exception e){
+                logger.error("生物标本",e);
+            }
+            logger.info("生物标本 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }else if("/detail/PathologicalExamination".equals(uri)){
+            try{
+                processor.pathologicalExamination(req,resp);
+            }catch (Exception e){
+                logger.error("生物标本",e);
+            }
+            logger.info("生物标本 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }
 
     }

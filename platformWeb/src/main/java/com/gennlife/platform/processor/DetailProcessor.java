@@ -275,4 +275,36 @@ public class DetailProcessor {
         logger.info("BiologicalSpecimen result="+url);
         viewer.viewString(result,resp,req);
     }
+
+    public void examResult(HttpServletRequest req, HttpServletResponse resp) {
+        String param = null;
+        try{
+            param = ParamUtils.getParam(req);
+            logger.info("ExamResult param="+param);
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
+        String url = ConfigurationService.getUrlBean().getCaseExam_result();
+        logger.info("ExamResult url="+url);
+        String result = HttpRequestUtils.httpPost(url,param);
+        logger.info("ExamResult result="+url);
+        viewer.viewString(result,resp,req);
+    }
+
+    public void pathologicalExamination(HttpServletRequest req, HttpServletResponse resp) {
+        String param = null;
+        try{
+            param = ParamUtils.getParam(req);
+            logger.info("PathologicalExamination param="+param);
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
+        String url = ConfigurationService.getUrlBean().getCasePathological_examination();
+        logger.info("PathologicalExamination url="+url);
+        String result = HttpRequestUtils.httpPost(url,param);
+        logger.info("PathologicalExamination result="+url);
+        viewer.viewString(result,resp,req);
+    }
 }
