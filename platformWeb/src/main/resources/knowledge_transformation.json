@@ -122,7 +122,7 @@
 			"data_type": "string",
 			"path": "$.FdaReference.referencedSubGroup"
 		},
-		"indication": {
+		"description": {
 			"data_type": "string",
 			"path": "$.FdaReference.indication"
 		},
@@ -255,7 +255,7 @@
 		},
 		"brand_name": {
 			"data_type": "string",
-			"path": "$.NccnReference.productName"
+			"path": "$.NccnReference.productNames"
 		},
 		"biomarker": {
 			"data_type": "string",
@@ -568,6 +568,12 @@
 			"path": "$.protein",
 			"name": "proteinName",
 			"url": "proteinUrl"
+		},
+		"ref": {
+			"data_type": "array",
+			"path": "$.reference",
+			"name": "text",
+			"url": "url"
 		}
 	},
 	"drug_gene": {
@@ -597,6 +603,12 @@
 			"path": "$.protein",
 			"name": "proteinName",
 			"url": "proteinUrl"
+		},
+		"ref": {
+			"data_type": "array",
+			"path": "$.reference",
+			"name": "text",
+			"url": "url"
 		}
 	},
 	"protein_gene": {
@@ -754,8 +766,10 @@
 			"path": "$.term_name"
 		},
 		"ref": {
-			"data_type": "string",
-			"path": "$.reference[*]"
+			"data_type": "array",
+			"path": "$.reference",
+			"name": "text",
+			"url": "url"
 		}
 	},
 	"drug_phenotype": {
@@ -929,8 +943,8 @@
 		},
 		"gene": {
 			"data_type": "single_array",
-			"path_one": "$.geneSymbol",
-			"path_two": "$.geneSymbolUrl",
+			"path_one": "$.Gene[0].symbol",
+			"path_two": "$.Gene[0].symbolUrl",
 			"name_one": "name",
 			"name_two": "url"
 		}
@@ -983,7 +997,7 @@
 		},
 		"start": {
 			"data_type": "string",
-			"path": "$.chromosome"
+			"path": "$.start"
 		},
 		"reference_allele": {
 			"data_type": "string",
