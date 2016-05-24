@@ -664,7 +664,7 @@ public class KnowledgeBuilder {
 		schema.add(typeBiomarkerDetail);
 		
 		JsonObject typeDrugInstructions = new JsonObject();
-		typeDrugInstructions.addProperty("name","drug_instructions");
+		typeDrugInstructions.addProperty("name","description");
 		schema.add(typeDrugInstructions);
 		
 		JsonObject typeReference = new JsonObject();
@@ -691,7 +691,7 @@ public class KnowledgeBuilder {
 		schema.add(typeBrandName);
 		
 		JsonObject typeBiomarker = new JsonObject();
-		typeBrandName.addProperty("name","biomarker");
+		typeBiomarker.addProperty("name","biomarker");
 		schema.add(typeBiomarker);
 		
 		JsonObject typeBiomarkerDetail = new JsonObject();
