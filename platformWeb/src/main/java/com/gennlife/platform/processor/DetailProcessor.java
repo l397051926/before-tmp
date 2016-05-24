@@ -195,4 +195,84 @@ public class DetailProcessor {
         logger.info("LabResultItemList result="+url);
         viewer.viewString(result,resp,req);
     }
+
+    public void geneticDisease(HttpServletRequest req, HttpServletResponse resp) {
+        String param = null;
+        try{
+            param = ParamUtils.getParam(req);
+            logger.info("GeneticDisease param="+param);
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
+        String url = ConfigurationService.getUrlBean().getCaseGenetic_disease();
+        logger.info("GeneticDisease url="+url);
+        String result = HttpRequestUtils.httpPost(url,param);
+        logger.info("GeneticDisease result="+url);
+        viewer.viewString(result,resp,req);
+    }
+
+    public void drugReaction(HttpServletRequest req, HttpServletResponse resp) {
+        String param = null;
+        try{
+            param = ParamUtils.getParam(req);
+            logger.info("DrugReaction param="+param);
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
+        String url = ConfigurationService.getUrlBean().getCaseDrug_reaction();
+        logger.info("DrugReaction url="+url);
+        String result = HttpRequestUtils.httpPost(url,param);
+        logger.info("DrugReaction result="+url);
+        viewer.viewString(result,resp,req);
+    }
+
+    public void categoryCatalog(HttpServletRequest req, HttpServletResponse resp) {
+        String param = null;
+        try{
+            param = ParamUtils.getParam(req);
+            logger.info("CategoryCatalog param="+param);
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
+        String url = ConfigurationService.getUrlBean().getCaseCategory_catalog();
+        logger.info("CategoryCatalog url="+url);
+        String result = HttpRequestUtils.httpPost(url,param);
+        logger.info("CategoryCatalog result="+url);
+        viewer.viewString(result,resp,req);
+    }
+
+    public void molecularDetection(HttpServletRequest req, HttpServletResponse resp) {
+        String param = null;
+        try{
+            param = ParamUtils.getParam(req);
+            logger.info("MolecularDetection param="+param);
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
+        String url = ConfigurationService.getUrlBean().getCaseMolecular_detection();
+        logger.info("MolecularDetection url="+url);
+        String result = HttpRequestUtils.httpPost(url,param);
+        logger.info("MolecularDetection result="+url);
+        viewer.viewString(result,resp,req);
+    }
+
+    public void biologicalSpecimen(HttpServletRequest req, HttpServletResponse resp) {
+        String param = null;
+        try{
+            param = ParamUtils.getParam(req);
+            logger.info("BiologicalSpecimen param="+param);
+        }catch (Exception e){
+            ParamUtils.errorParam(req,resp);
+            return;
+        }
+        String url = ConfigurationService.getUrlBean().getCaseBiological_specimen();
+        logger.info("BiologicalSpecimen url="+url);
+        String result = HttpRequestUtils.httpPost(url,param);
+        logger.info("BiologicalSpecimen result="+url);
+        viewer.viewString(result,resp,req);
+    }
 }
