@@ -192,30 +192,36 @@
 			"path": "$.NccnReference.description"
 		}
 	},
-	"drug_drug_ncnn": {
+	"drug_drug_nccn": {
 		"drug": {
 			"data_type": "string",
 			"path": "$.drugName"
 		},
 		"disease": {
 			"data_type": "string",
-			"path": "$.NccnReference.disease"
+			"path": "$.disease"
 		},
 		"brand_name": {
 			"data_type": "string",
-			"path": "$.NccnReference.brand_name"
+			"path": "$.productNames[*]"
 		},
 		"biomarker": {
 			"data_type": "string",
-			"path": "$.NccnReference.biomarker"
+			"path": "$.biomarker"
 		},
 		"referenced_subgroup": {
 			"data_type": "string",
-			"path": "$.NccnReference.referencedSubGroup"
+			"path": "$.referencedSubGroup"
 		},
 		"description": {
 			"data_type": "string",
-			"path": "$.NccnReference.description"
+			"path": "$.description"
+		},
+		"ref": {
+			"data_type": "array",
+			"path": "$.reference",
+			"name": "text",
+			"url": "url"
 		}
 	},
 	"protein_drug_nccn": {
@@ -287,7 +293,7 @@
 		},
 		"brand_name": {
 			"data_type": "string",
-			"path": "$.NccnReference.productName"
+			"path": "$.NccnReference.productNames[*]"
 		},
 		"biomarker": {
 			"data_type": "string",
