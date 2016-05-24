@@ -181,6 +181,7 @@ public class KnowledgeProcessor {
         }
         JsonObject newParam = new JsonObject();
         newParam.add("Variation",Variation);
+
         String paramStr = gson.toJson(newParam);
 
 
