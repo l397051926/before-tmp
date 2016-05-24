@@ -305,8 +305,8 @@ public class DataFormatConversion implements Runnable{
 		try {
 			arrayObj = jc.read(path);
 		} catch (Exception e) {
-			arrayObj = new JSONArray();
 			logger.error(e.toString());
+			return data;
 		}
 		JSONArray ja = (JSONArray) arrayObj;
 		if(null==ja||0==ja.size()){
