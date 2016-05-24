@@ -194,7 +194,8 @@ public class KnowledgeProcessor {
             return;
         }
         JsonObject newParam = new JsonObject();
-        newParam.add("Variation",Variation);
+        newParam.add("query",Variation);
+        newParam.addProperty("from","");
         String paramStr = gson.toJson(newParam);
 
 
