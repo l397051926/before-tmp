@@ -99,6 +99,30 @@ public class URLBean {
      * 生物标本
      */
     private String caseBiological_specimen = null;
+    /**
+     * 检查
+     */
+    private String caseExam_result = null;
+    /**
+     * 病理检测
+     */
+    private String casePathological_examination = null;
+
+    public String getCaseExam_result() {
+        return caseExam_result;
+    }
+
+    public void setCaseExam_result(String caseExam_result) {
+        this.caseExam_result = caseExam_result;
+    }
+
+    public String getCasePathological_examination() {
+        return casePathological_examination;
+    }
+
+    public void setCasePathological_examination(String casePathological_examination) {
+        this.casePathological_examination = casePathological_examination;
+    }
 
     public String getCaseGenetic_disease() {
         return caseGenetic_disease;
