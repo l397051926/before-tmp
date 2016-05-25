@@ -243,8 +243,11 @@
 	},
 	"geneDisease_drug": {
 		"drug": {
-			"data_type": "string",
-			"path": "$.drugName"
+			"data_type": "single_array",
+			"path_one": "$.drugName",
+			"path_two": "$.drugUrl",
+			"name_one": "name",
+			"name_two": "url"
 		},
 		"disease": {
 			"data_type": "string",
