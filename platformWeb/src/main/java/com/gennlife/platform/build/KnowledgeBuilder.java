@@ -575,11 +575,9 @@ public class KnowledgeBuilder {
 			brand_nameDrug.addProperty("name","brand_name");
 			schema.add(brand_nameDrug);
 
-			if(!"disease".equals(from)){
-				JsonObject typeDrug = new JsonObject();
-				typeDrug.addProperty("name","disease");
-				schema.add(typeDrug);
-			}
+			JsonObject typeDrug = new JsonObject();
+			typeDrug.addProperty("name","disease");
+			schema.add(typeDrug);
 
 			JsonObject biomarkerDrug = new JsonObject();
 			biomarkerDrug.addProperty("name","biomarker");
