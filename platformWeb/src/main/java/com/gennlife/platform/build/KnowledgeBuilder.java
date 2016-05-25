@@ -500,9 +500,7 @@ public class KnowledgeBuilder {
 			schema.add(genePhenotype);
 		}
 
-		JsonObject refPhenotype = new JsonObject();
-		refPhenotype.addProperty("name","ref");
-		schema.add(refPhenotype);
+		
 		if("disease".equals(from)){
 			JsonObject disease_idPhenotype = new JsonObject();
 			disease_idPhenotype.addProperty("name","disease_id");
@@ -512,6 +510,9 @@ public class KnowledgeBuilder {
 			diseasePhenotype.addProperty("name","disease");
 			schema.add(diseasePhenotype);
 		}
+		JsonObject refPhenotype = new JsonObject();
+		refPhenotype.addProperty("name","ref");
+		schema.add(refPhenotype);
 		return schema;
 	}
 
