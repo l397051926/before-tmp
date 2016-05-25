@@ -68,7 +68,8 @@ public class KnowledgeProcessor {
             int[] li = ParamUtils.parseLimit(limit);
             currentPage = li[0];
             pageSize = li[1];
-            if("drug".equals(to)&&!"geneDisease".equals(from)){
+            if("drug".equals(to)&&!"geneDisease".equals(from)
+            		&&!"variationArray".equals(from) ){
                 tableName = paramObj.get("currentTable").getAsString();
             }
             
