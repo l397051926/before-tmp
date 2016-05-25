@@ -1233,15 +1233,15 @@
 	},
 	"variationArray_disease": {
 		"disease_id": {
+			"data_type": "string",
+			"path": "$.id"
+		},
+		"disease": {
 			"data_type": "single_array",
-			"path_one": "$.id",
+			"path_one": "$.name",
 			"path_two": "$.url",
 			"name_one": "name",
 			"name_two": "url"
-		},
-		"disease": {
-			"data_type": "string",
-			"path": "$.name"
 		},
 		"source": {
 			"data_type": "string",
