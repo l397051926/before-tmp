@@ -434,7 +434,11 @@ public class KnowledgeBuilder {
 		head.addProperty("to",to);
 		head.addProperty("limit",currentPage+","+pageSize);
 		JsonArray schema = null;
-		if("disease".equals(to)){
+		if("variationArray".equals(from)&&"drug".equals(to)){
+			schema = variationArray2DrugSchema(from);
+		}else if("variationArray".equals(from)&&"disease".equals(to)){
+			schema = variationArray2DiseaseSchema(from);
+		}else if("disease".equals(to)&&!"variationArray".equals(from)){
 			schema = diseaseSchema(from);
 		}else if ("protein".equals(to)){
 			schema = proteinSchema(from);
@@ -446,10 +450,6 @@ public class KnowledgeBuilder {
 			schema = diseaseGeneSchema(from);
 		}else if("geneDisease".equals(from)){
 			schema = geneDiseaseSchema(from);
-		}else if("variationArray".equals(from)&&"drug".equals(to)){
-			schema = variationArray2DrugSchema(from);
-		}else if("variationArray".equals(from)&&"disease".equals(to)){
-			schema = variationArray2DiseaseSchema(from);
 		}else if("drug".equals(to)
 				&&!"diseaseGene".equals(from)
 				&&!"geneDisease".equals(from)
