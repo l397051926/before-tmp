@@ -1201,5 +1201,49 @@
 			"name_one": "name",
 			"name_two": "url"
 		}
+	},
+	"variationArray_drug": {
+		"drug": {
+			"data_type": "string",
+			"path": "$.drugName"
+		},
+		"brand_name": {
+			"data_type": "string",
+			"path": "$.productName"
+		},
+		"variation": {
+			"data_type": "single_array",
+			"path_one": "$.id",
+			"path_two": "$.idUrl",
+			"name_one": "name",
+			"name_two": "url"
+		},
+		"ref": {
+			"data_type": "array",
+			"path": "$.reference",
+			"name": "text",
+			"url": "url"
+		}
+	},
+	"variationArray_disease": {
+		"disease_id": {
+			"data_type": "single_array",
+			"path_one": "$.id",
+			"path_two": "$.url",
+			"name_one": "name",
+			"name_two": "url"
+		},
+		"disease": {
+			"data_type": "string",
+			"path": "$.name"
+		},
+		"source": {
+			"data_type": "string",
+			"path": "$.source"
+		},
+		"ref": {
+			"data_type": "string",
+			"path": "$.source"
+		}
 	}
 }
