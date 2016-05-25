@@ -172,8 +172,11 @@
 			"path": "$.FdaReference.disease"
 		},
 		"drug": {
-			"data_type": "string",
-			"path": "$.drugName"
+			"data_type": "single_array",
+			"path_one": "$.drugName",
+			"path_two": "$.FdaReference.drugUrl",
+			"name_one": "name",
+			"name_two": "url"
 		},
 		"brand_name": {
 			"data_type": "string",
@@ -223,7 +226,7 @@
 			"keyName":"name",
 			"valueName":"marker"
 		},
-		"referenced_subgroup": {
+		"biomarker_detail": {
 			"data_type": "string",
 			"path": "$.NccnReference.referencedSubGroup"
 		},
@@ -240,12 +243,15 @@
 	},
 	"geneDisease_drug": {
 		"drug": {
-			"data_type": "string",
-			"path": "$.drugName"
+			"data_type": "single_array",
+			"path_one": "$.drugName",
+			"path_two": "$.drugUrl",
+			"name_one": "name",
+			"name_two": "url"
 		},
 		"disease": {
 			"data_type": "string",
-			"path": "$.NccnReference.disease"
+			"path": "$.disease"
 		},
 		"brand_name": {
 			"data_type": "string",
@@ -255,7 +261,7 @@
 			"data_type": "string",
 			"path": "$.biomarker"
 		},
-		"referenced_subgroup": {
+		"biomarker_detail": {
 			"data_type": "string",
 			"path": "$.referencedSubGroup"
 		},
