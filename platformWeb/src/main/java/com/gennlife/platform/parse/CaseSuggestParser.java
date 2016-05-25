@@ -21,6 +21,7 @@ public class CaseSuggestParser implements Callable<String> {
                 ParamUtils.encodeURI(size),
                 ParamUtils.encodeURI(page)
         );
+
     }
 
     public String call() throws Exception {
