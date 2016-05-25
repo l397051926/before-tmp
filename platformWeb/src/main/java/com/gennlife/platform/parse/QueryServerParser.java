@@ -38,11 +38,15 @@ public class QueryServerParser implements Callable<String> {
     public Set<String> parser() throws Exception {
         String re = HttpRequestUtils.httpGet(url);
         Set<String> set = new HashSet<String>();
-        JsonObject jsonObject = (JsonObject) jsonParser.parse(re);
-        JsonArray syn = jsonObject.getAsJsonArray("syn");
-        for(JsonElement jsonElement:syn){
-            String k = jsonElement.getAsString();
-            set.add(k);
+        try{
+            JsonObject jsonObject = (JsonObject) jsonParser.parse(re);
+            JsonArray syn = jsonObject.getAsJsonArray("syn");
+            for(JsonElement jsonElement:syn){
+                String k = jsonElement.getAsString();
+                set.add(k);
+            }
+        }catch (Exception e){
+            logger.error("",e);
         }
         return set;
     }
