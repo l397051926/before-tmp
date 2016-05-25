@@ -35,6 +35,7 @@ public class KnowledgeProcessor {
         set.add("protein");
         set.add("diseaseGene");
         set.add("geneDisease");
+        set.add("variationArray");
     }
     public void search(HttpServletRequest req, HttpServletResponse resp) {
         String param = ParamUtils.getParam(req);
@@ -54,10 +55,13 @@ public class KnowledgeProcessor {
             from = paramObj.get("from").getAsString();
             to = paramObj.get("to").getAsString();
             limit = paramObj.get("limit").getAsString();
-            if(!"geneDisease".equals(from)){
-            	query = paramObj.get("query").getAsString();
-            }else{
+            if("geneDisease".equals(from)
+            	||("variationArray".equals(from)&&"disease".equals(to))
+            	||("variationArray".equals(from)&&"drug".equals(to))
+              ){
             	queryArry = paramObj.getAsJsonArray("query");
+            }else{
+            	query = paramObj.get("query").getAsString();
             }
             
             
@@ -103,6 +107,12 @@ public class KnowledgeProcessor {
         	newJson.addProperty("disease", diseaseParam);
         	newJson.add("query", queryArry);
         }
+        if("geneDisease".equals(from)
+            	||("variationArray".equals(from)&&"disease".equals(to))
+            	||("variationArray".equals(from)&&"drug".equals(to))){
+        	newJson.add("query", queryArry);
+        }
+        
         
         String newParam = gson.toJson(newJson);
         logger.info("knowledge req=" + newParam);

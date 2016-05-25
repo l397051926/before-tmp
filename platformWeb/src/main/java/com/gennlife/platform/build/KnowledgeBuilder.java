@@ -1,15 +1,12 @@
 package com.gennlife.platform.build;
 
+import java.util.Map.Entry;
+import java.util.Set;
+
 import com.gennlife.platform.util.DataFormatConversion;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.internal.bind.DateTypeAdapter;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.util.StringUtils;
 
 /**
  * Created by chen-song on 16/5/6.
@@ -25,7 +22,11 @@ public class KnowledgeBuilder {
 		JsonArray result = null;
 		String to = param.get("to").getAsString();
 		String from = param.get("from").getAsString();
-		if("disease".equals(to)){
+		if("variationArray".equals(from)&&"disease".equals(to)){
+			result = buildVariationArry2Disease(param,obj);
+		}else if("variationArray".equals(from)&&"drug".equals(to)){
+			result = buildVariationArry2Drug(param,obj);
+		}else if("disease".equals(to)){
 			result = buildDisease(param,obj);
 		}else if("protein".equals(to)){
 			result = buildProtein(param,obj);
@@ -42,6 +43,68 @@ public class KnowledgeBuilder {
 		}else if("geneDisease".equals(from)&&"drug".equals(to)){
 			result = buildGeneBisease(param,obj);
 		}
+		return result;
+	}
+	
+	
+	private JsonArray buildVariationArry2Disease(JsonObject param, JsonObject obj) {
+		JsonArray result = new JsonArray();
+		JsonObject head = buildHead(param,obj);
+		String from = param.get("from").getAsString();
+		String to = param.get("to").getAsString();
+		String fromA2B = from+"_"+to;;
+		result.add(head);
+		JsonArray body = new JsonArray();
+		JsonArray dataArray = obj.getAsJsonArray("data");
+		
+		
+		JsonArray dataArray2 = new JsonArray();
+		if(null!=dataArray&&dataArray.size()>0){
+			for(int i=0,j=dataArray.size();i<j;i++){
+				JsonElement je = dataArray.get(i);
+				JsonObject joTemp = je.getAsJsonObject();
+				Set<Entry<String, JsonElement>> set = joTemp.entrySet();
+				for(Entry<String, JsonElement> em:set){
+					String key = em.getKey();
+					if(null!=em.getValue()){
+						
+						JsonArray joV = em.getValue().getAsJsonArray();
+						if(null!=joV){
+							for(int m=0,n=joV.size();m<n;m++){
+								dataArray2.add(joV.get(m));
+							}
+							
+						}
+					}
+				}
+			}
+			
+			
+			JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromA2B, dataArray2);
+			if(null!=bodyRtn&&0<bodyRtn.size()){
+				body = bodyRtn;
+			}
+		}
+		result.add(body);
+		return result;
+	}
+	private JsonArray buildVariationArry2Drug(JsonObject param, JsonObject obj) {
+		JsonArray result = new JsonArray();
+		JsonObject head = buildHead(param,obj);
+		String from = param.get("from").getAsString();
+		String to = param.get("to").getAsString();
+		String fromA2B = from+"_"+to;;
+		result.add(head);
+		JsonArray body = new JsonArray();
+		JsonArray dataArray = obj.getAsJsonArray("data");
+		
+		if(null!=dataArray&&dataArray.size()>0){
+			JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromA2B, dataArray);
+			if(null!=bodyRtn&&0<bodyRtn.size()){
+				body = bodyRtn;
+			}
+		}
+		result.add(body);
 		return result;
 	}
 	private JsonArray buildBiseaseGene(JsonObject param, JsonObject obj) {
@@ -370,7 +433,14 @@ public class KnowledgeBuilder {
 			schema = diseaseGeneSchema(from);
 		}else if("geneDisease".equals(from)){
 			schema = geneDiseaseSchema(from);
-		}else if("drug".equals(to)&&!"diseaseGene".equals(from)&&!"geneDisease".equals(from)){
+		}else if("variationArray".equals(from)&&"drug".equals(to)){
+			schema = variationArray2DrugSchema(from);
+		}else if("variationArray".equals(from)&&"disease".equals(to)){
+			schema = variationArray2DiseaseSchema(from);
+		}else if("drug".equals(to)
+				&&!"diseaseGene".equals(from)
+				&&!"geneDisease".equals(from)
+				&&!"variationArray".equals(from)){
 			String tableName = null;
 			if(!"geneDisease".equals(from)
 				&&!"diseaseGene".equals(from) 	){
@@ -672,6 +742,50 @@ public class KnowledgeBuilder {
 		schema.add(typeReference);
 		
 		
+
+		return schema;
+	}
+	
+	private JsonArray variationArray2DrugSchema(String from) {
+		JsonArray schema = new JsonArray();
+		
+		JsonObject typeDrug = new JsonObject();
+		typeDrug.addProperty("name","drug");
+		schema.add(typeDrug);
+		
+		JsonObject typeBrandName = new JsonObject();
+		typeBrandName.addProperty("name","brand_name");
+		schema.add(typeBrandName);
+		
+		JsonObject variation = new JsonObject();
+		variation.addProperty("name","variation");
+		schema.add(variation);
+		
+		
+		JsonObject ref = new JsonObject();
+		ref.addProperty("name","ref");
+		schema.add(ref);	
+
+		return schema;
+	}
+	private JsonArray variationArray2DiseaseSchema(String from) {
+		JsonArray schema = new JsonArray();
+		
+		JsonObject diseaseId = new JsonObject();
+		diseaseId.addProperty("name","disease_id");
+		schema.add(diseaseId);
+		
+		JsonObject disease = new JsonObject();
+		disease.addProperty("name","disease");
+		schema.add(disease);
+		
+		JsonObject source = new JsonObject();
+		source.addProperty("name","source");
+		schema.add(source);
+		
+		JsonObject ref = new JsonObject();
+		ref.addProperty("name","ref");
+		schema.add(ref);	
 
 		return schema;
 	}
