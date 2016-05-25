@@ -216,7 +216,7 @@
 		},
 		"brand_name": {
 			"data_type": "string",
-			"path": "$.NccnReference.productName"
+			"path": "$.NccnReference.productName[*]"
 		},
 		"biomarker": {
 			"data_type": "array_rename",
@@ -232,7 +232,7 @@
 		},
 		"description": {
 			"data_type": "string",
-			"path": "$.NccnReference.indication"
+			"path": "$.NccnReference.description"
 		},
 		"ref": {
 			"data_type": "array",
