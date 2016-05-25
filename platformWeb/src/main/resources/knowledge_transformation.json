@@ -251,7 +251,7 @@
 		},
 		"disease": {
 			"data_type": "string",
-			"path": "$.NccnReference.disease"
+			"path": "$.disease"
 		},
 		"brand_name": {
 			"data_type": "string",
@@ -261,7 +261,7 @@
 			"data_type": "string",
 			"path": "$.biomarker"
 		},
-		"referenced_subgroup": {
+		"biomarker_detail": {
 			"data_type": "string",
 			"path": "$.referencedSubGroup"
 		},
