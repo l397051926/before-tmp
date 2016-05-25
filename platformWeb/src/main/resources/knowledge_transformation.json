@@ -216,11 +216,11 @@
 		},
 		"brand_name": {
 			"data_type": "string",
-			"path": "$.NccnReference.productName[*]"
+			"path": "$.NccnReference.productNames[*]"
 		},
 		"biomarker": {
 			"data_type": "array_rename",
-			"path": "$.NccnReference.biomarker",
+			"path": "$.NccnReference.biomarker[*]",
 			"name": "name",
 			"url":"marker",
 			"keyName":"name",
