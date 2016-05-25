@@ -494,7 +494,7 @@ public class KnowledgeBuilder {
 		phenotypePhenotype.addProperty("name","phenotype");
 		schema.add(phenotypePhenotype);
 
-		if("protein".equals(from)||"drug".equals(from)||"variation".equals(from)||"".equals(from)){
+		if("protein".equals(from)||"drug".equals(from)||"variation".equals(from)||"disease".equals(from)||"".equals(from)){
 			JsonObject genePhenotype = new JsonObject();
 			genePhenotype.addProperty("name","gene");
 			schema.add(genePhenotype);
