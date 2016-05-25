@@ -35,7 +35,7 @@ public class KnowledgeBuilder {
 		}else if("variation".equals(to)){
 			result = buildVariation(param,obj);
 		}else if ("drug".equals(to)&&!"diseaseGene".equals(from)&&!"geneDisease".equals(from)){
-			result = buildDrug(param,obj);
+			result = buildDrug(param,obj);	
 		}else if("phenotype".equals(to)){
 			result = buildPhenotype(param,obj);
 		}else if("diseaseGene".equals(from)&&"drug".equals(to)){
@@ -43,6 +43,14 @@ public class KnowledgeBuilder {
 		}else if("geneDisease".equals(from)&&"drug".equals(to)){
 			result = buildGeneBisease(param,obj);
 		}
+		return result;
+	}
+	
+	public JsonArray buildOnlyHead(JsonObject param,JsonObject obj){
+    	JsonArray result = new JsonArray();
+    	JsonObject emptyObj = new JsonObject();
+		JsonObject head = buildHead(param,emptyObj);
+		result.add(head);
 		return result;
 	}
 	
@@ -407,7 +415,12 @@ public class KnowledgeBuilder {
 		int pageSize = param.get("pageSize").getAsInt();
 		int currentPage = param.get("currentPage").getAsInt();
 		head.addProperty("pageSize",pageSize);
-		Integer counter = obj.getAsJsonObject("info").get("counter").getAsInt();
+		Integer counter = 0;
+		if(null==obj.getAsJsonObject("info")){
+			counter = 0;
+		}else{
+			counter = obj.getAsJsonObject("info").get("counter").getAsInt();
+		}
 		head.addProperty("totalRecords",counter);
 		int total_pages = 0;
 		if(counter > 0){
@@ -464,7 +477,9 @@ public class KnowledgeBuilder {
 			schema = phenotypeSchema(from);
 		}
 		head.add("schema",schema);
-		head.add("dimension",obj.getAsJsonArray("dimension"));
+		if(null!=obj.getAsJsonArray("dimension")){
+			head.add("dimension",obj.getAsJsonArray("dimension"));
+		}
 		return head;
 	}
 
