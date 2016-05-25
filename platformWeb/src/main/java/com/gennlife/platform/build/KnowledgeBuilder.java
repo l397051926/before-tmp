@@ -35,7 +35,7 @@ public class KnowledgeBuilder {
 		}else if("variation".equals(to)){
 			result = buildVariation(param,obj);
 		}else if ("drug".equals(to)&&!"diseaseGene".equals(from)&&!"geneDisease".equals(from)){
-			result = buildDrug(param,obj);
+			result = buildDrug(param,obj);	
 		}else if("phenotype".equals(to)){
 			result = buildPhenotype(param,obj);
 		}else if("diseaseGene".equals(from)&&"drug".equals(to)){

@@ -131,7 +131,7 @@ public class KnowledgeProcessor {
         queryObj.addProperty("from",from);
         queryObj.addProperty("to",to);
         queryObj.addProperty("query",query);
-        if(!"geneDisease".equals(from)){
+        if(!"geneDisease".equals(from)&&!"variationArray".equals(from)){
         	 queryObj.addProperty("query",query);
         }
         
