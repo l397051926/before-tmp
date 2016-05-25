@@ -46,6 +46,14 @@ public class KnowledgeBuilder {
 		return result;
 	}
 	
+	public JsonArray buildOnlyHead(JsonObject param,JsonObject obj){
+    	JsonArray result = new JsonArray();
+    	JsonObject emptyObj = new JsonObject();
+		JsonObject head = buildHead(param,emptyObj);
+		result.add(head);
+		return result;
+	}
+	
 	
 	private JsonArray buildVariationArry2Disease(JsonObject param, JsonObject obj) {
 		JsonArray result = new JsonArray();
@@ -407,7 +415,12 @@ public class KnowledgeBuilder {
 		int pageSize = param.get("pageSize").getAsInt();
 		int currentPage = param.get("currentPage").getAsInt();
 		head.addProperty("pageSize",pageSize);
-		Integer counter = obj.getAsJsonObject("info").get("counter").getAsInt();
+		Integer counter = 0;
+		if(null==obj.getAsJsonObject("info")){
+			counter = 0;
+		}else{
+			counter = obj.getAsJsonObject("info").get("counter").getAsInt();
+		}
 		head.addProperty("totalRecords",counter);
 		int total_pages = 0;
 		if(counter > 0){
@@ -464,7 +477,9 @@ public class KnowledgeBuilder {
 			schema = phenotypeSchema(from);
 		}
 		head.add("schema",schema);
-		head.add("dimension",obj.getAsJsonArray("dimension"));
+		if(null!=obj.getAsJsonArray("dimension")){
+			head.add("dimension",obj.getAsJsonArray("dimension"));
+		}
 		return head;
 	}
 

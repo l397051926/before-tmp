@@ -10,6 +10,7 @@ import com.gennlife.platform.view.View;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -121,9 +122,15 @@ public class KnowledgeProcessor {
         logger.info("knowledge url=" + url);
         String resultStr = HttpRequestUtils.httpPost(url,newParam);
         logger.info("knowledge result=" + resultStr);
-        JsonObject tmpResult = (JsonObject) jsonParser.parse(resultStr);
-        JsonArray resultArray = builder.build(newJson,tmpResult);
+        JsonArray resultArray = null;
+        if(StringUtils.isEmpty(resultStr)){
+        	resultArray = builder.buildOnlyHead(newJson, new JsonObject());
+        }else{
+        	JsonObject tmpResult = (JsonObject) jsonParser.parse(resultStr);
+        	resultArray = builder.build(newJson,tmpResult);
+        }
         viewer.viewString(gson.toJson(resultArray),resp,req);
+        
     }
 
     private JsonObject buildQueryJson(String from, String to, String query, int currentPage, int pageSize, String tableName) {
