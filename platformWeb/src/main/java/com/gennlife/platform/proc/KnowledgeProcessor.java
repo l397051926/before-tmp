@@ -212,21 +212,18 @@ public class KnowledgeProcessor {
     }
 
     public void detailVariationSearchDrug(HttpServletRequest req, HttpServletResponse resp) {
-        JsonArray Variation = null;
+        String param = null;
         try{
-            String param = ParamUtils.getParam(req);
+            param = ParamUtils.getParam(req);
             logger.info("DetailVariationSearchDrug param="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            Variation = paramObj.getAsJsonArray("Variation");
         }catch (Exception e){
             logger.error("请求参数出错", e);
             ParamUtils.errorParam("请求参数出错", req, resp);
             return;
         }
-        JsonObject newParam = new JsonObject();
-        newParam.add("query",Variation);
-        newParam.addProperty("from","");
-        String paramStr = gson.toJson(newParam);
+        String url = ConfigurationService.getUrlBean().getKnowledgePharmGKBSearchDrugURL();
+        String resultStr = HttpRequestUtils.httpPost(url,param);
+        viewer.viewString(resultStr,resp,req);
 
 
     }

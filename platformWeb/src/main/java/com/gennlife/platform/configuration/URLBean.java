@@ -107,6 +107,18 @@ public class URLBean {
      * 病理检测
      */
     private String casePathological_examination = null;
+    /**
+     * 详情页,通过变异号和基因类型查询 药和用药指南
+     */
+    private String knowledgePharmGKBSearchDrugURL = null;
+
+    public String getKnowledgePharmGKBSearchDrugURL() {
+        return knowledgePharmGKBSearchDrugURL;
+    }
+
+    public void setKnowledgePharmGKBSearchDrugURL(String knowledgePharmGKBSearchDrugURL) {
+        this.knowledgePharmGKBSearchDrugURL = knowledgePharmGKBSearchDrugURL;
+    }
 
     public String getCaseExam_result() {
         return caseExam_result;
