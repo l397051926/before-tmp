@@ -302,8 +302,9 @@ public class DataFormatConversion{
 
 
 		JsonContext jc = new JsonContext();
+		System.out.println(sourceData.toString());
 		jc.parse(sourceData.toString());
-		Object arrayObj = jc.read(path);
+		Object arrayObj = null;
 		try {
 			arrayObj = jc.read(path);
 		} catch (Exception e) {
@@ -348,7 +349,7 @@ public class DataFormatConversion{
 
 		JsonContext jc = new JsonContext();
 		jc.parse(sourceData.toString());
-		Object arrayObj = jc.read(path);
+		Object arrayObj = null;
 		try {
 			arrayObj = jc.read(path);
 		} catch (Exception e) {

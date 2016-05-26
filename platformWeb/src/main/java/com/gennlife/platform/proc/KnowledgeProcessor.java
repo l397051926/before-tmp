@@ -125,11 +125,16 @@ public class KnowledgeProcessor {
         JsonArray resultArray = null;
         if(StringUtils.isEmpty(resultStr)){
         	resultArray = builder.buildOnlyHead(newJson, new JsonObject());
+        	viewer.viewString(gson.toJson(resultArray),resp,req);
+        }else if ("variationArray_disease".equals(from+"_"+to)){
+        	//陈松定的。按陈松说的修改的。
+        	viewer.viewString(resultStr,resp,req);
         }else{
         	JsonObject tmpResult = (JsonObject) jsonParser.parse(resultStr);
         	resultArray = builder.build(newJson,tmpResult);
+        	viewer.viewString(gson.toJson(resultArray),resp,req);
         }
-        viewer.viewString(gson.toJson(resultArray),resp,req);
+        
         
     }
 
