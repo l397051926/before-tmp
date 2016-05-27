@@ -302,7 +302,6 @@ public class DataFormatConversion{
 
 
 		JsonContext jc = new JsonContext();
-		System.out.println(sourceData.toString());
 		jc.parse(sourceData.toString());
 		Object arrayObj = null;
 		try {
