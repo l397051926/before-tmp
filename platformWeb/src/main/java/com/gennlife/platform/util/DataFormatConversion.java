@@ -35,9 +35,10 @@ public class DataFormatConversion{
 	public static int DATA_TYPE_STRING = 1;
 	public static int DATA_TYPE_SINGLE_ARRAY = 2;
 	public static int DATA_TYPE_ARRAY = 3;
+	public static String KNOWLEDGE_TEMPLE_FILE="/knowledge_transformation.json";
 	static {
 		try {
-			template = FilesUtils.readFile("/knowledge_transformation.json");
+			template = FilesUtils.readFile(KNOWLEDGE_TEMPLE_FILE);
 		} catch (IOException e) {
 			logger.error(e.toString());
 			template = templateDefault;
