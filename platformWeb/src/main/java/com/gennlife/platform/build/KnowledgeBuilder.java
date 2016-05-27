@@ -567,6 +567,12 @@ public class KnowledgeBuilder {
 	private JsonArray drugUseSchema(String from) {
 		JsonArray schema = new JsonArray();
 		if("phenotype".equals(from) || "drug".equals(from) ||"disease".equals(from)||"gene".equals(from)){
+			JsonObject diseaseId = new JsonObject();
+			diseaseId.addProperty("name","disease_id");
+			schema.add(diseaseId);
+			JsonObject disease = new JsonObject();
+			disease.addProperty("name","disease");
+			schema.add(disease);
 			JsonObject drugDrug = new JsonObject();
 			drugDrug.addProperty("name","drug");
 			schema.add(drugDrug);
@@ -574,17 +580,14 @@ public class KnowledgeBuilder {
 			JsonObject brand_nameDrug = new JsonObject();
 			brand_nameDrug.addProperty("name","brand_name");
 			schema.add(brand_nameDrug);
-
-			JsonObject typeDrug = new JsonObject();
-			typeDrug.addProperty("name","disease");
-			schema.add(typeDrug);
+			
 
 			JsonObject biomarkerDrug = new JsonObject();
 			biomarkerDrug.addProperty("name","biomarker");
 			schema.add(biomarkerDrug);
 
 			JsonObject referenced_subgroupDrug = new JsonObject();
-			referenced_subgroupDrug.addProperty("name","referenced_subgroup");
+			referenced_subgroupDrug.addProperty("name","biomarker_detail");
 			schema.add(referenced_subgroupDrug);
 
 			JsonObject indicationDrug = new JsonObject();
@@ -641,7 +644,7 @@ public class KnowledgeBuilder {
 			schema.add(brand_nameDrug);
 		}
 
-		if("disease_id".equals(from)){
+		if("phenotype".equals(from)){
 			JsonObject disease_idDrug = new JsonObject();
 			disease_idDrug.addProperty("name","disease_id");
 			schema.add(disease_idDrug);
@@ -668,6 +671,8 @@ public class KnowledgeBuilder {
 			refDrug.addProperty("name","ref");
 			schema.add(refDrug);
 		}
+		
+		
 
 		return schema;
 	}
