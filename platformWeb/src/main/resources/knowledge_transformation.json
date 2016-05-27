@@ -23,7 +23,7 @@
 			"data_type": "string",
 			"path": "$.FdaReference.biomarker"
 		},
-		"referenced_subgroup": {
+		"biomarker_detail": {
 			"data_type": "string",
 			"path": "$.FdaReference.referencedSubGroup"
 		},
@@ -56,7 +56,7 @@
 			"data_type": "string",
 			"path": "$.biomarker"
 		},
-		"referenced_subgroup": {
+		"biomarker_detail": {
 			"data_type": "string",
 			"path": "$.referencedSubGroup"
 		},
@@ -89,7 +89,7 @@
 			"data_type": "string",
 			"path": "$.FdaReference.biomarker"
 		},
-		"referenced_subgroup": {
+		"biomarker_detail": {
 			"data_type": "string",
 			"path": "$.FdaReference.referencedSubGroup"
 		},
@@ -122,7 +122,7 @@
 			"data_type": "string",
 			"path": "$.FdaReference.biomarker"
 		},
-		"referenced_subgroup": {
+		"biomarker_detail": {
 			"data_type": "string",
 			"path": "$.FdaReference.referencedSubGroup"
 		},
@@ -165,7 +165,7 @@
 			"data_type": "string",
 			"path": "$.FdaReference.biomarker"
 		},
-		"referenced_subgroup": {
+		"biomarker_detail": {
 			"data_type": "string",
 			"path": "$.FdaReference.referencedSubGroup"
 		},
@@ -303,7 +303,7 @@
 			"data_type": "string",
 			"path": "$.NccnReference.biomarker"
 		},
-		"referenced_subgroup": {
+		"biomarker_detail": {
 			"data_type": "string",
 			"path": "$.NccnReference.referencedSubGroup"
 		},
@@ -329,7 +329,7 @@
 			"data_type": "string",
 			"path": "$.biomarker"
 		},
-		"referenced_subgroup": {
+		"biomarker_detail": {
 			"data_type": "string",
 			"path": "$.referencedSubGroup"
 		},
@@ -361,7 +361,7 @@
 			"data_type": "string",
 			"path": "$.NccnReference.biomarker"
 		},
-		"referenced_subgroup": {
+		"biomarker_detail": {
 			"data_type": "string",
 			"path": "$.NccnReference.referencedSubGroup"
 		},
@@ -387,7 +387,7 @@
 			"data_type": "string",
 			"path": "$.NccnReference.biomarker"
 		},
-		"referenced_subgroup": {
+		"biomarker_detail": {
 			"data_type": "string",
 			"path": "$.NccnReference.referencedSubGroup"
 		},
@@ -403,6 +403,10 @@
 		}
 	},
 	"phenotype_drug_nccn": {
+		"disease_id": {
+			"data_type": "string",
+			"path": "$.FdaReference.disease_id"
+		},
 		"disease": {
 			"data_type": "string",
 			"path": "$.NccnReference.disease"
@@ -419,7 +423,7 @@
 			"data_type": "string",
 			"path": "$.NccnReference.biomarker"
 		},
-		"referenced_subgroup": {
+		"biomarker_detail": {
 			"data_type": "string",
 			"path": "$.NccnReference.referencedSubGroup"
 		},

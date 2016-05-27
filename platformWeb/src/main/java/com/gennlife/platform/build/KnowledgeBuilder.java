@@ -855,7 +855,7 @@ public class KnowledgeBuilder {
 
 			JsonObject entityPhenotype = new JsonObject();
 			entityPhenotype.addProperty("name","phenotype");
-			schema.add(entityPhenotypeID);
+			schema.add(entityPhenotype);
 		}
 
 		JsonObject entityChromosome = new JsonObject();
