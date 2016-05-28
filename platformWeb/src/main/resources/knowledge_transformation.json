@@ -2,9 +2,9 @@
 	"gene_drug_fda": {
 		"drug": {
 			"data_type": "single_array",
-			"path_one": "$.FdaReference.drugName",
+			"path_one": "$.drugName",
 			"name_one": "name",
-			"path_two": "",
+			"path_two": "$.FdaReference.drugUrl",
 			"name_two": "url"
 		},
 		"disease": {
@@ -33,6 +33,12 @@
 		"description": {
 			"data_type": "string",
 			"path": "$.FdaReference.indication"
+		},
+		"ref": {
+			"data_type": "array",
+			"path": "$.FdaReference.reference",
+			"name": "text",
+			"url": "url"
 		}
 	},
 	"drug_drug_fda": {
@@ -105,6 +111,12 @@
 		"description": {
 			"data_type": "string",
 			"path": "$.FdaReference.indication"
+		},
+		"ref": {
+			"data_type": "array",
+			"path": "$.FdaReference.reference",
+			"name": "text",
+			"url": "url"
 		}
 	},
 	"disease_drug_fda": {
@@ -331,7 +343,7 @@
 		},
 		"brand_name": {
 			"data_type": "string",
-			"path": "$.NccnReference.brand_name"
+			"path": "$.NccnReference.productNames[*]"
 		},
 		"biomarker": {
 			"data_type": "string",
@@ -344,6 +356,12 @@
 		"description": {
 			"data_type": "string",
 			"path": "$.NccnReference.description"
+		},
+		"ref": {
+			"data_type": "array",
+			"path": "$.NccnReference.reference",
+			"name": "text",
+			"url": "url"
 		}
 	},
 	"drug_drug_nccn": {
@@ -496,29 +514,35 @@
 	"gene_drug_target": {
 		"drug": {
 			"data_type": "single_array",
-			"path_one": "$.formalDrugName",
+			"path_one": "$.TargetDrugReference.formalDrugName",
 			"name_one": "name",
-			"path_two": "",
+			"path_two": "$.TargetDrugReference.drugUrl",
 			"name_two": "url"
 		},
 		"brand_name": {
 			"data_type": "string",
-			"path": "$.productNames[*]"
+			"path": "$.TargetDrugReference.productNames[*]"
 		},
 		"gene": {
 			"data_type": "single_array",
-			"path_one": "$.gene[0].geneSymbol",
-			"path_two": "$.gene[0].geneSymbolUrl",
+			"path_one": "$.TargetDrugReference.gene[0].geneSymbol",
+			"path_two": "$.TargetDrugReference.gene[0].geneSymbolUrl",
 			"name_one": "name",
 			"name_two": "url"
 		},
 		"type": {
 			"data_type": "string",
-			"path": "$.drugType"
+			"path": "$.TargetDrugReference.drugType"
 		},
 		"approve_status": {
 			"data_type": "string",
-			"path": "$.examStatus[*]"
+			"path": "$.TargetDrugReference.examStatus[*]"
+		},
+		"ref": {
+			"data_type": "array",
+			"path": "$.TargetDrugReference.reference",
+			"name": "text",
+			"url": "url"
 		}
 	},
 	"drug_drug_target": {
@@ -676,8 +700,11 @@
 	},
 	"gene_variation": {
 		"variation_num": {
-			"data_type": "string",
-			"path": "$.variationId"
+			"data_type": "single_array",
+			"path_one": "$.id",
+			"path_two": "$.variantIdUrl",
+			"name_one": "name",
+			"name_two": "url"
 		},
 		"gene": {
 			"data_type": "single_array",
@@ -701,6 +728,12 @@
 		"alternate_allele": {
 			"data_type": "string",
 			"path": "$.alt"
+		},
+		"ref": {
+			"data_type": "array",
+			"path": "$.reference",
+			"name": "text",
+			"url": "url"
 		}
 	},
 	"phenotype_variation": {
@@ -1391,6 +1424,42 @@
 		"ref": {
 			"data_type": "array",
 			"path": "$.reference",
+			"name": "text",
+			"url": "url"
+		}
+	},
+	"gene_drug_variation": {
+		"drug": {
+			"data_type": "single_array",
+			"path_one": "$.drugName",
+			"name_one": "name",
+			"path_two": "",
+			"name_two": "url"
+		},
+		"brand_name": {
+			"data_type": "single_array",
+			"path_one": "$.TargetDrugReference.productNames[*]",
+			"name_one": "name",
+			"path_two": "",
+			"name_two": "url"
+		},
+		"gene": {
+			"data_type": "single_array",
+			"path_one": "$.geneSymbol",
+			"name_one": "name",
+			"path_two": "$.geneSymbolUrl",
+			"name_two": "url"
+		},
+		"variation": {
+			"data_type": "single_array",
+			"path_one": "$.variantId",
+			"name_one": "name",
+			"path_two": "$.variantUrl",
+			"name_two": "url"
+		},
+		"ref": {
+			"data_type": "array",
+			"path": "$.PharmGKB.reference",
 			"name": "text",
 			"url": "url"
 		}
