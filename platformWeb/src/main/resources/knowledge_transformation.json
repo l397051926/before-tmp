@@ -1437,11 +1437,8 @@
 			"name_two": "url"
 		},
 		"brand_name": {
-			"data_type": "single_array",
-			"path_one": "$.TargetDrugReference.productNames[*]",
-			"name_one": "name",
-			"path_two": "",
-			"name_two": "url"
+			"data_type": "string",
+			"path": "$.TargetDrugReference.productNames[*]"
 		},
 		"gene": {
 			"data_type": "single_array",
