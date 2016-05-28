@@ -264,13 +264,22 @@ public class DataFormatConversion{
 		String fieldTwo = (String)meta.get("name_two");
 		net.minidev.json.JSONObject jo = new net.minidev.json.JSONObject();
 		try {
-			jo.put(fieldOne, JsonPath.read(jsonStr, pathOne));
+			if(!StringUtils.isEmpty(fieldOne)&&!StringUtils.isEmpty(pathOne)){
+				jo.put(fieldOne, JsonPath.read(jsonStr, pathOne));
+			}else{
+				jo.put(fieldOne, "");
+			}
 		} catch (Exception e) {
 			jo.put(fieldOne, "");
 			logger.error(e.toString());
 		}
 		try {
-			jo.put(fieldTwo, JsonPath.read(jsonStr, pathTwo));
+			if(!StringUtils.isEmpty(fieldTwo)&&!StringUtils.isEmpty(pathTwo)){
+				jo.put(fieldTwo, JsonPath.read(jsonStr, pathTwo));
+			}else{
+				jo.put(fieldTwo, "");
+			}
+			
 		} catch (Exception e) {
 			jo.put(fieldTwo, "");
 			logger.error(e.toString());
@@ -285,15 +294,6 @@ public class DataFormatConversion{
 
 		JSONArray data = new JSONArray();
 		if(null==sourceData ){
-			return data;
-		}
-
-		Object defaultVal = null;
-		try {
-			defaultVal=metaData.get("defaultVal");
-		} catch (JSONException e) {
-		}
-		if(null!=defaultVal){
 			return data;
 		}
 
@@ -318,8 +318,15 @@ public class DataFormatConversion{
 		for(int i=0,j=ja.size();i<j;i++){
 			net.minidev.json.JSONObject jo = new net.minidev.json.JSONObject();
 			Map<String,Object> o = (Map<String, Object>) ja.get(i);
-			jo.put("name", o.get(name));
-			jo.put("url", o.get(url));
+			if(!StringUtils.isEmpty(name)){
+				jo.put("name", o.get(name));
+			}else{
+				jo.put("name", "");
+			}
+			if(!StringUtils.isEmpty(url)){
+				jo.put("url", o.get(url));
+				jo.put("url", "");
+			}
 			data.add(jo);
 		}
 		return  data;
@@ -331,14 +338,6 @@ public class DataFormatConversion{
 			return data;
 		}
 
-		Object defaultVal = null;
-		try {
-			defaultVal=metaData.get("defaultVal");
-		} catch (JSONException e) {
-		}
-		if(null!=defaultVal){
-			return data;
-		}
 
 		String path = (String)metaData.get("path");
 		String name = (String)metaData.get("name");
@@ -365,6 +364,7 @@ public class DataFormatConversion{
 			Map<String,Object> o = (Map<String, Object>) ja.get(i);
 			jo.put(keyName, o.get(name));
 			jo.put(valueName, o.get(url));
+			
 			data.add(jo);
 		}
 		return  data;
