@@ -429,7 +429,11 @@ public class KnowledgeBuilder {
 		}
 		String from = param.get("from").getAsString();
 		String to = param.get("to").getAsString();
-		String currentTable = param.get("currentTable").getAsString();
+		String currentTable = null;
+		if(param.has("currentTable")){
+			param.get("currentTable").getAsString();
+		}
+				
 		head.addProperty("total_pages",total_pages);
 		head.addProperty("currentPage",currentPage);
 		head.addProperty("from",from);
