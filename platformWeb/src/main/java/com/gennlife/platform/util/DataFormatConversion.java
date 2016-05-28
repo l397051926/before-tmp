@@ -362,13 +362,14 @@ public class DataFormatConversion{
 		for(int i=0,j=ja.size();i<j;i++){
 			net.minidev.json.JSONObject jo = new net.minidev.json.JSONObject();
 			Map<String,Object> o = (Map<String, Object>) ja.get(i);
-			if(!StringUtils.isEmpty(name)){
+			if(!StringUtils.isEmpty(name)&&null!=o.get(name)){
 				jo.put("name", o.get(name));
 			}else{
 				jo.put("name", "");
 			}
-			if(!StringUtils.isEmpty(url)){
+			if(!StringUtils.isEmpty(url)&&null!=o.get(url)){
 				jo.put("url", o.get(url));
+			}else{
 				jo.put("url", "");
 			}
 			data.add(jo);

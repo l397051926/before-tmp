@@ -206,6 +206,7 @@ public class KnowledgeBuilder {
 		}else{
 			fromA2BOnC = from+"_"+to+"_"+currentTable;
 		}
+		
 		result.add(head);
 		JsonArray body = new JsonArray();
 		JsonArray drugObjs = obj.getAsJsonArray("data");
@@ -222,11 +223,14 @@ public class KnowledgeBuilder {
 					currentTableName = "targetDrug";
 				}
 				JsonArray dataArray = fdaObj.getAsJsonArray(currentTableName);
+				
 				if(null!=dataArray){
 					JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromA2BOnC, dataArray);
 					if(null!=bodyRtn&&0<bodyRtn.size()){
 						body = bodyRtn;
 					}
+				}else{
+					
 				}
 			}
 		}
