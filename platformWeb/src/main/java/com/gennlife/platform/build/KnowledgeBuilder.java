@@ -8,6 +8,7 @@ import org.springframework.util.StringUtils;
 import com.gennlife.platform.util.DataFormatConversion;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 
 /**
@@ -431,7 +432,11 @@ public class KnowledgeBuilder {
 		String to = param.get("to").getAsString();
 		String currentTable = null;
 		if(param.has("currentTable")){
-			param.get("currentTable").getAsString();
+			if(param.get("currentTable") instanceof JsonNull){
+				
+			}else{
+				currentTable = param.get("currentTable").getAsString();
+			}
 		}
 				
 		head.addProperty("total_pages",total_pages);
