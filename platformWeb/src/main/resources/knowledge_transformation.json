@@ -117,7 +117,7 @@
 		},
 		"disease": {
 			"data_type": "single_array",
-			"path_one": "$$.FdaReference.disease",
+			"path_one": "$.FdaReference.disease",
 			"name_one": "name",
 			"path_two": "",
 			"name_two": "url"
@@ -1160,12 +1160,8 @@
 			"data_type": "single_array",
 			"path_one": "$.name",
 			"name_one": "name",
-			"path_two": "",
+			"path_two": "$.idUrl",
 			"name_two": "url"
-		},
-		"source": {
-			"data_type": "string",
-			"path": "$.source"
 		},
 		"gene": {
 			"data_type": "single_array",
@@ -1173,6 +1169,12 @@
 			"path_two": "$.Gene[0].symbolUrl",
 			"name_one": "name",
 			"name_two": "url"
+		},
+		"ref": {
+			"data_type": "array",
+			"path": "$.reference",
+			"name": "text",
+			"url": "url"
 		}
 	},
 	"drug_disease": {
@@ -1235,7 +1237,7 @@
 			"data_type": "single_array",
 			"path_one": "$.id",
 			"name_one": "name",
-			"path_two": "",
+			"path_two": "$.idUrl",
 			"name_two": "url"
 		},
 		"disease": {
