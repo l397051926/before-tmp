@@ -433,7 +433,7 @@ public class KnowledgeBuilder {
 		String currentTable = null;
 		if(param.has("currentTable")){
 			if(param.get("currentTable") instanceof JsonNull){
-				
+				currentTable = null;
 			}else{
 				currentTable = param.get("currentTable").getAsString();
 			}

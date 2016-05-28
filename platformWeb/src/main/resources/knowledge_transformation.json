@@ -117,7 +117,7 @@
 		},
 		"disease": {
 			"data_type": "single_array",
-			"path_one": "$$.FdaReference.disease",
+			"path_one": "$.FdaReference.disease",
 			"name_one": "name",
 			"path_two": "",
 			"name_two": "url"
@@ -1235,7 +1235,7 @@
 			"data_type": "single_array",
 			"path_one": "$.id",
 			"name_one": "name",
-			"path_two": "",
+			"path_two": "$.idUrl",
 			"name_two": "url"
 		},
 		"disease": {
