@@ -2,6 +2,8 @@ package com.gennlife.platform.util;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
 
 import org.json.JSONException;
 import org.slf4j.Logger;
@@ -9,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
@@ -26,7 +29,7 @@ import net.minidev.json.JSONObject;
  */
 public class DataFormatConversion{
 	private static final Logger logger = LoggerFactory.getLogger(DataFormatConversion.class);
-	public static String templateDefault = "{\"disease_phenotype\":{\"phenotype_id\":{\"data_type\":\"string\",\"path\":\"$.id\"},\"phenotype\":{\"data_type\":\"string\",\"path\":\"$.term_name\"},\"gene\":{\"data_type\":\"array\",\"path\":\"$.Gene\",\"name\":\"symbol\",\"url\":\"geneSymbolUrl\"},\"ref\":{\"data_type\":\"array\",\"path\":\"$.Disease\",\"name\":\"name\",\"url\":\"url\",\"defaultVal\":[]},\"disease_id\":{\"data_type\":\"array\",\"path\":\"$.Disease\",\"name\":\"name\",\"url\":\"url\"},\"disease\":{\"data_type\":\"string\",\"path\":\"$.Disease[0].name\"}},\"drug_phenotype\":{\"phenotype_id\":{\"data_type\":\"string\",\"path\":\"$.hpoId\"},\"phenotype\":{\"data_type\":\"string\",\"path\":\"$.hpoTermName\"},\"gene\":{\"data_type\":\"single_array\",\"path_one\":\"$.geneSymbol\",\"path_two\":\"$.geneSymbolUrl\",\"name_one\":\"name\",\"name_two\":\"url\"},\"ref\":{\"data_type\":\"array\",\"path\":\"$.reference\",\"name\":\"ref\",\"defaultVal\":[]}},\"gene_phenotype\":{\"phenotype_id\":{\"data_type\":\"string\",\"path\":\"$.hpoId\"},\"phenotype\":{\"data_type\":\"string\",\"path\":\"$.hpoTermName\"},\"ref\":{\"data_type\":\"array\",\"path\":\"$.reference\",\"name\":\"ref\",\"defaultVal\":[]}},\"variation_phenotype\":{\"phenotype_id\":{\"data_type\":\"string\",\"path\":\"$.hpoId\"},\"phenotype\":{\"data_type\":\"string\",\"path\":\"$.hpoTermName\"},\"gene\":{\"data_type\":\"single_array\",\"path_one\":\"$.geneSymbol\",\"path_two\":\"$.geneSymbolUrl\",\"name_one\":\"name\",\"name_two\":\"url\"},\"ref\":{\"data_type\":\"array\",\"path\":\"$.Disease\",\"name\":\"name\",\"url\":\"url\",\"defaultVal\":[]}},\"protein_phenotype\":{\"phenotype_id\":{\"data_type\":\"string\",\"path\":\"$.id\"},\"phenotype\":{\"data_type\":\"string\",\"path\":\"$.term_name\"},\"Gene\":{\"data_type\":\"array\",\"path\":\"$.Gene\",\"name\":\"geneSymbol\",\"url\":\"geneSymbolUrl\"},\"ref\":{\"data_type\":\"array\",\"path\":\"$.reference\",\"name\":\"ref\",\"defaultVal\":[]}},\"phenotype_disease\":{\"disease_id\":{\"data_type\":\"string\",\"path\":\"$.id\"},\"disease\":{\"data_type\":\"string\",\"path\":\"$.name\"},\"phenotype_id\":{\"data_type\":\"single_array\",\"path_one\":\"$.Phenotype[0].id\",\"path_two\":\"$.Phenotype[0].url\",\"name_one\":\"name\",\"name_two\":\"url\"},\"phenotype\":{\"data_type\":\"string\",\"path\":\"$.Phenotype[0].term_name\"},\"Gene\":{\"data_type\":\"array\",\"path\":\"$.Gene\",\"name\":\"symbol\",\"url\":\"url\"},\"ref\":{\"data_type\":\"array\",\"path\":\"$.Disease\",\"name\":\"name\",\"url\":\"url\",\"defaultVal\":[]}},\"gene_disease\":{},\"protein_disease\":{\"disease\":{\"data_type\":\"string\",\"path\":\"存疑\"},\"gene\":{\"data_type\":\"single_array\",\"path_one\":\"$.geneSymbol\",\"path_two\":\"$.geneSymbolUrl\",\"name_one\":\"name\",\"name_two\":\"url\"},\"ref\":{\"data_type\":\"array\",\"path\":\"$.Disease\",\"name\":\"name\",\"url\":\"url\",\"defaultVal\":[]}},\"drug_disease\":{\"disease\":{\"data_type\":\"string\",\"path\":\"$.name\"}},\"variation_disease\":{},\"drug_variation\":{\"variation_num\":{\"data_type\":\"string\",\"path\":\"$.id\"},\"gene\":{\"data_type\":\"single_array\",\"path_one\":\"$.geneSymbol\",\"path_two\":\"$.geneSymbolUrl\",\"name_one\":\"name\",\"name_two\":\"url\"},\"chromosome\":{\"data_type\":\"string\",\"path\":\"$.chromosome\"},\"start\":{\"data_type\":\"string\",\"path\":\"$.start\"},\"reference_allele\":{\"data_type\":\"string\",\"path\":\"$.ref\"},\"alternate_allele\":{\"data_type\":\"string\",\"path\":\"$.alt\"},\"ref\":{\"data_type\":\"array\",\"path\":\"$.Disease\",\"name\":\"name\",\"url\":\"url\",\"defaultVal\":[]}},\"gene_variation\":{\"variation_num\":{\"data_type\":\"string\",\"path\":\"$.variationId\"},\"gene\":{\"data_type\":\"single_array\",\"path_one\":\"$.geneSymbol\",\"path_two\":\"$.geneSymbolUrl\",\"name_one\":\"name\",\"name_two\":\"url\"},\"chromosome\":{\"data_type\":\"string\",\"path\":\"$.chromosome\"},\"start\":{\"data_type\":\"string\",\"path\":\"$.start\"},\"reference_allele\":{\"data_type\":\"string\",\"path\":\"$.ref\"},\"alternate_allele\":{\"data_type\":\"string\",\"path\":\"$.alt\"},\"ref\":{\"data_type\":\"array\",\"path\":\"$.Disease\",\"name\":\"name\",\"url\":\"url\",\"defaultVal\":[]}},\"phenotype_variation\":{\"variation_num\":{\"data_type\":\"string\",\"path\":\"$.id\"},\"disease_id\":{\"data_type\":\"single_array\",\"path_one\":\"$.geneSymbol\",\"path_two\":\"$.geneSymbolUrl\",\"name_one\":\"name\",\"name_two\":\"url\"},\"type\":{\"data_type\":\"string\",\"path\":\"$.chromosome\"},\"start\":{\"data_type\":\"string\",\"path\":\"$.start\"},\"reference_allele\":{\"data_type\":\"string\",\"path\":\"$.ref\"},\"alternate_allele\":{\"data_type\":\"string\",\"path\":\"$.alt\"},\"ref\":{\"data_type\":\"array\",\"path\":\"$.Disease\",\"name\":\"name\",\"url\":\"url\",\"defaultVal\":[]}}}";
+	public static String templateDefault = "";
 	public static String template=null;
 	public static String dis2Ph = "";
 	public static JsonParser jsonParser = new JsonParser();
@@ -36,7 +39,37 @@ public class DataFormatConversion{
 	public static int DATA_TYPE_SINGLE_ARRAY = 2;
 	public static int DATA_TYPE_ARRAY = 3;
 	public static String KNOWLEDGE_TEMPLE_FILE="/knowledge_transformation.json";
+	public static String SCHEMA_FILE="/schema.json";
+	public static String SCHEMA_STR= null;
+	
+	public static JsonObject SCHEMAJO = null;
+	
 	static {
+		loadSchema();
+		loadTemplate();
+	}
+	public static void reload(){
+		loadSchema();
+		loadTemplate();
+	}
+	
+	public static void loadSchema(){
+		try {
+			SCHEMA_STR = FilesUtils.readFile(SCHEMA_FILE);
+		} catch (IOException e) {
+			logger.error(e.toString());
+		}
+		JsonParser jsonParser = new JsonParser();
+		try {
+			SCHEMAJO = null;
+			SCHEMAJO = (JsonObject) jsonParser.parse(SCHEMA_STR);
+		} catch (JsonSyntaxException e) {
+			logger.error(e.toString());
+		}
+		
+	}
+	
+	public static void loadTemplate(){
 		try {
 			template = FilesUtils.readFile(KNOWLEDGE_TEMPLE_FILE);
 		} catch (IOException e) {
@@ -44,9 +77,20 @@ public class DataFormatConversion{
 			template = templateDefault;
 		}
 		tmpJc.parse(template);
-		
+	}
+	
+	@SuppressWarnings("null")
+	public static JsonArray getSchema(String schemaKey){
+		JsonElement je = SCHEMAJO.get(schemaKey);
+		if(null!=je){
+			return je.getAsJsonArray();
+		}else{
+			return new JsonArray();
+		}
 		
 	}
+	
+	
 	/**
 	 * 知识库数据格式转换到ui service数据格式
 	 * @param fromAToB 例：fromAToB="disease_phenotype";表示从疾病查表型

@@ -3,6 +3,7 @@ package com.gennlife.platform.proc;
 import com.gennlife.platform.build.KnowledgeBuilder;
 import com.gennlife.platform.service.ArkService;
 import com.gennlife.platform.service.ConfigurationService;
+import com.gennlife.platform.util.DataFormatConversion;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
@@ -239,4 +240,5 @@ public class KnowledgeProcessor {
         }
 
     }
+   
 }

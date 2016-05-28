@@ -1,16 +1,22 @@
 package com.gennlife.platform.proc;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.gennlife.platform.util.DataFormatConversion;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
-import com.google.gson.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * Created by chensong on 2015/12/9.
@@ -81,5 +87,16 @@ public class FileProcessor {
         String data = gson.toJson(jsonObject);
         viewer.viewString(data,resps,request);
     }
+    
+    public void reloadConfig(HttpServletRequest req, HttpServletResponse resp) {
+        try{
+        	DataFormatConversion.reload();
+            viewer.viewString("{\"code\":\"1\"}",resp,req);
+        }catch (Exception e){
+            logger.error("请求参数出错", e);
+            ParamUtils.errorParam("{\"code\":\"-1\"}", req, resp);
+            return;
+        }
 
+    }
 }

@@ -3,6 +3,8 @@ package com.gennlife.platform.build;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.springframework.util.StringUtils;
+
 import com.gennlife.platform.util.DataFormatConversion;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -410,6 +412,45 @@ public class KnowledgeBuilder {
 	 * @return
 	 */
 	private JsonObject buildHead(JsonObject param,JsonObject obj){
+		JsonObject head = new JsonObject();
+		int pageSize = param.get("pageSize").getAsInt();
+		int currentPage = param.get("currentPage").getAsInt();
+		head.addProperty("pageSize",pageSize);
+		Integer counter = 0;
+		if(null==obj.getAsJsonObject("info")){
+			counter = 0;
+		}else{
+			counter = obj.getAsJsonObject("info").get("counter").getAsInt();
+		}
+		head.addProperty("totalRecords",counter);
+		int total_pages = 0;
+		if(counter > 0){
+			total_pages = counter % pageSize;
+		}
+		String from = param.get("from").getAsString();
+		String to = param.get("to").getAsString();
+		String currentTable = param.get("currentTable").getAsString();
+		head.addProperty("total_pages",total_pages);
+		head.addProperty("currentPage",currentPage);
+		head.addProperty("from",from);
+		head.addProperty("to",to);
+		head.addProperty("limit",currentPage+","+pageSize);
+		JsonArray schema = null;
+		String schemaKey = null;
+		
+		if(StringUtils.isEmpty(currentTable)){
+			schemaKey = from+"_"+to;
+		}else{
+			schemaKey = from+"_"+currentTable;
+		}
+		schema = DataFormatConversion.getSchema(schemaKey);
+		head.add("schema",schema);
+		if(null!=obj.getAsJsonArray("dimension")){
+			head.add("dimension",obj.getAsJsonArray("dimension"));
+		}
+		return head;
+	}
+	private JsonObject buildHeadBak(JsonObject param,JsonObject obj){
 		JsonObject head = new JsonObject();
 		int pageSize = param.get("pageSize").getAsInt();
 		int currentPage = param.get("currentPage").getAsInt();
