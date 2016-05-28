@@ -221,6 +221,8 @@ public class KnowledgeBuilder {
 					currentTableName = "nccn";
 				}else if("drug_target".equals(currentTable)){
 					currentTableName = "targetDrug";
+				}else if("drug_variation".equals(currentTable)){
+					currentTableName = "pharmDrug";
 				}
 				JsonArray dataArray = fdaObj.getAsJsonArray(currentTableName);
 				

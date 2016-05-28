@@ -353,9 +353,6 @@
 	],
 	"gene_drug_fda": [
 		{
-			"name": "disease_id"
-		},
-		{
 			"name": "disease"
 		},
 		{
@@ -377,10 +374,24 @@
 			"name": "ref"
 		}
 	],
-	"gene_drug_nccn": [
+	"gene_drug_variation": [
 		{
-			"name": "disease_id"
+			"name": "drug"
 		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "variation"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"gene_drug_nccn": [
 		{
 			"name": "disease"
 		},
