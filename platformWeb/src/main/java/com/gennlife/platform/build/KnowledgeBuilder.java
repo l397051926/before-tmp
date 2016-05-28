@@ -684,13 +684,13 @@ public class KnowledgeBuilder {
 		schema.add(variation_numVariation);
 //		if("phenotype".equals(from) || "disease".equals(from)){
 		if("phenotype".equals(from)){
-//			JsonObject diseaseidVariation = new JsonObject();
-//			diseaseidVariation.addProperty("name","disease_id");
-//			schema.add(diseaseidVariation);
-//
-//			JsonObject diseaseVariation = new JsonObject();
-//			diseaseVariation.addProperty("name","disease");
-//			schema.add(diseaseVariation);
+			JsonObject diseaseidVariation = new JsonObject();
+			diseaseidVariation.addProperty("name","disease_id");
+			schema.add(diseaseidVariation);
+
+			JsonObject diseaseVariation = new JsonObject();
+			diseaseVariation.addProperty("name","disease");
+			schema.add(diseaseVariation);
 		}
 		if("disease".equals(from)){
 			JsonObject typeVariation = new JsonObject();
