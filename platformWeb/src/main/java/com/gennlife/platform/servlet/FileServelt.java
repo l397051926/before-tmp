@@ -39,6 +39,14 @@ public class FileServelt extends HttpServlet {
                 logger.error("系统",e);
             }
             logger.info("系统信息 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }
+        }else if("/file/KnowledgeReload".equals(uri)){
+        	//add by 唐乾斌，调试时更新配置
+       	 try{
+                processor.reloadConfig(req,resp);
+            }catch (Exception e){
+                logger.error("更新配置",e);
+            }
+            logger.info("更新配置 耗时:" + (System.currentTimeMillis()-start) +"ms");
+       }
     }
 }
