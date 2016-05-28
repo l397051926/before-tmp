@@ -229,8 +229,6 @@ public class KnowledgeBuilder {
 					if(null!=bodyRtn&&0<bodyRtn.size()){
 						body = bodyRtn;
 					}
-				}else{
-					
 				}
 			}
 		}
