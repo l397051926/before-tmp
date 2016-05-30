@@ -385,6 +385,20 @@
 			"name": "ref"
 		}
 	],
+	"variation_drug_variation": [
+		{
+			"name": "drug"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "variation"
+		},
+		{
+			"name": "ref"
+		}
+	],
 	"protein_drug_variation": [
 		{
 			"name": "drug"
@@ -815,6 +829,29 @@
 		},
 		{
 			"name": "variation_id"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"variation_variation": [
+		{
+			"name": "variation_num"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "chromosome"
+		},
+		{
+			"name": "start"
+		},
+		{
+			"name": "reference_allele"
+		},
+		{
+			"name": "alternate_allele"
 		},
 		{
 			"name": "ref"

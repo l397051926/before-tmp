@@ -1421,6 +1421,44 @@
 			"url": "url"
 		}
 	},
+	"variation_variation": {
+		"variation_num": {
+			"data_type": "single_array",
+			"path_one": "$.id",
+			"path_two": "$.variantIdUrl",
+			"name_one": "name",
+			"name_two": "url"
+		},
+		"gene": {
+			"data_type": "single_array",
+			"path_one": "$.geneSymbol",
+			"path_two": "$.geneUrl",
+			"name_one": "name",
+			"name_two": "url"
+		},
+		"chromosome": {
+			"data_type": "string",
+			"path": "$.chromosome"
+		},
+		"start": {
+			"data_type": "string",
+			"path": "$.start"
+		},
+		"reference_allele": {
+			"data_type": "string",
+			"path": "$.ref"
+		},
+		"alternate_allele": {
+			"data_type": "string",
+			"path": "$.alt"
+		},
+		"ref": {
+			"data_type": "array",
+			"path": "$.reference",
+			"name": "text",
+			"url": "url"
+		}
+	},
 	"phenotype_disease": {
 		"disease_id": {
 			"data_type": "single_array",
@@ -1542,6 +1580,30 @@
 		"ref": {
 			"data_type": "array",
 			"path": "$.PharmGKB.reference",
+			"name": "text",
+			"url": "url"
+		}
+	},
+	"variation_drug_variation": {
+		"drug": {
+			"data_type": "single_array",
+			"path_one": "$.drugName",
+			"name_one": "name"
+		},
+		"brand_name": {
+			"data_type": "string",
+			"path": "$.TargetDrugReference.productNames[*]"
+		},
+		"variation": {
+			"data_type": "single_array",
+			"path_one": "$.variantId",
+			"name_one": "name",
+			"path_two": "$.variantUrl",
+			"name_two": "url"
+		},
+		"ref": {
+			"data_type": "array",
+			"path": "$.reference",
 			"name": "text",
 			"url": "url"
 		}

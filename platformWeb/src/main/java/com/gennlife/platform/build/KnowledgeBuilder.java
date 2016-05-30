@@ -1,5 +1,7 @@
 package com.gennlife.platform.build;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -225,6 +227,9 @@ public class KnowledgeBuilder {
 					currentTableName = "pharmDrug";
 				}
 				JsonArray dataArray = fdaObj.getAsJsonArray(currentTableName);
+				if(null == dataArray){
+					dataArray = drugObjs;
+				}
 				
 				if(null!=dataArray){
 					JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromA2BOnC, dataArray);
