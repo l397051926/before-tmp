@@ -212,14 +212,11 @@
 		}
 	],
 	"drug_drug_fda": [
-		{
-			"name": "disease_id"
+	    {
+			"name": "drug"
 		},
 		{
 			"name": "disease"
-		},
-		{
-			"name": "drug"
 		},
 		{
 			"name": "brand_name"
@@ -239,13 +236,10 @@
 	],
 	"drug_drug_nccn": [
 		{
-			"name": "disease_id"
+			"name": "drug"
 		},
 		{
 			"name": "disease"
-		},
-		{
-			"name": "drug"
 		},
 		{
 			"name": "brand_name"
@@ -391,6 +385,23 @@
 			"name": "ref"
 		}
 	],
+	"protein_drug_variation": [
+		{
+			"name": "drug"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "variation"
+		},
+		{
+			"name": "ref"
+		}
+	],
 	"gene_drug_nccn": [
 		{
 			"name": "disease"
@@ -491,6 +502,32 @@
 			"name": "ref"
 		}
 	],
+	"protein_variation": [
+		{
+			"name": "variation_num"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "type"
+		},
+		{
+			"name": "chromosome"
+		},
+		{
+			"name": "start"
+		},
+		{
+			"name": "reference_allele"
+		},
+		{
+			"name": "alternate_allele"
+		},
+		{
+			"name": "ref"
+		}
+	],
 	"phenotype_disease": [
 		{
 			"name": "disease_id"
@@ -564,6 +601,25 @@
 		}
 	],
 	"phenotype_drug_target": [
+		{
+			"name": "drug"
+		}
+		,
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "type"
+		},
+		{
+			"name": "approve_status"
+		},
+		{
+			"name": "ref"
+		}	
 	],
 	"phenotype_gene": [
 		{
@@ -616,6 +672,9 @@
 			"name": "gene"
 		},
 		{
+			"name": "type"
+		},
+		{
 			"name": "chromosome"
 		},
 		{
@@ -643,8 +702,50 @@
 		}
 	],
 	"protein_drug_fda": [
+		{
+			"name": "drug"
+		},
+		{
+			"name": "disease"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "biomarker"
+		},
+		{
+			"name": "biomarker_detail"
+		},
+		{
+			"name": "description"
+		},
+		{
+			"name": "ref"
+		}
 	],
 	"protein_drug_nccn": [
+		{
+			"name": "drug"
+		},
+		{
+			"name": "disease"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "biomarker"
+		},
+		{
+			"name": "biomarker_detail"
+		},
+		{
+			"name": "description"
+		},
+		{
+			"name": "ref"
+		}
 	],
 	"protein_drug_target": [
 		{
@@ -678,6 +779,17 @@
 		},
 		{
 			"name": "transcript"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"protein_protein": [
+		{
+			"name": "protein"
+		},
+		{
+			"name": "gene"
 		},
 		{
 			"name": "ref"

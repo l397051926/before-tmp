@@ -1,6 +1,7 @@
 package com.gennlife.platform.util;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
@@ -310,7 +311,7 @@ public class DataFormatConversion{
 		try {
 			if(!StringUtils.isEmpty(fieldOne)&&!StringUtils.isEmpty(pathOne)){
 				jo.put(fieldOne, JsonPath.read(jsonStr, pathOne));
-			}else{
+			}else if(!StringUtils.isEmpty(fieldOne)&&StringUtils.isEmpty(pathOne)){
 				jo.put(fieldOne, "");
 			}
 		} catch (Exception e) {
@@ -318,10 +319,10 @@ public class DataFormatConversion{
 			logger.error(e.toString());
 		}
 		try {
-			if(!StringUtils.isEmpty(fieldTwo)&&!StringUtils.isEmpty(pathTwo)){
-				jo.put(fieldTwo, JsonPath.read(jsonStr, pathTwo));
-			}else{
+			if(!StringUtils.isEmpty(fieldTwo)&&StringUtils.isEmpty(pathTwo)){
 				jo.put(fieldTwo, "");
+			}else if(!StringUtils.isEmpty(fieldTwo)&&!StringUtils.isEmpty(pathTwo)){
+				jo.put(fieldTwo, JsonPath.read(jsonStr, pathTwo));
 			}
 			
 		} catch (Exception e) {
@@ -355,6 +356,12 @@ public class DataFormatConversion{
 			logger.error(e.toString());
 			return data;
 		}
+		
+		
+		if(arrayObj instanceof LinkedHashMap){
+			return data;
+		}
+		
 		JSONArray ja = (JSONArray) arrayObj;
 		if(null==ja||0==ja.size()){
 			return data;
