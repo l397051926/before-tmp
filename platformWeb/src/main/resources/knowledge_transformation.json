@@ -208,15 +208,13 @@
 		"disease": {
 			"data_type": "single_array",
 			"path_one": "$.FdaReference.disease",
-			"name_one": "name",
-			"path_two": "",
-			"name_two": "url"
+			"name_one": "name"
 		},
 		"drug": {
 			"data_type": "single_array",
 			"path_one": "$.drugName",
 			"name_one": "name",
-			"path_two": "",
+			"path_two": "$.FdaReference.drugUrl",
 			"name_two": "url"
 		},
 		"brand_name": {
@@ -250,16 +248,12 @@
 		"disease": {
 			"data_type": "single_array",
 			"path_one": "$.NccnReference.disease",
-			"name_one": "name",
-			"path_two": "",
-			"name_two": "url"
+			"name_one": "name"
 		},
 		"drug": {
 			"data_type": "single_array",
 			"path_one": "$.drugName",
-			"name_one": "name",
-			"path_two": "",
-			"name_two": "url"
+			"name_one": "name"
 		},
 		"brand_name": {
 			"data_type": "string",
