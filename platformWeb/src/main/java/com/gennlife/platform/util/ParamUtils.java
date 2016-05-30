@@ -79,11 +79,10 @@ public class ParamUtils {
         if(value == null){
             return null;
         }
-        value = value.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
-        value = value.replaceAll("'", "&#39;");
         value = value.replaceAll("eval\\((.*)\\)", "");
         value = value.replaceAll("[\\\"\\\'][\\s]*javascript:(.*)[\\\"\\\']", "\"\"");
-        value = value.replaceAll("script", "");
+        value = value.replaceAll("<script>", "");
+        value = value.replaceAll("<javascript>", "");
         return value;
     }
     public static void errorParam(HttpServletRequest request, HttpServletResponse resps){
