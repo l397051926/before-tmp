@@ -200,28 +200,15 @@ public class ParamUtils {
 
                         } else if ("date".equals(dataType)) {
                             String value = subElement.getAsString();
-                            if (subCount == 1) {
-                                queryBuf.append("(")
-                                        .append("[")
-                                        .append(IndexFieldName)
-                                        .append("]")
-                                        .append(" ")
-                                        .append("早于")
-                                        .append(" ")
-                                        .append(value);
-                            } else if (subCount == 2) {
-                                queryBuf.append(" ")
-                                        .append("AND")
-                                        .append(" ")
-                                        .append("[")
-                                        .append(IndexFieldName)
-                                        .append("]")
-                                        .append(" ")
-                                        .append("晚于")
-                                        .append(" ")
-                                        .append(value)
-                                        .append(")");
-                            }
+                            queryBuf.append("(")
+                                    .append("[")
+                                    .append(IndexFieldName)
+                                    .append("]")
+                                    .append(" ")
+                                    .append("=")
+                                    .append(" ")
+                                    .append(value)
+                                    .append(")");
                         }
                     }
                 }
