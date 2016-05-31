@@ -147,6 +147,15 @@ public class ParamUtils {
                                 .append("=")
                                 .append(" ")
                                 .append(value);
+                    }else if ("date".equals(dataType)) {
+                        String value = valueElement.getAsString();
+                        queryBuf.append("[")
+                                .append(IndexFieldName)
+                                .append("]")
+                                .append(" ")
+                                .append("=")
+                                .append(" ")
+                                .append(value);
                     }
                 }
 
@@ -198,17 +207,6 @@ public class ParamUtils {
                                         .append(")");
                             }
 
-                        } else if ("date".equals(dataType)) {
-                            String value = subElement.getAsString();
-                            queryBuf.append("(")
-                                    .append("[")
-                                    .append(IndexFieldName)
-                                    .append("]")
-                                    .append(" ")
-                                    .append("=")
-                                    .append(" ")
-                                    .append(value)
-                                    .append(")");
                         }
                     }
                 }
