@@ -253,7 +253,11 @@ public class ParamUtils {
         logger.info("query替换[] = "+query);
         if ("case".equals(from) && "case".equals(to)) {
             boolean isAdv = paramObj.get("isAdv").getAsBoolean();
-            if (!isAdv && !"".equals(query)) {
+            if (!isAdv && !"".equals(query)
+                    && !query.contains("[")
+                    && !query.toLowerCase().contains(" or ")
+                    && !query.toLowerCase().contains(" and ")
+                    && !query.toLowerCase().contains(" not ")) {
                 QueryServerParser queryServerParser = new QueryServerParser(query);
                 Set<String> set = queryServerParser.parser();
                 for (String k : set) {
