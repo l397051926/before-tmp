@@ -1504,7 +1504,7 @@
 		},
 		"brand_name": {
 			"data_type": "string",
-			"path": "$.productName"
+			"path": "$.productNames[*]"
 		},
 		"variation": {
 			"data_type": "single_array",
