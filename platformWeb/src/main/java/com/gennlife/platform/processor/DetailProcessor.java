@@ -208,7 +208,7 @@ public class DetailProcessor {
         String url = ConfigurationService.getUrlBean().getCaseGenetic_disease();
         logger.info("GeneticDisease url="+url);
         String result = HttpRequestUtils.httpPost(url,param);
-        logger.info("GeneticDisease result="+url);
+        logger.info("GeneticDisease result="+result);
         viewer.viewString(result,resp,req);
     }
 

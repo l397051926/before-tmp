@@ -33,18 +33,22 @@ public class View {
         response.setHeader("Access-Control-Allow-Credentials","true");
         response.setContentType("application/json");
     }
-    public void writeResult(String reuslt,HttpServletResponse response,HttpServletRequest request){
+    public void writeResult(String result,HttpServletResponse response,HttpServletRequest request){
         PrintWriter writer = null;
         try {
             writer = response.getWriter();
-            writer.write(reuslt);
-            writer.flush();
+            if(result == null){
+                ResultBean resultBean = new ResultBean();
+                resultBean.setCode(0);
+                resultBean.setMsg("请求出错");
+                writer.write(gson.toJson(resultBean));
+                writer.flush();
+            }else{
+                writer.write(result);
+                writer.flush();
+            }
         } catch (IOException e) {
             logger.error("",e);
-            ResultBean resultBean = new ResultBean();
-            resultBean.setCode(0);
-            resultBean.setMsg("请求出错");
-            writer.write(gson.toJson(resultBean));
         }finally {
             writer.close();
         }
