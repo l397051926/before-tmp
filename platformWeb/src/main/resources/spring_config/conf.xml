@@ -26,8 +26,8 @@
     </bean>
 
     <bean id="com.gennlife.platform.util.MongoConf" class="com.gennlife.platform.util.MongoConf">
-        <property name="host" value="192.168.1.111"/>
-        <property name="port" value="27017"/>
+        <property name="host" value="10.0.0.131"/>
+        <property name="port" value="10101"/>
         <property name="poolSize" value="10"/>
         <property name="blockSize" value="10"/>
     </bean>
