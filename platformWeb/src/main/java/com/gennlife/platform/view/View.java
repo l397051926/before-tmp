@@ -44,7 +44,7 @@ public class View {
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(0);
             resultBean.setMsg("请求出错");
-            writer.close();
+            writer.write(gson.toJson(resultBean));
         }finally {
             writer.close();
         }
