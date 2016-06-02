@@ -9,6 +9,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,12 +25,14 @@ public class HttpRequestUtils {
 	 */
 	public static String httpPost(String url, String jsonParam) {
 		DefaultHttpClient httpClient = new DefaultHttpClient();
+		httpClient.getParams().setIntParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);
 		HttpPost method = new HttpPost(url);
 		try {
 			if (null != jsonParam) {
 				StringEntity entity = new StringEntity(jsonParam,"utf-8");
 				entity.setContentEncoding("UTF-8");
 				entity.setContentType("application/json");
+
 				method.setEntity(entity);
 			}
 			HttpResponse result = httpClient.execute(method);

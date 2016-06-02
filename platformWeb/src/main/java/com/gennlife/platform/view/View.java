@@ -41,6 +41,10 @@ public class View {
             writer.flush();
         } catch (IOException e) {
             logger.error("",e);
+            ResultBean resultBean = new ResultBean();
+            resultBean.setCode(0);
+            resultBean.setMsg("请求出错");
+            writer.close();
         }finally {
             writer.close();
         }
