@@ -59,20 +59,6 @@ public class View {
         writeResult(str, response, request);
     }
 
-    public void viewList(List<?> list, Object info, Boolean flag, HttpServletResponse response, HttpServletRequest request){
-        setHttpServletResponse(response);
-        ResultBean userBean = new ResultBean();
-        if(flag){
-            userBean.setCode(1);
-        }else{
-            userBean.setCode(0);
-        }
-        userBean.setData(list);
-        userBean.setInfo(info);
-        String jsonString = gson.toJson(userBean);
-        logger.info("返回数据:"+jsonString);
-        writeResult(jsonString, response, request);
-    }
 
     public String ViewBio(Map<String, Map<String, Map<String, String>>> map, List<String> groupNames,Map<String,String> groupData,String groupName){
         StringWriter sw = new StringWriter();

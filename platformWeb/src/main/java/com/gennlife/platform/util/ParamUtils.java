@@ -101,6 +101,12 @@ public class ParamUtils {
         viewer.viewString(data, resp, req);
     }
 
+    public static String errorParam(String info){
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(0);
+        resultBean.setInfo(info);
+        return gson.toJson(resultBean);
+    }
     /**
      *
      * @param filters 前端发过来的病历搜索 过滤条件

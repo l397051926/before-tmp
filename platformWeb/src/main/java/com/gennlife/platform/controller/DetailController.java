@@ -1,8 +1,13 @@
 package com.gennlife.platform.controller;
 
 import com.gennlife.platform.processor.DetailProcessor;
+import com.gennlife.platform.util.ParamUtils;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,124 +18,434 @@ import java.io.IOException;
 /**
  * Created by chen-song on 16/5/13.
  */
-public class DetailController  extends HttpServlet {
+@Controller
+@RequestMapping("/detail")
+public class DetailController {
     private Logger logger = LoggerFactory.getLogger(DetailController.class);
+    private static JsonParser jsonParser = new JsonParser();
     private DetailProcessor processor = new DetailProcessor();
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        long start = System.currentTimeMillis();
-        String uri = req.getRequestURI();
-        if("/detail/PatientBasicInfo".equals(uri)){//
-            try{
-                processor.patientBasicInfo(req,resp);
-            }catch (Exception e){
-                logger.error("详情页患者基础信息接口",e);
-            }
-            logger.info("详情页患者基础信息接口 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if("/detail/PatientBasicFigure".equals(uri)){
-            try{
-                processor.patientBasicFigure(req,resp);
-            }catch (Exception e){
-                logger.error("基本统计图形&筛选条件",e);
-            }
-            logger.info("基本统计图形&筛选条件 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if("/detail/PatientBasicTimeAxis".equals(uri)){
-            try{
-                processor.patientBasicTimeAxis(req,resp);
-            }catch (Exception e){
-                logger.error("详情页时间轴信息接口",e);
-            }
-            logger.info("详情页时间轴信息接口 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if("/detail/ChoiceList".equals(uri)){
-            try{
-                processor.choicesList(req,resp);
-            }catch (Exception e){
-                logger.error("查看指标变化,可选列表",e);
-            }
-            logger.info("查看指标变化,可选列表 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if("/detail/SpecificChoice".equals(uri)){
-            try{
-                processor.specificChoice(req,resp);
-            }catch (Exception e){
-                logger.error("查看指标变化,具体指标",e);
-            }
-            logger.info("查看指标变化,具体指标 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if("/detail/VisitDetail".equals(uri)){
-            try{
-                processor.visitDetail(req,resp);
-            }catch (Exception e){
-                logger.error("详情页总接口：唐乾斌提供",e);
-            }
-            logger.info("详情页总接口：唐乾斌提供 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if("/detail/LabResultItem".equals(uri)){
-            try{
-                processor.labResultItem(req,resp);
-            }catch (Exception e){
-                logger.error("详情页总接口：唐乾斌提供",e);
-            }
-            logger.info("详情页总接口：唐乾斌提供 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if("/detail/LabResultItemList".equals(uri)){
-            try{
-                processor.labResultItemList(req,resp);
-            }catch (Exception e){
-                logger.error("检验项列表",e);
-            }
-            logger.info("检验项列表 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if ("/detail/GeneticDisease".equals(uri)){
-            try{
-                processor.geneticDisease(req,resp);
-            }catch (Exception e){
-                logger.error("遗传性疾病",e);
-            }
-            logger.info("遗传性疾病 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if("/detail/DrugReaction".equals(uri)){
-            try{
-                processor.drugReaction(req,resp);
-            }catch (Exception e){
-                logger.error("药物反应",e);
-            }
-            logger.info("药物反应 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if("/detail/CategoryCatalog".equals(uri)){
-            try{
-                processor.categoryCatalog(req,resp);
-            }catch (Exception e){
-                logger.error("分类信息接口及目录",e);
-            }
-            logger.info("分类信息接口及目录 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if("/detail/MolecularDetection".equals(uri)){
-            try{
-                processor.molecularDetection(req,resp);
-            }catch (Exception e){
-                logger.error("分子检测",e);
-            }
-            logger.info("分子检测 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if("/detail/BiologicalSpecimen".equals(uri)){
-            try{
-                processor.biologicalSpecimen(req,resp);
-            }catch (Exception e){
-                logger.error("生物标本",e);
-            }
-            logger.info("生物标本 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if("/detail/ExamResult".equals(uri)){
-            try{
-                processor.examResult(req,resp);
-            }catch (Exception e){
-                logger.error("生物标本",e);
-            }
-            logger.info("生物标本 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }else if("/detail/PathologicalExamination".equals(uri)){
-            try{
-                processor.pathologicalExamination(req,resp);
-            }catch (Exception e){
-                logger.error("生物标本",e);
-            }
-            logger.info("生物标本 耗时:" + (System.currentTimeMillis()-start) +"ms");
+    @RequestMapping(value="/PatientBasicInfo",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postPatientBasicInfo(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("详情页患者基础信息接口 post方式 参数="+param);
+            resultStr =  processor.patientBasicInfo(param);
+        }catch (Exception e){
+            logger.error("详情页患者基础信息接口",e);
+            resultStr = ParamUtils.errorParam("出现异常");
         }
-
+        logger.info("详情页患者基础信息接口 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+    @RequestMapping(value="/PatientBasicInfo",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getPatientBasicInfo(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("详情页患者基础信息接口 get方式 参数="+param);
+            resultStr =  processor.patientBasicInfo(param);
+        }catch (Exception e){
+            logger.error("详情页患者基础信息接口",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("详情页患者基础信息接口 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        this.doGet(req,resp);
+
+    @RequestMapping(value="/PatientBasicFigure",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postPatientBasicFigure(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("基本统计图形&筛选条件  post方式 参数="+param);
+            resultStr =  processor.patientBasicFigure(param);
+        }catch (Exception e){
+            logger.error("基本统计图形&筛选条件",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("基本统计图形&筛选条件 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
     }
+
+
+    @RequestMapping(value="/PatientBasicFigure",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getPatientBasicFigure(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("基本统计图形&筛选条件 get方式 参数="+param);
+            resultStr =  processor.patientBasicFigure(param);
+        }catch (Exception e){
+            logger.error("基本统计图形&筛选条件",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("基本统计图形&筛选条件 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/PatientBasicTimeAxis",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postPatientBasicTimeAxis(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("详情页时间轴信息接口 post方式 参数="+param);
+            resultStr =  processor.patientBasicTimeAxis(param);
+        }catch (Exception e){
+            logger.error("详情页时间轴信息接口",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("详情页时间轴信息接口 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/PatientBasicTimeAxis",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getPatientBasicTimeAxis(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("详情页时间轴信息接口 get方式 参数="+param);
+            resultStr =  processor.patientBasicTimeAxis(param);
+        }catch (Exception e){
+            logger.error("详情页时间轴信息接口",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("详情页时间轴信息接口 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/ChoiceList",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postChoiceList(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("查看指标变化,可选列表 post方式 参数="+param);
+            resultStr =  processor.choicesList(param);
+        }catch (Exception e){
+            logger.error("查看指标变化,可选列表",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("查看指标变化,可选列表 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value="/ChoiceList",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getChoiceList(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("查看指标变化,可选列表 get方式 参数="+param);
+            resultStr =  processor.choicesList(param);
+        }catch (Exception e){
+            logger.error("查看指标变化,可选列表",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("查看指标变化,可选列表 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value="/SpecificChoice",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postSpecificChoice(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("查看指标变化,具体指标 post方式 参数="+param);
+            resultStr =  processor.specificChoice(param);
+        }catch (Exception e){
+            logger.error("查看指标变化,具体指标",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("查看指标变化,具体指标 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value="/SpecificChoice",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getSpecificChoice(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("查看指标变化,具体指标 get方式 参数="+param);
+            resultStr =  processor.specificChoice(param);
+        }catch (Exception e){
+            logger.error("查看指标变化,具体指标",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("查看指标变化,具体指标 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/VisitDetail",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postVisitDetail(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("详情页总接口：唐乾斌提供 post方式 参数="+param);
+            resultStr =  processor.visitDetail(param);
+        }catch (Exception e){
+            logger.error("详情页总接口：唐乾斌提供",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("详情页总接口：唐乾斌提供 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/VisitDetail",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getVisitDetail(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("详情页总接口：唐乾斌提供 post方式 参数="+param);
+            resultStr =  processor.visitDetail(param);
+        }catch (Exception e){
+            logger.error("详情页总接口：唐乾斌提供",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("详情页总接口：唐乾斌提供 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/LabResultItem",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postLabResultItem(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("详情页体检接口:唐乾斌提供  post方式 参数="+param);
+            resultStr =  processor.labResultItem(param);
+        }catch (Exception e){
+            logger.error("详情页体检接口:唐乾斌提供",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("详情页体检接口:唐乾斌提供 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value="/LabResultItem",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getLabResultItem(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("详情页体检接口:唐乾斌提供 post方式 参数="+param);
+            resultStr =  processor.labResultItem(param);
+        }catch (Exception e){
+            logger.error("详情页体检接口:唐乾斌提供",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("详情页体检接口:唐乾斌提供 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/LabResultItemList",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postLabResultItemList(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("检验项列表  post方式 参数="+param);
+            resultStr =  processor.labResultItemList(param);
+        }catch (Exception e){
+            logger.error("检验项列表",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("检验项列表 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/LabResultItemList",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getLabResultItemList(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("检验项列表 get方式 参数="+param);
+            resultStr =  processor.labResultItemList(param);
+        }catch (Exception e){
+            logger.error("检验项列表",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("检验项列表 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/CategoryCatalog",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postCategoryCatalog(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("分类信息接口及目录 post方式 参数="+param);
+            resultStr =  processor.categoryCatalog(param);
+        }catch (Exception e){
+            logger.error("分类信息接口及目录",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("分类信息接口及目录 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/CategoryCatalog",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getCategoryCatalog(@RequestParam("param")  String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("分类信息接口及目录 get方式 参数="+param);
+            resultStr =  processor.categoryCatalog(param);
+        }catch (Exception e){
+            logger.error("分类信息接口及目录",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("分类信息接口及目录 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/MolecularDetection",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postMolecularDetection(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("分子检测  post方式 参数="+param);
+            resultStr =  processor.molecularDetection(param);
+        }catch (Exception e){
+            logger.error("分子检测",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("分子检测 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/MolecularDetection",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getMolecularDetection(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("分子检测 get方式 参数="+param);
+            resultStr =  processor.molecularDetection(param);
+        }catch (Exception e){
+            logger.error("分子检测",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("分子检测 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/BiologicalSpecimen",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postBiologicalSpecimen(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("生物标本 post方式 参数="+param);
+            resultStr =  processor.biologicalSpecimen(param);
+        }catch (Exception e){
+            logger.error("生物标本",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("生物标本 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
+
+    @RequestMapping(value="/BiologicalSpecimen",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getBiologicalSpecimen(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("生物标本 get方式 参数="+param);
+            resultStr =  processor.biologicalSpecimen(param);
+        }catch (Exception e){
+            logger.error("生物标本",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("生物标本 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/ExamResult",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postExamResult(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("检查  post方式 参数="+param);
+            resultStr =  processor.examResult(param);
+        }catch (Exception e){
+            logger.error("检查",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("检查 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/ExamResult",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getExamResult(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("检查 get方式 参数="+param);
+            resultStr =  processor.examResult(param);
+        }catch (Exception e){
+            logger.error("检查",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("检查 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value="/PathologicalExamination",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postPathologicalExamination(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("病理检测 post方式 参数="+param);
+            resultStr =  processor.pathologicalExamination(param);
+        }catch (Exception e){
+            logger.error("病理检测",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("病理检测 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/PathologicalExamination",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getPathologicalExamination(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("病理检测  get方式 参数="+param);
+            resultStr =  processor.pathologicalExamination(param);
+        }catch (Exception e){
+            logger.error("病理检测",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("病理检测 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
 }
