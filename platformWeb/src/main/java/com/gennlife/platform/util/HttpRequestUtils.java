@@ -31,7 +31,7 @@ public class HttpRequestUtils {
 		HttpPost method = new HttpPost(url);
 
 		try {
-			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(3000).setConnectTimeout(3000).build();
+			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(6000).setConnectTimeout(3000).build();
 			method.setConfig(requestConfig);
 			if (null != jsonParam) {
 				StringEntity entity = new StringEntity(jsonParam,"utf-8");
