@@ -4,6 +4,7 @@ import com.gennlife.platform.processor.CaseProcessor;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.sun.javafx.collections.MappingChange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -19,12 +20,12 @@ import java.io.IOException;
  * Created by chen-song on 16/5/13.
  */
 @Controller
-//@RequestMapping("/case")
+@RequestMapping("/case")
 public class CaseController {
     private Logger logger = LoggerFactory.getLogger(CaseController.class);
     private static JsonParser jsonParser = new JsonParser();
     private CaseProcessor processor = new CaseProcessor();
-    @RequestMapping(value="/case/SearchItemSet",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/SearchItemSet",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
     String postSearchItemSet(@RequestBody String param){
         Long start = System.currentTimeMillis();
@@ -40,7 +41,7 @@ public class CaseController {
         logger.info("搜索结果列表展示的集合 post 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
-    @RequestMapping(value="/case/SearchItemSet",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/SearchItemSet",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody
     String getSearchItemSet(@RequestParam("param") String param){
         Long start = System.currentTimeMillis();
@@ -158,12 +159,13 @@ public class CaseController {
         logger.info("首页知识库搜索 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
-    @RequestMapping(value="/case/SearchCase",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String postSearchCase(@RequestBody String param){
+    @RequestMapping(value="/SearchCase",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String postSearchCase(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("病历搜索 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.searchCase(paramObj);

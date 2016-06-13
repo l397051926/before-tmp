@@ -13,6 +13,9 @@
     <context:component-scan base-package="com.gennlife.platform.controller"/>
     <!-- don't handle the static resource -->
     <mvc:default-servlet-handler />
+
+
+
     <!-- if you use annotation you must configure following setting -->
     <mvc:annotation-driven />
     <!-- configure the InternalResourceViewResolver -->
