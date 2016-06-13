@@ -172,10 +172,9 @@ public class CaseController {
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("病历搜索 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("病历搜索 结果="+resultStr);
         return resultStr;
     }
-
-
 
     @RequestMapping(value="/DiseaseSearchGenes",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody

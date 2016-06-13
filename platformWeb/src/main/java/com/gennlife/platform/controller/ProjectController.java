@@ -156,8 +156,9 @@ public class ProjectController {
 
 
     @RequestMapping(value="/CreateNewProject",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postCreateNewProject(@RequestBody String param){
+    public @ResponseBody String postCreateNewProject(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
+        String param = ParamUtils.getParam(paramRe);
         logger.info("CreateNewProject param ="+param);
         String resultStr = null;
         try{
@@ -172,8 +173,9 @@ public class ProjectController {
 
 
     @RequestMapping(value="/CreateNewPlan",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postCreateNewPlan(@RequestBody String param){
+    public @ResponseBody String postCreateNewPlan(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
+        String param = ParamUtils.getParam(paramRe);
         logger.info("CreateNewPlan param ="+param);
         String resultStr = null;
         try{
@@ -187,8 +189,9 @@ public class ProjectController {
     }
 
     @RequestMapping(value="/AddMember",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postAddMember(@RequestBody String param){
+    public @ResponseBody String postAddMember(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
+        String param = ParamUtils.getParam(paramRe);
         logger.info("AddMember param ="+param);
         String resultStr = null;
         try{
@@ -219,8 +222,9 @@ public class ProjectController {
 
 
     @RequestMapping(value="/EditProject",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postEditProject(@RequestBody String param){
+    public @ResponseBody String postEditProject(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
+        String param = ParamUtils.getParam(paramRe);
         logger.info("EditProject param ="+param);
         String resultStr = null;
         try{
@@ -235,11 +239,13 @@ public class ProjectController {
 
 
     @RequestMapping(value="/EditPlan",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postEditPlan(@RequestBody String param){
+    public @ResponseBody String postEditPlan(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
-        logger.info("EditPlan param ="+param);
+
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("EditPlan param ="+param);
             resultStr =  processor.editPlan(param);
         }catch (Exception e){
             logger.error("",e);
@@ -251,11 +257,12 @@ public class ProjectController {
 
 
     @RequestMapping(value="/DeleteProject",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postDeleteProject(@RequestBody String param){
+    public @ResponseBody String postDeleteProject(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
-        logger.info("DeleteProject param ="+param);
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("DeleteProject param ="+param);
             resultStr =  processor.deleteProject(param);
         }catch (Exception e){
             logger.error("",e);
@@ -266,11 +273,12 @@ public class ProjectController {
     }
 
     @RequestMapping(value="/DeletePlan",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postDeletePlan(@RequestBody String param){
+    public @ResponseBody String postDeletePlan(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
-        logger.info("DeletePlan param ="+param);
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("DeletePlan param ="+param);
             resultStr =  processor.deletePlan(param);
         }catch (Exception e){
             logger.error("",e);
@@ -281,11 +289,12 @@ public class ProjectController {
     }
 
     @RequestMapping(value="/DeleteProjectSet",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postDeleteProjectSet(@RequestBody String param){
+    public @ResponseBody String postDeleteProjectSet(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
-        logger.info("DeleteProjectSet param ="+param);
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("DeleteProjectSet param ="+param);
             resultStr =  processor.deleteSet(param);
         }catch (Exception e){
             logger.error("",e);
@@ -295,11 +304,12 @@ public class ProjectController {
         return resultStr;
     }
     @RequestMapping(value="/DeleteMember",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postDeleteMember(@RequestBody String param){
+    public @ResponseBody String postDeleteMember(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
-        logger.info("DeleteMember param ="+param);
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("DeleteMember param ="+param);
             resultStr =  processor.deleteMember(param);
         }catch (Exception e){
             logger.error("",e);
