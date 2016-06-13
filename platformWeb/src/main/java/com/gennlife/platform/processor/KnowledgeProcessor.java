@@ -77,7 +77,9 @@ public class KnowledgeProcessor {
             		&&!"variationArray".equals(from) ){
                 tableName = paramObj.get("currentTable").getAsString();
             }
-            
+            if("clinicalTrial".equals(to)){
+                tableName = paramObj.get("currentTable").getAsString();
+            }
             //额外参数 
             if("diseaseGene".equals(from)&&"drug".equals(to)){
             	genes = paramObj.getAsJsonArray("genes");
