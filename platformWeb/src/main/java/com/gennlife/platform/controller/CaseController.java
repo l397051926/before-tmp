@@ -19,7 +19,7 @@ import java.io.IOException;
  * Created by chen-song on 16/5/13.
  */
 @Controller
-@RequestMapping("/case")
+//@RequestMapping("/case")
 public class CaseController {
     private Logger logger = LoggerFactory.getLogger(CaseController.class);
     private static JsonParser jsonParser = new JsonParser();
@@ -158,7 +158,7 @@ public class CaseController {
         logger.info("首页知识库搜索 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
-    @RequestMapping(value="/SearchCase",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/case/SearchCase",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
     String postSearchCase(@RequestBody String param){
         Long start = System.currentTimeMillis();
