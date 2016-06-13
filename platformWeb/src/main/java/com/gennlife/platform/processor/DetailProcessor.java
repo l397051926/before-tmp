@@ -30,6 +30,44 @@ public class DetailProcessor {
     }
 
     /**
+     * 遗传性疾病
+     * 透传,无逻辑
+     * @param param
+     */
+    public String geneticDisease(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCaseGenetic_disease();
+            logger.info("GeneticDisease url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("GeneticDisease result="+url);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+
+    }
+
+
+
+    /**
+     * 药物反应
+     * 透传,无逻辑
+     * @param param
+     */
+    public String drugReaction(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCaseDrug_reaction();
+            logger.info("DrugReaction url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("DrugReaction result="+url);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+
+    }
+
+    /**
      * 详情页基本统计图形&筛选条件
      * 透传,无逻辑
      * @param param

@@ -56,6 +56,69 @@ public class DetailController {
     }
 
 
+    @RequestMapping(value="/GeneticDisease",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postGeneticDisease(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("遗传性疾病 post方式 参数="+param);
+            resultStr =  processor.geneticDisease(param);
+        }catch (Exception e){
+            logger.error("遗传性疾病",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("遗传性疾病 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+    @RequestMapping(value="/GeneticDisease",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getGeneticDisease(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("遗传性疾病 get方式 参数="+param);
+            resultStr =  processor.geneticDisease(param);
+        }catch (Exception e){
+            logger.error("遗传性疾病",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("遗传性疾病 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value="/DrugReaction",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postDrugReaction(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("药物反应 post方式 参数="+param);
+            resultStr =  processor.geneticDisease(param);
+        }catch (Exception e){
+            logger.error("药物反应",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("药物反应 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+    @RequestMapping(value="/DrugReaction",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getDrugReaction(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("药物反应 get方式 参数="+param);
+            resultStr =  processor.drugReaction(param);
+        }catch (Exception e){
+            logger.error("药物反应",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("药物反应 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
     @RequestMapping(value="/PatientBasicFigure",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
     String postPatientBasicFigure(@RequestBody String param){
