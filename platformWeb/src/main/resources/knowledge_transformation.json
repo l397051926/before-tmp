@@ -1668,5 +1668,28 @@
 			"name": "text",
 			"url": "url"
 		}
+	},
+	"geneArray_pathway":{
+
+	},
+	"gene_pathway":{
+		"id":{
+			"data_type": "single_array",
+			"path_one": "$.id",
+			"path_two": "$.pathwayUrl",
+			"name_one": "name",
+			"name_two": "url"
+		},
+		"pathwayName":{
+			"data_type": "string",
+			"path": "$.name"
+		},
+		"ref":{
+			"data_type": "array",
+			"path": "$.reference",
+			"name": "text",
+			"url": "url"
+		}
+
 	}
 }
