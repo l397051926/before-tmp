@@ -54,13 +54,13 @@
         <property name="casePathological_examination" value="http://192.168.1.111:8111/FileService/pathological_examination"/>
 
         <property name="synQueryURL" value="http://192.168.1.111:7070/nlp-service/api/v1.0/syn?q=%s"/>
-        <property name="knowledgeURL" value="http://192.168.1.111:9881/knowledge/graph"/>
-        <property name="knowledgeDiseaseSearchGenesURL" value="http://192.168.1.111:9881/knowledge/DiseaseSearchGenes"/>
-        <property name="knowledgeGeneInfoURL" value="http://192.168.1.111:9881/knowledge/GeneInfo"/>
-        <property name="knowledgeVariationInfoURL" value="http://192.168.1.111:9881/knowledge/VariationInfo"/>
-        <property name="knowledgeDetailVariationSearchDiseaseURL" value="http://192.168.1.111:9881/knowledge/VariationInfo"/>
-        <property name="knowledgeDetailVariationSearchDrugURL" value="http://192.168.1.111:9881/knowledge/VariationInfo"/>
-        <property name="knowledgePharmGKBSearchDrugURL" value="http://192.168.1.111:9881/knowledge/PharmGKBSearchDrug"/>
+        <property name="knowledgeURL" value="http://192.168.1.111:9883/knowledge/graph"/>
+        <property name="knowledgeDiseaseSearchGenesURL" value="http://192.168.1.111:9883/knowledge/DiseaseSearchGenes"/>
+        <property name="knowledgeGeneInfoURL" value="http://192.168.1.111:9883/knowledge/GeneInfo"/>
+        <property name="knowledgeVariationInfoURL" value="http://192.168.1.111:9883/knowledge/VariationInfo"/>
+        <property name="knowledgeDetailVariationSearchDiseaseURL" value="http://192.168.1.111:9883/knowledge/VariationInfo"/>
+        <property name="knowledgeDetailVariationSearchDrugURL" value="http://192.168.1.111:9883/knowledge/VariationInfo"/>
+        <property name="knowledgePharmGKBSearchDrugURL" value="http://192.168.1.111:9883/knowledge/PharmGKBSearchDrug"/>
 
     </bean>
 </beans>
