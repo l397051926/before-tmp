@@ -8,7 +8,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            classpath:spring_config/applicationContext.xml
+            classpath:applicationContext.xml
         </param-value>
     </context-param>
     <listener>
@@ -28,111 +28,22 @@
     </filter-mapping>
 
     <servlet>
-        <servlet-name>User</servlet-name>
-        <servlet-class>com.gennlife.platform.servlet.UserController</servlet-class>
+        <servlet-name>UIService</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:springmvc-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+        <!-- <load-on-startup>1</load-on-startup> -->
     </servlet>
-
     <servlet-mapping>
-        <servlet-name>User</servlet-name>
-        <url-pattern>/user/*</url-pattern>
+        <servlet-name>UIService</servlet-name>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
-
-    <servlet>
-        <servlet-name>Org</servlet-name>
-        <servlet-class>com.gennlife.platform.servlet.OrgController</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Org</servlet-name>
-        <url-pattern>/org/*</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Project</servlet-name>
-        <servlet-class>com.gennlife.platform.servlet.ProjectController</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Project</servlet-name>
-        <url-pattern>/project/*</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Search</servlet-name>
-        <servlet-class>com.gennlife.platform.servlet.SearchController</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Search</servlet-name>
-        <url-pattern>/search/*</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Sample</servlet-name>
-        <servlet-class>com.gennlife.platform.servlet.SampleController</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Sample</servlet-name>
-        <url-pattern>/sample/*</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>File</servlet-name>
-        <servlet-class>com.gennlife.platform.servlet.FileServelt</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>File</servlet-name>
-        <url-pattern>/file/*</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>Crf</servlet-name>
-        <servlet-class>com.gennlife.platform.servlet.CrfController</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Crf</servlet-name>
-        <url-pattern>/crf/*</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Base</servlet-name>
-        <servlet-class>com.gennlife.platform.servlet.BaseController</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Base</servlet-name>
-        <url-pattern>/base/*</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>knowledge</servlet-name>
-        <servlet-class>com.gennlife.platform.servlet.KnowledgeController</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>knowledge</servlet-name>
-        <url-pattern>/knowledge/*</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>detail</servlet-name>
-        <servlet-class>com.gennlife.platform.controller.DetailController</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>detail</servlet-name>
-        <url-pattern>/detail/*</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>case</servlet-name>
-        <servlet-class>com.gennlife.platform.controller.CaseController</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>case</servlet-name>
-        <url-pattern>/case/*</url-pattern>
-    </servlet-mapping>
+    <session-config>
+        <session-timeout>120</session-timeout>
+    </session-config>
   <display-name>Archetype Created Web Application</display-name>
 </web-app>

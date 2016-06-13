@@ -4,7 +4,7 @@ import com.gennlife.platform.bean.SyUser;
 import com.gennlife.platform.bean.projectBean.*;
 import com.gennlife.platform.enums.LogActionEnum;
 import com.gennlife.platform.enums.MemberEnum;
-import com.gennlife.platform.proc.UserProcessor;
+import com.gennlife.platform.processor.UserProcessor;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

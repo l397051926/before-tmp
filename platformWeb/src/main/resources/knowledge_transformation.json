@@ -1635,39 +1635,33 @@
 		}
 	},
 	"clinicalTrial_clinicalTrial":{
-        "id":{
-            "data_type": "single_array",
-            "path_one": "$.id",
-            "path_two": "$.url",
-            "name_one": "name",
-            "name_two": "url"
-        },
-        "title":{
-            "data_type": "string",
-            "path": "$.title"
-        },
-        "disease":{
-            "data_type": "array",
-            "path": "$.disease",
-            "name": "name",
+		"id":{
+			"data_type": "single_array",
+			"path_one": "$.id",
+			"path_two": "$.url",
+			"name_one": "name",
+			"name_two": "url"
+		},
+		"title":{
+			"data_type": "string",
+			"path": "$.title"
+		},
+		"disease":{
+			"data_type": "array",
+			"path": "$.disease",
+			"name": "name",
 			"url": "url"
-        },
-        "drug":{
-            "data_type": "array",
-            "path": "$.drug",
-            "name": "name",
+		},
+		"drug":{
+			"data_type": "array",
+			"path": "$.drug",
+			"name": "name",
 			"url": "url"
-        },
-        "status":{
-            "data_type": "string",
-            "path": "$.status"
-        },
-        "disease":{
-            "data_type": "array",
-            "path": "$.ref",
-            "name": "name",
-			"url": "url"
-        },
+		},
+		"status":{
+			"data_type": "string",
+			"path": "$.status"
+		},
 		"ref": {
 			"data_type": "array",
 			"path": "$.reference",

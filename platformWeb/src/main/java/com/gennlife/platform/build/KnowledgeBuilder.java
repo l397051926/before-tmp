@@ -47,10 +47,33 @@ public class KnowledgeBuilder {
 			result = buildBiseaseGene(param,obj);
 		}else if("geneDisease".equals(from)&&"drug".equals(to)){
 			result = buildGeneBisease(param,obj);
+		}else if("clinicalTrial".equals(to)){
+			result = buildClinicalTrial(param,obj);
 		}
 		return result;
 	}
-	
+
+	private JsonArray buildClinicalTrial(JsonObject param, JsonObject obj) {
+		JsonArray result = new JsonArray();
+		JsonObject head = buildHead(param,obj);
+		String from = param.get("from").getAsString();
+		result.add(head);
+		JsonArray body = new JsonArray();
+		JsonArray dataArray = obj.getAsJsonArray("data");
+
+		//add by 唐乾斌 05.20
+		String to = param.get("to").getAsString();
+		String fromAToB = from+"_"+to;
+
+		//跨域查询
+		JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromAToB, dataArray);
+		if(null!=bodyRtn&&0<bodyRtn.size()){
+			body = bodyRtn;
+		}
+		result.add(body);
+		return result;
+	}
+
 	public JsonArray buildOnlyHead(JsonObject param,JsonObject obj){
     	JsonArray result = new JsonArray();
     	JsonObject emptyObj = new JsonObject();
