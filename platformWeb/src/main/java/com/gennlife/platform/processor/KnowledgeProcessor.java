@@ -39,6 +39,9 @@ public class KnowledgeProcessor {
         set.add("diseaseGene");
         set.add("geneDisease");
         set.add("variationArray");
+        set.add("geneArray");
+        set.add("clinicalTrial");
+        set.add("pathway");
     }
 
 
