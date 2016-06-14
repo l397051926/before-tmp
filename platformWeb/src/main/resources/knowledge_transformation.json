@@ -1669,11 +1669,54 @@
 			"url": "url"
 		}
 	},
-	"geneArray_pathway":{
-
+	"geneArray_geneTable":{
+		"gene":{
+			"data_type": "single_array",
+			"path_one": "$.geneTable.geneSymbol",
+			"path_two": "$.geneTable.geneSymbolUrl",
+			"name_one": "name",
+			"name_two": "url"
+		},
+		"pathwayId":{
+			"data_type": "array",
+			"path": "$.geneTable.Pathway",
+			"name": "id",
+			"url": "url"
+		},
+		"ref":{
+			"data_type": "single_array",
+			"path": "$.pathwayTable.reference",
+			"name": "text",
+			"url": "url"
+		}
+	},
+	"geneArray_pathwayTable":{
+		"pathwayId":{
+			"data_type": "single_array",
+			"path_one": "$.pathwayTable.pathway_id",
+			"path_two": "$.pathwayTable.pathwayUrl",
+			"name_one": "name",
+			"name_two": "url"
+		},
+		"pathwayName":{
+			"data_type": "string",
+			"path": "$.pathwayTable.name"
+		},
+		"gene":{
+			"data_type": "array",
+			"path": "$.pathwayTable.gene",
+			"name": "geneSymbol",
+			"url": "url"
+		},
+		"ref":{
+			"data_type": "single_array",
+			"path": "$.pathwayTable.reference",
+			"name": "text",
+			"url": "url"
+		}
 	},
 	"gene_pathway":{
-		"id":{
+		"pathwayId":{
 			"data_type": "single_array",
 			"path_one": "$.id",
 			"path_two": "$.pathwayUrl",

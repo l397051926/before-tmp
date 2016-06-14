@@ -956,7 +956,7 @@
 	],
 	"gene_pathway":[
 		{
-			"name":"id"
+			"name":"pathwayId"
 		},
 		{
 			"name":"pathwayName"
@@ -965,12 +965,26 @@
 			"name":"ref"
 		}
 	],
-	"geneArray_pathway":[
+	"geneArray_geneTable":[
 		{
-			"name":"id"
+			"name":"gene"
+		},
+		{
+			"name":"pathwayId"
+		},
+		{
+			"name":"ref"
+		}
+	],
+	"geneArray_pathwayTable":[
+		{
+			"name":"pathwayId"
 		},
 		{
 			"name":"pathwayName"
+		},
+		{
+			"name":"gene"
 		},
 		{
 			"name":"ref"
