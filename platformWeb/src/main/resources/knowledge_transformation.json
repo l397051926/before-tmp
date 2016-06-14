@@ -916,11 +916,10 @@
 			"name_two": "url"
 		},
 		"gene": {
-			"data_type": "single_array",
-			"path_one": "$.Gene[0].symbol",
-			"path_two": "$.Gene[0].symbolUrl",
-			"name_one": "name",
-			"name_two": "url"
+			"data_type": "array",
+			"path": "$.Gene",
+			"name": "symbol",
+			"url": "url"
 		},
 		"ref": {
 			"data_type": "array",
