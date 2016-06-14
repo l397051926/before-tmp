@@ -176,6 +176,24 @@ public class CaseController {
         logger.info("病历搜索 结果="+resultStr);
         return resultStr;
     }
+    @RequestMapping(value="/GeneVerify",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postGeneVerify(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("基因数组校验 post方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.geneVerify(paramObj);
+        }catch (Exception e){
+            logger.error("基因数组校验",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("基因数组校验 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("基因数组校验 结果="+resultStr);
+        return resultStr;
+    }
 
     @RequestMapping(value="/DiseaseSearchGenes",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
