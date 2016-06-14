@@ -288,7 +288,11 @@ public class CaseProcessor {
             logger.info("GeneVerify url="+url);
             String result = HttpRequestUtils.httpPost(url,param);
             logger.info("GeneVerify result="+url);
-            return result;
+            JsonObject resultObj = (JsonObject) jsonParser.parse(result);
+            ResultBean resultBean = new ResultBean();
+            resultBean.setCode(1);
+            resultBean.setData(resultObj);
+            return gson.toJson(resultBean);
         }catch (Exception e){
             return ParamUtils.errorParam("请求出错");
         }
