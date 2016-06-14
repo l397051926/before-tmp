@@ -275,4 +275,22 @@ public class CaseProcessor {
     public String sampleImport(JsonObject paramObj) {
         return null;
     }
+
+    /**
+     * 通路查询时,校验基因数组正确性
+     * @param paramObj
+     * @return
+     */
+    public String geneVerify(JsonObject paramObj) {
+        try{
+            String param = gson.toJson(paramObj);
+            String url = ConfigurationService.getUrlBean().getCaseDrug_reaction();
+            logger.info("GeneVerify url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("GeneVerify result="+url);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
 }

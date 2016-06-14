@@ -36,6 +36,7 @@
     <bean id="com.gennlife.platform.configuration.URLBean" class="com.gennlife.platform.configuration.URLBean">
         <property name="caseSearchURL" value="http://10.0.0.32:8989/search-server/search"/>
         <property name="caseSuggestURL" value="http://10.0.0.32:8989/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
+        <property name="caseGeneErrorURL" value="http://10.0.0.32:8989/search-server/verify"/>
 
         <property name="caseDetailPatientBasicInfoURL" value="http://192.168.1.111:8111/FileService/patient_basic_info"/>
         <property name="caseDetailPatientBasicFigureURL" value="http://192.168.1.111:8111/FileService/visit_count_by_dimension"/>

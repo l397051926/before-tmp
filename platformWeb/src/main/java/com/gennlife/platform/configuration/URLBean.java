@@ -111,6 +111,18 @@ public class URLBean {
      * 详情页,通过变异号和基因类型查询 药和用药指南
      */
     private String knowledgePharmGKBSearchDrugURL = null;
+    /**
+     * 基因数组校验接口
+     */
+    private String caseGeneErrorURL = null;
+
+    public String getCaseGeneErrorURL() {
+        return caseGeneErrorURL;
+    }
+
+    public void setCaseGeneErrorURL(String caseGeneErrorURL) {
+        this.caseGeneErrorURL = caseGeneErrorURL;
+    }
 
     public String getKnowledgePharmGKBSearchDrugURL() {
         return knowledgePharmGKBSearchDrugURL;
