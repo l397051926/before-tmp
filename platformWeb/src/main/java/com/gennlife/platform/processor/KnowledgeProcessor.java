@@ -61,8 +61,9 @@ public class KnowledgeProcessor {
             to = paramObj.get("to").getAsString();
             limit = paramObj.get("limit").getAsString();
             if("geneDisease".equals(from)
-            	||("variationArray".equals(from)&&"disease".equals(to))
+            	||(("variationArray".equals(from)&&"disease".equals(to)))
             	||("variationArray".equals(from)&&"drug".equals(to))
+                    ||("geneArray".equals(from) && "pathway".equals(to))
               ){
             	queryArry = paramObj.getAsJsonArray("query");
             }else{
