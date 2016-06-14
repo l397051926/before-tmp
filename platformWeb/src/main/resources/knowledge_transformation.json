@@ -1672,20 +1672,20 @@
 	"geneArray_geneTable":{
 		"gene":{
 			"data_type": "single_array",
-			"path_one": "$.geneTable.geneSymbol",
-			"path_two": "$.geneTable.geneSymbolUrl",
+			"path_one": "$.geneSymbol",
+			"path_two": "$.geneSymbolUrl",
 			"name_one": "name",
 			"name_two": "url"
 		},
 		"pathwayId":{
 			"data_type": "array",
-			"path": "$.geneTable.Pathway",
+			"path": "$.Pathway",
 			"name": "id",
 			"url": "url"
 		},
 		"ref":{
 			"data_type": "single_array",
-			"path": "$.geneTable.reference",
+			"path": "$.reference",
 			"name": "text",
 			"url": "url"
 		}
@@ -1693,24 +1693,24 @@
 	"geneArray_pathwayTable":{
 		"pathwayId":{
 			"data_type": "single_array",
-			"path_one": "$.pathwayTable.pathway_id",
-			"path_two": "$.pathwayTable.pathwayUrl",
+			"path_one": "$.pathway_id",
+			"path_two": "$.pathwayUrl",
 			"name_one": "name",
 			"name_two": "url"
 		},
 		"pathwayName":{
 			"data_type": "string",
-			"path": "$.pathwayTable.name"
+			"path": "$.name"
 		},
 		"gene":{
 			"data_type": "array",
-			"path": "$.pathwayTable.gene",
+			"path": "$.gene",
 			"name": "geneSymbol",
 			"url": "url"
 		},
 		"ref":{
 			"data_type": "single_array",
-			"path": "$.pathwayTable.reference",
+			"path": "$.reference",
 			"name": "text",
 			"url": "url"
 		}
