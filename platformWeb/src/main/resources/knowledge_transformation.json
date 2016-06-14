@@ -554,11 +554,10 @@
 			"path": "$.productNames[*]"
 		},
 		"gene": {
-			"data_type": "single_array",
-			"path_one": "$.gene[0].geneSymbol",
-			"path_two": "$.gene[0].geneSymbolUrl",
-			"name_one": "name",
-			"name_two": "url"
+			"data_type": "array",
+			"path": "$.gene",
+			"name": "geneSymbol",
+			"url": "geneSymbolUrl"
 		},
 		"type": {
 			"data_type": "string",
