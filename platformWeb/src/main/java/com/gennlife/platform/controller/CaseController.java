@@ -160,10 +160,11 @@ public class CaseController {
     }
     @RequestMapping(value="/SearchCase",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postSearchCase(@RequestBody String param){
+    String postSearchCase(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("病历搜索 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.searchCase(paramObj);
