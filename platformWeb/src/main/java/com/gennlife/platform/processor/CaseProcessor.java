@@ -284,7 +284,7 @@ public class CaseProcessor {
     public String geneVerify(JsonObject paramObj) {
         try{
             String param = gson.toJson(paramObj);
-            String url = ConfigurationService.getUrlBean().getCaseDrug_reaction();
+            String url = ConfigurationService.getUrlBean().getCaseGeneErrorURL();
             logger.info("GeneVerify url="+url);
             String result = HttpRequestUtils.httpPost(url,param);
             logger.info("GeneVerify result="+url);
