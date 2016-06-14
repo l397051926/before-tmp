@@ -81,6 +81,9 @@ public class KnowledgeProcessor {
             if("clinicalTrial".equals(to)){//查询临床试验,有表名
                 tableName = paramObj.get("currentTable").getAsString();
             }
+            if("geneArray".equals(from) && "pathway".equals(to)){
+                tableName = paramObj.get("currentTable").getAsString();
+            }
             //额外参数 
             if("diseaseGene".equals(from)&&"drug".equals(to)){
             	genes = paramObj.getAsJsonArray("genes");
