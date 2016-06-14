@@ -78,7 +78,7 @@ public class KnowledgeProcessor {
             		&&!"variationArray".equals(from) ){
                 tableName = paramObj.get("currentTable").getAsString();
             }
-            if("clinicalTrial".equals(to)){
+            if("clinicalTrial".equals(to)){//查询临床试验,有表名
                 tableName = paramObj.get("currentTable").getAsString();
             }
             //额外参数 
@@ -113,9 +113,12 @@ public class KnowledgeProcessor {
         	newJson.addProperty("disease", diseaseParam);
         	newJson.add("query", queryArry);
         }
-        if("geneDisease".equals(from)
-            	||("variationArray".equals(from)&&"disease".equals(to))
-            	||("variationArray".equals(from)&&"drug".equals(to))){
+        if(("geneDisease".equals(from))
+                ||("variationArray".equals(from)&&"disease".equals(to))
+            	||("variationArray".equals(from)&&"drug".equals(to))
+                ||("geneArray".equals(from) && "pathway".equals(to))
+                )
+        {
         	newJson.add("query", queryArry);
         }
         
