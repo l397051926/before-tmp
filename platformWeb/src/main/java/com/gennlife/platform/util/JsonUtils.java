@@ -69,7 +69,6 @@ public class JsonUtils {
         createProject.setEndTime(endTime);
         createProject.setMembers(1);
         createProject.setCenter(center);
-        createProject.setProjectDesp(manager);
         createProject.setSetCount(0);
         createProject.setPlanNum(0);
         createProject.setManager(manager);
