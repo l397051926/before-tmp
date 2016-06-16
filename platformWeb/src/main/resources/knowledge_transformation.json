@@ -554,11 +554,10 @@
 			"path": "$.productNames[*]"
 		},
 		"gene": {
-			"data_type": "single_array",
-			"path_one": "$.gene[0].geneSymbol",
-			"path_two": "$.gene[0].geneSymbolUrl",
-			"name_one": "name",
-			"name_two": "url"
+			"data_type": "array",
+			"path": "$.gene",
+			"name": "geneSymbol",
+			"url": "geneSymbolUrl"
 		},
 		"type": {
 			"data_type": "string",
@@ -638,7 +637,7 @@
 		},
 		"ref": {
 			"data_type": "array",
-			"path": "$.reference",
+			"path": "$.TargetDrugReference.reference",
 			"name": "text",
 			"url": "url"
 		}
@@ -691,22 +690,6 @@
 			"path_two": "$.geneSymbolUrl",
 			"name_one": "name",
 			"name_two": "url"
-		},
-		"chromosome": {
-			"data_type": "string",
-			"path": "$.chromosome"
-		},
-		"start": {
-			"data_type": "string",
-			"path": "$.start"
-		},
-		"reference_allele": {
-			"data_type": "string",
-			"path": "$.ref"
-		},
-		"alternate_allele": {
-			"data_type": "string",
-			"path": "$.alt"
 		},
 		"ref": {
 			"data_type": "array",
@@ -917,15 +900,14 @@
 			"name_two": "url"
 		},
 		"gene": {
-			"data_type": "single_array",
-			"path_one": "$.Gene[0].symbol",
-			"path_two": "$.Gene[0].symbolUrl",
-			"name_one": "name",
-			"name_two": "url"
+			"data_type": "array",
+			"path": "$.Gene",
+			"name": "symbol",
+			"url": "url"
 		},
 		"ref": {
 			"data_type": "array",
-			"path": "$.reference",
+			"path": "$.ref",
 			"name": "text",
 			"url": "url"
 		}
@@ -984,7 +966,7 @@
 		"variation_id": {
 			"data_type": "single_array",
 			"path_one": "$.Variation[0].id",
-			"path_two": "$.Variation[0].idUrl",
+			"path_two": "$.Variation[0].variationUrl",
 			"name_one": "name",
 			"name_two": "url"
 		},
@@ -1669,11 +1651,54 @@
 			"url": "url"
 		}
 	},
-	"geneArray_pathway":{
-
+	"geneArray_geneTable":{
+		"gene":{
+			"data_type": "single_array",
+			"path_one": "$.geneSymbol",
+			"path_two": "$.geneSymbolUrl",
+			"name_one": "name",
+			"name_two": "url"
+		},
+		"pathwayId":{
+			"data_type": "array",
+			"path": "$.Pathway",
+			"name": "id",
+			"url": "url"
+		},
+		"ref":{
+			"data_type": "array",
+			"path": "$.reference",
+			"name": "text",
+			"url": "url"
+		}
+	},
+	"geneArray_pathwayTable":{
+		"pathwayId":{
+			"data_type": "single_array",
+			"path_one": "$.pathway_id",
+			"path_two": "$.pathwayUrl",
+			"name_one": "name",
+			"name_two": "url"
+		},
+		"pathwayName":{
+			"data_type": "string",
+			"path": "$.name"
+		},
+		"gene":{
+			"data_type": "array",
+			"path": "$.gene",
+			"name": "geneSymbol",
+			"url": "url"
+		},
+		"ref":{
+			"data_type": "array",
+			"path": "$.reference",
+			"name": "text",
+			"url": "url"
+		}
 	},
 	"gene_pathway":{
-		"id":{
+		"pathwayId":{
 			"data_type": "single_array",
 			"path_one": "$.id",
 			"path_two": "$.pathwayUrl",

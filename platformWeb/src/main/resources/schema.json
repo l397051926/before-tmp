@@ -319,18 +319,6 @@
 			"name": "gene"
 		},
 		{
-			"name": "chromosome"
-		},
-		{
-			"name": "start"
-		},
-		{
-			"name": "reference_allele"
-		},
-		{
-			"name": "alternate_allele"
-		},
-		{
 			"name": "ref"
 		}
 	],
@@ -347,10 +335,10 @@
 	],
 	"gene_drug_fda": [
 		{
-			"name": "disease"
+			"name": "drug"
 		},
 		{
-			"name": "drug"
+			"name": "disease"
 		},
 		{
 			"name": "brand_name"
@@ -418,10 +406,10 @@
 	],
 	"gene_drug_nccn": [
 		{
-			"name": "disease"
+			"name": "drug"
 		},
 		{
-			"name": "drug"
+			"name": "disease"
 		},
 		{
 			"name": "brand_name"
@@ -916,7 +904,7 @@
 	],
 	"clinicalTrial_cfda_clinical":[
 		{
-			"name":"id"
+			"name":"clinicalTrial_id"
 		},
 		{
 			"name":"title"
@@ -936,7 +924,7 @@
 	],
 	"clinicalTrial_fda_clinical":[
 		{
-			"name":"id"
+			"name":"clinicalTrial_id"
 		},
 		{
 			"name":"title"
@@ -956,7 +944,7 @@
 	],
 	"gene_pathway":[
 		{
-			"name":"id"
+			"name":"pathwayId"
 		},
 		{
 			"name":"pathwayName"
@@ -965,12 +953,26 @@
 			"name":"ref"
 		}
 	],
-	"geneArray_pathway":[
+	"geneArray_geneTable":[
 		{
-			"name":"id"
+			"name":"gene"
+		},
+		{
+			"name":"pathwayId"
+		},
+		{
+			"name":"ref"
+		}
+	],
+	"geneArray_pathwayTable":[
+		{
+			"name":"pathwayId"
 		},
 		{
 			"name":"pathwayName"
+		},
+		{
+			"name":"gene"
 		},
 		{
 			"name":"ref"

@@ -49,7 +49,70 @@ public class KnowledgeBuilder {
 			result = buildGeneBisease(param,obj);
 		}else if("clinicalTrial".equals(to)){
 			result = buildClinicalTrial(param,obj);
+		}else if("pathway".equals(to) && "geneArray".equals(from)){
+			result = buildPathway(param,obj);
+		} else{
+			result = buildGeneral(param,obj);
 		}
+		return result;
+	}
+
+	/**
+	 * 通路分表,转化,陈松
+	 * @param param
+	 * @param obj
+     * @return
+     */
+	private JsonArray buildPathway(JsonObject param, JsonObject obj) {
+		JsonArray result = new JsonArray();
+		String currentTable = param.get("currentTable").getAsString();
+		JsonObject head = buildHead(param,obj);
+		String from = param.get("from").getAsString();
+		String to = param.get("to").getAsString();
+		String fromA2BOnC = from+"_"+currentTable;
+		result.add(head);
+		JsonArray body = new JsonArray();
+		JsonArray PathwayObjs = obj.getAsJsonArray("data");
+		if(null!=PathwayObjs && PathwayObjs.size()>0){
+			JsonObject fristObj = (JsonObject) PathwayObjs.get(0);
+			if(null != fristObj){
+				JsonArray dataArray = fristObj.getAsJsonArray(currentTable);
+				if(null == dataArray){
+					dataArray = PathwayObjs;
+				}
+
+				if(null != dataArray){
+					JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromA2BOnC, dataArray);
+					if(null!=bodyRtn&&0<bodyRtn.size()){
+						body = bodyRtn;
+					}
+				}
+			}
+		}
+		result.add(body);
+		return result;
+	}
+
+	/**
+	 * 一般通用转化,即不分表转化,陈松
+	 * @param param
+	 * @param obj
+     * @return
+     */
+	private JsonArray buildGeneral(JsonObject param, JsonObject obj) {
+		JsonArray result = new JsonArray();
+		JsonObject head = buildHead(param,obj);
+		String from = param.get("from").getAsString();
+		result.add(head);
+		JsonArray body = new JsonArray();
+		JsonArray dataArray = obj.getAsJsonArray("data");
+		String to = param.get("to").getAsString();
+		String fromAToB = from+"_"+to;
+		JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromAToB, dataArray);
+		if(null!=bodyRtn&&0<bodyRtn.size()){
+			body = bodyRtn;
+		}
+		result.add(body);
 		return result;
 	}
 
