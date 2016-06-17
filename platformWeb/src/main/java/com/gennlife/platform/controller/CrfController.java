@@ -23,19 +23,19 @@ public class CrfController {
     private static JsonParser jsonParser = new JsonParser();
     private static CrfProcessor processor = new CrfProcessor();
     private static Gson gson = GsonUtil.getGson();
-    @RequestMapping(value="/Model",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postModel(@RequestBody String param){
+    @RequestMapping(value="/Model",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String postModel(@RequestParam("param") String param){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            logger.info("crf 请求模板 post方式 参数="+param);
+            logger.info("crf 请求模板 get方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.model(paramObj);
         }catch (Exception e){
             logger.error("请求模板",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("crf 请求模板 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("crf 请求模板 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 
