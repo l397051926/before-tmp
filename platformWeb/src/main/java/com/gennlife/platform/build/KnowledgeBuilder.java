@@ -1,11 +1,16 @@
 package com.gennlife.platform.build;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+
+import org.springframework.util.StringUtils;
 
 import com.gennlife.platform.util.DataFormatConversion;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 
 /**
@@ -42,10 +47,96 @@ public class KnowledgeBuilder {
 			result = buildBiseaseGene(param,obj);
 		}else if("geneDisease".equals(from)&&"drug".equals(to)){
 			result = buildGeneBisease(param,obj);
+		}else if("clinicalTrial".equals(to)){
+			result = buildClinicalTrial(param,obj);
+		}else if("pathway".equals(to) && "geneArray".equals(from)){
+			result = buildPathway(param,obj);
+		} else{
+			result = buildGeneral(param,obj);
 		}
 		return result;
 	}
-	
+
+	/**
+	 * 通路分表,转化,陈松
+	 * @param param
+	 * @param obj
+     * @return
+     */
+	private JsonArray buildPathway(JsonObject param, JsonObject obj) {
+		JsonArray result = new JsonArray();
+		String currentTable = param.get("currentTable").getAsString();
+		JsonObject head = buildHead(param,obj);
+		String from = param.get("from").getAsString();
+		String to = param.get("to").getAsString();
+		String fromA2BOnC = from+"_"+currentTable;
+		result.add(head);
+		JsonArray body = new JsonArray();
+		JsonArray PathwayObjs = obj.getAsJsonArray("data");
+		if(null!=PathwayObjs && PathwayObjs.size()>0){
+			JsonObject fristObj = (JsonObject) PathwayObjs.get(0);
+			if(null != fristObj){
+				JsonArray dataArray = fristObj.getAsJsonArray(currentTable);
+				if(null == dataArray){
+					dataArray = PathwayObjs;
+				}
+
+				if(null != dataArray){
+					JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromA2BOnC, dataArray);
+					if(null!=bodyRtn&&0<bodyRtn.size()){
+						body = bodyRtn;
+					}
+				}
+			}
+		}
+		result.add(body);
+		return result;
+	}
+
+	/**
+	 * 一般通用转化,即不分表转化,陈松
+	 * @param param
+	 * @param obj
+     * @return
+     */
+	private JsonArray buildGeneral(JsonObject param, JsonObject obj) {
+		JsonArray result = new JsonArray();
+		JsonObject head = buildHead(param,obj);
+		String from = param.get("from").getAsString();
+		result.add(head);
+		JsonArray body = new JsonArray();
+		JsonArray dataArray = obj.getAsJsonArray("data");
+		String to = param.get("to").getAsString();
+		String fromAToB = from+"_"+to;
+		JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromAToB, dataArray);
+		if(null!=bodyRtn&&0<bodyRtn.size()){
+			body = bodyRtn;
+		}
+		result.add(body);
+		return result;
+	}
+
+	private JsonArray buildClinicalTrial(JsonObject param, JsonObject obj) {
+		JsonArray result = new JsonArray();
+		JsonObject head = buildHead(param,obj);
+		String from = param.get("from").getAsString();
+		result.add(head);
+		JsonArray body = new JsonArray();
+		JsonArray dataArray = obj.getAsJsonArray("data");
+
+		//add by 唐乾斌 05.20
+		String to = param.get("to").getAsString();
+		String fromAToB = from+"_"+to;
+
+		//跨域查询
+		JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromAToB, dataArray);
+		if(null!=bodyRtn&&0<bodyRtn.size()){
+			body = bodyRtn;
+		}
+		result.add(body);
+		return result;
+	}
+
 	public JsonArray buildOnlyHead(JsonObject param,JsonObject obj){
     	JsonArray result = new JsonArray();
     	JsonObject emptyObj = new JsonObject();
@@ -203,6 +294,7 @@ public class KnowledgeBuilder {
 		}else{
 			fromA2BOnC = from+"_"+to+"_"+currentTable;
 		}
+		
 		result.add(head);
 		JsonArray body = new JsonArray();
 		JsonArray drugObjs = obj.getAsJsonArray("data");
@@ -217,8 +309,14 @@ public class KnowledgeBuilder {
 					currentTableName = "nccn";
 				}else if("drug_target".equals(currentTable)){
 					currentTableName = "targetDrug";
+				}else if("drug_variation".equals(currentTable)){
+					currentTableName = "pharmDrug";
 				}
 				JsonArray dataArray = fdaObj.getAsJsonArray(currentTableName);
+				if(null == dataArray){
+					dataArray = drugObjs;
+				}
+				
 				if(null!=dataArray){
 					JsonArray bodyRtn = DataFormatConversion.knowledge2UIService(fromA2BOnC, dataArray);
 					if(null!=bodyRtn&&0<bodyRtn.size()){
@@ -413,6 +511,55 @@ public class KnowledgeBuilder {
 		JsonObject head = new JsonObject();
 		int pageSize = param.get("pageSize").getAsInt();
 		int currentPage = param.get("currentPage").getAsInt();
+
+		head.addProperty("pageSize",pageSize);
+		Integer counter = 0;
+		if(null==obj.getAsJsonObject("info")){
+			counter = 0;
+		}else{
+
+			counter = obj.getAsJsonObject("info").get("counter").getAsInt();
+		}
+		head.addProperty("totalRecords",counter);
+		int total_pages = 0;
+		if(counter > 0){
+			total_pages = counter % pageSize;
+		}
+		String from = param.get("from").getAsString();
+		String to = param.get("to").getAsString();
+		String currentTable = null;
+		if(param.has("currentTable")){
+			if(param.get("currentTable") instanceof JsonNull){
+				currentTable = null;
+			}else{
+				currentTable = param.get("currentTable").getAsString();
+			}
+		}
+				
+		head.addProperty("total_pages",total_pages);
+		head.addProperty("currentPage",currentPage);
+		head.addProperty("from",from);
+		head.addProperty("to",to);
+		head.addProperty("limit",currentPage+","+pageSize);
+		JsonArray schema = null;
+		String schemaKey = null;
+		
+		if(StringUtils.isEmpty(currentTable)){
+			schemaKey = from+"_"+to;
+		}else{
+			schemaKey = from+"_"+currentTable;
+		}
+		schema = DataFormatConversion.getSchema(schemaKey);
+		head.add("schema",schema);
+		if(null!=obj.getAsJsonArray("dimension")){
+			head.add("dimension",obj.getAsJsonArray("dimension"));
+		}
+		return head;
+	}
+	private JsonObject buildHeadBak(JsonObject param,JsonObject obj){
+		JsonObject head = new JsonObject();
+		int pageSize = param.get("pageSize").getAsInt();
+		int currentPage = param.get("currentPage").getAsInt();
 		head.addProperty("pageSize",pageSize);
 		Integer counter = 0;
 		if(null==obj.getAsJsonObject("info")){
@@ -567,6 +714,12 @@ public class KnowledgeBuilder {
 	private JsonArray drugUseSchema(String from) {
 		JsonArray schema = new JsonArray();
 		if("phenotype".equals(from) || "drug".equals(from) ||"disease".equals(from)||"gene".equals(from)){
+			JsonObject diseaseId = new JsonObject();
+			diseaseId.addProperty("name","disease_id");
+			schema.add(diseaseId);
+			JsonObject disease = new JsonObject();
+			disease.addProperty("name","disease");
+			schema.add(disease);
 			JsonObject drugDrug = new JsonObject();
 			drugDrug.addProperty("name","drug");
 			schema.add(drugDrug);
@@ -574,17 +727,14 @@ public class KnowledgeBuilder {
 			JsonObject brand_nameDrug = new JsonObject();
 			brand_nameDrug.addProperty("name","brand_name");
 			schema.add(brand_nameDrug);
-
-			JsonObject typeDrug = new JsonObject();
-			typeDrug.addProperty("name","disease");
-			schema.add(typeDrug);
+			
 
 			JsonObject biomarkerDrug = new JsonObject();
 			biomarkerDrug.addProperty("name","biomarker");
 			schema.add(biomarkerDrug);
 
 			JsonObject referenced_subgroupDrug = new JsonObject();
-			referenced_subgroupDrug.addProperty("name","referenced_subgroup");
+			referenced_subgroupDrug.addProperty("name","biomarker_detail");
 			schema.add(referenced_subgroupDrug);
 
 			JsonObject indicationDrug = new JsonObject();
@@ -641,7 +791,7 @@ public class KnowledgeBuilder {
 			schema.add(brand_nameDrug);
 		}
 
-		if("disease_id".equals(from)){
+		if("phenotype".equals(from)){
 			JsonObject disease_idDrug = new JsonObject();
 			disease_idDrug.addProperty("name","disease_id");
 			schema.add(disease_idDrug);
@@ -668,6 +818,8 @@ public class KnowledgeBuilder {
 			refDrug.addProperty("name","ref");
 			schema.add(refDrug);
 		}
+		
+		
 
 		return schema;
 	}
@@ -679,13 +831,13 @@ public class KnowledgeBuilder {
 		schema.add(variation_numVariation);
 //		if("phenotype".equals(from) || "disease".equals(from)){
 		if("phenotype".equals(from)){
-//			JsonObject diseaseidVariation = new JsonObject();
-//			diseaseidVariation.addProperty("name","disease_id");
-//			schema.add(diseaseidVariation);
-//
-//			JsonObject diseaseVariation = new JsonObject();
-//			diseaseVariation.addProperty("name","disease");
-//			schema.add(diseaseVariation);
+			JsonObject diseaseidVariation = new JsonObject();
+			diseaseidVariation.addProperty("name","disease_id");
+			schema.add(diseaseidVariation);
+
+			JsonObject diseaseVariation = new JsonObject();
+			diseaseVariation.addProperty("name","disease");
+			schema.add(diseaseVariation);
 		}
 		if("disease".equals(from)){
 			JsonObject typeVariation = new JsonObject();
@@ -850,7 +1002,7 @@ public class KnowledgeBuilder {
 
 			JsonObject entityPhenotype = new JsonObject();
 			entityPhenotype.addProperty("name","phenotype");
-			schema.add(entityPhenotypeID);
+			schema.add(entityPhenotype);
 		}
 
 		JsonObject entityChromosome = new JsonObject();

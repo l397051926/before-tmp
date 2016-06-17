@@ -33,36 +33,29 @@ public class CaseProcessor {
     /**
      * 搜索结果列表展示的集合:done
      *
-     * @param req
-     * @param resp
+     * @param paramObj
      */
-    public void searchItemSet(HttpServletRequest req, HttpServletResponse resp) {
+    public String searchItemSet(JsonObject paramObj) {
         String param = null;
-        JsonObject paramObj = null;
         String searchKey = null;
         String keywords = null;
         String status = null;
         Set<String> set = new HashSet<String>();
         ResultBean resultBean = new ResultBean();
         try {
-            param = ParamUtils.getParam(req);
-            logger.info("SearchItemSet param=" + param);
-            paramObj = (JsonObject) jsonParser.parse(param);
             searchKey = paramObj.get("searchKey").getAsString();//病历搜索的关键词
             keywords = paramObj.get("keywords").getAsString();//属性搜索的关键词
             status = paramObj.get("status").getAsString();
             if (!"0".equals(status) && !"1".equals(status) && !"2".equals(status)) {
-                ParamUtils.errorParam("status参数出错", req, resp);
-                return;
+                return ParamUtils.errorParam("status参数出错");
             }
             JsonArray arrange = paramObj.get("arrange").getAsJsonArray();
             for (JsonElement json : arrange) {
                 set.add(json.getAsString());
             }
-
         } catch (Exception e) {
-            ParamUtils.errorParam(req, resp);
-            return;
+            logger.error("",e);
+            return ParamUtils.errorParam("请求参数出错");
         }
         if ("0".equals(status)) {//默认
             JsonObject result = ConfigurationService.getDefaultObj();
@@ -113,20 +106,16 @@ public class CaseProcessor {
             resultBean.setCode(1);
             resultBean.setData(allNew);
         }
-
-        viewer.viewString(gson.toJson(resultBean), resp, req);
-        return;
+        return  gson.toJson(resultBean);
 
     }
 
     /**
      * 搜索关键词提示(包括知识库,搜索):done
      *
-     * @param req
-     * @param resp
+     * @param paramObj
      */
-    public void searchTermSuggest(HttpServletRequest req, HttpServletResponse resp) {
-        String param = null;
+    public String searchTermSuggest(JsonObject paramObj) {
         String keywords = null;
         String indexName = null;
         String size = null;
@@ -134,9 +123,6 @@ public class CaseProcessor {
         String page = null;
         ResultBean resultBean = new ResultBean();
         try {
-            param = ParamUtils.getParam(req);
-            logger.info("SearchTermSuggest param=" + param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             if (paramObj.get("indexName") != null) {
                 indexName = paramObj.get("indexName").getAsString();
             }
@@ -149,8 +135,8 @@ public class CaseProcessor {
                 page = paramObj.get("page").getAsString();
             }
         } catch (Exception e) {
-            ParamUtils.errorParam(req, resp);
-            return;
+            logger.error("",e);
+            return ParamUtils.errorParam("请求参数出错");
         }
         if (indexName == null) {
             indexName = "clinical_cases_dic";
@@ -176,35 +162,30 @@ public class CaseProcessor {
         } catch (Exception e) {
             e.printStackTrace();
             logger.error("", e);
-            ParamUtils.errorParam("请求出错", req, resp);
-            return;
+            return ParamUtils.errorParam("请求出错");
+
         }
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("counter", count);
         resultBean.setCode(1);
         resultBean.setData(set);
         resultBean.setInfo(map);
-        viewer.viewString(gson.toJson(resultBean), resp, req);
+        return gson.toJson(resultBean);
     }
 
     /**
      * 高级搜索关键词提示:done
      *
-     * @param req
-     * @param resp
+     * @param paramObj
      */
-    public void advancedSearchTermSuggest(HttpServletRequest req, HttpServletResponse resp) {
+    public String advancedSearchTermSuggest(JsonObject paramObj) {
         String param = null;
         String keywords = null;
         ResultBean resultBean = new ResultBean();
         try {
-            param = ParamUtils.getParam(req);
-            logger.info("AdvancedSearchTermSuggest param=" + param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             keywords = paramObj.get("keywords").getAsString();
         } catch (Exception e) {
-            ParamUtils.errorParam(req, resp);
-            return;
+            return ParamUtils.errorParam("请求参数出错");
         }
         List<JsonObject> list = new LinkedList<JsonObject>();
 
@@ -219,41 +200,28 @@ public class CaseProcessor {
         }
         resultBean.setCode(1);
         resultBean.setData(list);
-        viewer.viewString(gson.toJson(resultBean), resp, req);
+        return gson.toJson(resultBean);
 
     }
 
     /**
      * 首页知识库搜索
      *
-     * @param req
-     * @param resp
+     * @param paramObj
      */
-    public void searchKnowledgeFirst(HttpServletRequest req, HttpServletResponse resp) {
-        String param = null;
-        try {
-            param = ParamUtils.getParam(req);
-            logger.info("SearchKnowledge param=" + param);
-        } catch (Exception e) {
-            ParamUtils.errorParam(req, resp);
-            return;
-        }
+    public String searchKnowledgeFirst(JsonObject paramObj) {
+        return null;
     }
 
     /**
      * 搜索病历
      *
-     * @param req
-     * @param resp
+     * @param paramObj
      */
-    public void searchCase(HttpServletRequest req, HttpServletResponse resp) {
+    public String searchCase(JsonObject paramObj) {
         String param = null;
-        JsonObject paramObj = null;
         String newParam = null;
         try {
-            param = ParamUtils.getParam(req);
-            logger.info("SearchCase param=" + param);
-            paramObj = (JsonObject) jsonParser.parse(param);
             String query = ParamUtils.buildQuery(paramObj);
             paramObj.addProperty("query", query);
             paramObj.addProperty("hospitalID", "public");
@@ -264,8 +232,8 @@ public class CaseProcessor {
             newParam = gson.toJson(paramObj);
             logger.info("处理后请求参数=" + newParam);
         } catch (Exception e) {
-            ParamUtils.errorParam(req, resp);
-            return;
+            logger.error("",e);
+            return ParamUtils.errorParam("请求参数出错");
         }
         CaseSearchParser caseSearchParser = new CaseSearchParser(newParam);
         try {
@@ -274,61 +242,59 @@ public class CaseProcessor {
             JsonObject result = new JsonObject();
             result.addProperty("code",1);
             result.add("data",searchResult);
-            viewer.viewString(gson.toJson(result), resp, req);
+            return gson.toJson(result);
         } catch (Exception e) {
-            ParamUtils.errorParam("搜索失败", req, resp);
-            return;
+            return ParamUtils.errorParam("搜索失败");
         }
     }
 
     /**
      * 返回该疾病相关基因
-     * @param req
-     * @param resp
+     * @param paramObj
      */
-    public void diseaseSearchGenes(HttpServletRequest req, HttpServletResponse resp) {
-        String param = null;
+    public String diseaseSearchGenes(JsonObject paramObj) {
         String paramStr = null;
         try {
-            param = ParamUtils.getParam(req);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             //检查参数
             String searchKey = paramObj.get("searchKey").getAsString();
             JsonObject newParam = new JsonObject();
             newParam.addProperty("searchKey",searchKey);
             paramStr = gson.toJson(newParam);
         }catch (Exception e){
-            ParamUtils.errorParam("请求参数出错", req, resp);
-            return;
+            logger.error("",e);
+            return ParamUtils.errorParam("请求参数出错");
         }
         String url = ConfigurationService.getUrlBean().getKnowledgeDiseaseSearchGenesURL();
-        String resultStr = HttpRequestUtils.httpPost(url,paramStr);
-        viewer.viewString(resultStr,resp,req);
+        return HttpRequestUtils.httpPost(url,paramStr);
     }
 
     /**
      * 导出样本集到项目空间
-     * @param req
-     * @param resp
+     * @param paramObj
      */
-    public void sampleImport(HttpServletRequest req, HttpServletResponse resp) {
-        String param = null;
-        JsonObject paramObj = null;
-        try{
-            param = ParamUtils.getParam(req);
-            logger.info("SearchCase param=" + param);
-            paramObj = (JsonObject) jsonParser.parse(param);
-            String query = ParamUtils.buildQuery(paramObj);
-            paramObj.addProperty("query", query);
-            paramObj.addProperty("hospitalID", "public");
-            paramObj.remove("from");
-            paramObj.remove("to");
-            paramObj.remove("filters");
-            paramObj.remove("isAdv");
-        }catch (Exception e){
-            ParamUtils.errorParam(req, resp);
-            return;
-        }
+    public String sampleImport(JsonObject paramObj) {
+        return null;
+    }
 
+    /**
+     * 通路查询时,校验基因数组正确性
+     * @param paramObj
+     * @return
+     */
+    public String geneVerify(JsonObject paramObj) {
+        try{
+            String param = gson.toJson(paramObj);
+            String url = ConfigurationService.getUrlBean().getCaseGeneErrorURL();
+            logger.info("GeneVerify url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("GeneVerify result="+url);
+            JsonObject resultObj = (JsonObject) jsonParser.parse(result);
+            ResultBean resultBean = new ResultBean();
+            resultBean.setCode(1);
+            resultBean.setData(resultObj);
+            return gson.toJson(resultBean);
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
     }
 }

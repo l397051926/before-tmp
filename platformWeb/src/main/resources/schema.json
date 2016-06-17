@@ -1,0 +1,981 @@
+{
+	"disease_disease": [
+		{
+			"name": "disease_id"
+		},
+		{
+			"name": "disease"
+		},
+		{
+			"name": "icd_10"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"disease_drug_fda": [
+		{
+			"name": "disease"
+		},
+		{
+			"name": "drug"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "biomarker"
+		},
+		{
+			"name": "biomarker_detail"
+		},
+		{
+			"name": "description"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"disease_drug_nccn": [
+		{
+			"name": "disease"
+		},
+		{
+			"name": "drug"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "biomarker"
+		},
+		{
+			"name": "biomarker_detail"
+		},
+		{
+			"name": "description"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"disease_drug_target": [
+		{
+			"name": "drug"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "type"
+		},
+		{
+			"name": "approve_status"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"disease_gene": [
+		{
+			"name": "gene"
+		},
+		{
+			"name": "chromosome"
+		},
+		{
+			"name": "map_location"
+		},
+		{
+			"name": "transcript"
+		},
+		{
+			"name": "protein"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"disease_phenotype": [
+		{
+			"name": "phenotype_id"
+		},
+		{
+			"name": "phenotype"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "disease_id"
+		},
+		{
+			"name": "disease"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"disease_variation": [
+		{
+			"name": "variation_num"
+		},
+		{
+			"name": "disease"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "chromosome"
+		},
+		{
+			"name": "start"
+		},
+		{
+			"name": "reference_allele"
+		},
+		{
+			"name": "alternate_allele"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"diseaseGene_drug_fda": [
+		{
+			"name": "drug"
+		},
+		{
+			"name": "disease"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "biomarker"
+		},
+		{
+			"name": "biomarker_detail"
+		},
+		{
+			"name": "description"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"diseaseGene_drug_nccn": [
+		{
+			"name": "drug"
+		},
+		{
+			"name": "disease"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "biomarker"
+		},
+		{
+			"name": "biomarker_detail"
+		},
+		{
+			"name": "description"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"drug_disease": [
+		{
+			"name": "disease"
+		},
+		{
+			"name": "drug"
+		},
+		{
+			"name": "ncnn_ref"
+		},
+		{
+			"name": "nci_ref"
+		},
+		{
+			"name": "fda_ref"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"drug_drug_fda": [
+	    {
+			"name": "drug"
+		},
+		{
+			"name": "disease"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "biomarker"
+		},
+		{
+			"name": "biomarker_detail"
+		},
+		{
+			"name": "description"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"drug_drug_nccn": [
+		{
+			"name": "drug"
+		},
+		{
+			"name": "disease"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "biomarker"
+		},
+		{
+			"name": "biomarker_detail"
+		},
+		{
+			"name": "description"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"drug_drug_target": [
+		{
+			"name": "drug"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "type"
+		},
+		{
+			"name": "approve_status"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"drug_gene": [
+		{
+			"name": "gene"
+		},
+		{
+			"name": "chromosome"
+		},
+		{
+			"name": "map_location"
+		},
+		{
+			"name": "transcript"
+		},
+		{
+			"name": "protein"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"drug_phenotype": [
+		{
+			"name": "phenotype_id"
+		},
+		{
+			"name": "phenotype"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"drug_variation": [
+		{
+			"name": "variation_num"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"gene_disease": [
+		{
+			"name": "disease"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"gene_drug_fda": [
+		{
+			"name": "drug"
+		},
+		{
+			"name": "disease"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "biomarker"
+		},
+		{
+			"name": "biomarker_detail"
+		},
+		{
+			"name": "description"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"gene_drug_variation": [
+		{
+			"name": "drug"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "variation"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"variation_drug_variation": [
+		{
+			"name": "drug"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "variation"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"protein_drug_variation": [
+		{
+			"name": "drug"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "variation"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"gene_drug_nccn": [
+		{
+			"name": "drug"
+		},
+		{
+			"name": "disease"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "biomarker"
+		},
+		{
+			"name": "biomarker_detail"
+		},
+		{
+			"name": "description"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"gene_drug_target": [
+		{
+			"name": "drug"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "type"
+		},
+		{
+			"name": "approve_status"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"gene_gene": [
+		{
+			"name": "gene"
+		},
+		{
+			"name": "chromosome"
+		},
+		{
+			"name": "map_location"
+		},
+		{
+			"name": "transcript"
+		},
+		{
+			"name": "protein"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"gene_phenotype": [
+		{
+			"name": "phenotype_id"
+		},
+		{
+			"name": "phenotype"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"gene_variation": [
+		{
+			"name": "variation_num"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "type"
+		},
+		{
+			"name": "chromosome"
+		},
+		{
+			"name": "start"
+		},
+		{
+			"name": "reference_allele"
+		},
+		{
+			"name": "alternate_allele"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"protein_variation": [
+		{
+			"name": "variation_num"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "type"
+		},
+		{
+			"name": "chromosome"
+		},
+		{
+			"name": "start"
+		},
+		{
+			"name": "reference_allele"
+		},
+		{
+			"name": "alternate_allele"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"phenotype_disease": [
+		{
+			"name": "disease_id"
+		},
+		{
+			"name": "disease"
+		},
+		{
+			"name": "phenotype_id"
+		},
+		{
+			"name": "phenotype"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"phenotype_drug_fda": [
+		{
+			"name": "disease_id"
+		},
+		{
+			"name": "disease"
+		},
+		{
+			"name": "drug"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "biomarker"
+		},
+		{
+			"name": "biomarker_detail"
+		},
+		{
+			"name": "description"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"phenotype_drug_nccn": [
+		{
+			"name": "disease_id"
+		},
+		{
+			"name": "disease"
+		},
+		{
+			"name": "drug"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "biomarker"
+		},
+		{
+			"name": "biomarker_detail"
+		},
+		{
+			"name": "description"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"phenotype_drug_target": [
+		{
+			"name": "drug"
+		}
+		,
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "type"
+		},
+		{
+			"name": "approve_status"
+		},
+		{
+			"name": "ref"
+		}	
+	],
+	"phenotype_gene": [
+		{
+			"name": "gene"
+		},
+		{
+			"name": "phenotype_id"
+		},
+		{
+			"name": "phenotype"
+		},
+		{
+			"name": "chromosome"
+		},
+		{
+			"name": "map_location"
+		},
+		{
+			"name": "transcript"
+		},
+		{
+			"name": "protein"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"phenotype_phenotype": [
+		{
+			"name": "phenotype_id"
+		},
+		{
+			"name": "phenotype"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"phenotype_variation": [
+		{
+			"name": "variation_num"
+		},
+		{
+			"name": "disease_id"
+		},
+		{
+			"name": "disease"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "type"
+		},
+		{
+			"name": "chromosome"
+		},
+		{
+			"name": "start"
+		},
+		{
+			"name": "reference_allele"
+		},
+		{
+			"name": "alternate_allele"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"protein_disease": [
+		{
+			"name": "disease"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"protein_drug_fda": [
+		{
+			"name": "drug"
+		},
+		{
+			"name": "disease"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "biomarker"
+		},
+		{
+			"name": "biomarker_detail"
+		},
+		{
+			"name": "description"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"protein_drug_nccn": [
+		{
+			"name": "drug"
+		},
+		{
+			"name": "disease"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "biomarker"
+		},
+		{
+			"name": "biomarker_detail"
+		},
+		{
+			"name": "description"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"protein_drug_target": [
+		{
+			"name": "drug"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "type"
+		},
+		{
+			"name": "approve_status"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"protein_gene": [
+		{
+			"name": "gene"
+		},
+		{
+			"name": "chromosome"
+		},
+		{
+			"name": "map_location"
+		},
+		{
+			"name": "transcript"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"protein_protein": [
+		{
+			"name": "protein"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"protein_phenotype": [
+		{
+			"name": "phenotype_id"
+		},
+		{
+			"name": "phenotype"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"variation_disease": [
+		{
+			"name": "disease"
+		},
+		{
+			"name": "variation_id"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"variation_variation": [
+		{
+			"name": "variation_num"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "chromosome"
+		},
+		{
+			"name": "start"
+		},
+		{
+			"name": "reference_allele"
+		},
+		{
+			"name": "alternate_allele"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"variation_gene": [
+		{
+			"name": "gene"
+		},
+		{
+			"name": "chromosome"
+		},
+		{
+			"name": "map_location"
+		},
+		{
+			"name": "transcript"
+		},
+		{
+			"name": "protein"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"variation_phenotype": [
+		{
+			"name": "phenotype_id"
+		},
+		{
+			"name": "phenotype"
+		},
+		{
+			"name": "gene"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"geneDisease_drug": [
+		{
+			"name": "drug"
+		},
+		{
+			"name": "disease"
+		},
+		{
+			"name": "brand_name"
+		},
+		{
+			"name": "biomarker"
+		},
+		{
+			"name": "biomarker_detail"
+		},
+		{
+			"name": "description"
+		},
+		{
+			"name": "ref"
+		}
+	],
+	"clinicalTrial_cfda_clinical":[
+		{
+			"name":"clinicalTrial_id"
+		},
+		{
+			"name":"title"
+		},
+		{
+			"name":"disease"
+		},
+		{
+			"name":"drug"
+		},
+		{
+			"name":"status"
+		},
+		{
+			"name":"ref"
+		}
+	],
+	"clinicalTrial_fda_clinical":[
+		{
+			"name":"clinicalTrial_id"
+		},
+		{
+			"name":"title"
+		},
+		{
+			"name":"disease"
+		},
+		{
+			"name":"drug"
+		},
+		{
+			"name":"status"
+		},
+		{
+			"name":"ref"
+		}
+	],
+	"gene_pathway":[
+		{
+			"name":"pathwayId"
+		},
+		{
+			"name":"pathwayName"
+		},
+		{
+			"name":"ref"
+		}
+	],
+	"geneArray_geneTable":[
+		{
+			"name":"gene"
+		},
+		{
+			"name":"pathwayId"
+		},
+		{
+			"name":"ref"
+		}
+	],
+	"geneArray_pathwayTable":[
+		{
+			"name":"pathwayId"
+		},
+		{
+			"name":"pathwayName"
+		},
+		{
+			"name":"gene"
+		},
+		{
+			"name":"ref"
+		}
+	]
+}

@@ -23,8 +23,8 @@
           "IndexFieldName": "clinicalCRF.Age"
         },
         {
-          "dataType": "string",
-          "dateFormat": "yyyy-MM-dd",
+          "dataType": "date",
+          "dateFormat": "yyyy",
           "UIFieldName": "出生日期",
           "IndexFieldName": "clinicalCRF.birth_date"
         },
@@ -258,8 +258,8 @@
           "IndexFieldName": "clinicalCRF.Age"
         },
         {
-          "dataType": "string",
-          "dateFormat": "yyyy-MM-dd",
+          "dataType": "date",
+          "dateFormat": "yyyy",
           "UIFieldName": "出生日期",
           "IndexFieldName": "clinicalCRF.birth_date"
         },
@@ -427,7 +427,7 @@
           "IndexFieldName": "clinicalCRF.father_ca"
         },
         {
-          "dataType": "string",
+          "dataType": "long",
           "UIFieldName": "父亲患病年龄",
           "IndexFieldName": "clinicalCRF.father_ca_age"
         },
@@ -437,7 +437,7 @@
           "IndexFieldName": "clinicalCRF.mother_ca"
         },
         {
-          "dataType": "string",
+          "dataType": "long",
           "UIFieldName": "母亲患病年龄",
           "IndexFieldName": "clinicalCRF.mother_ca_age"
         },
@@ -447,7 +447,7 @@
           "IndexFieldName": "clinicalCRF.brother_ca"
         },
         {
-          "dataType": "string",
+          "dataType": "long",
           "UIFieldName": "兄弟患病年龄",
           "IndexFieldName": "clinicalCRF.brother_ca_age"
         },
@@ -457,7 +457,7 @@
           "IndexFieldName": "clinicalCRF.sister_ca"
         },
         {
-          "dataType": "string",
+          "dataType": "long",
           "UIFieldName": "姐妹患病年龄",
           "IndexFieldName": "clinicalCRF.sister_ca_age"
         },
@@ -467,7 +467,7 @@
           "IndexFieldName": "clinicalCRF.child_ca"
         },
         {
-          "dataType": "string",
+          "dataType": "long",
           "UIFieldName": "子女患病年龄",
           "IndexFieldName": "clinicalCRF.child_ca_age"
         }
@@ -592,6 +592,11 @@
           "IndexFieldName": "clinicalCRF.pre_radio"
         },
         {
+          "dataType": "string",
+          "UIFieldName": "术前化疗",
+          "IndexFieldName": "clinicalCRF.neochemo"
+        },
+        {
           "dataType": "date",
           "UIFieldName": "手术日期",
           "dateFormat": "yyyy-MM-dd",
@@ -690,6 +695,12 @@
           "UIFieldName": "IH_VEGF",
           "IndexFieldName": "clinicalCRF.IH_VEGF"
         },
+        {
+          "dataType": "string",
+          "UIFieldName": "IH_EGFR",
+          "IndexFieldName": "clinicalCRF.IH_EGFR"
+        },
+
         {
           "dataType": "string",
           "UIFieldName": "IH_K-ras",

@@ -79,11 +79,10 @@ public class ParamUtils {
         if(value == null){
             return null;
         }
-        value = value.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
-        value = value.replaceAll("'", "&#39;");
         value = value.replaceAll("eval\\((.*)\\)", "");
         value = value.replaceAll("[\\\"\\\'][\\s]*javascript:(.*)[\\\"\\\']", "\"\"");
-        value = value.replaceAll("script", "");
+        value = value.replaceAll("<script>", "");
+        value = value.replaceAll("<javascript>", "");
         return value;
     }
     public static void errorParam(HttpServletRequest request, HttpServletResponse resps){
@@ -102,6 +101,12 @@ public class ParamUtils {
         viewer.viewString(data, resp, req);
     }
 
+    public static String errorParam(String info){
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(0);
+        resultBean.setInfo(info);
+        return gson.toJson(resultBean);
+    }
     /**
      *
      * @param filters 前端发过来的病历搜索 过滤条件
@@ -141,6 +146,15 @@ public class ParamUtils {
                                 .append(value);
                     } else if ("long".equals(dataType)) {
                         Long value = valueElement.getAsLong();
+                        queryBuf.append("[")
+                                .append(IndexFieldName)
+                                .append("]")
+                                .append(" ")
+                                .append("=")
+                                .append(" ")
+                                .append(value);
+                    }else if ("date".equals(dataType)) {
+                        String value = valueElement.getAsString();
                         queryBuf.append("[")
                                 .append(IndexFieldName)
                                 .append("]")
@@ -199,30 +213,6 @@ public class ParamUtils {
                                         .append(")");
                             }
 
-                        } else if ("date".equals(dataType)) {
-                            String value = subElement.getAsString();
-                            if (subCount == 1) {
-                                queryBuf.append("(")
-                                        .append("[")
-                                        .append(IndexFieldName)
-                                        .append("]")
-                                        .append(" ")
-                                        .append("早于")
-                                        .append(" ")
-                                        .append(value);
-                            } else if (subCount == 2) {
-                                queryBuf.append(" ")
-                                        .append("AND")
-                                        .append(" ")
-                                        .append("[")
-                                        .append(IndexFieldName)
-                                        .append("]")
-                                        .append(" ")
-                                        .append("晚于")
-                                        .append(" ")
-                                        .append(value)
-                                        .append(")");
-                            }
                         }
                     }
                 }
@@ -269,7 +259,11 @@ public class ParamUtils {
         logger.info("query替换[] = "+query);
         if ("case".equals(from) && "case".equals(to)) {
             boolean isAdv = paramObj.get("isAdv").getAsBoolean();
-            if (!isAdv && !"".equals(query)) {
+            if (!isAdv && !"".equals(query)
+                    && !query.contains("[")
+                    && !query.toLowerCase().contains(" or ")
+                    && !query.toLowerCase().contains(" and ")
+                    && !query.toLowerCase().contains(" not ")) {
                 QueryServerParser queryServerParser = new QueryServerParser(query);
                 Set<String> set = queryServerParser.parser();
                 for (String k : set) {

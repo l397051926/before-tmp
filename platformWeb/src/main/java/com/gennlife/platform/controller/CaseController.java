@@ -1,8 +1,13 @@
 package com.gennlife.platform.controller;
 
 import com.gennlife.platform.processor.CaseProcessor;
+import com.gennlife.platform.util.ParamUtils;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,68 +18,248 @@ import java.io.IOException;
 /**
  * Created by chen-song on 16/5/13.
  */
-public class CaseController extends HttpServlet {
+@Controller
+@RequestMapping("/case")
+public class CaseController {
     private Logger logger = LoggerFactory.getLogger(CaseController.class);
+    private static JsonParser jsonParser = new JsonParser();
     private CaseProcessor processor = new CaseProcessor();
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        long start = System.currentTimeMillis();
-        String uri = req.getRequestURI();
-        if("/case/SearchItemSet".equals(uri)){//2
-            try {
-                processor.searchItemSet(req, resp);
-            } catch (Exception e) {
-                logger.error("搜索结果列表展示的集合", e);
-            }
-            logger.info("搜索结果列表展示的集合 耗时:" + (System.currentTimeMillis() - start) + "ms");
-        }else if("/case/SearchTermSuggest".equals(uri)){//3
-            try {
-                processor.searchTermSuggest(req, resp);
-            } catch (Exception e) {
-                logger.error("搜索关键词提示", e);
-            }
-            logger.info("搜索关键词提示 耗时:" + (System.currentTimeMillis() - start) + "ms");
-        }else if("/case/AdvancedSearchTermSuggest".equals(uri)){//4
-            try {
-                processor.advancedSearchTermSuggest(req, resp);
-            } catch (Exception e) {
-                logger.error("高级搜索关键词提示", e);
-            }
-            logger.info("高级搜索关键词提示 耗时:" + (System.currentTimeMillis() - start) + "ms");
-        }else if("/case/SearchKnowledgeFirst".equals(uri)){//5
-            try {
-                processor.searchKnowledgeFirst(req, resp);
-            } catch (Exception e) {
-                logger.error("首页知识库搜索", e);
-            }
-            logger.info("首页知识库搜索 耗时:" + (System.currentTimeMillis() - start) + "ms");
-        }else if("/case/SearchCase".equals(uri)){//6
-            try {
-                processor.searchCase(req, resp);
-            } catch (Exception e) {
-                logger.error("首页知识库搜索", e);
-            }
-            logger.info("首页知识库搜索 耗时:" + (System.currentTimeMillis() - start) + "ms");
-        }else if("/case/DiseaseSearchGenes".equals(uri)){
-            try {
-                processor.diseaseSearchGenes(req, resp);
-            } catch (Exception e) {
-                logger.error("返回该疾病相关基因", e);
-            }
-            logger.info("返回该疾病相关基因 耗时:" + (System.currentTimeMillis() - start) + "ms");
-        }else if("/case/SampleImport".equals(uri)){
-            try {
-                processor.sampleImport(req, resp);
-            } catch (Exception e) {
-                logger.error("样本集导出到项目空间", e);
-            }
-            logger.info("样本集导出到项目空间 耗时:" + (System.currentTimeMillis() - start) + "ms");
+    @RequestMapping(value="/SearchItemSet",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postSearchItemSet(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("搜索结果列表展示的集合 post方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.searchItemSet(paramObj);
+        }catch (Exception e){
+            logger.error("搜索结果列表展示的集合",e);
+            resultStr = ParamUtils.errorParam("出现异常");
         }
+        logger.info("搜索结果列表展示的集合 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+    @RequestMapping(value="/SearchItemSet",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getSearchItemSet(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("搜索结果列表展示的集合 get方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.searchItemSet(paramObj);
+        }catch (Exception e){
+            logger.error("搜索结果列表展示的集合",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("搜索结果列表展示的集合 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        this.doGet(req, resp);
+    @RequestMapping(value="/SearchTermSuggest",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postSearchTermSuggest(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("搜索关键词提示 post方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.searchTermSuggest(paramObj);
+        }catch (Exception e){
+            logger.error("搜索关键词提示",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("搜索关键词提示 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
     }
+
+    @RequestMapping(value="/SearchTermSuggest",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getSearchTermSuggest(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("搜索关键词提示 get方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.searchTermSuggest(paramObj);
+        }catch (Exception e){
+            logger.error("搜索关键词提示",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("搜索关键词提示 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/AdvancedSearchTermSuggest",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postAdvancedSearchTermSuggest(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("高级搜索关键词提示 post方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.advancedSearchTermSuggest(paramObj);
+        }catch (Exception e){
+            logger.error("高级搜索关键词提示",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("高级搜索关键词提示 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/AdvancedSearchTermSuggest",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getAdvancedSearchTermSuggest(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("高级搜索关键词提示 get方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.advancedSearchTermSuggest(paramObj);
+        }catch (Exception e){
+            logger.error("高级搜索关键词提示",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("高级搜索关键词提示 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+    @RequestMapping(value="/SearchKnowledgeFirst",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postSearchKnowledgeFirst(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("首页知识库搜索 post方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.searchKnowledgeFirst(paramObj);
+        }catch (Exception e){
+            logger.error("首页知识库搜索",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("首页知识库搜索 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value="/SearchKnowledgeFirst",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getSearchKnowledgeFirst(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("首页知识库搜索 get方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.searchKnowledgeFirst(paramObj);
+        }catch (Exception e){
+            logger.error("首页知识库搜索",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("首页知识库搜索 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+    @RequestMapping(value="/SearchCase",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postSearchCase(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("病历搜索 post方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.searchCase(paramObj);
+        }catch (Exception e){
+            logger.error("病历搜索",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("病历搜索 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("病历搜索 结果="+resultStr);
+        return resultStr;
+    }
+    @RequestMapping(value="/GeneVerify",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postGeneVerify(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("基因数组校验 post方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.geneVerify(paramObj);
+        }catch (Exception e){
+            logger.error("基因数组校验",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("基因数组校验 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("基因数组校验 结果="+resultStr);
+        return resultStr;
+    }
+
+    @RequestMapping(value="/DiseaseSearchGenes",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postDiseaseSearchGenes(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("返回该疾病相关基因 post方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.diseaseSearchGenes(paramObj);
+        }catch (Exception e){
+            logger.error("返回该疾病相关基因",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("返回该疾病相关基因 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/DiseaseSearchGenes",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getDiseaseSearchGenes(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("返回该疾病相关基因 get方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.diseaseSearchGenes(paramObj);
+        }catch (Exception e){
+            logger.error("返回该疾病相关基因",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("返回该疾病相关基因 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+    @RequestMapping(value="/SampleImport",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postSampleImport(@RequestBody String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("样本集导出到项目空间 get方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.sampleImport(paramObj);
+        }catch (Exception e){
+            logger.error("样本集导出到项目空间",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("样本集导出到项目空间 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/SampleImport",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getSampleImport(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("样本集导出到项目空间 post方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.sampleImport(paramObj);
+        }catch (Exception e){
+            logger.error("样本集导出到项目空间",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("样本集导出到项目空间 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
 }
