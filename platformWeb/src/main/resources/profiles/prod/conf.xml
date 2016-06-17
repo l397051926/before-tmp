@@ -26,41 +26,42 @@
     </bean>
 
     <bean id="com.gennlife.platform.util.MongoConf" class="com.gennlife.platform.util.MongoConf">
-        <property name="host" value="10.0.0.131"/>
-        <property name="port" value="10101"/>
+        <property name="host" value="10.0.0.185"/>
+        <property name="port" value="27017"/>
         <property name="poolSize" value="10"/>
         <property name="blockSize" value="10"/>
     </bean>
 
 
     <bean id="com.gennlife.platform.configuration.URLBean" class="com.gennlife.platform.configuration.URLBean">
-        <property name="caseSearchURL" value="http://10.0.0.32:8989/search-server/search"/>
-        <property name="caseSuggestURL" value="http://10.0.0.32:8989/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
+        <property name="caseSearchURL" value="http://10.0.0.187:8989/search-server/search"/>
+        <property name="caseSuggestURL" value="http://10.0.0.187:8989/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
 
-        <property name="caseDetailPatientBasicInfoURL" value="http://192.168.1.111:8111/FileService/patient_basic_info"/>
-        <property name="caseDetailPatientBasicFigureURL" value="http://192.168.1.111:8111/FileService/visit_count_by_dimension"/>
-        <property name="casePatientBasicTimeAxisURL" value="http://192.168.1.111:8111/FileService/visit_timeline"/>
-        <property name="casePhysical_examination_list" value="http://192.168.1.111:8111/FileService/physical_examination_list"/>
-        <property name="casePhysical_examination" value="http://192.168.1.111:8111/FileService/physical_examination"/>
-        <property name="caseVisit_detail" value="http://192.168.1.111:8111/FileService/visit_detail"/>
-        <property name="caseLab_result_item" value="http://192.168.1.111:8111/FileService/lab_result_item"/>
-        <property name="caseLab_result_item_list" value="http://192.168.1.111:8111/FileService/lab_result_item_list"/>
-        <property name="caseGenetic_disease" value="http://192.168.1.111:8111/FileService/genetic_disease"/>
-        <property name="caseDrug_reaction" value="http://192.168.1.111:8111/FileService/drug_reaction"/>
-        <property name="caseCategory_catalog" value="http://192.168.1.111:8111/FileService/category_catalog"/>
-        <property name="caseMolecular_detection" value="http://192.168.1.111:8111/FileService/molecular_detection"/>
-        <property name="caseBiological_specimen" value="http://192.168.1.111:8111/FileService/biological_specimen"/>
-        <property name="caseExam_result" value="http://192.168.1.111:8111/FileService/exam_result"/>
-        <property name="casePathological_examination" value="http://192.168.1.111:8111/FileService/pathological_examination"/>
+        <property name="caseDetailPatientBasicInfoURL" value="http://10.0.0.182:8111/FileService/patient_basic_info"/>
+        <property name="caseDetailPatientBasicFigureURL" value="http://10.0.0.182:8111/FileService/visit_count_by_dimension"/>
+        <property name="casePatientBasicTimeAxisURL" value="http://10.0.0.182:8111/FileService/visit_timeline"/>
+        <property name="casePhysical_examination_list" value="http://10.0.0.182:8111/FileService/physical_examination_list"/>
+        <property name="casePhysical_examination" value="http://10.0.0.182:8111/FileService/physical_examination"/>
+        <property name="caseVisit_detail" value="http://10.0.0.182:8111/FileService/visit_detail"/>
+        <property name="caseLab_result_item" value="http://10.0.0.182:8111/FileService/lab_result_item"/>
+        <property name="caseLab_result_item_list" value="http://10.0.0.182:8111/FileService/lab_result_item_list"/>
+        <property name="caseGenetic_disease" value="http://10.0.0.182:8111/FileService/genetic_disease"/>
+        <property name="caseDrug_reaction" value="http://10.0.0.182:8111/FileService/drug_reaction"/>
+        <property name="caseCategory_catalog" value="http://10.0.0.182:8111/FileService/category_catalog"/>
+        <property name="caseMolecular_detection" value="http://10.0.0.182:8111/FileService/molecular_detection"/>
+        <property name="caseBiological_specimen" value="http://10.0.0.182:8111/FileService/biological_specimen"/>
+        <property name="caseExam_result" value="http://10.0.0.182:8111/FileService/exam_result"/>
+        <property name="casePathological_examination" value="http://10.0.0.182:8111/FileService/pathological_examination"/>
 
-        <property name="synQueryURL" value="http://192.168.1.111:7070/nlp-service/api/v1.0/syn?q=%s"/>
-        <property name="knowledgeURL" value="http://192.168.1.111:9881/knowledge/graph"/>
-        <property name="knowledgeDiseaseSearchGenesURL" value="http://192.168.1.111:9881/knowledge/DiseaseSearchGenes"/>
-        <property name="knowledgeGeneInfoURL" value="http://192.168.1.111:9881/knowledge/GeneInfo"/>
-        <property name="knowledgeVariationInfoURL" value="http://192.168.1.111:9881/knowledge/VariationInfo"/>
-        <property name="knowledgeDetailVariationSearchDiseaseURL" value="http://192.168.1.111:9881/knowledge/VariationInfo"/>
-        <property name="knowledgeDetailVariationSearchDrugURL" value="http://192.168.1.111:9881/knowledge/VariationInfo"/>
-        <property name="knowledgePharmGKBSearchDrugURL" value="http://192.168.1.111:9881/knowledge/PharmGKBSearchDrug"/>
+        <property name="synQueryURL" value="http://10.0.0.183:7070/nlp-service/api/v1.0/syn?q=%s"/>
+
+        <property name="knowledgeURL" value="http://10.0.0.184:8080/knowledge/graph"/>
+        <property name="knowledgeDiseaseSearchGenesURL" value="http://10.0.0.184:8080/knowledge/DiseaseSearchGenes"/>
+        <property name="knowledgeGeneInfoURL" value="http://10.0.0.184:8080/knowledge/GeneInfo"/>
+        <property name="knowledgeVariationInfoURL" value="http://10.0.0.184:8080/knowledge/VariationInfo"/>
+        <property name="knowledgeDetailVariationSearchDiseaseURL" value="http://10.0.0.184:8080/knowledge/VariationInfo"/>
+        <property name="knowledgeDetailVariationSearchDrugURL" value="http://10.0.0.184:8080/knowledge/VariationInfo"/>
+        <property name="knowledgePharmGKBSearchDrugURL" value="http://10.0.0.184:8080/knowledge/PharmGKBSearchDrug"/>
 
     </bean>
 </beans>

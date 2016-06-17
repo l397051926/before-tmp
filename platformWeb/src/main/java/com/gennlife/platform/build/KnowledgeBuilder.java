@@ -511,11 +511,13 @@ public class KnowledgeBuilder {
 		JsonObject head = new JsonObject();
 		int pageSize = param.get("pageSize").getAsInt();
 		int currentPage = param.get("currentPage").getAsInt();
+
 		head.addProperty("pageSize",pageSize);
 		Integer counter = 0;
 		if(null==obj.getAsJsonObject("info")){
 			counter = 0;
 		}else{
+
 			counter = obj.getAsJsonObject("info").get("counter").getAsInt();
 		}
 		head.addProperty("totalRecords",counter);

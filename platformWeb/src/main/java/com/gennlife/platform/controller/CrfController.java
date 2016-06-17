@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by chen-song on 16/6/3.
  */
@@ -34,21 +36,6 @@ public class CrfController {
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("crf 请求模板 post 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
-    @RequestMapping(value="/Model",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getModel(@RequestParam("param") String param){
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            logger.info("请求模板 get方式 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.model(paramObj);
-        }catch (Exception e){
-            logger.error("请求模板",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("crf 请求模板 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 
@@ -145,10 +132,11 @@ public class CrfController {
     }
 
     @RequestMapping(value="/EditModel",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postEditModel(@RequestBody String param) {
+    public @ResponseBody String postEditModel(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("编辑模型 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.editModel(paramObj);
@@ -160,21 +148,6 @@ public class CrfController {
         return resultStr;
     }
 
-    @RequestMapping(value="/EditModel",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getEditModel(@RequestParam("param")String param) {
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            logger.info("编辑模型 get方式 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.editModel(paramObj);
-        }catch (Exception e){
-            logger.error("编辑模型",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("编辑模型 get 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
     @RequestMapping(value="/SaveModel",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody String postSaveModel(@RequestBody String param) {
         Long start = System.currentTimeMillis();
