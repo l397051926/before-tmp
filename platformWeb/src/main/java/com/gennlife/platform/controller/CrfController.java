@@ -40,10 +40,11 @@ public class CrfController {
     }
 
     @RequestMapping(value="/SelectAttr",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postSelectAttr(@RequestBody String param) {
+    public @ResponseBody String postSelectAttr(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("勾选属性,修改模型 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.selectAttr(paramObj);
@@ -70,10 +71,11 @@ public class CrfController {
         return resultStr;
     }
     @RequestMapping(value="/AddGroup",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postAddGroup(@RequestBody String param) {
+    public @ResponseBody String postAddGroup(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("模型增加组 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.addGroup(paramObj);
@@ -101,10 +103,11 @@ public class CrfController {
         return resultStr;
     }
     @RequestMapping(value="/AddAttr",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postAddAttr(@RequestBody String param) {
+    public @ResponseBody String postAddAttr(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("模型增加属性 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.addAttr(paramObj);
@@ -149,10 +152,11 @@ public class CrfController {
     }
 
     @RequestMapping(value="/SaveModel",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postSaveModel(@RequestBody String param) {
+    public @ResponseBody String postSaveModel(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("保存模型 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.saveModel(paramObj);
@@ -181,10 +185,11 @@ public class CrfController {
     }
 
     @RequestMapping(value="/GetData",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postGetData(@RequestBody String param) {
+    public @ResponseBody String postGetData(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("数据录入时,请求某个case数据 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getData(paramObj);
@@ -215,10 +220,11 @@ public class CrfController {
 
 
     @RequestMapping(value="/UpLoadData",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postUpLoadData(@RequestBody String param) {
+    public @ResponseBody String postUpLoadData(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("上传crf数据 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr = processor.upLoadData(paramObj);
@@ -248,10 +254,11 @@ public class CrfController {
     }
 
     @RequestMapping(value="/SaveData",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postSaveData(@RequestBody String param) {
+    public @ResponseBody String postSaveData(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("录入完成接口 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr = processor.saveData(paramObj);
@@ -280,10 +287,11 @@ public class CrfController {
     }
 
     @RequestMapping(value="/ModelTree",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postModelTree(@RequestBody String param) {
+    public @ResponseBody String postModelTree(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("获取模型树,没有叶子节点 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr = processor.modelTree(paramObj);
@@ -312,10 +320,11 @@ public class CrfController {
     }
 
     @RequestMapping(value="/SampleCaseList",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postSampleCaseList(@RequestBody String param) {
+    public @ResponseBody String postSampleCaseList(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("病历列表数据 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr = processor.sampleCaseList(paramObj);
@@ -344,10 +353,11 @@ public class CrfController {
     }
 
     @RequestMapping(value="/DeleteSample",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postDeleteSample(@RequestBody String param) {
+    public @ResponseBody String postDeleteSample(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("删除某个case数据 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr = processor.deleteSample(paramObj);
@@ -377,10 +387,11 @@ public class CrfController {
     }
 
     @RequestMapping(value="/SearchSampleList",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postSearchSampleList(@RequestBody String param) {
+    public @ResponseBody String postSearchSampleList(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("搜索病历列表 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr = processor.searchSampleList(paramObj);
@@ -412,10 +423,11 @@ public class CrfController {
 
 
     @RequestMapping(value="/DeleteGroup",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postDeleteGroup(@RequestBody String param) {
+    public @ResponseBody String postDeleteGroup(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("删除组异常 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr = processor.deleteGroup(paramObj);
