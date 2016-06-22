@@ -519,7 +519,7 @@ public class KnowledgeBuilder {
 			counter = 0;
 		}else{
 			String to = param.get("to").getAsString();
-			if("to".equals("drug")){
+			if(to.equals("drug")){
 				String currentTable = param.get("currentTable").getAsString();
 				String currentTableName = "";
 				if("drug_fda".equals(currentTable)){
