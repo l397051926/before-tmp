@@ -219,16 +219,8 @@ public class CaseProcessor {
      * @param paramObj
      */
     public String searchCase(JsonObject paramObj) {
-        String param = null;
         String newParam = null;
         try {
-            String query = ParamUtils.buildQuery(paramObj);
-            paramObj.addProperty("query", query);
-            paramObj.addProperty("hospitalID", "public");
-            paramObj.remove("from");
-            paramObj.remove("to");
-            paramObj.remove("filters");
-            paramObj.remove("isAdv");
             newParam = gson.toJson(paramObj);
             logger.info("处理后请求参数=" + newParam);
         } catch (Exception e) {

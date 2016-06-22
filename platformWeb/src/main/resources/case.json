@@ -15,7 +15,11 @@
         {
           "dataType": "string",
           "UIFieldName": "性别",
-          "IndexFieldName": "clinicalCRF.Sex"
+          "IndexFieldName": "clinicalCRF.Sex",
+          "dataMap":[
+            "男",
+            "女"
+          ]
         },
         {
           "dataType": "long",
@@ -250,7 +254,11 @@
         {
           "dataType": "string",
           "UIFieldName": "性别",
-          "IndexFieldName": "clinicalCRF.Sex"
+          "IndexFieldName": "clinicalCRF.Sex",
+          "dataMap":[
+            "男",
+            "女"
+          ]
         },
         {
           "dataType": "long",

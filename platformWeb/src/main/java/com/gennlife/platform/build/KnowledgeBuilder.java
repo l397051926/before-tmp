@@ -148,6 +148,7 @@ public class KnowledgeBuilder {
 	
 	private JsonArray buildVariationArry2Disease(JsonObject param, JsonObject obj) {
 		JsonArray result = new JsonArray();
+		//构建返回的头部
 		JsonObject head = buildHead(param,obj);
 		String from = param.get("from").getAsString();
 		String to = param.get("to").getAsString();
@@ -517,8 +518,24 @@ public class KnowledgeBuilder {
 		if(null==obj.getAsJsonObject("info")){
 			counter = 0;
 		}else{
+			String to = param.get("to").getAsString();
+			if("to".equals("drug")){
+				String currentTable = param.get("currentTable").getAsString();
+				String currentTableName = "";
+				if("drug_fda".equals(currentTable)){
+					currentTableName = "fda";
+				}else if("drug_nccn".equals(currentTable)){
+					currentTableName = "nccn";
+				}else if("drug_target".equals(currentTable)){
+					currentTableName = "targetDrug";
+				}else if("drug_variation".equals(currentTable)){
+					currentTableName = "pharmDrug";
+				}
+				counter = obj.getAsJsonObject("info").getAsJsonObject("counter").get(currentTableName).getAsInt();
+			}else {
+				counter = obj.getAsJsonObject("info").get("counter").getAsInt();
+			}
 
-			counter = obj.getAsJsonObject("info").get("counter").getAsInt();
 		}
 		head.addProperty("totalRecords",counter);
 		int total_pages = 0;
@@ -550,78 +567,6 @@ public class KnowledgeBuilder {
 			schemaKey = from+"_"+currentTable;
 		}
 		schema = DataFormatConversion.getSchema(schemaKey);
-		head.add("schema",schema);
-		if(null!=obj.getAsJsonArray("dimension")){
-			head.add("dimension",obj.getAsJsonArray("dimension"));
-		}
-		return head;
-	}
-	private JsonObject buildHeadBak(JsonObject param,JsonObject obj){
-		JsonObject head = new JsonObject();
-		int pageSize = param.get("pageSize").getAsInt();
-		int currentPage = param.get("currentPage").getAsInt();
-		head.addProperty("pageSize",pageSize);
-		Integer counter = 0;
-		if(null==obj.getAsJsonObject("info")){
-			counter = 0;
-		}else{
-			counter = obj.getAsJsonObject("info").get("counter").getAsInt();
-		}
-		head.addProperty("totalRecords",counter);
-		int total_pages = 0;
-		if(counter > 0){
-			total_pages = counter % pageSize;
-		}
-		String from = param.get("from").getAsString();
-		String to = param.get("to").getAsString();
-		head.addProperty("total_pages",total_pages);
-		head.addProperty("currentPage",currentPage);
-		head.addProperty("from",from);
-		head.addProperty("to",to);
-		head.addProperty("limit",currentPage+","+pageSize);
-		JsonArray schema = null;
-		if("variationArray".equals(from)&&"drug".equals(to)){
-			schema = variationArray2DrugSchema(from);
-		}else if("variationArray".equals(from)&&"disease".equals(to)){
-			schema = variationArray2DiseaseSchema(from);
-		}else if("disease".equals(to)&&!"variationArray".equals(from)){
-			schema = diseaseSchema(from);
-		}else if ("protein".equals(to)){
-			schema = proteinSchema(from);
-		}else if ("gene".equals(to)){
-			schema = geneSchema(from);
-		}else if("variation".equals(to)){
-			schema = variationSchema(from);
-		}else if("diseaseGene".equals(from)){
-			schema = diseaseGeneSchema(from);
-		}else if("geneDisease".equals(from)){
-			schema = geneDiseaseSchema(from);
-		}else if("drug".equals(to)
-				&&!"diseaseGene".equals(from)
-				&&!"geneDisease".equals(from)
-				&&!"variationArray".equals(from)){
-			String tableName = null;
-			if(!"geneDisease".equals(from)
-				&&!"diseaseGene".equals(from) 	){
-				tableName=param.get("currentTable").getAsString();
-			}
-			if("drug".equals(tableName)){
-				schema = drugSchema(from);
-			}else if("drug_fda".equals(tableName)){
-				schema = drugUseSchema(from);
-			}else if("drug_nccn".equals(tableName)){
-				schema = drugUseSchema(from);
-			}else if("drug_gene".equals(tableName)){
-				schema = drugGENESchema(from);
-			}else if ("drug_target".equals(tableName)){
-				schema = drugTargetSchema(from);
-			}else if("drug_variation".equals(tableName)){
-				schema = drugVariationSchema(from);
-			}
-
-		}else if("phenotype".equals(to)){
-			schema = phenotypeSchema(from);
-		}
 		head.add("schema",schema);
 		if(null!=obj.getAsJsonArray("dimension")){
 			head.add("dimension",obj.getAsJsonArray("dimension"));
