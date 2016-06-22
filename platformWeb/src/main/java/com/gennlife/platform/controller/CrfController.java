@@ -253,7 +253,7 @@ public class CrfController {
         return resultStr;
     }
 
-    @RequestMapping(value="/UpdateGroupName",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/UpdateGroupName",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String getUpdateGroupName(@RequestParam("param") String param) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
