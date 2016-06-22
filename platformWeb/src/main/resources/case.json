@@ -16,9 +16,10 @@
           "dataType": "string",
           "UIFieldName": "性别",
           "IndexFieldName": "clinicalCRF.Sex",
-          "dataMap":[
+          "dataMap": [
             "男",
-            "女"
+            "女",
+            "未知"
           ]
         },
         {
@@ -35,7 +36,65 @@
         {
           "dataType": "string",
           "UIFieldName": "民族",
-          "IndexFieldName": "clinicalCRF.nation"
+          "IndexFieldName": "clinicalCRF.nation",
+          "dataMap": [
+            "汉族",
+            "阿昌族",
+            "白族",
+            "保安族",
+            "布朗族",
+            "布依族",
+            "朝鲜族",
+            "达斡尔族",
+            "傣族",
+            "德昂族",
+            "侗族",
+            "东乡族",
+            "独龙族",
+            "鄂伦春族",
+            "俄罗斯族",
+            "鄂温克族",
+            "高山族",
+            "仡佬族",
+            "哈尼族",
+            "哈萨克族",
+            "赫哲族",
+            "回族",
+            "基诺族",
+            "京族",
+            "景颇族",
+            "柯尔克孜族",
+            "拉祜族",
+            "黎族",
+            "傈僳族",
+            "珞巴族",
+            "满族",
+            "毛南族",
+            "门巴族",
+            "蒙古族",
+            "苗族",
+            "仫佬族",
+            "纳西族",
+            "怒族",
+            "普米族",
+            "羌族",
+            "撒拉族",
+            "畲族",
+            "水族",
+            "塔吉克族",
+            "塔塔尔族",
+            "土族",
+            "土家族",
+            "佤族",
+            "维吾尔族",
+            "乌兹别克族",
+            "锡伯族",
+            "瑶族",
+            "彝族",
+            "裕固族",
+            "藏族",
+            "壮族"
+          ]
         },
         {
           "dataType": "string",
@@ -45,17 +104,37 @@
         {
           "dataType": "string",
           "UIFieldName": "婚姻",
-          "IndexFieldName": "clinicalCRF.marriage"
+          "IndexFieldName": "clinicalCRF.marriage",
+          "dataMap": [
+            "未婚",
+            "已婚",
+            "离异",
+            "丧偶",
+            "分居",
+            "未知"
+          ]
         },
         {
           "dataType": "string",
           "UIFieldName": "患者Rh血型",
-          "IndexFieldName": "clinicalCRF.blood_type_Rh"
+          "IndexFieldName": "clinicalCRF.blood_type_Rh",
+          "dataMap": [
+            "阴性",
+            "阳性",
+            "未知"
+          ]
         },
         {
           "dataType": "string",
           "UIFieldName": "患者ABO血型",
-          "IndexFieldName": "clinicalCRF.blood_type_ABO"
+          "IndexFieldName": "clinicalCRF.blood_type_ABO",
+          "dataMap": [
+            "A",
+            "B",
+            "O",
+            "AB",
+            "未知"
+          ]
         },
         {
           "dataType": "string",
@@ -83,7 +162,7 @@
           "IndexFieldName": "clinicalCRF.smoke_history"
         }
       ],
-      "临床信息":[
+      "临床信息": [
         {
           "dataType": "string",
           "UIFieldName": "临床诊断",
@@ -92,7 +171,18 @@
         {
           "dataType": "string",
           "UIFieldName": "临床分期",
-          "IndexFieldName": "clinicalCRF.Clin_Stage"
+          "IndexFieldName": "clinicalCRF.Clin_Stage",
+          "dataMap": [
+            "0期",
+            "IA期",
+            "IB期",
+            "IIA期",
+            "IIB期",
+            "IIIA期",
+            "IIIB期",
+            "IV期",
+            "未知"
+          ]
         },
         {
           "dataType": "date",
@@ -108,7 +198,18 @@
         {
           "dataType": "string",
           "UIFieldName": "病理分期",
-          "IndexFieldName": "clinicalCRF.Path_Stage"
+          "IndexFieldName": "clinicalCRF.Path_Stage",
+          "dataMap": [
+            "0期",
+            "IA期",
+            "IB期",
+            "IIA期",
+            "IIB期",
+            "IIIA期",
+            "IIIB期",
+            "IV期",
+            "未知"
+          ]
         },
         {
           "dataType": "string",
@@ -157,7 +258,7 @@
           "IndexFieldName": "clinicalCRF.radiotherapy"
         }
       ],
-      "组学信息":[
+      "组学信息": [
         {
           "dataType": "date",
           "UIFieldName": "检测日期",
@@ -170,7 +271,7 @@
           "IndexFieldName": "clinicalCRF.mutation"
         }
       ],
-      "随访":[
+      "随访": [
         {
           "dataType": "date",
           "UIFieldName": "随访日期",
@@ -210,7 +311,7 @@
           "IndexFieldName": "clinicalCRF.fir_meta_loca"
         }
       ],
-      "生物标本":[
+      "生物标本": [
         {
           "dataType": "string",
           "UIFieldName": "血样",
@@ -237,7 +338,6 @@
           "IndexFieldName": "clinicalCRF.storage"
         }
       ]
-
     },
     "all": {
       "病人基本信息": [
@@ -255,9 +355,10 @@
           "dataType": "string",
           "UIFieldName": "性别",
           "IndexFieldName": "clinicalCRF.Sex",
-          "dataMap":[
+          "dataMap": [
             "男",
-            "女"
+            "女",
+            "未知"
           ]
         },
         {
@@ -274,7 +375,65 @@
         {
           "dataType": "string",
           "UIFieldName": "民族",
-          "IndexFieldName": "clinicalCRF.nation"
+          "IndexFieldName": "clinicalCRF.nation",
+          "dataMap": [
+            "汉族",
+            "阿昌族",
+            "白族",
+            "保安族",
+            "布朗族",
+            "布依族",
+            "朝鲜族",
+            "达斡尔族",
+            "傣族",
+            "德昂族",
+            "侗族",
+            "东乡族",
+            "独龙族",
+            "鄂伦春族",
+            "俄罗斯族",
+            "鄂温克族",
+            "高山族",
+            "仡佬族",
+            "哈尼族",
+            "哈萨克族",
+            "赫哲族",
+            "回族",
+            "基诺族",
+            "京族",
+            "景颇族",
+            "柯尔克孜族",
+            "拉祜族",
+            "黎族",
+            "傈僳族",
+            "珞巴族",
+            "满族",
+            "毛南族",
+            "门巴族",
+            "蒙古族",
+            "苗族",
+            "仫佬族",
+            "纳西族",
+            "怒族",
+            "普米族",
+            "羌族",
+            "撒拉族",
+            "畲族",
+            "水族",
+            "塔吉克族",
+            "塔塔尔族",
+            "土族",
+            "土家族",
+            "佤族",
+            "维吾尔族",
+            "乌兹别克族",
+            "锡伯族",
+            "瑶族",
+            "彝族",
+            "裕固族",
+            "藏族",
+            "壮族"
+          ]
         },
         {
           "dataType": "string",
@@ -284,17 +443,37 @@
         {
           "dataType": "string",
           "UIFieldName": "婚姻",
-          "IndexFieldName": "clinicalCRF.marriage"
+          "IndexFieldName": "clinicalCRF.marriage",
+          "dataMap": [
+            "未婚",
+            "已婚",
+            "离异",
+            "丧偶",
+            "分居",
+            "未知"
+          ]
         },
         {
           "dataType": "string",
           "UIFieldName": "患者Rh血型",
-          "IndexFieldName": "clinicalCRF.blood_type_Rh"
+          "IndexFieldName": "clinicalCRF.blood_type_Rh",
+          "dataMap": [
+            "阴性",
+            "阳性",
+            "未知"
+          ]
         },
         {
           "dataType": "string",
           "UIFieldName": "患者ABO血型",
-          "IndexFieldName": "clinicalCRF.blood_type_ABO"
+          "IndexFieldName": "clinicalCRF.blood_type_ABO",
+          "dataMap": [
+            "A",
+            "B",
+            "O",
+            "AB",
+            "未知"
+          ]
         },
         {
           "dataType": "string",
@@ -398,7 +577,6 @@
           "UIFieldName": "疾病名称",
           "IndexFieldName": "clinicalCRF.others_name"
         }
-
       ],
       "既往肿瘤史": [
         {
@@ -480,7 +658,7 @@
           "IndexFieldName": "clinicalCRF.child_ca_age"
         }
       ],
-      "吸烟史":[
+      "吸烟史": [
         {
           "dataType": "long",
           "UIFieldName": "开始吸烟年龄",
@@ -522,7 +700,7 @@
           "IndexFieldName": "clinicalCRF.pass_Wk_smk_fre"
         }
       ],
-      "临床信息":[
+      "临床信息": [
         {
           "dataType": "string",
           "UIFieldName": "临床诊断",
@@ -531,22 +709,66 @@
         {
           "dataType": "string",
           "UIFieldName": "临床T分期",
-          "IndexFieldName": "clinicalCRF.Clin_T"
+          "IndexFieldName": "clinicalCRF.Clin_T",
+          "dataMap": [
+            "0期",
+            "IA期",
+            "IB期",
+            "IIA期",
+            "IIB期",
+            "IIIA期",
+            "IIIB期",
+            "IV期",
+            "未知"
+          ]
         },
         {
           "dataType": "string",
           "UIFieldName": "临床N分期",
-          "IndexFieldName": "clinicalCRF.Clin_N"
+          "IndexFieldName": "clinicalCRF.Clin_N",
+          "dataMap": [
+            "0期",
+            "IA期",
+            "IB期",
+            "IIA期",
+            "IIB期",
+            "IIIA期",
+            "IIIB期",
+            "IV期",
+            "未知"
+          ]
         },
         {
           "dataType": "string",
           "UIFieldName": "临床M分期",
-          "IndexFieldName": "clinicalCRF.Clin_M"
+          "IndexFieldName": "clinicalCRF.Clin_M",
+          "dataMap": [
+            "0期",
+            "IA期",
+            "IB期",
+            "IIA期",
+            "IIB期",
+            "IIIA期",
+            "IIIB期",
+            "IV期",
+            "未知"
+          ]
         },
         {
           "dataType": "string",
           "UIFieldName": "临床分期",
-          "IndexFieldName": "clinicalCRF.Clin_Stage"
+          "IndexFieldName": "clinicalCRF.Clin_Stage",
+          "dataMap": [
+            "0期",
+            "IA期",
+            "IB期",
+            "IIA期",
+            "IIB期",
+            "IIIA期",
+            "IIIB期",
+            "IV期",
+            "未知"
+          ]
         },
         {
           "dataType": "string",
@@ -567,22 +789,66 @@
         {
           "dataType": "string",
           "UIFieldName": "病理分期",
-          "IndexFieldName": "clinicalCRF.Path_Stage"
+          "IndexFieldName": "clinicalCRF.Path_Stage",
+          "dataMap": [
+            "0期",
+            "IA期",
+            "IB期",
+            "IIA期",
+            "IIB期",
+            "IIIA期",
+            "IIIB期",
+            "IV期",
+            "未知"
+          ]
         },
         {
           "dataType": "string",
           "UIFieldName": "病理T分期",
-          "IndexFieldName": "clinicalCRF.Path_T"
+          "IndexFieldName": "clinicalCRF.Path_T",
+          "dataMap": [
+            "0期",
+            "IA期",
+            "IB期",
+            "IIA期",
+            "IIB期",
+            "IIIA期",
+            "IIIB期",
+            "IV期",
+            "未知"
+          ]
         },
         {
           "dataType": "string",
           "UIFieldName": "病理N分期",
-          "IndexFieldName": "clinicalCRF.Path_N"
+          "IndexFieldName": "clinicalCRF.Path_N",
+          "dataMap": [
+            "0期",
+            "IA期",
+            "IB期",
+            "IIA期",
+            "IIB期",
+            "IIIA期",
+            "IIIB期",
+            "IV期",
+            "未知"
+          ]
         },
         {
           "dataType": "string",
           "UIFieldName": "病理M分期",
-          "IndexFieldName": "clinicalCRF.Path_M"
+          "IndexFieldName": "clinicalCRF.Path_M",
+          "dataMap": [
+            "0期",
+            "IA期",
+            "IB期",
+            "IIA期",
+            "IIB期",
+            "IIIA期",
+            "IIIB期",
+            "IV期",
+            "未知"
+          ]
         },
         {
           "dataType": "string",
@@ -681,7 +947,7 @@
           "IndexFieldName": "clinicalCRF.meta_operation"
         }
       ],
-      "免疫组化检测":[
+      "免疫组化检测": [
         {
           "dataType": "date",
           "UIFieldName": "检测日期",
@@ -708,7 +974,6 @@
           "UIFieldName": "IH_EGFR",
           "IndexFieldName": "clinicalCRF.IH_EGFR"
         },
-
         {
           "dataType": "string",
           "UIFieldName": "IH_K-ras",
@@ -735,7 +1000,7 @@
           "IndexFieldName": "clinicalCRF.IH_oth2_value"
         }
       ],
-      "肿瘤标志物检测":[
+      "肿瘤标志物检测": [
         {
           "dataType": "date",
           "UIFieldName": "检测日期",
@@ -773,7 +1038,7 @@
           "IndexFieldName": "clinicalCRF.BM_other_value"
         }
       ],
-      "组学信息":[
+      "组学信息": [
         {
           "dataType": "date",
           "UIFieldName": "检测日期",
@@ -827,7 +1092,7 @@
           "IndexFieldName": "clinicalCRF.CEAmRNA"
         }
       ],
-      "术前放疗":[
+      "术前放疗": [
         {
           "dataType": "string",
           "UIFieldName": "放疗部位",
@@ -839,7 +1104,7 @@
           "IndexFieldName": "clinicalCRF.pre_radio_dose"
         }
       ],
-      "术前化疗":[
+      "术前化疗": [
         {
           "dataType": "string",
           "UIFieldName": "化疗方案",
@@ -851,7 +1116,7 @@
           "IndexFieldName": "clinicalCRF.neochemo_1_dura"
         }
       ],
-      "术后化疗药物":[
+      "术后化疗药物": [
         {
           "dataType": "string",
           "UIFieldName": "chemo1",
@@ -913,7 +1178,7 @@
           "IndexFieldName": "clinicalCRF.chemo6_dura"
         }
       ],
-      "术后放疗药物":[
+      "术后放疗药物": [
         {
           "dataType": "string",
           "UIFieldName": "radio1_loc",
@@ -960,7 +1225,7 @@
           "IndexFieldName": "clinicalCRF.radio3_date"
         }
       ],
-      "其他治疗":[
+      "其他治疗": [
         {
           "dataType": "long",
           "UIFieldName": "中药治疗",
@@ -982,7 +1247,7 @@
           "IndexFieldName": "clinicalCRF.targettherapy_name"
         }
       ],
-      "随访":[
+      "随访": [
         {
           "dataType": "date",
           "UIFieldName": "随访日期",
@@ -1038,7 +1303,7 @@
           "IndexFieldName": "clinicalCRF.fir_meta_loca"
         }
       ],
-      "转移后治疗情况":[
+      "转移后治疗情况": [
         {
           "dataType": "string",
           "UIFieldName": "转移后是否继续治疗",
@@ -1080,7 +1345,7 @@
           "IndexFieldName": "clinicalCRF.meta_tar_name"
         }
       ],
-      "生物标本":[
+      "生物标本": [
         {
           "dataType": "string",
           "UIFieldName": "血样",
@@ -1161,7 +1426,7 @@
       ]
     }
   },
-  "caseOld":{
+  "caseOld": {
     "default": {
       "病人基本信息": [
         {
