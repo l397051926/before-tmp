@@ -535,7 +535,7 @@ public class KnowledgeBuilder {
 					currentTableName = "pharmDrug";
 				}
 				counter = obj.getAsJsonObject("info").getAsJsonObject("counter").get(currentTableName).getAsInt();
-			}else if ("".equals(from) && "".equals(to)){
+			}else if ("geneArray".equals(from) && "pathway".equals(to)){
 				String currentTable = param.get("currentTable").getAsString();
 				counter = obj.getAsJsonObject("info").getAsJsonObject("counter").get(currentTable).getAsInt();
 			}else {
