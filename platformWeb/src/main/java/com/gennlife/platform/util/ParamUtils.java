@@ -1,13 +1,8 @@
 package com.gennlife.platform.util;
 
 import com.gennlife.platform.bean.ResultBean;
-import com.gennlife.platform.parse.QueryServerParser;
-import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,9 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.*;
 
 /**
  * Created by chensong on 2015/12/9.
