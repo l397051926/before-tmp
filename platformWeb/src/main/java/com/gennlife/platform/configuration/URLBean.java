@@ -29,11 +29,6 @@ public class URLBean {
     private String casePatientBasicTimeAxisURL=null;
 
     /**
-     * 搜索:V1.0
-     * 关键词同义接口
-     */
-    private String synQueryURL = null;
-    /**
      * 查看指标变化: 具体指标
      */
     private String casePhysical_examination = null;
@@ -284,13 +279,6 @@ public class URLBean {
         this.caseSuggestURL = caseSuggestURL;
     }
 
-    public String getSynQueryURL() {
-        return synQueryURL;
-    }
-
-    public void setSynQueryURL(String synQueryURL) {
-        this.synQueryURL = synQueryURL;
-    }
 
     public String getCasePatientBasicTimeAxisURL() {
         return casePatientBasicTimeAxisURL;

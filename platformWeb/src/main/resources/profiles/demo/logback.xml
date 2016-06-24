@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds" debug="false">   
-    <property name="logBase" value="/home/tomcat_demo2_web/dev" />
+    <property name="logBase" value="/home/tomcat_demo2_web/demo" />
  	<!-- 系统日志文件-->
 	<appender name="SystemLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${logBase}/system.log</file>
