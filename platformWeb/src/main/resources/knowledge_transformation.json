@@ -613,7 +613,7 @@
 			"data_type": "single_array",
 			"path_one": "$.TargetDrugReference.formalDrugName",
 			"name_one": "name",
-			"path_two": "",
+			"path_two": "$.TargetDrugReference.drugUrl",
 			"name_two": "url"
 		},
 		"brand_name": {
@@ -1586,6 +1586,13 @@
 		}
 	},
 	"protein_drug_variation": {
+		"clinical_id":{
+			"data_type": "single_array",
+			"path_one": "$.clinical_annotation_id",
+			"name_one": "name",
+			"path_two": "$.clinical_annotation_id_url",
+			"name_two": "url"
+		},
 		"drug": {
 			"data_type": "single_array",
 			"path_one": "$.drugName",
@@ -1651,6 +1658,41 @@
 			"url": "url"
 		}
 	},
+	"disease_clinicalTrial":{
+		"clinicalTrial_id":{
+			"data_type": "single_array",
+			"path_one": "$.id",
+			"path_two": "$.url",
+			"name_one": "name",
+			"name_two": "url"
+		},
+		"title":{
+			"data_type": "string",
+			"path": "$.title"
+		},
+		"disease":{
+			"data_type": "array",
+			"path": "$.disease",
+			"name": "name",
+			"url": "url"
+		},
+		"drug":{
+			"data_type": "array",
+			"path": "$.drug",
+			"name": "name",
+			"url": "url"
+		},
+		"status":{
+			"data_type": "string",
+			"path": "$.status"
+		},
+		"ref": {
+			"data_type": "array",
+			"path": "$.reference",
+			"name": "text",
+			"url": "url"
+		}
+	},
 	"geneArray_geneTable":{
 		"gene":{
 			"data_type": "single_array",
@@ -1675,7 +1717,7 @@
 	"geneArray_pathwayTable":{
 		"pathwayId":{
 			"data_type": "single_array",
-			"path_one": "$.pathway_id",
+			"path_one": "$.id",
 			"path_two": "$.pathwayUrl",
 			"name_one": "name",
 			"name_two": "url"

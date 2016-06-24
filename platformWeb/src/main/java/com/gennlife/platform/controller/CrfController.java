@@ -236,6 +236,38 @@ public class CrfController {
         return resultStr;
     }
 
+    @RequestMapping(value="/UpdateGroupName",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String postUpdateGroupName(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("更新组名称 post方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.updateGroupName(paramObj);
+        }catch (Exception e){
+            logger.error("更新组名称",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("更新组名称  post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/UpdateGroupName",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String getUpdateGroupName(@RequestParam("param") String param) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("更新组名称 get方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.updateGroupName(paramObj);
+        }catch (Exception e){
+            logger.error("更新组名称",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("更新组名称  post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 
     @RequestMapping(value="/UpLoadData",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String getUpLoadData(@RequestParam("param") String param) {
