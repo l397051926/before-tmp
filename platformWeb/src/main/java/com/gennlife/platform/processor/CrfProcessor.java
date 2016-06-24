@@ -552,7 +552,38 @@ public class CrfProcessor {
         }
     }
 
-
+    /**
+     * 更新组名称
+     * @param paramObj
+     */
+    public String updateGroupName(JsonObject paramObj) {
+        String crf_id = null;
+        String groupID = null;
+        String groupName = null;
+        try {
+            crf_id = paramObj.get("crf_id").getAsString();
+            groupID = paramObj.get("id").getAsString();
+            groupName = paramObj.get("groupName").getAsString();
+        } catch (Exception e) {
+            logger.error("请求参数出错", e);
+            return ParamUtils.errorParam("请求参数出错");
+        }
+        JsonObject modelJsonObject = MongoManager.getModel(crf_id);
+        if(modelJsonObject == null){
+            String err = "crf_id 对应模型 为空";
+            return ParamUtils.errorParam(err);
+        }
+        ModelTreeUtils.traversalUpdateGroupName(modelJsonObject,groupID,groupName);
+        JsonArray children = modelJsonObject.get("children").getAsJsonArray();
+        List<BSONObject> list = new LinkedList<BSONObject>();
+        for(JsonElement ent:children){
+            JsonObject obj = ent.getAsJsonObject();
+            list.add(BasicDBObject.parse(gson.toJson(obj)));
+        }
+        MongoManager.updateNewModel(crf_id,list);
+        modelJsonObject = ModelTreeUtils.updateUIData(modelJsonObject);
+        return gson.toJson(modelJsonObject);
+    }
 
     /**
      * crf数据录入完成后,点击录入完成出发的接口,请求参数crf_id,caseID,返回crf_id,新的caseID,空的数据格式
