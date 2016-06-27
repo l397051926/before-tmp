@@ -5,7 +5,9 @@ import com.gennlife.platform.bean.SyUser;
 import com.gennlife.platform.bean.crf.DataBean;
 import com.gennlife.platform.bean.crf.SampleListBean;
 import com.gennlife.platform.bean.crf.SummaryBean;
+import com.gennlife.platform.bean.projectBean.MyProjectList;
 import com.gennlife.platform.dao.AllDao;
+import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.*;
 import com.gennlife.platform.view.View;
 import com.google.gson.*;
@@ -775,6 +777,40 @@ public class CrfProcessor {
         }
     }
 
+    /**
+     * 用户相关项目的crf模版列表
+     * @param paramObj
+     * @return
+     */
+    public String projectCrfList(JsonObject paramObj) {
+        String uid = null;
+        try {
+            uid = paramObj.get("uid").getAsString();
+        } catch (Exception e) {
+            logger.error("请求参数出错", e);
+            return ParamUtils.errorParam("请求参数出错");
+        }
+        Map<String,Object> conf = new HashMap<>();
+        conf.put("uid",uid);
+        try {
+            List<MyProjectList> list = AllDao.getInstance().getSyUserDao().getProjectList(conf);
+            List<JsonObject> paramList = new LinkedList<>();
+            for(MyProjectList myProjectList:list){
+                JsonObject newParamObj = new JsonObject();
+                String projectID = myProjectList.getProjectID();
+                String projectName = myProjectList.getProjectName();
+                newParamObj.addProperty("projectID",projectID);
+                newParamObj.addProperty("projectName",projectName);
+                paramList.add(newParamObj);
+            }
+            logger.info("请求CRF Service ProjectCRFList接口参数="+gson.toJson(paramList));
+            String url = ConfigurationService.getUrlBean().getCRFProjectCRFListURL();
+            String result = HttpRequestUtils.httpPost(url,gson.toJson(paramList));
+            return result;
+        } catch (Exception e) {
+            logger.error("请求发生异常", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
 
-
+    }
 }

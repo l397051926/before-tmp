@@ -460,14 +460,14 @@ public class CrfController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            logger.info("删除组异常 post方式 参数="+param);
+            logger.info("删除组 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr = processor.deleteGroup(paramObj);
         }catch (Exception e){
             logger.error("删除组异常",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("删除组异常 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("删除 post 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 
@@ -476,14 +476,35 @@ public class CrfController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            logger.info("删除组异常 get方式 参数="+param);
+            logger.info("删除组 get方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr = processor.deleteGroup(paramObj);
         }catch (Exception e){
             logger.error("删除组异常",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("删除组异常 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("删除组 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    /**
+     *
+     * @param param
+     * @return
+     */
+    @RequestMapping(value="/ProjectCrfList",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String getProjectCrfList(@RequestParam("param") String param) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("用户相关项目的crf模版 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.projectCrfList(paramObj);
+        }catch (Exception e){
+            logger.error("用户相关项目的crf模版异常",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("用户相关项目的crf模版异常 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 }

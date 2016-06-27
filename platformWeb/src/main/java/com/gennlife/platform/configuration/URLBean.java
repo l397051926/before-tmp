@@ -111,6 +111,19 @@ public class URLBean {
      */
     private String caseGeneErrorURL = null;
 
+    /**
+     * crf service:用户相关项目的crf模版列表：
+     */
+    private String CRFProjectCRFListURL = null;
+
+    public String getCRFProjectCRFListURL() {
+        return CRFProjectCRFListURL;
+    }
+
+    public void setCRFProjectCRFListURL(String CRFProjectCRFListURL) {
+        this.CRFProjectCRFListURL = CRFProjectCRFListURL;
+    }
+
     public String getCaseGeneErrorURL() {
         return caseGeneErrorURL;
     }

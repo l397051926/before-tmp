@@ -54,4 +54,11 @@ public interface SyUserMapper {
      * @return
      */
     public MyProjectList baiscInfo(Map<String, Object> map);
+
+    /**
+     * 获取某个uid所有项目,信息
+     * @param map
+     * @return
+     */
+    public List<MyProjectList> getProjectList(Map<String, Object> map);
 }
