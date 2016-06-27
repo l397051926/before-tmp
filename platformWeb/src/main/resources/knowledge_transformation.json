@@ -1540,6 +1540,13 @@
 			"path_two": "",
 			"name_two": "url"
 		},
+		"clinical_id":{
+			"data_type": "single_array",
+			"path_one": "$.clinical_annotation_id",
+			"name_one": "name",
+			"path_two": "$.clinical_annotation_id_url",
+			"name_two": "url"
+		},
 		"brand_name": {
 			"data_type": "string",
 			"path": "$.TargetDrugReference.productNames[*]"
