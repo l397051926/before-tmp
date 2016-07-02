@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+            http://www.springframework.org/schema/beans/spring-beans-4.1.xsd      
+            http://www.springframework.org/schema/context   
+            http://www.springframework.org/schema/context/spring-context-4.1.xsd      
+            http://www.springframework.org/schema/mvc   
+            http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd      
+            http://www.springframework.org/schema/util   
+            http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+    <bean id="com.gennlife.platform.util.Conf" class="com.gennlife.platform.util.Conf">
+        <property name="searchURL" value="http://192.168.1.111:8989/SearchServer/search?indexName=%s&amp;query=%s"/>
+        <property name="importURL" value="http://192.168.1.111:8989/SearchServer/search?indexName=%s&amp;query="/>
+        <property name="fileURL" value="http://192.168.1.111:8111/fs/export"/>
+        <property name="qRecommendURL" value="http://192.168.1.111:8989/SearchServer/suggest?indexName=%s&amp;keywords=%s&amp;size=10"/>
+        <property name="toolsURL" value="http://192.168.1.111:81/get_tools"/>
+        <property name="AtoolURL" value="http://192.168.1.111:81/get_statistic"/>
+        <property name="detailURL" value="http://192.168.1.111:8111/fs/detail?table=%s&amp;key=%s&amp;fields=%s"/>
+        <property name="detailGenURL" value="http://192.168.1.111:8111/fs/gene?table=%s&amp;key=%s&amp;fields=%s&amp;pagesize=%s&amp;page=%s"/>
+        <property name="SetDetailURL" value="http://192.168.1.111:8111/fs/schema/%s"/>
+        <property name="SetDetailDataURL" value="http://192.168.1.111:8111/fs/sample/%s"/>
+
+    </bean>
+
+    <bean id="com.gennlife.platform.util.MongoConf" class="com.gennlife.platform.util.MongoConf">
+        <property name="host" value="10.0.0.25"/>
+        <property name="port" value="27017"/>
+        <property name="poolSize" value="10"/>
+        <property name="blockSize" value="10"/>
+    </bean>
+
+
+    <bean id="com.gennlife.platform.configuration.URLBean" class="com.gennlife.platform.configuration.URLBean">
+        <property name="caseSearchURL" value="http://10.0.0.27:8989/search-server/search"/>
+        <property name="caseSuggestURL" value="http://10.0.0.27:8989/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
+        <property name="caseGeneErrorURL" value="http://10.0.0.27:8989/search-server/verify"/>
+
+        <property name="caseDetailPatientBasicInfoURL" value="http://10.0.0.22:8111/FileService/patient_basic_info"/>
+        <property name="caseDetailPatientBasicFigureURL" value="http://10.0.0.22:8111/FileService/visit_count_by_dimension"/>
+        <property name="casePatientBasicTimeAxisURL" value="http://10.0.0.22:8111/FileService/visit_timeline"/>
+        <property name="casePhysical_examination_list" value="http://10.0.0.22:8111/FileService/physical_examination_list"/>
+        <property name="casePhysical_examination" value="http://10.0.0.22:8111/FileService/physical_examination"/>
+        <property name="caseVisit_detail" value="http://10.0.0.22:8111/FileService/visit_detail"/>
+        <property name="caseLab_result_item" value="http://10.0.0.22:8111/FileService/lab_result_item"/>
+        <property name="caseLab_result_item_list" value="http://10.0.0.22:8111/FileService/lab_result_item_list"/>
+        <property name="caseGenetic_disease" value="http://10.0.0.22:8111/FileService/genetic_disease"/>
+        <property name="caseDrug_reaction" value="http://10.0.0.22:8111/FileService/drug_reaction"/>
+        <property name="caseCategory_catalog" value="http://10.0.0.22:8111/FileService/category_catalog"/>
+        <property name="caseMolecular_detection" value="http://10.0.0.22:8111/FileService/molecular_detection"/>
+        <property name="caseBiological_specimen" value="http://10.0.0.22:8111/FileService/biological_specimen"/>
+        <property name="caseExam_result" value="http://10.0.0.22:8111/FileService/exam_result"/>
+        <property name="casePathological_examination" value="http://10.0.0.22:8111/FileService/pathological_examination"/>
+
+        <property name="knowledgeURL" value="http://10.0.0.24:8080/knowledge/graph"/>
+        <property name="knowledgeDiseaseSearchGenesURL" value="http://10.0.0.24:8080/knowledge/DiseaseSearchGenes"/>
+        <property name="knowledgeGeneInfoURL" value="http://10.0.0.24:8080/knowledge/GeneInfo"/>
+        <property name="knowledgeVariationInfoURL" value="http://10.0.0.24:8080/knowledge/VariationInfo"/>
+        <property name="knowledgeDetailVariationSearchDiseaseURL" value="http://10.0.0.24:8080/knowledge/VariationInfo"/>
+        <property name="knowledgeDetailVariationSearchDrugURL" value="http://10.0.0.24:8080/knowledge/VariationInfo"/>
+        <property name="knowledgePharmGKBSearchDrugURL" value="http://10.0.0.24:8080/knowledge/PharmGKBSearchDrug"/>
+
+    </bean>
+</beans>
