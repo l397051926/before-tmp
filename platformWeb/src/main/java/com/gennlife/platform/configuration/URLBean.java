@@ -116,6 +116,19 @@ public class URLBean {
      */
     private String CRFProjectCRFListURL = null;
 
+    /**
+     * crf service:将搜索到的病例导入crf接口
+     */
+    private String CRFAutoMapURL = null;
+
+    public String getCRFAutoMapURL() {
+        return CRFAutoMapURL;
+    }
+
+    public void setCRFAutoMapURL(String CRFAutoMapURL) {
+        this.CRFAutoMapURL = CRFAutoMapURL;
+    }
+
     public String getCRFProjectCRFListURL() {
         return CRFProjectCRFListURL;
     }

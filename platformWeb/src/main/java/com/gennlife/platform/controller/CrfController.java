@@ -488,7 +488,7 @@ public class CrfController {
     }
 
     /**
-     *
+     * 请求uid对应的模版接口
      * @param param
      * @return
      */
@@ -507,4 +507,21 @@ public class CrfController {
         logger.info("用户相关项目的crf模版异常 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+    @RequestMapping(value="/AutoMap",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String postProjectCrfList(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("将搜索到的病例导入crf接口 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.autoMap(paramObj);
+        }catch (Exception e){
+            logger.error("将搜索到的病例导入crf接口异常",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("将搜索到的病例导入crf接口 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
 }

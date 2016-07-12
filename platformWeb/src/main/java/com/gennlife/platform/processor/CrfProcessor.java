@@ -811,6 +811,22 @@ public class CrfProcessor {
             logger.error("请求发生异常", e);
             return ParamUtils.errorParam("请求发生异常");
         }
+    }
+
+    /**
+     * 将搜索到的病例导入crf接口,透传
+     * @param paramObj
+     * @return
+     */
+    public String autoMap(JsonObject paramObj) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCRFAutoMapURL();
+            String result = HttpRequestUtils.httpPost(url,gson.toJson(paramObj));
+            return result;
+        }catch (Exception e) {
+            logger.error("请求发生异常", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
 
     }
 }
