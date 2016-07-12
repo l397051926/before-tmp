@@ -274,6 +274,18 @@
                 <package.environment>profiles/test</package.environment>
             </properties>
         </profile>
+        <profile>
+            <id>demo</id>
+            <properties>
+                <package.environment>profiles/demo</package.environment>
+            </properties>
+        </profile>
+        <profile>
+            <id>feature</id>
+            <properties>
+                <package.environment>profiles/feature</package.environment>
+            </properties>
+        </profile>
     </profiles>
 
 
