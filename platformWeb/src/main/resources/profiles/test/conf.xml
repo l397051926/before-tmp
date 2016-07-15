@@ -63,7 +63,20 @@
         <property name="knowledgeDetailVariationSearchDrugURL" value="http://10.0.0.177:8080/knowledge/VariationInfo"/>
         <property name="knowledgePharmGKBSearchDrugURL" value="http://10.0.0.177:8080/knowledge/PharmGKBSearchDrug"/>
 
-        <property name="CRFProjectCRFListURL" value=""/>
-        <property name="CRFAutoMapURL" value=""/>
+        <property name="CRFProjectCRFListURL" value="http://192.168.1.111:9885/auto/ProjectCRFList"/>
+        <property name="CRFAutoMapURL" value="http://192.168.1.111:9885/auto/AutoMap"/>
+
+        <property name="CRFGetAttrID" value="http://192.168.1.111:9885/crf/GetAttrID"/>
+        <property name="CRFGetGroupID" value="http://192.168.1.111:9885/crf/GetGroupID"/>
+        <property name="CRFModelByProjectID" value="http://192.168.1.111:9885/crf/ModelByProjectID"/>
+        <property name="CRFModelByCRFID" value="http://192.168.1.111:9885/crf/ModelByCRFID"/>
+        <property name="CRFEditModel" value="http://192.168.1.111:9885/crf/EditModel"/>
+        <property name="CRFSaveModel" value="http://192.168.1.111:9885/crf/SaveModel"/>
+        <property name="CRFGetData" value="http://192.168.1.111:9885/crf/GetData"/>
+        <property name="CRFSaveData" value="http://192.168.1.111:9885/crf/SaveData"/>
+        <property name="CRFSampleCaseList" value="http://192.168.1.111:9885/crf/SampleCaseList"/>
+        <property name="CRFDeleteSample" value="http://192.168.1.111:9885/crf/DeleteSample"/>
+        <property name="CRFUpLoadData" value="http://192.168.1.111:9885/crf/UpLoadData"/>
+        <property name="CRFSearchSampleList" value="http://192.168.1.111:9885/crf/SearchSampleList"/>
     </bean>
 </beans>
