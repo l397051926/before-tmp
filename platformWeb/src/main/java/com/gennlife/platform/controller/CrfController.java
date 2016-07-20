@@ -394,4 +394,57 @@ public class CrfController {
         return resultStr;
     }
 
+    /*
+    *获取病人基础信息
+    * @param param
+    * return
+     */
+    @RequestMapping(value="／PatientInfo",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
+    public @ResponseBody String getPatientInfo(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("获取病人基础信息 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.PatientInfo(paramObj);
+        }catch (Exception e){
+            logger.error("获取病人基础信息异常",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取病人基础信息 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="／PatientVisitDetail",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
+    public @ResponseBody String getPatientVisitDetail(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("溯源页病人详细信息 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.PatientVisitDetail(paramObj);
+        }catch (Exception e){
+            logger.error("获取溯源页病人详细信息",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取溯源页病人详细信息 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value="／PatientAllVisitsDetail",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
+    public @ResponseBody String getPatientAllVisitDetail(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("溯源全部病人详细信息 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.PatientAllVisitDetail(paramObj);
+        }catch (Exception e){
+            logger.error("获取溯源全部病人详细信息",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取溯源全部病人详细信息 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }

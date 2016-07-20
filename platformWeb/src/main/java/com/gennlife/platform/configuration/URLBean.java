@@ -178,6 +178,39 @@ public class URLBean {
      */
     private String CRFSearchSampleList = null;
 
+    /*
+    *  病人基本信息查询
+     */
+    private String CRFGetPatientInfo=null;
+
+
+    public String getCRFPatientVisitDetail() {
+        return CRFPatientVisitDetail;
+    }
+
+    public void setCRFPatientVisitDetail(String CRFPatientVisitDetail) {
+        this.CRFPatientVisitDetail = CRFPatientVisitDetail;
+    }
+
+    /*
+        *溯源页病人详细信息
+         */
+    private String CRFPatientVisitDetail=null;
+
+    public String getCRFPatientAllVisitsDetail() {
+        return CRFPatientAllVisitsDetail;
+    }
+
+    public void setCRFPatientAllVisitsDetail(String CRFPatientAllVisitsDetail) {
+        this.CRFPatientAllVisitsDetail = CRFPatientAllVisitsDetail;
+    }
+
+    /*
+        *溯源查看全部病人详细信息
+         */
+    private String CRFPatientAllVisitsDetail=null;
+
+
 
     public String getCRFModelByProjectID() {
         return CRFModelByProjectID;
@@ -491,4 +524,13 @@ public class URLBean {
     public void setCaseDetailPatientBasicFigureURL(String caseDetailPatientBasicFigureURL) {
         this.caseDetailPatientBasicFigureURL = caseDetailPatientBasicFigureURL;
     }
+
+    public String getCRFGetPatientInfo() {
+        return CRFGetPatientInfo;
+    }
+
+    public void setCRFGetPatientInfo(String CRFGetPatientInfo) {
+        this.CRFGetPatientInfo = CRFGetPatientInfo;
+    }
+
 }
