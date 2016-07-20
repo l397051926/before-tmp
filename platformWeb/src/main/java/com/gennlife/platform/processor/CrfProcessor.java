@@ -275,4 +275,51 @@ public class CrfProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+    /*
+    * 获取病人信息
+     * @param paramObj
+     * @return
+     */
+
+    public String PatientInfo(JsonObject paramObj){
+        try{
+            String url = ConfigurationService.getUrlBean().getCRFGetPatientInfo();
+            String result = HttpRequestUtils.httpPost(url,gson.toJson(paramObj));
+            return result;
+        }catch (Exception e) {
+            logger.error("请求发生异常", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+     /*
+    * 溯源页病人详细信息
+     * @param paramObj
+     * @return
+     */
+     public String PatientVisitDetail(JsonObject paramObj){
+         try{
+             String url = ConfigurationService.getUrlBean().getCRFPatientVisitDetail();
+             String result = HttpRequestUtils.httpPost(url,gson.toJson(paramObj));
+             return result;
+         }catch (Exception e) {
+             logger.error("请求发生异常", e);
+             return ParamUtils.errorParam("请求发生异常");
+         }
+     }
+
+    /*
+   * 溯源全部病人详细信息
+   * @param paramObj
+   * @return
+   */
+    public String PatientAllVisitDetail(JsonObject paramObj){
+        try{
+            String url = ConfigurationService.getUrlBean().getCRFPatientAllVisitsDetail();
+            String result = HttpRequestUtils.httpPost(url,gson.toJson(paramObj));
+            return result;
+        }catch (Exception e) {
+            logger.error("请求发生异常", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }
