@@ -234,4 +234,13 @@
 		</set>
 		where uid = #{uid,jdbcType=INTEGER} and  keywords = #{keywords}
 	</update>
+
+
+	<select id="getProjectList" resultMap="com.gennlife.platform.bean.projectBean.MyProjectList"
+			parameterType="map">
+		select
+		<include refid="MyProjectListSelect" />
+		from p_project p JOIN pro_user u on u.projectID = p.projectID
+		<where>u.uid=#{uid} order by createTime  desc</where>
+	</select>
 </mapper>

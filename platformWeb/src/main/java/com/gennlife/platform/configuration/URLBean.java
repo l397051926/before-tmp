@@ -111,6 +111,219 @@ public class URLBean {
      */
     private String caseGeneErrorURL = null;
 
+    /**
+     * crf service:用户相关项目的crf模版列表：
+     */
+    private String CRFProjectCRFListURL = null;
+
+    /**
+     * crf service:将搜索到的病例导入crf接口
+     */
+    private String CRFAutoMapURL = null;
+
+    /**
+     * crf service:获取新的属性id
+     */
+    private String CRFGetAttrID = null;
+
+    /**
+     * crf service:获取新的组id
+     */
+    private String CRFGetGroupID = null;
+
+
+    /**
+     * crf service:通过projectID获取crf模板
+     */
+    private String CRFModelByProjectID = null;
+
+    /**
+     * crf service:通过CRFID获取crf模板
+     */
+    private String CRFModelByCRFID = null;
+
+
+    /**
+     * crf service:编辑模型
+     */
+    private String CRFEditModel = null;
+
+    /**
+     * crf service:保存模型
+     */
+    private String CRFSaveModel = null;
+    /**
+     * crf service:数据录入时,请求某个case数据
+     */
+    private String CRFGetData = null;
+    /**
+     * crf service:上传crf数据
+     */
+    private String CRFUpLoadData = null;
+    /**
+     * crf service:录入完成接口
+     */
+    private String CRFSaveData = null;
+
+    /**
+     * crf service:病历列表数据
+     */
+    private String CRFSampleCaseList = null;
+    /**
+     * crf service:删除某个case数据
+     */
+    private String CRFDeleteSample = null;
+    /**
+     * crf service:搜索病历列表
+     */
+    private String CRFSearchSampleList = null;
+
+    /*
+    *  病人基本信息查询
+     */
+    private String CRFGetPatientInfo=null;
+
+
+    public String getCRFPatientVisitDetail() {
+        return CRFPatientVisitDetail;
+    }
+
+    public void setCRFPatientVisitDetail(String CRFPatientVisitDetail) {
+        this.CRFPatientVisitDetail = CRFPatientVisitDetail;
+    }
+
+    /*
+        *溯源页病人详细信息
+         */
+    private String CRFPatientVisitDetail=null;
+
+    public String getCRFPatientAllVisitsDetail() {
+        return CRFPatientAllVisitsDetail;
+    }
+
+    public void setCRFPatientAllVisitsDetail(String CRFPatientAllVisitsDetail) {
+        this.CRFPatientAllVisitsDetail = CRFPatientAllVisitsDetail;
+    }
+
+    /*
+        *溯源查看全部病人详细信息
+         */
+    private String CRFPatientAllVisitsDetail=null;
+
+
+
+    public String getCRFModelByProjectID() {
+        return CRFModelByProjectID;
+    }
+
+    public void setCRFModelByProjectID(String CRFModelByProjectID) {
+        this.CRFModelByProjectID = CRFModelByProjectID;
+    }
+
+    public String getCRFModelByCRFID() {
+        return CRFModelByCRFID;
+    }
+
+    public void setCRFModelByCRFID(String CRFModelByCRFID) {
+        this.CRFModelByCRFID = CRFModelByCRFID;
+    }
+
+    public String getCRFEditModel() {
+        return CRFEditModel;
+    }
+
+    public void setCRFEditModel(String CRFEditModel) {
+        this.CRFEditModel = CRFEditModel;
+    }
+
+    public String getCRFSaveModel() {
+        return CRFSaveModel;
+    }
+
+    public void setCRFSaveModel(String CRFSaveModel) {
+        this.CRFSaveModel = CRFSaveModel;
+    }
+
+    public String getCRFGetData() {
+        return CRFGetData;
+    }
+
+    public void setCRFGetData(String CRFGetData) {
+        this.CRFGetData = CRFGetData;
+    }
+
+    public String getCRFUpLoadData() {
+        return CRFUpLoadData;
+    }
+
+    public void setCRFUpLoadData(String CRFUpLoadData) {
+        this.CRFUpLoadData = CRFUpLoadData;
+    }
+
+    public String getCRFSaveData() {
+        return CRFSaveData;
+    }
+
+    public void setCRFSaveData(String CRFSaveData) {
+        this.CRFSaveData = CRFSaveData;
+    }
+
+    public String getCRFSampleCaseList() {
+        return CRFSampleCaseList;
+    }
+
+    public void setCRFSampleCaseList(String CRFSampleCaseList) {
+        this.CRFSampleCaseList = CRFSampleCaseList;
+    }
+
+    public String getCRFDeleteSample() {
+        return CRFDeleteSample;
+    }
+
+    public void setCRFDeleteSample(String CRFDeleteSample) {
+        this.CRFDeleteSample = CRFDeleteSample;
+    }
+
+    public String getCRFSearchSampleList() {
+        return CRFSearchSampleList;
+    }
+
+    public void setCRFSearchSampleList(String CRFSearchSampleList) {
+        this.CRFSearchSampleList = CRFSearchSampleList;
+    }
+
+    public String getCRFGetAttrID() {
+        return CRFGetAttrID;
+    }
+
+    public void setCRFGetAttrID(String CRFGetAttrID) {
+        this.CRFGetAttrID = CRFGetAttrID;
+    }
+
+    public String getCRFGetGroupID() {
+        return CRFGetGroupID;
+    }
+
+    public void setCRFGetGroupID(String CRFGetGroupID) {
+        this.CRFGetGroupID = CRFGetGroupID;
+    }
+
+    public String getCRFAutoMapURL() {
+        return CRFAutoMapURL;
+    }
+
+    public void setCRFAutoMapURL(String CRFAutoMapURL) {
+        this.CRFAutoMapURL = CRFAutoMapURL;
+    }
+
+    public String getCRFProjectCRFListURL() {
+        return CRFProjectCRFListURL;
+    }
+
+    public void setCRFProjectCRFListURL(String CRFProjectCRFListURL) {
+        this.CRFProjectCRFListURL = CRFProjectCRFListURL;
+    }
+
     public String getCaseGeneErrorURL() {
         return caseGeneErrorURL;
     }
@@ -311,4 +524,13 @@ public class URLBean {
     public void setCaseDetailPatientBasicFigureURL(String caseDetailPatientBasicFigureURL) {
         this.caseDetailPatientBasicFigureURL = caseDetailPatientBasicFigureURL;
     }
+
+    public String getCRFGetPatientInfo() {
+        return CRFGetPatientInfo;
+    }
+
+    public void setCRFGetPatientInfo(String CRFGetPatientInfo) {
+        this.CRFGetPatientInfo = CRFGetPatientInfo;
+    }
+
 }

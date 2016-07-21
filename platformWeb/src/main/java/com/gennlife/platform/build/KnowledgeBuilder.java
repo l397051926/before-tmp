@@ -522,7 +522,8 @@ public class KnowledgeBuilder {
 			String from = param.get("from").getAsString();
 			if(to.equals("drug")&&
 					!"geneDisease".equals(from) &&
-					!"variationArray".equals(from)){
+					!"variationArray".equals(from)&&
+					!"variation".equals(from)){
 				String currentTable = param.get("currentTable").getAsString();
 				String currentTableName = "";
 				if("drug_fda".equals(currentTable)){

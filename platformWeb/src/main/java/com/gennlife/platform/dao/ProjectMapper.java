@@ -135,5 +135,5 @@ public interface ProjectMapper {
      * 更新样本集信息
      * @param map
      */
-    int updateSetInfo(Map<String, Object> map);
+    public int updateSetInfo(Map<String, Object> map);
 }

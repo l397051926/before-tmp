@@ -23,116 +23,40 @@ public class CrfController {
     private static JsonParser jsonParser = new JsonParser();
     private static CrfProcessor processor = new CrfProcessor();
     private static Gson gson = GsonUtil.getGson();
-    @RequestMapping(value="/Model",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/ModelByProjectID",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String postModel(@RequestParam("param") String param){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            logger.info("crf 请求模板 get方式 参数="+param);
+            logger.info("通过projectID 获取crf模板 get方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.model(paramObj);
+            resultStr =  processor.modelByProjectID(paramObj);
         }catch (Exception e){
-            logger.error("请求模板",e);
+            logger.error("通过projectID 获取crf模板",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("crf 请求模板 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("通过projectID 获取crf模板 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/SelectAttr",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/ModelByCRFID",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String postSelectAttr(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            logger.info("勾选属性,修改模型 post方式 参数="+param);
+            logger.info("通过CRFID获取crf模板  参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.selectAttr(paramObj);
+            resultStr =  processor.modelByCRFID(paramObj);
         }catch (Exception e){
-            logger.error("勾选属性,修改模型",e);
+            logger.error("通过CRFID获取crf模板",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("勾选属性,修改模型 post 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
-    @RequestMapping(value="/SelectAttr",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getSelectAttr(@RequestParam("param") String param) {
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            logger.info("勾选属性,修改模型 get方式 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.selectAttr(paramObj);
-        }catch (Exception e){
-            logger.error("勾选属性,修改模型",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("勾选属性,修改模型 get 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
-    @RequestMapping(value="/AddGroup",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postAddGroup(HttpServletRequest paramRe) {
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            String param = ParamUtils.getParam(paramRe);
-            logger.info("模型增加组 post方式 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.addGroup(paramObj);
-        }catch (Exception e){
-            logger.error("模型增加属性",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("模型增加组 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("通过CRFID获取crf模板 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/AddGroup",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getAddGroup(@RequestParam("param") String param) {
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            logger.info("模型增加组 get方式 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.addGroup(paramObj);
-        }catch (Exception e){
-            logger.error("模型增加属性",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("模型增加组 get 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
-    @RequestMapping(value="/AddAttr",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postAddAttr(HttpServletRequest paramRe) {
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            String param = ParamUtils.getParam(paramRe);
-            logger.info("模型增加属性 post方式 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.addAttr(paramObj);
-        }catch (Exception e){
-            logger.error("模型增加属性",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("模型增加属性 post 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
-    @RequestMapping(value="/AddAttr",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getAddAttr(@RequestParam("param") String param) {
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            logger.info("模型增加属性 get方式 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.addAttr(paramObj);
-        }catch (Exception e){
-            logger.error("编辑模型",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("模型增加属性 get 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
+
 
     @RequestMapping(value="/EditModel",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody String postEditModel(HttpServletRequest paramRe) {
@@ -236,38 +160,7 @@ public class CrfController {
         return resultStr;
     }
 
-    @RequestMapping(value="/UpdateGroupName",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postUpdateGroupName(HttpServletRequest paramRe) {
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            String param = ParamUtils.getParam(paramRe);
-            logger.info("更新组名称 post方式 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.updateGroupName(paramObj);
-        }catch (Exception e){
-            logger.error("更新组名称",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("更新组名称  post 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
 
-    @RequestMapping(value="/UpdateGroupName",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getUpdateGroupName(@RequestParam("param") String param) {
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            logger.info("更新组名称 get方式 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.updateGroupName(paramObj);
-        }catch (Exception e){
-            logger.error("更新组名称",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("更新组名称  post 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
 
     @RequestMapping(value="/UpLoadData",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String getUpLoadData(@RequestParam("param") String param) {
@@ -318,38 +211,7 @@ public class CrfController {
         return resultStr;
     }
 
-    @RequestMapping(value="/ModelTree",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postModelTree(HttpServletRequest paramRe) {
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            String param = ParamUtils.getParam(paramRe);
-            logger.info("获取模型树,没有叶子节点 post方式 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.modelTree(paramObj);
-        }catch (Exception e){
-            logger.error("获取模型树,没有叶子节点",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("获取模型树,没有叶子节点 post 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
 
-    @RequestMapping(value="/ModelTree",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getModelTree(@RequestParam("param") String param) {
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            logger.info("获取模型树,没有叶子节点 get方式 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.modelTree(paramObj);
-        }catch (Exception e){
-            logger.error("获取模型树,没有叶子节点",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("获取模型树,没有叶子节点 get 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
 
     @RequestMapping(value="/SampleCaseList",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody String postSampleCaseList(HttpServletRequest paramRe) {
@@ -453,37 +315,136 @@ public class CrfController {
     }
 
 
-
-    @RequestMapping(value="/DeleteGroup",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postDeleteGroup(HttpServletRequest paramRe) {
+    /**
+     * 请求uid对应的模版接口
+     * @param param
+     * @return
+     */
+    @RequestMapping(value="/ProjectCrfList",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String getProjectCrfList(@RequestParam("param") String param) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("用户相关项目的crf模版 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.projectCrfList(paramObj);
+        }catch (Exception e){
+            logger.error("用户相关项目的crf模版异常",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("用户相关项目的crf模版异常 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+    @RequestMapping(value="/AutoMap",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String postProjectCrfList(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            logger.info("删除组异常 post方式 参数="+param);
+            logger.info("将搜索到的病例导入crf接口 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.deleteGroup(paramObj);
+            resultStr = processor.autoMap(paramObj);
         }catch (Exception e){
-            logger.error("删除组异常",e);
+            logger.error("将搜索到的病例导入crf接口异常",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("删除组异常 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("将搜索到的病例导入crf接口 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/DeleteGroup",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getDeleteGroup(@RequestBody String param) {
+    /**
+     * 获取一个新的唯一的属性id
+     * @param param
+     * @return
+     */
+    @RequestMapping(value="/GetAttrID",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String getGetAttrID(@RequestParam("param") String param) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            logger.info("删除组异常 get方式 参数="+param);
+            logger.info("获取一个新的唯一的属性id 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.deleteGroup(paramObj);
+            resultStr = processor.getAttrID(paramObj);
         }catch (Exception e){
-            logger.error("删除组异常",e);
+            logger.error("获取一个新的唯一的属性id异常",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("删除组异常 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("获取一个新的唯一的属性id 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    /**
+     * 获取一个新的唯一的组id
+     * @param param
+     * @return
+     */
+    @RequestMapping(value="/GetGroupID",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String getGetGroupID(@RequestParam("param") String param) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("获取一个新的唯一的组id 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.getGroupID(paramObj);
+        }catch (Exception e){
+            logger.error("获取一个新的唯一的组id异常",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取一个新的唯一的组id 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    /*
+    *获取病人基础信息
+    * @param param
+    * return
+     */
+    @RequestMapping(value="／PatientInfo",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
+    public @ResponseBody String getPatientInfo(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("获取病人基础信息 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.PatientInfo(paramObj);
+        }catch (Exception e){
+            logger.error("获取病人基础信息异常",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取病人基础信息 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="／PatientVisitDetail",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
+    public @ResponseBody String getPatientVisitDetail(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("溯源页病人详细信息 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.PatientVisitDetail(paramObj);
+        }catch (Exception e){
+            logger.error("获取溯源页病人详细信息",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取溯源页病人详细信息 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value="／PatientAllVisitsDetail",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
+    public @ResponseBody String getPatientAllVisitDetail(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("溯源全部病人详细信息 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.PatientAllVisitDetail(paramObj);
+        }catch (Exception e){
+            logger.error("获取溯源全部病人详细信息",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取溯源全部病人详细信息 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 }
