@@ -281,10 +281,14 @@ public class CrfProcessor {
      * @return
      */
 
-    public String PatientInfo(JsonObject paramObj){
+    public String PatientInfo(String paramObj){
         try{
-            String url = ConfigurationService.getUrlBean().getCRFGetPatientInfo();
-            String result = HttpRequestUtils.httpPost(url,gson.toJson(paramObj));
+
+            String url = ConfigurationService.getUrlBean().getCRFGetPatientInfo() + "?param=";
+            String param = URLEncoder.encode(paramObj, "utf-8");
+            url = url+param;
+            logger.info("request url:" + url);
+            String result = HttpRequestUtils.httpGet(url);
             return result;
         }catch (Exception e) {
             logger.error("请求发生异常", e);
@@ -296,10 +300,13 @@ public class CrfProcessor {
      * @param paramObj
      * @return
      */
-     public String PatientVisitDetail(JsonObject paramObj){
+         public String PatientVisitDetail(String paramObj){
          try{
-             String url = ConfigurationService.getUrlBean().getCRFPatientVisitDetail();
-             String result = HttpRequestUtils.httpPost(url,gson.toJson(paramObj));
+             String url = ConfigurationService.getUrlBean().getCRFPatientVisitDetail() +"?param=";
+             String param = URLEncoder.encode(paramObj, "utf-8");
+             url = url+param;
+             logger.info("request url:" + url);
+             String result = HttpRequestUtils.httpGet(url);
              return result;
          }catch (Exception e) {
              logger.error("请求发生异常", e);
@@ -312,10 +319,13 @@ public class CrfProcessor {
    * @param paramObj
    * @return
    */
-    public String PatientAllVisitDetail(JsonObject paramObj){
+    public String PatientAllVisitDetail(String paramObj){
         try{
-            String url = ConfigurationService.getUrlBean().getCRFPatientAllVisitsDetail();
-            String result = HttpRequestUtils.httpPost(url,gson.toJson(paramObj));
+            String url = ConfigurationService.getUrlBean().getCRFPatientAllVisitsDetail() + "?param=";
+            String param = URLEncoder.encode(paramObj, "utf-8");
+            url = url+param;
+            logger.info("request url:" + url);
+            String result = HttpRequestUtils.httpGet(url);
             return result;
         }catch (Exception e) {
             logger.error("请求发生异常", e);

@@ -399,14 +399,14 @@ public class CrfController {
     * @param param
     * return
      */
-    @RequestMapping(value="／PatientInfo",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
+    @RequestMapping(value="/PatientInfo",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
     public @ResponseBody String getPatientInfo(@RequestParam("param") String param){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
             logger.info("获取病人基础信息 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.PatientInfo(paramObj);
+            //JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.PatientInfo(param);
         }catch (Exception e){
             logger.error("获取病人基础信息异常",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -415,14 +415,14 @@ public class CrfController {
         return resultStr;
     }
 
-    @RequestMapping(value="／PatientVisitDetail",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
+    @RequestMapping(value="/PatientVisitDetail",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
     public @ResponseBody String getPatientVisitDetail(@RequestParam("param") String param){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
             logger.info("溯源页病人详细信息 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.PatientVisitDetail(paramObj);
+            //JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.PatientVisitDetail(param);
         }catch (Exception e){
             logger.error("获取溯源页病人详细信息",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -432,14 +432,14 @@ public class CrfController {
     }
 
 
-    @RequestMapping(value="／PatientAllVisitsDetail",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
+    @RequestMapping(value="/PatientAllVisitsDetail",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
     public @ResponseBody String getPatientAllVisitDetail(@RequestParam("param") String param){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
             logger.info("溯源全部病人详细信息 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.PatientAllVisitDetail(paramObj);
+            //JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.PatientAllVisitDetail(param);
         }catch (Exception e){
             logger.error("获取溯源全部病人详细信息",e);
             resultStr = ParamUtils.errorParam("出现异常");
