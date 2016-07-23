@@ -77,5 +77,8 @@
         <property name="CRFDeleteSample" value="http://192.168.1.111:9885/crf/DeleteSample"/>
         <property name="CRFUpLoadData" value="http://192.168.1.111:9885/crf/UpLoadData"/>
         <property name="CRFSearchSampleList" value="http://192.168.1.111:9885/crf/SearchSampleList"/>
+		<property name="CRFGetPatientInfo" value="http://192.168.1.111:9885/auto/PatientInfo"/>
+        <property name="CRFPatientVisitDetail" value="http://192.168.1.111:9885/auto/PatientVisitDetail"/>
+        <property name="CRFPatientAllVisitsDetail" value="http://192.168.1.111:9885/auto/PatientAllVisitsDetail"/>
     </bean>
 </beans>
