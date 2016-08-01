@@ -80,5 +80,10 @@
 		<property name="CRFGetPatientInfo" value="http://192.168.1.111:9885/auto/PatientInfo"/>
         <property name="CRFPatientVisitDetail" value="http://192.168.1.111:9885/auto/PatientVisitDetail"/>
         <property name="CRFPatientAllVisitsDetail" value="http://192.168.1.111:9885/auto/PatientAllVisitsDetail"/>
-    </bean>
+        <property name="RRun" value="http://192.168.1.111:1235/r_run"/> 
+        <property name="RStop" value="http://192.168.1.111:1235/r_stop"/> 
+        <property name="RSave" value="http://192.168.1.111:1235/r_save"/>
+        <property name="RLoad" value="http://192.168.1.111:1235/r_load"/>
+        <property name="RList" value="http://192.168.1.111:1235/r_list"/>  
+</bean>
 </beans>

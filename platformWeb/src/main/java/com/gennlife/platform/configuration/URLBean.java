@@ -183,6 +183,15 @@ public class URLBean {
      */
     private String CRFGetPatientInfo=null;
 
+    private String RRun = null;
+
+    private String RStop = null;
+
+    private String RSave = null;
+ 
+    private String RLoad = null;
+
+    private String RList = null;
 
     public String getCRFPatientVisitDetail() {
         return CRFPatientVisitDetail;
@@ -533,4 +542,43 @@ public class URLBean {
         this.CRFGetPatientInfo = CRFGetPatientInfo;
     }
 
+    public String getRRun() {
+        return RRun;
+    }
+
+    public void setRRun(String RRun) {
+        this.RRun = RRun;
+    }
+
+    public String getRStop() {
+        return RStop;
+    }
+
+    public void setRStop(String RStop) {
+        this.RStop = RStop;
+    }
+
+    public String getRSave() {
+        return RSave;
+    }
+
+    public void setRSave(String RSave) {
+        this.RSave = RSave;
+    }
+
+    public String getRLoad() {
+        return RLoad;
+    }
+
+    public void setRLoad(String RLoad) {
+        this.RLoad = RLoad;
+    }
+
+    public String getRList() {
+        return RList;
+    }
+
+    public void setRList(String RList) {
+        this.RList = RList;
+    }
 }
