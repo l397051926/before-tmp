@@ -38,7 +38,7 @@ public class RProcessor {
     public String r_run(JsonObject paramObj) {
         try{
             String url = ConfigurationService.getUrlBean().getRRun();
-            String result = HttpRequestUtils.httpPost(url,gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostForRRun(url,gson.toJson(paramObj));
             return result;
         }catch (Exception e) {
             logger.error("请求发生异常", e);
