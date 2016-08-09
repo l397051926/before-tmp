@@ -259,4 +259,21 @@ public class DetailProcessor {
             return ParamUtils.errorParam("请求出错");
         }
     }
+
+    /**
+     * 病程 诊断报告:主诉
+     * @param param
+     * @return
+     */
+    public String admissionRecords(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCaseAdmission_records();
+            logger.info("admissionRecords url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("admissionRecords result="+result);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
 }

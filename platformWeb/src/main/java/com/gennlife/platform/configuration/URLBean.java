@@ -4,6 +4,20 @@ package com.gennlife.platform.configuration;
  * Created by chen-song on 16/5/13.
  */
 public class URLBean {
+
+    public String getCaseAdmission_records() {
+        return caseAdmission_records;
+    }
+
+    public void setCaseAdmission_records(String caseAdmission_records) {
+        this.caseAdmission_records = caseAdmission_records;
+    }
+
+    /**
+     * 病程 诊断报告:主诉
+     */
+    private String caseAdmission_records=null;
+
     /**
      * 新的搜索后端接口
      */
