@@ -75,6 +75,12 @@ public class URLBean {
     private String knowledgeDetailVariationSearchDrugURL = null;
 
     /**
+     *单次就诊专用:诊断报告
+     */
+    private String caseDiagnose = null;
+
+
+    /**
      * 遗传性疾病
      */
     private String caseGenetic_disease = null;
@@ -592,5 +598,13 @@ public class URLBean {
 
     public void setRList(String RList) {
         this.RList = RList;
+    }
+
+    public String getCaseDiagnose() {
+        return caseDiagnose;
+    }
+
+    public void setCaseDiagnose(String caseDiagnose) {
+        this.caseDiagnose = caseDiagnose;
     }
 }

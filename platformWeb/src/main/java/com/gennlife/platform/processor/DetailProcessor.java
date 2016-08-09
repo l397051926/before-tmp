@@ -242,4 +242,21 @@ public class DetailProcessor {
             return ParamUtils.errorParam("请求出错");
         }
     }
+
+    /**
+     * 单次就诊专用
+     * @param param
+     * @return
+     */
+    public String visitDiagnose(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCaseDiagnose();
+            logger.info("visitDiagnose url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("visitDiagnose result="+result);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
 }

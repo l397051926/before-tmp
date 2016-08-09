@@ -511,4 +511,19 @@ public class DetailController {
         return resultStr;
     }
 
+    @RequestMapping(value="/VisitDiagnose",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getVisitDiagnose(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("单次就诊专用:诊断报告  get方式 参数="+param);
+            resultStr =  processor.visitDiagnose(param);
+        }catch (Exception e){
+            logger.error("诊断报告",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("单次就诊专用:诊断报告 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }
