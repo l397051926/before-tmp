@@ -447,4 +447,20 @@ public class CrfController {
         logger.info("获取溯源全部病人详细信息 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+
+    @RequestMapping(value="/ModelForTraceByCRFID",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
+    public @ResponseBody String getModelForTraceByCRFID(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("溯源简化的模型接口 参数="+param);
+            resultStr = processor.modelForTraceByCRFID(param);
+        }catch (Exception e){
+            logger.error("溯源简化的模型接口",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("溯源简化的模型接口 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
 }

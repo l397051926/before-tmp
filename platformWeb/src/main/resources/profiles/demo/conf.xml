@@ -43,7 +43,7 @@
         <property name="casePatientBasicTimeAxisURL" value="http://10.0.0.12:8111/FileService/PatientDetail/visit_timeline"/>
         <property name="casePhysical_examination_list" value="http://10.0.0.12:8111/FileService/PatientDetail/quota_name_list"/>
         <property name="casePhysical_examination" value="http://10.0.0.12:8111/FileService/PatientDetail/quota_reports"/>
-        <property name="caseVisit_detail" value="http://10.0.0.12:8111/FileService/PatientDetail/visit_detail"/>
+        <property name="caseVisit_detail" value="http://10.0.0.12:8111/FileService/VisitDetail/visit_detail_info"/>
         <property name="caseLab_result_item" value="http://10.0.0.12:8111/FileService/PatientDetail/lab_result_item"/>
         <property name="caseLab_result_item_list" value="http://10.0.0.12:8111/FileService/PatientDetail/lab_result_item_list"/>
         <property name="caseGenetic_disease" value="http://10.0.0.12:8111/FileService/PatientDetail/genetic_disease"/>
@@ -69,6 +69,7 @@
         <property name="CRFGetAttrID" value="http://192.168.1.111:9885/crf/GetAttrID"/>
         <property name="CRFGetGroupID" value="http://192.168.1.111:9885/crf/GetGroupID"/>
         <property name="CRFModelByProjectID" value="http://192.168.1.111:9885/crf/ModelByProjectID"/>
+        <property name="CRFModelForTraceByCRFID" value="http://192.168.1.111:9885/crf/ModelForTraceByCRFID"/>
         <property name="CRFModelByCRFID" value="http://192.168.1.111:9885/crf/ModelByCRFID"/>
         <property name="CRFEditModel" value="http://192.168.1.111:9885/crf/EditModel"/>
         <property name="CRFSaveModel" value="http://192.168.1.111:9885/crf/SaveModel"/>

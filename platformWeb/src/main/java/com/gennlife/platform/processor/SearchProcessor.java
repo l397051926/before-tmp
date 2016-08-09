@@ -3,6 +3,7 @@ package com.gennlife.platform.processor;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.SyUser;
 import com.gennlife.platform.bean.projectBean.ProSample;
+import com.gennlife.platform.bean.searchConditionBean.SearchConditionBean;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.service.ArkService;
 import com.gennlife.platform.util.Conf;
@@ -19,6 +20,8 @@ import org.springframework.context.ApplicationContext;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +39,7 @@ public class SearchProcessor {
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
     private static View viewer = new View();
+    private static SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     static{
         ApplicationContext context = SpringContextUtil.getApplicationContext();
         Conf conf = (Conf) context.getBean("com.gennlife.platform.util.Conf");
@@ -94,6 +98,7 @@ public class SearchProcessor {
             map.put("startIndex",(ls[0]-1) * ls[1]);
             map.put("maxNum",ls[1]);
         }catch (Exception e){
+            logger.error("",e);
             return ParamUtils.errorParam("请求参数异常");
         }
         List<ProSample> list= AllDao.getInstance().getProjectDao().searchSampleSetList(map);
@@ -105,5 +110,63 @@ public class SearchProcessor {
         resultBean.setData(list);
         resultBean.setInfo(info);
         return gson.toJson(resultBean);
+    }
+
+    /**
+     * 保存用户搜索的条件
+     * @param paramObj
+     * @return
+     */
+    public String storeSearchCondition(JsonObject paramObj) {
+        String uid = null;
+        String condition = null;
+        try{
+            uid = paramObj.get("uid").getAsString();
+            condition = paramObj.get("condition").getAsString();
+        }catch (Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("请求参数异常");
+        }
+        try{
+            SearchConditionBean searchConditionBean = new SearchConditionBean();
+            searchConditionBean.setLogTime(df.format(new Date()));
+            searchConditionBean.setUid(uid);
+            searchConditionBean.setSearchCondition(condition);
+            AllDao.getInstance().getSyUserDao().insertSearchCondition(searchConditionBean);
+        }catch (Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("服务异常");
+        }
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(1);
+        resultBean.setData("保存完成");
+        return gson.toJson(resultBean);
+    }
+
+    /**
+     * 搜索条件
+     * @param paramObj
+     * @return
+     */
+    public String searchConditionList(JsonObject paramObj) {
+        String uid = null;
+        try{
+            uid = paramObj.get("uid").getAsString();
+        }catch (Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("请求参数异常");
+        }
+        try{
+            List<SearchConditionBean> list = AllDao.getInstance().getSyUserDao().searchConditionList(uid);
+            ResultBean resultBean = new ResultBean();
+            resultBean.setCode(1);
+            resultBean.setData(list);
+            return gson.toJson(resultBean);
+        }catch (Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("服务异常");
+        }
+
+
     }
 }

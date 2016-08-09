@@ -193,6 +193,18 @@ public class URLBean {
 
     private String RList = null;
 
+
+
+    private String CRFModelForTraceByCRFID = null;
+
+    public String getCRFModelForTraceByCRFID() {
+        return CRFModelForTraceByCRFID;
+    }
+
+    public void setCRFModelForTraceByCRFID(String CRFModelForTraceByCRFID) {
+        this.CRFModelForTraceByCRFID = CRFModelForTraceByCRFID;
+    }
+
     public String getCRFPatientVisitDetail() {
         return CRFPatientVisitDetail;
     }

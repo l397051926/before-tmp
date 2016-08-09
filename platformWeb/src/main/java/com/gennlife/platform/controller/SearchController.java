@@ -90,5 +90,37 @@ public class SearchController extends HttpServlet {
         return resultStr;
     }
 
+    @RequestMapping(value="/StoreSearchCondition",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String getStoreSearchCondition(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.storeSearchCondition(paramObj);
+            logger.info("搜索条件保存 post 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("搜索条件保存 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 
+    @RequestMapping(value="/SearchConditionList",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String getSearchConditionList(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.searchConditionList(paramObj);
+            logger.info("搜索条件保存 post 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("搜索条件保存 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }

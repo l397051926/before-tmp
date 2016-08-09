@@ -3,6 +3,7 @@ package com.gennlife.platform.dao;
 
 import com.gennlife.platform.bean.SyUser;
 import com.gennlife.platform.bean.projectBean.*;
+import com.gennlife.platform.bean.searchConditionBean.SearchConditionBean;
 import org.mybatis.spring.annotation.Mapper;
 
 import java.util.List;
@@ -61,4 +62,17 @@ public interface SyUserMapper {
      * @return
      */
     public List<MyProjectList> getProjectList(Map<String, Object> map);
+
+    /**
+     * 保存高级检索公式
+     * @param searchConditionBean
+     */
+    void insertSearchCondition(SearchConditionBean searchConditionBean);
+
+    /**
+     * 获取保存的高级检索公式
+     * @param uid
+     * @return
+     */
+    List<SearchConditionBean> searchConditionList(String uid);
 }
