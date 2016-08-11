@@ -23,10 +23,11 @@ public class SampleController {
     private static JsonParser jsonParser = new JsonParser();
     @RequestMapping(value="/Import",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postImport(@RequestBody String param){
+    String postImport(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.importSample(paramObj);
         }catch (Exception e){
@@ -54,10 +55,11 @@ public class SampleController {
 
     @RequestMapping(value="/SetDetail",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postSetDetail(@RequestBody String param){
+    String postSetDetail(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.sampleDetail(paramObj);
         }catch (Exception e){
