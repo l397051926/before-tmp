@@ -5,16 +5,17 @@ import com.gennlife.platform.bean.projectBean.*;
 import com.gennlife.platform.enums.LogActionEnum;
 import com.gennlife.platform.enums.MemberEnum;
 import com.gennlife.platform.processor.UserProcessor;
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by chensong on 2015/12/7.

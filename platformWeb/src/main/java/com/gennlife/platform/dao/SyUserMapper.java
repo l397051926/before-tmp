@@ -2,7 +2,8 @@ package com.gennlife.platform.dao;
 
 
 import com.gennlife.platform.bean.SyUser;
-import com.gennlife.platform.bean.projectBean.*;
+import com.gennlife.platform.bean.projectBean.HistoryWords;
+import com.gennlife.platform.bean.projectBean.MyProjectList;
 import com.gennlife.platform.bean.searchConditionBean.SearchConditionBean;
 import org.mybatis.spring.annotation.Mapper;
 

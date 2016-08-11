@@ -6,7 +6,6 @@ import com.gennlife.platform.bean.projectBean.ProSample;
 import com.gennlife.platform.bean.searchConditionBean.SearchConditionBean;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.service.ArkService;
-import com.gennlife.platform.util.Conf;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.util.SpringContextUtil;
@@ -18,8 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -32,21 +29,10 @@ import java.util.concurrent.ExecutorService;
  */
 public class SearchProcessor {
     private static Logger logger = LoggerFactory.getLogger(SearchProcessor.class);
-    private static String qRecommendURL = null;
-    private static String searchURL = null;
-    private static String fileURL = null;
-    private static  ExecutorService executorService = ArkService.getExecutorService();
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
     private static View viewer = new View();
     private static SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    static{
-        ApplicationContext context = SpringContextUtil.getApplicationContext();
-        Conf conf = (Conf) context.getBean("com.gennlife.platform.util.Conf");
-        qRecommendURL = conf.getqRecommendURL();
-        searchURL = conf.getSearchURL();
-        fileURL = conf.getFileURL();
-    }
 
 
 

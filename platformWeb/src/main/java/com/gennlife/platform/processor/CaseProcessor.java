@@ -23,8 +23,6 @@ public class CaseProcessor {
     private Logger logger = LoggerFactory.getLogger(CaseProcessor.class);
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
-    private static View viewer = new View();
-    private static ExecutorService executorService = ArkService.getExecutorService();
 
 
     /**

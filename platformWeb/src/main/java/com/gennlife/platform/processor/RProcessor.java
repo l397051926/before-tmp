@@ -1,25 +1,16 @@
 package com.gennlife.platform.processor;
 
-import com.gennlife.platform.bean.ResultBean;
-import com.gennlife.platform.bean.SyUser;
-import com.gennlife.platform.bean.crf.DataBean;
-import com.gennlife.platform.bean.crf.SampleListBean;
-import com.gennlife.platform.bean.crf.SummaryBean;
-import com.gennlife.platform.bean.projectBean.MyProjectList;
-import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.service.ConfigurationService;
-import com.gennlife.platform.util.*;
-import com.gennlife.platform.view.View;
-import com.google.gson.*;
-import com.mongodb.BasicDBObject;
-import org.bson.BSONObject;
+import com.gennlife.platform.util.GsonUtil;
+import com.gennlife.platform.util.HttpRequestUtils;
+import com.gennlife.platform.util.ParamUtils;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
-import java.util.*;
 
 /**
  * Created by chen-shuai on 16/7/29.

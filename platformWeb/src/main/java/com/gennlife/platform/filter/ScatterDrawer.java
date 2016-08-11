@@ -2,7 +2,6 @@ package com.gennlife.platform.filter;
 
 import com.gennlife.platform.util.GsonUtil;
 import com.google.gson.*;
-import com.google.gson.annotations.JsonAdapter;
 
 import java.util.HashMap;
 import java.util.Map;

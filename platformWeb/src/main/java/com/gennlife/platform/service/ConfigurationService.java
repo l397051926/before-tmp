@@ -10,7 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by chen-song on 16/5/13.
@@ -21,7 +24,7 @@ public class ConfigurationService {
     private static URLBean urlBean = null;
     //全量属性的jsonobject
     private static List<JsonObject> allList = new LinkedList<JsonObject>();
-    //ui name,index name
+    //index name,ui name
     private static Map<String,String> nameMap = new HashMap<>();
 
     //默认的搜索列表
@@ -68,7 +71,7 @@ public class ConfigurationService {
                 JsonObject json = jsonElement.getAsJsonObject();
                 String UIFieldName = json.get("UIFieldName").getAsString();
                 String IndexFieldName = json.get("IndexFieldName").getAsString();
-                nameMap.put(UIFieldName,IndexFieldName);
+                nameMap.put(IndexFieldName,UIFieldName);
                 allList.add(json);
             }
 
@@ -90,7 +93,7 @@ public class ConfigurationService {
     }
 
 
-    public  static String getIndexFieldName(String UIFieldName){
-        return nameMap.get(UIFieldName);
+    public  static String getUIFieldName(String IndexFieldName){
+        return nameMap.get(IndexFieldName);
     }
 }

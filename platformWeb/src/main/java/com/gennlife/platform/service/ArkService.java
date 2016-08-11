@@ -1,19 +1,19 @@
 package com.gennlife.platform.service;
 
-import com.gennlife.platform.bean.conf.ConfGroupInfo;
-import com.gennlife.platform.bean.conf.ConfItem;
 import com.gennlife.platform.util.*;
-import com.google.gson.*;
-import com.google.gson.internal.LinkedHashTreeMap;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.w3c.dom.Element;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.UnknownHostException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -22,11 +22,7 @@ import java.util.concurrent.Executors;
  */
 public class ArkService {
     private static final Logger logger = LoggerFactory.getLogger(ArkService.class);
-    private static Conf conf = null;
     private static MongoConf mongoConf = null;
-    private static ExecutorService executorService;
-    private static String seerField;
-    private static String CosmicMutantExport_v70;
     private static Gson gson = GsonUtil.getGson();
 
 
@@ -34,13 +30,6 @@ public class ArkService {
 
     public void init(String s, Element element) {
         ApplicationContext context = SpringContextUtil.getApplicationContext();
-        conf = (Conf) context.getBean("com.gennlife.platform.util.Conf");
-        logger.info("qRecommendURL =" + conf.getqRecommendURL());
-        logger.info("searchURL =" + conf.getSearchURL());
-        logger.info("fileURL =" + conf.getFileURL());
-        logger.info("detailURL =" + conf.getDetailURL());
-        logger.info("importURL =" + conf.getImportURL());
-        executorService = Executors.newCachedThreadPool();
         //crf 属性关联配置文件
         parseChain();
         //项目疾病下拉菜单接口
@@ -68,19 +57,6 @@ public class ArkService {
         MongoManager.destory();
     }
 
-    public static Conf getConf(){
-        if(conf == null){
-            ApplicationContext context = SpringContextUtil.getApplicationContext();
-            conf = (Conf) context.getBean("com.gennlife.platform.util.Conf");
-        }
-        return conf;
-    }
-    public static ExecutorService getExecutorService(){
-        if(executorService == null){
-            executorService = Executors.newCachedThreadPool();
-        }
-        return executorService;
-    }
 
 
 

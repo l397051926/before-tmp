@@ -1,7 +1,6 @@
 package com.gennlife.platform.bean.crf;
 
 
-import java.util.Date;
 import java.util.Set;
 
 /**

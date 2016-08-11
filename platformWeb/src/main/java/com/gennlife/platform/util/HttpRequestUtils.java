@@ -1,8 +1,5 @@
 package com.gennlife.platform.util;
 
-import java.io.IOException;
-import java.net.URLDecoder;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
@@ -10,11 +7,13 @@ import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.net.URLDecoder;
 
 public class HttpRequestUtils {
 	private static Logger logger = LoggerFactory.getLogger(HttpRequestUtils.class);

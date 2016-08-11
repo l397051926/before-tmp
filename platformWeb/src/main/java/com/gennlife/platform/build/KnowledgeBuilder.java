@@ -1,17 +1,14 @@
 package com.gennlife.platform.build;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
-import org.springframework.util.StringUtils;
-
 import com.gennlife.platform.util.DataFormatConversion;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
+import org.springframework.util.StringUtils;
+
+import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  * Created by chen-song on 16/5/6.

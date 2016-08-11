@@ -7,8 +7,7 @@ import com.gennlife.platform.bean.projectBean.ProLog;
 import com.gennlife.platform.bean.projectBean.ProSample;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.enums.LogActionEnum;
-import com.gennlife.platform.parse.SampleImportParser;
-import com.gennlife.platform.service.ArkService;
+import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
@@ -17,9 +16,7 @@ import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by chensong on 2015/12/9.
@@ -29,13 +26,6 @@ public class SampleProcessor {
     private static View viewer = new View();
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
-    private static String setHeadUrl = null;
-    private static String setDataUrl = null;
-
-    static {
-        setHeadUrl = ArkService.getConf().getSetDetailURL();
-        setDataUrl = ArkService.getConf().getSetDetailDataURL();
-    }
 
     /**
      * 搜索关键词
@@ -45,7 +35,6 @@ public class SampleProcessor {
     public String importSample(JsonObject jsonObject) {
         try {
             String projectID = jsonObject.get("projectID").getAsString();
-            String indexName = jsonObject.get("indexName").getAsString();
             String sampleName = null;
             String uid = jsonObject.get("uid").getAsString();
             if (jsonObject.get("sampleName") != null) {
@@ -55,13 +44,10 @@ public class SampleProcessor {
             if (jsonObject.get("sampleDesc").getAsString() != null) {
                 sampleDesc = jsonObject.get("sampleDesc").getAsString();
             }
-
-            Object query = jsonObject.get("query").getAsJsonObject();
-
-            JsonArray itemColumnName = jsonObject.get("itemColumnName").getAsJsonArray();
-            logger.info("itemColumnName =" + gson.toJson(itemColumnName));
-            String data = SampleImportParser.getURI(projectID, itemColumnName, query, indexName);
-            String itemMap = gson.toJson(itemColumnName);
+            JsonObject query = jsonObject.get("query").getAsJsonObject();
+            JsonArray source = query.getAsJsonArray("source");
+            String url = ConfigurationService.getUrlBean().getSampleImportIURL();
+            String data = HttpRequestUtils.httpPost(url,gson.toJson(query));
             Long startTime = System.currentTimeMillis();
             logger.info("data = " + data);
             JsonObject resultMap = jsonParser.parse(data).getAsJsonObject();
@@ -70,7 +56,7 @@ public class SampleProcessor {
             Map<String, Object> dataMap = new HashMap<String, Object>();
             ResultBean resultBean = new ResultBean();
             if (succeed) {
-                String uri = resultMap.get("uri").getAsString();
+                String uri = resultMap.get("data_id").getAsString();
                 Integer total = resultMap.get("total").getAsInt();
                 Map<String, Object> conf = new HashMap<String, Object>();
                 conf.put("projectID", projectID);
@@ -92,7 +78,7 @@ public class SampleProcessor {
                 proSample.setSampleName(sampleName);
                 proSample.setBatchID(batchID);
                 proSample.setTotal(total);
-                proSample.setItems(itemMap);
+                proSample.setItems(gson.toJson(source));
                 proSample.setSampleDesc(sampleDesc);
                 int counter = AllDao.getInstance().getProjectDao().insertProSample(proSample);
                 ProLog proLog = new ProLog();
@@ -119,41 +105,52 @@ public class SampleProcessor {
     }
 
     public String sampleDetail(JsonObject jsonObject) {
-        String uri = jsonObject.get("uri").getAsString();
-        logger.info("url =" + String.format(setHeadUrl, uri));
-        String url = String.format(setHeadUrl, ParamUtils.encodeURI(uri));
-        String headData = HttpRequestUtils.httpGet(url);
-        JsonObject jsonHead = jsonParser.parse(headData).getAsJsonObject();
-        boolean succeed = jsonHead.get("succeed").getAsBoolean();
-        if (succeed) {
-            JsonObject schemaJson = jsonHead.getAsJsonObject("schema");
-            Map<String, JsonObject> headMap = new HashMap<String, JsonObject>();
-            for (Map.Entry<String, JsonElement> entry : schemaJson.entrySet()) {
-                JsonObject tableHead = new JsonObject();
-                String key = entry.getKey();
-                JsonObject valueOject = entry.getValue().getAsJsonObject();
-                String UIFieldName = key;
-                if (valueOject.get("UIFieldName") != null) {
-                    UIFieldName = valueOject.get("UIFieldName").getAsString();
-                }
-                String type = valueOject.get("type").getAsString();
-                tableHead.addProperty("key", key);
-                tableHead.addProperty("UIFieldName", UIFieldName);
-                tableHead.addProperty("type", type);
-                headMap.put(key, tableHead);
-            }
-            logger.info(String.format(setDataUrl, uri));
-            url = String.format(setDataUrl, ParamUtils.encodeURI(uri));
-            String tableData = HttpRequestUtils.httpGet(url);
-            JsonObject jsonData = jsonParser.parse(tableData).getAsJsonObject();
-            succeed = jsonData.get("succeed").getAsBoolean();
+        try{
+            String sampleURI =  jsonObject.get("sampleURI").getAsString();
+            jsonObject.remove("sampleURI");
+            jsonObject.addProperty("sampleURI",sampleURI);
+            String url = ConfigurationService.getUrlBean().getSampleDetailURL();
+            String dataStr = HttpRequestUtils.httpPost(url,gson.toJson(jsonObject));
+            JsonObject json = (JsonObject) jsonParser.parse(dataStr);
+            boolean succeed = json.get("succeed").getAsBoolean();
             if (succeed) {
-                JsonArray dataArray = jsonData.getAsJsonArray("data");
-                String str = viewer.ViewDetailSet(headMap, dataArray);
-                return str;
+                JsonArray schemaJson = json.getAsJsonArray("SCEHMA");
+                JsonObject schema = new JsonObject();
+                List<String> list = new LinkedList<>();
+                for(JsonElement schemaElement:schemaJson){
+                    String index = schemaElement.getAsString();
+                    String uiName = ConfigurationService.getUIFieldName(index);
+                    schema.addProperty(index,uiName);
+                    list.add(index);
+                }
+                JsonArray data = new JsonArray();
+                JsonArray DATAArray = json.getAsJsonArray("DATA");
+                for(JsonElement dataItemArray:DATAArray){
+                    JsonArray oneDataArray = dataItemArray.getAsJsonArray();
+                    JsonObject entity = new JsonObject();
+                    for(int i=0;i<list.size();i++){
+                        String index = list.get(i);
+                        JsonPrimitive dataValue = oneDataArray.get(i).getAsJsonPrimitive();
+                        entity.add(index,dataValue);
+                    }
+                    data.add(entity);
+                }
+                JsonObject result = new JsonObject();
+                JsonObject info = new JsonObject();
+                info.add("schema",schema);
+                result.addProperty("code",1);
+                result.add("info",info);
+                result.add("data",data);
+                return gson.toJson(result);
+            }else{
+                return ParamUtils.errorParam("FS出现异常");
             }
+
+        }catch (Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("出现异常");
         }
-        return ParamUtils.errorParam("出现异常");
+
     }
 
     /**

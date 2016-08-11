@@ -2,9 +2,11 @@ package com.gennlife.platform.view;
 
 
 import com.gennlife.platform.bean.ResultBean;
-import com.gennlife.platform.bean.conf.ConfItem;
 import com.gennlife.platform.util.GsonUtil;
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonGenerator;
 import org.slf4j.Logger;
@@ -15,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.List;
 import java.util.Map;
 
 /**

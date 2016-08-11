@@ -7,6 +7,7 @@ import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.enums.LogActionEnum;
 import com.gennlife.platform.filter.ScatterDrawer;
 import com.gennlife.platform.service.ArkService;
+import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.JsonUtils;
@@ -273,7 +274,7 @@ public class ProjectProcessor {
      * 工作区的工具列表
      */
     public String tools(){
-        String content= HttpRequestUtils.httpGet(ArkService.getConf().getToolsURL());
+        String content= HttpRequestUtils.httpGet(ConfigurationService.getUrlBean().getToolsURL());
         return content;
     }
 
@@ -313,7 +314,7 @@ public class ProjectProcessor {
         logger.info("aTool uri="+uri);
         logger.info("aTool tool_name="+tool_name);
         logger.info("aTool newParam="+newParam);
-        String url = ArkService.getConf().getAtoolURL() + "?"+newParam.toString();
+        String url = ConfigurationService.getUrlBean().getAtoolURL() + "?"+newParam.toString();
         logger.info("aTool url="+url);
         String content= HttpRequestUtils.httpGet(url);
         logger.info("aTool 结果:" + content);

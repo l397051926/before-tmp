@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:util="http://www.springframework.org/schema/util"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans   
-            http://www.springframework.org/schema/beans/spring-beans-4.1.xsd      
-            http://www.springframework.org/schema/context   
-            http://www.springframework.org/schema/context/spring-context-4.1.xsd      
-            http://www.springframework.org/schema/mvc   
-            http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd      
-            http://www.springframework.org/schema/util   
-            http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
     <bean id="com.gennlife.platform.util.Conf" class="com.gennlife.platform.util.Conf">
         <property name="searchURL" value="http://192.168.1.111:8989/SearchServer/search?indexName=%s&amp;query=%s"/>
         <property name="importURL" value="http://192.168.1.111:8989/SearchServer/search?indexName=%s&amp;query="/>
@@ -55,6 +47,11 @@
         <property name="caseDiagnose" value="http://10.0.0.182:8111/FileService/VisitDetail/diagnose"/>
         <property name="caseAdmission_records" value="http://10.0.0.182:8111/FileService/PatientDetail/admission_records"></property>
 
+        <!-- 样本操作 -->
+        <property name="sampleImportIURL" value="http://10.0.0.165:9900/FileService/PatientDetail/patient_basic_info"/>
+        <property name="sampleDetailURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_get"/>
+        <property name="sampleDaleteURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_delete"/>
+
 
         <property name="knowledgeURL" value="http://10.0.0.184:8080/knowledge/graph"/>
         <property name="knowledgeDiseaseSearchGenesURL" value="http://10.0.0.184:8080/knowledge/DiseaseSearchGenes"/>
@@ -80,5 +77,8 @@
         <property name="CRFDeleteSample" value="http://192.168.1.111:9885/crf/DeleteSample"/>
         <property name="CRFUpLoadData" value="http://192.168.1.111:9885/crf/UpLoadData"/>
         <property name="CRFSearchSampleList" value="http://192.168.1.111:9885/crf/SearchSampleList"/>
+
+        <property name="AtoolURL" value="http://192.168.1.111:81/get_statistic"/>
+        <property name="toolsURL" value="http://192.168.1.111:8111/fs/detail?table=%s&amp;key=%s&amp;fields=%s"/>
     </bean>
 </beans>

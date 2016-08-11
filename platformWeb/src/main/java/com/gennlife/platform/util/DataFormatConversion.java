@@ -1,26 +1,17 @@
 package com.gennlife.platform.util;
 
-import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.Map.Entry;
-
-import org.json.JSONException;
+import com.google.gson.*;
+import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.internal.JsonContext;
+import net.minidev.json.JSONArray;
+import net.minidev.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
-import com.jayway.jsonpath.JsonPath;
-import com.jayway.jsonpath.internal.JsonContext;
-
-import net.minidev.json.JSONArray;
-import net.minidev.json.JSONObject;
+import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * knowledge 与 ui 之间的数据转换

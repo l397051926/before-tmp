@@ -14,6 +14,23 @@ public class URLBean {
     }
 
     /**
+     * 工作区工具列表
+     */
+    private String toolsURL = null;
+
+    private String AtoolURL = null;
+    /**
+     * 搜索结果导出到项目
+     */
+    private String sampleImportIURL = null;
+    /**
+     * 样本详情接口
+     */
+    private String sampleDetailURL = null;
+
+    private String sampleDaleteURL = null;
+
+    /**
      * 病程 诊断报告:主诉
      */
     private String caseAdmission_records=null;
@@ -251,7 +268,13 @@ public class URLBean {
          */
     private String CRFPatientAllVisitsDetail=null;
 
+    public String getSampleImportIURL() {
+        return sampleImportIURL;
+    }
 
+    public void setSampleImportIURL(String sampleImportIURL) {
+        this.sampleImportIURL = sampleImportIURL;
+    }
 
     public String getCRFModelByProjectID() {
         return CRFModelByProjectID;
@@ -620,5 +643,37 @@ public class URLBean {
 
     public void setCaseDiagnose(String caseDiagnose) {
         this.caseDiagnose = caseDiagnose;
+    }
+
+    public String getSampleDetailURL() {
+        return sampleDetailURL;
+    }
+
+    public void setSampleDetailURL(String sampleDetailURL) {
+        this.sampleDetailURL = sampleDetailURL;
+    }
+
+    public String getSampleDaleteURL() {
+        return sampleDaleteURL;
+    }
+
+    public void setSampleDaleteURL(String sampleDaleteURL) {
+        this.sampleDaleteURL = sampleDaleteURL;
+    }
+
+    public String getToolsURL() {
+        return toolsURL;
+    }
+
+    public void setToolsURL(String toolsURL) {
+        this.toolsURL = toolsURL;
+    }
+
+    public String getAtoolURL() {
+        return AtoolURL;
+    }
+
+    public void setAtoolURL(String atoolURL) {
+        AtoolURL = atoolURL;
     }
 }

@@ -1,8 +1,11 @@
 package com.gennlife.platform.util;
 
 import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -100,4 +103,13 @@ public class ParamUtils {
         return gson.toJson(resultBean);
     }
 
+    public static JsonArray indexNameTranformUIName(JsonArray array){
+        JsonArray jsonArray = new JsonArray();
+        for(JsonElement indexNameElement:array){
+            String indexName = indexNameElement.getAsString();
+            String uiName = ConfigurationService.getUIFieldName(indexName);
+            jsonArray.add(uiName);
+        }
+        return jsonArray;
+    }
 }
