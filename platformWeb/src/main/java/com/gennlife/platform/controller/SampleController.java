@@ -116,4 +116,19 @@ public class SampleController {
         return resultStr;
     }
 
+
+    @RequestMapping(value="/ImportTree",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String getImportTree(){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            resultStr =  processor.importTree();
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("组织机构列表 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
 }

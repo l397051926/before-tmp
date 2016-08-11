@@ -27,6 +27,8 @@ public class ConfigurationService {
     //index name,ui name
     private static Map<String,String> nameMap = new HashMap<>();
 
+    private static JsonObject importTree = new JsonObject();
+
     //默认的搜索列表
     private static JsonObject defaultObj = null;
     //全部的搜索列表
@@ -76,6 +78,8 @@ public class ConfigurationService {
             }
 
         }
+        importTree = caseObj.getAsJsonObject("import");
+
     }
 
     public static JsonObject getAllObj() {
@@ -92,6 +96,9 @@ public class ConfigurationService {
         return defaultObj;
     }
 
+    public static JsonObject getImportTree() {
+        return importTree;
+    }
 
     public  static String getUIFieldName(String IndexFieldName){
         return nameMap.get(IndexFieldName);

@@ -7,6 +7,7 @@ import com.gennlife.platform.bean.projectBean.ProLog;
 import com.gennlife.platform.bean.projectBean.ProSample;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.enums.LogActionEnum;
+import com.gennlife.platform.service.ArkService;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
@@ -197,5 +198,9 @@ public class SampleProcessor {
         return gson.toJson(resultBean);
 
 
+    }
+
+    public String importTree() {
+        return gson.toJson(ConfigurationService.getImportTree());
     }
 }
