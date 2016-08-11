@@ -103,7 +103,7 @@
           "srchFieldName": "患者基本信息.ABO血型"
         }
       ],
-      "高血压史":[
+      "高血压史": [
         {
           "UIFieldName": "高血压史",
           "dataType": "string",
@@ -131,7 +131,7 @@
           "srchFieldName": "糖尿病史.糖尿病年限（年）"
         }
       ],
-      "临床基本信息":[
+      "临床基本信息": [
         {
           "UIFieldName": "临床诊断",
           "dataType": "string",
@@ -169,7 +169,7 @@
           "srchFieldName": "临床基本信息.临床M分期"
         }
       ],
-      "首次术后病理信息":[
+      "首次术后病理信息": [
         {
           "UIFieldName": "病理类型",
           "dataType": "string",
@@ -407,31 +407,36 @@
           "dataType": "string",
           "IndexFieldName": "smoke_history.previousHistory_smoke_has",
           "srchFieldName": "吸烟史.吸烟史",
-          "relatedItems":[
+          "relatedItems": [
             {
               "UIFieldName": "开始吸烟年龄",
               "dataType": "string",
-              "IndexFieldName": "smoke_history.previousHistory_smoke_startAge"
+              "IndexFieldName": "smoke_history.previousHistory_smoke_startAge",
+              "srchFieldName": "吸烟史.开始吸烟年龄"
             },
             {
               "UIFieldName": "吸烟年限",
               "dataType": "double",
-              "IndexFieldName": "smoke_history.previousHistory_smoke_years"
+              "IndexFieldName": "smoke_history.previousHistory_smoke_years",
+              "srchFieldName": "吸烟史.吸烟年限"
             },
             {
               "UIFieldName": "平均吸烟强度(支/天)",
               "dataType": "double",
-              "IndexFieldName": "smoke_history.previousHistory_smoke_rate"
+              "IndexFieldName": "smoke_history.previousHistory_smoke_rate",
+              "srchFieldName": "吸烟史.平均吸烟强度(支/天)"
             },
             {
               "UIFieldName": "是否戒烟 ",
               "dataType": "string",
-              "IndexFieldName": "smoke_history.previousHistory_smoke_quit"
+              "IndexFieldName": "smoke_history.previousHistory_smoke_quit",
+              "srchFieldName": "吸烟史.是否戒烟 "
             },
             {
               "UIFieldName": "戒烟年限",
               "dataType": "double",
-              "IndexFieldName": "smoke_history.previousHistory_smoke_quitYears"
+              "IndexFieldName": "smoke_history.previousHistory_smoke_quitYears",
+              "srchFieldName": "吸烟史.戒烟年限"
             }
           ]
         },
@@ -472,7 +477,7 @@
           "dataType": "string",
           "IndexFieldName": "disease_history.disease_history_name",
           "srchFieldName": "既往疾病史.既往史名称",
-          "relatedItems":[
+          "relatedItems": [
             {
               "UIFieldName": "患病时间",
               "dataType": "double",
@@ -522,7 +527,7 @@
           "dataType": "string",
           "IndexFieldName": "1stfami_cancer_history.father_ca",
           "srchFieldName": "家族肿瘤史.父亲肿瘤史名称",
-          "relatedItems":[
+          "relatedItems": [
             {
               "UIFieldName": "父亲患病时长(年)",
               "dataType": "double",
@@ -542,7 +547,7 @@
           "dataType": "string",
           "IndexFieldName": "1stfami_cancer_history.mother_ca",
           "srchFieldName": "家族肿瘤史.母亲肿瘤名称",
-          "relatedItems":[
+          "relatedItems": [
             {
               "UIFieldName": "母亲患病时长(年)",
               "dataType": "double",
@@ -562,7 +567,7 @@
           "dataType": "string",
           "IndexFieldName": "1stfami_cancer_history.brother_ca",
           "srchFieldName": "家族肿瘤史.兄弟肿瘤名称",
-          "relatedItems":[
+          "relatedItems": [
             {
               "UIFieldName": "兄弟患病时长(年)",
               "dataType": "double",
@@ -582,7 +587,7 @@
           "dataType": "string",
           "IndexFieldName": "1stfami_cancer_history.sister_ca",
           "srchFieldName": "家族肿瘤史.姐妹肿瘤名称",
-          "relatedItems":[
+          "relatedItems": [
             {
               "UIFieldName": "姐妹患病时长(年)",
               "dataType": "double",
@@ -602,7 +607,7 @@
           "dataType": "string",
           "IndexFieldName": "1stfami_cancer_history.child_ca",
           "srchFieldName": "家族肿瘤史.子女肿瘤名称",
-          "relatedItems":[
+          "relatedItems": [
             {
               "UIFieldName": "子女患病时长(年)",
               "dataType": "double",
@@ -624,7 +629,7 @@
           "dataType": "string",
           "IndexFieldName": "cancer_history.cancer_name",
           "srchFieldName": "个人肿瘤史.肿瘤名称",
-          "relatedItems":[
+          "relatedItems": [
             {
               "UIFieldName": "患病时长（年）",
               "dataType": "string",
@@ -4347,7 +4352,7 @@
           "dataType": "string",
           "IndexFieldName": "visits.inspection_reports.INSPECTION_NAME",
           "srchFieldName": "就诊.检验报告.检验项目名称",
-          "relatedItems":[
+          "relatedItems": [
             {
               "UIFieldName": "送检科室",
               "dataType": "string",
@@ -4455,7 +4460,7 @@
           "dataType": "string",
           "IndexFieldName": "visits.inspection_reports.sub_inspection.SUB_INSPECTION_CN",
           "srchFieldName": "就诊.检验报告.检验子项中文名",
-          "relatedItems":[
+          "relatedItems": [
             {
               "UIFieldName": "送检科室",
               "dataType": "string",
@@ -4557,7 +4562,7 @@
           "dataType": "string",
           "IndexFieldName": "visits.inspection_reports.sub_inspection.SUB_INSPECTION_EN",
           "srchFieldName": "就诊.检验报告.检验子项英文名",
-          "relatedItems":[
+          "relatedItems": [
             {
               "UIFieldName": "送检科室",
               "dataType": "string",
