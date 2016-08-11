@@ -43,6 +43,7 @@ public class ConfigurationService {
             throw new RuntimeException();
         }
         try{
+            //搜索相关配置列表
             loadConfigurationInfo();
         }catch (Exception e){
 

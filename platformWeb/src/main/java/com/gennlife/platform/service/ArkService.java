@@ -41,7 +41,9 @@ public class ArkService {
         logger.info("detailURL =" + conf.getDetailURL());
         logger.info("importURL =" + conf.getImportURL());
         executorService = Executors.newCachedThreadPool();
+        //crf 属性关联配置文件
         parseChain();
+        //项目疾病下拉菜单接口
         parseProjectDisease();
         logger.info("开始初始化mongoDB相关配置,,,,");
         mongoConf = (MongoConf) context.getBean("com.gennlife.platform.util.MongoConf");
