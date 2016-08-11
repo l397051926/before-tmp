@@ -337,7 +337,6 @@ public class CrfProcessor {
     public String modelForTraceByCRFID(String param) {
         try{
             String url = ConfigurationService.getUrlBean().getCRFModelForTraceByCRFID();
-            url = url+param;
             logger.info("request url:" + url);
             String result = HttpRequestUtils.httpPost(url,param);
             return result;
