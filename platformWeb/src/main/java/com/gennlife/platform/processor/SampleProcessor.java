@@ -48,7 +48,9 @@ public class SampleProcessor {
             JsonObject query = jsonObject.get("query").getAsJsonObject();
             JsonArray source = query.getAsJsonArray("source");
             String url = ConfigurationService.getUrlBean().getSampleImportIURL();
-            String data = HttpRequestUtils.httpPost(url,gson.toJson(query));
+            JsonObject param = new JsonObject();
+            param.add("query",query);
+            String data = HttpRequestUtils.httpPost(url,gson.toJson(param));
             Long startTime = System.currentTimeMillis();
             logger.info("data = " + data);
             JsonObject resultMap = jsonParser.parse(data).getAsJsonObject();
