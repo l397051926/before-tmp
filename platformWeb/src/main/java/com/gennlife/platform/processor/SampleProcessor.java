@@ -60,7 +60,7 @@ public class SampleProcessor {
             ResultBean resultBean = new ResultBean();
             if (succeed) {
                 String uri = resultMap.get("data_id").getAsString();
-                Integer total = resultMap.get("total").getAsInt();
+                Integer total = resultMap.get("TOTAL").getAsInt();
                 Map<String, Object> conf = new HashMap<String, Object>();
                 conf.put("projectID", projectID);
                 Integer batchID = AllDao.getInstance().getProjectDao().getMaxBatchID(conf);
