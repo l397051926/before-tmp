@@ -148,9 +148,6 @@
             <if test="sampleURI != null" >
                 sampleURI,
             </if>
-            <if test="sampleURI != null" >
-                sampleURI,
-            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="projectID != null" >

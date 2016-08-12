@@ -55,7 +55,7 @@ public class SampleProcessor {
             logger.info("data = " + data);
             JsonObject resultMap = jsonParser.parse(data).getAsJsonObject();
             logger.info("时间======" + (System.currentTimeMillis() - startTime));
-            Boolean succeed = resultMap.get("succeed").getAsBoolean();
+            Boolean succeed = resultMap.get("success").getAsBoolean();
             Map<String, Object> dataMap = new HashMap<String, Object>();
             ResultBean resultBean = new ResultBean();
             if (succeed) {
@@ -94,7 +94,9 @@ public class SampleProcessor {
                 proLog.setSampleName(sampleName);
                 counter = AllDao.getInstance().getProjectDao().insertProLog(proLog);
                 resultBean.setCode(1);
-                dataMap.put("total", resultMap.get("total"));
+                Map<String,Object> info = new HashMap<>();
+                info.put("counter",total);
+                resultBean.setInfo(info);
             } else {
                 resultBean.setCode(0);
 
