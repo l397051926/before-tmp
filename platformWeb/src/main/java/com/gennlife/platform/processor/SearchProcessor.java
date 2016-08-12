@@ -105,10 +105,12 @@ public class SearchProcessor {
      */
     public String storeSearchCondition(JsonObject paramObj) {
         String uid = null;
-        String condition = null;
+        String conditionStr = null;
+        String conditionName = null;
         try{
             uid = paramObj.get("uid").getAsString();
-            condition = paramObj.get("condition").getAsString();
+            conditionStr = paramObj.get("conditionStr").getAsString();
+            conditionName = paramObj.get("conditionName").getAsString();
         }catch (Exception e){
             logger.error("",e);
             return ParamUtils.errorParam("请求参数异常");
@@ -117,7 +119,8 @@ public class SearchProcessor {
             SearchConditionBean searchConditionBean = new SearchConditionBean();
             searchConditionBean.setLogTime(df.format(new Date()));
             searchConditionBean.setUid(uid);
-            searchConditionBean.setSearchCondition(condition);
+            searchConditionBean.setConditionStr(conditionStr);
+            searchConditionBean.setConditionName(conditionName);
             AllDao.getInstance().getSyUserDao().insertSearchCondition(searchConditionBean);
         }catch (Exception e){
             logger.error("",e);

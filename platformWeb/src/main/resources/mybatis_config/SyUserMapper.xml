@@ -250,33 +250,40 @@
 			<if test="uid != null" >
 				uid,
 			</if>
-			<if test="searchCondition != null" >
+			<if test="conditionStr != null" >
 				conditionText,
 			</if>
 			<if test="logTime != null" >
 				logTime,
+			</if>
+			<if test="conditionName != null" >
+				conditionName,
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides="," >
 			<if test="uid != null" >
 				#{uid,jdbcType=VARCHAR},
 			</if>
-			<if test="searchCondition != null" >
-				#{searchCondition,jdbcType=VARCHAR},
+			<if test="conditionStr != null" >
+				#{conditionStr,jdbcType=VARCHAR},
 			</if>
 			<if test="logTime != null" >
 				#{logTime,jdbcType=INTEGER},
+			</if>
+			<if test="conditionName != null" >
+				#{conditionName,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
 
 	<resultMap id="SearchConditionBean" type="com.gennlife.platform.bean.searchConditionBean.SearchConditionBean">
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
-		<result column="conditionText" property="searchCondition" jdbcType="VARCHAR" />
+		<result column="conditionText" property="conditionStr" jdbcType="VARCHAR" />
 		<result column="logTime" property="logTime" jdbcType="VARCHAR" />
+		<result column="conditionName" property="conditionName" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="SearchConditionSql">
-		uid,conditionText,logTime
+		conditionText,logTime,conditionName
 	</sql>
 	<select id="searchConditionList" parameterType="map" resultMap="SearchConditionBean">
 		select

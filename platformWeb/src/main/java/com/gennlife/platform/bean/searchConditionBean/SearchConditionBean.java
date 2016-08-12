@@ -5,9 +5,9 @@ package com.gennlife.platform.bean.searchConditionBean;
  */
 public class SearchConditionBean {
     private String uid = null;
-    private String searchCondition = null;
+    private String conditionStr = null;
     private String logTime = null;
-
+    private String conditionName = null;
     public String getUid() {
         return uid;
     }
@@ -16,12 +16,12 @@ public class SearchConditionBean {
         this.uid = uid;
     }
 
-    public String getSearchCondition() {
-        return searchCondition;
+    public String getConditionStr() {
+        return conditionStr;
     }
 
-    public void setSearchCondition(String searchCondition) {
-        this.searchCondition = searchCondition;
+    public void setConditionStr(String conditionStr) {
+        this.conditionStr = conditionStr;
     }
 
     public String getLogTime() {
@@ -30,5 +30,13 @@ public class SearchConditionBean {
 
     public void setLogTime(String logTime) {
         this.logTime = logTime;
+    }
+
+    public String getConditionName() {
+        return conditionName;
+    }
+
+    public void setConditionName(String conditionName) {
+        this.conditionName = conditionName;
     }
 }
