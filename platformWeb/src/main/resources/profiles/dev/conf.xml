@@ -35,7 +35,7 @@
         <property name="caseDiagnose" value="http://10.0.0.165:9900/FileService/VisitDetail/diagnose"/>
         <property name="caseAdmission_records" value="http://10.0.0.165:9900/FileService/PatientDetail/admission_records"></property>
         <!-- 样本操作 -->
-        <property name="sampleImportIURL" value="http://10.0.0.165:9900/FileService/PatientDetail/patient_basic_info"/>
+        <property name="sampleImportIURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_export"/>
         <property name="sampleDetailURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_get"/>
         <property name="sampleDaleteURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_delete"/>
 
