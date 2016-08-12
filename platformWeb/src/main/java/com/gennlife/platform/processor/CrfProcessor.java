@@ -164,10 +164,7 @@ public class CrfProcessor {
                 newParamObj.addProperty("projectName",projectName);
                 paramList.add(newParamObj);
             }
-            logger.info("请求CRF Service ProjectCRFList接口参数="+gson.toJson(paramList));
-            String url = ConfigurationService.getUrlBean().getCRFProjectCRFListURL();
-            String result = HttpRequestUtils.httpPost(url,gson.toJson(paramList));
-            return result;
+            return gson.toJson(paramList);
         } catch (Exception e) {
             logger.error("请求发生异常", e);
             return ParamUtils.errorParam("请求发生异常");

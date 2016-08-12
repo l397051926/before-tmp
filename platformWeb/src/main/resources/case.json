@@ -18,7 +18,14 @@
           "UIFieldName": "婚姻",
           "dataType": "string",
           "IndexFieldName": "patient_info.MARITAL_STATUS",
-          "srchFieldName": "患者基本信息.婚姻"
+          "srchFieldName": "患者基本信息.婚姻",
+          "dataMap": [
+            "未婚",
+            "已婚",
+            "离异",
+            "丧偶",
+            "分居"
+          ]
         },
         {
           "UIFieldName": "民族",
@@ -94,13 +101,23 @@
           "UIFieldName": "RH血型",
           "dataType": "string",
           "IndexFieldName": "patient_info.BLOOD_RH",
-          "srchFieldName": "患者基本信息.RH血型"
+          "srchFieldName": "患者基本信息.RH血型",
+          "dataMap": [
+            "阴性",
+            "阳性"
+          ]
         },
         {
           "UIFieldName": "ABO血型",
           "dataType": "string",
           "IndexFieldName": "patient_info.BLOOD_ABO",
-          "srchFieldName": "患者基本信息.ABO血型"
+          "srchFieldName": "患者基本信息.ABO血型",
+          "dataMap": [
+            "A",
+            "B",
+            "O",
+            "AB"
+          ]
         }
       ],
       "高血压史": [
@@ -122,7 +139,11 @@
           "UIFieldName": "糖尿病史",
           "dataType": "string",
           "IndexFieldName": "diabetes_history.diabete_yes_no",
-          "srchFieldName": "糖尿病史.糖尿病史"
+          "srchFieldName": "糖尿病史.糖尿病史",
+          "dataMap":[
+            "有",
+            "无"
+          ]
         },
         {
           "UIFieldName": "糖尿病年限（年）",
@@ -148,25 +169,59 @@
           "UIFieldName": "临床分期",
           "dataType": "string",
           "IndexFieldName": "clinical_info.Clin_Stage",
-          "srchFieldName": "临床基本信息.临床分期"
+          "srchFieldName": "临床基本信息.临床分期",
+          "dataMap": [
+            "I期",
+            "II期",
+            "III期",
+            "IV期"
+          ]
         },
         {
           "UIFieldName": "临床T分期",
           "dataType": "string",
           "IndexFieldName": "clinical_info.Clin_T",
-          "srchFieldName": "临床基本信息.临床T分期"
+          "srchFieldName": "临床基本信息.临床T分期",
+          "dataMap":[
+            "T0",
+            "T1",
+            "T1a",
+            "T1b",
+            "T2",
+            "T2a",
+            "T2b",
+            "T3",
+            "T3a",
+            "T3b",
+            "T3C",
+            "T4",
+            "T4a",
+            "T4b",
+            "TX"
+          ]
         },
         {
           "UIFieldName": "临床N分期",
           "dataType": "string",
           "IndexFieldName": "clinical_info.Clin_N",
-          "srchFieldName": "临床基本信息.临床N分期"
+          "srchFieldName": "临床基本信息.临床N分期",
+          "dataMap":[
+            "NX",
+            "N0",
+            "N1",
+            "N2"
+          ]
         },
         {
           "UIFieldName": "临床M分期",
           "dataType": "string",
           "IndexFieldName": "clinical_info.Clin_M",
-          "srchFieldName": "临床基本信息.临床M分期"
+          "srchFieldName": "临床基本信息.临床M分期",
+          "dataMap":[
+            "MX",
+            "M0",
+            "M1"
+          ]
         }
       ],
       "首次术后病理信息": [
@@ -198,13 +253,25 @@
           "UIFieldName": "病理分期",
           "dataType": "string",
           "IndexFieldName": "pathology_after_first_surgery.path_stage",
-          "srchFieldName": "首次术后病理信息.病理分期"
+          "srchFieldName": "首次术后病理信息.病理分期",
+          "dataMap":[
+            "I期",
+            "Ⅱ期",
+            "Ⅲ期",
+            "IV期"
+          ]
         },
         {
           "UIFieldName": "furmnan分级",
           "dataType": "string",
           "IndexFieldName": "pathology_after_first_surgery.furmnan_grade",
-          "srchFieldName": "首次术后病理信息.furmnan分级"
+          "srchFieldName": "首次术后病理信息.furmnan分级",
+          "dataMap":[
+            "I期",
+            "Ⅱ期",
+            "Ⅲ期",
+            "IV期"
+          ]
         }
       ],
       "术后一线药物治疗": [
@@ -252,7 +319,11 @@
           "UIFieldName": "是否转移",
           "dataType": "string",
           "IndexFieldName": "follow_up.metastasis",
-          "srchFieldName": "随访.是否转移"
+          "srchFieldName": "随访.是否转移",
+          "dataMap":[
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "转移部位",
@@ -271,7 +342,11 @@
           "UIFieldName": "是否复发",
           "dataType": "string",
           "IndexFieldName": "follow_up.recurrence",
-          "srchFieldName": "随访.是否复发"
+          "srchFieldName": "随访.是否复发",
+          "dataMap":[
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "复发时间",
@@ -284,7 +359,12 @@
           "UIFieldName": "生存状态",
           "dataType": "string",
           "IndexFieldName": "follow_up.survival status",
-          "srchFieldName": "随访.生存状态"
+          "srchFieldName": "随访.生存状态",
+          "dataMap":[
+            "生存",
+            "死亡",
+            "失访"
+          ]
         },
         {
           "UIFieldName": "生存时间（年）",
@@ -323,7 +403,14 @@
           "UIFieldName": "婚姻",
           "dataType": "string",
           "IndexFieldName": "patient_info.MARITAL_STATUS",
-          "srchFieldName": "患者基本信息.婚姻"
+          "srchFieldName": "患者基本信息.婚姻",
+          "dataMap": [
+            "未婚",
+            "已婚",
+            "离异",
+            "丧偶",
+            "分居"
+          ]
         },
         {
           "UIFieldName": "民族",
@@ -460,7 +547,13 @@
           "UIFieldName": "ABO血型",
           "dataType": "string",
           "IndexFieldName": "patient_info.BLOOD_ABO",
-          "srchFieldName": "患者基本信息.ABO血型"
+          "srchFieldName": "患者基本信息.ABO血型",
+          "dataMap": [
+            "A",
+            "B",
+            "O",
+            "AB"
+          ]
         }
       ],
       "吸烟史": [
@@ -489,10 +582,14 @@
               "srchFieldName": "吸烟史.平均吸烟强度(支/天)"
             },
             {
-              "UIFieldName": "是否戒烟 ",
+              "UIFieldName": "是否戒烟",
               "dataType": "string",
               "IndexFieldName": "smoke_history.previousHistory_smoke_quit",
-              "srchFieldName": "吸烟史.是否戒烟 "
+              "srchFieldName": "吸烟史.是否戒烟",
+              "dataMap":[
+                "是",
+                "否"
+              ]
             },
             {
               "UIFieldName": "戒烟年限",
@@ -521,10 +618,14 @@
           "srchFieldName": "吸烟史.平均吸烟强度(支/天)"
         },
         {
-          "UIFieldName": "是否戒烟 ",
+          "UIFieldName": "是否戒烟",
           "dataType": "string",
           "IndexFieldName": "smoke_history.previousHistory_smoke_quit",
-          "srchFieldName": "吸烟史.是否戒烟 "
+          "srchFieldName": "吸烟史.是否戒烟",
+          "dataMap":[
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "戒烟年限",
@@ -724,25 +825,59 @@
           "UIFieldName": "临床分期",
           "dataType": "string",
           "IndexFieldName": "clinical_info.Clin_Stage",
-          "srchFieldName": "临床基本信息.临床分期"
+          "srchFieldName": "临床基本信息.临床分期",
+          "dataMap": [
+            "I期",
+            "II期",
+            "III期",
+            "IV期"
+          ]
         },
         {
           "UIFieldName": "临床T分期",
           "dataType": "string",
           "IndexFieldName": "clinical_info.Clin_T",
-          "srchFieldName": "临床基本信息.临床T分期"
+          "srchFieldName": "临床基本信息.临床T分期",
+          "dataMap":[
+            "T0",
+            "T1",
+            "T1a",
+            "T1b",
+            "T2",
+            "T2a",
+            "T2b",
+            "T3",
+            "T3a",
+            "T3b",
+            "T3C",
+            "T4",
+            "T4a",
+            "T4b",
+            "TX"
+          ]
         },
         {
           "UIFieldName": "临床N分期",
           "dataType": "string",
           "IndexFieldName": "clinical_info.Clin_N",
-          "srchFieldName": "临床基本信息.临床N分期"
+          "srchFieldName": "临床基本信息.临床N分期",
+          "dataMap":[
+            "NX",
+            "N0",
+            "N1",
+            "N2"
+          ]
         },
         {
           "UIFieldName": "临床M分期",
           "dataType": "string",
           "IndexFieldName": "clinical_info.Clin_M",
-          "srchFieldName": "临床基本信息.临床M分期"
+          "srchFieldName": "临床基本信息.临床M分期",
+          "dataMap":[
+            "MX",
+            "M0",
+            "M1"
+          ]
         }
       ],
       "术前检验指标": [
@@ -862,7 +997,11 @@
           "UIFieldName": "是否均匀",
           "dataType": "string",
           "IndexFieldName": "meta_CT_before_first_surgery.is_uniform",
-          "srchFieldName": "术前CT检查.是否均匀"
+          "srchFieldName": "术前CT检查.是否均匀",
+          "dataMap":[
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "术前CT诊断",
@@ -977,7 +1116,11 @@
           "UIFieldName": "有无包膜",
           "dataType": "string",
           "IndexFieldName": "pathology_after_first_surgery.coating",
-          "srchFieldName": "首次术后病理信息.有无包膜"
+          "srchFieldName": "首次术后病理信息.有无包膜",
+          "dataMap":[
+            "有",
+            "无"
+          ]
         },
         {
           "UIFieldName": "病理类型",
@@ -1007,13 +1150,25 @@
           "UIFieldName": "病理分期",
           "dataType": "string",
           "IndexFieldName": "pathology_after_first_surgery.path_stage",
-          "srchFieldName": "首次术后病理信息.病理分期"
+          "srchFieldName": "首次术后病理信息.病理分期",
+          "dataMap":[
+            "I期",
+            "Ⅱ期",
+            "Ⅲ期",
+            "IV期"
+          ]
         },
         {
           "UIFieldName": "furmnan分级",
           "dataType": "string",
           "IndexFieldName": "pathology_after_first_surgery.furmnan_grade",
-          "srchFieldName": "首次术后病理信息.furmnan分级"
+          "srchFieldName": "首次术后病理信息.furmnan分级",
+          "dataMap":[
+            "I期",
+            "Ⅱ期",
+            "Ⅲ期",
+            "IV期"
+          ]
         },
         {
           "UIFieldName": "脂肪囊",
@@ -1113,7 +1268,11 @@
           "UIFieldName": "是否转移",
           "dataType": "string",
           "IndexFieldName": "follow_up.metastasis",
-          "srchFieldName": "随访.是否转移"
+          "srchFieldName": "随访.是否转移",
+          "dataMap":[
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "转移部位",
@@ -1132,7 +1291,11 @@
           "UIFieldName": "是否复发",
           "dataType": "string",
           "IndexFieldName": "follow_up.recurrence",
-          "srchFieldName": "随访.是否复发"
+          "srchFieldName": "随访.是否复发",
+          "dataMap":[
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "复发时间",
@@ -1145,7 +1308,12 @@
           "UIFieldName": "生存状态",
           "dataType": "string",
           "IndexFieldName": "follow_up.survival status",
-          "srchFieldName": "随访.生存状态"
+          "srchFieldName": "随访.生存状态",
+          "dataMap":[
+            "生存",
+            "死亡",
+            "失访"
+          ]
         },
         {
           "UIFieldName": "生存时间（年）",
@@ -4850,7 +5018,14 @@
           "UIFieldName": "婚姻",
           "dataType": "string",
           "IndexFieldName": "visits.admissions_records.MARITAL_STATUS",
-          "srchFieldName": "就诊.入院记录.婚姻"
+          "srchFieldName": "就诊.入院记录.婚姻",
+          "dataMap": [
+            "未婚",
+            "已婚",
+            "离异",
+            "丧偶",
+            "分居"
+          ]
         },
         {
           "UIFieldName": "籍贯",
@@ -8312,6 +8487,10 @@
         }
       ]
     },
+    "changeShow":{
+
+    },
+
     "import": {
       "患者基本信息": [
         {
@@ -8330,7 +8509,14 @@
           "UIFieldName": "婚姻",
           "dataType": "string",
           "IndexFieldName": "patient_info.MARITAL_STATUS",
-          "srchFieldName": "患者基本信息.婚姻"
+          "srchFieldName": "患者基本信息.婚姻",
+          "dataMap": [
+            "未婚",
+            "已婚",
+            "离异",
+            "丧偶",
+            "分居"
+          ]
         },
         {
           "UIFieldName": "民族",
@@ -8402,7 +8588,11 @@
           "UIFieldName": "RH血型",
           "dataType": "string",
           "IndexFieldName": "patient_info.BLOOD_RH",
-          "srchFieldName": "患者基本信息.RH血型"
+          "srchFieldName": "患者基本信息.RH血型",
+          "dataMap": [
+            "阴性",
+            "阳性"
+          ]
         },
         {
           "UIFieldName": "ABO血型",
@@ -8437,10 +8627,14 @@
           "srchFieldName": "吸烟史.平均吸烟强度(支/天)"
         },
         {
-          "UIFieldName": "是否戒烟 ",
+          "UIFieldName": "是否戒烟",
           "dataType": "string",
           "IndexFieldName": "smoke_history.previousHistory_smoke_quit",
-          "srchFieldName": "吸烟史.是否戒烟 "
+          "srchFieldName": "吸烟史.是否戒烟",
+          "dataMap":[
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "戒烟年限",
@@ -8482,7 +8676,11 @@
           "UIFieldName": "糖尿病史",
           "dataType": "string",
           "IndexFieldName": "diabetes_history.diabete_yes_no",
-          "srchFieldName": "糖尿病史.糖尿病史"
+          "srchFieldName": "糖尿病史.糖尿病史",
+          "dataMap":[
+            "有",
+            "无"
+          ]
         },
         {
           "UIFieldName": "糖尿病年限（年）",
@@ -8584,25 +8782,59 @@
           "UIFieldName": "临床分期",
           "dataType": "string",
           "IndexFieldName": "clinical_info.Clin_Stage",
-          "srchFieldName": "临床基本信息.临床分期"
+          "srchFieldName": "临床基本信息.临床分期",
+          "dataMap": [
+            "I期",
+            "II期",
+            "III期",
+            "IV期"
+          ]
         },
         {
           "UIFieldName": "临床T分期",
           "dataType": "string",
           "IndexFieldName": "clinical_info.Clin_T",
-          "srchFieldName": "临床基本信息.临床T分期"
+          "srchFieldName": "临床基本信息.临床T分期",
+          "dataMap":[
+            "T0",
+            "T1",
+            "T1a",
+            "T1b",
+            "T2",
+            "T2a",
+            "T2b",
+            "T3",
+            "T3a",
+            "T3b",
+            "T3C",
+            "T4",
+            "T4a",
+            "T4b",
+            "TX"
+          ]
         },
         {
           "UIFieldName": "临床N分期",
           "dataType": "string",
           "IndexFieldName": "clinical_info.Clin_N",
-          "srchFieldName": "临床基本信息.临床N分期"
+          "srchFieldName": "临床基本信息.临床N分期",
+          "dataMap":[
+            "NX",
+            "N0",
+            "N1",
+            "N2"
+          ]
         },
         {
           "UIFieldName": "临床M分期",
           "dataType": "string",
           "IndexFieldName": "clinical_info.Clin_M",
-          "srchFieldName": "临床基本信息.临床M分期"
+          "srchFieldName": "临床基本信息.临床M分期",
+          "dataMap":[
+            "MX",
+            "M0",
+            "M1"
+          ]
         }
       ],
       "术前检验指标": [
@@ -8836,7 +9068,11 @@
           "UIFieldName": "有无包膜",
           "dataType": "string",
           "IndexFieldName": "pathology_after_first_surgery.coating",
-          "srchFieldName": "首次术后病理信息.有无包膜"
+          "srchFieldName": "首次术后病理信息.有无包膜",
+          "dataMap":[
+            "有",
+            "无"
+          ]
         },
         {
           "UIFieldName": "病理类型",
@@ -8866,13 +9102,25 @@
           "UIFieldName": "病理分期",
           "dataType": "string",
           "IndexFieldName": "pathology_after_first_surgery.path_stage",
-          "srchFieldName": "首次术后病理信息.病理分期"
+          "srchFieldName": "首次术后病理信息.病理分期",
+          "dataMap":[
+            "I期",
+            "Ⅱ期",
+            "Ⅲ期",
+            "IV期"
+          ]
         },
         {
           "UIFieldName": "furmnan分级",
           "dataType": "string",
           "IndexFieldName": "pathology_after_first_surgery.furmnan_grade",
-          "srchFieldName": "首次术后病理信息.furmnan分级"
+          "srchFieldName": "首次术后病理信息.furmnan分级",
+          "dataMap":[
+            "I期",
+            "Ⅱ期",
+            "Ⅲ期",
+            "IV期"
+          ]
         },
         {
           "UIFieldName": "脂肪囊",
@@ -8968,7 +9216,11 @@
           "UIFieldName": "是否转移",
           "dataType": "string",
           "IndexFieldName": "follow_up.metastasis",
-          "srchFieldName": "随访.是否转移"
+          "srchFieldName": "随访.是否转移",
+          "dataMap":[
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "转移部位",
@@ -8986,7 +9238,11 @@
           "UIFieldName": "是否复发",
           "dataType": "string",
           "IndexFieldName": "follow_up.recurrence",
-          "srchFieldName": "随访.是否复发"
+          "srchFieldName": "随访.是否复发",
+          "dataMap":[
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "复发时间",
@@ -8998,7 +9254,12 @@
           "UIFieldName": "生存状态",
           "dataType": "string",
           "IndexFieldName": "follow_up.survival status",
-          "srchFieldName": "随访.生存状态"
+          "srchFieldName": "随访.生存状态",
+          "dataMap":[
+            "生存",
+            "死亡",
+            "失访"
+          ]
         },
         {
           "UIFieldName": "生存时间（年）",

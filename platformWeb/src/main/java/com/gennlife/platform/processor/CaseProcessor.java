@@ -38,10 +38,13 @@ public class CaseProcessor {
         Set<String> set = new HashSet<String>();
         ResultBean resultBean = new ResultBean();
         try {
-            searchKey = paramObj.get("searchKey").getAsString();//病历搜索的关键词
+            //searchKey = paramObj.get("searchKey").getAsString();//病历搜索的关键词
             keywords = paramObj.get("keywords").getAsString();//属性搜索的关键词
             status = paramObj.get("status").getAsString();
-            if (!"0".equals(status) && !"1".equals(status) && !"2".equals(status)) {
+            if (!"0".equals(status)
+                    && !"1".equals(status)
+                    && !"2".equals(status)
+                    && !"3".equals(status)) {
                 return ParamUtils.errorParam("status参数出错");
             }
             JsonArray arrange = paramObj.get("arrange").getAsJsonArray();
@@ -52,11 +55,11 @@ public class CaseProcessor {
             logger.error("",e);
             return ParamUtils.errorParam("请求参数出错");
         }
-        if ("0".equals(status)) {//默认
+        if ("0".equals(status)) {//搜索结果,默认
             JsonObject result = ConfigurationService.getDefaultObj();
             resultBean.setCode(1);
             resultBean.setData(result);
-        } else if ("1".equals(status)) {//可选
+        } else if ("1".equals(status)) {//属性可选
             JsonObject all = ConfigurationService.getAllObj();
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
@@ -76,11 +79,40 @@ public class CaseProcessor {
             }
             resultBean.setCode(1);
             resultBean.setData(allNew);
-        } else if ("2".equals(status)) {//所有
+        } else if ("2".equals(status)) {//高级搜索,所有属性,带有搜索功能
             JsonObject all = ConfigurationService.getAllObj();
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                 String groupName = obj.getKey();
+                JsonArray items = obj.getValue().getAsJsonArray();
+                JsonArray newGroup = new JsonArray();
+                for (JsonElement json : items) {
+                    JsonObject item = json.getAsJsonObject();
+                    String UIFieldName = item.get("UIFieldName").getAsString();
+                    if ("".equals(keywords) || UIFieldName.contains(keywords)) {
+                        if (!"".equals(keywords)) {
+                            UIFieldName = UIFieldName.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
+                            item.addProperty("UIFieldName", UIFieldName);
+                        }
+                        newGroup.add(item);
+                    }
+                }
+                if (newGroup.size() > 0) {
+                    allNew.add(groupName, newGroup);
+                }
+            }
+            resultBean.setCode(1);
+            resultBean.setData(allNew);
+        }else if("3".equals(status)){//更改属性,所有属性,带有搜索功能
+            JsonObject all = ConfigurationService.getAllObj();
+            JsonObject allNew = new JsonObject();
+            for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
+                String groupName = obj.getKey();
+                if(groupName.startsWith("就诊") ||
+                        groupName.startsWith("标本信息")||
+                        groupName.startsWith("吸烟史")){
+                    continue;
+                }
                 JsonArray items = obj.getValue().getAsJsonArray();
                 JsonArray newGroup = new JsonArray();
                 for (JsonElement json : items) {

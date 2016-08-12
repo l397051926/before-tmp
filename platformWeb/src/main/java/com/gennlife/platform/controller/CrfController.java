@@ -318,26 +318,7 @@ public class CrfController {
     }
 
 
-    /**
-     * 请求uid对应的模版接口
-     * @param param
-     * @return
-     */
-    @RequestMapping(value="/ProjectCrfList",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getProjectCrfList(@RequestParam("param") String param) {
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            logger.info("用户相关项目的crf模版 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.projectCrfList(paramObj);
-        }catch (Exception e){
-            logger.error("用户相关项目的crf模版异常",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("用户相关项目的crf模版异常 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
+
     @RequestMapping(value="/AutoMap",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody String postProjectCrfList(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();

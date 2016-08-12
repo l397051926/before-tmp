@@ -336,6 +336,42 @@ public class ProjectProcessor {
     }
 
     /**
+     * 用户相关项目的列表不分页
+     * @param paramObj
+     * @return
+     */
+    public String projectListNoPage(JsonObject paramObj) {
+        String uid = null;
+        try {
+            uid = paramObj.get("uid").getAsString();
+        } catch (Exception e) {
+            logger.error("请求参数出错", e);
+            return ParamUtils.errorParam("请求参数出错");
+        }
+        Map<String,Object> conf = new HashMap<>();
+        conf.put("uid",uid);
+        try {
+            List<MyProjectList> list = AllDao.getInstance().getSyUserDao().getProjectList(conf);
+            List<JsonObject> paramList = new LinkedList<>();
+            for(MyProjectList myProjectList:list){
+                JsonObject newParamObj = new JsonObject();
+                String projectID = myProjectList.getProjectID();
+                String projectName = myProjectList.getProjectName();
+                newParamObj.addProperty("projectID",projectID);
+                newParamObj.addProperty("projectName",projectName);
+                paramList.add(newParamObj);
+            }
+            ResultBean resultBean = new ResultBean();
+            resultBean.setCode(1);
+            resultBean.setData(paramList);
+            return gson.toJson(resultBean);
+        } catch (Exception e) {
+            logger.error("请求发生异常", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    /**
      * 数据区数据集列表
      * @param param
      */

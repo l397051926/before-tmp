@@ -37,7 +37,26 @@ public class ProjectController {
         return resultStr;
     }
 
-
+    /**
+     * 请求uid对应的模版接口
+     * @param param
+     * @return
+     */
+    @RequestMapping(value="/ProjectListNoPage",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String getProjectCrfList(@RequestParam("param") String param) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("用户相关项目的列表不分页 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.projectListNoPage(paramObj);
+        }catch (Exception e){
+            logger.error("用户相关项目的列表不分页",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("用户相关项目的列表不分页 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 
     @RequestMapping(value="/ProjectLogList",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String getProjectLogList(@RequestParam("param")String param){

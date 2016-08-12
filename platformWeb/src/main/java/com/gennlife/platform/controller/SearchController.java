@@ -104,7 +104,7 @@ public class SearchController extends HttpServlet {
         return resultStr;
     }
 
-    @RequestMapping(value="/SearchConditionList",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/SearchConditionList",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String getSearchConditionList(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
