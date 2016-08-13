@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by chen-song on 16/5/13.
  */
@@ -19,10 +21,13 @@ public class DetailController {
     private DetailProcessor processor = new DetailProcessor();
     @RequestMapping(value="/PatientBasicInfo",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postPatientBasicInfo(@RequestBody String param){
+    String postPatientBasicInfo(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
+
+
             logger.info("详情页患者基础信息接口 post方式 参数="+param);
             resultStr =  processor.patientBasicInfo(param);
         }catch (Exception e){
@@ -51,10 +56,11 @@ public class DetailController {
 
     @RequestMapping(value="/GeneticDisease",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postGeneticDisease(@RequestBody String param){
+    String postGeneticDisease(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("遗传性疾病 post方式 参数="+param);
             resultStr =  processor.geneticDisease(param);
         }catch (Exception e){
@@ -83,10 +89,11 @@ public class DetailController {
 
     @RequestMapping(value="/DrugReaction",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postDrugReaction(@RequestBody String param){
+    String postDrugReaction(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("药物反应 post方式 参数="+param);
             resultStr =  processor.geneticDisease(param);
         }catch (Exception e){
@@ -114,10 +121,11 @@ public class DetailController {
 
     @RequestMapping(value="/PatientBasicFigure",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postPatientBasicFigure(@RequestBody String param){
+    String postPatientBasicFigure(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("基本统计图形&筛选条件  post方式 参数="+param);
             resultStr =  processor.patientBasicFigure(param);
         }catch (Exception e){
@@ -147,10 +155,11 @@ public class DetailController {
 
     @RequestMapping(value="/PatientBasicTimeAxis",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postPatientBasicTimeAxis(@RequestBody String param){
+    String postPatientBasicTimeAxis(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("详情页时间轴信息接口 post方式 参数="+param);
             resultStr =  processor.patientBasicTimeAxis(param);
         }catch (Exception e){
@@ -179,10 +188,11 @@ public class DetailController {
 
     @RequestMapping(value="/ChoiceList",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postChoiceList(@RequestBody String param){
+    String postChoiceList(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("查看指标变化,可选列表 post方式 参数="+param);
             resultStr =  processor.choicesList(param);
         }catch (Exception e){
@@ -213,10 +223,11 @@ public class DetailController {
 
     @RequestMapping(value="/SpecificChoice",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postSpecificChoice(@RequestBody String param){
+    String postSpecificChoice(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("查看指标变化,具体指标 post方式 参数="+param);
             resultStr =  processor.specificChoice(param);
         }catch (Exception e){
@@ -246,10 +257,11 @@ public class DetailController {
 
     @RequestMapping(value="/VisitDetail",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postVisitDetail(@RequestBody String param){
+    String postVisitDetail(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("详情页总接口：唐乾斌提供 post方式 参数="+param);
             resultStr =  processor.visitDetail(param);
         }catch (Exception e){
@@ -278,10 +290,11 @@ public class DetailController {
 
     @RequestMapping(value="/LabResultItem",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postLabResultItem(@RequestBody String param){
+    String postLabResultItem(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("详情页体检接口:唐乾斌提供  post方式 参数="+param);
             resultStr =  processor.labResultItem(param);
         }catch (Exception e){
@@ -311,10 +324,11 @@ public class DetailController {
 
     @RequestMapping(value="/LabResultItemList",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postLabResultItemList(@RequestBody String param){
+    String postLabResultItemList(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("检验项列表  post方式 参数="+param);
             resultStr =  processor.labResultItemList(param);
         }catch (Exception e){
@@ -343,10 +357,11 @@ public class DetailController {
 
     @RequestMapping(value="/CategoryCatalog",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postCategoryCatalog(@RequestBody String param){
+    String postCategoryCatalog(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("分类信息接口及目录 post方式 参数="+param);
             resultStr =  processor.categoryCatalog(param);
         }catch (Exception e){
@@ -375,10 +390,11 @@ public class DetailController {
 
     @RequestMapping(value="/MolecularDetection",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postMolecularDetection(@RequestBody String param){
+    String postMolecularDetection(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("分子检测  post方式 参数="+param);
             resultStr =  processor.molecularDetection(param);
         }catch (Exception e){
@@ -407,10 +423,11 @@ public class DetailController {
 
     @RequestMapping(value="/BiologicalSpecimen",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postBiologicalSpecimen(@RequestBody String param){
+    String postBiologicalSpecimen(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("生物标本 post方式 参数="+param);
             resultStr =  processor.biologicalSpecimen(param);
         }catch (Exception e){
@@ -441,10 +458,11 @@ public class DetailController {
 
     @RequestMapping(value="/ExamResult",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postExamResult(@RequestBody String param){
+    String postExamResult(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("检查  post方式 参数="+param);
             resultStr =  processor.examResult(param);
         }catch (Exception e){
@@ -474,10 +492,11 @@ public class DetailController {
 
     @RequestMapping(value="/PathologicalExamination",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postPathologicalExamination(@RequestBody String param){
+    String postPathologicalExamination(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("病理检测 post方式 参数="+param);
             resultStr =  processor.pathologicalExamination(param);
         }catch (Exception e){
