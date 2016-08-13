@@ -118,7 +118,7 @@ public class SampleProcessor {
             JsonObject json = (JsonObject) jsonParser.parse(dataStr);
             boolean succeed = json.get("success").getAsBoolean();
             if (succeed) {
-                JsonArray schemaJson = json.getAsJsonArray("SCEHMA");
+                JsonArray schemaJson = json.getAsJsonArray("SCHEMA");
                 JsonObject schema = new JsonObject();
                 List<String> list = new LinkedList<>();
                 for(JsonElement schemaElement:schemaJson){
