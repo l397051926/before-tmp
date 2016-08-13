@@ -74,8 +74,7 @@ public class ParamUtils {
         if(value == null){
             return null;
         }
-        value = value.replaceAll("eval\\((.*)\\)", "");
-        value = value.replaceAll("[\\\"\\\'][\\s]*javascript:(.*)[\\\"\\\']", "\"\"");
+        value = value.replaceAll("eval", "");
         value = value.replaceAll("<script>", "");
         value = value.replaceAll("<javascript>", "");
         return value;
