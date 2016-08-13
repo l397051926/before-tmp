@@ -113,7 +113,7 @@ public class SampleProcessor {
         try{
             String sampleURI =  jsonObject.get("sampleURI").getAsString();
             jsonObject.remove("sampleURI");
-            jsonObject.addProperty("sampleURI",sampleURI);
+            jsonObject.addProperty("data_id",sampleURI);
             String url = ConfigurationService.getUrlBean().getSampleDetailURL();
             String dataStr = HttpRequestUtils.httpPost(url,gson.toJson(jsonObject));
             JsonObject json = (JsonObject) jsonParser.parse(dataStr);
