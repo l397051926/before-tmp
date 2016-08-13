@@ -14,6 +14,7 @@ import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
 import com.google.gson.*;
+import com.sun.javafx.collections.MappingChange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -117,7 +118,7 @@ public class SampleProcessor {
             String url = ConfigurationService.getUrlBean().getSampleDetailURL();
             String dataStr = HttpRequestUtils.httpPost(url,gson.toJson(jsonObject));
             JsonObject json = (JsonObject) jsonParser.parse(dataStr);
-            boolean succeed = json.get("succeed").getAsBoolean();
+            boolean succeed = json.get("success").getAsBoolean();
             if (succeed) {
                 JsonArray schemaJson = json.getAsJsonArray("SCEHMA");
                 JsonObject schema = new JsonObject();
@@ -142,7 +143,9 @@ public class SampleProcessor {
                 }
                 JsonObject result = new JsonObject();
                 JsonObject info = new JsonObject();
+                JsonElement counter = json.get("TOTAL");
                 info.add("schema",schema);
+                info.add("counter",counter);
                 result.addProperty("code",1);
                 result.add("info",info);
                 result.add("data",data);
