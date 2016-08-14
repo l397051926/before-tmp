@@ -3,19 +3,6 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
-    <bean id="com.gennlife.platform.util.Conf" class="com.gennlife.platform.util.Conf">
-        <property name="searchURL" value="http://192.168.1.111:8989/SearchServer/search?indexName=%s&amp;query=%s"/>
-        <property name="importURL" value="http://192.168.1.111:8989/SearchServer/search?indexName=%s&amp;query="/>
-        <property name="fileURL" value="http://192.168.1.111:8111/fs/export"/>
-        <property name="qRecommendURL" value="http://192.168.1.111:8989/SearchServer/suggest?indexName=%s&amp;keywords=%s&amp;size=10"/>
-        <property name="toolsURL" value="http://192.168.1.111:81/get_tools"/>
-        <property name="AtoolURL" value="http://192.168.1.111:81/get_statistic"/>
-        <property name="detailURL" value="http://192.168.1.111:8111/fs/detail?table=%s&amp;key=%s&amp;fields=%s"/>
-        <property name="detailGenURL" value="http://192.168.1.111:8111/fs/gene?table=%s&amp;key=%s&amp;fields=%s&amp;pagesize=%s&amp;page=%s"/>
-        <property name="SetDetailURL" value="http://192.168.1.111:8111/fs/schema/%s"/>
-        <property name="SetDetailDataURL" value="http://192.168.1.111:8111/fs/sample/%s"/>
-
-    </bean>
 
     <bean id="com.gennlife.platform.util.MongoConf" class="com.gennlife.platform.util.MongoConf">
         <property name="host" value="10.0.0.178"/>
@@ -26,10 +13,11 @@
 
 
     <bean id="com.gennlife.platform.configuration.URLBean" class="com.gennlife.platform.configuration.URLBean">
+        <!-- 搜索服务 -->
         <property name="caseSearchURL" value="http://10.0.0.174:8989/search-server/search"/>
         <property name="caseSuggestURL" value="http://10.0.0.174:8989/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
         <property name="caseGeneErrorURL" value="http://10.0.0.174:8989/search-server/verify"/>
-
+        <!-- FS 详情页 -->
         <property name="caseDetailPatientBasicInfoURL" value="http://10.0.0.171:8111/FileService/PatientDetail/patient_basic_info"/>
         <property name="caseDetailPatientBasicFigureURL" value="http://10.0.0.171:8111/FileService/PatientDetail/visit_count_by_dimension"/>
         <property name="casePatientBasicTimeAxisURL" value="http://10.0.0.171:8111/FileService/PatientDetail/visit_timeline"/>
@@ -47,12 +35,11 @@
         <property name="casePathological_examination" value="http://10.0.0.171:8111/FileService/PatientDetail/pathological_examination"/>
         <property name="caseDiagnose" value="http://10.0.0.171:8111/FileService/VisitDetail/diagnose"/>
         <property name="caseAdmission_records" value="http://10.0.0.171:8111/FileService/PatientDetail/admission_records"></property>
-
-        <!-- 样本操作 -->
-        <property name="sampleImportIURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_export"/>
-        <property name="sampleDetailURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_get"/>
-        <property name="sampleDaleteURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_delete"/>
-
+        <!-- FS 服务 样本操作 -->
+        <property name="sampleImportIURL" value="http://10.0.0.171:8111/FileService/DataResultExport/data_export"/>
+        <property name="sampleDetailURL" value="http://10.0.0.171:8111/FileService/DataResultExport/data_get"/>
+        <property name="sampleDaleteURL" value="http://10.0.0.171:8111/FileService/DataResultExport/data_delete"/>
+        <!--知识库服务 接口 -->
         <property name="knowledgeURL" value="http://10.0.0.177:8080/knowledge/graph"/>
         <property name="knowledgeDiseaseSearchGenesURL" value="http://10.0.0.177:8080/knowledge/DiseaseSearchGenes"/>
         <property name="knowledgeGeneInfoURL" value="http://10.0.0.177:8080/knowledge/GeneInfo"/>
@@ -60,29 +47,33 @@
         <property name="knowledgeDetailVariationSearchDiseaseURL" value="http://10.0.0.177:8080/knowledge/VariationInfo"/>
         <property name="knowledgeDetailVariationSearchDrugURL" value="http://10.0.0.177:8080/knowledge/VariationInfo"/>
         <property name="knowledgePharmGKBSearchDrugURL" value="http://10.0.0.177:8080/knowledge/PharmGKBSearchDrug"/>
-
-        <property name="CRFProjectCRFListURL" value="http://192.168.1.111:9885/auto/ProjectCrfList"/>
-        <property name="CRFAutoMapURL" value="http://192.168.1.111:9885/auto/AutoMap"/>
-
-        <property name="CRFGetAttrID" value="http://192.168.1.111:9885/crf/GetAttrID"/>
-        <property name="CRFGetGroupID" value="http://192.168.1.111:9885/crf/GetGroupID"/>
-        <property name="CRFModelByProjectID" value="http://192.168.1.111:9885/crf/ModelByProjectID"/>
-        <property name="CRFModelForTraceByCRFID" value="http://192.168.1.111:9885/crf/ModelForTraceByCRFID"/>
-        <property name="CRFModelByCRFID" value="http://192.168.1.111:9885/crf/ModelByCRFID"/>
-        <property name="CRFEditModel" value="http://192.168.1.111:9885/crf/EditModel"/>
-        <property name="CRFSaveModel" value="http://192.168.1.111:9885/crf/SaveModel"/>
-        <property name="CRFGetData" value="http://192.168.1.111:9885/crf/GetData"/>
-        <property name="CRFSaveData" value="http://192.168.1.111:9885/crf/SaveData"/>
-        <property name="CRFSampleCaseList" value="http://192.168.1.111:9885/crf/SampleCaseList"/>
-        <property name="CRFDeleteSample" value="http://192.168.1.111:9885/crf/DeleteSample"/>
-        <property name="CRFUpLoadData" value="http://192.168.1.111:9885/crf/UpLoadData"/>
-        <property name="CRFSearchSampleList" value="http://192.168.1.111:9885/crf/SearchSampleList"/>
-        <property name="CRFGetPatientInfo" value="http://192.168.1.111:9885/crf/PatientInfo"/>
-        <property name="CRFPatientVisitDetail" value="http://192.168.1.111:9885/crf/PatientVisitDetail"/>
-        <property name="CRFPatientAllVisitsDetail" value="http://192.168.1.111:9885/crf/PatientAllVisitsDetail"/>
-
+        <!--CRF 服务接口 -->
+        <property name="CRFProjectCRFListURL" value="http://10.0.0.41:8080/auto/ProjectCrfList"/>
+        <property name="CRFAutoMapURL" value="http://10.0.0.41:8080/auto/AutoMap"/>
+        <property name="CRFGetAttrID" value="http://10.0.0.41:8080/crf/GetAttrID"/>
+        <property name="CRFGetGroupID" value="http://10.0.0.41:8080/crf/GetGroupID"/>
+        <property name="CRFModelByProjectID" value="http://10.0.0.41:8080/crf/ModelByProjectID"/>
+        <property name="CRFModelForTraceByCRFID" value="http://10.0.0.41:8080/crf/ModelForTraceByCRFID"/>
+        <property name="CRFModelByCRFID" value="http://10.0.0.41:8080/crf/ModelByCRFID"/>
+        <property name="CRFEditModel" value="http://10.0.0.41:8080/crf/EditModel"/>
+        <property name="CRFSaveModel" value="http://10.0.0.41:8080/crf/SaveModel"/>
+        <property name="CRFGetData" value="http://10.0.0.41:8080/crf/GetData"/>
+        <property name="CRFSaveData" value="http://10.0.0.41:8080/crf/SaveData"/>
+        <property name="CRFSampleCaseList" value="http://10.0.0.41:8080/crf/SampleCaseList"/>
+        <property name="CRFDeleteSample" value="http://10.0.0.41:8080/crf/DeleteSample"/>
+        <property name="CRFUpLoadData" value="http://10.0.0.41:8080/crf/UpLoadData"/>
+        <property name="CRFSearchSampleList" value="http://10.0.0.41:8080/crf/SearchSampleList"/>
+        <property name="CRFGetPatientInfo" value="http://10.0.0.41:8080/crf/PatientInfo"/>
+        <property name="CRFPatientVisitDetail" value="http://10.0.0.41:8080/crf/PatientVisitDetail"/>
+        <property name="CRFPatientAllVisitsDetail" value="http://10.0.0.41:8080/crf/PatientAllVisitsDetail"/>
+        <!--R 服务接口-->
+        <property name="RRun" value="http://10.0.0.40:1235/r_run"/>
+        <property name="RStop" value="http://10.0.0.40:1235/r_stop"/>
+        <property name="RSave" value="http://10.0.0.40:1235/r_save"/>
+        <property name="RLoad" value="http://10.0.0.40:1235/r_load"/>
+        <property name="RList" value="http://10.0.0.40:1235/r_list"/>
+        <!--工作区计算服务接口 -->
         <property name="AtoolURL" value="http://192.168.1.111:81/get_statistic"/>
         <property name="toolsURL" value="http://192.168.1.111:8111/fs/detail?table=%s&amp;key=%s&amp;fields=%s"/>
-
     </bean>
 </beans>

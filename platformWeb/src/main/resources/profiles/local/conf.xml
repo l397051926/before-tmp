@@ -3,19 +3,6 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
-    <bean id="com.gennlife.platform.util.Conf" class="com.gennlife.platform.util.Conf">
-        <property name="searchURL" value="http://192.168.1.111:8989/SearchServer/search?indexName=%s&amp;query=%s"/>
-        <property name="importURL" value="http://192.168.1.111:8989/SearchServer/search?indexName=%s&amp;query="/>
-        <property name="fileURL" value="http://192.168.1.111:8111/fs/export"/>
-        <property name="qRecommendURL" value="http://192.168.1.111:8989/SearchServer/suggest?indexName=%s&amp;keywords=%s&amp;size=10"/>
-        <property name="toolsURL" value="http://192.168.1.111:81/get_tools"/>
-        <property name="AtoolURL" value="http://192.168.1.111:81/get_statistic"/>
-        <property name="detailURL" value="http://192.168.1.111:8111/fs/detail?table=%s&amp;key=%s&amp;fields=%s"/>
-        <property name="detailGenURL" value="http://192.168.1.111:8111/fs/gene?table=%s&amp;key=%s&amp;fields=%s&amp;pagesize=%s&amp;page=%s"/>
-        <property name="SetDetailURL" value="http://192.168.1.111:8111/fs/schema/%s"/>
-        <property name="SetDetailDataURL" value="http://192.168.1.111:8111/fs/sample/%s"/>
-
-    </bean>
 
     <bean id="com.gennlife.platform.util.MongoConf" class="com.gennlife.platform.util.MongoConf">
         <property name="host" value="10.0.0.131"/>
@@ -76,6 +63,18 @@
         <property name="CRFDeleteSample" value="http://192.168.1.111:9885/crf/DeleteSample"/>
         <property name="CRFUpLoadData" value="http://192.168.1.111:9885/crf/UpLoadData"/>
         <property name="CRFSearchSampleList" value="http://192.168.1.111:9885/crf/SearchSampleList"/>
+        <property name="CRFGetPatientInfo" value="http://192.168.1.111:9885/auto/PatientInfo"/>
+        <property name="CRFPatientVisitDetail" value="http://192.168.1.111:9885/auto/PatientVisitDetail"/>
+        <property name="CRFPatientAllVisitsDetail" value="http://192.168.1.111:9885/auto/PatientAllVisitsDetail"/>
+
+
+
+        <property name="RRun" value="http://192.168.1.111:1235/r_run"/>
+        <property name="RStop" value="http://192.168.1.111:1235/r_stop"/>
+        <property name="RSave" value="http://192.168.1.111:1235/r_save"/>
+        <property name="RLoad" value="http://192.168.1.111:1235/r_load"/>
+        <property name="RList" value="http://192.168.1.111:1235/r_list"/>
+
 
         <property name="AtoolURL" value="http://192.168.1.111:81/get_statistic"/>
         <property name="toolsURL" value="http://192.168.1.111:8111/fs/detail?table=%s&amp;key=%s&amp;fields=%s"/>

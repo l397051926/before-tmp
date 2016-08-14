@@ -13,10 +13,11 @@
 
 
     <bean id="com.gennlife.platform.configuration.URLBean" class="com.gennlife.platform.configuration.URLBean">
+        <!-- 搜索服务 -->
         <property name="caseSearchURL" value="http://10.0.0.31:8989/search-server/search"/>
         <property name="caseSuggestURL" value="http://10.0.0.31:8989/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
         <property name="caseGeneErrorURL" value="http://10.0.0.31:8989/search-server/verify"/>
-        <!--详情页 -->
+        <!--FS 详情页 -->
         <property name="caseDetailPatientBasicInfoURL" value="http://10.0.0.165:9900/FileService/PatientDetail/patient_basic_info"/>
         <property name="caseDetailPatientBasicFigureURL" value="http://10.0.0.165:9900/FileService/PatientDetail/PatientBasicFigure"/>
         <property name="casePatientBasicTimeAxisURL" value="http://10.0.0.165:9900/FileService/PatientDetail/visit_timeline"/>
@@ -34,11 +35,11 @@
         <property name="casePathological_examination" value="http://10.0.0.165:9900/FileService/PatientDetail/pathological_examination"/>
         <property name="caseDiagnose" value="http://10.0.0.165:9900/FileService/VisitDetail/diagnose"/>
         <property name="caseAdmission_records" value="http://10.0.0.165:9900/FileService/PatientDetail/admission_records"></property>
-        <!-- 样本操作 -->
+        <!--FS 样本操作 -->
         <property name="sampleImportIURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_export"/>
         <property name="sampleDetailURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_get"/>
         <property name="sampleDaleteURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_delete"/>
-
+        <!--知识库服务 接口 -->
         <property name="knowledgeURL" value="http://192.168.1.111:9883/knowledge/graph"/>
         <property name="knowledgeDiseaseSearchGenesURL" value="http://192.168.1.111:9883/knowledge/DiseaseSearchGenes"/>
         <property name="knowledgeGeneInfoURL" value="http://192.168.1.111:9883/knowledge/GeneInfo"/>
@@ -46,10 +47,9 @@
         <property name="knowledgeDetailVariationSearchDiseaseURL" value="http://192.168.1.111:9883/knowledge/VariationInfo"/>
         <property name="knowledgeDetailVariationSearchDrugURL" value="http://192.168.1.111:9883/knowledge/VariationInfo"/>
         <property name="knowledgePharmGKBSearchDrugURL" value="http://192.168.1.111:9883/knowledge/PharmGKBSearchDrug"/>
-
+        <!--CRF 服务接口 -->
         <property name="CRFProjectCRFListURL" value="http://192.168.1.111:9885/auto/ProjectCrfList"/>
         <property name="CRFAutoMapURL" value="http://192.168.1.111:9885/auto/AutoMap"/>
-
         <property name="CRFGetAttrID" value="http://192.168.1.111:9885/crf/GetAttrID"/>
         <property name="CRFGetGroupID" value="http://192.168.1.111:9885/crf/GetGroupID"/>
         <property name="CRFModelByProjectID" value="http://192.168.1.111:9885/crf/ModelByProjectID"/>
@@ -66,12 +66,13 @@
 		<property name="CRFGetPatientInfo" value="http://192.168.1.111:9885/auto/PatientInfo"/>
         <property name="CRFPatientVisitDetail" value="http://192.168.1.111:9885/auto/PatientVisitDetail"/>
         <property name="CRFPatientAllVisitsDetail" value="http://192.168.1.111:9885/auto/PatientAllVisitsDetail"/>
-        <property name="RRun" value="http://192.168.1.111:1235/r_run"/> 
+        <!--R 服务接口-->
+        <property name="RRun" value="http://192.168.1.111:1235/r_run"/>
         <property name="RStop" value="http://192.168.1.111:1235/r_stop"/> 
         <property name="RSave" value="http://192.168.1.111:1235/r_save"/>
         <property name="RLoad" value="http://192.168.1.111:1235/r_load"/>
         <property name="RList" value="http://192.168.1.111:1235/r_list"/>
-
+        <!--工作区计算服务接口 -->
         <property name="AtoolURL" value="http://192.168.1.111:81/get_statistic"/>
         <property name="toolsURL" value="http://192.168.1.111:8111/fs/detail?table=%s&amp;key=%s&amp;fields=%s"/>
 </bean>
