@@ -19,7 +19,7 @@
         <property name="caseGeneErrorURL" value="http://10.0.0.187:8989/search-server/verify"/>
         <!-- FS 详情页 -->
         <property name="caseDetailPatientBasicInfoURL" value="http://10.0.0.182:8111/FileService/PatientDetail/patient_basic_info"/>
-        <property name="caseDetailPatientBasicFigureURL" value="http://10.0.0.182:8111/FileService/PatientDetail/visit_count_by_dimension"/>
+        <property name="caseDetailPatientBasicFigureURL" value="http://10.0.0.182:8111/FileService/PatientDetail/PatientBasicFigure"/>
         <property name="casePatientBasicTimeAxisURL" value="http://10.0.0.182:8111/FileService/PatientDetail/visit_timeline"/>
         <property name="casePhysical_examination_list" value="http://10.0.0.182:8111/FileService/PatientDetail/quota_name_list"/>
         <property name="casePhysical_examination" value="http://10.0.0.182:8111/FileService/PatientDetail/quota_reports"/>
