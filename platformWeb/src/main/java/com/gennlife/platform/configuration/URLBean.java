@@ -230,6 +230,30 @@ public class URLBean {
 
     private String RList = null;
 
+    /**
+     *.病案首页
+     */
+    private String caseMedicalRecord = null;
+    /**
+     * 手术信息
+     */
+    private String caseOperationRecords = null;
+    /**
+     * 用药医嘱
+     */
+    private String casePharmacy = null;
+    /**
+     * 出院记录
+     */
+    private String caseDischargeRecords = null;
+    /**
+     * 病程记录
+     */
+    private String caseCourseRecords = null;
+    /**
+     * 病例文书
+     */
+    private String caseMedicalCourse = null;
 
 
     private String CRFModelForTraceByCRFID = null;
@@ -675,5 +699,53 @@ public class URLBean {
 
     public void setAtoolURL(String atoolURL) {
         AtoolURL = atoolURL;
+    }
+
+    public String getCaseMedicalRecord() {
+        return caseMedicalRecord;
+    }
+
+    public void setCaseMedicalRecord(String caseMedicalRecord) {
+        this.caseMedicalRecord = caseMedicalRecord;
+    }
+
+    public String getCaseOperationRecords() {
+        return caseOperationRecords;
+    }
+
+    public void setCaseOperationRecords(String caseOperationRecords) {
+        this.caseOperationRecords = caseOperationRecords;
+    }
+
+    public String getCasePharmacy() {
+        return casePharmacy;
+    }
+
+    public void setCasePharmacy(String casePharmacy) {
+        this.casePharmacy = casePharmacy;
+    }
+
+    public String getCaseDischargeRecords() {
+        return caseDischargeRecords;
+    }
+
+    public void setCaseDischargeRecords(String caseDischargeRecords) {
+        this.caseDischargeRecords = caseDischargeRecords;
+    }
+
+    public String getCaseCourseRecords() {
+        return caseCourseRecords;
+    }
+
+    public void setCaseCourseRecords(String caseCourseRecords) {
+        this.caseCourseRecords = caseCourseRecords;
+    }
+
+    public String getCaseMedicalCourse() {
+        return caseMedicalCourse;
+    }
+
+    public void setCaseMedicalCourse(String caseMedicalCourse) {
+        this.caseMedicalCourse = caseMedicalCourse;
     }
 }

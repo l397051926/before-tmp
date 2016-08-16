@@ -35,6 +35,13 @@
         <property name="casePathological_examination" value="http://10.0.0.165:9900/FileService/PatientDetail/pathological_examination"/>
         <property name="caseDiagnose" value="http://10.0.0.165:9900/FileService/VisitDetail/diagnose"/>
         <property name="caseAdmission_records" value="http://10.0.0.165:9900/FileService/PatientDetail/admission_records"></property>
+
+        <property name="caseMedicalRecord" value="http://10.0.0.165:9900/FileService/PatientDetail/medical_record"></property>
+        <property name="caseOperationRecords" value="http://10.0.0.165:9900/FileService/PatientDetail/operation_records"></property>
+        <property name="casePharmacy" value="http://10.0.0.165:9900/FileService/Patientdetail/pharmacy"></property>
+        <property name="caseDischargeRecords" value="http://10.0.0.165:9900/FileService/PatientDetail/discharge_records"></property>
+        <property name="caseCourseRecords" value="http://10.0.0.165:9900/FileService/PatientDetail/course_records/"></property>
+        <property name="caseMedicalCourse" value="http://10.0.0.165:9900/FileService/PatientDetail/medical_course"></property>
         <!--FS 样本操作 -->
         <property name="sampleImportIURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_export"/>
         <property name="sampleDetailURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_get"/>

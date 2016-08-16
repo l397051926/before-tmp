@@ -276,4 +276,106 @@ public class DetailProcessor {
             return ParamUtils.errorParam("请求出错");
         }
     }
+
+    /**
+     * 病案首页
+     * @param param
+     * @return
+     */
+    public String medicalRecord(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCaseMedicalRecord();
+            logger.info("medicalRecord url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("medicalRecord result="+result);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    /**
+     * 手术信息
+     * @param param
+     * @return
+     */
+    public String operationRecords(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCaseOperationRecords();
+            logger.info("operationRecords url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("operationRecords result="+result);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    /**
+     * 用药医嘱
+     * @param param
+     * @return
+     */
+    public String pharmacy(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCasePharmacy();
+            logger.info("pharmacy url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("pharmacy result="+result);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    /**
+     * 出院记录
+     * @param param
+     * @return
+     */
+    public String dischargeRecords(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCaseDischargeRecords();
+            logger.info("dischargeRecords url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("dischargeRecords result="+result);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    /**
+     * 病程记录
+     * @param param
+     * @return
+     */
+    public String courseRecords(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCaseCourseRecords();
+            logger.info("courseRecords url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("courseRecords result="+result);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    /**
+     * 病例文书
+     * @param param
+     * @return
+     */
+    public String medicalCourse(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCaseMedicalCourse();
+            logger.info("medicalCourse url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("medicalCourse result="+result);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
 }

@@ -554,4 +554,103 @@ public class DetailController {
         logger.info("病程 诊断报告:主诉 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+
+    @RequestMapping(value="/MedicalRecord",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getMedicalRecord(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("病案首页  get方式 参数="+param);
+            resultStr =  processor.medicalRecord(param);
+        }catch (Exception e){
+            logger.error("病案首页",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("病案首页 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/OperationRecords",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getOperationRecords(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("手术信息  get方式 参数="+param);
+            resultStr =  processor.operationRecords(param);
+        }catch (Exception e){
+            logger.error("手术信息",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("手术信息 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value="/Pharmacy",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getPharmacy(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("用药医嘱  get方式 参数="+param);
+            resultStr =  processor.pharmacy(param);
+        }catch (Exception e){
+            logger.error("用药医嘱",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("用药医嘱 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/DischargeRecords",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getDischargeRecords(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("出院记录  get方式 参数="+param);
+            resultStr =  processor.dischargeRecords(param);
+        }catch (Exception e){
+            logger.error("出院记录",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("出院记录 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value="/CourseRecords",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getCourseRecords(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("病程记录  get方式 参数="+param);
+            resultStr =  processor.courseRecords(param);
+        }catch (Exception e){
+            logger.error("病程记录",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("病程记录 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value="/MedicalCourse",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getMedicalCourse(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("病例文书  get方式 参数="+param);
+            resultStr =  processor.medicalCourse(param);
+        }catch (Exception e){
+            logger.error("病例文书",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("病例文书 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }
