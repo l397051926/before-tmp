@@ -3,6 +3,7 @@ package com.gennlife.platform.processor;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
+import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.apache.tools.ant.util.ConcatResourceInputStream;
@@ -24,7 +25,8 @@ public class ComputeProcessor {
 
     public String smg(JsonObject paramObj) {
         String param = gson.toJson(paramObj);
-        String url = ConfigurationService.getUrlBean().getCSSmg()+"?param="+param;
+        String url = ConfigurationService.getUrlBean().getCSSmg()+"?param="+ParamUtils.encodeURI(param);
+        logger.info("url="+url);
         String result = HttpRequestUtils.httpGet(url);
         return result;
     }
