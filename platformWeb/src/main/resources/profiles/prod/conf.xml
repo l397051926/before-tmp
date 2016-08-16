@@ -36,9 +36,9 @@
         <property name="caseDiagnose" value="http://10.0.0.182:8111/FileService/VisitDetail/diagnose"/>
         <property name="caseAdmission_records" value="http://10.0.0.182:8111/FileService/PatientDetail/admission_records"></property>
 
-        <property name="caseMedicalRecord" value="http://10.0.0.182:8111/FileService/PatientDetail/medical_record"></property>
+        <property name="caseMedicalRecord" value="http://10.0.0.182:8111/FileService/PatientDetail/medical_records"></property>
         <property name="caseOperationRecords" value="http://10.0.0.182:8111/FileService/PatientDetail/operation_records"></property>
-        <property name="casePharmacy" value="http://10.0.0.182:8111/FileService/Patientdetail/pharmacy"></property>
+        <property name="casePharmacy" value="http://10.0.0.182:8111/FileService/PatientDetail/pharmacy"></property>
         <property name="caseDischargeRecords" value="http://10.0.0.182:8111/FileService/PatientDetail/discharge_records"></property>
         <property name="caseCourseRecords" value="http://10.0.0.182:8111/FileService/PatientDetail/course_records/"></property>
         <property name="caseMedicalCourse" value="http://10.0.0.182:8111/FileService/PatientDetail/medical_course"></property>
@@ -81,6 +81,7 @@
         <property name="RList" value="http://192.168.1.111:1235/r_list"/>
         <!--工作区计算服务接口 -->
         <property name="AtoolURL" value="http://192.168.1.111:81/get_statistic"/>
-        <property name="toolsURL" value="http://192.168.1.111:8111/fs/detail?table=%s&amp;key=%s&amp;fields=%s"/>
+        <property name="toolsURL" value="http://192.168.1.111:81/get_tools"/>
+        <property name="CSSmg" value="http://192.168.1.111:81/smg"/>
     </bean>
 </beans>

@@ -255,6 +255,13 @@ public class URLBean {
      */
     private String caseMedicalCourse = null;
 
+    /**
+     * 计算服务因子图
+     *
+     */
+    private String CSSmg = null;
+
+
 
     private String CRFModelForTraceByCRFID = null;
 
@@ -747,5 +754,13 @@ public class URLBean {
 
     public void setCaseMedicalCourse(String caseMedicalCourse) {
         this.caseMedicalCourse = caseMedicalCourse;
+    }
+
+    public String getCSSmg() {
+        return CSSmg;
+    }
+
+    public void setCSSmg(String CSSmg) {
+        this.CSSmg = CSSmg;
     }
 }

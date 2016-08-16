@@ -34,9 +34,9 @@
         <property name="caseDiagnose" value="http://192.168.1.111:9999/FileService/VisitDetail/diagnose"/>
         <property name="caseAdmission_records" value="http://192.168.1.111:9999/FileService/PatientDetail/admission_records"></property>
 
-        <property name="caseMedicalRecord" value="http://192.168.1.111:9999/FileService/PatientDetail/medical_record"></property>
+        <property name="caseMedicalRecord" value="http://192.168.1.111:9999/FileService/PatientDetail/medical_records"></property>
         <property name="caseOperationRecords" value="http://192.168.1.111:9999/FileService/PatientDetail/operation_records"></property>
-        <property name="casePharmacy" value="http://192.168.1.111:9999/FileService/Patientdetail/pharmacy"></property>
+        <property name="casePharmacy" value="http://192.168.1.111:9999/FileService/PatientDetail/pharmacy"></property>
         <property name="caseDischargeRecords" value="http://192.168.1.111:9999/FileService/PatientDetail/discharge_records"></property>
         <property name="caseCourseRecords" value="http://192.168.1.111:9999/FileService/PatientDetail/course_records/"></property>
         <property name="caseMedicalCourse" value="http://192.168.1.111:9999/FileService/PatientDetail/medical_course"></property>
@@ -84,6 +84,7 @@
 
 
         <property name="AtoolURL" value="http://192.168.1.111:81/get_statistic"/>
-        <property name="toolsURL" value="http://192.168.1.111:81/fs/detail?table=%s&amp;key=%s&amp;fields=%s"/>
+        <property name="toolsURL" value="http://192.168.1.111:81/get_tools"/>
+        <property name="CSSmg" value="http://192.168.1.111:81/smg"/>
     </bean>
 </beans>
