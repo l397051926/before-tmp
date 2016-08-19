@@ -39,6 +39,8 @@ public class KnowledgeController extends HttpServlet {
         return resultStr;
     }
 
+
+
     @RequestMapping(value="/Search",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody
     String getSearch(@RequestParam("param") String param){
@@ -53,6 +55,23 @@ public class KnowledgeController extends HttpServlet {
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("知识库搜索 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/DetailSearch",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String getDetailSearch(@RequestParam("param") String param){
+        logger.info("详情页知识库搜索 param=" + param);
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.detailSearch(paramObj);
+        }catch (Exception e){
+            logger.error("详情页知识库搜索",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("详情页知识库搜索 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 

@@ -6,10 +6,7 @@ import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -231,5 +228,26 @@ public class KnowledgeProcessor {
         }
 
     }
-   
+    public String detailSearch(JsonObject paramObj) {
+        JsonElement fsParam = paramObj.get("filter");
+        String fsParamStr = gson.toJson(fsParam);
+        String from = paramObj.get("from").getAsString();
+        String to = paramObj.get("to").getAsString();
+        String limit = paramObj.get("limit").getAsString();
+        int[] li = ParamUtils.parseLimit(limit);
+        int currentPage = li[0];
+        int pageSize = li[1];
+        String query = null;
+        JsonArray queryArry = null;
+        if("geneDisease".equals(from)
+                ||(("variationArray".equals(from)&&"disease".equals(to)))
+                ||("variationArray".equals(from)&&"drug".equals(to))
+                ||("geneArray".equals(from) && "pathway".equals(to))
+                ){
+            queryArry = new JsonArray();
+        }else{
+            query = "";
+        }
+        return null;
+    }
 }

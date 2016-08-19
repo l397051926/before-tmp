@@ -80,7 +80,7 @@ public class CaseProcessor {
             resultBean.setCode(1);
             resultBean.setData(allNew);
         } else if ("2".equals(status)) {//高级搜索,所有属性,带有搜索功能
-            JsonObject all = ConfigurationService.getAllObj();
+            JsonObject all = ConfigurationService.getAdvancedSearch();
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                 String groupName = obj.getKey();
@@ -108,11 +108,6 @@ public class CaseProcessor {
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                 String groupName = obj.getKey();
-                if(groupName.startsWith("就诊") ||
-                        groupName.startsWith("标本信息")||
-                        groupName.startsWith("吸烟史")){
-                    continue;
-                }
                 JsonArray items = obj.getValue().getAsJsonArray();
                 JsonArray newGroup = new JsonArray();
                 for (JsonElement json : items) {

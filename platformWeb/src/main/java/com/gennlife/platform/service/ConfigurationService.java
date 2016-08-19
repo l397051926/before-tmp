@@ -29,6 +29,8 @@ public class ConfigurationService {
 
     private static JsonObject importTree = new JsonObject();
 
+    private static JsonObject advancedSearch = new JsonObject();
+
     //默认的搜索列表
     private static JsonObject defaultObj = null;
     //全部的搜索列表
@@ -60,12 +62,13 @@ public class ConfigurationService {
     }
 
     public static void loadConfigurationInfo() throws IOException {
-        String caseStr = FilesUtils.readFile("/case.json");
+        String caseStr = FilesUtils.readFile("/case819.json");
         logger.info("case.json="+caseStr);
         JsonObject jsonObject = (JsonObject) jsonParser.parse(caseStr);
         JsonObject caseObj = jsonObject.getAsJsonObject("case");
         defaultObj = caseObj.getAsJsonObject("default");
         allObj = caseObj.getAsJsonObject("all");
+        advancedSearch = caseObj.getAsJsonObject("advancedSearch");
         for(Map.Entry<String, JsonElement> entity:allObj.entrySet()){
             String key = entity.getKey();
             JsonArray object = allObj.getAsJsonArray(key);
@@ -98,6 +101,14 @@ public class ConfigurationService {
 
     public static JsonObject getImportTree() {
         return importTree;
+    }
+
+    public static JsonObject getAdvancedSearch() {
+        return advancedSearch;
+    }
+
+    public static void setAdvancedSearch(JsonObject advancedSearch) {
+        ConfigurationService.advancedSearch = advancedSearch;
     }
 
     public  static String getUIFieldName(String IndexFieldName){
