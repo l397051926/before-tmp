@@ -7630,12 +7630,6 @@
           "UIFieldName": "BMI",
           "srchFieldName": "患者基本信息.BMI",
           "IndexFieldName": "patient_info.BMI"
-        },
-        {
-          "dataType": "string",
-          "UIFieldName": "出生地 ",
-          "srchFieldName": "患者基本信息.出生地 ",
-          "IndexFieldName": "patient_info.BIRTH_PLACE"
         }
       ],
       "吸烟史": [
@@ -7647,108 +7641,6 @@
           "dataMap": [
             "有",
             "无"
-          ],
-          "relatedItems": [
-            {
-              "dataType": "double",
-              "UIFieldName": "开始吸烟年龄",
-              "srchFieldName": "吸烟史.开始吸烟年龄",
-              "IndexFieldName": "smoke_history.previousHistory_smoke_startAge",
-              "relatedItems": [
-                {
-                  "dataType": "double",
-                  "UIFieldName": "吸烟年限",
-                  "srchFieldName": "吸烟史.吸烟年限",
-                  "IndexFieldName": "smoke_history.previousHistory_smoke_years"
-                },
-                {
-                  "dataType": "double",
-                  "UIFieldName": "平均吸烟强度(支/天)",
-                  "srchFieldName": "吸烟史.平均吸烟强度(支/天)",
-                  "IndexFieldName": "smoke_history.previousHistory_smoke_rate"
-                },
-                {
-                  "dataType": "string",
-                  "UIFieldName": "是否戒烟 ",
-                  "srchFieldName": "吸烟史.是否戒烟 ",
-                  "IndexFieldName": "smoke_history.previousHistory_smoke_quit",
-                  "dataMap": [
-                    "是",
-                    "否"
-                  ]
-                },
-                {
-                  "dataType": "double",
-                  "UIFieldName": "戒烟年限",
-                  "srchFieldName": "吸烟史.戒烟年限",
-                  "IndexFieldName": "smoke_history.previousHistory_smoke_quitYears"
-                }
-              ]
-            },
-            {
-              "dataType": "double",
-              "UIFieldName": "吸烟年限",
-              "srchFieldName": "吸烟史.吸烟年限",
-              "IndexFieldName": "smoke_history.previousHistory_smoke_years"
-            },
-            {
-              "dataType": "double",
-              "UIFieldName": "平均吸烟强度(支/天)",
-              "srchFieldName": "吸烟史.平均吸烟强度(支/天)",
-              "IndexFieldName": "smoke_history.previousHistory_smoke_rate"
-            },
-            {
-              "dataType": "string",
-              "UIFieldName": "是否戒烟 ",
-              "srchFieldName": "吸烟史.是否戒烟 ",
-              "IndexFieldName": "smoke_history.previousHistory_smoke_quit",
-              "dataMap": [
-                "是",
-                "否"
-              ]
-            },
-            {
-              "dataType": "double",
-              "UIFieldName": "戒烟年限",
-              "srchFieldName": "吸烟史.戒烟年限",
-              "IndexFieldName": "smoke_history.previousHistory_smoke_quitYears"
-            }
-          ]
-        },
-        {
-          "dataType": "double",
-          "UIFieldName": "开始吸烟年龄",
-          "srchFieldName": "吸烟史.开始吸烟年龄",
-          "IndexFieldName": "smoke_history.previousHistory_smoke_startAge",
-          "relatedItems": [
-            {
-              "dataType": "double",
-              "UIFieldName": "吸烟年限",
-              "srchFieldName": "吸烟史.吸烟年限",
-              "IndexFieldName": "smoke_history.previousHistory_smoke_years"
-            },
-            {
-              "dataType": "double",
-              "UIFieldName": "平均吸烟强度(支/天)",
-              "srchFieldName": "吸烟史.平均吸烟强度(支/天)",
-              "IndexFieldName": "smoke_history.previousHistory_smoke_rate"
-            },
-            {
-              "dataType": "string",
-              "UIFieldName": "是否戒烟 ",
-              "srchFieldName": "吸烟史.是否戒烟 ",
-              "IndexFieldName": "smoke_history.previousHistory_smoke_quit",
-              "dataMap": [
-                "是",
-                "否"
-              ]
-            },
-            {
-              "dataType": "double",
-              "UIFieldName": "戒烟年限",
-              "srchFieldName": "吸烟史.戒烟年限",
-              "IndexFieldName": "smoke_history.previousHistory_smoke_quitYears"
-            }
           ]
         },
         {
@@ -7762,22 +7654,6 @@
           "UIFieldName": "平均吸烟强度(支/天)",
           "srchFieldName": "吸烟史.平均吸烟强度(支/天)",
           "IndexFieldName": "smoke_history.previousHistory_smoke_rate"
-        },
-        {
-          "dataType": "string",
-          "UIFieldName": "是否戒烟 ",
-          "srchFieldName": "吸烟史.是否戒烟 ",
-          "IndexFieldName": "smoke_history.previousHistory_smoke_quit",
-          "dataMap": [
-            "是",
-            "否"
-          ]
-        },
-        {
-          "dataType": "double",
-          "UIFieldName": "戒烟年限",
-          "srchFieldName": "吸烟史.戒烟年限",
-          "IndexFieldName": "smoke_history.previousHistory_smoke_quitYears"
         }
       ],
       "入院基本信息": [
