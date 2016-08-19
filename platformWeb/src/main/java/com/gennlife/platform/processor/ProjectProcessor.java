@@ -316,7 +316,8 @@ public class ProjectProcessor {
         logger.info("aTool newParam="+newParam);
         String url = ConfigurationService.getUrlBean().getAtoolURL() + "?"+newParam.toString();
         logger.info("aTool url="+url);
-        String content= HttpRequestUtils.httpGet(url);
+        String urlencode = ParamUtils.encodeURI(url);
+        String content= HttpRequestUtils.httpGet(urlencode);
         logger.info("aTool 结果:" + content);
         if("scatter_drawer".equals(tool_name)){
             ScatterDrawer scatterDrawer = new ScatterDrawer();
