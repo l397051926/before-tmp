@@ -309,7 +309,7 @@ public class ProjectProcessor {
             }else if("row".equals(key)){
                 row = value;
             }
-            newParam.append("&").append(key).append("=").append(ParamUtils.encodeURI(value));
+            newParam.append("&").append(key).append("=").append(value);
         }
         logger.info("aTool uri="+uri);
         logger.info("aTool tool_name="+tool_name);
