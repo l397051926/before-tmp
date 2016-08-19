@@ -228,26 +228,74 @@ public class KnowledgeProcessor {
         }
 
     }
+
+    /**
+     * 详情页,知识库搜索
+     * @param paramObj
+     * @return
+     */
     public String detailSearch(JsonObject paramObj) {
-        JsonElement fsParam = paramObj.get("filter");
-        String fsParamStr = gson.toJson(fsParam);
-        String from = paramObj.get("from").getAsString();
-        String to = paramObj.get("to").getAsString();
-        String limit = paramObj.get("limit").getAsString();
-        int[] li = ParamUtils.parseLimit(limit);
-        int currentPage = li[0];
-        int pageSize = li[1];
-        String query = null;
-        JsonArray queryArry = null;
-        if("geneDisease".equals(from)
-                ||(("variationArray".equals(from)&&"disease".equals(to)))
-                ||("variationArray".equals(from)&&"drug".equals(to))
-                ||("geneArray".equals(from) && "pathway".equals(to))
-                ){
-            queryArry = new JsonArray();
-        }else{
-            query = "";
+        try{
+            JsonElement fsParam = paramObj.get("filter");
+            paramObj.remove("filter");
+            String fsParamStr = gson.toJson(fsParam);
+            String url = ConfigurationService.getUrlBean().getCaseMolecular_detection();
+            logger.info("请求fs参数:"+fsParamStr);
+            String reStr = HttpRequestUtils.httpPost(url,fsParamStr);
+            logger.info("请求fs结果:"+reStr);
+            if(reStr == null){
+                return ParamUtils.errorParam("FS返回为空,发生异常");
+            }else{
+                JsonObject resultObj = (JsonObject) jsonParser.parse(reStr);
+                if(resultObj.has("success") && resultObj.get("success").getAsBoolean()){
+                    JsonArray genes = new JsonArray();
+                    JsonArray vars = new JsonArray();
+                    String disease = null;
+                    try{
+                        JsonArray detection_result = resultObj.getAsJsonArray("detection_result");
+                        for (JsonElement item:detection_result){
+                            JsonObject itemObj = item.getAsJsonObject();
+                            String GENE_SYMBOL = itemObj.get("GENE_SYMBOL").getAsString();
+                            genes.add(GENE_SYMBOL);
+                            String RS_ID =  itemObj.get("RS_ID").getAsString();
+                            if(!".".equals(RS_ID)){
+                                vars.add(RS_ID);
+                            }
+
+                        }
+                        disease = resultObj.get("disease").getAsString();
+                    }catch (Exception e){
+                        logger.error("",e);
+                        return ParamUtils.errorParam("FS解析异常");
+                    }
+                    String from = paramObj.get("from").getAsString();
+                    String to = paramObj.get("to").getAsString();
+                    if("diseaseGene".equals(from) && "drug".equals(to)){
+                        paramObj.addProperty("query",disease);
+                        paramObj.add("genes",genes);
+                    }else if("geneDisease".equals(from) && "drug".equals(to)){
+                        paramObj.add("query",genes);
+                        paramObj.addProperty("disease",disease);
+                    }else if("clinicalTrial".equals(from) && "clinicalTrial".equals(to)){
+                        paramObj.addProperty("query",disease);
+                    }else if("variationArray".equals(from) && "drug".equals(to)){
+                        paramObj.add("query",vars);
+                    }else {
+                        return ParamUtils.errorParam("请求参数异常");
+                    }
+                    logger.info("通过FS数据 转化后请求参数:"+gson.toJson(paramObj));
+                    return search(paramObj);
+                }else{
+                    return ParamUtils.errorParam("FS返回数据异常");
+                }
+
+            }
+
+
+
+        }catch (Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("发生异常");
         }
-        return null;
     }
 }
