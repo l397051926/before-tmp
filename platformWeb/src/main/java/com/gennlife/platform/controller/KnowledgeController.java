@@ -77,8 +77,7 @@ public class KnowledgeController extends HttpServlet {
     }
 
     @RequestMapping(value="/DetailSearch",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String postDetailSearch(HttpServletRequest paramRe){
+    public @ResponseBody String postDetailSearch(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
