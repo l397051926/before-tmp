@@ -22,10 +22,11 @@ public class CaseController {
     private CaseProcessor processor = new CaseProcessor();
     @RequestMapping(value="/SearchItemSet",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postSearchItemSet(@RequestBody String param){
+    String postSearchItemSet(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
             logger.info("搜索结果列表展示的集合 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.searchItemSet(paramObj);
