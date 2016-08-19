@@ -100,13 +100,38 @@ public class HttpRequestUtils {
 		HttpClient httpClient = HttpClients.createDefault();
 		HttpGet method = new HttpGet(url);
 		try {
-			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(3000).setConnectTimeout(3000).build();
+			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(10000).setConnectTimeout(3000).build();
 			method.setConfig(requestConfig);
 			HttpResponse result = httpClient.execute(method);
 			if (result.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 				String str = null;
 				try {
 					str = EntityUtils.toString(result.getEntity(),"utf-8");
+					return str;
+				} catch (Exception e) {
+					logger.error("" + url, e);
+				}
+			}
+		} catch (IOException e) {
+			logger.error("" + url, e);
+		}
+		return null;
+	}
+
+	public static String httpGetForCS(String url) {
+		HttpClient httpClient = HttpClients.createDefault();
+		HttpGet method = new HttpGet(url);
+		method.addHeader("Accept","text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*");
+		method.addHeader("Connection","keep-alive");
+		method.addHeader("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36");
+		try {
+			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(3000).setConnectTimeout(3000).build();
+			method.setConfig(requestConfig);
+			HttpResponse result = httpClient.execute(method);
+			if (result.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				String str = null;
+				try {
+					str = EntityUtils.toString(result.getEntity(),"UTF-8");
 					return str;
 				} catch (Exception e) {
 					logger.error("" + url, e);
