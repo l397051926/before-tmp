@@ -85,8 +85,8 @@
         <property name="RLoad" value="http://10.0.0.40:1235/r_load"/>
         <property name="RList" value="http://10.0.0.40:1235/r_list"/>
         <!--工作区计算服务接口 -->
-        <property name="AtoolURL" value="http://192.168.1.111:81/get_statistic"/>
-        <property name="toolsURL" value="http://192.168.1.111:81/get_tools"/>
-        <property name="CSSmg" value="http://192.168.1.111:81/smg"/>
+        <property name="AtoolURL" value="http://10.8.0.26:81/get_statistic"/>
+        <property name="toolsURL" value="http://10.8.0.26:81/get_tools"/>
+        <property name="CSSmg" value="http://10.8.0.26:81/smg"/>
     </bean>
 </beans>
