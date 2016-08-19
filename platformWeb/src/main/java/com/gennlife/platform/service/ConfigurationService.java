@@ -53,7 +53,7 @@ public class ConfigurationService {
             //搜索相关配置列表
             loadConfigurationInfo();
         }catch (Exception e){
-
+            logger.error("",e);
         }
     }
 
