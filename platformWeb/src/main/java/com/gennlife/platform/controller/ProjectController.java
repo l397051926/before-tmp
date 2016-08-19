@@ -365,7 +365,20 @@ public class ProjectController {
         return resultStr;
     }
 
-
+    @RequestMapping(value="/ASurvivaltool",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String getSurvivalAtool(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        logger.info("SurvivalAtool param ="+param);
+        String resultStr = null;
+        try{
+            resultStr =  processor.aSurvivalTool(param);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("某个工具请求 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 
     @RequestMapping(value="/SetList",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody String postSetList(@RequestBody String param){

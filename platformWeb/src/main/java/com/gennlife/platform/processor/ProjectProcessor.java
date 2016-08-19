@@ -309,21 +309,15 @@ public class ProjectProcessor {
             }else if("row".equals(key)){
                 row = value;
             }
-            newParam.append("&").append(key).append("=").append(value);
+            newParam.append("&").append(key).append("=").append(ParamUtils.encodeURI(value));
         }
         logger.info("aTool uri="+uri);
         logger.info("aTool tool_name="+tool_name);
         logger.info("aTool newParam="+newParam);
         String url = ConfigurationService.getUrlBean().getAtoolURL() + "?"+newParam.toString();
         logger.info("aTool url="+url);
-        String urlencode = ParamUtils.encodeURI(url);
-        String content= HttpRequestUtils.httpGet(urlencode);
+        String content= HttpRequestUtils.httpGetForCS(url);
         logger.info("aTool 结果:" + content);
-        if("scatter_drawer".equals(tool_name)){
-            ScatterDrawer scatterDrawer = new ScatterDrawer();
-            content = scatterDrawer.filter(jsonObject,content,row);
-        }
-        logger.info("aTool 过滤后结果:" + content);
         return content;
     }
 
@@ -832,5 +826,32 @@ public class ProjectProcessor {
         resultBean.setCode(1);
         resultBean.setData(project);
         return  gson.toJson(resultBean);
+    }
+
+    public String aSurvivalTool(String param) {
+            logger.info("aSurvivalTool param=" + param);
+            JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
+            StringBuffer newParam = new StringBuffer();
+            for(Map.Entry<String, JsonElement> entry:jsonObject.entrySet()){
+                String key = entry.getKey();
+                String value = null;
+                if(entry.getValue().isJsonObject()){
+                    value = entry.getValue().getAsJsonObject().toString();
+                }else if(entry.getValue().isJsonArray()){
+                    value = entry.getValue().getAsJsonArray().toString();
+                }else if(entry.getValue().getAsBoolean()){
+                    value = entry.getValue().getAsBoolean()+"";
+                }else {
+                    value = entry.getValue().getAsString();
+                }
+                newParam.append("&").append(key).append("=").append(ParamUtils.encodeURI(value));
+            }
+            logger.info("aTool newParam="+newParam);
+            String url = ConfigurationService.getUrlBean().getAtoolURL() + "?"+newParam.toString();
+            logger.info("aTool url="+url);
+            String content= HttpRequestUtils.httpGetForCS(url);
+            logger.info("aTool 结果:" + content);
+            return content;
+
     }
 }
