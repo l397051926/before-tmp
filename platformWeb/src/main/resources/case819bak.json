@@ -9757,43 +9757,9 @@
       "组学信息.基因检测结果": [
         {
           "dataType": "string",
-          "UIFieldName": "基因名",
-          "srchFieldName": "组学信息.基因检测结果.基因名",
-          "IndexFieldName": "genomics.detection_result.GENE_NAME"
-        }
-      ],
-      "就诊.手术.手术记录": [
-        {
-          "dataType": "string",
-          "UIFieldName": "手术代码",
-          "srchFieldName": "就诊.手术.手术记录.手术代码",
-          "IndexFieldName": "visits.operation.records.OPERATION_CODE"
-        },
-        {
-          "dataType": "string",
-          "UIFieldName": "手术名称",
-          "srchFieldName": "就诊.手术.手术记录.手术名称",
-          "IndexFieldName": "visits.operation.records.OPERATION"
-        }
-      ],
-      "就诊.检验报告": [
-        {
-          "dataType": "string",
-          "UIFieldName": "检验项目名称",
-          "srchFieldName": "就诊.检验报告.检验项目名称",
-          "IndexFieldName": "visits.inspection_reports.INSPECTION_NAME"
-        },
-        {
-          "dataType": "string",
-          "UIFieldName": "检验子项中文名",
-          "srchFieldName": "就诊.检验报告.检验子项中文名",
-          "IndexFieldName": "visits.inspection_reports.sub_inspection.SUB_INSPECTION_CN"
-        },
-        {
-          "dataType": "string",
-          "UIFieldName": "检验子项英文名",
-          "srchFieldName": "就诊.检验报告.检验子项英文名",
-          "IndexFieldName": "visits.inspection_reports.sub_inspection.SUB_INSPECTION_EN"
+          "UIFieldName": "基因Symbol",
+          "srchFieldName": "组学信息.基因检测结果.基因Symbol",
+          "IndexFieldName": "genomics.detection_result.GENE_SYMBOL"
         }
       ]
     },
