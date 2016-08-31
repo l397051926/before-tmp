@@ -181,6 +181,11 @@ public class URLBean {
 
 
     /**
+     * crf service:自动映射检验上传crf数据
+     */
+    private String CRFUpLoadDataForCheck = null;
+
+    /**
      * crf service:编辑模型
      */
     private String CRFEditModel = null;
@@ -762,5 +767,13 @@ public class URLBean {
 
     public void setCSSmg(String CSSmg) {
         this.CSSmg = CSSmg;
+    }
+
+    public String getCRFUpLoadDataForCheck() {
+        return CRFUpLoadDataForCheck;
+    }
+
+    public void setCRFUpLoadDataForCheck(String CRFUpLoadDataForCheck) {
+        this.CRFUpLoadDataForCheck = CRFUpLoadDataForCheck;
     }
 }

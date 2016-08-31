@@ -338,4 +338,17 @@ public class CrfProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String upLoadDataForCheck(JsonObject paramObj) {
+        try{
+            String param = gson.toJson(paramObj);
+            String url = ConfigurationService.getUrlBean().getCRFUpLoadDataForCheck();
+            logger.info("request url:" + url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            return result;
+        }catch (Exception e) {
+            logger.error("请求发生异常", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }

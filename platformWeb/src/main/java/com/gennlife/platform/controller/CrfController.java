@@ -446,5 +446,21 @@ public class CrfController {
         logger.info("溯源简化的模型接口 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
-
+    //UpLoadDataForCheck
+    @RequestMapping(value="/UpLoadDataForCheck",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
+    public @ResponseBody String postUpLoadDataForCheck(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("自动映射检验上传crf数据 post方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.upLoadDataForCheck(paramObj);
+        }catch (Exception e){
+            logger.error("自动映射检验上传crf数据",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("自动映射检验上传crf数据  post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }
