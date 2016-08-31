@@ -743,14 +743,14 @@
 	"phenotype_variation": {
 		"disease_id": {
 			"data_type": "single_array",
-			"path_one": "$.disease.id",
+			"path_one": "$.disease[0].id",
 			"name_one": "name",
-			"path_two": "$.disease.url",
+			"path_two": "$.disease[0].url",
 			"name_two": "url"
 		},
 		"disease": {
 			"data_type": "single_array",
-			"path_one": "$.disease.name",
+			"path_one": "$.disease[0].name",
 			"name_one": "name",
 			"path_two": "",
 			"name_two": "url"
@@ -771,7 +771,7 @@
 		},
 		"type": {
 			"data_type": "string",
-			"path": "$.deletion"
+			"path": "$.type"
 		},
 		"chromosome": {
 			"data_type": "string",
