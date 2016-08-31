@@ -1226,11 +1226,10 @@
 			"path": "$.term_name"
 		},
 		"gene": {
-			"data_type": "single_array",
-			"path_one": "$.Gene[0].symbol",
-			"path_two": "$.Gene[0].symbolUrl",
-			"name_one": "name",
-			"name_two": "url"
+			"data_type": "array",
+			"path": "$.Gene",
+			"name": "name",
+			"url": "symbolUrl"
 		},
 		"ref": {
 			"data_type": "array",
@@ -1242,14 +1241,14 @@
 			"data_type": "single_array",
 			"path_one": "$.Disease[0].id",
 			"name_one": "name",
-			"path_two": "",
+			"path_two": "$.Disease[0].diseaseUrl",
 			"name_two": "url"
 		},
 		"disease": {
 			"data_type": "single_array",
 			"path_one": "$.Disease[0].name",
 			"name_one": "name",
-			"path_two": "",
+			"path_two": "$.Disease[0].diseaseUrl",
 			"name_two": "url"
 		}
 	},
