@@ -633,15 +633,68 @@ public class ProjectProcessor {
         String projectID = null;
         String projectName = null;
         String projectDesp = null;
+        String stime = null;
+        String etime = null;
+        String center = null;
+        String projectEngName = null;
+        String unit = null;
+        String manager = null;
+        String type = null;
+        String registerNumber = null;
         Map<String,Object> map = new HashMap<String, Object>();
         try{
             JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
             uid = jsonObject.get("uid").getAsString();
             projectID = jsonObject.get("projectID").getAsString();
-            projectName = jsonObject.get("projectName").getAsString();
-            map.put("projectName",projectName);
-            projectDesp = jsonObject.get("projectDesp").getAsString();
-            map.put("projectDesp",projectDesp);
+            if(jsonObject.get("projectName") != null){
+                projectName = jsonObject.get("projectName").getAsString();
+                map.put("projectName",projectName);
+            }
+            if(jsonObject.get("projectDesp") != null){
+                projectDesp = jsonObject.get("projectDesp").getAsString();
+                map.put("projectDesp",projectDesp);
+            }
+
+            if(jsonObject.get("startTime") != null){
+                stime = jsonObject.get("startTime").getAsString();
+                Date startTime = null;
+                if(null != stime && !"".equals(stime)){
+                    startTime = day.parse(stime);
+                }
+                map.put("startTime",startTime);
+            }
+            if(jsonObject.get("endTime") != null){
+                etime = jsonObject.get("endTime").getAsString();
+                Date endTime = null;
+                if(null !=etime &&  !"".equals(etime)){
+                    endTime = day.parse(etime);
+                }
+                map.put("endTime",endTime);
+            }
+            if(jsonObject.get("projectEngName") != null){
+                projectEngName = jsonObject.get("projectEngName").getAsString();
+                map.put("projectEngName",projectEngName);
+            }
+            if(jsonObject.get("manager") != null){
+                manager = jsonObject.get("manager").getAsString();
+                map.put("manager",manager);
+            }
+            if(jsonObject.get("type") != null){
+                type = jsonObject.get("type").getAsString();
+                map.put("type",type);
+            }
+            if(jsonObject.get("registerNumber") != null){
+                registerNumber = jsonObject.get("registerNumber").getAsString();
+                map.put("registerNumber",registerNumber);
+            }
+            if(jsonObject.get("center") != null){
+                center = jsonObject.get("center").getAsString();
+                map.put("center",center);
+            }
+            if(jsonObject.get("unit") != null){
+                unit = jsonObject.get("unit").getAsString();
+                map.put("unit",unit);
+            }
             map.put("uid",uid);
             map.put("projectID",projectID);
         }catch (Exception e){
