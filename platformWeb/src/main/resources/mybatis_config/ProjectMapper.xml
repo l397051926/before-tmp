@@ -467,28 +467,28 @@
         UPDATE p_project
         <set> projectName= #{projectName},
             projectDesp = #{projectDesp},
-            <if test="#{startTime} != null" >
+            <if test="startTime != null" >
                 startTime=#{startTime,jdbcType=TIMESTAMP,javaType=java.util.Date},
             </if>
-            <if test="#{endTime} != null" >
+            <if test="endTime != null" >
                 endTime=#{endTime,jdbcType=TIMESTAMP,javaType=java.util.Date},
             </if>
-            <if test="#{projectEngName} != null" >
+            <if test="projectEngName != null" >
                 projectEngName=#{projectEngName},
             </if>
-            <if test="#{manager} != null" >
+            <if test="manager != null" >
                 manager=#{manager},
             </if>
-            <if test="#{type} != null" >
+            <if test="type != null" >
                 type=#{type},
             </if>
-            <if test="#{registerNumber} != null" >
+            <if test="registerNumber != null" >
                 registerNumber=#{registerNumber},
             </if>
-            <if test="#{center} != null" >
+            <if test="center != null" >
                 center=#{center},
             </if>
-            <if test="#{unit} != null" >
+            <if test="unit != null" >
                 unit=#{unit},
             </if>
         </set>
