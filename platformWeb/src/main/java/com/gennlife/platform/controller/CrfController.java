@@ -447,7 +447,7 @@ public class CrfController {
         return resultStr;
     }
     //UpLoadDataForCheck
-    @RequestMapping(value="/UpLoadDataForCheck",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
+    @RequestMapping(value="/UpLoadDataForCheck",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
     public @ResponseBody String postUpLoadDataForCheck(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
