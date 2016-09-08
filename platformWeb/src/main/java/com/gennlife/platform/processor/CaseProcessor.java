@@ -90,11 +90,12 @@ public class CaseProcessor {
                     JsonObject item = json.getAsJsonObject();
                     String UIFieldName = item.get("UIFieldName").getAsString();
                     if ("".equals(keywords) || UIFieldName.contains(keywords)) {
+                        JsonObject itemNew = (JsonObject) jsonParser.parse(gson.toJson(item));
                         if (!"".equals(keywords)) {
                             UIFieldName = UIFieldName.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
-                            item.addProperty("UIFieldName", UIFieldName);
+                            itemNew.addProperty("UIFieldName", UIFieldName);
                         }
-                        newGroup.add(item);
+                        newGroup.add(itemNew);
                     }
                 }
                 if (newGroup.size() > 0) {
@@ -114,11 +115,12 @@ public class CaseProcessor {
                     JsonObject item = json.getAsJsonObject();
                     String UIFieldName = item.get("UIFieldName").getAsString();
                     if ("".equals(keywords) || UIFieldName.contains(keywords)) {
+                        JsonObject itemNew = (JsonObject) jsonParser.parse(gson.toJson(item));
                         if (!"".equals(keywords)) {
                             UIFieldName = UIFieldName.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
-                            item.addProperty("UIFieldName", UIFieldName);
+                            itemNew.addProperty("UIFieldName", UIFieldName);
                         }
-                        newGroup.add(item);
+                        newGroup.add(itemNew);
                     }
                 }
                 if (newGroup.size() > 0) {
