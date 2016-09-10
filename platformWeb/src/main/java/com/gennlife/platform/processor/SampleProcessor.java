@@ -191,7 +191,8 @@ public class SampleProcessor {
             proLog.setProjectID(projectID);
             proLog.setUid(uid);
             proLog.setAction(LogActionEnum.CreatePlan.getName());
-            SyUser syUser = UserProcessor.getUser(uid);
+            SyUser syUser = null;
+            //UserProcessor.getUser(uid);
             proLog.setLogText(syUser.getUname() + LogActionEnum.UpdateSetInfo + ":" + sampleName);
             proLog.setLogTime(new Date());
             AllDao.getInstance().getProjectDao().insertProLog(proLog);

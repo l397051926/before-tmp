@@ -78,7 +78,8 @@ public class JsonUtils {
         createProject.setRegisterNumber(registerNumber);
         createProject.setType(type);
         //组建log日志
-        SyUser syUser = UserProcessor.getUser(creator);
+        SyUser syUser = null;
+             //UserProcessor.getUser(creator);
         ProLog proLog = new ProLog();
         proLog.setUid(creator);
         proLog.setProjectID(projectID);

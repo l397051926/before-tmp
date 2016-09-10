@@ -38,7 +38,7 @@ public class Mailer {
                 .append("<html>")
                 .append("<head>")
                 .append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">")
-                .append("<title>测试邮件</title>")
+                .append("<title>更新密码确认邮件邮件</title>")
                 .append("<style type=\"text/css\">")
                 .append(".test{font-family:\"Microsoft Yahei\";font-size: 18px;color: black;}")
                 .append("</style>")

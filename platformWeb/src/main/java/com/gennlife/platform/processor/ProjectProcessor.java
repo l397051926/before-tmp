@@ -32,7 +32,6 @@ public class ProjectProcessor {
     private static SimpleDateFormat day = new SimpleDateFormat("yyyy-MM-dd");
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
-    private static View viewer = new View();
 
 
     /**
@@ -55,8 +54,10 @@ public class ProjectProcessor {
             conf.put("key",key);
             List<MyProjectList> list = null;
             int counter = 0;
-            list = AllDao.getInstance().getSyUserDao().getMyProjectList(conf);
-            counter  = AllDao.getInstance().getSyUserDao().getProjectCounter(conf);
+            list = null;
+                    //AllDao.getInstance().getSyUserDao().getMyProjectList(conf);
+            counter  = 0;
+                    //AllDao.getInstance().getSyUserDao().getProjectCounter(conf);
             Map<String,Object> confMap = new HashMap<String, Object>();
             for(MyProjectList myProjectList:list){
                 String projectID = myProjectList.getProjectID();
@@ -131,7 +132,8 @@ public class ProjectProcessor {
         proLog.setPlanName(projectPlan.getPlanName());
         proLog.setUid(projectPlan.getCreator());
         proLog.setAction(LogActionEnum.CreatePlan.getName());
-        SyUser syUser = UserProcessor.getUser(projectPlan.getCreator());
+        SyUser syUser = null;
+                //UserProcessor.getUser(projectPlan.getCreator());
         proLog.setLogText(syUser.getUname() + LogActionEnum.CreatePlan.getName() + projectPlan.getPlanName());
         proLog.setLogTime(new Date());
         AllDao.getInstance().getProjectDao().insertProLog(proLog);
@@ -166,7 +168,8 @@ public class ProjectProcessor {
                 proLog.setProjectID(projectID);
                 proLog.setUid(uid);
                 proLog.setAction(LogActionEnum.DeletePlan.getName());
-                SyUser syUser = UserProcessor.getUser(uid);
+                SyUser syUser = null;
+                        //UserProcessor.getUser(uid);
                 proLog.setLogText(syUser.getUname() + LogActionEnum.DeletePlan.getName() + planName);
                 proLog.setLogTime(new Date());
                 AllDao.getInstance().getProjectDao().insertProLog(proLog);
@@ -205,7 +208,8 @@ public class ProjectProcessor {
             return ParamUtils.errorParam("请求参数异常");
         }
         Map<String,Object> confMap =  new HashMap<String, Object>();
-        SyUser syUser = UserProcessor.getUser(uid);
+        SyUser syUser = null;
+                //UserProcessor.getUser(uid);
         int c = 0;
         confMap.put("uid",uid);
         for(JsonElement jsonElement:ids){
@@ -251,7 +255,8 @@ public class ProjectProcessor {
             String setName =  AllDao.getInstance().getProjectDao().getProjectSetName(confMap);
             ProLog proLog = new ProLog();
             proLog.setUid(uid);
-            SyUser syUser = UserProcessor.getUser(uid);
+            SyUser syUser = null;
+                    //UserProcessor.getUser(uid);
             proLog.setProjectID(projectID);
             proLog.setAction(LogActionEnum.DeleteSamples.getName());
             proLog.setLogTime(createTime);
@@ -346,7 +351,8 @@ public class ProjectProcessor {
         Map<String,Object> conf = new HashMap<>();
         conf.put("uid",uid);
         try {
-            List<MyProjectList> list = AllDao.getInstance().getSyUserDao().getProjectList(conf);
+            List<MyProjectList> list = null;
+                    //AllDao.getInstance().getSyUserDao().getProjectList(conf);
             List<JsonObject> paramList = new LinkedList<>();
             for(MyProjectList myProjectList:list){
                 JsonObject newParamObj = new JsonObject();
@@ -509,8 +515,10 @@ public class ProjectProcessor {
         logger.info("projectID=" + projectID);
         Map<String,Object> confMap = new HashMap<String, Object>();
         confMap.put("projectID",projectID);
-        List<SyUser> list = AllDao.getInstance().getSyUserDao().getProjectMemberList(confMap);
-        int counter = AllDao.getInstance().getSyUserDao().getProjectMemberCounter(confMap);
+        List<SyUser> list = null;
+                //AllDao.getInstance().getSyUserDao().getProjectMemberList(confMap);
+        int counter = 0;
+                //AllDao.getInstance().getSyUserDao().getProjectMemberCounter(confMap);
         Map<String,Integer> info = new HashMap<String,Integer>();
         info.put("counter",counter);
         ResultBean resultBean = new ResultBean();
@@ -540,8 +548,10 @@ public class ProjectProcessor {
             proLog.setProjectID(projectID);
             proLog.setUid(uid);
             proLog.setAction(LogActionEnum.AddProjectMember.getName());
-            SyUser syUser = UserProcessor.getUser(uid);
-            SyUser syAdd = UserProcessor.getUser(uidAdd);
+            SyUser syUser = null;
+                    // UserProcessor.getUser(uid);
+            SyUser syAdd = null;
+                    //UserProcessor.getUser(uidAdd);
             proLog.setLogText(syUser.getUname() + LogActionEnum.AddProjectMember.getName()+syAdd.getUname());
             proLog.setLogTime(new Date());
             AllDao.getInstance().getProjectDao().insertProLog(proLog);
@@ -575,8 +585,10 @@ public class ProjectProcessor {
             proLog.setProjectID(projectID);
             proLog.setUid(uid);
             proLog.setAction(LogActionEnum.DeleteProjectMember.getName());
-            SyUser syUser = UserProcessor.getUser(uid);
-            SyUser syDelete = UserProcessor.getUser(uidDelete);
+            SyUser syUser = null;
+            //UserProcessor.getUser(uid);
+            SyUser syDelete =null;
+                    //UserProcessor.getUser(uidDelete);
             proLog.setLogText(syUser.getUname() + LogActionEnum.DeleteProjectMember.getName()+syDelete.getUname());
             proLog.setLogTime(new Date());
             AllDao.getInstance().getProjectDao().insertProLog(proLog);
@@ -705,7 +717,8 @@ public class ProjectProcessor {
         proLog.setProjectID(projectID);
         proLog.setUid(uid);
         proLog.setAction(LogActionEnum.UpdateProject.getName());
-        SyUser syUser = UserProcessor.getUser(uid);
+        SyUser syUser = null;
+                //UserProcessor.getUser(uid);
         proLog.setLogText(syUser.getUname() + LogActionEnum.UpdateProject.getName());
         proLog.setLogTime(new Date());
         AllDao.getInstance().getProjectDao().insertProLog(proLog);
@@ -813,9 +826,11 @@ public class ProjectProcessor {
         }catch (Exception e){
             return ParamUtils.errorParam("请求参数异常");
         }
-        MyProjectList project = AllDao.getInstance().getSyUserDao().baiscInfo(map);
+        MyProjectList project = null;
+                //AllDao.getInstance().getSyUserDao().baiscInfo(map);
         if(project != null){
-            SyUser creator = UserProcessor.getUser(project.getCreator());
+            SyUser creator =null;
+                    //UserProcessor.getUser(project.getCreator());
             if(creator != null){
                 project.setCreatorName(creator.getUname());
             }

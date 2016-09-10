@@ -63,7 +63,7 @@ public class ConfigurationService {
 
     public static void loadConfigurationInfo() throws IOException {
         String caseStr = FilesUtils.readFile("/case819bak.json");
-        logger.info("case.json="+caseStr);
+        //logger.info("case.json="+caseStr);
         JsonObject jsonObject = (JsonObject) jsonParser.parse(caseStr);
         JsonObject caseObj = jsonObject.getAsJsonObject("case");
         defaultObj = caseObj.getAsJsonObject("default");

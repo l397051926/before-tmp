@@ -154,7 +154,8 @@ public class CrfProcessor {
         Map<String,Object> conf = new HashMap<>();
         conf.put("uid",uid);
         try {
-            List<MyProjectList> list = AllDao.getInstance().getSyUserDao().getProjectList(conf);
+            List<MyProjectList> list = null;
+                    //AllDao.getInstance().getSyUserDao().getProjectList(conf);
             List<JsonObject> paramList = new LinkedList<>();
             for(MyProjectList myProjectList:list){
                 JsonObject newParamObj = new JsonObject();
@@ -239,7 +240,8 @@ public class CrfProcessor {
         }
         Map<String,Object> map = new HashMap<String, Object>();
         map.put("projectID",projectID);
-        MyProjectList project = AllDao.getInstance().getSyUserDao().baiscInfo(map);
+        MyProjectList project = null;
+                //AllDao.getInstance().getSyUserDao().baiscInfo(map);
         JsonObject newParam = new JsonObject();
         newParam.addProperty("projectID",project.getProjectID());
         newParam.addProperty("disease",project.getDisease());

@@ -111,4 +111,11 @@ public class ParamUtils {
         }
         return jsonArray;
     }
+
+    public static ResultBean errorParamResultBean(String info){
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(0);
+        resultBean.setInfo(info);
+        return resultBean;
+    }
 }

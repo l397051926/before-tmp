@@ -2,9 +2,11 @@ package com.gennlife.platform.dao;
 
 
 import com.gennlife.platform.bean.SyResource;
+import com.gennlife.platform.model.Resource;
 import org.mybatis.spring.annotation.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -12,6 +14,14 @@ import java.util.List;
  */
 @Mapper("syResourceDao")
 public interface SyResourceMapper {
-    public List<SyResource> getAllSyResourceByRole(Integer integer);
-    public List<SyResource> getAllSyResource();
+    /**
+     * 获取资源
+     * @return
+     */
+    public List<Resource> getResources(Map<String, Object> likeCondition);
+
+
+
+    public List<Resource> getResourcesBySid(Map<String, Object> likeCondition);
+
 }

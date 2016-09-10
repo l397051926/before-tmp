@@ -3,10 +3,7 @@ package com.gennlife.platform.util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.*;
 
 /**
  * Created by chensong on 2015/12/14.
@@ -34,5 +31,21 @@ public class FilesUtils {
         String data = FilesUtils.readString(inputStream5, "utf-8");
         inputStream5.close();
         return data;
+    }
+
+
+    public static void makeDirectory(String s) throws IOException {
+        File file = new File(s);
+        if(!file.exists()){
+            file.createNewFile();
+        }
+    }
+
+    public static String getTypePart(String name) {
+        if (name == null){
+            return null;
+        }
+        String[] data = name.split("\\.");
+        return data[data.length - 1];
     }
 }

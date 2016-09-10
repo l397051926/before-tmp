@@ -53,8 +53,10 @@ public class SearchProcessor {
             confMap.put("maxNum", ls[1]);
             confMap.put("searchMemberkey",searchMemberkey);
             confMap.put("projectID", projectID);
-            List<SyUser> list = AllDao.getInstance().getSyUserDao().searchMemberList(confMap);
-            int counter = AllDao.getInstance().getSyUserDao().searchMemberCounter(confMap);
+            List<SyUser> list = null;
+                    //AllDao.getInstance().getSyUserDao().searchMemberList(confMap);
+            int counter = 0;
+                    //AllDao.getInstance().getSyUserDao().searchMemberCounter(confMap);
             Map<String,Integer> info = new HashMap<String,Integer>();
             info.put("counter",counter);
             ResultBean userBean = new ResultBean();
@@ -121,7 +123,7 @@ public class SearchProcessor {
             searchConditionBean.setUid(uid);
             searchConditionBean.setConditionStr(conditionStr);
             searchConditionBean.setConditionName(conditionName);
-            AllDao.getInstance().getSyUserDao().insertSearchCondition(searchConditionBean);
+            //AllDao.getInstance().getSyUserDao().insertSearchCondition(searchConditionBean);
         }catch (Exception e){
             logger.error("",e);
             return ParamUtils.errorParam("服务异常");
@@ -146,7 +148,8 @@ public class SearchProcessor {
             return ParamUtils.errorParam("请求参数异常");
         }
         try{
-            List<SearchConditionBean> list = AllDao.getInstance().getSyUserDao().searchConditionList(uid);
+            List<SearchConditionBean> list = null;
+            //AllDao.getInstance().getSyUserDao().searchConditionList(uid);
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
             resultBean.setData(list);

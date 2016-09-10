@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.gennlife.platform.dao.SyResourceMapper" >
-  <resultMap id="com.gennlife.platform.bean.SyResource" type="com.gennlife.platform.bean.SyResource" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="description" property="description" jdbcType="VARCHAR" />
-    <result column="url" property="url" jdbcType="VARCHAR" />
-    <result column="syresourcetype" property="syresourcetype" jdbcType="INTEGER" />
-    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
-    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
-    <result column="syresourceid" property="syresourceid" jdbcType="INTEGER" />
-    <result column="seq" property="seq" jdbcType="INTEGER" />
-    <result column="sign" property="sign" jdbcType="INTEGER" />
+
+  <resultMap id="com.gennlife.platform.model.Resource" type="com.gennlife.platform.model.Resource">
+    <result column="gennlife_resource.sid" property="sid" jdbcType="VARCHAR" />
+    <result column="sname" property="sname" jdbcType="VARCHAR" />
+    <result column="sdesc" property="sdesc" jdbcType="VARCHAR" />
+    <result column="stype" property="stype" jdbcType="VARCHAR" />
+    <result column="slab_type" property="slab_type" jdbcType="VARCHAR" />
+    <result column="slab_name" property="slab_name" jdbcType="VARCHAR" />
+    <result column="sorgID" property="sorgID" jdbcType="VARCHAR" />
+    <result column="has_add" property="has_add" jdbcType="VARCHAR" />
+    <result column="has_read" property="has_read" jdbcType="VARCHAR" />
+    <result column="has_modify" property="has_modify" jdbcType="VARCHAR" />
+    <result column="has_delete" property="has_delete" jdbcType="VARCHAR" />
+
+
   </resultMap>
-  <sql id="Base_Column_List" >
-    id, name, description, url, syresourcetype, createtime, updatetime, syresourceid, 
-    seq, sign
+  <sql id="resourceProperty">
+    gennlife_resource.sid,sname,sdesc,stype,slab_type,slab_name,sorgID,has_add,has_read,has_modify,has_delete
   </sql>
-
-	
-  <select id="getAllSyResourceByRole" resultMap="com.gennlife.platform.bean.SyResource" parameterType="Integer" >
-		select <include refid="Base_Column_List"/>
-		from p_resource p
-		inner join syresource_syrole t ON p.id = t.syresoureceid
-		where t.syroleid = #{id}  
-		
-  </select>
-  <select id="getAllSyResource" resultMap="com.gennlife.platform.bean.SyResource" >
-    select <include refid="Base_Column_List"/>
-    from p_resource  order by seq
+  
+  <select id="getResources" resultMap="com.gennlife.platform.model.Resource"  parameterType="map">
+    select
+      <include refid="resourceProperty" />
+    FROM
+    gennlife_role_resource JOIN gennlife_resource on gennlife_role_resource.sid = gennlife_resource.sid
+    where
+    gennlife_resource.sorgID=#{orgID}
+    AND gennlife_role_resource.roleid = #{roleid}
   </select>
 
+  <select id="getResourcesBySid" resultMap="com.gennlife.platform.model.Resource"  parameterType="map">
+    select
+    <include refid="resourceProperty" />
+    FROM
+    gennlife_role_resource JOIN gennlife_resource on gennlife_role_resource.sid = gennlife_resource.sid
+    where
+    gennlife_resource.sorgID=#{orgID}
+    AND gennlife_resource.sid = #{sid}
+
+  </select>
 </mapper>
