@@ -29,10 +29,10 @@ public class Mailer {
         String uname = "陈松";
         String email = "duanjinhui@gennlife.com";
         String url = "http://192.168.1.127:63342/uranus/ubasicinfo/update_password.html";
-        sendHTMLMail(uname,email,url);
+        sendHTMLMail(email,url);
     }
 
-    public static void sendHTMLMail(String uname,String email,String url){
+    public static void sendHTMLMail(String email,String url){
         StringBuffer demo = new StringBuffer();
         demo.append("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">")
                 .append("<html>")
@@ -44,7 +44,7 @@ public class Mailer {
                 .append("</style>")
                 .append("</head>")
                 .append("<body>")
-                .append("<span class=\"test\"> 你好,"+uname+" <br></span>")
+                .append("<span class=\"test\"> 你好: <br></span>")
                 .append("<span class=\"test\"> &nbsp; &nbsp;&nbsp;&nbsp;    修改密码连接: "+url+"<br></span>")
                 .append("<span class=\"test\"> &nbsp;&nbsp;&nbsp;&nbsp;      点击连接会跳转到修改密码页面进行密码修改<br></span>")
                 .append("</body>")

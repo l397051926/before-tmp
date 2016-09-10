@@ -133,5 +133,18 @@ public class UserController{
         logger.info("发送修改密码邮件 post 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
-
+    @RequestMapping(value="/ExistEmail",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String postExistEmail(@RequestParam("param")String param,HttpSession session){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.existEmail(paramObj);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("查看账户是否存在 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }

@@ -126,19 +126,18 @@ public class UserProcessor {
     public String changePwdSender(JsonObject jsonObject) throws IOException {
         boolean flag = true;
         try{
-            String uid = jsonObject.get("uid").getAsString();
             String email = jsonObject.get("email").getAsString();
             String url = jsonObject.get("url").getAsString();
             String md5 = jsonObject.get("md5").getAsString();
             Map<String,Object> map = new HashMap<>();
-            map.put("uid",uid);
+            map.put("email",email);
             map.put("md5",md5);
             int counter = AllDao.getInstance().getSyUserDao().updateMd5(map);
             if(counter == 0){
                 logger.error("更新md5失败");
                 flag = false;
             }
-            Mailer.sendHTMLMail(uid, email, url);
+            Mailer.sendHTMLMail(email, url);
         }catch (Exception e){
             flag = false;
             logger.error("",e);
@@ -172,12 +171,12 @@ public class UserProcessor {
      * @return
      */
     public String updatePWD(String param) {
-        String uid = null;
+        String email = null;
         String pwd = null;
         String md5 = null;
         try{
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            uid = paramObj.get("uid").getAsString();
+            email = paramObj.get("email").getAsString();
             pwd = paramObj.get("pwd").getAsString();
             md5 = paramObj.get("md5").getAsString();
         }catch (Exception e){
@@ -185,7 +184,7 @@ public class UserProcessor {
             return ParamUtils.errorParam("参数错误");
         }
         Map<String,Object> map = new HashMap<>();
-        map.put("uid",uid);
+        map.put("email",email);
         map.put("pwd",pwd);
         map.put("md5",md5);
         int counter = AllDao.getInstance().getSyUserDao().updatePWD(map);
@@ -197,5 +196,24 @@ public class UserProcessor {
             resultBean.setInfo("更新成功");
             return gson.toJson(resultBean);
         }
+    }
+
+    /**
+     *
+     * @param paramObj
+     * @return
+     */
+    public String existEmail(JsonObject paramObj) {
+        Map<String,Object> map = new HashMap<>();
+        String email = paramObj.get("email").getAsString();
+        map.put("email",email);
+        int counter = AllDao.getInstance().getSyUserDao().existEmail(map);
+        ResultBean resultBean = new ResultBean();
+        if(counter == 0){
+            resultBean.setCode(0);
+        }else {
+            resultBean.setCode(1);
+        }
+        return gson.toJson(resultBean);
     }
 }

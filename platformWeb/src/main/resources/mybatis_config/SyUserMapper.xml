@@ -86,13 +86,20 @@
 		UPDATE
 			gennlife_user
 		SET pwd = #{pwd,jdbcType=VARCHAR},md5=''
-		WHERE uid = #{uid,jdbcType=VARCHAR} AND md5 = #{md5,jdbcType=VARCHAR}
+		WHERE uemail = #{email,jdbcType=VARCHAR} AND md5 = #{md5,jdbcType=VARCHAR}
 	</update>
 
 	<update id="updateMd5" parameterType="map">
 		UPDATE
 			gennlife_user
 		SET md5 = #{md5,jdbcType=VARCHAR}
-		WHERE uid = #{uid,jdbcType=VARCHAR}
+		WHERE uemail = #{email,jdbcType=VARCHAR}
 	</update>
+
+	<select id="existEmail" resultType="java.lang.Integer" parameterType="map">
+		SELECT
+		count(uid)
+		FROM gennlife_user
+		<where> gennlife_user.uemail=#{email,jdbcType=VARCHAR} </where>
+	</select>
 </mapper>

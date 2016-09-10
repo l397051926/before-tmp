@@ -56,7 +56,7 @@ public class SimpleMailSender {
              */
             return true;
         } catch (MessagingException ex) {
-
+            logger.error("",ex);
         }
         return false;
     }

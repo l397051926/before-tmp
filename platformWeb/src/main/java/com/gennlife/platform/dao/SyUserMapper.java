@@ -57,6 +57,13 @@ public interface SyUserMapper {
     int updateMd5(Map<String, Object> map);
 
     /**
+     * 查看email是否存在
+     * @param map
+     * @return
+     */
+    int existEmail(Map<String, Object> map);
+
+    /**
     public SyUser getOneUser(Map<String, Object> likeCondition);
     public int updateByUid(SyUser record);
     public int getProjectCounter(Map<String,Object> likeCondition);
