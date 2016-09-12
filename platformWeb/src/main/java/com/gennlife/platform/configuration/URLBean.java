@@ -14,6 +14,11 @@ public class URLBean {
     }
 
     /**
+     * 修改密码的url前缀
+     */
+    private String EmailSendURL = null;
+
+    /**
      * 工作区工具列表
      */
     private String toolsURL = null;
@@ -775,5 +780,13 @@ public class URLBean {
 
     public void setCRFUpLoadDataForCheck(String CRFUpLoadDataForCheck) {
         this.CRFUpLoadDataForCheck = CRFUpLoadDataForCheck;
+    }
+
+    public String getEmailSendURL() {
+        return EmailSendURL;
+    }
+
+    public void setEmailSendURL(String emailSendURL) {
+        EmailSendURL = emailSendURL;
     }
 }

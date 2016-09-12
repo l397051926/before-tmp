@@ -6,6 +6,8 @@ import com.gennlife.platform.model.Admin;
 import com.gennlife.platform.model.Resource;
 import com.gennlife.platform.model.Role;
 import com.gennlife.platform.model.User;
+import com.gennlife.platform.service.ArkService;
+import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.LogUtils;
 import com.gennlife.platform.util.Mailer;
@@ -131,7 +133,7 @@ public class UserProcessor {
         boolean flag = true;
         try{
             String email = jsonObject.get("email").getAsString();
-            String url = jsonObject.get("url").getAsString();
+            String token = jsonObject.get("token").getAsString();
             String md5 = jsonObject.get("md5").getAsString();
             Map<String,Object> map = new HashMap<>();
             map.put("email",email);
@@ -141,6 +143,7 @@ public class UserProcessor {
                 logger.error("更新md5失败");
                 flag = false;
             }
+            String url = ConfigurationService.getUrlBean().getEmailSendURL()+token;
             Mailer.sendHTMLMail(email, url);
         }catch (Exception e){
             flag = false;
@@ -157,7 +160,7 @@ public class UserProcessor {
 
     }
 
-    public User getUserByUid(String uid){
+    public static User getUserByUid(String uid){
         Map<String,Object> map = new HashMap<>();
         map.put("uid",uid);
         User user = null;

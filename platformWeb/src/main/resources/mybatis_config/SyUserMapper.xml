@@ -117,4 +117,18 @@
 	  	    gennlife_manage.uid = #{uid,jdbcType=VARCHAR}
 	  	    AND gennlife_manage.orgID = #{orgID,jdbcType=VARCHAR}
 	</select>
+	<resultMap id="com.gennlife.platform.model.Lab" type="com.gennlife.platform.model.Lab">
+		<result column="orgID" property="orgID" jdbcType="VARCHAR" />
+		<result column="labID" property="labID" jdbcType="VARCHAR" />
+		<result column="lab_name" property="lab_name" jdbcType="VARCHAR" />
+		<result column="lab_leader" property="lab_leader" jdbcType="VARCHAR" />
+		<result column="lab_parent" property="lab_parent" jdbcType="VARCHAR" />
+		<result column="lab_level" property="lab_level" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="getLabs" resultType="com.gennlife.platform.model.Lab" parameterType="map">
+		SELECT
+			orgID,labID,lab_name,lab_leader,lab_parent,lab_level
+	  	FROM
+			gennlife_lab.org = #{orgID,jdbcType=VARCHAR}
+	</select>
 </mapper>
