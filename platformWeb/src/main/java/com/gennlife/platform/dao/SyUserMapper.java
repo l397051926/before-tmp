@@ -5,6 +5,7 @@ import com.gennlife.platform.bean.SyUser;
 import com.gennlife.platform.bean.projectBean.HistoryWords;
 import com.gennlife.platform.bean.projectBean.MyProjectList;
 import com.gennlife.platform.bean.searchConditionBean.SearchConditionBean;
+import com.gennlife.platform.model.Admin;
 import com.gennlife.platform.model.User;
 import org.mybatis.spring.annotation.Mapper;
 
@@ -62,6 +63,13 @@ public interface SyUserMapper {
      * @return
      */
     int existEmail(Map<String, Object> map);
+
+    /**
+     * 获取用户的管理权限
+     * @param confMap
+     * @return
+     */
+    List<Admin> getAdmins(Map<String, Object> confMap);
 
     /**
     public SyUser getOneUser(Map<String, Object> likeCondition);

@@ -91,24 +91,8 @@ public class UserController{
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            HttpSession session = paramRe.getSession();
-            if(session == null){
-                return ParamUtils.errorParam("当前session已经失效");
-            }else{
-                User user = gson.fromJson((String)session.getAttribute("user"),User.class);
-                String param = ParamUtils.getParam(paramRe);
-                JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-                try{
-                    String uid = paramObj.get("uid").getAsString();
-                    if(!user.getUid().equals(uid)){
-                        return ParamUtils.errorParam("更新uid与seesion中保存的uid不一致");
-                    }
-                }catch (Exception e){
-                    return ParamUtils.errorParam("缺少uid");
-                }
-                resultStr =  processor.updatePWD(param);
-            }
-
+            String param = ParamUtils.getParam(paramRe);
+            resultStr =  processor.updatePWD(param);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");

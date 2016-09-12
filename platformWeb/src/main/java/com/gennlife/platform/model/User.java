@@ -41,6 +41,7 @@ public class User {
     private String uptime;
     private String unumber = "";
     private Object roles = new LinkedList<>();//角色列表
+    private Object administrators = new LinkedList<>();//管理员角色
 
     public String getLab_name() {
         return lab_name;
@@ -176,5 +177,13 @@ public class User {
 
     public void setRoles(Object roles) {
         this.roles = roles;
+    }
+
+    public Object getAdministrators() {
+        return administrators;
+    }
+
+    public void setAdministrators(Object administrators) {
+        this.administrators = administrators;
     }
 }

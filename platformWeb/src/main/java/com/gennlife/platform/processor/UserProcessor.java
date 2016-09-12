@@ -2,6 +2,7 @@ package com.gennlife.platform.processor;
 
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.dao.AllDao;
+import com.gennlife.platform.model.Admin;
 import com.gennlife.platform.model.Resource;
 import com.gennlife.platform.model.Role;
 import com.gennlife.platform.model.User;
@@ -50,6 +51,8 @@ public class UserProcessor {
             }else{
                 confMap.put("orgID",user.getOrgID());
                 confMap.put("uid",user.getUid());
+                List<Admin> adminList = AllDao.getInstance().getSyUserDao().getAdmins(confMap);
+                user.setAdministrators(adminList);
                 List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(confMap);
                 if(rolesList != null){
                     user.setRoles(rolesList);
@@ -66,6 +69,7 @@ public class UserProcessor {
                         }
                     }
                 }
+
 
             }
             ResultBean resultBean = new ResultBean();

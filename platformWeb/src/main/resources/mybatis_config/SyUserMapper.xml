@@ -102,4 +102,19 @@
 		FROM gennlife_user
 		<where> gennlife_user.uemail=#{email,jdbcType=VARCHAR} </where>
 	</select>
+	<resultMap id="com.gennlife.platform.model.Admin" type="com.gennlife.platform.model.Admin">
+		<result column="uid" property="uid" jdbcType="VARCHAR" />
+		<result column="privilegeType" property="privilegeType" jdbcType="VARCHAR" />
+		<result column="privilegeValue" property="privilegeValue" jdbcType="VARCHAR" />
+		<result column="orgID" property="orgID" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="getAdmins" resultType="com.gennlife.platform.model.Admin" parameterType="map">
+		SELECT
+			uid,privilegeType,privilegeValue,orgID
+		FROM
+			gennlife_manage
+	  	WHERE
+	  	    gennlife_manage.uid = #{uid,jdbcType=VARCHAR}
+	  	    AND gennlife_manage.orgID = #{orgID,jdbcType=VARCHAR}
+	</select>
 </mapper>
