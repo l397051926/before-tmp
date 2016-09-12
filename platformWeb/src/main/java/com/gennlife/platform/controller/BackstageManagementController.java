@@ -12,13 +12,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by chen-song on 16/9/12.
  */
 @Controller
 @RequestMapping("/bsma")
-public class LaboratoryController {
-    private Logger logger = LoggerFactory.getLogger(KnowledgeController.class);
+public class BackstageManagementController {
+    private Logger logger = LoggerFactory.getLogger(BackstageManagementController.class);
     private static JsonParser jsonParser = new JsonParser();
     private static LaboratoryProcessor processor = new LaboratoryProcessor();
     @RequestMapping(value="/OrgMapData",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
@@ -35,6 +37,22 @@ public class LaboratoryController {
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("获取科室组织信息 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/AddOrg",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String postChangePWD(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.addOrg(paramObj);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("添加科室 post 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 }

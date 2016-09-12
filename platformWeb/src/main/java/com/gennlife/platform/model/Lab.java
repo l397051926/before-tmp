@@ -8,8 +8,27 @@ public class Lab {
     private String labID;
     private String lab_name;
     private String lab_leader;
-    private Object lab_parent;
-    private Object lab_level;
+    private String lab_parent;
+    private String add_user;
+    private String add_time;
+    private int lab_level;
+    private Object subLabs;
+
+    public String getAdd_user() {
+        return add_user;
+    }
+
+    public void setAdd_user(String add_user) {
+        this.add_user = add_user;
+    }
+
+    public String getAdd_time() {
+        return add_time;
+    }
+
+    public void setAdd_time(String add_time) {
+        this.add_time = add_time;
+    }
 
     public String getOrgID() {
         return orgID;
@@ -43,19 +62,27 @@ public class Lab {
         this.lab_leader = lab_leader;
     }
 
-    public Object getLab_parent() {
+    public String getLab_parent() {
         return lab_parent;
     }
 
-    public void setLab_parent(Object lab_parent) {
+    public void setLab_parent(String lab_parent) {
         this.lab_parent = lab_parent;
     }
 
-    public Object getLab_level() {
+    public int getLab_level() {
         return lab_level;
     }
 
-    public void setLab_level(Object lab_level) {
+    public void setLab_level(int lab_level) {
         this.lab_level = lab_level;
+    }
+
+    public Object getSubLabs() {
+        return subLabs;
+    }
+
+    public void setSubLabs(Object subLabs) {
+        this.subLabs = subLabs;
     }
 }

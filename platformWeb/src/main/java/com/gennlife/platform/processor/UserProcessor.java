@@ -6,7 +6,6 @@ import com.gennlife.platform.model.Admin;
 import com.gennlife.platform.model.Resource;
 import com.gennlife.platform.model.Role;
 import com.gennlife.platform.model.User;
-import com.gennlife.platform.service.ArkService;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.LogUtils;

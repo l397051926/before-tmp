@@ -8,8 +8,8 @@
     <select id="getOrgList" resultMap="com.gennlife.platform.bean.OrgListBean" >
         select
         orgID,orgName
-        from p_org
-        order by orgID
+        from gennlife_org
+        order by gennlife_org
     </select>
     <resultMap id="com.gennlife.platform.bean.OrgMemberBean" type="com.gennlife.platform.bean.OrgMemberBean" >
         <result column="o.orgID" property="orgID" jdbcType="VARCHAR" />
@@ -20,8 +20,115 @@
     <select id="getOneOrgList" resultMap="com.gennlife.platform.bean.OrgMemberBean" parameterType="String"  >
         select
         orgName,u.uid,u.uname,o.orgID
-        from p_org o join p_user u on o.orgID = u.orgID
+        from gennlife_org o join gennlife_user u on o.orgID = u.orgID
         where o.orgID =  #{orgID}
     </select>
 
+
+    <resultMap id="com.gennlife.platform.model.Lab" type="com.gennlife.platform.model.Lab" >
+        <result column="orgID" property="orgID" jdbcType="VARCHAR" />
+        <result column="labID" property="labID" jdbcType="VARCHAR" />
+        <result column="lab_name" property="lab_name" jdbcType="VARCHAR" />
+        <result column="lab_leader" property="lab_leader" jdbcType="VARCHAR" />
+        <result column="lab_parent" property="lab_parent" jdbcType="VARCHAR" />
+        <result column="lab_level" property="lab_level" jdbcType="INTEGER"></result>
+        <result column="add_user" property="add_user" jdbcType="VARCHAR"></result>
+        <result column="add_time" property="add_time" jdbcType="VARCHAR"></result>
+    </resultMap>
+
+    <select id="getLabs" resultMap="com.gennlife.platform.model.Lab" parameterType="String"  >
+        select
+        orgID,labID,lab_name,lab_leader,lab_parent,lab_level,add_user,add_time
+        from gennlife_lab
+        where orgID = #{orgID}
+    </select>
+    <resultMap id="com.gennlife.platform.model.Organization" type="com.gennlife.platform.model.Organization" >
+        <result column="orgID" property="orgID" jdbcType="VARCHAR" />
+        <result column="org_name" property="org_name" jdbcType="VARCHAR" />
+        <result column="leader" property="leader" jdbcType="VARCHAR" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getOrganization" resultType="com.gennlife.platform.model.Organization" parameterType="String">
+       SELECT
+          orgID,org_name,leader,address
+       FROM
+          gennlife_org
+       WHERE orgID = #{orgID}
+    </select>
+    <select id="getMaxlabLevel" resultType="Integer" parameterType="String">
+       select
+        max(lab_level)
+        from gennlife_lab
+        where orgID = #{orgID}
+    </select>
+
+    <select id="getLabLevel" resultType="Integer" parameterType="map">
+        select
+        lab_level
+        from gennlife_lab
+        where orgID = #{orgID,jdbcType=VARCHAR} AND labID = #{labID,jdbcType=VARCHAR}
+    </select>
+    <insert id="insertOneLab" parameterType="com.gennlife.platform.model.Lab">
+        insert into gennlife_lab
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="orgID != null" >
+                orgID,
+            </if>
+            <if test="labID != null" >
+                labID,
+            </if>
+            <if test="lab_name != null" >
+                lab_name,
+            </if>
+            <if test="lab_leader != null" >
+                lab_leader,
+            </if>
+            <if test="lab_parent != null" >
+                lab_parent,
+            </if>
+            <if test="lab_level != null" >
+                lab_level,
+            </if>
+            <if test="add_user != null" >
+                add_user,
+            </if>
+            <if test="add_time != null" >
+                add_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="orgID != null" >
+                #{orgID,jdbcType=VARCHAR},
+            </if>
+            <if test="labID != null" >
+                #{labID,jdbcType=VARCHAR},
+            </if>
+            <if test="lab_name != null" >
+                #{lab_name,jdbcType=VARCHAR},
+            </if>
+            <if test="lab_leader != null" >
+                #{lab_leader,jdbcType=VARCHAR},
+            </if>
+            <if test="lab_parent != null" >
+                #{lab_parent,jdbcType=VARCHAR},
+            </if>
+            <if test="lab_level != null" >
+                #{lab_level,javaType=INTEGER},
+            </if>
+            <if test="add_user != null" >
+                #{add_user,jdbcType=VARCHAR},
+            </if>
+            <if test="add_time != null" >
+                #{add_time,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="getLabsName" resultType="java.lang.String" parameterType="String">
+        SELECT
+          DISTINCT (lab_name)
+        FROM
+          gennlife_lab
+        WHERE gennlife_lab.orgID = #{orgID}
+    </select>
 </mapper>
