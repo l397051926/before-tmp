@@ -25,7 +25,7 @@ public class BackstageManagementController {
     private static LaboratoryProcessor processor = new LaboratoryProcessor();
     @RequestMapping(value="/OrgMapData",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postModel(@RequestParam("param") String param){
+    String postOrgMapData(@RequestParam("param") String param){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
@@ -53,6 +53,22 @@ public class BackstageManagementController {
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("添加科室 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+    @RequestMapping(value="/DeleteOrg",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String postDeleteOrg(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("删除科室 get方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.deleteOrg(paramObj);
+        }catch (Exception e){
+            logger.error("删除科室",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("删除科室 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 }

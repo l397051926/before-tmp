@@ -11,8 +11,10 @@ import com.gennlife.platform.util.ChineseToEnglish;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +28,7 @@ public class LaboratoryProcessor {
     private Logger logger = LoggerFactory.getLogger(LaboratoryProcessor.class);
     private Gson gson = GsonUtil.getGson();
     private static SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
+    private static JsonParser jsonParser = new JsonParser();
     /**
      * 获取科室组织信息
      *
@@ -156,5 +158,39 @@ public class LaboratoryProcessor {
         return organization;
     }
 
+    /**
+     * 删除科室信息
+     * @param paramObj
+     * @return
+     */
+    public String deleteOrg(JsonObject paramObj) {
+        String uid = null;
+        List<String> labIDsList = null;
+        try{
+            uid = paramObj.get("uid").getAsString();
+            JsonArray labIDsArray= paramObj.get("labIDs").getAsJsonArray();
+            labIDsList = gson.fromJson(labIDsArray,LinkedList.class);
+        }catch (Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("请求参数有错误");
+        }
+        String[] labIDs = labIDsList.toArray(new String[labIDsList.size()]);
+        User user = UserProcessor.getUserByUid(uid);
+        String orgID = user.getOrgID();
+        boolean isAdmin = isAdmin(uid,orgID);
+        Organization organization = null;
+        if(isAdmin){
+            int counter = AllDao.getInstance().getOrgDao().deleteLabs(labIDs);
+            int fail = labIDsList.size()-counter;
+            logger.info("成功删除"+counter+"个科室信息,失败"+fail+"个");
+            organization = getOrganization(isAdmin,orgID);
+        }else {
+            return ParamUtils.errorParam("当前用户没有权限");
+        }
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(1);
+        resultBean.setData(organization);
 
+        return gson.toJson(resultBean);
+    }
 }

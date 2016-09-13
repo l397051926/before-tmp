@@ -131,4 +131,12 @@
           gennlife_lab
         WHERE gennlife_lab.orgID = #{orgID}
     </select>
+
+    <delete id="deleteLabs">
+        DELETE FROM gennlife_lab WHERE
+          gennlife_lab.labID in
+          <foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
+              #{item,jdbcType=VARCHAR}
+          </foreach>
+    </delete>
 </mapper>
