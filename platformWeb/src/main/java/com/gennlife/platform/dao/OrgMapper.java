@@ -77,4 +77,6 @@ public interface OrgMapper {
      * @return
      */
     public int deleteLabs(@Param("labIDs") String[] labIDs);
+
+
 }

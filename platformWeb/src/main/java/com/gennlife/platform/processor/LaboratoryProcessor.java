@@ -193,4 +193,41 @@ public class LaboratoryProcessor {
 
         return gson.toJson(resultBean);
     }
+
+    /**
+     * 更新科室信息
+     * @param paramObj
+     * @return
+     */
+    public String updateOrg(JsonObject paramObj) {
+        String uid = null;
+        String labID = null;
+        String lab_name = null;
+        String lab_leader = null;
+        String lab_leaderName = null;
+        String lab_parent = null;
+        try {
+            uid = paramObj.get("uid").getAsString();
+            labID = paramObj.get("labID").getAsString();
+            lab_name = paramObj.get("lab_name").getAsString();
+            if(paramObj.has("lab_leader")){
+                lab_leader = paramObj.get("lab_leader").getAsString();
+            }
+            if(paramObj.has("lab_leaderName")){
+                lab_leaderName = paramObj.get("lab_leaderName").getAsString();
+            }
+            lab_parent = paramObj.get("lab_parent").getAsString();
+        }catch (Exception e){
+            return ParamUtils.errorParam("参数错误");
+        }
+        User user = UserProcessor.getUserByUid(uid);
+        String orgID = user.getOrgID();
+        boolean isAdmin = isAdmin(uid,orgID);
+        if(isAdmin){
+            Map<String,Object> map = new HashMap<>();
+        }else{
+            return ParamUtils.errorParam("当前用户没有权限");
+        }
+        return "";
+    }
 }

@@ -71,4 +71,20 @@ public class BackstageManagementController {
         logger.info("删除科室 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+
+    @RequestMapping(value="/UpdateOrg",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String postUpdateOrg(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.updateOrg(paramObj);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("添加科室 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }

@@ -8,11 +8,20 @@ public class Lab {
     private String labID;
     private String lab_name;
     private String lab_leader;
+    private String lab_leaderName;
     private String lab_parent;
     private String add_user;
     private String add_time;
     private int lab_level;
     private Object subLabs;
+
+    public String getLab_leaderName() {
+        return lab_leaderName;
+    }
+
+    public void setLab_leaderName(String lab_leaderName) {
+        this.lab_leaderName = lab_leaderName;
+    }
 
     public String getAdd_user() {
         return add_user;
