@@ -1,7 +1,10 @@
 package com.gennlife.platform.controller;
 
+import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.ProjectProcessor;
+import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by chensong on 2015/12/9.
@@ -21,6 +25,7 @@ public class ProjectController {
     private Logger logger = LoggerFactory.getLogger(ProjectController.class);
     private static ProjectProcessor processor = new ProjectProcessor();
     private static JsonParser jsonParser = new JsonParser();
+    private static Gson gson = GsonUtil.getGson();
     @RequestMapping(value="/MyProjectList",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String getMyProjectList(@RequestParam("param")String param){
         Long start = System.currentTimeMillis();
@@ -194,7 +199,13 @@ public class ProjectController {
         logger.info("CreateNewPlan param ="+param);
         String resultStr = null;
         try{
-            resultStr =  processor.createNewPlan(param);
+
+            HttpSession session = paramRe.getSession();
+            if(session == null){
+                return ParamUtils.errorParam("当前session已经失效");
+            }
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            resultStr =  processor.createNewPlan(param,user);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -210,7 +221,12 @@ public class ProjectController {
         logger.info("AddMember param ="+param);
         String resultStr = null;
         try{
-            resultStr =  processor.addMember(param);
+            HttpSession session = paramRe.getSession();
+            if(session == null){
+                return ParamUtils.errorParam("当前session已经失效");
+            }
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            resultStr =  processor.addMember(param,user);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -243,7 +259,13 @@ public class ProjectController {
         logger.info("EditProject param ="+param);
         String resultStr = null;
         try{
-            resultStr =  processor.editProject(param);
+
+            HttpSession session = paramRe.getSession();
+            if(session == null){
+                return ParamUtils.errorParam("当前session已经失效");
+            }
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            resultStr =  processor.editProject(param,user);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -278,7 +300,12 @@ public class ProjectController {
         try{
             String param = ParamUtils.getParam(paramRe);
             logger.info("DeleteProject param ="+param);
-            resultStr =  processor.deleteProject(param);
+            HttpSession session = paramRe.getSession();
+            if(session == null){
+                return ParamUtils.errorParam("当前session已经失效");
+            }
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            resultStr =  processor.deleteProject(param,user);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -294,7 +321,12 @@ public class ProjectController {
         try{
             String param = ParamUtils.getParam(paramRe);
             logger.info("DeletePlan param ="+param);
-            resultStr =  processor.deletePlan(param);
+            HttpSession session = paramRe.getSession();
+            if(session == null){
+                return ParamUtils.errorParam("当前session已经失效");
+            }
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            resultStr =  processor.deletePlan(param,user);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -310,7 +342,12 @@ public class ProjectController {
         try{
             String param = ParamUtils.getParam(paramRe);
             logger.info("DeleteProjectSet param ="+param);
-            resultStr =  processor.deleteSet(param);
+            HttpSession session = paramRe.getSession();
+            if(session == null){
+                return ParamUtils.errorParam("当前session已经失效");
+            }
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            resultStr =  processor.deleteSet(param,user);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -324,8 +361,14 @@ public class ProjectController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
+            logger.info("DeleteProjectSet param ="+param);
+            HttpSession session = paramRe.getSession();
+            if(session == null){
+                return ParamUtils.errorParam("当前session已经失效");
+            }
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
             logger.info("DeleteMember param ="+param);
-            resultStr =  processor.deleteMember(param);
+            resultStr =  processor.deleteMember(param,user);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");

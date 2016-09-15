@@ -2,11 +2,11 @@ package com.gennlife.platform.processor;
 
 
 import com.gennlife.platform.bean.ResultBean;
-import com.gennlife.platform.bean.SyUser;
 import com.gennlife.platform.bean.projectBean.ProLog;
 import com.gennlife.platform.bean.projectBean.ProSample;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.enums.LogActionEnum;
+import com.gennlife.platform.model.User;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
@@ -164,7 +164,7 @@ public class SampleProcessor {
      *
      * @param paramObj
      */
-    public String editSet(JsonObject paramObj) {
+    public String editSet(JsonObject paramObj,User syUser) {
         String uid = null;
         String projectID = null;
         String sampleName = null;
@@ -191,8 +191,6 @@ public class SampleProcessor {
             proLog.setProjectID(projectID);
             proLog.setUid(uid);
             proLog.setAction(LogActionEnum.CreatePlan.getName());
-            SyUser syUser = null;
-            //UserProcessor.getUser(uid);
             proLog.setLogText(syUser.getUname() + LogActionEnum.UpdateSetInfo + ":" + sampleName);
             proLog.setLogTime(new Date());
             AllDao.getInstance().getProjectDao().insertProLog(proLog);

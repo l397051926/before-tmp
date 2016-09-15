@@ -9,7 +9,6 @@ import org.mybatis.spring.annotation.Mapper;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by chensong on 2015/12/9.
@@ -78,5 +77,48 @@ public interface OrgMapper {
      */
     public int deleteLabs(@Param("labIDs") String[] labIDs);
 
+    /**
+     * 通过labID获取科室信息
+     * @param labID
+     * @return
+     */
+    public Lab getLabBylabID(@Param("labID") String labID);
 
+    /**
+     * 更新科室信息
+     * @param map
+     * @return
+     */
+    public Integer updateLabInfo(Map<String, Object> map);
+
+
+    /**
+     * 通过labID获取科室信息
+     * @param labName
+     * @param orgID
+     * @return
+     */
+    public Lab getLabBylabName(@Param("lab_name") String labName,@Param("orgID") String orgID);
+
+    /**
+     * 通过parentID获取科室信息
+     * @param orgID
+     * @param lab_parent
+     * @return
+     */
+    public List<Lab> getLabsByparentID(@Param("orgID") String orgID,@Param("lab_parent") String lab_parent);
+
+    /**
+     * 以名称更新更新
+     * @param lab
+     * @return
+     */
+    public int updateLabInfoByNameWithLab(Lab lab);
+
+    /**
+     * 职称列表
+     * @param orgID
+     * @return
+     */
+    List<String> getProfessionList(@Param("orgID")String orgID);
 }

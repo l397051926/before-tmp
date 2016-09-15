@@ -3,18 +3,15 @@ package com.gennlife.platform.processor;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.parse.CaseSearchParser;
 import com.gennlife.platform.parse.CaseSuggestParser;
-import com.gennlife.platform.service.ArkService;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
-import com.gennlife.platform.view.View;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
-import java.util.concurrent.ExecutorService;
 
 /**
  * Created by chen-song on 16/5/13.

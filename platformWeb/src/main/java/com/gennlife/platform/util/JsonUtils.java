@@ -1,10 +1,11 @@
 package com.gennlife.platform.util;
 
-import com.gennlife.platform.bean.SyUser;
+
 import com.gennlife.platform.bean.projectBean.*;
+import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.enums.LogActionEnum;
 import com.gennlife.platform.enums.MemberEnum;
-import com.gennlife.platform.processor.UserProcessor;
+import com.gennlife.platform.model.User;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
@@ -78,8 +79,7 @@ public class JsonUtils {
         createProject.setRegisterNumber(registerNumber);
         createProject.setType(type);
         //组建log日志
-        SyUser syUser = null;
-             //UserProcessor.getUser(creator);
+        User syUser = AllDao.getInstance().getSyUserDao().getUserByUid(creator);
         ProLog proLog = new ProLog();
         proLog.setUid(creator);
         proLog.setProjectID(projectID);

@@ -1,28 +1,24 @@
 package com.gennlife.platform.processor;
 
 import com.gennlife.platform.bean.ResultBean;
-import com.gennlife.platform.bean.SyUser;
 import com.gennlife.platform.bean.projectBean.ProSample;
 import com.gennlife.platform.bean.searchConditionBean.SearchConditionBean;
 import com.gennlife.platform.dao.AllDao;
-import com.gennlife.platform.service.ArkService;
+import com.gennlife.platform.model.User;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
-import com.gennlife.platform.util.SpringContextUtil;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
 
 /**
  * Created by chensong on 2015/12/9.
@@ -53,10 +49,10 @@ public class SearchProcessor {
             confMap.put("maxNum", ls[1]);
             confMap.put("searchMemberkey",searchMemberkey);
             confMap.put("projectID", projectID);
-            List<SyUser> list = null;
-                    //AllDao.getInstance().getSyUserDao().searchMemberList(confMap);
-            int counter = 0;
-                    //AllDao.getInstance().getSyUserDao().searchMemberCounter(confMap);
+            List<User> list = AllDao.getInstance().getProjectDao().searchMemberList(confMap);
+                    //getSyUserDao().searchMemberList(confMap);
+            int counter = AllDao.getInstance().getProjectDao().searchMemberCounter(confMap);
+                    //getSyUserDao().searchMemberCounter(confMap);
             Map<String,Integer> info = new HashMap<String,Integer>();
             info.put("counter",counter);
             ResultBean userBean = new ResultBean();
@@ -123,7 +119,7 @@ public class SearchProcessor {
             searchConditionBean.setUid(uid);
             searchConditionBean.setConditionStr(conditionStr);
             searchConditionBean.setConditionName(conditionName);
-            //AllDao.getInstance().getSyUserDao().insertSearchCondition(searchConditionBean);
+            AllDao.getInstance().getSyUserDao().insertSearchCondition(searchConditionBean);
         }catch (Exception e){
             logger.error("",e);
             return ParamUtils.errorParam("服务异常");
@@ -148,8 +144,7 @@ public class SearchProcessor {
             return ParamUtils.errorParam("请求参数异常");
         }
         try{
-            List<SearchConditionBean> list = null;
-            //AllDao.getInstance().getSyUserDao().searchConditionList(uid);
+            List<SearchConditionBean> list = AllDao.getInstance().getSyUserDao().searchConditionList(uid);;
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
             resultBean.setData(list);

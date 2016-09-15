@@ -34,7 +34,7 @@ public class View {
         response.setHeader("Access-Control-Allow-Credentials","true");
         response.setContentType("application/json");
     }
-    public void writeResult(String result,HttpServletResponse response,HttpServletRequest request){
+    public void writeResult(String result,HttpServletResponse response){
         PrintWriter writer = null;
         try {
             writer = response.getWriter();
@@ -57,9 +57,13 @@ public class View {
     public void viewString(String str,HttpServletResponse response,HttpServletRequest request){
         logger.info("结果:" + str);
         setHttpServletResponse(response);
-        writeResult(str, response, request);
+        writeResult(str, response);
     }
-
+    public void viewString(String str,HttpServletResponse response){
+        logger.info("结果:" + str);
+        setHttpServletResponse(response);
+        writeResult(str, response);
+    }
 
 
     public String ViewDetailSet( Map<String,JsonObject> headMap, JsonArray dataArray ) {

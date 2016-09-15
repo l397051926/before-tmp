@@ -1,6 +1,5 @@
 package com.gennlife.platform.model;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -40,8 +39,8 @@ public class User {
     private String ctime;
     private String uptime;
     private String unumber = "";
-    private Object roles = new LinkedList<>();//角色列表
-    private Object administrators = new LinkedList<>();//管理员角色
+    private List<Role> roles;//角色列表
+    private List<Admin> administrators;//管理员角色
 
     public String getLab_name() {
         return lab_name;
@@ -171,19 +170,19 @@ public class User {
         this.unumber = unumber;
     }
 
-    public Object getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Object roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 
-    public Object getAdministrators() {
+    public List<Admin> getAdministrators() {
         return administrators;
     }
 
-    public void setAdministrators(Object administrators) {
+    public void setAdministrators(List<Admin> administrators) {
         this.administrators = administrators;
     }
 }

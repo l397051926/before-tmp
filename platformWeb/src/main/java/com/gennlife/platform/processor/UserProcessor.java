@@ -11,17 +11,17 @@ import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.LogUtils;
 import com.gennlife.platform.util.Mailer;
 import com.gennlife.platform.util.ParamUtils;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 /**
  * Created by chensong on 2015/12/4.
@@ -29,7 +29,6 @@ import java.util.Map;
 public class UserProcessor {
     private static Logger logger = LoggerFactory.getLogger(UserProcessor.class);
     private static JsonParser jsonParser = new JsonParser();
-    private static SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static Gson gson = GsonUtil.getGson();
     public ResultBean login(String param) throws IOException {
         try{
@@ -97,7 +96,7 @@ public class UserProcessor {
                 return ParamUtils.errorParamResultBean("更新的email不合法,已经存在");
             }
             user.setCtime(null);//创建时间不可更新
-            user.setUptime(time.format(new Date()));//更新时间
+            user.setUptime(LogUtils.getStringTime());//更新时间
             user.setOrg_name(null);//医院名称不能修改
             user.setOrgID(null);
             user.setRoles(null);//角色不可修改
@@ -160,11 +159,9 @@ public class UserProcessor {
     }
 
     public static User getUserByUid(String uid){
-        Map<String,Object> map = new HashMap<>();
-        map.put("uid",uid);
         User user = null;
         try {
-            user = AllDao.getInstance().getSyUserDao().getUserByUid(map);
+            user = AllDao.getInstance().getSyUserDao().getUserByUid(uid);
         }catch (Exception e){
             logger.error("",e);
         }
@@ -209,11 +206,9 @@ public class UserProcessor {
      * @param paramObj
      * @return
      */
-    public String existEmail(JsonObject paramObj) {
-        Map<String,Object> map = new HashMap<>();
+    public static String existEmail(JsonObject paramObj) {
         String email = paramObj.get("email").getAsString();
-        map.put("email",email);
-        int counter = AllDao.getInstance().getSyUserDao().existEmail(map);
+        int counter = AllDao.getInstance().getSyUserDao().existEmail(email);
         ResultBean resultBean = new ResultBean();
         if(counter == 0){
             resultBean.setCode(0);

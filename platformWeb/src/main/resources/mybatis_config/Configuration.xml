@@ -12,11 +12,7 @@
 		<setting name="defaultExecutorType" value="SIMPLE" />
 		<setting name="defaultStatementTimeout" value="25000" />
 	</settings>
-	<typeAliases>
-		<typeAlias type="com.gennlife.platform.bean.SyRole" alias="SyRole" />
-		<typeAlias type="com.gennlife.platform.bean.SyResource" alias="SyResource" />
-		<typeAlias type="com.gennlife.platform.bean.SyUser" alias="SyUser" />
-	</typeAliases>
+
 
 	<environments default="development">
 		<environment id="development">

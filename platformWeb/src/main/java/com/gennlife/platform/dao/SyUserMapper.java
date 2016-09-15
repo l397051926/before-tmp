@@ -1,12 +1,10 @@
 package com.gennlife.platform.dao;
 
 
-import com.gennlife.platform.bean.SyUser;
-import com.gennlife.platform.bean.projectBean.HistoryWords;
-import com.gennlife.platform.bean.projectBean.MyProjectList;
 import com.gennlife.platform.bean.searchConditionBean.SearchConditionBean;
 import com.gennlife.platform.model.Admin;
 import com.gennlife.platform.model.User;
+import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.Mapper;
 
 import java.util.List;
@@ -38,10 +36,10 @@ public interface SyUserMapper {
 
     /**
      * 通过uid获取当前用户的数据
-     * @param map
+     * @param uid
      * @return
      */
-    public User getUserByUid(Map<String, Object> map);
+    public User getUserByUid(@Param("uid") String uid);
 
     /**
      * 更新密码
@@ -59,10 +57,10 @@ public interface SyUserMapper {
 
     /**
      * 查看email是否存在
-     * @param map
+     * @param email
      * @return
      */
-    int existEmail(Map<String, Object> map);
+    int existEmail(@Param("email") String email);
 
     /**
      * 获取用户的管理权限
@@ -72,18 +70,84 @@ public interface SyUserMapper {
     List<Admin> getAdmins(Map<String, Object> confMap);
 
     /**
+     * 按照科室搜索
+     * @param key
+     * @param offset
+     * @param limit
+     * @param labIDs
+     * @return
+     */
+    List<User> searchUsersByLabIDs(@Param("skey") String key, @Param("offset")int offset,@Param("limit")int limit,@Param("labIDs") String[] labIDs);
+
+
+    /**
+     * 按照医院id搜索
+     * @param key
+     * @param offset
+     * @param limit
+     * @param orgID
+     * @return
+     */
+    List<User> searchUsersByOrgID(@Param("skey") String key, @Param("offset")int offset,@Param("limit")int limit,@Param("orgID") String orgID);
+
+    /**
+     * 按照科室搜索计数
+     * @param key
+     * @param labIDs
+     * @return
+     */
+    Long searchUsersByLabIDsCounter(@Param("skey")String key, @Param("labIDs")String[] labIDs);
+    /**
+     * 按照医院id搜索计数
+     * @param key
+     * @param orgID
+     * @return
+     */
+    Long searchUsersByOrgIDCounter(@Param("skey")String key, @Param("orgID")String orgID);
+
+    /**
+     * 获取保存的高级检索公式
+     * @param uid
+     * @return
+     */
+    List<SearchConditionBean> searchConditionList(String uid);
+
+    /**
+     * 保存高级检索公式
+     * @param searchConditionBean
+     */
+    void insertSearchCondition(SearchConditionBean searchConditionBean);
+
+    /**
+     * 判断工号是否存在
+     * @param unumber
+     * @return
+     */
+    Integer existUnumber(@Param("unumber")String unumber,@Param("orgID")String orgID);
+
+    /**
+     * 增加一个用户
+     * @param adduser
+     * @return
+     */
+    int insertOneUser(User adduser);
+
+    /**
+     * 批量删除用户
+     * @param uids
+     * @return
+     */
+    int deleteUserByUids(@Param("uids") String[] uids);
+
+
+
+    /**
     public SyUser getOneUser(Map<String, Object> likeCondition);
     public int updateByUid(SyUser record);
     public int getProjectCounter(Map<String,Object> likeCondition);
-    public List<MyProjectList> getMyProjectList(Map<String,Object> likeCondition);
-     */
-     /**
-     * 项目成员列表
-     * @param likeCondition
-     * @return
 
-    public List<SyUser> getProjectMemberList(Map<String,Object> likeCondition);
-      */
+     */
+
     /**
      * 项目成员列表:请求参数只是projectID
      * @param likeCondition
@@ -91,7 +155,7 @@ public interface SyUserMapper {
 
     public List<SyUser> getProjectMemberSList(Map<String,Object> likeCondition);
      */
-    //public int getProjectMemberCounter(Map<String,Object> likeCondition);
+    //
 
     /**
      * 用户在项目下搜索用户来增加成员
@@ -100,7 +164,7 @@ public interface SyUserMapper {
 
     public List<SyUser> searchMemberList(Map<String,Object> likeCondition);
 
-    public int searchMemberCounter(Map<String,Object> likeCondition);
+
      */
     /**
      * 项目详情
@@ -109,25 +173,8 @@ public interface SyUserMapper {
 
     public MyProjectList baiscInfo(Map<String, Object> map);
      */
-    /**
-     * 获取某个uid所有项目,信息
-     * @param map
-     * @return
 
-    public List<MyProjectList> getProjectList(Map<String, Object> map);
-     */
-    /**
-     * 保存高级检索公式
-     * @param searchConditionBean
 
-    void insertSearchCondition(SearchConditionBean searchConditionBean);
-     */
-    /**
-     * 获取保存的高级检索公式
-     * @param uid
-     * @return
 
-    List<SearchConditionBean> searchConditionList(String uid);
-     */
 
 }

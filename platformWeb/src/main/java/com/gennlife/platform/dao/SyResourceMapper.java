@@ -1,7 +1,6 @@
 package com.gennlife.platform.dao;
 
 
-import com.gennlife.platform.bean.SyResource;
 import com.gennlife.platform.model.Resource;
 import org.mybatis.spring.annotation.Mapper;
 

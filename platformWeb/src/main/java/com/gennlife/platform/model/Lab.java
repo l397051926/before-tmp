@@ -10,10 +10,20 @@ public class Lab {
     private String lab_leader;
     private String lab_leaderName;
     private String lab_parent;
+    private String lab_parentName;
     private String add_user;
     private String add_time;
     private int lab_level;
     private Object subLabs;
+    public String status;//导入状态
+    public String remark;//导入备注
+    public String getLab_parentName() {
+        return lab_parentName;
+    }
+
+    public void setLab_parentName(String lab_parentName) {
+        this.lab_parentName = lab_parentName;
+    }
 
     public String getLab_leaderName() {
         return lab_leaderName;
@@ -93,5 +103,18 @@ public class Lab {
 
     public void setSubLabs(Object subLabs) {
         this.subLabs = subLabs;
+    }
+
+
+    public String getSrcLog(){
+        StringBuffer sb = new StringBuffer();
+        sb.append(this.getLab_name())
+                .append(",")
+                .append(this.getLab_leader())
+                .append(",")
+                .append(this.getLab_leaderName())
+                .append(",")
+                .append(this.getLab_parentName());
+        return sb.toString();
     }
 }

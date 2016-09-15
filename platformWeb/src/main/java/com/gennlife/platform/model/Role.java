@@ -1,7 +1,5 @@
 package com.gennlife.platform.model;
 
-import java.util.List;
-
 /**
  * Created by chen-song on 16/9/9.
  */

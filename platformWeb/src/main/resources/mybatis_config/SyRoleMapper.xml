@@ -22,8 +22,31 @@
         AND gennlife_user_role.uid = #{uid}
     </select>
 
-
-
-
+    <select id="getLabMember" resultMap="com.gennlife.platform.model.Role">
+        select
+        <include refid="roleProperty" />
+        FROM
+        gennlife_role
+        WHERE gennlife_role.orgID = #{orgID}
+        AND gennlife_role.role = '科室成员'
+    </select>
+    <insert id="insertUserRoleRelation">
+        insert into gennlife_user_role
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            uid,roleid
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            #{uid},
+            #{roleid}
+        </trim>
+    </insert>
+    <delete id="deleteByUids">
+        DELETE FROM gennlife_user_role
+        WHERE
+        uid in
+        <foreach collection="uids" item="item" index="index" open="(" separator="," close=")">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+    </delete>
 
 </mapper>

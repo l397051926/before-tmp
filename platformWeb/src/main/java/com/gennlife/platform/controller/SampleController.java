@@ -1,16 +1,23 @@
 package com.gennlife.platform.controller;
 
 
+import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.SampleProcessor;
+import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by chensong on 2015/12/14.
@@ -21,6 +28,7 @@ public class SampleController {
     private Logger logger = LoggerFactory.getLogger(SampleController.class);
     private static SampleProcessor processor = new SampleProcessor();
     private static JsonParser jsonParser = new JsonParser();
+    private static Gson gson = GsonUtil.getGson();
     @RequestMapping(value="/Import",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
     String postImport(HttpServletRequest paramRe){
@@ -92,8 +100,13 @@ public class SampleController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
+            HttpSession session = paramRe.getSession();
+            if(session == null){
+                return ParamUtils.errorParam("当前session已经失效");
+            }
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.editSet(paramObj);
+            resultStr =  processor.editSet(paramObj,user);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -102,12 +115,18 @@ public class SampleController {
         return resultStr;
     }
     @RequestMapping(value="/EditSet",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getEditSet(@RequestParam("param")String param){
+    public @ResponseBody String getEditSet(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = ParamUtils.getParam(paramRe);
+            HttpSession session = paramRe.getSession();
+            if(session == null){
+                return ParamUtils.errorParam("当前session已经失效");
+            }
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.editSet(paramObj);
+            resultStr =  processor.editSet(paramObj,user);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");

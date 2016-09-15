@@ -23,7 +23,7 @@
 	<sql id="userProperty">
 		uid,uname,pwd,uposition,uprofession,orgID,org_name,labID,lab_name,telphone,uemail,age,sex,ctime,uptime,unumber
 	</sql>
-	<select id="getUser" resultMap="com.gennlife.platform.model.User"  parameterType="map">
+	<select id="getUser" resultMap="com.gennlife.platform.model.User" >
 		SELECT
 		<include refid="userProperty" />
 		FROM gennlife_user
@@ -58,6 +58,12 @@
 			<if test="lab_name != null">
 				lab_name = #{lab_name,jdbcType=VARCHAR},
 			</if>
+			<if test="orgID != null">
+				orgID = #{orgID,jdbcType=VARCHAR},
+			</if>
+			<if test="org_name != null">
+				org_name = #{org_name,jdbcType=VARCHAR},
+			</if>
 			<if test="telphone != null">
 				telphone = #{telphone,jdbcType=VARCHAR},
 			</if>
@@ -80,7 +86,7 @@
 		SELECT
 		<include refid="userProperty" />
 		FROM gennlife_user
-		<where> gennlife_user.uid = #{uid,jdbcType=VARCHAR} </where>
+		<where> gennlife_user.uid = #{uid} </where>
 	</select>
 	<update id="updatePWD" parameterType="map">
 		UPDATE
@@ -96,11 +102,17 @@
 		WHERE uemail = #{email,jdbcType=VARCHAR}
 	</update>
 
-	<select id="existEmail" resultType="java.lang.Integer" parameterType="map">
+	<select id="existEmail" resultType="java.lang.Integer">
 		SELECT
 		count(uid)
 		FROM gennlife_user
-		<where> gennlife_user.uemail=#{email,jdbcType=VARCHAR} </where>
+		<where> gennlife_user.uemail=#{email} </where>
+	</select>
+	<select id="existUnumber" resultType="java.lang.Integer">
+		SELECT
+		count(uid)
+		FROM gennlife_user
+		<where> gennlife_user.unumber=#{unumber} AND gennlife_user.orgID=#{orgID}</where>
 	</select>
 	<resultMap id="com.gennlife.platform.model.Admin" type="com.gennlife.platform.model.Admin">
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
@@ -117,5 +129,162 @@
 	  	    gennlife_manage.uid = #{uid,jdbcType=VARCHAR}
 	  	    AND gennlife_manage.orgID = #{orgID,jdbcType=VARCHAR}
 	</select>
+	<select id="searchUsersByLabIDs" resultType="com.gennlife.platform.model.User">
+		SELECT
+		<include refid="userProperty" />
+		FROM gennlife_user
+		WHERE
+			(uname LIKE CONCAT(CONCAT('%', #{skey}), '%') OR unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
+			AND
+			labID in
+			<foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
+				#{item,jdbcType=VARCHAR}
+			</foreach>
+		LIMIT #{offset},#{limit}
+	</select>
 
+	<select id="searchUsersByLabIDsCounter" resultType="Long">
+		SELECT count(id)
+		FROM gennlife_user
+		WHERE
+			(uname LIKE CONCAT(CONCAT('%', #{skey}), '%')
+			OR
+			unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
+			AND
+			labID in
+			<foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
+				#{item,jdbcType=VARCHAR}
+			</foreach>
+	</select>
+	<select id="searchUsersByOrgID" resultType="com.gennlife.platform.model.User">
+		SELECT
+		<include refid="userProperty" />
+		FROM gennlife_user
+		WHERE
+			(uname LIKE CONCAT(CONCAT('%', #{skey}), '%') OR unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
+			AND
+			orgID = #{orgID}
+			LIMIT #{offset},#{limit}
+	</select>
+	<select id="searchUsersByOrgIDCounter" resultType="Long">
+		SELECT count(id)
+		FROM gennlife_user
+		WHERE
+		(uname LIKE CONCAT(CONCAT('%', #{skey}), '%') OR unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
+		AND
+		orgID = #{orgID}
+	</select>
+	<resultMap id="SearchConditionBean" type="com.gennlife.platform.bean.searchConditionBean.SearchConditionBean">
+		<result column="uid" property="uid" jdbcType="VARCHAR" />
+		<result column="conditionText" property="conditionStr" jdbcType="VARCHAR" />
+		<result column="logTime" property="logTime" jdbcType="VARCHAR" />
+		<result column="conditionName" property="conditionName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="SearchConditionSql">
+		conditionText,logTime,conditionName
+	</sql>
+	<select id="searchConditionList" parameterType="map" resultMap="SearchConditionBean">
+		select
+		<include refid="SearchConditionSql" />
+		from searchConditionHistory
+		<where>uid=#{uid} order by logTime desc</where>
+	</select>
+	<insert id="insertSearchCondition" parameterType="com.gennlife.platform.bean.searchConditionBean.SearchConditionBean">
+		insert into searchConditionHistory
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="uid != null" >
+				uid,
+			</if>
+			<if test="conditionStr != null" >
+				conditionText,
+			</if>
+			<if test="logTime != null" >
+				logTime,
+			</if>
+			<if test="conditionName != null" >
+				conditionName,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="uid != null" >
+				#{uid,jdbcType=VARCHAR},
+			</if>
+			<if test="conditionStr != null" >
+				#{conditionStr,jdbcType=VARCHAR},
+			</if>
+			<if test="logTime != null" >
+				#{logTime,jdbcType=INTEGER},
+			</if>
+			<if test="conditionName != null" >
+				#{conditionName,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<insert id="insertOneUser" parameterType="com.gennlife.platform.model.User">
+		insert into gennlife_user
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			uid,
+			uname,
+			pwd,
+			orgID,
+			org_name,
+			labID,
+			lab_name,
+			ctime,
+			uptime,
+			unumber,
+			<if test="telphone != null" >
+				telphone,
+			</if>
+			<if test="age != null" >
+				age,
+			</if>
+			<if test="sex != null" >
+				sex,
+			</if>
+			<if test="uposition != null" >
+				uposition,
+			</if>
+			<if test="uprofession != null" >
+				uprofession,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			#{uid,jdbcType=VARCHAR},
+			#{uname,jdbcType=VARCHAR},
+			#{pwd,jdbcType=VARCHAR},
+			#{orgID,jdbcType=VARCHAR},
+			#{org_name,jdbcType=VARCHAR},
+			#{labID,jdbcType=VARCHAR},
+			#{lab_name,jdbcType=VARCHAR},
+			#{ctime,jdbcType=VARCHAR},
+			#{uptime,jdbcType=VARCHAR},
+			#{unumber,jdbcType=VARCHAR},
+			<if test="telphone != null" >
+				#{telphone,jdbcType=VARCHAR},
+			</if>
+			<if test="age != null" >
+				#{age,jdbcType=INTEGER},
+			</if>
+			<if test="sex != null" >
+				#{sex,jdbcType=INTEGER},
+			</if>
+			<if test="uposition != null" >
+				#{uposition,jdbcType=VARCHAR},
+			</if>
+			<if test="uprofession != null" >
+				#{uprofession,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="deleteUserByUids">
+		DELETE FROM gennlife_user
+		WHERE
+		uid in
+		<foreach collection="uids" item="item" index="index" open="(" separator="," close=")">
+			#{item,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
 </mapper>

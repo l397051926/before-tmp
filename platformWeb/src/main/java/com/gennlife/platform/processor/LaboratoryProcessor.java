@@ -3,17 +3,14 @@ package com.gennlife.platform.processor;
 
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.dao.AllDao;
-import com.gennlife.platform.model.Admin;
-import com.gennlife.platform.model.Lab;
-import com.gennlife.platform.model.Organization;
-import com.gennlife.platform.model.User;
+import com.gennlife.platform.model.*;
 import com.gennlife.platform.util.ChineseToEnglish;
 import com.gennlife.platform.util.GsonUtil;
+import com.gennlife.platform.util.LogUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,9 +22,8 @@ import java.util.*;
  * Created by chen-song on 16/9/12.
  */
 public class LaboratoryProcessor {
-    private Logger logger = LoggerFactory.getLogger(LaboratoryProcessor.class);
-    private Gson gson = GsonUtil.getGson();
-    private static SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static Logger logger = LoggerFactory.getLogger(LaboratoryProcessor.class);
+    private static Gson gson = GsonUtil.getGson();
     private static JsonParser jsonParser = new JsonParser();
     /**
      * 获取科室组织信息
@@ -114,7 +110,7 @@ public class LaboratoryProcessor {
             lab.setLab_leader(lab_leader);
             lab.setLab_level(lab_level+1);
             lab.setLab_name(lab_name);
-            lab.setAdd_time(time.format(new Date()));
+            lab.setAdd_time(LogUtils.getStringTime());
             lab.setAdd_user(uid);
             lab.setLabID(labID);
             lab.setLab_parent(lab_parent);
@@ -147,6 +143,19 @@ public class LaboratoryProcessor {
         }
         return isAdmin;
     }
+
+    public static boolean isAdmin(User user){
+        List<Admin> admins = user.getAdministrators();
+        boolean isAdmin = false;
+        for (Admin admin : admins) {
+            if (admin.getPrivilegeType().equals("admin")
+                    && admin.getPrivilegeValue().equals("admin")) {
+                isAdmin = true;
+            }
+        }
+        return isAdmin;
+    }
+
     public static Organization getOrganization(boolean isAdmin,String orgID){
         Organization organization = AllDao.getInstance().getOrgDao().getOrganization(orgID);
         if (isAdmin) {
@@ -163,11 +172,10 @@ public class LaboratoryProcessor {
      * @param paramObj
      * @return
      */
-    public String deleteOrg(JsonObject paramObj) {
+    public String deleteOrg(JsonObject paramObj,User user) {
         String uid = null;
         List<String> labIDsList = null;
         try{
-            uid = paramObj.get("uid").getAsString();
             JsonArray labIDsArray= paramObj.get("labIDs").getAsJsonArray();
             labIDsList = gson.fromJson(labIDsArray,LinkedList.class);
         }catch (Exception e){
@@ -175,9 +183,8 @@ public class LaboratoryProcessor {
             return ParamUtils.errorParam("请求参数有错误");
         }
         String[] labIDs = labIDsList.toArray(new String[labIDsList.size()]);
-        User user = UserProcessor.getUserByUid(uid);
         String orgID = user.getOrgID();
-        boolean isAdmin = isAdmin(uid,orgID);
+        boolean isAdmin = isAdmin(user);
         Organization organization = null;
         if(isAdmin){
             int counter = AllDao.getInstance().getOrgDao().deleteLabs(labIDs);
@@ -199,15 +206,13 @@ public class LaboratoryProcessor {
      * @param paramObj
      * @return
      */
-    public String updateOrg(JsonObject paramObj) {
-        String uid = null;
+    public String updateOrg(JsonObject paramObj,User user) {
         String labID = null;
         String lab_name = null;
-        String lab_leader = null;
-        String lab_leaderName = null;
+        String lab_leader = "";
+        String lab_leaderName = "";
         String lab_parent = null;
         try {
-            uid = paramObj.get("uid").getAsString();
             labID = paramObj.get("labID").getAsString();
             lab_name = paramObj.get("lab_name").getAsString();
             if(paramObj.has("lab_leader")){
@@ -220,14 +225,247 @@ public class LaboratoryProcessor {
         }catch (Exception e){
             return ParamUtils.errorParam("参数错误");
         }
-        User user = UserProcessor.getUserByUid(uid);
         String orgID = user.getOrgID();
-        boolean isAdmin = isAdmin(uid,orgID);
+        boolean isAdmin = isAdmin(user);
         if(isAdmin){
             Map<String,Object> map = new HashMap<>();
+            Lab lab = AllDao.getInstance().getOrgDao().getLabBylabID(labID);
+            if(lab == null){
+                return ParamUtils.errorParam(labID+"无此科室");
+            }
+            if(!lab.getLab_name().equals(lab_name)){//如果科室的名称修改啦,需要检查新的名称是否已经存在
+                List<String> labNames = AllDao.getInstance().getOrgDao().getLabsName(orgID);
+                if(labNames.contains(lab_name)){
+                    return ParamUtils.errorParam(lab_name+"已经存在");
+                }
+            }
+            if(!lab.getLab_parent().equals(lab_parent)
+                    && !lab_parent.equals(orgID)){//改变了上级部门,并且改变的上级部门不是当前医院,需要检查上级部门是否存在
+                Lab parentLab = AllDao.getInstance().getOrgDao().getLabBylabID(lab_parent);
+                if(parentLab == null){
+                    return ParamUtils.errorParam("上级部门不存在");
+                }
+            }
+            Integer lab_level = 1;
+            if(!lab_parent.equals(orgID)){
+                map.put("orgID",orgID);
+                map.put("labID",lab_parent);
+                lab_level = AllDao.getInstance().getOrgDao().getLabLevel(map);
+                map.put("lab_level",lab_level+1);
+            }else {
+                map.put("lab_level",lab_level);
+            }
+            map.put("labID",labID);
+
+            map.put("lab_name",lab_name);
+            map.put("lab_leader",lab_leader);
+            map.put("lab_leaderName",lab_leaderName);
+            map.put("lab_parent",lab_parent);
+            int counter = AllDao.getInstance().getOrgDao().updateLabInfo(map);
+            if(counter == 0){
+                return ParamUtils.errorParam("更新失败");
+            }
+            Organization organization = getOrganization(isAdmin,orgID);
+            ResultBean resultBean = new ResultBean();
+            resultBean.setCode(1);
+            resultBean.setData(organization);
+            return gson.toJson(resultBean);
         }else{
             return ParamUtils.errorParam("当前用户没有权限");
         }
-        return "";
+    }
+
+    public String getStaffInfo(JsonObject paramObj, User user) {
+        boolean isAdmin = isAdmin(user);
+        String labID = null;
+        String key = null;
+        String limitStr = null;
+        int offset =0;
+        int limit = 12;
+        if(isAdmin){
+            try{
+                labID = paramObj.get("labID").getAsString();
+                key = paramObj.get("key").getAsString();
+                limitStr = paramObj.get("limit").getAsString();
+                int[] ls = ParamUtils.parseLimit(limitStr);
+                offset = (ls[0]-1) * ls[1];
+                limit = ls[1];
+            }catch (Exception e){
+                return ParamUtils.errorParam("参数错误");
+            }
+            List<User> users = null;
+            ResultBean re = new ResultBean();
+            re.setCode(1);
+            if("".equals(labID)){
+                users = AllDao.getInstance().getSyUserDao().searchUsersByOrgID(key,offset,limit,user.getOrgID());
+                Long counter = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDCounter(key,user.getOrgID());
+                Map<String,Object> info = new HashMap<>();
+                info.put("count",counter);
+                re.setInfo(info);
+            }else{
+                List<Lab> labs = AllDao.getInstance().getOrgDao().getLabs(user.getOrgID());
+                //labID 集合
+                List<String> list = new LinkedList<>();
+                list.add(labID);
+                int counter = 1;
+                do{
+                    counter = list.size();
+                    for(Lab lab:labs){
+                        if(list.contains(lab.getLab_parent())){
+                            if(!list.contains(lab.getLabID())){
+                                list.add(lab.getLabID());
+                            }
+                        }
+                    }
+                }while (counter !=list.size());
+                String[] labIDs = list.toArray(new String[list.size()]);
+                users = AllDao.getInstance().getSyUserDao().searchUsersByLabIDs(key,offset,limit,labIDs);
+                Long count = AllDao.getInstance().getSyUserDao().searchUsersByLabIDsCounter(key,labIDs);
+                Map<String,Object> info = new HashMap<>();
+                info.put("count",count);
+                re.setInfo(info);
+            }
+            for(User usr:users){
+                Map<String,Object> map = new HashMap<>();
+                map.put("orgID",usr.getOrgID());
+                map.put("uid",usr.getUid());
+                List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(map);
+                usr.setRoles(rolesList);
+            }
+
+            re.setData(users);
+            return gson.toJson(re);
+
+
+        }else{
+            return ParamUtils.errorParam("当前用户没有权限");
+        }
+    }
+
+    public String addStaff(JsonObject paramObj, User user) {
+        boolean isAdmin = isAdmin(user);
+        if(isAdmin){
+            User adduser = gson.fromJson(gson.toJson(paramObj),User.class);
+            adduser.setOrgID(user.getOrgID());
+            adduser.setCtime(LogUtils.getStringTime());
+            adduser.setUptime(LogUtils.getStringTime());
+            adduser.setPwd("ls123456");
+            JsonObject re = insertUser(adduser);
+            return gson.toJson(re);
+        }else{
+            return ParamUtils.errorParam("当前用户没有权限");
+        }
+    }
+
+
+    public JsonObject insertUser(User adduser){
+        JsonObject resultBean = new JsonObject();
+        String email = adduser.getUemail();
+        String name = adduser.getUname();
+        String unumber = adduser.getUnumber();
+        String lab_name = adduser.getLab_name();
+        if(name == null ||"".equals(name)){
+            resultBean.addProperty("code",0);
+            resultBean.addProperty("info","姓名不合法");
+            return resultBean;
+        }else if(lab_name == null ||"".equals(lab_name)){
+            resultBean.addProperty("code",0);
+            resultBean.addProperty("info","科室名称"+lab_name+"不合法");
+            return resultBean;
+        }else if(unumber == null ||"".equals(unumber)){
+            resultBean.addProperty("code",0);
+            resultBean.addProperty("info","工号"+unumber+"不合法");
+            return resultBean;
+        }else if(email == null ||"".equals(email)){
+            resultBean.addProperty("code",0);
+            resultBean.addProperty("info","email"+unumber+"不合法");
+            return resultBean;
+        }else{
+            Integer exEamil = AllDao.getInstance().getSyUserDao().existEmail(email);
+            if(exEamil >=1){
+                resultBean.addProperty("code",0);
+                resultBean.addProperty("info","email"+email+"已经存在了");
+                return resultBean;
+            }else{
+                Integer exUnumber = AllDao.getInstance().getSyUserDao().existUnumber(unumber,adduser.getOrgID());
+                if(exUnumber >=1){
+                    resultBean.addProperty("code",0);
+                    resultBean.addProperty("info","工号"+exUnumber+"已经存在了");
+                    return resultBean;
+                }else{
+                    if(lab_name.equals(adduser.getOrg_name())){
+                        adduser.setLabID(adduser.getOrgID());
+                    }else{
+                        Lab exLab = AllDao.getInstance().getOrgDao().getLabBylabName(lab_name,adduser.getOrgID());
+                        if(exLab == null){
+                            resultBean.addProperty("code",0);
+                            resultBean.addProperty("info","科室"+lab_name+"不存在");
+                            return resultBean;
+                        }else{
+                            adduser.setLabID(exLab.getLabID());
+                            adduser.setLab_name(exLab.getLab_name());
+
+                        }
+                    }
+                    Role role = AllDao.getInstance().getSyRoleDao().getLabMember(adduser.getOrgID());
+                    adduser.setUid(email);
+                    Integer counter = AllDao.getInstance().getSyUserDao().insertOneUser(adduser);
+                    if(counter == null || counter <=0){
+                        resultBean.addProperty("code",0);
+                        resultBean.addProperty("info","插入失败");
+                        return resultBean;
+                    }else{
+                        counter = AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role.getRoleid(),adduser.getUid());
+                        resultBean.addProperty("code",1);
+                        resultBean.addProperty("info","插入成功");
+                        return resultBean;
+                    }
+                }
+            }
+        }
+    }
+
+    public String deleteStaff(JsonArray paramObj, User user) {
+        boolean isAdmin = isAdmin(user);
+        List<String> uidsList = null;
+        if(isAdmin){
+            try{
+                uidsList = gson.fromJson(paramObj,LinkedList.class);
+            }catch (Exception e){
+                return ParamUtils.errorParam("参数错误");
+            }
+            String[] uids = uidsList.toArray(new String[uidsList.size()]);
+            int counter = AllDao.getInstance().getSyRoleDao().deleteByUids(uids);
+            counter = AllDao.getInstance().getSyUserDao().deleteUserByUids(uids);
+            ResultBean re = new ResultBean();
+            if(counter > 0){
+                re.setCode(1);
+                Map<String,Object> map = new HashMap<>();
+                map.put("succeed",counter);
+                map.put("fail",uids.length - counter);
+                re.setData(map);
+                return gson.toJson(re);
+            }else {
+                re.setCode(0);
+                re.setInfo("全部失败");
+                return gson.toJson(re);
+            }
+        }else{
+            return ParamUtils.errorParam("当前用户没有权限");
+        }
+    }
+    public String getProfessionList(String orgID) {
+        try{
+            List<String> professionList = AllDao.getInstance().getOrgDao().getProfessionList(orgID);
+            ResultBean re = new ResultBean();
+            re.setCode(1);
+            re.setData(professionList);
+            return gson.toJson(re);
+        }catch (Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("发生异常");
+        }
+
+
     }
 }

@@ -17,7 +17,6 @@ import java.text.SimpleDateFormat;
  */
 public class RProcessor {
     private static Logger logger = LoggerFactory.getLogger(RProcessor.class);
-    private static SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
 
