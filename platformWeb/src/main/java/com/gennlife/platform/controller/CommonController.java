@@ -26,7 +26,8 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/common")
 public class CommonController  {
     private static Logger logger = LoggerFactory.getLogger(CommonController.class);
-    private static JsonParser jsonParser = new JsonParser();
+    private static String labImportsuffix = "导入科室历史.csv";
+    private static String staffImportsuffix = "导入人员历史.csv";
     private static CommonProcessor processor = new CommonProcessor();
     private static Gson gson = GsonUtil.getGson();
     private static View view = new View();
@@ -40,13 +41,13 @@ public class CommonController  {
         String resultStr = "";
         FileUploadUtil fileUploadUtil = new FileUploadUtil(FilePath,suffix,paramRe);
         try{
-            resultStr = fileUploadUtil.Upload();
-            logger.info("上传文件 耗时:" + (System.currentTimeMillis()-start) +"ms");
+            resultStr = fileUploadUtil.Upload("导入科室",labImportsuffix);
+            logger.info("上传文件导入科室 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("上传文件 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("上传文件导入科室 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
     @RequestMapping(value="/DownloadFileForImportLabHistory",method= RequestMethod.GET)
@@ -57,7 +58,37 @@ public class CommonController  {
             return;
         }
         User user = gson.fromJson((String)session.getAttribute("user"),User.class);
-        processor.downloadImportLabFile(user,FilePath,suffix,response);
+        String file = FilePath+user.getOrg_name() + labImportsuffix;
+        processor.downLoadFile(file,response);
+    }
+
+    @RequestMapping(value="/UploadFileForImportStaff",method= RequestMethod.POST)
+    public @ResponseBody String postUploadFileForImportStaff(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = "";
+        FileUploadUtil fileUploadUtil = new FileUploadUtil(FilePath,suffix,paramRe);
+        try{
+            resultStr = fileUploadUtil.Upload("导入人员",staffImportsuffix);
+            logger.info("上传文件导入人员 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("上传文件导入人员 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value="/DownloadFileForStaffHistory",method= RequestMethod.GET)
+    public void getDownloadFileForStaffHistory(HttpServletRequest paramRe,HttpServletResponse response){
+        HttpSession session = paramRe.getSession();
+        if(session == null){
+            view.viewString(ParamUtils.errorParam("当前session已经失效"),response);
+            return;
+        }
+        User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+        String file = FilePath+user.getOrg_name() + staffImportsuffix;
+        processor.downLoadFile(file,response);
     }
 
 }

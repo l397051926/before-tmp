@@ -15,14 +15,8 @@ import java.io.*;
 public class CommonProcessor {
     private static Logger logger = LoggerFactory.getLogger(CommonProcessor.class);
     private static View view = new View();
-    /**
-     * 下载导入导入科室信息
-     * @param user
-     * @param response
-     */
-    public void downloadImportLabFile(User user,String FilePath,String suffix, HttpServletResponse response) {
-        String fileName = FilePath+user.getOrgID()+suffix;
-        String fileRealName = user.getOrg_name()+"导入历史"+suffix;
+
+    public void downLoadFile(String fileName ,HttpServletResponse response){
         try {
             File file = new File(fileName);
             InputStream fis = new BufferedInputStream(new FileInputStream(fileName));
@@ -30,7 +24,7 @@ public class CommonProcessor {
             fis.read(buffer);
             fis.close();
             response.reset();
-            response.addHeader("Content-Disposition", "attachment;filename=" + new String(fileRealName.getBytes("utf-8"),"utf-8"));
+            response.addHeader("Content-Disposition", "attachment;filename=" + new String(fileName.getBytes("utf-8"),"utf-8"));
             response.addHeader("Content-Length", "" + file.length());
             OutputStream os = new BufferedOutputStream(response.getOutputStream());
             response.setContentType("application/octet-stream");
@@ -44,6 +38,5 @@ public class CommonProcessor {
             logger.error("",e);
             view.viewString(ParamUtils.errorParam("发生异常"),response);
         }
-
     }
 }

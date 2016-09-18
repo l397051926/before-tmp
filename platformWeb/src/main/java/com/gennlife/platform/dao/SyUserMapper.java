@@ -118,12 +118,6 @@ public interface SyUserMapper {
      */
     void insertSearchCondition(SearchConditionBean searchConditionBean);
 
-    /**
-     * 判断工号是否存在
-     * @param unumber
-     * @return
-     */
-    Integer existUnumber(@Param("unumber")String unumber,@Param("orgID")String orgID);
 
     /**
      * 增加一个用户
@@ -139,6 +133,20 @@ public interface SyUserMapper {
      */
     int deleteUserByUids(@Param("uids") String[] uids);
 
+    /**
+     * 获取用户,通过工号
+     * @param unumber
+     * @param orgID
+     * @return
+     */
+    User getUserByUnumber(@Param("unumber")String unumber,@Param("orgID") String orgID);
+
+    /**
+     * 以工号为为条件更新用户信息
+     * @param addUser
+     * @return
+     */
+    int updateUserByUnumber(User addUser);
 
 
     /**

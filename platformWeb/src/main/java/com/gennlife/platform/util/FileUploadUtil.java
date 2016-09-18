@@ -52,6 +52,7 @@ public class FileUploadUtil {
         this.tempPath = tempPath;
         this.suffix = suffix;
         this.fileuploadReq = fileuploadRequest;
+
     }
 
     /**
@@ -59,7 +60,7 @@ public class FileUploadUtil {
      *
      * @return true —— success; false —— fail.
      */
-    public String Upload() {
+    public String Upload(String from,String labImportsuffix) {
         DiskFileItemFactory factory = new DiskFileItemFactory();
         try {
             HttpSession session = fileuploadReq.getSession();
@@ -104,6 +105,7 @@ public class FileUploadUtil {
                     if(!suffix.equals(ext)){
                         return ParamUtils.errorParam("文件格式不是.csv");
                     }
+                    UUID uuid = UUID.randomUUID();
                     try {
                         //保存上传的文件到指定的目录
                         //在下文中上传文件至数据库时，将对这里改写
@@ -112,7 +114,7 @@ public class FileUploadUtil {
                         uploadfilename = tempPath +
                                 name.replaceAll(ext,"") +
                                 "_" +
-                                picSeqNo +
+                                uuid.toString() +
                                 "_" +
                                 time.format(new Date())
                                 + suffix;
@@ -127,40 +129,13 @@ public class FileUploadUtil {
                     }
                 }
             }
-            List<String> list = importLabs(fileList,orgID,user.getUid());
-            File orgIDImportResultFile =new File( tempPath + orgID +".csv");
-            if(!orgIDImportResultFile.exists()){
-                orgIDImportResultFile.createNewFile();
+            if("导入科室".equals(from)){
+                return handleLab(fileList,orgID,user,labImportsuffix);
+            }else if("导入人员".equals(from)){
+                return handleStaff(fileList,orgID,user,labImportsuffix);
+            }else{
+                return from;
             }
-            FileWriter fw = new FileWriter(orgIDImportResultFile);
-            int insert = 0;
-            int fail = 0;
-            int update = 0;
-            for(String line:list){
-                String[] data = line.split(",");
-                if(data.length > 2){
-                    if("成功".equals(data[data.length-2])){
-                        if("更新成功".equals(data[data.length-1])){
-                            update ++;
-                        }else{
-                            insert ++;
-                        }
-                    }else if("失败".equals(data[data.length-2])){
-                        fail ++;
-                    }
-                }
-                fw.write(line+"\n");
-            }
-            fw.flush();
-            fw.close();
-            Map<String,Integer> map = new HashMap<>();
-            map.put("update",update);
-            map.put("insert",insert);
-            map.put("fail",fail);
-            ResultBean resultBean = new ResultBean();
-            resultBean.setCode(1);
-            resultBean.setData(map);
-            return gson.toJson(resultBean);
         } catch (IOException e) {
             logger.error("",e);
             return ParamUtils.errorParam("导入失败");
@@ -171,6 +146,195 @@ public class FileUploadUtil {
             logger.error("",e);
             return ParamUtils.errorParam("导入失败");
         }
+    }
+
+    private String handleStaff(List<File> fileList, String orgID,User user,String labImportsuffix) throws Exception {
+        List<String> list = importsStaffs(fileList,orgID,user);
+        File orgIDImportResultFile =new File(tempPath + user.getOrg_name() +labImportsuffix);
+        return writeResultFile(list,orgIDImportResultFile);
+    }
+
+
+
+    private String writeResultFile(List<String> list,File orgIDImportResultFile) throws IOException {
+        if(!orgIDImportResultFile.exists()){
+            orgIDImportResultFile.createNewFile();
+        }
+        FileWriter fw = new FileWriter(orgIDImportResultFile);
+        int insert = 0;
+        int fail = 0;
+        int update = 0;
+        for(String line:list){
+            String[] data = line.split(",");
+            if(data.length > 2){
+                if("成功".equals(data[data.length-2])){
+                    if("更新成功".equals(data[data.length-1])){
+                        update ++;
+                    }else{
+                        insert ++;
+                    }
+                }else if("失败".equals(data[data.length-2])){
+                    fail ++;
+                }
+            }
+            fw.write(line+"\n");
+        }
+        fw.flush();
+        fw.close();
+        Map<String,Integer> map = new HashMap<>();
+        map.put("update",update);
+        map.put("insert",insert);
+        map.put("fail",fail);
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(1);
+        resultBean.setData(map);
+        return gson.toJson(resultBean);
+    }
+
+    private List<String> importsStaffs(List<File> fileList, String orgID, User user) throws Exception {
+        List<String> strList = readFiles(fileList);
+        List<String> srcList = new LinkedList<>();
+        Map<String,Integer> map = new HashMap<>();
+        String termLine = strList.get(0);
+        String[] data = termLine.split(",");
+        for(int index = 0; index < data.length; index++){
+            map.put(data[index],index);
+        }
+        String term1Name = "工号";
+        String term2Name = "姓名";
+        String term3Name = "邮箱";
+        String term4Name = "所属部门";
+        Integer unumberIndex = map.get(term1Name);
+        Integer nameIndex = map.get(term2Name);
+        Integer emailIndex = map.get(term3Name);
+        Integer labIndex = map.get(term4Name);
+        Integer telIndex = map.get("手机");
+        Integer uprofessionIndex = map.get("职称");
+        Integer upositionIndex = map.get("职务");
+        List<Lab> labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
+        if(unumberIndex == null){
+            for(String line:strList){
+                srcList.add(line+",失败,缺少工号列");
+            }
+            return srcList;
+        }
+        if(nameIndex == null){
+            for(String line:strList){
+                srcList.add(line+",失败,缺少姓名列");
+            }
+            return srcList;
+        }
+        if(emailIndex == null){
+            for(String line:strList){
+                srcList.add(line+",失败,缺少邮箱列");
+            }
+            return srcList;
+        }
+        if(labIndex == null){
+            for(String line:strList){
+                srcList.add(line+",失败,缺少所属部门列");
+            }
+            return srcList;
+        }
+        List<User> userList = new LinkedList<>();
+        List<String> lineList = new LinkedList<>();
+        for(String line:strList){
+            if(line.equals(termLine)){
+                continue;
+            }
+            String[] terms = line.split(",");
+            if(terms.length < data.length ){
+                srcList.add(line+",失败,缺少数据");
+                continue;
+            }else{
+                String number = terms[unumberIndex];
+                String name = terms[nameIndex];
+                String lab_name = terms[labIndex];
+                String email = terms[emailIndex];
+                String tel = "";
+                if(telIndex != null){
+                    tel = terms[telIndex];
+                }
+                String uposition = "";
+                if(upositionIndex != null){
+                    uposition = terms[upositionIndex];
+                }
+                String uprofession = "";
+                if(uprofessionIndex != null){
+                    uprofession = terms[uprofessionIndex];
+                }
+                User addUser = new User();
+                Lab lab = getLabByName(lab_name,labs);
+                if(lab == null && !"医院".equals(lab_name)){
+                    srcList.add(line+",失败,所属部门不存在");
+                    continue;
+                }else if("医院".equals(lab_name)){
+                    addUser.setLabID(user.getOrgID());
+                    addUser.setLab_name(user.getOrg_name());
+                }else if(lab != null){
+                    addUser.setLabID(lab.getLabID());
+                    addUser.setLab_name(lab_name);
+                }
+                addUser.setUnumber(number);
+                addUser.setPwd("ls123456");
+                UUID uuid = UUID.randomUUID();
+                addUser.setUid(uuid.toString());
+                addUser.setUptime(LogUtils.getStringTime());
+                addUser.setOrgID(user.getOrgID());
+                addUser.setOrg_name(user.getOrg_name());
+                addUser.setCtime(LogUtils.getStringTime());
+                addUser.setTelphone(tel);
+                addUser.setUemail(email);
+                addUser.setUname(name);
+                addUser.setUposition(uposition);
+                addUser.setUprofession(uprofession);
+                userList.add(addUser);
+                lineList.add(line);
+            }
+        }
+        for(int index = 0;index < userList.size();index++){
+            User addUser = userList.get(index);
+            String line = lineList.get(index);
+            User exUser = AllDao.getInstance().getSyUserDao().getUserByUnumber(addUser.getUnumber(),addUser.getOrgID());
+            if(exUser != null){//更新
+                addUser.setUid(null);//uid 不更新
+                if(!addUser.getUemail().equals(exUser.getUemail())){//邮箱不一样,需要检查
+                    int emailCounter = AllDao.getInstance().getSyUserDao().existEmail(addUser.getUemail());
+                    if(emailCounter >= 1){
+                        srcList.add(line+",失败,更新后的email是存在的");
+                    }else{
+                        int counter = AllDao.getInstance().getSyUserDao().updateUserByUnumber(addUser);
+                        if(counter >= 1){
+                            srcList.add(line+",成功,更新成功");
+                        }else{
+                            srcList.add(line+",失败,更新失败");
+                        }
+                    }
+                }else{
+                    int counter = AllDao.getInstance().getSyUserDao().updateUserByUnumber(addUser);
+                    if(counter >= 1){
+                        srcList.add(line+",成功,更新成功");
+                    }else{
+                        srcList.add(line+",失败,更新失败");
+                    }
+                }
+            }else{//插入
+                int counter = AllDao.getInstance().getSyUserDao().insertOneUser(addUser);
+                if(counter >= 1){
+                    srcList.add(line+",成功,插入成功");
+                }else{
+                    srcList.add(line+",失败,插入失败");
+                }
+            }
+        }
+        return srcList;
+
+    }
+
+    private String handleLab(List<File> fileList, String orgID,User user,String labImportsuffix) throws Exception {
+        List<String> list = importLabs(fileList,orgID,user.getUid());
+        File orgIDImportResultFile =new File(tempPath + user.getOrg_name() +labImportsuffix);
+        return writeResultFile(list,orgIDImportResultFile);
     }
 
     /**
@@ -207,23 +371,9 @@ public class FileUploadUtil {
      * @param orgID
      */
     private List<String> importLabs(List<File> fileList,String orgID,String uid) throws Exception {
-        BufferedReader reader = null;
-        List<String> strList = new LinkedList<>();
-        for(File file:fileList){
-            String path = file.getPath();
-            String code = FilesUtils.codeString(path);
-            reader = new BufferedReader(
-                    new InputStreamReader(
-                            new FileInputStream(file), code));
-            String tempString = null;
-            while ((tempString = reader.readLine()) != null) {
-                strList.add(tempString);
-            }
-            reader.close();
-        }
+        List<String> strList = readFiles(fileList);
         List<String> srcList = new LinkedList<>();
         List<Lab> newList = new LinkedList<>();
-
         for(String str:strList){
             String[] data = str.split(",");
             if(data.length >= 4){
@@ -437,6 +587,22 @@ public class FileUploadUtil {
         }
         return labID;
     }
-
+    private List<String> readFiles(List<File> fileList) throws Exception {
+        BufferedReader reader = null;
+        List<String> strList = new LinkedList<>();
+        for(File file:fileList){
+            String path = file.getPath();
+            String code = FilesUtils.codeString(path);
+            reader = new BufferedReader(
+                    new InputStreamReader(
+                            new FileInputStream(file), code));
+            String tempString = null;
+            while ((tempString = reader.readLine()) != null) {
+                strList.add(tempString);
+            }
+            reader.close();
+        }
+        return strList;
+    }
 
 }

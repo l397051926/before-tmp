@@ -287,4 +287,52 @@
 			#{item,jdbcType=VARCHAR}
 		</foreach>
 	</delete>
+	<select id="getUserByUnumber" resultType="com.gennlife.platform.model.User">
+		SELECT
+		<include refid="userProperty" />
+		FROM gennlife_user
+		<where> gennlife_user.unumber = #{unumber} AND gennlife_user.orgID = #{orgID} </where>
+	</select>
+
+
+	<update id="updateUserByUnumber" parameterType="com.gennlife.platform.model.User">
+		UPDATE
+		gennlife_user
+		<set>
+			<if test="uname != null">
+				uname = #{uname,jdbcType=VARCHAR},
+			</if>
+			<if test="uemail != null">
+				uemail = #{uemail,jdbcType=VARCHAR},
+			</if>
+			<if test="uposition != null">
+				uposition = #{uposition,jdbcType=VARCHAR},
+			</if>
+			<if test="uprofession != null">
+				uprofession = #{uprofession,jdbcType=VARCHAR},
+			</if>
+			<if test="labID != null">
+				labID = #{labID,jdbcType=VARCHAR},
+			</if>
+			<if test="lab_name != null">
+				lab_name = #{lab_name,jdbcType=VARCHAR},
+			</if>
+			<if test="org_name != null">
+				org_name = #{org_name,jdbcType=VARCHAR},
+			</if>
+			<if test="telphone != null">
+				telphone = #{telphone,jdbcType=VARCHAR},
+			</if>
+			<if test="age != null">
+				age = #{age,jdbcType=INTEGER},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=INTEGER},
+			</if>
+			<if test="uptime != null">
+				uptime = #{uptime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE unumber = #{unumber,jdbcType=VARCHAR} AND orgID = #{orgID,jdbcType=VARCHAR}
+	</update>
 </mapper>

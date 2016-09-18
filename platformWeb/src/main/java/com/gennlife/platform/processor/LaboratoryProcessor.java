@@ -173,7 +173,6 @@ public class LaboratoryProcessor {
      * @return
      */
     public String deleteOrg(JsonObject paramObj,User user) {
-        String uid = null;
         List<String> labIDsList = null;
         try{
             JsonArray labIDsArray= paramObj.get("labIDs").getAsJsonArray();
@@ -387,8 +386,8 @@ public class LaboratoryProcessor {
                 resultBean.addProperty("info","email"+email+"已经存在了");
                 return resultBean;
             }else{
-                Integer exUnumber = AllDao.getInstance().getSyUserDao().existUnumber(unumber,adduser.getOrgID());
-                if(exUnumber >=1){
+                User exUnumber = AllDao.getInstance().getSyUserDao().getUserByUnumber(unumber,adduser.getOrgID());
+                if(exUnumber != null){
                     resultBean.addProperty("code",0);
                     resultBean.addProperty("info","工号"+exUnumber+"已经存在了");
                     return resultBean;
@@ -467,5 +466,37 @@ public class LaboratoryProcessor {
         }
 
 
+    }
+
+
+    public String getGetRoleInfo(JsonObject paramObj, User user) {
+        boolean isAdmin = isAdmin(user);
+        if(isAdmin){
+            String key = null;
+            int offset = 0;
+            int limit = 0;
+            try{
+                key = paramObj.get("key").getAsString();
+                String limitStr = paramObj.get("limit").getAsString();
+                int[] ls = ParamUtils.parseLimit(limitStr);
+                offset = (ls[0]-1) * ls[1];
+                limit = ls[1];
+            }catch (Exception e){
+                logger.error("",e);
+                return ParamUtils.errorParam("参数错误");
+            }
+            String orgID = user.getOrgID();
+            List<Role> list = AllDao.getInstance().getSyRoleDao().searchRoles(key,offset,limit,orgID);
+            int counter = AllDao.getInstance().getSyRoleDao().searchRolesCounter(key,orgID);
+            ResultBean resultBean = new ResultBean();
+            resultBean.setCode(1);
+            resultBean.setData(list);
+            Map<String,Object> info = new HashMap<>();
+            info.put("count",counter);
+            resultBean.setInfo(info);
+            return gson.toJson(resultBean);
+        }else {
+            return ParamUtils.errorParam("当前用户没有权限");
+        }
     }
 }

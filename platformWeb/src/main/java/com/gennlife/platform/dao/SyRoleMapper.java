@@ -41,4 +41,22 @@ public interface SyRoleMapper {
      * @return
      */
     int deleteByUids(@Param("uids")String[] uids);
+
+    /**
+     * 搜索角色
+     * @param key
+     * @param offset
+     * @param limit
+     * @param orgID
+     * @return
+     */
+    List<Role> searchRoles(@Param("skey")String key, @Param("offset")int offset,@Param("limit")int limit,@Param("orgID")String orgID);
+
+    /**
+     *
+     * @param key
+     * @param orgID
+     * @return
+     */
+    int searchRolesCounter(@Param("skey")String key,@Param("orgID")String orgID);
 }

@@ -186,4 +186,26 @@ public class BackstageManagementController {
         logger.info("职称列表 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+
+    @RequestMapping(value="/GetRoleInfo",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String getGetRoleInfo(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            HttpSession session = paramRe.getSession();
+            if(session == null){
+                return ParamUtils.errorParam("当前session已经失效");
+            }
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.getGetRoleInfo(paramObj,user);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取角色信息 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
 }
