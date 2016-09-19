@@ -499,4 +499,9 @@ public class LaboratoryProcessor {
             return ParamUtils.errorParam("当前用户没有权限");
         }
     }
+
+    public String getStaffTree(JsonObject paramObj, User user) {
+
+        return null;
+    }
 }

@@ -112,10 +112,11 @@ public class BackstageManagementController {
         try{
             String param = ParamUtils.getParam(paramRe);
             HttpSession session = paramRe.getSession();
-            if(session == null){
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            if(user == null){
                 return ParamUtils.errorParam("当前session已经失效");
             }
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getStaffInfo(paramObj,user);
         }catch (Exception e){
@@ -208,4 +209,28 @@ public class BackstageManagementController {
         return resultStr;
     }
 
+
+    @RequestMapping(value="/GetStaffTree",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String getGetStaffTree(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            HttpSession session = paramRe.getSession();
+            if(session == null){
+                return ParamUtils.errorParam("当前session已经失效");
+            }
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            if(user == null){
+                return ParamUtils.errorParam("当前session已经失效");
+            }
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.getStaffTree(paramObj,user);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("返回组织结构及其成员信息（树结构），支持根据用户名和工号搜索 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }

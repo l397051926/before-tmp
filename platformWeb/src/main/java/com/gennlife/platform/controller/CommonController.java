@@ -91,4 +91,27 @@ public class CommonController  {
         processor.downLoadFile(file,response);
     }
 
+    @RequestMapping(value="/DownloadFileForStaffModel",method= RequestMethod.GET)
+    public void DownloadFileForStaffModel(HttpServletRequest paramRe,HttpServletResponse response){
+        HttpSession session = paramRe.getSession();
+        if(session == null){
+            view.viewString(ParamUtils.errorParam("当前session已经失效"),response);
+            return;
+        }
+        User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+        String file = FilePath+"人员导入模版"+ suffix;
+        processor.downLoadFile(file,response);
+    }
+    @RequestMapping(value="/DownloadFileForLabModel",method= RequestMethod.GET)
+    public void DownloadFileForLabModel(HttpServletRequest paramRe,HttpServletResponse response){
+        HttpSession session = paramRe.getSession();
+        if(session == null){
+            view.viewString(ParamUtils.errorParam("当前session已经失效"),response);
+            return;
+        }
+        User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+        String file = FilePath+"科室导入模版"+ suffix;
+        processor.downLoadFile(file,response);
+    }
+
 }
