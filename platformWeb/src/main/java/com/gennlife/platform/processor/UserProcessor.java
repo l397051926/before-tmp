@@ -140,9 +140,17 @@ public class UserProcessor {
             if(counter == 0){
                 logger.error("更新md5失败");
                 flag = false;
+            }else{
+                User user = AllDao.getInstance().getSyUserDao().getUserByEmail(email);
+                if(user == null){
+                    return ParamUtils.errorParam("email 用户不存在");
+                }else{
+                    String url = ConfigurationService.getUrlBean().getEmailSendURL()+token;
+                    Mailer.sendHTMLMail(email, url,user);
+                }
+
             }
-            String url = ConfigurationService.getUrlBean().getEmailSendURL()+token;
-            Mailer.sendHTMLMail(email, url);
+
         }catch (Exception e){
             flag = false;
             logger.error("",e);

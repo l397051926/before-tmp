@@ -9,7 +9,34 @@ public class Role {
     private String orgID;
     private String desctext;
     private String role_type;
+    private String resourceDesc;
+    private String ctime;
     private Object resources;
+    private Object users;
+
+    public String getCtime() {
+        return ctime;
+    }
+
+    public void setCtime(String ctime) {
+        this.ctime = ctime;
+    }
+
+    public String getResourceDesc() {
+        return resourceDesc;
+    }
+
+    public Object getUsers() {
+        return users;
+    }
+
+    public void setUsers(Object users) {
+        this.users = users;
+    }
+
+    public void setResourceDesc(String resourceDesc) {
+        this.resourceDesc = resourceDesc;
+    }
 
     public int getRoleid() {
         return roleid;

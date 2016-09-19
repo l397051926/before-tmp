@@ -486,7 +486,26 @@ public class LaboratoryProcessor {
                 return ParamUtils.errorParam("参数错误");
             }
             String orgID = user.getOrgID();
+            Map<String,Object> map = new HashMap<>();
+            map.put("orgID",user.getOrgID());
             List<Role> list = AllDao.getInstance().getSyRoleDao().searchRoles(key,offset,limit,orgID);
+            for(Role role:list){
+                if("科室成员".equals(role.getRole())){
+                    role.setResourceDesc("本科室资源");
+                }else{
+                    map.put("roleid",role.getRoleid());
+                    List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResources(map);
+                    StringBuffer sb = new StringBuffer("");
+                    for(Resource r:resourcesList){
+                        if("".equals(sb.toString())){
+                            sb.append(r.getSname());
+                        }else{
+                            sb.append(",").append(r.getSname());
+                        }
+                    }
+                    role.setResourceDesc(sb.toString());
+                }
+            }
             int counter = AllDao.getInstance().getSyRoleDao().searchRolesCounter(key,orgID);
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
@@ -503,5 +522,89 @@ public class LaboratoryProcessor {
     public String getStaffTree(JsonObject paramObj, User user) {
 
         return null;
+    }
+
+    /**
+     *
+     * @param paramObj
+     * @param user
+     * @return
+     */
+    public String deleteRoles(JsonArray paramObj, User user) {
+        boolean isAdmin = isAdmin(user);
+        if(isAdmin){
+            List<String> list = null;
+            Integer[] paraRoleids = null;
+            try{
+                list = gson.fromJson(paramObj,LinkedList.class);
+                paraRoleids = list.toArray(new Integer[list.size()]);
+            }catch (Exception e){
+                return ParamUtils.errorParam("参数错误");
+            }
+            List<Integer> checkedRoleids = new LinkedList<>();
+            for(Integer roleid:paraRoleids){
+                Role role = AllDao.getInstance().getSyRoleDao().getRoleByroleid(roleid);
+                if(!"科室成员".equals(role.getRole()) && !checkedRoleids.equals(roleid)){
+                    checkedRoleids.add(roleid);
+                }
+            }
+            Integer[] roleids = checkedRoleids.toArray(new Integer[checkedRoleids.size()]);
+            AllDao.getInstance().getSyRoleDao().deleteRelationsByRoleids(roleids);
+            AllDao.getInstance().getSyRoleDao().deleteRelationsWithReourcesByRoleids(roleids);
+            int counter = AllDao.getInstance().getSyRoleDao().deleteRolesByRoleids(roleids);
+            Map<String,Integer> map = new HashMap<>();
+            map.put("succeed",counter);
+            map.put("fail",paraRoleids.length - counter);
+            ResultBean resultBean = new ResultBean();
+            resultBean.setCode(1);
+            resultBean.setData(map);
+            return gson.toJson(resultBean);
+        }else{
+            return ParamUtils.errorParam("当前用户没有权限");
+        }
+    }
+
+    public String addRole(JsonArray paramObj, User user) {
+        boolean isAdmin = isAdmin(user);
+        if(isAdmin){
+            Role role = null;
+            try {
+                role = gson.fromJson(paramObj, Role.class);
+            }catch (Exception e){
+                return ParamUtils.errorParam("参数错误");
+            }
+            role.setOrgID(user.getOrgID());
+            role.setCtime(LogUtils.getStringTime());
+            if(role.getDesctext() ==null){
+                role.setDesctext("");
+            }
+            if(role.getRole_type() == null){
+                role.setRole_type("");
+            }
+            Role exRole = AllDao.getInstance().getSyRoleDao().getRoleByRoleName(user.getOrgID(),role.getRole());
+            if(exRole != null){
+                return ParamUtils.errorParam("角色名称已经存在");
+            }else{
+                int counter = AllDao.getInstance().getSyRoleDao().insertUserRole(role);
+                if(counter == 0){
+                    return ParamUtils.errorParam("插入失败");
+                }else{
+                    exRole = AllDao.getInstance().getSyRoleDao().getRoleByRoleName(user.getOrgID(),role.getRole());
+                    List<String> uidList = (List<String>) role.getUsers();
+                    for(String uid:uidList){
+                        AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(exRole.getRoleid(),uid);
+                    }
+                    List<Resource> resourceList = (List<Resource>) role.getResources();
+
+                }
+
+
+            }
+
+
+            return null;
+        }else{
+            return ParamUtils.errorParam("当前用户没有权限");
+        }
     }
 }

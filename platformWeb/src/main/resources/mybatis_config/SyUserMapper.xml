@@ -36,6 +36,14 @@
 		From gennlife_user
 		<where> gennlife_user.uemail = #{email} limit 1 </where>
 	</select>
+
+	<select id="getUserByEmail" resultType="com.gennlife.platform.model.User" >
+		SELECT uid
+		<include refid="userProperty" />
+		FROM gennlife_user
+		<where> gennlife_user.uemail = #{email} limit 1 </where>
+	</select>
+
 	<update id="updateByUid" parameterType="com.gennlife.platform.model.User">
 		UPDATE
 			gennlife_user

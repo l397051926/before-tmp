@@ -148,6 +148,13 @@ public interface SyUserMapper {
      */
     int updateUserByUnumber(User addUser);
 
+    /**
+     * 通过邮箱获取用户
+     * @param email
+     * @return
+     */
+    User getUserByEmail(@Param("email") String email);
+
 
     /**
     public SyUser getOneUser(Map<String, Object> likeCondition);

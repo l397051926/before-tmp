@@ -59,4 +59,47 @@ public interface SyRoleMapper {
      * @return
      */
     int searchRolesCounter(@Param("skey")String key,@Param("orgID")String orgID);
+
+    /**
+     * 删除角色与用户的关联关系,参数为角色id
+     * @param roleids
+     * @return
+     */
+    int deleteRelationsByRoleids(@Param("roleids") Integer[] roleids);
+
+    /**
+     * 通过roleid获取角色
+     * @param roleid
+     * @return
+     */
+    Role getRoleByroleid(@Param("roleid") Integer roleid);
+
+    /**
+     * 删除角色与资源的关联关系,参数是roleids
+     * @param roleids
+     * @return
+     */
+    int deleteRelationsWithReourcesByRoleids(@Param("roleids") Integer[] roleids);
+
+    /**
+     * 删除角色,参数roleids
+     * @param roleids
+     * @return
+     */
+    int deleteRolesByRoleids(@Param("roleids") Integer[] roleids);
+
+    /**
+     * 通过角色名称获取角色
+     * @param orgID
+     * @param role
+     * @return
+     */
+    Role getRoleByRoleName(@Param("orgID")String orgID,@Param("role")String role);
+
+    /**
+     * 新增角色
+     * @param role
+     * @return
+     */
+    int insertUserRole(Role role);
 }

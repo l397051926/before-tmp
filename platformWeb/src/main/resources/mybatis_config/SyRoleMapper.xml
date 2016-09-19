@@ -69,4 +69,57 @@
         (gennlife_role.role LIKE CONCAT(CONCAT('%', #{skey}), '%') OR
         gennlife_role.desctext LIKE CONCAT(CONCAT('%', #{skey}), '%'))
     </select>
+    <delete id="deleteRelationsByRoleids">
+        DELETE FROM gennlife_user_role
+        WHERE
+        roleid in
+        <foreach collection="roleids" item="item" index="index" open="(" separator="," close=")">
+            #{item,jdbcType=INTEGER}
+        </foreach>
+    </delete>
+    <select id="getRoleByroleid" resultType="com.gennlife.platform.model.Role">
+        select
+        <include refid="roleProperty" />
+        FROM
+        gennlife_role
+        WHERE gennlife_role.roleid = #{roleid}
+    </select>
+    <select id="getRoleByRoleName" resultType="com.gennlife.platform.model.Role">
+        select
+        <include refid="roleProperty" />
+        FROM
+        gennlife_role
+        WHERE gennlife_role.orgID = #{orgID} AND gennlife_role.role = #{role}
+    </select>
+
+    <delete id="deleteRelationsWithReourcesByRoleids">
+        DELETE FROM gennlife_role_resource
+        WHERE
+        roleid in
+        <foreach collection="roleids" item="item" index="index" open="(" separator="," close=")">
+            #{item,jdbcType=INTEGER}
+        </foreach>
+    </delete>
+
+    <delete id="deleteRolesByRoleids">
+        DELETE FROM gennlife_role
+        WHERE
+        roleid in
+        <foreach collection="roleids" item="item" index="index" open="(" separator="," close=")">
+            #{item,jdbcType=INTEGER}
+        </foreach>
+    </delete>
+    <insert id="insertUserRole" parameterType="com.gennlife.platform.model.Role">
+        insert into gennlife_role
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            role,orgID,desctext,role_type,ctime
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            #{role},
+            #{orgID},
+            #{desctext},
+            #{role_type},
+            #{ctime}
+        </trim>
+    </insert>
 </mapper>
