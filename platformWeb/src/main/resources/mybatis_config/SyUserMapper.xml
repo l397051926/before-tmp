@@ -242,6 +242,7 @@
 			ctime,
 			uptime,
 			unumber,
+			uemail,
 			<if test="telphone != null" >
 				telphone,
 			</if>
@@ -269,6 +270,7 @@
 			#{ctime,jdbcType=VARCHAR},
 			#{uptime,jdbcType=VARCHAR},
 			#{unumber,jdbcType=VARCHAR},
+			#{uemail,jdbcType=VARCHAR}
 			<if test="telphone != null" >
 				#{telphone,jdbcType=VARCHAR},
 			</if>

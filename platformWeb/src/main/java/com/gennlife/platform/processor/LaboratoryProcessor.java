@@ -595,7 +595,11 @@ public class LaboratoryProcessor {
                         AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(exRole.getRoleid(),uid);
                     }
                     List<Resource> resourceList = (List<Resource>) role.getResources();
+                    for(Resource resource:resourceList){
+                        if("keshichengyuan".equals(resource.getSid())){//科室成员
 
+                        }
+                    }
                 }
 
 

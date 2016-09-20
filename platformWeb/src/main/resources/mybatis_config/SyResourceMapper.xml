@@ -10,15 +10,18 @@
     <result column="slab_type" property="slab_type" jdbcType="VARCHAR" />
     <result column="slab_name" property="slab_name" jdbcType="VARCHAR" />
     <result column="sorgID" property="sorgID" jdbcType="VARCHAR" />
-    <result column="has_add" property="has_add" jdbcType="VARCHAR" />
-    <result column="has_read" property="has_read" jdbcType="VARCHAR" />
-    <result column="has_modify" property="has_modify" jdbcType="VARCHAR" />
-    <result column="has_delete" property="has_delete" jdbcType="VARCHAR" />
-
+    <result column="has_search" property="has_search" jdbcType="VARCHAR" />
+    <result column="has_searchExport" property="has_searchExport" jdbcType="VARCHAR" />
+    <result column="has_traceCRF" property="has_traceCRF" jdbcType="VARCHAR" />
+    <result column="has_addCRF" property="has_addCRF" jdbcType="VARCHAR" />
+    <result column="has_editCRF" property="has_editCRF" jdbcType="VARCHAR" />
+    <result column="has_browseDetail" property="has_browseDetail" jdbcType="VARCHAR" />
+    <result column="has_addBatchCRF" property="has_addBatchCRF" jdbcType="VARCHAR" />
 
   </resultMap>
   <sql id="resourceProperty">
-    gennlife_resource.sid,sname,sdesc,stype,slab_type,slab_name,sorgID,has_add,has_read,has_modify,has_delete
+    gennlife_resource.sid,sname,sdesc,stype,slab_type,slab_name,sorgID,has_search,has_searchExport,has_traceCRF,has_addCRF,
+    has_editCRF,has_browseDetail,has_browseDetail,has_addBatchCRF
   </sql>
   
   <select id="getResources" resultMap="com.gennlife.platform.model.Resource"  parameterType="map">
@@ -39,6 +42,5 @@
     where
     gennlife_resource.sorgID=#{orgID}
     AND gennlife_resource.sid = #{sid}
-
   </select>
 </mapper>

@@ -21,41 +21,68 @@ public class Resource {
     private String slab_type;
     private String slab_name;
     private String sorgID;
-    private String has_add;
-    private String has_read;
-    private String has_modify;
-    private String has_delete;
+    private String has_search;
+    private String has_searchExport;
+    private String has_traceCRF;
+    private String has_addCRF;
+    private String has_editCRF;
+    private String has_browseDetail;
+    private String has_addBatchCRF;
 
-    public String getHas_add() {
-        return has_add;
+    public String getHas_search() {
+        return has_search;
     }
 
-    public void setHas_add(String has_add) {
-        this.has_add = has_add;
+    public void setHas_search(String has_search) {
+        this.has_search = has_search;
     }
 
-    public String getHas_read() {
-        return has_read;
+    public String getHas_searchExport() {
+        return has_searchExport;
     }
 
-    public void setHas_read(String has_read) {
-        this.has_read = has_read;
+    public void setHas_searchExport(String has_searchExport) {
+        this.has_searchExport = has_searchExport;
     }
 
-    public String getHas_modify() {
-        return has_modify;
+    public String getHas_traceCRF() {
+        return has_traceCRF;
     }
 
-    public void setHas_modify(String has_modify) {
-        this.has_modify = has_modify;
+    public void setHas_traceCRF(String has_traceCRF) {
+        this.has_traceCRF = has_traceCRF;
     }
 
-    public String getHas_delete() {
-        return has_delete;
+    public String getHas_addCRF() {
+        return has_addCRF;
     }
 
-    public void setHas_delete(String has_delete) {
-        this.has_delete = has_delete;
+    public void setHas_addCRF(String has_addCRF) {
+        this.has_addCRF = has_addCRF;
+    }
+
+    public String getHas_editCRF() {
+        return has_editCRF;
+    }
+
+    public void setHas_editCRF(String has_editCRF) {
+        this.has_editCRF = has_editCRF;
+    }
+
+    public String getHas_browseDetail() {
+        return has_browseDetail;
+    }
+
+    public void setHas_browseDetail(String has_browseDetail) {
+        this.has_browseDetail = has_browseDetail;
+    }
+
+    public String getHas_addBatchCRF() {
+        return has_addBatchCRF;
+    }
+
+    public void setHas_addBatchCRF(String has_addBatchCRF) {
+        this.has_addBatchCRF = has_addBatchCRF;
     }
 
     public String getSid() {
