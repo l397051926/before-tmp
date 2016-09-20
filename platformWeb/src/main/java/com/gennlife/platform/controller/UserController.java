@@ -73,8 +73,9 @@ public class UserController{
                 }
                 String param = ParamUtils.getParam(paramRe);
                 JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+                String uid = null;
                 try{
-                    String uid = paramObj.get("uid").getAsString();
+                    uid = paramObj.get("uid").getAsString();
                     if(!user.getUid().equals(uid) && !LaboratoryProcessor.isAdmin(user)){//不是自己修改,不是管理员修改
                         return ParamUtils.errorParam("无权限更新");
                     }
@@ -82,7 +83,7 @@ public class UserController{
                     return ParamUtils.errorParam("缺少uid");
                 }
                 ResultBean resultBean =  processor.update(param);
-                if(resultBean.getCode() == 1){
+                if(resultBean.getCode() == 1 && user.getUid().equals(uid)){
                     session.setAttribute("user",gson.toJson(resultBean.getData()));
                 }
                 resultStr = gson.toJson(resultBean);
