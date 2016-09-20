@@ -2,6 +2,7 @@ package com.gennlife.platform.dao;
 
 
 import com.gennlife.platform.model.Resource;
+import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.Mapper;
 
 import java.util.List;
@@ -23,4 +24,12 @@ public interface SyResourceMapper {
 
     public List<Resource> getResourcesBySid(Map<String, Object> likeCondition);
 
+    /**
+     * 通过
+     * @param roleid
+     * @param offset
+     * @param limit
+     * @return
+     */
+    List<Resource> getResourceByRoleID(@Param("orgID")String orgID,@Param("roleid")Integer roleid, @Param("offset")int offset, @Param("limit")int limit);
 }

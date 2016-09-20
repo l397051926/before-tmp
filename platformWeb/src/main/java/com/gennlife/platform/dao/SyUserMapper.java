@@ -164,6 +164,10 @@ public interface SyUserMapper {
      */
     List<User> getUserByRoleID(@Param("roleid")Integer roleid, @Param("offset")int offset, @Param("limit")int limit);
 
+    List<User> searchUsersByOrgIDNoLimit(@Param("skey") String key,@Param("orgID") String orgID);;
+
+    List<User> searchUsersByLabIDsNoLimit(@Param("skey") String key,@Param("labIDs") String[] labIDs);
+
 
     /**
     public SyUser getOneUser(Map<String, Object> likeCondition);

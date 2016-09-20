@@ -150,7 +150,18 @@
 			</foreach>
 		LIMIT #{offset},#{limit}
 	</select>
-
+	<select id="searchUsersByLabIDsNoLimit" resultType="com.gennlife.platform.model.User">
+		SELECT
+		<include refid="userProperty" />
+		FROM gennlife_user
+		WHERE
+		(uname LIKE CONCAT(CONCAT('%', #{skey}), '%') OR unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
+		AND
+		labID in
+		<foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
+			#{item,jdbcType=VARCHAR}
+		</foreach>
+	</select>
 	<select id="searchUsersByLabIDsCounter" resultType="Long">
 		SELECT count(id)
 		FROM gennlife_user
@@ -174,6 +185,17 @@
 			orgID = #{orgID}
 			LIMIT #{offset},#{limit}
 	</select>
+
+	<select id="searchUsersByOrgIDNoLimit" resultType="com.gennlife.platform.model.User">
+		SELECT
+		<include refid="userProperty" />
+		FROM gennlife_user
+		WHERE
+		(uname LIKE CONCAT(CONCAT('%', #{skey}), '%') OR unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
+		AND
+		orgID = #{orgID}
+	</select>
+
 	<select id="searchUsersByOrgIDCounter" resultType="Long">
 		SELECT count(id)
 		FROM gennlife_user

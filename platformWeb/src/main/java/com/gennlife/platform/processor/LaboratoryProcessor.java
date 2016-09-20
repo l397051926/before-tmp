@@ -279,16 +279,18 @@ public class LaboratoryProcessor {
         String labID = null;
         String key = null;
         String limitStr = null;
-        int offset =0;
-        int limit = 12;
+        Integer offset = null;
+        Integer limit = null;
         if(isAdmin){
             try{
                 labID = paramObj.get("labID").getAsString();
                 key = paramObj.get("key").getAsString();
-                limitStr = paramObj.get("limit").getAsString();
-                int[] ls = ParamUtils.parseLimit(limitStr);
-                offset = (ls[0]-1) * ls[1];
-                limit = ls[1];
+                if(paramObj.has("limit")){
+                    limitStr = paramObj.get("limit").getAsString();
+                    int[] ls = ParamUtils.parseLimit(limitStr);
+                    offset = (ls[0]-1) * ls[1];
+                    limit = ls[1];
+                }
             }catch (Exception e){
                 return ParamUtils.errorParam("参数错误");
             }
@@ -296,11 +298,17 @@ public class LaboratoryProcessor {
             ResultBean re = new ResultBean();
             re.setCode(1);
             if("".equals(labID)){
-                users = AllDao.getInstance().getSyUserDao().searchUsersByOrgID(key,offset,limit,user.getOrgID());
+                if(offset != null && limit != null){
+                    users = AllDao.getInstance().getSyUserDao().searchUsersByOrgID(key,offset,limit,user.getOrgID());
+
+                }else{
+                    users = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDNoLimit(key,user.getOrgID());
+                }
                 Long counter = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDCounter(key,user.getOrgID());
                 Map<String,Object> info = new HashMap<>();
                 info.put("count",counter);
                 re.setInfo(info);
+
             }else{
                 List<Lab> labs = AllDao.getInstance().getOrgDao().getLabs(user.getOrgID());
                 //labID 集合
@@ -318,7 +326,12 @@ public class LaboratoryProcessor {
                     }
                 }while (counter !=list.size());
                 String[] labIDs = list.toArray(new String[list.size()]);
-                users = AllDao.getInstance().getSyUserDao().searchUsersByLabIDs(key,offset,limit,labIDs);
+                if(offset != null && limit != null){
+                    users = AllDao.getInstance().getSyUserDao().searchUsersByLabIDs(key,offset,limit,labIDs);
+                }else{
+                    users = AllDao.getInstance().getSyUserDao().searchUsersByLabIDsNoLimit(key,labIDs);
+                }
+
                 Long count = AllDao.getInstance().getSyUserDao().searchUsersByLabIDsCounter(key,labIDs);
                 Map<String,Object> info = new HashMap<>();
                 info.put("count",count);
@@ -644,6 +657,32 @@ public class LaboratoryProcessor {
 
     public String getRoleResource(JsonObject paramObj, User user) {
         boolean isAdmin = isAdmin(user);
-        return null;
+        if(isAdmin){
+            int offset = 0;
+            int limit = 12;
+            Integer roleid = null;
+            try{
+                String limitStr = paramObj.get("limit").getAsString();
+                int[] ls = ParamUtils.parseLimit(limitStr);
+                offset = (ls[0]-1) * ls[1];
+                limit = ls[1];
+                roleid = paramObj.get("roleid").getAsInt();
+            }catch (Exception e){
+                return ParamUtils.errorParam("请求参数错误");
+            }
+            Role role = AllDao.getInstance().getSyRoleDao().getRoleByroleid(roleid);
+            if(role == null){
+                return ParamUtils.errorParam("该角色不存在");
+            }else{
+                List<Resource> list = AllDao.getInstance().getSyResourceDao().getResourceByRoleID(user.getOrgID(),roleid,offset,limit);
+                ResultBean result = new ResultBean();
+                result.setCode(1);
+                result.setData(list);
+                return gson.toJson(result);
+            }
+        }else {
+            return ParamUtils.errorParam("当前用户没有权限");
+        }
+
     }
 }
