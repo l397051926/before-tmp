@@ -57,16 +57,9 @@ public class UserProcessor {
                 if(rolesList != null){
                     user.setRoles(rolesList);
                     for(Role role:rolesList){
-                        String roleName = role.getRole();
-                        if("科室成员".equals(roleName)){
-                            confMap.put("sid",user.getLabID());
-                            List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResourcesBySid(confMap);
-                            role.setResources(resourcesList);
-                        }else{
-                            confMap.put("roleid",role.getRoleid());
-                            List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResources(confMap);
-                            role.setResources(resourcesList);
-                        }
+                        confMap.put("roleid",role.getRoleid());
+                        List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResources(confMap);
+                        role.setResources(resourcesList);
                     }
                 }
 

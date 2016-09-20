@@ -349,6 +349,7 @@ public class LaboratoryProcessor {
             adduser.setCtime(LogUtils.getStringTime());
             adduser.setUptime(LogUtils.getStringTime());
             adduser.setPwd("ls123456");
+            adduser.setOrg_name(user.getOrg_name());
             JsonObject re = insertUser(adduser);
             return gson.toJson(re);
         }else{
@@ -596,9 +597,7 @@ public class LaboratoryProcessor {
                     }
                     List<Resource> resourceList = (List<Resource>) role.getResources();
                     for(Resource resource:resourceList){
-                        if("keshichengyuan".equals(resource.getSid())){//科室成员
 
-                        }
                     }
                 }
 
@@ -610,5 +609,41 @@ public class LaboratoryProcessor {
         }else{
             return ParamUtils.errorParam("当前用户没有权限");
         }
+    }
+
+    public String getRoleStaff(JsonObject paramObj, User user) {
+        boolean isAdmin = isAdmin(user);
+        if(isAdmin){
+            int offset = 0;
+            int limit = 12;
+            Integer roleid = null;
+            try{
+                String limitStr = paramObj.get("limit").getAsString();
+                int[] ls = ParamUtils.parseLimit(limitStr);
+                offset = (ls[0]-1) * ls[1];
+                limit = ls[1];
+                roleid = paramObj.get("roleid").getAsInt();
+            }catch (Exception e){
+                return ParamUtils.errorParam("请求参数错误");
+            }
+            Role role = AllDao.getInstance().getSyRoleDao().getRoleByroleid(roleid);
+            if(role == null){
+                return ParamUtils.errorParam("该角色不存在");
+            }else{
+                List<User> list = AllDao.getInstance().getSyUserDao().getUserByRoleID(roleid,offset,limit);
+                ResultBean result = new ResultBean();
+                result.setCode(1);
+                result.setData(list);
+                return gson.toJson(result);
+            }
+
+        }else {
+            return ParamUtils.errorParam("当前用户没有权限");
+        }
+    }
+
+    public String getRoleResource(JsonObject paramObj, User user) {
+        boolean isAdmin = isAdmin(user);
+        return null;
     }
 }

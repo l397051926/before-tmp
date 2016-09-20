@@ -26,8 +26,17 @@ public class Resource {
     private String has_traceCRF;
     private String has_addCRF;
     private String has_editCRF;
+    private String has_deleteCRF;
     private String has_browseDetail;
     private String has_addBatchCRF;
+
+    public String getHas_deleteCRF() {
+        return has_deleteCRF;
+    }
+
+    public void setHas_deleteCRF(String has_deleteCRF) {
+        this.has_deleteCRF = has_deleteCRF;
+    }
 
     public String getHas_search() {
         return has_search;

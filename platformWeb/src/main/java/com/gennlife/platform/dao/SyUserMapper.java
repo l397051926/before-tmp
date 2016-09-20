@@ -155,6 +155,15 @@ public interface SyUserMapper {
      */
     User getUserByEmail(@Param("email") String email);
 
+    /**
+     * 通过角色id 获取相关用户的列表
+     * @param roleid
+     * @param offset
+     * @param limit
+     * @return
+     */
+    List<User> getUserByRoleID(@Param("roleid")Integer roleid, @Param("offset")int offset, @Param("limit")int limit);
+
 
     /**
     public SyUser getOneUser(Map<String, Object> likeCondition);

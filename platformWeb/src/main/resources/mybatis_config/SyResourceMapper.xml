@@ -17,11 +17,11 @@
     <result column="has_editCRF" property="has_editCRF" jdbcType="VARCHAR" />
     <result column="has_browseDetail" property="has_browseDetail" jdbcType="VARCHAR" />
     <result column="has_addBatchCRF" property="has_addBatchCRF" jdbcType="VARCHAR" />
-
+    <result column="has_deleteCRF" property="has_deleteCRF" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="resourceProperty">
     gennlife_resource.sid,sname,sdesc,stype,slab_type,slab_name,sorgID,has_search,has_searchExport,has_traceCRF,has_addCRF,
-    has_editCRF,has_browseDetail,has_browseDetail,has_addBatchCRF
+    has_editCRF,has_browseDetail,has_addBatchCRF,has_deleteCRF
   </sql>
   
   <select id="getResources" resultMap="com.gennlife.platform.model.Resource"  parameterType="map">

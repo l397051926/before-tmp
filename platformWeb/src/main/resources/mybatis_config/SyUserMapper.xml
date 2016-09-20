@@ -3,7 +3,7 @@
 <mapper namespace="com.gennlife.platform.dao.SyUserMapper">
 
 	<resultMap id="com.gennlife.platform.model.User" type="com.gennlife.platform.model.User">
-		<result column="uid" property="uid" jdbcType="VARCHAR" />
+		<result column="gennlife_user.uid" property="uid" jdbcType="VARCHAR" />
 		<result column="uname" property="uname" jdbcType="VARCHAR" />
 		<result column="pwd" property="pwd" jdbcType="VARCHAR" />
 		<result column="uposition" property="uposition" jdbcType="VARCHAR" />
@@ -21,7 +21,7 @@
 		<result column="unumber" property="unumber" jdbcType="VARCHAR"/>
 	</resultMap>
 	<sql id="userProperty">
-		uid,uname,pwd,uposition,uprofession,orgID,org_name,labID,lab_name,telphone,uemail,age,sex,ctime,uptime,unumber
+		gennlife_user.uid,uname,pwd,uposition,uprofession,orgID,org_name,labID,lab_name,telphone,uemail,age,sex,ctime,uptime,unumber
 	</sql>
 	<select id="getUser" resultMap="com.gennlife.platform.model.User" >
 		SELECT
@@ -270,7 +270,7 @@
 			#{ctime,jdbcType=VARCHAR},
 			#{uptime,jdbcType=VARCHAR},
 			#{unumber,jdbcType=VARCHAR},
-			#{uemail,jdbcType=VARCHAR}
+			#{uemail,jdbcType=VARCHAR},
 			<if test="telphone != null" >
 				#{telphone,jdbcType=VARCHAR},
 			</if>
@@ -345,4 +345,15 @@
 		</set>
 		WHERE unumber = #{unumber,jdbcType=VARCHAR} AND orgID = #{orgID,jdbcType=VARCHAR}
 	</update>
+
+
+	<select id="getUserByRoleID" resultType="com.gennlife.platform.model.User">
+		SELECT
+		<include refid="userProperty" />
+		FROM gennlife_user
+		JOIN  gennlife_user_role
+		on gennlife_user.uid = gennlife_user_role.uid
+		WHERE gennlife_user_role.roleid = #{roleid}
+		LIMIT #{offset},#{limit}
+	</select>
 </mapper>

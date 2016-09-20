@@ -1,7 +1,9 @@
 package com.gennlife.platform.controller;
 
+import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.LaboratoryProcessor;
+import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
@@ -276,7 +278,70 @@ public class BackstageManagementController {
         logger.info("添加角色 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+    @RequestMapping(value="/GetResourceTypeList",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String GetResourceTypeList(){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            JsonObject resourceConfObj = ConfigurationService.getResourceObj();
+            ResultBean resultBean = new ResultBean();
+            resultBean.setCode(1);
+            resultBean.setData(resourceConfObj);
+            resultStr = gson.toJson(resultBean);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取资源类型列表及其对应可操作类型 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/GetRoleStaff",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String GetRoleStaff(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            HttpSession session = paramRe.getSession(false);
+            if(session == null){
+                return ParamUtils.errorParam("当前session已经失效");
+            }
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            if(user == null){
+                return ParamUtils.errorParam("当前session已经失效");
+            }
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.getRoleStaff(paramObj,user);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取角色关联的用户信息 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 
 
-
+    @RequestMapping(value="/GetRoleResource",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String GetRoleResource(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            HttpSession session = paramRe.getSession(false);
+            if(session == null){
+                return ParamUtils.errorParam("当前session已经失效");
+            }
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            if(user == null){
+                return ParamUtils.errorParam("当前session已经失效");
+            }
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.getRoleResource(paramObj,user);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取角色关联的用户信息 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }
