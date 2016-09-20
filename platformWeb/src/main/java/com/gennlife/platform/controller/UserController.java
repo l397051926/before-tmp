@@ -2,6 +2,7 @@ package com.gennlife.platform.controller;
 
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.model.User;
+import com.gennlife.platform.processor.LaboratoryProcessor;
 import com.gennlife.platform.processor.UserProcessor;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
@@ -74,8 +75,8 @@ public class UserController{
                 JsonObject paramObj = (JsonObject) jsonParser.parse(param);
                 try{
                     String uid = paramObj.get("uid").getAsString();
-                    if(!user.getUid().equals(uid)){
-                        return ParamUtils.errorParam("更新uid与seesion中保存的uid不一致");
+                    if(!user.getUid().equals(uid) && !LaboratoryProcessor.isAdmin(user)){//不是自己修改,不是管理员修改
+                        return ParamUtils.errorParam("无权限更新");
                     }
                 }catch (Exception e){
                     return ParamUtils.errorParam("缺少uid");

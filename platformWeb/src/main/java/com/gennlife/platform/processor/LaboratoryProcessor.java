@@ -610,7 +610,7 @@ public class LaboratoryProcessor {
                     }
                     List<Resource> resourceList = (List<Resource>) role.getResources();
                     for(Resource resource:resourceList){
-
+                        //AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(exRole.getRoleid(),uid);
                     }
                 }
 
