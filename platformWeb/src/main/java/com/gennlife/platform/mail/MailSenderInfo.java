@@ -21,7 +21,7 @@ public class MailSenderInfo {
     // 是否需要身份验证
     private boolean validate = true;
     // 邮件主题
-    private String subject = "方舟计划信息平台密码修改验证";
+    private String subject = "您正在修改生命奇点密码，请先激活验证链接";
     // 邮件的文本内容
     private String content;
     // 邮件附件的文件名

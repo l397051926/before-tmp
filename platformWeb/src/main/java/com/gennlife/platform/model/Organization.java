@@ -12,6 +12,24 @@ public class Organization {
     private String address;
     private Object staff = null;
     private Object Labs = new LinkedList<>();
+    private Object Resource = new LinkedList<>();
+    private Object spResource = null;
+
+    public Object getSpResource() {
+        return spResource;
+    }
+
+    public void setSpResource(Object spResource) {
+        this.spResource = spResource;
+    }
+
+    public Object getResource() {
+        return Resource;
+    }
+
+    public void setResource(Object resource) {
+        Resource = resource;
+    }
 
     public Object getStaff() {
         return staff;

@@ -453,6 +453,8 @@ public class FileUploadUtil {
                 srcList.add(lab.getSrcLog()+",失败,上级部门插入失败");
             }else{
                 int counter = AllDao.getInstance().getOrgDao().insertOneLab(lab);
+                //同步增加资源
+                LaboratoryProcessor.addResource(lab);
                 if(counter == 1){
                     srcList.add(lab.getSrcLog()+",成功,插入成功");
                 }else{

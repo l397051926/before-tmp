@@ -115,6 +115,8 @@ public class LaboratoryProcessor {
             lab.setLabID(labID);
             lab.setLab_parent(lab_parent);
             int counter = AllDao.getInstance().getOrgDao().insertOneLab(lab);
+            //同步增加资源
+            addResource(lab);
             if(counter == 1){
                 organization = getOrganization(isAdmin,orgID);
             }else {
@@ -127,6 +129,18 @@ public class LaboratoryProcessor {
         resultBean.setCode(1);
         resultBean.setData(organization);
         return gson.toJson(resultBean);
+    }
+
+    public static  void addResource(Lab lab) {
+        LabResource labResource = new LabResource();
+        labResource.setSorgID(lab.getOrgID());
+        labResource.setSdesc(lab.getLab_name()+"病例数据资源");
+        labResource.setSid(lab.getLabID());
+        labResource.setSlab_parent(lab.getLab_parent());
+        labResource.setSlab_type(lab.getLab_level()+"");
+        labResource.setStype("病例数据");
+        labResource.setSname(lab.getLab_name()+"资源");
+        AllDao.getInstance().getSyResourceDao().insertOneResource(labResource);
     }
 
     public static boolean isAdmin(String uid,String orgID){
@@ -187,6 +201,8 @@ public class LaboratoryProcessor {
         Organization organization = null;
         if(isAdmin){
             int counter = AllDao.getInstance().getOrgDao().deleteLabs(labIDs);
+            //同步删除资源
+            AllDao.getInstance().getSyResourceDao().deleteLabsReource(labIDs);
             int fail = labIDsList.size()-counter;
             logger.info("成功删除"+counter+"个科室信息,失败"+fail+"个");
             organization = getOrganization(isAdmin,orgID);
@@ -449,8 +465,8 @@ public class LaboratoryProcessor {
                 return ParamUtils.errorParam("参数错误");
             }
             String[] uids = uidsList.toArray(new String[uidsList.size()]);
-            int counter = AllDao.getInstance().getSyRoleDao().deleteByUids(uids);
-            counter = AllDao.getInstance().getSyUserDao().deleteUserByUids(uids);
+            AllDao.getInstance().getSyRoleDao().deleteByUids(uids);
+            int counter = AllDao.getInstance().getSyUserDao().deleteUserByUids(uids);
             ResultBean re = new ResultBean();
             if(counter > 0){
                 re.setCode(1);
@@ -819,16 +835,60 @@ public class LaboratoryProcessor {
 
     public String getResourceTree(JsonObject paramObj, User user) {
         boolean isAdmin = isAdmin(user);
-        
+        String type = null;
         if(isAdmin){
             try{
-
+                type = paramObj.get("type").getAsString();
             }catch (Exception e){
-
+                return ParamUtils.errorParam("参数错误");
             }
-            return null;
+            List<LabResource> list = AllDao.getInstance().getSyResourceDao().getLabResourcesByOrgID(user.getOrgID(),type);
+            if(list != null){
+                Organization organization = getOrganization(isAdmin,user.getOrgID());
+                organization.setLabs(injectResource(organization.getLabs(),list));
+                Lab lab = new Lab();
+                lab.setLab_name("本科室资源");
+                lab.sid = "keshichengyuan";
+                List<Lab> spLab = new LinkedList<>();
+                spLab.add(lab);
+                organization.setSpResource(spLab);
+                ResultBean re = new ResultBean();
+                re.setCode(1);
+                re.setData(organization);
+                return gson.toJson(organization);
+            }else{
+                return ParamUtils.errorParam("该类型资源现在不支持");
+            }
         }else{
             return ParamUtils.errorParam("当前用户没有权限");
         }
+    }
+
+    private Object injectResource(Object labs, List<LabResource> list) {
+        List<Object> objlist = gson.fromJson(gson.toJson(labs),LinkedList.class);
+        List<Lab> labList = new LinkedList<>();
+        for(Object obj:objlist){
+            Lab lab = gson.fromJson(gson.toJson(obj),Lab.class);
+            //判断科室对应的资源是否存在
+            boolean ex = resourceStillExist(list,lab.getLabID());
+            if(ex){
+                lab.sid = lab.getLabID();
+                labList.add(lab);
+            }
+            if(lab.getSubLabs()!= null){
+                Object subLab = injectResource(lab.getSubLabs(),list);
+                lab.setSubLabs(subLab);
+            }
+        }
+        return labs;
+    }
+
+    private boolean resourceStillExist(List<LabResource> list, String labID) {
+        for(LabResource labResource:list){
+            if(labID.equals(labResource.getSid())){
+                return true;
+            }
+        }
+        return false;
     }
 }

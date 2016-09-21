@@ -268,10 +268,10 @@ public class BackstageManagementController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            JsonObject resourceConfObj = ConfigurationService.getResourceObj();
+            JsonArray resourceTypeArray = ConfigurationService.getResourceTypeArray();
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
-            resultBean.setData(resourceConfObj);
+            resultBean.setData(resourceTypeArray);
             resultStr = gson.toJson(resultBean);
         }catch (Exception e){
             logger.error("",e);
@@ -331,7 +331,7 @@ public class BackstageManagementController {
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("获取角色关联的资源信息 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("根据资源类型获取资源树 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 

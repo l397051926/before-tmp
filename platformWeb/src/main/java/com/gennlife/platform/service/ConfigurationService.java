@@ -30,7 +30,7 @@ public class ConfigurationService {
     private static JsonObject importTree = new JsonObject();
 
     private static JsonObject advancedSearch = new JsonObject();
-    private static JsonObject resourceObj = null;
+    private static JsonArray resourceTypeArray = null;
     //默认的搜索列表
     private static JsonObject defaultObj = null;
     //全部的搜索列表
@@ -83,7 +83,8 @@ public class ConfigurationService {
         }
         importTree = caseObj.getAsJsonObject("import");
         String resourceStr = FilesUtils.readFile("/resourceConfig.json");
-        resourceObj = (JsonObject) jsonParser.parse(resourceStr);
+        JsonObject resourceConfig = (JsonObject) jsonParser.parse(resourceStr);
+        resourceTypeArray = resourceConfig.get("resourceTypeArray").getAsJsonArray();
     }
 
     public static JsonObject getAllObj() {
@@ -117,7 +118,7 @@ public class ConfigurationService {
     }
 
 
-    public static JsonObject getResourceObj(){
-        return resourceObj;
+    public static JsonArray getResourceTypeArray(){
+        return resourceTypeArray;
     }
 }

@@ -17,6 +17,7 @@ public class Lab {
     private Object subLabs;
     public String status;//导入状态
     public Object staff;//成员
+    public String sid;
 
     public Object getStaff() {
         return staff;

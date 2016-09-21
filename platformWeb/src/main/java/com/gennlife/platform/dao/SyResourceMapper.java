@@ -1,6 +1,7 @@
 package com.gennlife.platform.dao;
 
 
+import com.gennlife.platform.model.LabResource;
 import com.gennlife.platform.model.Resource;
 import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.Mapper;
@@ -41,4 +42,26 @@ public interface SyResourceMapper {
     int insertRoleResourceRelation(Resource resourceObj);
 
     int findRoleResourceRelationCounter(@Param("sid") String sid, @Param("roleid")Integer roleid);
+
+
+    /**
+     * 添加资源
+     * @param labResource
+     * @return
+     */
+    int insertOneResource(LabResource labResource);
+
+    /**
+     * 删除资源
+     * @param sids
+     * @return
+     */
+    public int deleteLabsReource(@Param("sids") String[] sids);
+
+    /**
+     * 获取科室资源
+     * @param orgID
+     * @return
+     */
+    List<LabResource> getLabResourcesByOrgID(@Param("orgID")String orgID,@Param("stype")String type);
 }

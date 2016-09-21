@@ -121,4 +121,60 @@
     WHERE
     sid= #{sid} AND roleid = #{roleid}
   </select>
+  <resultMap id="com.gennlife.platform.model.LabResource" type="com.gennlife.platform.model.LabResource">
+    <result column="sid" property="sid" jdbcType="VARCHAR" />
+    <result column="sname" property="sname" jdbcType="VARCHAR" />
+    <result column="sdesc" property="sdesc" jdbcType="VARCHAR" />
+    <result column="stype" property="stype" jdbcType="VARCHAR" />
+    <result column="slab_type" property="slab_type" jdbcType="VARCHAR" />
+    <result column="slab_name" property="slab_name" jdbcType="VARCHAR" />
+    <result column="sorgID" property="sorgID" jdbcType="VARCHAR" />
+    <result column="slab_parent" property="slab_parent" jdbcType="VARCHAR" />
+    <result column="slab_type" property="slab_type" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="labResourceProperty">
+    sid,sname,sdesc,stype,slab_name,sorgID,slab_parent,slab_type
+  </sql>
+  <insert id="insertOneResource" parameterType="com.gennlife.platform.model.LabResource">
+    insert into gennlife_resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      sid,
+      sname,
+      sdesc,
+      stype,
+      slab_name,
+      sorgID,
+      slab_parent,
+      <if test="slab_type != null" >
+        slab_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{sid,jdbcType=VARCHAR},
+      #{sname,jdbcType=VARCHAR},
+      #{sdesc,jdbcType=VARCHAR},
+      #{stype,jdbcType=VARCHAR},
+      #{slab_name,jdbcType=VARCHAR},
+      #{sorgID,jdbcType=VARCHAR},
+      #{slab_parant,jdbcType=VARCHAR},
+      <if test="slab_type != null" >
+        #{slab_type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteLabsReource">
+    DELETE FROM gennlife_resource
+    WHERE stype='病例数据' AND sid IN
+    <foreach collection="sids" item="item" index="index" open="(" separator="," close=")">
+      #{item,jdbcType=VARCHAR}
+    </foreach>
+  </delete>
+  <select id="getLabResourcesByOrgID" resultType="com.gennlife.platform.model.LabResource">
+    SELECT
+    <include refid="labResourceProperty"/>
+    FROM
+    gennlife_resource
+    WHERE
+    sorgID = #{orgID} AND stype = #{stype}
+  </select>
 </mapper>
