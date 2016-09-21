@@ -29,6 +29,7 @@ public class SessionFilter implements Filter {
     static{
         okSet.add("/user/Login");
         okSet.add("/user/SendEmailForChangePWD");
+        okSet.add("/user/ExistEmail");
     }
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
