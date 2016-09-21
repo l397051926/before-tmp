@@ -16,6 +16,16 @@ public class Lab {
     private int lab_level;
     private Object subLabs;
     public String status;//导入状态
+    public Object staff;//成员
+
+    public Object getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Object staff) {
+        this.staff = staff;
+    }
+
     public String remark;//导入备注
     public String getLab_parentName() {
         return lab_parentName;

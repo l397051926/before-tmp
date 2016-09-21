@@ -1,10 +1,12 @@
 package com.gennlife.platform.model;
 
+import java.util.List;
+
 /**
  * Created by chen-song on 16/9/9.
  */
 public class Role {
-    private int roleid;
+    private Integer roleid;
     private String role;
     private String orgID;
     private String desctext;
@@ -13,6 +15,19 @@ public class Role {
     private String ctime;
     private Object resources;
     private Object users;
+    private Object staff;
+
+    public void setRoleid(Integer roleid) {
+        this.roleid = roleid;
+    }
+
+    public Object getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Object staff) {
+        this.staff = staff;
+    }
 
     public String getCtime() {
         return ctime;
@@ -38,7 +53,7 @@ public class Role {
         this.resourceDesc = resourceDesc;
     }
 
-    public int getRoleid() {
+    public Integer getRoleid() {
         return roleid;
     }
 

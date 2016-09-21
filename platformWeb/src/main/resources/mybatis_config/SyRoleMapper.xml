@@ -122,4 +122,28 @@
             #{ctime}
         </trim>
     </insert>
+    <select id="findUserRoleRelationCounter" resultType="INTEGER">
+        SELECT
+        count(uid)
+        FROM
+        gennlife_user_role
+        WHERE
+        uid= #{uid} AND roleid = #{roleid}
+    </select>
+    <update id="updateUserRole" parameterType="com.gennlife.platform.model.Role">
+        UPDATE
+			gennlife_role
+		<set>
+          <if test="role !=null">
+              role = #{role,jdbcType=VARCHAR},
+          </if>
+          <if test= "desctext !=null">
+              desctext = #{desctext,jdbcType=VARCHAR},
+          </if>
+          <if test= "role_type !=null">
+              role_type = #{role_type,jdbcType=VARCHAR}
+          </if>
+        </set>
+		WHERE roleid = #{roleid,jdbcType=INTEGER}
+    </update>
 </mapper>

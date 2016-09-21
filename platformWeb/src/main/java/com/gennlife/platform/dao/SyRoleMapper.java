@@ -1,6 +1,7 @@
 package com.gennlife.platform.dao;
 
 
+import com.gennlife.platform.model.Resource;
 import com.gennlife.platform.model.Role;
 import com.gennlife.platform.model.User;
 import org.apache.ibatis.annotations.Param;
@@ -103,5 +104,18 @@ public interface SyRoleMapper {
      */
     int insertUserRole(Role role);
 
+    /**
+     * 查找用户角色关系
+     * @param roleid
+     * @param uid
+     * @return
+     */
+    int findUserRoleRelationCounter(@Param("roleid")int roleid,@Param("uid") String uid);
 
+    /**
+     * 更新角色信息
+     * @param role
+     * @return
+     */
+    int updateUserRole(Role role);
 }

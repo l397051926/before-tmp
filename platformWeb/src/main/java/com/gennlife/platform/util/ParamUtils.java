@@ -118,4 +118,11 @@ public class ParamUtils {
         resultBean.setInfo(info);
         return resultBean;
     }
+
+    public static String errorSessionLosParam() {
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(-1);
+        resultBean.setInfo("session失效");
+        return gson.toJson(resultBean);
+    }
 }

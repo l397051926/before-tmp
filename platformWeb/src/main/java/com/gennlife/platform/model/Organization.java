@@ -10,7 +10,16 @@ public class Organization {
     private String org_name;
     private String leader;
     private String address;
+    private Object staff = null;
     private Object Labs = new LinkedList<>();
+
+    public Object getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Object staff) {
+        this.staff = staff;
+    }
 
     public String getOrgID() {
         return orgID;

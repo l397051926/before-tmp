@@ -38,7 +38,7 @@
 	</select>
 
 	<select id="getUserByEmail" resultType="com.gennlife.platform.model.User" >
-		SELECT uid
+		SELECT
 		<include refid="userProperty" />
 		FROM gennlife_user
 		<where> gennlife_user.uemail = #{email} limit 1 </where>

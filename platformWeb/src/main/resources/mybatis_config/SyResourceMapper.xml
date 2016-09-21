@@ -52,4 +52,73 @@
     AND gennlife_role_resource.roleid = #{roleid}
     LIMIT #{offset},#{limit}
   </select>
+  <insert id="insertRoleResourceRelation" parameterType="com.gennlife.platform.model.Resource">
+    insert into gennlife_role_resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      roleid,
+      sid,
+      orgID,
+      <if test="has_search != null" >
+        has_search,
+      </if>
+      <if test="has_searchExport != null" >
+        has_searchExport,
+      </if>
+      <if test="has_traceCRF != null" >
+        has_traceCRF,
+      </if>
+      <if test="has_addCRF != null" >
+        has_addCRF,
+      </if>
+      <if test="has_editCRF != null" >
+        has_editCRF,
+      </if>
+      <if test="has_deleteCRF != null" >
+        has_deleteCRF,
+      </if>
+      <if test="has_browseDetail != null" >
+        has_browseDetail,
+      </if>
+      <if test="has_addBatchCRF != null" >
+        has_addBatchCRF,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{roleid,jdbcType=INTEGER},
+      #{sid,jdbcType=VARCHAR},
+      #{sorgID,jdbcType=VARCHAR},
+      <if test="has_search != null" >
+        #{has_search,jdbcType=VARCHAR},
+      </if>
+      <if test="has_searchExport != null" >
+        #{has_searchExport,jdbcType=VARCHAR},
+      </if>
+      <if test="has_traceCRF != null" >
+        #{has_traceCRF,jdbcType=VARCHAR},
+      </if>
+      <if test="has_addCRF != null" >
+        #{has_addCRF,jdbcType=VARCHAR},
+      </if>
+      <if test="has_editCRF != null" >
+        #{has_editCRF,jdbcType=VARCHAR},
+      </if>
+      <if test="has_deleteCRF != null" >
+        #{has_deleteCRF,jdbcType=VARCHAR},
+      </if>
+      <if test="has_browseDetail != null" >
+        #{has_browseDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="has_addBatchCRF != null" >
+        #{has_addBatchCRF,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="findRoleResourceRelationCounter" resultType="INTEGER">
+    SELECT
+    COUNT(sid)
+    FROM
+    gennlife_role_resource
+    WHERE
+    sid= #{sid} AND roleid = #{roleid}
+  </select>
 </mapper>

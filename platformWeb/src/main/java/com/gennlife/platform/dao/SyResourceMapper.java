@@ -32,4 +32,13 @@ public interface SyResourceMapper {
      * @return
      */
     List<Resource> getResourceByRoleID(@Param("orgID")String orgID,@Param("roleid")Integer roleid, @Param("offset")int offset, @Param("limit")int limit);
+
+    /**
+     * 插入角色资源关联关系
+     * @param resourceObj
+     * @return
+     */
+    int insertRoleResourceRelation(Resource resourceObj);
+
+    int findRoleResourceRelationCounter(@Param("sid") String sid, @Param("roleid")Integer roleid);
 }

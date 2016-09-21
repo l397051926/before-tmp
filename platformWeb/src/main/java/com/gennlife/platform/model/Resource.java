@@ -13,7 +13,7 @@ public class Resource {
      `slab_name` varchar(50) DEFAULT NULL COMMENT '科室名称',
      `sorgID` varchar(30) DEFAULT NULL COMMENT '组织id'
      */
-
+    private Integer roleid;
     private String sid;
     private String sname;
     private String sdesc;
@@ -29,6 +29,14 @@ public class Resource {
     private String has_deleteCRF;
     private String has_browseDetail;
     private String has_addBatchCRF;
+
+    public Integer getRoleid() {
+        return roleid;
+    }
+
+    public void setRoleid(Integer roleid) {
+        this.roleid = roleid;
+    }
 
     public String getHas_deleteCRF() {
         return has_deleteCRF;

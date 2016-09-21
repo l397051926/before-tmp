@@ -71,9 +71,6 @@ public class BackstageManagementController {
         try{
             String param = ParamUtils.getParam(paramRe);
             HttpSession session = paramRe.getSession();
-            if(session == null){
-                return ParamUtils.errorParam("当前session已经失效");
-            }
             User user = gson.fromJson((String)session.getAttribute("user"),User.class);
             logger.info("删除科室 get方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
@@ -93,9 +90,6 @@ public class BackstageManagementController {
         try{
             String param = ParamUtils.getParam(paramRe);
             HttpSession session = paramRe.getSession();
-            if(session == null){
-                return ParamUtils.errorParam("当前session已经失效");
-            }
             User user = gson.fromJson((String)session.getAttribute("user"),User.class);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.updateOrg(paramObj,user);
@@ -115,10 +109,6 @@ public class BackstageManagementController {
             String param = ParamUtils.getParam(paramRe);
             HttpSession session = paramRe.getSession();
             User user = gson.fromJson((String)session.getAttribute("user"),User.class);
-            if(user == null){
-                return ParamUtils.errorParam("当前session已经失效");
-            }
-
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getStaffInfo(paramObj,user);
         }catch (Exception e){
@@ -136,9 +126,6 @@ public class BackstageManagementController {
         try{
             String param = ParamUtils.getParam(paramRe);
             HttpSession session = paramRe.getSession();
-            if(session == null){
-                return ParamUtils.errorParam("当前session已经失效");
-            }
             User user = gson.fromJson((String)session.getAttribute("user"),User.class);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.addStaff(paramObj,user);
@@ -156,9 +143,6 @@ public class BackstageManagementController {
         try{
             String param = ParamUtils.getParam(paramRe);
             HttpSession session = paramRe.getSession();
-            if(session == null){
-                return ParamUtils.errorParam("当前session已经失效");
-            }
             User user = gson.fromJson((String)session.getAttribute("user"),User.class);
             JsonArray paramObj = (JsonArray) jsonParser.parse(param);
             resultStr =  processor.deleteStaff(paramObj,user);
@@ -176,9 +160,6 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             HttpSession session = paramRe.getSession();
-            if(session == null){
-                return ParamUtils.errorParam("当前session已经失效");
-            }
             User user = gson.fromJson((String)session.getAttribute("user"),User.class);
             String orgID = user.getOrgID();
             resultStr =  processor.getProfessionList(orgID);
@@ -196,9 +177,6 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             HttpSession session = paramRe.getSession();
-            if(session == null){
-                return ParamUtils.errorParam("当前session已经失效");
-            }
             User user = gson.fromJson((String)session.getAttribute("user"),User.class);
             String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
@@ -218,13 +196,7 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             HttpSession session = paramRe.getSession();
-            if(session == null){
-                return ParamUtils.errorParam("当前session已经失效");
-            }
             User user = gson.fromJson((String)session.getAttribute("user"),User.class);
-            if(user == null){
-                return ParamUtils.errorParam("当前session已经失效");
-            }
             String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getStaffTree(paramObj,user);
@@ -244,9 +216,6 @@ public class BackstageManagementController {
         try{
             String param = ParamUtils.getParam(paramRe);
             HttpSession session = paramRe.getSession(false);
-            if(session == null){
-                return ParamUtils.errorParam("当前session已经失效");
-            }
             User user = gson.fromJson((String)session.getAttribute("user"),User.class);
             JsonArray paramObj = (JsonArray) jsonParser.parse(param);
             resultStr =  processor.deleteRoles(paramObj,user);
@@ -265,11 +234,8 @@ public class BackstageManagementController {
         try{
             String param = ParamUtils.getParam(paramRe);
             HttpSession session = paramRe.getSession(false);
-            if(session == null){
-                return ParamUtils.errorParam("当前session已经失效");
-            }
             User user = gson.fromJson((String)session.getAttribute("user"),User.class);
-            JsonArray paramObj = (JsonArray) jsonParser.parse(param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.addRole(paramObj,user);
         }catch (Exception e){
             logger.error("",e);
@@ -278,6 +244,25 @@ public class BackstageManagementController {
         logger.info("添加角色 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+    @RequestMapping(value="/EditRole",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String EditRole(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            HttpSession session = paramRe.getSession(false);
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.editRole(paramObj,user);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("编辑角色信息 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
     @RequestMapping(value="/GetResourceTypeList",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String GetResourceTypeList(){
         Long start = System.currentTimeMillis();
@@ -303,13 +288,7 @@ public class BackstageManagementController {
         try{
             String param = ParamUtils.getParam(paramRe);
             HttpSession session = paramRe.getSession(false);
-            if(session == null){
-                return ParamUtils.errorParam("当前session已经失效");
-            }
             User user = gson.fromJson((String)session.getAttribute("user"),User.class);
-            if(user == null){
-                return ParamUtils.errorParam("当前session已经失效");
-            }
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getRoleStaff(paramObj,user);
         }catch (Exception e){
@@ -328,20 +307,33 @@ public class BackstageManagementController {
         try{
             String param = ParamUtils.getParam(paramRe);
             HttpSession session = paramRe.getSession(false);
-            if(session == null){
-                return ParamUtils.errorParam("当前session已经失效");
-            }
             User user = gson.fromJson((String)session.getAttribute("user"),User.class);
-            if(user == null){
-                return ParamUtils.errorParam("当前session已经失效");
-            }
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getRoleResource(paramObj,user);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("获取角色关联的用户信息 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("获取角色关联的资源信息 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+    @RequestMapping(value="/GetResourceTree",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String GetResourceTree(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            HttpSession session = paramRe.getSession(false);
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.getResourceTree(paramObj,user);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取角色关联的资源信息 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
 }
