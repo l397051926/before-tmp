@@ -124,6 +124,7 @@ public class UserController{
         try{
             String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            logger.info("SendEmailForChangePWD param="+param);
             resultStr =  processor.changePwdSender(paramObj);
         }catch (Exception e){
             logger.error("",e);
