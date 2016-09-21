@@ -38,10 +38,6 @@
         <filter-name>sessionFilter</filter-name>
         <url-pattern>/bsma/*</url-pattern>
     </filter-mapping>
-    <filter-mapping>
-        <filter-name>sessionFilter</filter-name>
-        <url-pattern>/user/*</url-pattern>
-    </filter-mapping>
     <servlet>
         <servlet-name>UIService</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
