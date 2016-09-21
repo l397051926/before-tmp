@@ -105,12 +105,14 @@ public class UserController{
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
+            logger.info("UpdatePWD param="+param);
             resultStr =  processor.updatePWD(param);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("用户更新个人信息 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("更新密码 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.error("返回结果="+resultStr);
         return resultStr;
     }
 
