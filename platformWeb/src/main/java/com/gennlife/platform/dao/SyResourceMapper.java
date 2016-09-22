@@ -71,5 +71,5 @@ public interface SyResourceMapper {
      * @param roleid
      * @return
      */
-    int getResourceByRoleIDCounter(@Param("orgID")String orgID,@Param("stype")Integer roleid);
+    int getResourceByRoleIDCounter(@Param("orgID")String orgID,@Param("roleid")Integer roleid);
 }
