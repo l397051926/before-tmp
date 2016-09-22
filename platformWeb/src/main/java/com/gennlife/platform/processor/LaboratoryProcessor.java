@@ -851,15 +851,19 @@ public class LaboratoryProcessor {
                 return ParamUtils.errorParam("参数错误");
             }
             List<LabResource> list = AllDao.getInstance().getSyResourceDao().getLabResourcesByOrgID(user.getOrgID(),type);
-            if(list != null){
+            if(list != null && list.size() > 0){
                 Organization organization = getOrganization(isAdmin,user.getOrgID());
                 organization.setLabs(injectResource(organization.getLabs(),list));
-                Lab lab = new Lab();
-                lab.setLab_name("本科室资源");
-                lab.sid = "keshichengyuan";
-                List<Lab> spLab = new LinkedList<>();
-                spLab.add(lab);
-                organization.setSpResource(spLab);
+                for(LabResource labResource:list){
+                    if("本科室资源".equals(labResource.getSname())){
+                        Lab lab = new Lab();
+                        lab.setLab_name(labResource.getSlab_name());
+                        lab.setSid(labResource.getSid());
+                        List<Lab> spLab = new LinkedList<>();
+                        spLab.add(lab);
+                        organization.setSpResource(spLab);
+                    }
+                }
                 ResultBean re = new ResultBean();
                 re.setCode(1);
                 re.setData(organization);
@@ -880,7 +884,7 @@ public class LaboratoryProcessor {
             //判断科室对应的资源是否存在
             boolean ex = resourceStillExist(list,lab.getLabID());
             if(ex){
-                lab.sid = lab.getLabID();
+                lab.setSid(lab.getLabID());
                 labList.add(lab);
             }
             if(lab.getSubLabs()!= null){
@@ -888,7 +892,7 @@ public class LaboratoryProcessor {
                 lab.setSubLabs(subLab);
             }
         }
-        return labs;
+        return labList;
     }
 
     private boolean resourceStillExist(List<LabResource> list, String labID) {
