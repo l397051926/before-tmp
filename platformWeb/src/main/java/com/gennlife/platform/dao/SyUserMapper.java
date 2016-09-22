@@ -168,6 +168,13 @@ public interface SyUserMapper {
 
     List<User> searchUsersByLabIDsNoLimit(@Param("skey") String key,@Param("labIDs") String[] labIDs);
 
+    /**
+     * 通过角色id 获取相关用户 计数
+     * @param roleid
+     * @return
+     */
+    int getUserByRoleIDCounter(Integer roleid);
+
 
     /**
     public SyUser getOneUser(Map<String, Object> likeCondition);

@@ -64,4 +64,12 @@ public interface SyResourceMapper {
      * @return
      */
     List<LabResource> getLabResourcesByOrgID(@Param("orgID")String orgID,@Param("stype")String type);
+
+    /**
+     * 获取科室资源计数
+     * @param orgID
+     * @param roleid
+     * @return
+     */
+    int getResourceByRoleIDCounter(@Param("orgID")String orgID,@Param("stype")Integer roleid);
 }

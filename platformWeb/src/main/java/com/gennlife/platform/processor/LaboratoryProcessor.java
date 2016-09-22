@@ -730,9 +730,13 @@ public class LaboratoryProcessor {
                 return ParamUtils.errorParam("该角色不存在");
             }else{
                 List<User> list = AllDao.getInstance().getSyUserDao().getUserByRoleID(roleid,offset,limit);
+                int counter = AllDao.getInstance().getSyUserDao().getUserByRoleIDCounter(roleid);
+                Map<String,Object> info = new HashMap<>();
+                info.put("count",counter);
                 ResultBean result = new ResultBean();
                 result.setCode(1);
                 result.setData(list);
+                result.setInfo(info);
                 return gson.toJson(result);
             }
 
@@ -761,9 +765,13 @@ public class LaboratoryProcessor {
                 return ParamUtils.errorParam("该角色不存在");
             }else{
                 List<Resource> list = AllDao.getInstance().getSyResourceDao().getResourceByRoleID(user.getOrgID(),roleid,offset,limit);
+                int counter = AllDao.getInstance().getSyResourceDao().getResourceByRoleIDCounter(user.getOrgID(),roleid);
+                Map<String,Object> info = new HashMap<>();
+                info.put("count",counter);
                 ResultBean result = new ResultBean();
                 result.setCode(1);
                 result.setData(list);
+                result.setInfo(info);
                 return gson.toJson(result);
             }
         }else {

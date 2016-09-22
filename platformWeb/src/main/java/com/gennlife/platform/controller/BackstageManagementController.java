@@ -334,6 +334,4 @@ public class BackstageManagementController {
         logger.info("根据资源类型获取资源树 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
-
-
 }

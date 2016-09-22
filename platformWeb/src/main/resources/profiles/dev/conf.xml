@@ -5,7 +5,7 @@
             http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
     <bean id="com.gennlife.platform.util.MongoConf" class="com.gennlife.platform.util.MongoConf">
-        <property name="host" value="10.0.0.131"/>
+        <property name="host" value="10.0.0.135"/>
         <property name="port" value="10101"/>
         <property name="poolSize" value="10"/>
         <property name="blockSize" value="10"/>

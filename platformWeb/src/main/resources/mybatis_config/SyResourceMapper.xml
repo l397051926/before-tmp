@@ -176,5 +176,13 @@
     gennlife_resource
     WHERE
     sorgID = #{orgID} AND stype = #{stype}
+
+  </select>
+  <select id="getResourceByRoleIDCounter" resultType="INTEGER">
+    SELECT count(gennlife_role_resource.sid)
+    FROM gennlife_resource
+    gennlife_role_resource JOIN gennlife_resource on gennlife_role_resource.sid = gennlife_resource.sid
+    WHERE gennlife_resource.sorgID=#{orgID}
+    AND gennlife_role_resource.roleid = #{roleid}
   </select>
 </mapper>

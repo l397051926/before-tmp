@@ -378,4 +378,12 @@
 		WHERE gennlife_user_role.roleid = #{roleid}
 		LIMIT #{offset},#{limit}
 	</select>
+	<select id="getUserByRoleIDCounter" resultType="INTEGER">
+		SELECT
+		count(gennlife_user.uid)
+		FROM gennlife_user
+		JOIN  gennlife_user_role
+		on gennlife_user.uid = gennlife_user_role.uid
+		WHERE gennlife_user_role.roleid = #{roleid}
+	</select>
 </mapper>
