@@ -770,7 +770,7 @@ public class LaboratoryProcessor {
             ResultBean re = new ResultBean();
             re.setCode(1);
             re.setData(organization);
-            return gson.toJson(organization);
+            return gson.toJson(re);
         }else{
             return ParamUtils.errorParam("该类型资源现在不支持");
         }
