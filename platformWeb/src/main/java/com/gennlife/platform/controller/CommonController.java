@@ -30,7 +30,6 @@ public class CommonController  {
     private static String staffImportsuffix = "导入人员历史.csv";
     private static CommonProcessor processor = new CommonProcessor();
     private static Gson gson = GsonUtil.getGson();
-    private static View view = new View();
     //存放文件的位置
     private static String FilePath = "/home/tomcat_demo2_web/update/";
     //后缀
@@ -53,10 +52,6 @@ public class CommonController  {
     @RequestMapping(value="/DownloadFileForImportLabHistory",method= RequestMethod.GET)
     public void getDownloadFileForImportLabHistory(HttpServletRequest paramRe,HttpServletResponse response){
         HttpSession session = paramRe.getSession();
-        if(session == null){
-            view.viewString(ParamUtils.errorParam("当前session已经失效"),response);
-            return;
-        }
         User user = gson.fromJson((String)session.getAttribute("user"),User.class);
         String file = FilePath+user.getOrg_name() + labImportsuffix;
         processor.downLoadFile(file,response);
@@ -82,10 +77,6 @@ public class CommonController  {
     @RequestMapping(value="/DownloadFileForStaffHistory",method= RequestMethod.GET)
     public void getDownloadFileForStaffHistory(HttpServletRequest paramRe,HttpServletResponse response){
         HttpSession session = paramRe.getSession();
-        if(session == null){
-            view.viewString(ParamUtils.errorParam("当前session已经失效"),response);
-            return;
-        }
         User user = gson.fromJson((String)session.getAttribute("user"),User.class);
         String file = FilePath+user.getOrg_name() + staffImportsuffix;
         processor.downLoadFile(file,response);
@@ -93,23 +84,11 @@ public class CommonController  {
 
     @RequestMapping(value="/DownloadFileForStaffModel",method= RequestMethod.GET)
     public void DownloadFileForStaffModel(HttpServletRequest paramRe,HttpServletResponse response){
-        HttpSession session = paramRe.getSession();
-        if(session == null){
-            view.viewString(ParamUtils.errorParam("当前session已经失效"),response);
-            return;
-        }
-        User user = gson.fromJson((String)session.getAttribute("user"),User.class);
         String file = FilePath+"人员导入模版"+ suffix;
         processor.downLoadFile(file,response);
     }
     @RequestMapping(value="/DownloadFileForLabModel",method= RequestMethod.GET)
     public void DownloadFileForLabModel(HttpServletRequest paramRe,HttpServletResponse response){
-        HttpSession session = paramRe.getSession();
-        if(session == null){
-            view.viewString(ParamUtils.errorParam("当前session已经失效"),response);
-            return;
-        }
-        User user = gson.fromJson((String)session.getAttribute("user"),User.class);
         String file = FilePath+"科室导入模版"+ suffix;
         processor.downLoadFile(file,response);
     }

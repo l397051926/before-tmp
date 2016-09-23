@@ -34,7 +34,7 @@
     AND gennlife_role_resource.roleid = #{roleid}
   </select>
 
-  <select id="getResourcesBySid" resultMap="com.gennlife.platform.model.Resource"  parameterType="map">
+  <select id="getResourcesBySid" resultMap="com.gennlife.platform.model.Resource" >
     select
     <include refid="resourceProperty" />
     FROM

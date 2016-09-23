@@ -1,7 +1,10 @@
 package com.gennlife.platform.controller;
 
+import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.processor.CaseProcessor;
+import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by chen-song on 16/5/13.
@@ -19,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 public class CaseController {
     private Logger logger = LoggerFactory.getLogger(CaseController.class);
     private static JsonParser jsonParser = new JsonParser();
+    private static Gson gson = GsonUtil.getGson();
     private CaseProcessor processor = new CaseProcessor();
     @RequestMapping(value="/SearchItemSet",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
@@ -161,10 +166,9 @@ public class CaseController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = ParamUtils.getParam(paramRe);
+            String param = AuthorityUtil.addAuthority(paramRe);
             logger.info("病历搜索 post方式 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.searchCase(paramObj);
+            resultStr =  processor.searchCase(param);
         }catch (Exception e){
             logger.error("病历搜索",e);
             resultStr = ParamUtils.errorParam("出现异常");

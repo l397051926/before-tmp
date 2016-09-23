@@ -1,5 +1,6 @@
 package com.gennlife.platform.controller;
 
+import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.LaboratoryProcessor;
@@ -42,8 +43,11 @@ public class UserController{
             String param = ParamUtils.getParam(paramRe);
             if(session != null){
                 ResultBean resultBean =  processor.login(param);
-                if(resultBean.getCode() ==1 ){
-                    session.setAttribute("user",gson.toJson(resultBean.getData()));
+                if(resultBean.getCode() == 1){
+                    User user = (User) resultBean.getData();
+                    user = processor.transformRole(user);
+                    resultBean.setData(user);
+                    session.setAttribute("user",gson.toJson(user));
                 }
                 Cookie cookie = new Cookie("JSESSIONID",session.getId());
                 response.addCookie(cookie);
@@ -76,7 +80,7 @@ public class UserController{
                 String uid = null;
                 try{
                     uid = paramObj.get("uid").getAsString();
-                    if(!user.getUid().equals(uid) && !LaboratoryProcessor.isAdmin(user)){//不是自己修改,不是管理员修改
+                    if(!user.getUid().equals(uid) && !AuthorityUtil.isAdmin(user)){//不是自己修改,不是管理员修改
                         return ParamUtils.errorParam("无权限更新");
                     }
                 }catch (Exception e){

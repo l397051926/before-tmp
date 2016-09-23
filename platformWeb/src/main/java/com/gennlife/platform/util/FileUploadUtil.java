@@ -72,10 +72,6 @@ public class FileUploadUtil {
                 return ParamUtils.errorParam("当前session已经失效");
             }
             String orgID = user.getOrgID();
-            boolean isAdmin = LaboratoryProcessor.isAdmin(user);
-            if(!isAdmin){
-                return ParamUtils.errorParam("当前用户没有权限");
-            }
             //如果没有临时目录，则创建它
             FilesUtils.makeDirectory(tempPath);
             //上传项目只要足够小，就应该保留在内存里。

@@ -23,7 +23,7 @@ public interface SyResourceMapper {
 
 
 
-    public List<Resource> getResourcesBySid(Map<String, Object> likeCondition);
+    public List<Resource> getResourcesBySid(@Param("orgID")String orgID,@Param("sid") String sid);
 
     /**
      * 通过

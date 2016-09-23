@@ -19,10 +19,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 /**
  * Created by chensong on 2015/12/4.
  */
@@ -62,8 +60,6 @@ public class UserProcessor {
                         role.setResources(resourcesList);
                     }
                 }
-
-
             }
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
@@ -217,5 +213,26 @@ public class UserProcessor {
             resultBean.setCode(1);
         }
         return gson.toJson(resultBean);
+    }
+
+
+
+    public User transformRole(User user){
+        List<Role> roles = user.getRoles();
+        String labID = user.getLabID();
+        if(labID.equals(user.getOrgID())){//用户属于医院,不需要检查本科室成员角色
+            return user;
+        }
+        for(Role role:roles){
+            if("科室成员".equals(role.getRole_type())){//如果存在本科室角色
+                List<Resource> resources = (List<Resource>) role.getResources();
+                for(Resource resource:resources){
+                    if("本科室资源".equals(resource.getSname())){
+                        resource.setSlab_name(user.getLab_name());
+                    }
+                }
+            }
+        }
+        return user;
     }
 }

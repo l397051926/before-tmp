@@ -237,17 +237,9 @@ public class CaseProcessor {
     /**
      * 搜索病历
      *
-     * @param paramObj
+     * @param newParam
      */
-    public String searchCase(JsonObject paramObj) {
-        String newParam = null;
-        try {
-            newParam = gson.toJson(paramObj);
-            logger.info("处理后请求参数=" + newParam);
-        } catch (Exception e) {
-            logger.error("",e);
-            return ParamUtils.errorParam("请求参数出错");
-        }
+    public String searchCase(String newParam) {
         CaseSearchParser caseSearchParser = new CaseSearchParser(newParam);
         try {
             String searchResultStr = caseSearchParser.parser();
