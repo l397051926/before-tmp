@@ -1,5 +1,8 @@
 package com.gennlife.platform.util;
 
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
@@ -12,9 +15,7 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URLDecoder;
 
 public class HttpRequestUtils {
@@ -121,39 +122,20 @@ public class HttpRequestUtils {
 	}
 
 	public static String httpGetForCS(String url) {
-		HttpClient httpClient = HttpClients.createDefault();
-		HttpGet method = new HttpGet(url);
-		method.addHeader("Accept","text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*");
-		method.addHeader("Connection","keep-alive");
-		method.addHeader("Content-Coding","UTF-8");
-		method.addHeader("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36");
+		OkHttpClient client = new OkHttpClient();
+		Request request = new Request.Builder()
+				.url(url)
+				.get()
+				.addHeader("cache-control", "no-cache")
+				.addHeader("postman-token", "95435e0a-f31f-fcfd-74f9-c9ffc4b38acb")
+				.build();
 		try {
-			/*
-			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(3000).setConnectTimeout(3000).build();
-			method.setConfig(requestConfig);
-			HttpResponse result = httpClient.execute(method);
-			if (result.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-				String str = null;
-				try {
-					str = EntityUtils.toString(result.getEntity(),"utf-8");
-					return str;
-				} catch (Exception e) {
-					logger.error("" + url, e);
-				}
-			}
-			*/
-			Process process = Runtime.getRuntime().exec("curl "+url);
-			BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
-			StringBuffer sb = new StringBuffer();
-			String line = "";
-			while ((line = input.readLine()) != null) {
-				sb.append(line);
-			}
-			return sb.toString();
+			Response response = client.newCall(request).execute();
+			return response.body().string();
 		} catch (IOException e) {
 			logger.error("" + url, e);
+			return ParamUtils.errorParam("出现异常");
 		}
-		return null;
 	}
 
 	public static String httpPost(String url) {
