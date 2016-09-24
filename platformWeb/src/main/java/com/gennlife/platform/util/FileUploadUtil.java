@@ -26,7 +26,7 @@ import java.util.*;
 public class FileUploadUtil {
     public static Logger logger = LoggerFactory.getLogger(FileUploadUtil.class);
     public static Gson gson = GsonUtil.getGson();
-    private static SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
+    private static SimpleDateFormat time=new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
     //文件位置，注意是绝对路径
     private String tempPath = "/home/tomcat_demo2_web/update/";
     //文件后缀
@@ -109,8 +109,6 @@ public class FileUploadUtil {
                         String uploadfilename = "";
                         uploadfilename = tempPath +
                                 name.replaceAll(ext,"") +
-                                "_" +
-                                uuid.toString() +
                                 "_" +
                                 time.format(new Date())
                                 + suffix;

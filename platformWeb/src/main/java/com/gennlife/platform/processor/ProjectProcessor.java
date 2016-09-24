@@ -125,6 +125,7 @@ public class ProjectProcessor {
         ProjectPlan projectPlan = JsonUtils.parseCreatePlan(param,false);
         projectPlan.setPlanStatus(1);//初建状态
         int counter = AllDao.getInstance().getProjectDao().insertProPlan(projectPlan);
+        user = AllDao.getInstance().getSyUserDao().getUserByUid(projectPlan.getCreator());
         ProLog proLog = new ProLog();
         proLog.setProjectID(projectPlan.getProjectID());
         proLog.setPlanName(projectPlan.getPlanName());
