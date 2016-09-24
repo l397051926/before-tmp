@@ -101,7 +101,6 @@ public class FileUploadUtil {
                     if(!suffix.equals(ext)){
                         return ParamUtils.errorParam("文件格式不是.csv");
                     }
-                    UUID uuid = UUID.randomUUID();
                     try {
                         //保存上传的文件到指定的目录
                         //在下文中上传文件至数据库时，将对这里改写
