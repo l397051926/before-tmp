@@ -560,12 +560,15 @@ public class LaboratoryProcessor {
      * @return
      */
     public String deleteRoles(JsonArray paramObj, User user) {
-        List<String> list = null;
         Integer[] paraRoleids = null;
         try{
-            list = gson.fromJson(paramObj,LinkedList.class);
-            paraRoleids = list.toArray(new Integer[list.size()]);
+
+            paraRoleids = new Integer[paramObj.size()];
+            for(int index=0;index < paramObj.size();index ++){
+                paraRoleids[index] = paramObj.get(index).getAsInt();
+            }
         }catch (Exception e){
+            logger.error("",e);
             return ParamUtils.errorParam("参数错误");
         }
         List<Integer> checkedRoleids = new LinkedList<>();

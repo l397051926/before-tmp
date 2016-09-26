@@ -463,4 +463,21 @@ public class CrfController {
         logger.info("自动映射检验上传crf数据  post 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+
+    @RequestMapping(value="/UploadFileForImportCRF",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public @ResponseBody String UploadFileForImportCRF(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("自动映射检验上传crf数据 post方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.uploadFileForImportCRF(paramRe,paramObj);
+        }catch (Exception e){
+            logger.error("自动映射检验上传crf数据",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("自动映射检验上传crf数据  post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }
