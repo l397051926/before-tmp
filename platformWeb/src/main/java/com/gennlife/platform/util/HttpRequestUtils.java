@@ -103,7 +103,7 @@ public class HttpRequestUtils {
 		HttpClient httpClient = HttpClients.createDefault();
 		HttpGet method = new HttpGet(url);
 		try {
-			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(10000).setConnectTimeout(3000).build();
+			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(30000).setConnectTimeout(3000).build();
 			method.setConfig(requestConfig);
 			HttpResponse result = httpClient.execute(method);
 			if (result.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {

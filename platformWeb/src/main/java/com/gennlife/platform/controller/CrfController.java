@@ -470,14 +470,14 @@ public class CrfController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            logger.info("自动映射检验上传crf数据 post方式 参数="+param);
+            logger.info("上传CRF数据文件 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr = processor.uploadFileForImportCRF(paramRe,paramObj);
         }catch (Exception e){
-            logger.error("自动映射检验上传crf数据",e);
+            logger.error("上传CRF数据文件",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("自动映射检验上传crf数据  post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("上传CRF数据文件  post 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 }
