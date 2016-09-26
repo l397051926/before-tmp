@@ -334,4 +334,22 @@ public class BackstageManagementController {
         logger.info("根据资源类型获取资源树 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+    @RequestMapping(value="/UserInfo",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String UserInfo(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            HttpSession session = paramRe.getSession(false);
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            ResultBean resultBean = new ResultBean();
+            resultBean.setCode(1);
+            resultBean.setData(user);
+            return gson.toJson(resultBean);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("无参数获取用户信息 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }
