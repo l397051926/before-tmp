@@ -33,7 +33,7 @@ public class CommonProcessor {
             os.close();
         } catch (FileNotFoundException e) {
             logger.error("",e);
-            view.viewString(ParamUtils.errorParam("目前无导入记录"),response);
+            view.viewString(ParamUtils.errorParam("目前无模版"),response);
         } catch (IOException e) {
             logger.error("",e);
             view.viewString(ParamUtils.errorParam("发生异常"),response);

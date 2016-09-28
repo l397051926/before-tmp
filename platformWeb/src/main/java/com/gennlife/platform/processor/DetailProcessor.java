@@ -21,7 +21,7 @@ public class DetailProcessor {
             String url = ConfigurationService.getUrlBean().getCaseDetailPatientBasicInfoURL();
             logger.info("PatientBasicInfo url="+url);
             String result = HttpRequestUtils.httpPost(url,param);
-            logger.info("PatientBasicInfo result="+url);
+            logger.info("PatientBasicInfo result="+result);
             return result;
         }catch (Exception e){
             return ParamUtils.errorParam("请求出错");
@@ -39,7 +39,7 @@ public class DetailProcessor {
             String url = ConfigurationService.getUrlBean().getCaseGenetic_disease();
             logger.info("GeneticDisease url="+url);
             String result = HttpRequestUtils.httpPost(url,param);
-            logger.info("GeneticDisease result="+url);
+            logger.info("GeneticDisease result="+result);
             return result;
         }catch (Exception e){
             return ParamUtils.errorParam("请求出错");
@@ -59,7 +59,7 @@ public class DetailProcessor {
             String url = ConfigurationService.getUrlBean().getCaseDrug_reaction();
             logger.info("DrugReaction url="+url);
             String result = HttpRequestUtils.httpPost(url,param);
-            logger.info("DrugReaction result="+url);
+            logger.info("DrugReaction result="+result);
             return result;
         }catch (Exception e){
             return ParamUtils.errorParam("请求出错");
@@ -77,7 +77,7 @@ public class DetailProcessor {
             String url= ConfigurationService.getUrlBean().getCaseDetailPatientBasicFigureURL();
             logger.info("PatientBasicFigure url="+url);
             String result = HttpRequestUtils.httpPost(url,param);
-            logger.info("PatientBasicFigure result="+url);
+            logger.info("PatientBasicFigure result="+result);
             return result;
         }catch (Exception e){
             return ParamUtils.errorParam("请求出错");
@@ -94,7 +94,7 @@ public class DetailProcessor {
             String url = ConfigurationService.getUrlBean().getCasePatientBasicTimeAxisURL();
             logger.info("PatientBasicTimeAxis url="+url);
             String result = HttpRequestUtils.httpPost(url,param);
-            logger.info("PatientBasicTimeAxis result="+url);
+            logger.info("PatientBasicTimeAxis result="+result);
             return result;
         }catch (Exception e){
             return ParamUtils.errorParam("请求出错");
@@ -110,7 +110,7 @@ public class DetailProcessor {
             String url = ConfigurationService.getUrlBean().getCasePhysical_examination_list();
             logger.info("ChoicesList url="+url);
             String result = HttpRequestUtils.httpPost(url,param);
-            logger.info("ChoicesList result="+url);
+            logger.info("ChoicesList result="+result);
             return result;
         }catch (Exception e){
             return ParamUtils.errorParam("请求出错");
@@ -158,7 +158,7 @@ public class DetailProcessor {
             String url = ConfigurationService.getUrlBean().getCaseLab_result_item();
             logger.info("LabResultItem url="+url);
             String result = HttpRequestUtils.httpPost(url,param);
-            logger.info("LabResultItem result="+url);
+            logger.info("LabResultItem result="+result);
             return result;
         }catch (Exception e){
             return ParamUtils.errorParam("请求出错");
@@ -174,7 +174,7 @@ public class DetailProcessor {
             String url = ConfigurationService.getUrlBean().getCaseLab_result_item_list();
             logger.info("LabResultItemList url="+url);
             String result = HttpRequestUtils.httpPost(url,param);
-            logger.info("LabResultItemList result="+url);
+            logger.info("LabResultItemList result="+result);
             return result;
         }catch (Exception e){
             return ParamUtils.errorParam("请求出错");
@@ -188,7 +188,7 @@ public class DetailProcessor {
             String url = ConfigurationService.getUrlBean().getCaseCategory_catalog();
             logger.info("CategoryCatalog url="+url);
             String result = HttpRequestUtils.httpPost(url,param);
-            logger.info("CategoryCatalog result="+url);
+            logger.info("CategoryCatalog result="+result);
             return result;
         }catch (Exception e){
             return ParamUtils.errorParam("请求出错");
@@ -200,7 +200,7 @@ public class DetailProcessor {
             String url = ConfigurationService.getUrlBean().getCaseMolecular_detection();
             logger.info("MolecularDetection url="+url);
             String result = HttpRequestUtils.httpPost(url,param);
-            logger.info("MolecularDetection result="+url);
+            logger.info("MolecularDetection result="+result);
             return result;
         }catch (Exception e){
             return ParamUtils.errorParam("请求出错");
@@ -212,7 +212,7 @@ public class DetailProcessor {
             String url = ConfigurationService.getUrlBean().getCaseBiological_specimen();
             logger.info("BiologicalSpecimen url="+url);
             String result = HttpRequestUtils.httpPost(url,param);
-            logger.info("BiologicalSpecimen result="+url);
+            logger.info("BiologicalSpecimen result="+result);
             return result;
         }catch (Exception e){
             return ParamUtils.errorParam("请求出错");
@@ -224,7 +224,7 @@ public class DetailProcessor {
             String url = ConfigurationService.getUrlBean().getCaseExam_result();
             logger.info("ExamResult url="+url);
             String result = HttpRequestUtils.httpPost(url,param);
-            logger.info("ExamResult result="+url);
+            logger.info("ExamResult result="+result);
             return result;
         }catch (Exception e){
             return ParamUtils.errorParam("请求出错");
