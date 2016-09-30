@@ -1,18 +1,27 @@
 package com.gennlife.platform.processor;
 
+import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.projectBean.MyProjectList;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
+import com.gennlife.platform.util.LogUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.ProgressListener;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.*;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -366,8 +375,27 @@ public class CrfProcessor {
         }
     }
 
-    public String uploadFileForImportCRF(HttpServletRequest paramRe, JsonObject paramObj) {
 
-        return null;
+    public String uploadFileForImportCRF(MultipartFile file, String crf_id) {
+        logger.info("File Description:"+crf_id);
+        String fileName = null;
+        if (!file.isEmpty()) {
+            try {
+                fileName = file.getOriginalFilename();
+                byte[] bytes = file.getBytes();
+                BufferedOutputStream buffStream = new BufferedOutputStream(new FileOutputStream(new File("/home/tomcat_demo2_web/crf/" + fileName)));
+                buffStream.write(bytes);
+                buffStream.close();
+                ResultBean re = new ResultBean();
+                re.setCode(1);
+                re.setData(fileName);
+                return gson.toJson(re);
+            } catch (Exception e) {
+                logger.error("",e);
+                return ParamUtils.errorParam("出现异常");
+            }
+        } else {
+            return ParamUtils.errorParam("文件为空");
+        }
     }
 }

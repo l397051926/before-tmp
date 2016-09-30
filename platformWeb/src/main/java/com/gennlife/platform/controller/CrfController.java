@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -464,15 +465,15 @@ public class CrfController {
         return resultStr;
     }
 
+
+
+
     @RequestMapping(value="/UploadFileForImportCRF",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
-    public @ResponseBody String UploadFileForImportCRF(HttpServletRequest paramRe){
+    public @ResponseBody String UploadFileForImportCRF(@RequestParam("file") MultipartFile file, @RequestParam("crf_id") String crf_id){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = ParamUtils.getParam(paramRe);
-            logger.info("上传CRF数据文件 post方式 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.uploadFileForImportCRF(paramRe,paramObj);
+            resultStr = processor.uploadFileForImportCRF(file,crf_id);
         }catch (Exception e){
             logger.error("上传CRF数据文件",e);
             resultStr = ParamUtils.errorParam("出现异常");

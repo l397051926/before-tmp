@@ -35,6 +35,8 @@ public class ConfigurationService {
     private static JsonObject defaultObj = null;
     //全部的搜索列表
     private static JsonObject allObj = null;
+    //比较因子属性列表
+    private static JsonObject compareObj = null;
     private static Gson gson = GsonUtil.getGson();
     public static void init() {
         try{
@@ -62,13 +64,14 @@ public class ConfigurationService {
     }
 
     public static void loadConfigurationInfo() throws IOException {
-        String caseStr = FilesUtils.readFile("/case819bak.json");
+        String caseStr = FilesUtils.readFile("/case.json");
         //logger.info("case.json="+caseStr);
         JsonObject jsonObject = (JsonObject) jsonParser.parse(caseStr);
-        JsonObject caseObj = jsonObject.getAsJsonObject("case");
-        defaultObj = caseObj.getAsJsonObject("default");
-        allObj = caseObj.getAsJsonObject("all");
-        advancedSearch = caseObj.getAsJsonObject("advancedSearch");
+        defaultObj = jsonObject.getAsJsonObject("default");
+        allObj = jsonObject.getAsJsonObject("all");
+        advancedSearch = jsonObject.getAsJsonObject("advancedSearch");
+        compareObj =  jsonObject.getAsJsonObject("compare");
+        importTree = jsonObject.getAsJsonObject("import");
         for(Map.Entry<String, JsonElement> entity:allObj.entrySet()){
             String key = entity.getKey();
             JsonArray object = allObj.getAsJsonArray(key);
@@ -81,7 +84,7 @@ public class ConfigurationService {
             }
 
         }
-        importTree = caseObj.getAsJsonObject("import");
+
         String resourceStr = FilesUtils.readFile("/resourceConfig.json");
         JsonObject resourceConfig = (JsonObject) jsonParser.parse(resourceStr);
         resourceTypeArray = resourceConfig.get("resourceTypeArray").getAsJsonArray();
@@ -120,5 +123,9 @@ public class ConfigurationService {
 
     public static JsonArray getResourceTypeArray(){
         return resourceTypeArray;
+    }
+
+    public static JsonObject getCompareObj() {
+        return compareObj;
     }
 }

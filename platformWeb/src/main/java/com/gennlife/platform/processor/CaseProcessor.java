@@ -41,7 +41,8 @@ public class CaseProcessor {
             if (!"0".equals(status)
                     && !"1".equals(status)
                     && !"2".equals(status)
-                    && !"3".equals(status)) {
+                    && !"3".equals(status)
+                    && !"4".equals(status)) {
                 return ParamUtils.errorParam("status参数出错");
             }
             JsonArray arrange = paramObj.get("arrange").getAsJsonArray();
@@ -103,6 +104,31 @@ public class CaseProcessor {
             resultBean.setData(allNew);
         }else if("3".equals(status)){//更改属性,所有属性,带有搜索功能
             JsonObject all = ConfigurationService.getAllObj();
+            JsonObject allNew = new JsonObject();
+            for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
+                String groupName = obj.getKey();
+                JsonArray items = obj.getValue().getAsJsonArray();
+                JsonArray newGroup = new JsonArray();
+                for (JsonElement json : items) {
+                    JsonObject item = json.getAsJsonObject();
+                    String UIFieldName = item.get("UIFieldName").getAsString();
+                    if ("".equals(keywords) || UIFieldName.contains(keywords)) {
+                        JsonObject itemNew = (JsonObject) jsonParser.parse(gson.toJson(item));
+                        if (!"".equals(keywords)) {
+                            UIFieldName = UIFieldName.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
+                            itemNew.addProperty("UIFieldName", UIFieldName);
+                        }
+                        newGroup.add(itemNew);
+                    }
+                }
+                if (newGroup.size() > 0) {
+                    allNew.add(groupName, newGroup);
+                }
+            }
+            resultBean.setCode(1);
+            resultBean.setData(allNew);
+        }else if("4".equals(status)){//比较因子属性,所有属性,带有搜索功能
+            JsonObject all = ConfigurationService.getCompareObj();
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                 String groupName = obj.getKey();
