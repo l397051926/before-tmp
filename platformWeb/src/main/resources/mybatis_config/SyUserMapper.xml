@@ -205,19 +205,26 @@
 		orgID = #{orgID}
 	</select>
 	<resultMap id="SearchConditionBean" type="com.gennlife.platform.bean.searchConditionBean.SearchConditionBean">
+		<result column="id" property="conditionID" jdbcType="INTEGER" />
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
 		<result column="conditionText" property="conditionStr" jdbcType="VARCHAR" />
 		<result column="logTime" property="logTime" jdbcType="VARCHAR" />
 		<result column="conditionName" property="conditionName" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="SearchConditionSql">
-		conditionText,logTime,conditionName
+		id,uid,conditionText,logTime,conditionName
 	</sql>
 	<select id="searchConditionList" parameterType="map" resultMap="SearchConditionBean">
 		select
 		<include refid="SearchConditionSql" />
 		from searchConditionHistory
 		<where>uid=#{uid} order by logTime desc</where>
+	</select>
+	<select id="findSearchConditionByName" resultType="com.gennlife.platform.bean.searchConditionBean.SearchConditionBean">
+		select
+		<include refid="SearchConditionSql" />
+		from searchConditionHistory
+		<where>uid = #{uid} AND conditionName = #{conditionName} </where>
 	</select>
 	<insert id="insertSearchCondition" parameterType="com.gennlife.platform.bean.searchConditionBean.SearchConditionBean">
 		insert into searchConditionHistory
@@ -250,6 +257,29 @@
 			</if>
 		</trim>
 	</insert>
+	<update id="updateSearchCondition" parameterType="com.gennlife.platform.bean.searchConditionBean.SearchConditionBean">
+		UPDATE
+		searchConditionHistory
+		<set>
+			<if test="conditionStr != null">
+				conditionText = #{conditionStr,jdbcType=VARCHAR},
+			</if>
+			<if test="logTime != null">
+				logTime = #{logTime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE id = #{conditionID,jdbcType=INTEGER}
+	</update>
+
+	<delete id="deleteSearchCondition">
+		DELETE FROM searchConditionHistory
+		WHERE
+		id in
+		<foreach collection="conditionIDs" item="item" index="index" open="(" separator="," close=")">
+			#{item,jdbcType=INTEGER}
+		</foreach>
+	</delete>
+
 
 	<insert id="insertOneUser" parameterType="com.gennlife.platform.model.User">
 		insert into gennlife_user

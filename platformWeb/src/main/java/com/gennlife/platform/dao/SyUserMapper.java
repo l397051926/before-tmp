@@ -116,8 +116,19 @@ public interface SyUserMapper {
      * 保存高级检索公式
      * @param searchConditionBean
      */
-    void insertSearchCondition(SearchConditionBean searchConditionBean);
+    int insertSearchCondition(SearchConditionBean searchConditionBean);
 
+    /**
+     * 更新高级检索公式
+     * @param searchConditionBean
+     */
+    int updateSearchCondition(SearchConditionBean searchConditionBean);
+
+    /**
+     *
+     * @return
+     */
+    List<SearchConditionBean> findSearchConditionByName(@Param("uid")String uid,@Param("conditionName")String conditionName);
 
     /**
      * 增加一个用户
@@ -174,6 +185,8 @@ public interface SyUserMapper {
      * @return
      */
     int getUserByRoleIDCounter(Integer roleid);
+
+    int deleteSearchCondition(@Param("conditionIDs") Integer[] conditionIDs);
 
 
     /**

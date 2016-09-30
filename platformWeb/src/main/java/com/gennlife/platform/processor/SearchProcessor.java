@@ -9,6 +9,7 @@ import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
@@ -119,15 +120,20 @@ public class SearchProcessor {
             searchConditionBean.setUid(uid);
             searchConditionBean.setConditionStr(conditionStr);
             searchConditionBean.setConditionName(conditionName);
-            AllDao.getInstance().getSyUserDao().insertSearchCondition(searchConditionBean);
+            int counter = AllDao.getInstance().getSyUserDao().insertSearchCondition(searchConditionBean);
+            if(counter == 1){
+                ResultBean resultBean = new ResultBean();
+                resultBean.setCode(1);
+                resultBean.setData("保存完成");
+                return gson.toJson(resultBean);
+            }else{
+                return ParamUtils.errorParam("插入失败");
+            }
         }catch (Exception e){
             logger.error("",e);
             return ParamUtils.errorParam("服务异常");
         }
-        ResultBean resultBean = new ResultBean();
-        resultBean.setCode(1);
-        resultBean.setData("保存完成");
-        return gson.toJson(resultBean);
+
     }
 
     /**
@@ -144,7 +150,7 @@ public class SearchProcessor {
             return ParamUtils.errorParam("请求参数异常");
         }
         try{
-            List<SearchConditionBean> list = AllDao.getInstance().getSyUserDao().searchConditionList(uid);;
+            List<SearchConditionBean> list = AllDao.getInstance().getSyUserDao().searchConditionList(uid);
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
             resultBean.setData(list);
@@ -155,5 +161,74 @@ public class SearchProcessor {
         }
 
 
+    }
+
+    public String updateSearchCondition(JsonObject paramObj) {
+        String uid = null;
+        String conditionStr = null;
+        String conditionName = null;
+        Integer conditionID = null;
+        try{
+            uid = paramObj.get("uid").getAsString();
+            conditionStr = paramObj.get("conditionStr").getAsString();
+            conditionName = paramObj.get("conditionName").getAsString();
+            conditionID = paramObj.get("conditionID").getAsInt();
+        }catch (Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("请求参数异常");
+        }
+        try{
+            List<SearchConditionBean> list = AllDao.getInstance().getSyUserDao().searchConditionList(uid);
+            boolean flag = false;
+            for(SearchConditionBean searchConditionBean:list){
+                if(searchConditionBean.getConditionID() != conditionID
+                        && searchConditionBean.getConditionName().equals(conditionName)){
+                    flag = true;
+                }
+            }
+            if(flag){
+                return ParamUtils.errorParam("名称重复");
+            }
+            SearchConditionBean searchConditionBean = new SearchConditionBean();
+            searchConditionBean.setLogTime(df.format(new Date()));
+            searchConditionBean.setUid(uid);
+            searchConditionBean.setConditionStr(conditionStr);
+            searchConditionBean.setConditionName(conditionName);
+            searchConditionBean.setConditionID(conditionID);
+            int counter = AllDao.getInstance().getSyUserDao().updateSearchCondition(searchConditionBean);
+            if(counter == 1){
+                ResultBean resultBean = new ResultBean();
+                resultBean.setCode(1);
+                resultBean.setData("更新完成");
+                return gson.toJson(resultBean);
+            }else {
+                return ParamUtils.errorParam("更新失败");
+            }
+        }catch (Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("服务异常");
+        }
+
+    }
+
+    public String deleteSearchCondition(JsonArray paramObj) {
+        Integer[]  conditionIDs= null;
+        try{
+            conditionIDs = new Integer[paramObj.size()];
+            for(int index=0;index < paramObj.size();index ++){
+                conditionIDs[index] = paramObj.get(index).getAsInt();
+            }
+        }catch (Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("参数错误");
+        }
+        int counter =  AllDao.getInstance().getSyUserDao().deleteSearchCondition(conditionIDs);
+        Map<String,Object> map = new HashMap<>();
+        map.put("success",counter);
+        map.put("fail",paramObj.size() - counter);
+        ResultBean re = new ResultBean();
+        re.setCode(1);
+        re.setData(map);
+        return gson.toJson(re);
     }
 }

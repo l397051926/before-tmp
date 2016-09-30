@@ -3,6 +3,7 @@ package com.gennlife.platform.controller;
 
 import com.gennlife.platform.processor.SearchProcessor;
 import com.gennlife.platform.util.ParamUtils;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
@@ -101,6 +102,41 @@ public class SearchController extends HttpServlet {
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("搜索条件保存 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value="/UpdateSearchCondition",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String UpdateSearchCondition(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.updateSearchCondition(paramObj);
+            logger.info("搜索条件更新 post 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("搜索条件更新 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/DeleteSearchCondition",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String DeleteSearchCondition(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            JsonArray paramObj = (JsonArray) jsonParser.parse(param);
+            resultStr =  processor.deleteSearchCondition(paramObj);
+            logger.info("搜索条件删除 post 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("搜索条件删除 post 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 
