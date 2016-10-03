@@ -33,32 +33,6 @@ public class FileUploadUtil {
     static{
         tempPath = ConfigurationService.getFileBean().getManageFileLocation();
     }
-    //文件后缀
-    private String suffix = ".csv";
-    //获取的上传请求
-    private HttpServletRequest fileuploadReq = null;
-    //设置最多只允许在内存中存储的数据,单位:字节，这个参数不要设置太大
-    private int sizeThreshold = 4096;
-    //设置允许用户上传文件大小,单位:字节
-    //共10M
-    private long sizeMax = 10485760;
-    //图片文件序号
-    private int picSeqNo = 1;
-
-    public FileUploadUtil() {
-    }
-
-    public FileUploadUtil(String tempPath) {
-        this.tempPath = tempPath;
-    }
-
-    public FileUploadUtil(String tempPath, String suffix ,HttpServletRequest fileuploadRequest) {
-        this.tempPath = tempPath;
-        this.suffix = suffix;
-        this.fileuploadReq = fileuploadRequest;
-
-    }
-
     /**
      * 文件上载
      *
@@ -67,7 +41,7 @@ public class FileUploadUtil {
     public String Upload(String from,String labImportsuffix) {
         DiskFileItemFactory factory = new DiskFileItemFactory();
         try {
-            HttpSession session = fileuploadReq.getSession();
+            HttpSession session = null;
             if(session == null){
                 return ParamUtils.errorParam("当前session已经失效");
             }
@@ -78,59 +52,20 @@ public class FileUploadUtil {
             String orgID = user.getOrgID();
             //如果没有临时目录，则创建它
             FilesUtils.makeDirectory(tempPath);
-            //上传项目只要足够小，就应该保留在内存里。
-            //较大的项目应该被写在硬盘的临时文件上。
-            //非常大的上传请求应该避免。
-            //限制项目在内存中所占的空间，限制最大的上传请求，并且设定临时文件的位置。
-            //设置最多只允许在内存中存储的数据,单位:字节
-            factory.setSizeThreshold(sizeThreshold);
+
             // the location for saving data that is larger than getSizeThreshold()
             factory.setRepository(new File(tempPath));
             ServletFileUpload upload = new ServletFileUpload(factory);
             //设置允许用户上传文件大小,单位:字节
-            upload.setSizeMax(sizeMax);
-            List fileItems = upload.parseRequest(fileuploadReq);
-            Iterator iter = fileItems.iterator();
+
+
             List<File> fileList = new LinkedList<>();
-            while (iter.hasNext()) {
-                FileItem item = (FileItem) iter.next();
-                //忽略其他不是文件域的所有表单信息
-                if (!item.isFormField()) {
-                    String name = item.getName();
-                    long size = item.getSize();
-                    //有多个文件域时，只上传有文件的
-                    if ((name == null || name.equals("")) && size == 0)
-                        continue;
-                    String ext = "." + FilesUtils.getTypePart(name);
-                    if(!suffix.equals(ext)){
-                        return ParamUtils.errorParam("文件格式不是.csv");
-                    }
-                    try {
-                        //保存上传的文件到指定的目录
-                        //在下文中上传文件至数据库时，将对这里改写
-                        //没有指定新文件名时以原文件名来命名
-                        String uploadfilename = "";
-                        uploadfilename = tempPath +
-                                name.replaceAll(ext,"") +
-                                "_" +
-                                time.format(new Date())
-                                + suffix;
-                        FilesUtils.makeDirectory(uploadfilename);
-                        File file = new File(uploadfilename);
-                        fileList.add(file);
-                        item.write(file);
-                        picSeqNo++;
-                    } catch (Exception e) {
-                        logger.error("",e);
-                        throw new IOException(e.getMessage());
-                    }
-                }
-            }
+
             String str = null;
             if("导入科室".equals(from)){
-                str = handleLab(fileList,orgID,user,labImportsuffix);
+                str = handleLab(fileList,user);
             }else if("导入人员".equals(from)){
-                str = handleStaff(fileList,orgID,user,labImportsuffix);
+                str = handleStaff(fileList,user);
             }else{
                 str = from;
             }
@@ -150,19 +85,19 @@ public class FileUploadUtil {
         }
     }
 
-    private String handleStaff(List<File> fileList, String orgID,User user,String labImportsuffix) throws Exception {
-        List<String> list = importsStaffs(fileList,orgID,user);
-        File orgIDImportResultFile =new File(tempPath + user.getOrg_name() +labImportsuffix);
+    public static String handleStaff(List<File> fileList,User user) throws Exception {
+        List<String> list = importsStaffs(fileList,user.getOrgID(),user);
+        File orgIDImportResultFile =new File(tempPath + user.getOrg_name() +"导入人员历史.csv");
         return writeResultFile(list,orgIDImportResultFile);
     }
 
 
 
-    private String writeResultFile(List<String> list,File orgIDImportResultFile) throws IOException {
+    public static  String writeResultFile(List<String> list,File orgIDImportResultFile) throws IOException {
         if(!orgIDImportResultFile.exists()){
             orgIDImportResultFile.createNewFile();
         }
-        FileWriter fw = new FileWriter(orgIDImportResultFile);
+        PrintWriter fw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(orgIDImportResultFile),"GB2312")));
         int insert = 0;
         int fail = 0;
         int update = 0;
@@ -193,7 +128,7 @@ public class FileUploadUtil {
         return gson.toJson(resultBean);
     }
 
-    private List<String> importsStaffs(List<File> fileList, String orgID, User user) throws Exception {
+    public static List<String> importsStaffs(List<File> fileList, String orgID, User user) throws Exception {
         List<String> strList = readFiles(fileList);
         List<String> srcList = new LinkedList<>();
         Map<String,Integer> map = new HashMap<>();
@@ -333,9 +268,9 @@ public class FileUploadUtil {
 
     }
 
-    private String handleLab(List<File> fileList, String orgID,User user,String labImportsuffix) throws Exception {
-        List<String> list = importLabs(fileList,orgID,user.getUid());
-        File orgIDImportResultFile =new File(tempPath + user.getOrg_name() +labImportsuffix);
+    public static String handleLab(List<File> fileList,User user) throws Exception {
+        List<String> list = importLabs(fileList,user.getOrgID(),user.getUid());
+        File orgIDImportResultFile =new File(tempPath + user.getOrg_name() +"导入科室历史.csv");
         return writeResultFile(list,orgIDImportResultFile);
     }
 
@@ -346,33 +281,14 @@ public class FileUploadUtil {
         this.tempPath = tmppath;
     }
 
-    /**
-     * 设置最大上传文件字节数，不设置时默认10M
-     */
-    public void setFileMaxSize(long maxsize) {
-        this.sizeMax = maxsize;
-    }
 
-    /**
-     * 设置Http 请求参数，通过这个能数来获取文件信息
-     */
-    public void setHttpReq(HttpServletRequest httpreq) {
-        this.fileuploadReq = httpreq;
-    }
-
-    /**
-     * 设置Http 请求参数，通过这个能数来获取文件信息
-     */
-    public void setPicSeqNo(int seqNo) {
-        this.picSeqNo = seqNo;
-    }
 
     /**
      * 通过文件列表,将导入科室信息导入到orgID当中
      * @param fileList
      * @param orgID
      */
-    private List<String> importLabs(List<File> fileList,String orgID,String uid) throws Exception {
+    public static  List<String> importLabs(List<File> fileList,String orgID,String uid) throws Exception {
         List<String> strList = readFiles(fileList);
         List<String> srcList = new LinkedList<>();
         List<Lab> newList = new LinkedList<>();
@@ -487,7 +403,7 @@ public class FileUploadUtil {
      * @param sortList
      * @return
      */
-    private Lab getLabByNameFilter(String lab_name, List<Lab> sortList) {
+    public static Lab getLabByNameFilter(String lab_name, List<Lab> sortList) {
         for(Lab lab:sortList){
             if(lab.status == null && lab_name.equals(lab.getLab_name())){
                 return lab;
@@ -497,7 +413,7 @@ public class FileUploadUtil {
     }
 
 
-    private Lab getLabByName(String name,List<Lab> labs){
+    public static Lab getLabByName(String name,List<Lab> labs){
         for(Lab lab:labs){
             if(lab.getLab_name().equals(name)){
                 return lab;
@@ -514,7 +430,7 @@ public class FileUploadUtil {
         }
         return null;
     }
-    private List<Lab> sortnewLabs(List<Lab> newlabs,String orgID){
+    public static List<Lab> sortnewLabs(List<Lab> newlabs,String orgID){
         List<Lab> sort = new LinkedList<>();
         List<Lab> labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
         Map<String,String> namesMap = new HashMap<>();
@@ -572,7 +488,7 @@ public class FileUploadUtil {
      * @param sort
      * @return
      */
-    private String getLabID(String name, String orgID,List<Lab> sort) {
+    public static String getLabID(String name, String orgID,List<Lab> sort) {
         String labID = orgID + "-" + ChineseToEnglish.getPingYin(name);
         int counter = 0;
         while(true){
@@ -591,7 +507,7 @@ public class FileUploadUtil {
         }
         return labID;
     }
-    private List<String> readFiles(List<File> fileList) throws Exception {
+    public static  List<String> readFiles(List<File> fileList) throws Exception {
         BufferedReader reader = null;
         List<String> strList = new LinkedList<>();
         for(File file:fileList){

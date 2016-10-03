@@ -1,13 +1,19 @@
 package com.gennlife.platform.processor;
 
 import com.gennlife.platform.model.User;
+import com.gennlife.platform.service.ConfigurationService;
+import com.gennlife.platform.util.FileUploadUtil;
+import com.gennlife.platform.util.LogUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by chen-song on 16/9/15.
@@ -19,15 +25,6 @@ public class CommonProcessor {
     public void downLoadFile(String pathfile ,HttpServletResponse response,String fileName){
         try {
             fileName = new String(fileName.getBytes("GBK"), "iso-8859-1");
-            /*
-            DataInputStream in = new DataInputStream(new FileInputStream(new File(pathfile)));
-            BufferedReader br= new BufferedReader(new InputStreamReader(in));
-            String temp = null;
-            StringBuffer stringBuffer = new StringBuffer();
-            while((temp=br.readLine()) != null){
-                stringBuffer.append(temp).append("\n");
-            }
-            */
             response.reset();
             response.setContentType("application/msexcel");
             response.setCharacterEncoding("utf-8");
@@ -38,7 +35,6 @@ public class CommonProcessor {
             int bytesRead;
             while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
                 os.write(buff, 0, bytesRead);
-
             }
             os.flush();
             os.close();
@@ -49,6 +45,41 @@ public class CommonProcessor {
         } catch (IOException e) {
             logger.error("",e);
             view.viewString(ParamUtils.errorParam("发生异常"),response);
+        }
+    }
+
+    public String uploadFileForImportStaff(MultipartFile file,User user) {
+        try{
+            String fileName = file.getOriginalFilename();
+            byte[] bytes = file.getBytes();
+            String path = ConfigurationService.getFileBean().getManageFileLocation();
+            File f = new File(path + LogUtils.getString_Time()+"-"+fileName);
+            BufferedOutputStream buffStream = new BufferedOutputStream(new FileOutputStream(f));
+            buffStream.write(bytes);
+            buffStream.close();
+            List<File> list = new LinkedList<>();
+            list.add(f);
+            return FileUploadUtil.handleStaff(list,user);
+        }catch (Exception e){
+            return ParamUtils.errorParam("出现异常");
+        }
+    }
+
+
+    public String uploadFileForImportLab(MultipartFile file,User user) {
+        try{
+            String fileName = file.getOriginalFilename();
+            byte[] bytes = file.getBytes();
+            String path = ConfigurationService.getFileBean().getManageFileLocation();
+            File f = new File(path + LogUtils.getString_Time()+"-"+fileName);
+            BufferedOutputStream buffStream = new BufferedOutputStream(new FileOutputStream(f));
+            buffStream.write(bytes);
+            buffStream.close();
+            List<File> list = new LinkedList<>();
+            list.add(f);
+            return FileUploadUtil.handleLab(list,user);
+        }catch (Exception e){
+            return ParamUtils.errorParam("出现异常");
         }
     }
 }

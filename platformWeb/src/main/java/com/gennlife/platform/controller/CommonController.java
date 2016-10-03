@@ -12,9 +12,8 @@ import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,12 +38,13 @@ public class CommonController  {
     //后缀
     private static String suffix = ".csv";
     @RequestMapping(value="/UploadFileForImportLab",method= RequestMethod.POST)
-    public @ResponseBody String postChain(HttpServletRequest paramRe){
+    public @ResponseBody String postUploadFileForImportLab(@RequestParam("file") MultipartFile file,HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = "";
-        FileUploadUtil fileUploadUtil = new FileUploadUtil(FilePath,suffix,paramRe);
         try{
-            resultStr = fileUploadUtil.Upload("导入科室",labImportsuffix);
+            HttpSession session = paramRe.getSession();
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            resultStr = processor.uploadFileForImportLab(file,user);
             logger.info("上传文件导入科室 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }catch (Exception e){
             logger.error("",e);
@@ -62,12 +62,13 @@ public class CommonController  {
     }
 
     @RequestMapping(value="/UploadFileForImportStaff",method= RequestMethod.POST)
-    public @ResponseBody String postUploadFileForImportStaff(HttpServletRequest paramRe){
+    public @ResponseBody String postUploadFileForImportStaff(@RequestParam("file") MultipartFile file,HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = "";
-        FileUploadUtil fileUploadUtil = new FileUploadUtil(FilePath,suffix,paramRe);
         try{
-            resultStr = fileUploadUtil.Upload("导入人员",staffImportsuffix);
+            HttpSession session = paramRe.getSession();
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            resultStr = processor.uploadFileForImportStaff(file,user);
             logger.info("上传文件导入人员 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }catch (Exception e){
             logger.error("",e);
