@@ -261,6 +261,9 @@
 		UPDATE
 		searchConditionHistory
 		<set>
+			<if test="conditionName != null">
+				conditionName = #{conditionName,jdbcType=VARCHAR},
+			</if>
 			<if test="conditionStr != null">
 				conditionText = #{conditionStr,jdbcType=VARCHAR},
 			</if>
