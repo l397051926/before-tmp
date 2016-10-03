@@ -156,7 +156,7 @@
       #{stype,jdbcType=VARCHAR},
       #{slab_name,jdbcType=VARCHAR},
       #{sorgID,jdbcType=VARCHAR},
-      #{slab_parant,jdbcType=VARCHAR},
+      #{slab_parent,jdbcType=VARCHAR},
       <if test="slab_type != null" >
         #{slab_type,jdbcType=VARCHAR},
       </if>
