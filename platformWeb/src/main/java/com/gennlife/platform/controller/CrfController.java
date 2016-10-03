@@ -481,4 +481,20 @@ public class CrfController {
         logger.info("上传CRF数据文件  post 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+
+
+    @RequestMapping(value="/ImportCRFMap",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public @ResponseBody String ImportCRFMap(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            resultStr = processor.importCRFMap(param);
+        }catch (Exception e){
+            logger.error("导入CRF导入配置",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("导入CRF导入配置  post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }

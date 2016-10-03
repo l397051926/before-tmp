@@ -1,5 +1,6 @@
 package com.gennlife.platform.service;
 
+import com.gennlife.platform.configuration.FileBean;
 import com.gennlife.platform.configuration.URLBean;
 import com.gennlife.platform.util.FilesUtils;
 import com.gennlife.platform.util.GsonUtil;
@@ -22,6 +23,8 @@ public class ConfigurationService {
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationService.class);
     private static JsonParser jsonParser = new JsonParser();
     private static URLBean urlBean = null;
+    private static FileBean fileBean = null;
+
     //全量属性的jsonobject
     private static List<JsonObject> allList = new LinkedList<JsonObject>();
     //index name,ui name
@@ -42,6 +45,7 @@ public class ConfigurationService {
         try{
             ApplicationContext context = SpringContextUtil.getApplicationContext();
             urlBean = (URLBean) context.getBean("com.gennlife.platform.configuration.URLBean");
+            fileBean = (FileBean) context.getBean("FileLocation");
             logger.info("新的搜索后端接口:"+urlBean.getCaseSearchURL());
             logger.info("详情页患者基础信息接口:"+urlBean.getCaseDetailPatientBasicInfoURL());
             logger.info("基本统计图形&筛选条件:"+urlBean.getCaseDetailPatientBasicFigureURL());
@@ -127,5 +131,9 @@ public class ConfigurationService {
 
     public static JsonObject getCompareObj() {
         return compareObj;
+    }
+
+    public static FileBean getFileBean(){
+        return fileBean;
     }
 }

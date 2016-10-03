@@ -18301,45 +18301,31 @@
     ]
   },
   "compare": {
-    "就诊.放疗": [
+    "患者基本信息": [
       {
-        "UIFieldName": "开始日期",
-        "IndexFieldName": "visits.radiotherapy.START_DATE",
-        "srchFieldName": "就诊.放疗.开始日期",
+        "UIFieldName": "出生日期",
+        "IndexFieldName": "patient_info.BIRTH_DATE",
+        "srchFieldName": "患者基本信息.出生日期",
         "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      },
-      {
-        "UIFieldName": "结束日期",
-        "IndexFieldName": "visits.radiotherapy.END_DATE",
-        "srchFieldName": "就诊.放疗.结束日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+        "dateFormat": "yyyy"
       }
     ],
-    "就诊.病理检查报告": [
+    "确诊入院基本信息": [
       {
-        "UIFieldName": "收到日期",
-        "IndexFieldName": "visits.pathology_reports.RECEIVE_DATE",
-        "srchFieldName": "就诊.病理检查报告.收到日期",
+        "UIFieldName": "入院时间",
+        "IndexFieldName": "inpatient_basic_info.INPATIENT_DATE",
+        "srchFieldName": "确诊入院基本信息.入院时间",
         "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      },
-      {
-        "UIFieldName": "报告日期",
-        "IndexFieldName": "visits.pathology_reports.REPORT_DATE",
-        "srchFieldName": "就诊.病理检查报告.报告日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
+        "dateFormat": ""
       }
     ],
-    "就诊.手术.术前小结": [
+    "首次手术信息": [
       {
-        "UIFieldName": "记录时间",
-        "IndexFieldName": "visits.operation.pre_summary.RECORD_DATE",
-        "srchFieldName": "就诊.手术.术前小结.记录时间",
+        "UIFieldName": "手术日期",
+        "IndexFieldName": "First_surgery.SURGERY_DATE",
+        "srchFieldName": "首次手术信息.手术日期",
         "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+        "dateFormat": "yyyy-MM-dd"
       }
     ],
     "首次术后治疗": [
@@ -18358,265 +18344,20 @@
         "dateFormat": "yyyy-MM-dd"
       }
     ],
-    "就诊.三导全息动态心电图报告": [
+    "一线免疫治疗": [
       {
-        "UIFieldName": "检查日期",
-        "IndexFieldName": "visits.electrocardiographic_reports.DATE",
-        "srchFieldName": "就诊.三导全息动态心电图报告.检查日期",
+        "UIFieldName": "治疗开始时间",
+        "IndexFieldName": "FIRST_LINE_IMMUNOTHERAPY.IMMUNOTHERAPY_BEGINNING_TIME",
+        "srchFieldName": "一线免疫治疗.治疗开始时间",
         "dataType": "date",
         "dateFormat": "yyyy-MM-dd"
       },
       {
-        "UIFieldName": "报告日期",
-        "IndexFieldName": "visits.electrocardiographic_reports.REPORT_DATE",
-        "srchFieldName": "就诊.三导全息动态心电图报告.报告日期",
+        "UIFieldName": "治疗结束时间",
+        "IndexFieldName": "FIRST_LINE_IMMUNOTHERAPY.IMMUNOTHERAPY_END_TIME",
+        "srchFieldName": "一线免疫治疗.治疗结束时间",
         "dataType": "date",
         "dateFormat": "yyyy-MM-dd"
-      }
-    ],
-    "就诊.超声诊断报告": [
-      {
-        "UIFieldName": "就诊日期",
-        "IndexFieldName": "visits.ultrasonic_diagnosis_reports.VISIT_DATE",
-        "srchFieldName": "就诊.超声诊断报告.就诊日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      },
-      {
-        "UIFieldName": "报告日期",
-        "IndexFieldName": "visits.ultrasonic_diagnosis_reports.REPORT_DATE",
-        "srchFieldName": "就诊.超声诊断报告.报告日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      }
-    ],
-    "标本信息.血液采集信息": [
-      {
-        "UIFieldName": "采血时间",
-        "IndexFieldName": "specimen_info.blood_collection_info.COLLECTION_DATE",
-        "srchFieldName": "标本信息.血液采集信息.采血时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      }
-    ],
-    "就诊.细胞病理学检查": [
-      {
-        "UIFieldName": "收到日期",
-        "IndexFieldName": "visits.cell_pathology_reports.RECEIVE_DATE",
-        "srchFieldName": "就诊.细胞病理学检查.收到日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      },
-      {
-        "UIFieldName": "报告日期",
-        "IndexFieldName": "visits.cell_pathology_reports.REPORT_DATE",
-        "srchFieldName": "就诊.细胞病理学检查.报告日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      }
-    ],
-    "就诊.入院记录": [
-      {
-        "UIFieldName": "入院日期",
-        "IndexFieldName": "visits.admissions_records.HOSPITAL_ADMISSION_DATE",
-        "srchFieldName": "就诊.入院记录.入院日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      },
-      {
-        "UIFieldName": "记录日期",
-        "IndexFieldName": "visits.admissions_records.RECORD_DATE",
-        "srchFieldName": "就诊.入院记录.记录日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      }
-    ],
-    "就诊.镜检报告": [
-      {
-        "UIFieldName": "检查日期",
-        "IndexFieldName": "visits.microscopic_exam_reports.EXAMINATION_DATE",
-        "srchFieldName": "就诊.镜检报告.检查日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      },
-      {
-        "UIFieldName": "报告日期",
-        "IndexFieldName": "visits.microscopic_exam_reports.REPORT_DATE",
-        "srchFieldName": "就诊.镜检报告.报告日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      }
-    ],
-    "就诊.检验报告": [
-      {
-        "UIFieldName": "医嘱时间",
-        "IndexFieldName": "visits.inspection_reports.ORDER_TIME",
-        "srchFieldName": "就诊.检验报告.医嘱时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      },
-      {
-        "UIFieldName": "采集时间",
-        "IndexFieldName": "visits.inspection_reports.ACQUISITION_TIME",
-        "srchFieldName": "就诊.检验报告.采集时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      },
-      {
-        "UIFieldName": "接收时间",
-        "IndexFieldName": "visits.inspection_reports.RECEIVE_TIME",
-        "srchFieldName": "就诊.检验报告.接收时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      },
-      {
-        "UIFieldName": "报告时间",
-        "IndexFieldName": "visits.inspection_reports.REPORT_TIME",
-        "srchFieldName": "就诊.检验报告.报告时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      }
-    ],
-    "就诊.死亡小结": [
-      {
-        "UIFieldName": "记录时间",
-        "IndexFieldName": "visits.death_summary.RECORD_DATE",
-        "srchFieldName": "就诊.死亡小结.记录时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      }
-    ],
-    "就诊.肺功能检查报告": [
-      {
-        "UIFieldName": "检查日期",
-        "IndexFieldName": "visits.lung_functional_exam.DATE",
-        "srchFieldName": "就诊.肺功能检查报告.检查日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      },
-      {
-        "UIFieldName": "检查时间",
-        "IndexFieldName": "visits.lung_functional_exam.TIME",
-        "srchFieldName": "就诊.肺功能检查报告.检查时间",
-        "dataType": "date",
-        "dateFormat": "HH:mm:ss"
-      },
-      {
-        "UIFieldName": "报告日期",
-        "IndexFieldName": "visits.lung_functional_exam.REPORT_DATE",
-        "srchFieldName": "就诊.肺功能检查报告.报告日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      }
-    ],
-    "就诊.护理.护理医嘱": [
-      {
-        "UIFieldName": "开嘱时间",
-        "IndexFieldName": "visits.nurse.orders.ORDER_START_TIME",
-        "srchFieldName": "就诊.护理.护理医嘱.开嘱时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      },
-      {
-        "UIFieldName": "医嘱停止时间",
-        "IndexFieldName": "visits.nurse.orders.ORDER_END_TIME",
-        "srchFieldName": "就诊.护理.护理医嘱.医嘱停止时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      },
-      {
-        "UIFieldName": "医嘱确认时间",
-        "IndexFieldName": "visits.nurse.orders.CONFIRM_TIME",
-        "srchFieldName": "就诊.护理.护理医嘱.医嘱确认时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      },
-      {
-        "UIFieldName": "停止时间",
-        "IndexFieldName": "visits.nurse.orders.STOP_TIME",
-        "srchFieldName": "就诊.护理.护理医嘱.停止时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      }
-    ],
-    "就诊.死亡病例讨论记录": [
-      {
-        "UIFieldName": "入院日期",
-        "IndexFieldName": "visits.death_discuss_records.HOSPITAL_ADMISSION_DATE",
-        "srchFieldName": "就诊.死亡病例讨论记录.入院日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      },
-      {
-        "UIFieldName": "死亡时间",
-        "IndexFieldName": "visits.death_discuss_records.DEATH_DATE",
-        "srchFieldName": "就诊.死亡病例讨论记录.死亡时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      },
-      {
-        "UIFieldName": "病例讨论日期",
-        "IndexFieldName": "visits.death_discuss_records.DISCUSS_DATE",
-        "srchFieldName": "就诊.死亡病例讨论记录.病例讨论日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      }
-    ],
-    "就诊.手术.麻醉": [
-      {
-        "UIFieldName": "麻醉准备时间",
-        "IndexFieldName": "visits.operation.anesthesia.PREPARE_TIME",
-        "srchFieldName": "就诊.手术.麻醉.麻醉准备时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      },
-      {
-        "UIFieldName": "麻醉开始时间",
-        "IndexFieldName": "visits.operation.anesthesia.START_TIME",
-        "srchFieldName": "就诊.手术.麻醉.麻醉开始时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      },
-      {
-        "UIFieldName": "麻醉结束时间",
-        "IndexFieldName": "visits.operation.anesthesia.END_TIME",
-        "srchFieldName": "就诊.手术.麻醉.麻醉结束时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      }
-    ],
-    "就诊.主任主治医师查房记录": [
-      {
-        "UIFieldName": "记录时间",
-        "IndexFieldName": "visits.attending_physician_rounds_record.RECORD_DATE",
-        "srchFieldName": "就诊.主任主治医师查房记录.记录时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      }
-    ],
-    "就诊.诊断": [
-      {
-        "UIFieldName": "诊断日期",
-        "IndexFieldName": "visits.diagnose.DIAGNOSTIC_DATE",
-        "srchFieldName": "就诊.诊断.诊断日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      }
-    ],
-    "就诊.出院记录": [
-      {
-        "UIFieldName": "入院日期",
-        "IndexFieldName": "visits.discharge_records.HOSPITAL_ADMISSION_DATE",
-        "srchFieldName": "就诊.出院记录.入院日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      },
-      {
-        "UIFieldName": "出院日期",
-        "IndexFieldName": "visits.discharge_records.HOSPITAL_DISCHARGE_DATE",
-        "srchFieldName": "就诊.出院记录.出院日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
       }
     ],
     "二线免疫治疗": [
@@ -18635,22 +18376,22 @@
         "dateFormat": "yyyy-MM-dd"
       }
     ],
-    "确诊入院基本信息": [
+    "一线靶向治疗": [
       {
-        "UIFieldName": "入院时间",
-        "IndexFieldName": "inpatient_basic_info.INPATIENT_DATE",
-        "srchFieldName": "确诊入院基本信息.入院时间",
+        "UIFieldName": "用药开始时间",
+        "IndexFieldName": "FIRST_LINE_TARGETED_THERAPY.START_DATE_OF_DRUG",
+        "srchFieldName": "一线靶向治疗.用药开始时间",
         "dataType": "date",
-        "dateFormat": ""
+        "dateFormat": "yyyy-MM-dd"
       }
     ],
-    "就诊.抢救记录": [
+    "二线靶向治疗": [
       {
-        "UIFieldName": "记录时间",
-        "IndexFieldName": "visits.rescue_record.RECORD_DATE",
-        "srchFieldName": "就诊.抢救记录.记录时间",
+        "UIFieldName": "用药开始时间",
+        "IndexFieldName": "SECOND_LINE_TARGETED_THERAPY.START_DATE_OF_DRUG",
+        "srchFieldName": "二线靶向治疗.用药开始时间",
         "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+        "dateFormat": "yyyy-MM-dd"
       }
     ],
     "手术随访": [
@@ -18665,195 +18406,6 @@
         "UIFieldName": "随访日期",
         "IndexFieldName": "SURGERY_FOLLOW_UP.FOLLOW_UP_DATE",
         "srchFieldName": "手术随访.随访日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      }
-    ],
-    "就诊.护理.护理操作": [
-      {
-        "UIFieldName": "护理操作时间",
-        "IndexFieldName": "visits.nurse.operation.NURSE_OP_TIME",
-        "srchFieldName": "就诊.护理.护理操作.护理操作时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      }
-    ],
-    "就诊.影像学检查诊断报告": [
-      {
-        "UIFieldName": "检查日期",
-        "IndexFieldName": "visits.imaging_exam_diagnosis_reports.EXAMINATION_DATE",
-        "srchFieldName": "就诊.影像学检查诊断报告.检查日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      },
-      {
-        "UIFieldName": "报告日期",
-        "IndexFieldName": "visits.imaging_exam_diagnosis_reports.REPORT_DATE",
-        "srchFieldName": "就诊.影像学检查诊断报告.报告日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      }
-    ],
-    "就诊.病案首页": [
-      {
-        "UIFieldName": "出生日期",
-        "IndexFieldName": "visits.medical_record_home_page.BIRTH_DATE",
-        "srchFieldName": "就诊.病案首页.出生日期",
-        "dataType": "date",
-        "dateFormat": "yyyy"
-      }
-    ],
-    "就诊.病程记录": [
-      {
-        "UIFieldName": "记录时间",
-        "IndexFieldName": "visits.course_record.RECORD_DATE",
-        "srchFieldName": "就诊.病程记录.记录时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      }
-    ],
-    "一线靶向治疗": [
-      {
-        "UIFieldName": "用药开始时间",
-        "IndexFieldName": "FIRST_LINE_TARGETED_THERAPY.START_DATE_OF_DRUG",
-        "srchFieldName": "一线靶向治疗.用药开始时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      }
-    ],
-    "就诊.化疗": [
-      {
-        "UIFieldName": "开始日期",
-        "IndexFieldName": "visits.chemotherapy.START_DATE",
-        "srchFieldName": "就诊.化疗.开始日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      },
-      {
-        "UIFieldName": "结束日期",
-        "IndexFieldName": "visits.chemotherapy.END_DATE",
-        "srchFieldName": "就诊.化疗.结束日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      }
-    ],
-    "就诊.就诊基本信息": [
-      {
-        "UIFieldName": "挂号日期",
-        "IndexFieldName": "visits.visit_info.REGISTERED_DATE",
-        "srchFieldName": "就诊.就诊基本信息.挂号日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      },
-      {
-        "UIFieldName": "入院（就诊）时间",
-        "IndexFieldName": "visits.visit_info.ADMISSION_DATE",
-        "srchFieldName": "就诊.就诊基本信息.入院（就诊）时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      },
-      {
-        "UIFieldName": "出院时间",
-        "IndexFieldName": "visits.visit_info.DISCHARGE_DATE",
-        "srchFieldName": "就诊.就诊基本信息.出院时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      }
-    ],
-    "就诊.首次病程记录": [
-      {
-        "UIFieldName": "记录时间",
-        "IndexFieldName": "visits.first_course_record.RECORD_DATE",
-        "srchFieldName": "就诊.首次病程记录.记录时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      }
-    ],
-    "就诊.出院小结": [
-      {
-        "UIFieldName": "记录时间",
-        "IndexFieldName": "visits.discharge_summary.RECORD_DATE",
-        "srchFieldName": "就诊.出院小结.记录时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      }
-    ],
-    "就诊.用药.用药医嘱": [
-      {
-        "UIFieldName": "开嘱时间",
-        "IndexFieldName": "visits.pharmacy.orders.ORDER_START_TIME",
-        "srchFieldName": "就诊.用药.用药医嘱.开嘱时间",
-        "dataType": "date",
-        "dateFormat": ""
-      },
-      {
-        "UIFieldName": "医嘱停止时间",
-        "IndexFieldName": "visits.pharmacy.orders.ORDER_END_TIME",
-        "srchFieldName": "就诊.用药.用药医嘱.医嘱停止时间",
-        "dataType": "date",
-        "dateFormat": ""
-      },
-      {
-        "UIFieldName": "护士确认时间",
-        "IndexFieldName": "visits.pharmacy.orders.CONFIRMOR_NURSE_TIME",
-        "srchFieldName": "就诊.用药.用药医嘱.护士确认时间",
-        "dataType": "date",
-        "dateFormat": ""
-      },
-      {
-        "UIFieldName": "停止时间",
-        "IndexFieldName": "visits.pharmacy.orders.STOP_TIME",
-        "srchFieldName": "就诊.用药.用药医嘱.停止时间",
-        "dataType": "date",
-        "dateFormat": ""
-      }
-    ],
-    "就诊.手术.手术记录": [
-      {
-        "UIFieldName": "手术开始时间",
-        "IndexFieldName": "visits.operation.records.START_TIME",
-        "srchFieldName": "就诊.手术.手术记录.手术开始时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      },
-      {
-        "UIFieldName": "手术结束时间",
-        "IndexFieldName": "visits.operation.records.END_TIME",
-        "srchFieldName": "就诊.手术.手术记录.手术结束时间",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      },
-      {
-        "UIFieldName": "手术日期",
-        "IndexFieldName": "visits.operation.records.OPERATION_DATE",
-        "srchFieldName": "就诊.手术.手术记录.手术日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd HH:mm:ss"
-      }
-    ],
-    "就诊.基因检测": [
-      {
-        "UIFieldName": "报告日期",
-        "IndexFieldName": "visits.gene_detection.REPORT_DATE",
-        "srchFieldName": "就诊.基因检测.报告日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      }
-    ],
-    "患者基本信息": [
-      {
-        "UIFieldName": "出生日期",
-        "IndexFieldName": "patient_info.BIRTH_DATE",
-        "srchFieldName": "患者基本信息.出生日期",
-        "dataType": "date",
-        "dateFormat": "yyyy"
-      }
-    ],
-    "首次手术信息": [
-      {
-        "UIFieldName": "手术日期",
-        "IndexFieldName": "First_surgery.SURGERY_DATE",
-        "srchFieldName": "首次手术信息.手术日期",
         "dataType": "date",
         "dateFormat": "yyyy-MM-dd"
       }
@@ -18888,11 +18440,89 @@
         "dateFormat": "yyyy-MM-dd"
       }
     ],
-    "标本信息.组织采集信息": [
+    "就诊.就诊基本信息": [
       {
-        "UIFieldName": "采集日期",
-        "IndexFieldName": "specimen_info.tissue_collection_info.COLLECTION_DATE",
-        "srchFieldName": "标本信息.组织采集信息.采集日期",
+        "UIFieldName": "挂号日期",
+        "IndexFieldName": "visits.visit_info.REGISTERED_DATE",
+        "srchFieldName": "就诊.就诊基本信息.挂号日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      },
+      {
+        "UIFieldName": "入院（就诊）时间",
+        "IndexFieldName": "visits.visit_info.ADMISSION_DATE",
+        "srchFieldName": "就诊.就诊基本信息.入院（就诊）时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      },
+      {
+        "UIFieldName": "出院时间",
+        "IndexFieldName": "visits.visit_info.DISCHARGE_DATE",
+        "srchFieldName": "就诊.就诊基本信息.出院时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      }
+    ],
+    "就诊.诊断": [
+      {
+        "UIFieldName": "诊断日期",
+        "IndexFieldName": "visits.diagnose.DIAGNOSTIC_DATE",
+        "srchFieldName": "就诊.诊断.诊断日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      }
+    ],
+    "就诊.手术.手术记录": [
+      {
+        "UIFieldName": "手术开始时间",
+        "IndexFieldName": "visits.operation.records.START_TIME",
+        "srchFieldName": "就诊.手术.手术记录.手术开始时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      },
+      {
+        "UIFieldName": "手术结束时间",
+        "IndexFieldName": "visits.operation.records.END_TIME",
+        "srchFieldName": "就诊.手术.手术记录.手术结束时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      },
+      {
+        "UIFieldName": "手术日期",
+        "IndexFieldName": "visits.operation.records.OPERATION_DATE",
+        "srchFieldName": "就诊.手术.手术记录.手术日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      }
+    ],
+    "就诊.手术.麻醉": [
+      {
+        "UIFieldName": "麻醉准备时间",
+        "IndexFieldName": "visits.operation.anesthesia.PREPARE_TIME",
+        "srchFieldName": "就诊.手术.麻醉.麻醉准备时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      },
+      {
+        "UIFieldName": "麻醉开始时间",
+        "IndexFieldName": "visits.operation.anesthesia.START_TIME",
+        "srchFieldName": "就诊.手术.麻醉.麻醉开始时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      },
+      {
+        "UIFieldName": "麻醉结束时间",
+        "IndexFieldName": "visits.operation.anesthesia.END_TIME",
+        "srchFieldName": "就诊.手术.麻醉.麻醉结束时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      }
+    ],
+    "就诊.手术.术前小结": [
+      {
+        "UIFieldName": "记录时间",
+        "IndexFieldName": "visits.operation.pre_summary.RECORD_DATE",
+        "srchFieldName": "就诊.手术.术前小结.记录时间",
         "dataType": "date",
         "dateFormat": "yyyy-MM-dd HH:mm:ss"
       }
@@ -18922,6 +18552,250 @@
         "dateFormat": "yyyy-MM-dd HH:mm:ss"
       }
     ],
+    "就诊.病理检查报告": [
+      {
+        "UIFieldName": "收到日期",
+        "IndexFieldName": "visits.pathology_reports.RECEIVE_DATE",
+        "srchFieldName": "就诊.病理检查报告.收到日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd"
+      },
+      {
+        "UIFieldName": "报告日期",
+        "IndexFieldName": "visits.pathology_reports.REPORT_DATE",
+        "srchFieldName": "就诊.病理检查报告.报告日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd"
+      }
+    ],
+    "就诊.超声诊断报告": [
+      {
+        "UIFieldName": "就诊日期",
+        "IndexFieldName": "visits.ultrasonic_diagnosis_reports.VISIT_DATE",
+        "srchFieldName": "就诊.超声诊断报告.就诊日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd"
+      },
+      {
+        "UIFieldName": "报告日期",
+        "IndexFieldName": "visits.ultrasonic_diagnosis_reports.REPORT_DATE",
+        "srchFieldName": "就诊.超声诊断报告.报告日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd"
+      }
+    ],
+    "就诊.影像学检查诊断报告": [
+      {
+        "UIFieldName": "检查日期",
+        "IndexFieldName": "visits.imaging_exam_diagnosis_reports.EXAMINATION_DATE",
+        "srchFieldName": "就诊.影像学检查诊断报告.检查日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd"
+      },
+      {
+        "UIFieldName": "报告日期",
+        "IndexFieldName": "visits.imaging_exam_diagnosis_reports.REPORT_DATE",
+        "srchFieldName": "就诊.影像学检查诊断报告.报告日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd"
+      }
+    ],
+    "就诊.三导全息动态心电图报告": [
+      {
+        "UIFieldName": "检查日期",
+        "IndexFieldName": "visits.electrocardiographic_reports.DATE",
+        "srchFieldName": "就诊.三导全息动态心电图报告.检查日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd"
+      },
+      {
+        "UIFieldName": "报告日期",
+        "IndexFieldName": "visits.electrocardiographic_reports.REPORT_DATE",
+        "srchFieldName": "就诊.三导全息动态心电图报告.报告日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd"
+      }
+    ],
+    "就诊.镜检报告": [
+      {
+        "UIFieldName": "检查日期",
+        "IndexFieldName": "visits.microscopic_exam_reports.EXAMINATION_DATE",
+        "srchFieldName": "就诊.镜检报告.检查日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd"
+      },
+      {
+        "UIFieldName": "报告日期",
+        "IndexFieldName": "visits.microscopic_exam_reports.REPORT_DATE",
+        "srchFieldName": "就诊.镜检报告.报告日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd"
+      }
+    ],
+    "就诊.肺功能检查报告": [
+      {
+        "UIFieldName": "检查日期",
+        "IndexFieldName": "visits.lung_functional_exam.DATE",
+        "srchFieldName": "就诊.肺功能检查报告.检查日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd"
+      },
+      {
+        "UIFieldName": "检查时间",
+        "IndexFieldName": "visits.lung_functional_exam.TIME",
+        "srchFieldName": "就诊.肺功能检查报告.检查时间",
+        "dataType": "date",
+        "dateFormat": "HH:mm:ss"
+      },
+      {
+        "UIFieldName": "报告日期",
+        "IndexFieldName": "visits.lung_functional_exam.REPORT_DATE",
+        "srchFieldName": "就诊.肺功能检查报告.报告日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd"
+      }
+    ],
+    "就诊.细胞病理学检查": [
+      {
+        "UIFieldName": "收到日期",
+        "IndexFieldName": "visits.cell_pathology_reports.RECEIVE_DATE",
+        "srchFieldName": "就诊.细胞病理学检查.收到日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd"
+      },
+      {
+        "UIFieldName": "报告日期",
+        "IndexFieldName": "visits.cell_pathology_reports.REPORT_DATE",
+        "srchFieldName": "就诊.细胞病理学检查.报告日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd"
+      }
+    ],
+    "就诊.检验报告": [
+      {
+        "UIFieldName": "医嘱时间",
+        "IndexFieldName": "visits.inspection_reports.ORDER_TIME",
+        "srchFieldName": "就诊.检验报告.医嘱时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      },
+      {
+        "UIFieldName": "采集时间",
+        "IndexFieldName": "visits.inspection_reports.ACQUISITION_TIME",
+        "srchFieldName": "就诊.检验报告.采集时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      },
+      {
+        "UIFieldName": "接收时间",
+        "IndexFieldName": "visits.inspection_reports.RECEIVE_TIME",
+        "srchFieldName": "就诊.检验报告.接收时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      },
+      {
+        "UIFieldName": "报告时间",
+        "IndexFieldName": "visits.inspection_reports.REPORT_TIME",
+        "srchFieldName": "就诊.检验报告.报告时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      }
+    ],
+    "就诊.基因检测": [
+      {
+        "UIFieldName": "报告日期",
+        "IndexFieldName": "visits.gene_detection.REPORT_DATE",
+        "srchFieldName": "就诊.基因检测.报告日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd"
+      }
+    ],
+    "就诊.入院记录": [
+      {
+        "UIFieldName": "入院日期",
+        "IndexFieldName": "visits.admissions_records.HOSPITAL_ADMISSION_DATE",
+        "srchFieldName": "就诊.入院记录.入院日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      },
+      {
+        "UIFieldName": "记录日期",
+        "IndexFieldName": "visits.admissions_records.RECORD_DATE",
+        "srchFieldName": "就诊.入院记录.记录日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      }
+    ],
+    "就诊.出院记录": [
+      {
+        "UIFieldName": "入院日期",
+        "IndexFieldName": "visits.discharge_records.HOSPITAL_ADMISSION_DATE",
+        "srchFieldName": "就诊.出院记录.入院日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      },
+      {
+        "UIFieldName": "出院日期",
+        "IndexFieldName": "visits.discharge_records.HOSPITAL_DISCHARGE_DATE",
+        "srchFieldName": "就诊.出院记录.出院日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      }
+    ],
+    "就诊.首次病程记录": [
+      {
+        "UIFieldName": "记录时间",
+        "IndexFieldName": "visits.first_course_record.RECORD_DATE",
+        "srchFieldName": "就诊.首次病程记录.记录时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      }
+    ],
+    "就诊.病程记录": [
+      {
+        "UIFieldName": "记录时间",
+        "IndexFieldName": "visits.course_record.RECORD_DATE",
+        "srchFieldName": "就诊.病程记录.记录时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      }
+    ],
+    "就诊.主任主治医师查房记录": [
+      {
+        "UIFieldName": "记录时间",
+        "IndexFieldName": "visits.attending_physician_rounds_record.RECORD_DATE",
+        "srchFieldName": "就诊.主任主治医师查房记录.记录时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      }
+    ],
+    "就诊.出院小结": [
+      {
+        "UIFieldName": "记录时间",
+        "IndexFieldName": "visits.discharge_summary.RECORD_DATE",
+        "srchFieldName": "就诊.出院小结.记录时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      }
+    ],
+    "就诊.抢救记录": [
+      {
+        "UIFieldName": "记录时间",
+        "IndexFieldName": "visits.rescue_record.RECORD_DATE",
+        "srchFieldName": "就诊.抢救记录.记录时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      }
+    ],
+    "就诊.死亡小结": [
+      {
+        "UIFieldName": "记录时间",
+        "IndexFieldName": "visits.death_summary.RECORD_DATE",
+        "srchFieldName": "就诊.死亡小结.记录时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      }
+    ],
     "就诊.死亡记录": [
       {
         "UIFieldName": "入院日期",
@@ -18945,29 +18819,155 @@
         "dateFormat": "yyyy-MM-dd HH:mm:ss"
       }
     ],
-    "一线免疫治疗": [
+    "就诊.死亡病例讨论记录": [
       {
-        "UIFieldName": "治疗开始时间",
-        "IndexFieldName": "FIRST_LINE_IMMUNOTHERAPY.IMMUNOTHERAPY_BEGINNING_TIME",
-        "srchFieldName": "一线免疫治疗.治疗开始时间",
+        "UIFieldName": "入院日期",
+        "IndexFieldName": "visits.death_discuss_records.HOSPITAL_ADMISSION_DATE",
+        "srchFieldName": "就诊.死亡病例讨论记录.入院日期",
         "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
       },
       {
-        "UIFieldName": "治疗结束时间",
-        "IndexFieldName": "FIRST_LINE_IMMUNOTHERAPY.IMMUNOTHERAPY_END_TIME",
-        "srchFieldName": "一线免疫治疗.治疗结束时间",
+        "UIFieldName": "死亡时间",
+        "IndexFieldName": "visits.death_discuss_records.DEATH_DATE",
+        "srchFieldName": "就诊.死亡病例讨论记录.死亡时间",
         "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      },
+      {
+        "UIFieldName": "病例讨论日期",
+        "IndexFieldName": "visits.death_discuss_records.DISCUSS_DATE",
+        "srchFieldName": "就诊.死亡病例讨论记录.病例讨论日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
       }
     ],
-    "二线靶向治疗": [
+    "就诊.放疗": [
       {
-        "UIFieldName": "用药开始时间",
-        "IndexFieldName": "SECOND_LINE_TARGETED_THERAPY.START_DATE_OF_DRUG",
-        "srchFieldName": "二线靶向治疗.用药开始时间",
+        "UIFieldName": "开始日期",
+        "IndexFieldName": "visits.radiotherapy.START_DATE",
+        "srchFieldName": "就诊.放疗.开始日期",
         "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      },
+      {
+        "UIFieldName": "结束日期",
+        "IndexFieldName": "visits.radiotherapy.END_DATE",
+        "srchFieldName": "就诊.放疗.结束日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      }
+    ],
+    "就诊.化疗": [
+      {
+        "UIFieldName": "开始日期",
+        "IndexFieldName": "visits.chemotherapy.START_DATE",
+        "srchFieldName": "就诊.化疗.开始日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      },
+      {
+        "UIFieldName": "结束日期",
+        "IndexFieldName": "visits.chemotherapy.END_DATE",
+        "srchFieldName": "就诊.化疗.结束日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      }
+    ],
+    "就诊.用药.用药医嘱": [
+      {
+        "UIFieldName": "开嘱时间",
+        "IndexFieldName": "visits.pharmacy.orders.ORDER_START_TIME",
+        "srchFieldName": "就诊.用药.用药医嘱.开嘱时间",
+        "dataType": "date",
+        "dateFormat": ""
+      },
+      {
+        "UIFieldName": "医嘱停止时间",
+        "IndexFieldName": "visits.pharmacy.orders.ORDER_END_TIME",
+        "srchFieldName": "就诊.用药.用药医嘱.医嘱停止时间",
+        "dataType": "date",
+        "dateFormat": ""
+      },
+      {
+        "UIFieldName": "护士确认时间",
+        "IndexFieldName": "visits.pharmacy.orders.CONFIRMOR_NURSE_TIME",
+        "srchFieldName": "就诊.用药.用药医嘱.护士确认时间",
+        "dataType": "date",
+        "dateFormat": ""
+      },
+      {
+        "UIFieldName": "停止时间",
+        "IndexFieldName": "visits.pharmacy.orders.STOP_TIME",
+        "srchFieldName": "就诊.用药.用药医嘱.停止时间",
+        "dataType": "date",
+        "dateFormat": ""
+      }
+    ],
+    "就诊.护理.护理医嘱": [
+      {
+        "UIFieldName": "开嘱时间",
+        "IndexFieldName": "visits.nurse.orders.ORDER_START_TIME",
+        "srchFieldName": "就诊.护理.护理医嘱.开嘱时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      },
+      {
+        "UIFieldName": "医嘱停止时间",
+        "IndexFieldName": "visits.nurse.orders.ORDER_END_TIME",
+        "srchFieldName": "就诊.护理.护理医嘱.医嘱停止时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      },
+      {
+        "UIFieldName": "医嘱确认时间",
+        "IndexFieldName": "visits.nurse.orders.CONFIRM_TIME",
+        "srchFieldName": "就诊.护理.护理医嘱.医嘱确认时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      },
+      {
+        "UIFieldName": "停止时间",
+        "IndexFieldName": "visits.nurse.orders.STOP_TIME",
+        "srchFieldName": "就诊.护理.护理医嘱.停止时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      }
+    ],
+    "就诊.护理.护理操作": [
+      {
+        "UIFieldName": "护理操作时间",
+        "IndexFieldName": "visits.nurse.operation.NURSE_OP_TIME",
+        "srchFieldName": "就诊.护理.护理操作.护理操作时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      }
+    ],
+    "就诊.病案首页": [
+      {
+        "UIFieldName": "出生日期",
+        "IndexFieldName": "visits.medical_record_home_page.BIRTH_DATE",
+        "srchFieldName": "就诊.病案首页.出生日期",
+        "dataType": "date",
+        "dateFormat": "yyyy"
+      }
+    ],
+    "标本信息.组织采集信息": [
+      {
+        "UIFieldName": "采集日期",
+        "IndexFieldName": "specimen_info.tissue_collection_info.COLLECTION_DATE",
+        "srchFieldName": "标本信息.组织采集信息.采集日期",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
+      }
+    ],
+    "标本信息.血液采集信息": [
+      {
+        "UIFieldName": "采血时间",
+        "IndexFieldName": "specimen_info.blood_collection_info.COLLECTION_DATE",
+        "srchFieldName": "标本信息.血液采集信息.采血时间",
+        "dataType": "date",
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
       }
     ]
   }

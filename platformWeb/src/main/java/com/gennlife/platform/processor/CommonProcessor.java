@@ -16,21 +16,33 @@ public class CommonProcessor {
     private static Logger logger = LoggerFactory.getLogger(CommonProcessor.class);
     private static View view = new View();
 
-    public void downLoadFile(String fileName ,HttpServletResponse response){
+    public void downLoadFile(String pathfile ,HttpServletResponse response,String fileName){
         try {
-            File file = new File(fileName);
-            InputStream fis = new BufferedInputStream(new FileInputStream(fileName));
-            byte[] buffer = new byte[fis.available()];
-            fis.read(buffer);
-            fis.close();
+            fileName = new String(fileName.getBytes("GBK"), "iso-8859-1");
+            /*
+            DataInputStream in = new DataInputStream(new FileInputStream(new File(pathfile)));
+            BufferedReader br= new BufferedReader(new InputStreamReader(in));
+            String temp = null;
+            StringBuffer stringBuffer = new StringBuffer();
+            while((temp=br.readLine()) != null){
+                stringBuffer.append(temp).append("\n");
+            }
+            */
             response.reset();
-            response.addHeader("Content-Disposition", "attachment;filename=" + new String(fileName.getBytes("utf-8"),"utf-8"));
-            response.addHeader("Content-Length", "" + file.length());
-            OutputStream os = new BufferedOutputStream(response.getOutputStream());
-            response.setContentType("application/octet-stream");
-            os.write(buffer);// 输出文件
+            response.setContentType("application/msexcel");
+            response.setCharacterEncoding("utf-8");
+            response.setHeader("Content-disposition", "attachment; filename=" + fileName);
+            BufferedInputStream bis = new BufferedInputStream(new FileInputStream(pathfile));
+            BufferedOutputStream os = new BufferedOutputStream(response.getOutputStream());
+            byte[] buff = new byte[2048];
+            int bytesRead;
+            while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
+                os.write(buff, 0, bytesRead);
+
+            }
             os.flush();
             os.close();
+            bis.close();
         } catch (FileNotFoundException e) {
             logger.error("",e);
             view.viewString(ParamUtils.errorParam("目前无模版"),response);

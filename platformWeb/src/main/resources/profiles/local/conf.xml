@@ -45,6 +45,8 @@
         <property name="sampleImportIURL" value="http://10.0.0.165:9999/FileService/DataResultExport/data_export"/>
         <property name="sampleDetailURL" value="http://10.0.0.165:9999/FileService/DataResultExport/data_get"/>
         <property name="sampleDaleteURL" value="http://10.0.0.165:9999/FileService/DataResultExport/data_delete"/>
+        <!--FS CRF导入文件 -->
+        <property name="fileStoreForCRFImport" value="http://10.0.0.165:9999/FileService/PatientDetail/UploadCsvFile"></property>
 
         <property name="knowledgeURL" value="http://192.168.1.111:9881/knowledge/graph"/>
         <property name="knowledgeDiseaseSearchGenesURL" value="http://192.168.1.111:9881/knowledge/DiseaseSearchGenes"/>
@@ -74,7 +76,7 @@
         <property name="CRFPatientVisitDetail" value="http://192.168.1.111:9885/auto/PatientVisitDetail"/>
         <property name="CRFPatientAllVisitsDetail" value="http://192.168.1.111:9885/auto/PatientAllVisitsDetail"/>
         <property name="CRFUpLoadDataForCheck" value="http://192.168.1.111:9885/crf/UpLoadDataForCheck"></property>
-
+        <property name="CRFImportFile" value="http://192.168.1.111:9885/auto/CsvAddQueue"></property>
 
         <property name="RRun" value="http://192.168.1.111:1235/r_run"/>
         <property name="RStop" value="http://192.168.1.111:1235/r_stop"/>

@@ -377,25 +377,52 @@ public class CrfProcessor {
 
 
     public String uploadFileForImportCRF(MultipartFile file, String crf_id) {
-        logger.info("File Description:"+crf_id);
-        String fileName = null;
+        logger.info("crf_id:"+crf_id);
+        String url = ConfigurationService.getUrlBean().getFileStoreForCRFImport();
         if (!file.isEmpty()) {
             try {
-                fileName = file.getOriginalFilename();
+                String fileName = file.getOriginalFilename();
                 byte[] bytes = file.getBytes();
-                BufferedOutputStream buffStream = new BufferedOutputStream(new FileOutputStream(new File("/home/tomcat_demo2_web/crf/" + fileName)));
+                String path = ConfigurationService.getFileBean().getCRFFileLocation();
+                File f = new File(path + LogUtils.getString_Time()+"-"+fileName);
+                BufferedOutputStream buffStream = new BufferedOutputStream(new FileOutputStream(f));
                 buffStream.write(bytes);
                 buffStream.close();
-                ResultBean re = new ResultBean();
-                re.setCode(1);
-                re.setData(fileName);
-                return gson.toJson(re);
+                String str =  HttpRequestUtils.httpPost(url,f,fileName);
+                JsonObject filebackObj = (JsonObject) jsonParser.parse(str);
+                f.delete();
+                if(filebackObj.get("success").getAsBoolean()){
+                    String file_id = filebackObj.get("file_id").getAsString();
+                    String schema = filebackObj.get("schema").getAsString();
+                    JsonObject paramObj = new JsonObject();
+                    paramObj.addProperty("schema",schema);
+                    paramObj.addProperty("fid",file_id);
+                    paramObj.addProperty("crf_id",crf_id);
+                    String param = gson.toJson(paramObj);
+                    url = ConfigurationService.getUrlBean().getCRFImportFile();
+                    return HttpRequestUtils.httpPost(url,param);
+                }else{
+                    return ParamUtils.errorParam("文件存储失败");
+                }
             } catch (Exception e) {
                 logger.error("",e);
                 return ParamUtils.errorParam("出现异常");
             }
         } else {
             return ParamUtils.errorParam("文件为空");
+        }
+
+    }
+
+    public String importCRFMap(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCRFImportMap();
+            logger.info("CRFImportMap url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("CRFImportMap result="+result);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
         }
     }
 }

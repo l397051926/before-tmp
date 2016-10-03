@@ -2,6 +2,7 @@ package com.gennlife.platform.controller;
 
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.CommonProcessor;
+import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.FileUploadUtil;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
@@ -31,7 +32,10 @@ public class CommonController  {
     private static CommonProcessor processor = new CommonProcessor();
     private static Gson gson = GsonUtil.getGson();
     //存放文件的位置
-    private static String FilePath = "/home/tomcat_demo2_web/update/";
+    private static String FilePath = "/home/tomcat_demo2_web/update/";//默认位置
+    static{
+        FilePath = ConfigurationService.getFileBean().getManageFileLocation();
+    }
     //后缀
     private static String suffix = ".csv";
     @RequestMapping(value="/UploadFileForImportLab",method= RequestMethod.POST)
@@ -54,7 +58,7 @@ public class CommonController  {
         HttpSession session = paramRe.getSession();
         User user = gson.fromJson((String)session.getAttribute("user"),User.class);
         String file = FilePath+user.getOrg_name() + labImportsuffix;
-        processor.downLoadFile(file,response);
+        processor.downLoadFile(file,response,"最近组织导入结果.csv");
     }
 
     @RequestMapping(value="/UploadFileForImportStaff",method= RequestMethod.POST)
@@ -79,18 +83,18 @@ public class CommonController  {
         HttpSession session = paramRe.getSession();
         User user = gson.fromJson((String)session.getAttribute("user"),User.class);
         String file = FilePath+user.getOrg_name() + staffImportsuffix;
-        processor.downLoadFile(file,response);
+        processor.downLoadFile(file,response,"最近成员导入结果.csv");
     }
 
     @RequestMapping(value="/DownloadFileForStaffModel",method= RequestMethod.GET)
     public void DownloadFileForStaffModel(HttpServletRequest paramRe,HttpServletResponse response){
         String file = FilePath+"人员导入模版"+ suffix;
-        processor.downLoadFile(file,response);
+        processor.downLoadFile(file,response,"人员导入模版.csv");
     }
     @RequestMapping(value="/DownloadFileForLabModel",method= RequestMethod.GET)
     public void DownloadFileForLabModel(HttpServletRequest paramRe,HttpServletResponse response){
-        String file = FilePath+"科室导入模版"+ suffix;
-        processor.downLoadFile(file,response);
+        String file = FilePath+"组织导入模版"+ suffix;
+        processor.downLoadFile(file,response,"组织导入模版.csv");
     }
 
 }

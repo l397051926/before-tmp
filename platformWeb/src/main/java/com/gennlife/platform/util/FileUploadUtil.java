@@ -6,6 +6,7 @@ import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.Lab;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.LaboratoryProcessor;
+import com.gennlife.platform.service.ConfigurationService;
 import com.google.gson.Gson;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -28,7 +29,10 @@ public class FileUploadUtil {
     public static Gson gson = GsonUtil.getGson();
     private static SimpleDateFormat time=new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
     //文件位置，注意是绝对路径
-    private String tempPath = "/home/tomcat_demo2_web/update/";
+    private static String tempPath = "/home/tomcat_demo2_web/update/";
+    static{
+        tempPath = ConfigurationService.getFileBean().getManageFileLocation();
+    }
     //文件后缀
     private String suffix = ".csv";
     //获取的上传请求
@@ -122,13 +126,18 @@ public class FileUploadUtil {
                     }
                 }
             }
+            String str = null;
             if("导入科室".equals(from)){
-                return handleLab(fileList,orgID,user,labImportsuffix);
+                str = handleLab(fileList,orgID,user,labImportsuffix);
             }else if("导入人员".equals(from)){
-                return handleStaff(fileList,orgID,user,labImportsuffix);
+                str = handleStaff(fileList,orgID,user,labImportsuffix);
             }else{
-                return from;
+                str = from;
             }
+            for(File file:fileList){
+                file.delete();
+            }
+            return str;
         } catch (IOException e) {
             logger.error("",e);
             return ParamUtils.errorParam("导入失败");

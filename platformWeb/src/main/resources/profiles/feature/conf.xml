@@ -42,6 +42,10 @@
         <property name="caseDischargeRecords" value="http://10.0.0.22:8111/FileService/PatientDetail/discharge_records"></property>
         <property name="caseCourseRecords" value="http://10.0.0.22:8111/FileService/PatientDetail/course_records/"></property>
         <property name="caseMedicalCourse" value="http://10.0.0.22:8111/FileService/PatientDetail/medical_course"></property>
+
+        <!--FS CRF导入文件 -->
+        <property name="fileStoreForCRFImport" value="http://10.0.0.22:8111/FileService/PatientDetail/UploadCsvFile"></property>
+
         <!--FS 样本操作 -->
         <property name="sampleImportIURL" value="http://10.0.0.165:9900/FileService/PatientDetail/patient_basic_info"/>
         <property name="sampleDetailURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_get"/>
@@ -74,6 +78,7 @@
         <property name="CRFPatientVisitDetail" value="http://192.168.1.111:9885/auto/PatientVisitDetail"/>
         <property name="CRFPatientAllVisitsDetail" value="http://192.168.1.111:9885/auto/PatientAllVisitsDetail"/>
         <property name="CRFUpLoadDataForCheck" value="http://192.168.1.111:9885/crf/UpLoadDataForCheck"></property>
+        <property name="CRFImportFile" value="http://192.168.1.111:9885/auto/CsvAddQueue"></property>
         <!--R 服务接口-->
         <property name="RRun" value="http://192.168.1.111:1235/r_run"/>
         <property name="RStop" value="http://192.168.1.111:1235/r_stop"/>

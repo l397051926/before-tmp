@@ -14,6 +14,20 @@ public class URLBean {
     }
 
     /**
+     * crf 配置映射
+     */
+    private String CRFImportMap = null;
+    /**
+     * CRF 导入文件后使用crf_id,schema,fileID请求CRFService
+     */
+    private String CRFImportFile = null;
+    /**
+     * FS 存储 CRF导入文件
+     */
+    private String fileStoreForCRFImport = null;
+
+
+    /**
      * 修改密码的url前缀
      */
     private String EmailSendURL = null;
@@ -272,6 +286,13 @@ public class URLBean {
     private String CSSmg = null;
 
 
+    public String getCRFImportMap() {
+        return CRFImportMap;
+    }
+
+    public void setCRFImportMap(String CRFImportMap) {
+        this.CRFImportMap = CRFImportMap;
+    }
 
     private String CRFModelForTraceByCRFID = null;
 
@@ -788,5 +809,21 @@ public class URLBean {
 
     public void setEmailSendURL(String emailSendURL) {
         EmailSendURL = emailSendURL;
+    }
+
+    public String getFileStoreForCRFImport() {
+        return fileStoreForCRFImport;
+    }
+
+    public void setFileStoreForCRFImport(String fileStoreForCRFImport) {
+        this.fileStoreForCRFImport = fileStoreForCRFImport;
+    }
+
+    public String getCRFImportFile() {
+        return CRFImportFile;
+    }
+
+    public void setCRFImportFile(String CRFImportFile) {
+        this.CRFImportFile = CRFImportFile;
     }
 }
