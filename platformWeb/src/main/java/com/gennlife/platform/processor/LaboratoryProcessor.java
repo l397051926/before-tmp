@@ -134,6 +134,7 @@ public class LaboratoryProcessor {
         labResource.setSlab_type(lab.getLab_level()+"");
         labResource.setStype("病例数据");
         labResource.setSname(lab.getLab_name()+"资源");
+        labResource.setSlab_name(lab.getLab_name());
         AllDao.getInstance().getSyResourceDao().insertOneResource(labResource);
     }
 
