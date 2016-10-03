@@ -385,6 +385,9 @@ public class CrfProcessor {
                 byte[] bytes = file.getBytes();
                 String path = ConfigurationService.getFileBean().getCRFFileLocation();
                 File f = new File(path + LogUtils.getString_Time()+"-"+fileName);
+                if(!f.exists()){
+                    f.createNewFile();
+                }
                 BufferedOutputStream buffStream = new BufferedOutputStream(new FileOutputStream(f));
                 buffStream.write(bytes);
                 buffStream.close();

@@ -20,6 +20,6 @@ public class LogUtils {
         return time.format(new Date());
     }
     public static String getString_Time(){
-        return time.format(new Date());
+        return time_.format(new Date());
     }
 }
