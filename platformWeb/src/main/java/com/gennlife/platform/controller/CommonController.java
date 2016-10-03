@@ -38,7 +38,7 @@ public class CommonController  {
     //后缀
     private static String suffix = ".csv";
     @RequestMapping(value="/UploadFileForImportLab",method= RequestMethod.POST)
-    public @ResponseBody String postUploadFileForImportLab(@RequestParam("file") MultipartFile file,HttpServletRequest paramRe){
+    public @ResponseBody String postUploadFileForImportLab(@RequestParam("name") MultipartFile file,HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = "";
         try{
@@ -62,7 +62,7 @@ public class CommonController  {
     }
 
     @RequestMapping(value="/UploadFileForImportStaff",method= RequestMethod.POST)
-    public @ResponseBody String postUploadFileForImportStaff(@RequestParam("file") MultipartFile file,HttpServletRequest paramRe){
+    public @ResponseBody String postUploadFileForImportStaff(@RequestParam("name") MultipartFile file,HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = "";
         try{
