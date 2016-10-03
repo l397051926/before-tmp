@@ -624,7 +624,7 @@
         select
         <include refid="userProperty" />
         FROM gennlife_user
-        JOIN pro_user ON gennlife_user.uid = pro_user.uid JOIN p_org o ON o.orgID = gennlife_user.orgID
+        JOIN pro_user ON gennlife_user.uid = pro_user.uid
         <where> pro_user.projectID = #{projectID}
             ORDER BY ctime DESC </where>
     </select>
@@ -633,7 +633,6 @@
         select
         count(gennlife_user.uid)
         FROM gennlife_user JOIN pro_user ON gennlife_user.uid = pro_user.uid
-        JOIN p_org o ON o.orgID = gennlife_user.orgID
         <where> pro_user.projectID = #{projectID}
             ORDER BY ctime DESC  </where>
     </select>
