@@ -62,6 +62,7 @@ public class SearchProcessor {
             userBean.setInfo(info);
             return gson.toJson(userBean);
         }catch (Exception e){
+            logger.error("",e);
             return ParamUtils.errorParam("搜索失败");
         }
 

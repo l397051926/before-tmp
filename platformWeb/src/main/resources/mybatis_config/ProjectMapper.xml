@@ -644,7 +644,7 @@
         <include refid="userProperty" />
         FROM gennlife_user
         <where>(gennlife_user.uid LIKE '%${searchMemberkey}%' OR
-            o.orgName LIKE '%${searchMemberkey}%' OR
+            gennlife_user.org_name LIKE '%${searchMemberkey}%' OR
             gennlife_user.uname LIKE '%${searchMemberkey}%' OR
             unumber LIKE '%${searchMemberkey}%') AND
             gennlife_user.uid NOT in(
@@ -663,7 +663,7 @@
         FROM gennlife_user
         <where>
             (gennlife_user.uid LIKE '%${searchMemberkey}%' OR
-            o.orgName LIKE '%${searchMemberkey}%' OR
+            gennlife_user.org_name LIKE '%${searchMemberkey}%' OR
             gennlife_user.uname LIKE '%${searchMemberkey}%' OR
             unumber LIKE '%${searchMemberkey}%') AND
             gennlife_user.uid NOT in(
