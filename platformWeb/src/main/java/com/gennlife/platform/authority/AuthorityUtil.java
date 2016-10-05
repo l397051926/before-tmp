@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class AuthorityUtil {
     private static JsonParser jsonParser = new JsonParser();
-    private static Gson gson = GsonUtil.getGson();
+    private static Gson gson = new GsonBuilder().disableHtmlEscaping().create();
     public static String addAuthority(HttpServletRequest paramRe){
         String param = ParamUtils.getParam(paramRe);
         JsonElement paramElement = jsonParser.parse(param);
@@ -25,6 +25,7 @@ public class AuthorityUtil {
         JsonArray roles = user.getAsJsonArray("roles");
         if(paramElement.isJsonObject()){
             JsonObject paramObj = paramElement.getAsJsonObject();
+
             paramObj.add("roles",roles);
             return gson.toJson(paramObj);
         }else if(paramElement.isJsonArray()){
