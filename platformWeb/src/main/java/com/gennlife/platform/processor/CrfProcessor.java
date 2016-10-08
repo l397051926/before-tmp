@@ -402,7 +402,7 @@ public class CrfProcessor {
                     return ParamUtils.errorParam("导入文件失败");
                 }
                 JsonObject filebackObj = (JsonObject) jsonParser.parse(str);
-                //f.delete();
+                f.delete();
                 if(filebackObj.get("success").getAsBoolean()){
                     String file_id = filebackObj.get("file_id").getAsString();
                     String schema = filebackObj.get("schema").getAsString();
@@ -425,6 +425,7 @@ public class CrfProcessor {
                             JsonObject data = new JsonObject();
                             data.add("csv_schema",csv_schema);
                             data.add("crf_schema",crf_schema);
+                            data.addProperty("fid",file_id);
                             result.add("data",data);
                             return gson.toJson(result);
                         }else {
