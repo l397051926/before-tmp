@@ -419,7 +419,7 @@ public class CrfProcessor {
                         JsonObject object = (JsonObject) jsonParser.parse(reStr);
                         if(object.has("code") && object.get("code").getAsInt() == 1){
                             JsonArray csv_schema = object.getAsJsonArray("csv_schema");
-                            JsonArray crf_schema = object.getAsJsonArray("crf_schema");
+                            JsonObject crf_schema = object.getAsJsonObject("crf_schema");
                             JsonObject result = new JsonObject();
                             result.addProperty("code",1);
                             JsonObject data = new JsonObject();
