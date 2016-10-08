@@ -77,7 +77,7 @@
         <property name="CRFPatientAllVisitsDetail" value="http://192.168.1.111:9885/auto/PatientAllVisitsDetail"/>
         <property name="CRFUpLoadDataForCheck" value="http://192.168.1.111:9885/crf/UpLoadDataForCheck"></property>
         <property name="CRFImportFile" value="http://localhost:8082/auto/CsvAddQueue"></property>
-
+        <property name="CRFImportMap" value="http://192.168.1.111:9885/auto/CsvImport"></property>
         <property name="RRun" value="http://192.168.1.111:1235/r_run"/>
         <property name="RStop" value="http://192.168.1.111:1235/r_stop"/>
         <property name="RSave" value="http://192.168.1.111:1235/r_save"/>
