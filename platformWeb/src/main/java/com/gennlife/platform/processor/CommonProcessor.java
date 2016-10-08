@@ -72,9 +72,12 @@ public class CommonProcessor {
             byte[] bytes = file.getBytes();
             String path = ConfigurationService.getFileBean().getManageFileLocation();
             File f = new File(path + LogUtils.getString_Time()+"-"+fileName);
-            BufferedOutputStream buffStream = new BufferedOutputStream(new FileOutputStream(f));
-            buffStream.write(bytes);
-            buffStream.close();
+            FileWriter fileWritter = new FileWriter(f);
+            BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
+            bufferWritter.write(new String(bytes,"gbk"));
+            bufferWritter.flush();
+            bufferWritter.close();
+            fileWritter.close();
             List<File> list = new LinkedList<>();
             list.add(f);
             return FileUploadUtil.handleLab(list,user);

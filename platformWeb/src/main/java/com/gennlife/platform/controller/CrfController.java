@@ -9,11 +9,13 @@ import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -469,10 +471,13 @@ public class CrfController {
 
 
     @RequestMapping(value="/UploadFileForImportCRF",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
-    public @ResponseBody String UploadFileForImportCRF(@RequestParam("file") MultipartFile file, @RequestParam("crf_id") String crf_id){
+    public @ResponseBody String UploadFileForImportCRF(@RequestParam(value="file") CommonsMultipartFile file,@RequestParam("crf_id") String crf_id){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            if(file.isEmpty()){
+                return ParamUtils.errorParam("文件为空");
+            }
             resultStr = processor.uploadFileForImportCRF(file,crf_id);
         }catch (Exception e){
             logger.error("上传CRF数据文件",e);

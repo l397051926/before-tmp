@@ -9,6 +9,7 @@ import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.LogUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.apache.commons.fileupload.FileItem;
@@ -379,6 +380,7 @@ public class CrfProcessor {
     public String uploadFileForImportCRF(MultipartFile file, String crf_id) {
         logger.info("crf_id:"+crf_id);
         String url = ConfigurationService.getUrlBean().getFileStoreForCRFImport();
+
         if (!file.isEmpty()) {
             try {
                 String fileName = file.getOriginalFilename();
@@ -388,12 +390,19 @@ public class CrfProcessor {
                 if(!f.exists()){
                     f.createNewFile();
                 }
-                BufferedOutputStream buffStream = new BufferedOutputStream(new FileOutputStream(f));
-                buffStream.write(bytes);
-                buffStream.close();
+
+                FileWriter fileWritter = new FileWriter(f);
+                BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
+                bufferWritter.write(new String(bytes,"gbk"));
+                bufferWritter.flush();
+                bufferWritter.close();
+                fileWritter.close();
                 String str =  HttpRequestUtils.httpPost(url,f,fileName);
+                if(str == null){
+                    return ParamUtils.errorParam("导入文件失败");
+                }
                 JsonObject filebackObj = (JsonObject) jsonParser.parse(str);
-                f.delete();
+                //f.delete();
                 if(filebackObj.get("success").getAsBoolean()){
                     String file_id = filebackObj.get("file_id").getAsString();
                     String schema = filebackObj.get("schema").getAsString();
@@ -403,7 +412,25 @@ public class CrfProcessor {
                     paramObj.addProperty("crf_id",crf_id);
                     String param = gson.toJson(paramObj);
                     url = ConfigurationService.getUrlBean().getCRFImportFile();
-                    return HttpRequestUtils.httpPost(url,param);
+                    String reStr =  HttpRequestUtils.httpPost(url,param);
+                    if(reStr == null || "".equals(reStr)){
+                        return ParamUtils.errorParam("CRF 服务异常");
+                    }else {
+                        JsonObject object = (JsonObject) jsonParser.parse(reStr);
+                        if(object.has("code") && object.get("code").getAsInt() == 1){
+                            JsonArray csv_schema = object.getAsJsonArray("csv_schema");
+                            JsonArray crf_schema = object.getAsJsonArray("crf_schema");
+                            JsonObject result = new JsonObject();
+                            result.addProperty("code",1);
+                            JsonObject data = new JsonObject();
+                            data.add("csv_schema",csv_schema);
+                            data.add("crf_schema",crf_schema);
+                            result.add("data",data);
+                            return gson.toJson(result);
+                        }else {
+                            return ParamUtils.errorParam("crf 返回为空");
+                        }
+                    }
                 }else{
                     return ParamUtils.errorParam("文件存储失败");
                 }

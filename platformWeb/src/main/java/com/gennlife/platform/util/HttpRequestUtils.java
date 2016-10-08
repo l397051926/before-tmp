@@ -18,6 +18,9 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.params.CoreProtocolPNames;
+import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +47,7 @@ public class HttpRequestUtils {
 		HttpPost method = new HttpPost(url);
 
 		try {
-			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(6000).setConnectTimeout(3000).build();
+			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(10000).setConnectTimeout(3000).build();
 			method.setConfig(requestConfig);
 			if (null != jsonParam) {
 				StringEntity entity = new StringEntity(jsonParam,"utf-8");
@@ -173,21 +176,64 @@ public class HttpRequestUtils {
 	}
 
 	public static void main(String[] args){
-		String url = "http://localhost:8081/file/Rec";
-		String ch = "中国";
-		httpPost(url,ch);
+		String url = "http://localhost:8080/PatientDetail/UploadCsvFile";
+		File file = new File("/home-preserved/tomcat_demo2_web/crf/2016_10_05_17_48_22-联调mock数据.csv");
+		String fileName = "2016_10_05_17_48_22-联调mock数据.csv";
+		System.out.println(httpPost(url,file,fileName));
 	}
 
 	public static String httpPost(String url,File file,String fileName) {
 		// 实例化http客户端
 		HttpClient httpClient = new DefaultHttpClient();
+		HttpParams ps = httpClient.getParams();
+		ps.setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET, Charset.forName("GB2312"));
 		// 实例化post提交方式
 		HttpPost post = new HttpPost(url);
 		try {
+
 			// 实例化参数对象
 			MultipartEntity params = new MultipartEntity();
-			// 图片文本参数
-			params.addPart("textParams", new StringBody("test", Charset.forName("UTF-8")));
+			// 设置上传文件
+			// 文件参数内容
+			FileBody fileBody = new FileBody(file);
+			// 添加文件参数
+			params.addPart("CSV", fileBody);
+			params.addPart("photoName", new StringBody(fileName));
+			post.setEntity(params);
+			// 执行post请求并得到返回对象 [ 到这一步我们的请求就开始了 ]
+			HttpResponse resp = httpClient.execute(post);
+			if (resp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				String str = null;
+				try {
+					str = EntityUtils.toString(resp.getEntity());
+					return str;
+				} catch (Exception e) {
+					logger.error("" + url, e);
+				}
+			}
+		} catch (UnsupportedEncodingException e) {
+			logger.error("",e);
+		} catch (ClientProtocolException e) {
+			logger.error("",e);
+		} catch (IOException e) {
+			logger.error("",e);
+		} catch (IllegalStateException e) {
+			logger.error("",e);
+		}
+		return null;
+	}
+
+	public static String httpPostNew(String url,File file,String fileName) {
+		// 实例化http客户端
+		HttpClient httpClient = new DefaultHttpClient();
+		HttpParams ps = httpClient.getParams();
+		ps.setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET, Charset.forName("GB2312"));
+		// 实例化post提交方式
+		HttpPost post = new HttpPost(url);
+		try {
+
+			// 实例化参数对象
+			MultipartEntity params = new MultipartEntity();
 			// 设置上传文件
 			// 文件参数内容
 			FileBody fileBody = new FileBody(file);
@@ -218,5 +264,4 @@ public class HttpRequestUtils {
 		}
 		return null;
 	}
-
 }
