@@ -207,4 +207,134 @@ public class SampleProcessor {
     public String importTree() {
         return gson.toJson(ConfigurationService.getImportTree());
     }
+
+    /**
+     *
+     * @param param
+     * @return
+     */
+    public String sampleSetDirectoryList(String param) {
+        String sampleURI = null;
+        String key = null;
+        try{
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            sampleURI = paramObj.get("sampleURI").getAsString();
+            key = paramObj.get("key").getAsString();
+        }catch (Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("参数错误");
+        }
+        ProSample proSample = AllDao.getInstance().getProjectDao().getSampleDataBySampleURI(sampleURI);
+        String itemsStr = proSample.getItems();
+        JsonArray itemArray = (JsonArray) jsonParser.parse(itemsStr);
+        Set<String> set = new HashSet<>();
+        for (JsonElement jsonElement:itemArray){
+            set.add(jsonElement.getAsString());
+        }
+        ResultBean resultBean = new ResultBean();
+        JsonObject all = ConfigurationService.getAllObj();
+        JsonObject allNew = new JsonObject();
+        for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
+            String groupName = obj.getKey();
+            JsonArray items = obj.getValue().getAsJsonArray();
+            JsonArray newGroup = new JsonArray();
+            for (JsonElement json : items) {
+                JsonObject item = json.getAsJsonObject();
+                String IndexFieldName = item.get("IndexFieldName").getAsString();
+                String UIFieldName = item.get("UIFieldName").getAsString();
+                if (set.contains(IndexFieldName)) {
+                    if(key == null ||"".equals(key) || UIFieldName.contains(key)){
+                        newGroup.add(item);
+                    }
+                }
+
+            }
+            if (newGroup.size() > 0) {
+                allNew.add(groupName, newGroup);
+            }
+        }
+        resultBean.setCode(1);
+        resultBean.setData(allNew);
+        return gson.toJson(resultBean);
+    }
+
+    public String sampleSetSearch(String param) {
+        String url = ConfigurationService.getUrlBean().getSampleDetailSearchURL();
+        logger.info("sampleSetSearch url="+url);
+        JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+        String sampleURI = paramObj.get("sampleURI").getAsString();
+        paramObj.remove(sampleURI);
+        paramObj.addProperty("data_id",sampleURI);
+        String paramNew = gson.toJson(paramObj);
+        logger.info("转化后的请求参数="+paramNew);
+        String reStr = HttpRequestUtils.httpPost(url ,paramNew);
+        logger.info("sampleSetSearch result="+reStr);
+        if(reStr == null || "".equals(reStr)){
+            return ParamUtils.errorParam("FS 返回空");
+        }
+        try{
+            JsonObject json = (JsonObject) jsonParser.parse(reStr);
+            boolean succeed = json.get("success").getAsBoolean();
+            if (succeed) {
+                JsonArray Use = json.getAsJsonArray("USE");
+                Map<String,String> useMap = new HashMap<>();
+                for(JsonElement jsonElement:Use){
+                    JsonObject obj = jsonElement.getAsJsonObject();
+                    String __SAMPLE_ID = obj.get("__SAMPLE_ID").getAsString();
+                    String use = obj.get("use").getAsString();
+                    useMap.put(__SAMPLE_ID,use);
+                }
+
+                JsonArray PROPERTY = json.getAsJsonArray("PROPERTY");
+
+                JsonArray schemaJson = json.getAsJsonArray("SCHEMA");
+                JsonObject schema = new JsonObject();
+                List<String> list = new LinkedList<>();
+                for(JsonElement schemaElement:schemaJson){
+                    String index = schemaElement.getAsString();
+                    if("__SAMPLE_ID".equals(index)){
+                        schema.addProperty(index,"样本id");
+                    }else{
+                        String uiName = ConfigurationService.getUIFieldName(index);
+                        schema.addProperty(index,uiName);
+                    }
+                    list.add(index);
+                }
+                schema.addProperty("__use","是否使用");
+                schema.addProperty("__property","数据类型");
+                JsonArray data = new JsonArray();
+                JsonArray DATAArray = json.getAsJsonArray("DATA");
+                int count = 0;
+                for(JsonElement dataItemArray:DATAArray){
+                    JsonArray oneDataArray = dataItemArray.getAsJsonArray();
+                    JsonObject entity = new JsonObject();
+                    for(int i=0;i<list.size();i++){
+                        String index = list.get(i);
+                        JsonPrimitive dataValue = oneDataArray.get(i).getAsJsonPrimitive();
+                        entity.add(index,dataValue);
+                    }
+                    String __SAMPLE_ID = entity.get("__SAMPLE_ID").getAsString();
+                    String use = useMap.get(__SAMPLE_ID);
+                    entity.addProperty("__use",use);
+                    data.add(entity);
+                    JsonElement propertyItem = PROPERTY.get(count);
+                    entity.add("__property",propertyItem);
+                }
+                JsonObject result = new JsonObject();
+                JsonObject info = new JsonObject();
+                JsonElement counter = json.get("TOTAL");
+                info.add("schema",schema);
+                info.add("counter",counter);
+                result.addProperty("code",1);
+                result.add("info",info);
+                result.add("data",data);
+                return gson.toJson(result);
+            }else{
+                return ParamUtils.errorParam("FS出现异常");
+            }
+        }catch (Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("出现异常");
+        }
+    }
 }

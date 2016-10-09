@@ -2,6 +2,7 @@ package com.gennlife.platform.dao;
 
 import com.gennlife.platform.bean.projectBean.*;
 import com.gennlife.platform.model.User;
+import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.Mapper;
 
 import java.util.ArrayList;
@@ -217,4 +218,10 @@ public interface ProjectMapper {
      */
     public int searchMemberCounter(Map<String,Object> likeCondition);
 
+    /**
+     * 通过sampleURI获取样本信息
+     * @param sampleURI
+     * @return
+     */
+    ProSample getSampleDataBySampleURI(@Param("sampleURI")String sampleURI);
 }

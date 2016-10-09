@@ -25,13 +25,12 @@ public class AuthorityUtil {
         JsonArray roles = user.getAsJsonArray("roles");
         if(paramElement.isJsonObject()){
             JsonObject paramObj = paramElement.getAsJsonObject();
-
             paramObj.add("roles",roles);
             return gson.toJson(paramObj);
         }else if(paramElement.isJsonArray()){
             return gson.toJson(paramElement);
         }else{
-            return param;
+            return null;
         }
     }
     public static boolean isAdmin(User user){

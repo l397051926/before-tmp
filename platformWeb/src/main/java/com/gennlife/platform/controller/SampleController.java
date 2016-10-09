@@ -150,4 +150,36 @@ public class SampleController {
         return resultStr;
     }
 
+    @RequestMapping(value="/SampleSetDirectoryList",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String SampleDirectoryList(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("SampleSetDirectoryList param="+param);
+            resultStr =  processor.sampleSetDirectoryList(param);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("样本集目录请求 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value="/SampleSetSearch",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String SampleSetSearch(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("SampleSetSearch param="+param);
+            resultStr =  processor.sampleSetSearch(param);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("样本搜索请求 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }

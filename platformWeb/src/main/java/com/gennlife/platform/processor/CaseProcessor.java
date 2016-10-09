@@ -266,6 +266,9 @@ public class CaseProcessor {
      * @param newParam
      */
     public String searchCase(String newParam) {
+        if(newParam == null){
+            return ParamUtils.errorSessionLosParam();
+        }
         CaseSearchParser caseSearchParser = new CaseSearchParser(newParam);
         try {
             String searchResultStr = caseSearchParser.parser();

@@ -672,4 +672,15 @@
             )
         </where>
     </select>
+    <sql id="ProSampleProperty">
+        pro_sample.projectID,pro_sample.batchID,pro_sample.planName,pro_sample.bstatus,pro_sample.sampleURI,pro_sample.sampleName,pro_sample.operator,pro_sample.opTime,pro_sample.total,pro_sample.items,pro_sample.sampleDesc
+    </sql>
+    <select id="getSampleDataBySampleURI" resultType="com.gennlife.platform.bean.projectBean.ProSample">
+        SELECT
+        <include refid="ProSampleProperty"/>
+        FROM
+        pro_sample
+        WHERE
+        pro_sample.sampleURI = #{sampleURI}
+    </select>
 </mapper>

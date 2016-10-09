@@ -50,6 +50,7 @@
         <property name="sampleImportIURL" value="http://10.0.0.165:9900/FileService/PatientDetail/patient_basic_info"/>
         <property name="sampleDetailURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_get"/>
         <property name="sampleDaleteURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_delete"/>
+        <property name="sampleDetailSearchURL" value="http://10.0.0.165:9900/FileService/DataResultExport/SearchDataSet"/>
         <!--知识库服务 接口 -->
         <property name="knowledgeURL" value="http://10.0.0.24:8080/knowledge/graph"/>
         <property name="knowledgeDiseaseSearchGenesURL" value="http://10.0.0.24:8080/knowledge/DiseaseSearchGenes"/>

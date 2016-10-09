@@ -13,6 +13,11 @@ public class URLBean {
         this.caseAdmission_records = caseAdmission_records;
     }
 
+
+    /**
+     * 数据集搜索
+     */
+    private String sampleDetailSearchURL = null;
     /**
      * crf 配置映射
      */
@@ -825,5 +830,13 @@ public class URLBean {
 
     public void setCRFImportFile(String CRFImportFile) {
         this.CRFImportFile = CRFImportFile;
+    }
+
+    public String getSampleDetailSearchURL() {
+        return sampleDetailSearchURL;
+    }
+
+    public void setSampleDetailSearchURL(String sampleDetailSearchURL) {
+        this.sampleDetailSearchURL = sampleDetailSearchURL;
     }
 }
