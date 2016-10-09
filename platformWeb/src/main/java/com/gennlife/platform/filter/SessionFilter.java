@@ -48,6 +48,7 @@ public class SessionFilter implements Filter {
         adminSet.add("/bsma/GetRoleStaff");
         adminSet.add("/bsma/GetRoleResource");
         adminSet.add("/bsma/GetResourceTree");
+        adminSet.add("/case/SearchCase");
         adminSet.add("/common/UploadFileForImportLab");
         adminSet.add("/common/UploadFileForImportStaff");
     }
