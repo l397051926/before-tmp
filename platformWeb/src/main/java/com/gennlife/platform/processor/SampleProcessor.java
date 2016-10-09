@@ -219,7 +219,7 @@ public class SampleProcessor {
         try{
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             sampleURI = paramObj.get("sampleURI").getAsString();
-            key = paramObj.get("key").getAsString();
+            key = paramObj.get("keywords").getAsString();
         }catch (Exception e){
             logger.error("",e);
             return ParamUtils.errorParam("参数错误");
