@@ -182,4 +182,22 @@ public class SampleController {
         logger.info("样本搜索请求 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+
+
+
+    @RequestMapping(value="/UploadAdaptTag",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String UploadAdaptTag(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("UploadAdaptTag param="+param);
+            resultStr =  processor.uploadAdaptTag(param);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("上传采用/不采用标签 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }

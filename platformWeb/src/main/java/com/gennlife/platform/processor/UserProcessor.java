@@ -11,13 +11,12 @@ import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.LogUtils;
 import com.gennlife.platform.util.Mailer;
 import com.gennlife.platform.util.ParamUtils;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -237,7 +236,35 @@ public class UserProcessor {
     }
 
     public String CRFList(String param) {
-
-        return null;
+        JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+        String labID = paramObj.get("labID").getAsString();
+        String orgID = paramObj.get("orgID").getAsString();
+        JsonArray roles = paramObj.get("roles").getAsJsonArray();
+        List<String> labIDSet = new LinkedList<>();
+        for(JsonElement roleItem:roles){
+            JsonObject roleObj = roleItem.getAsJsonObject();
+            JsonArray resources = roleObj.getAsJsonArray("resources");
+            for(JsonElement resourceItem:resources){
+                JsonObject resourceObj = resourceItem.getAsJsonObject();
+                String tmplabID = resourceObj.get("sid").getAsString();
+                if(!labIDSet.contains(tmplabID)){
+                    labIDSet.add(tmplabID);
+                }
+            }
+        }
+        String defaultCrf_id = AllDao.getInstance().getSyResourceDao().getCrfIDByLab(labID,orgID);
+        String[] labIDs = labIDSet.toArray(new String[labIDSet.size()]);
+        List<String> list =  AllDao.getInstance().getSyResourceDao().getCrfIDListByLab(labIDs,orgID);
+        JsonObject result = new JsonObject();
+        result.addProperty("code",1);
+        JsonObject data = new JsonObject();
+        result.add("data",data);
+        data.addProperty("default",defaultCrf_id == null?"":defaultCrf_id);
+        JsonArray listArray = new JsonArray();
+        for(String key:list){
+            listArray.add(key);
+        }
+        data.add("list",listArray);
+        return gson.toJson(result);
     }
 }

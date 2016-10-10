@@ -185,4 +185,18 @@
     WHERE gennlife_resource.sorgID=#{orgID}
     AND gennlife_role_resource.roleid = #{roleid}
   </select>
+  <select id="getCrfIDByLab" resultType="java.lang.String">
+    SELECT crf_id
+    FROM gennlife_lab_crf
+    WHERE labID=#{labID} AND orgID = #{orgID} AND crf_id != NULL
+  </select>
+
+  <select id="getCrfIDListByLab" resultType="java.lang.String">
+    SELECT crf_id
+    FROM gennlife_lab_crf
+    WHERE crf_id != "" AND  orgID = #{orgID} AND labID in
+    <foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
+      #{item,jdbcType=VARCHAR}
+    </foreach>
+  </select>
 </mapper>

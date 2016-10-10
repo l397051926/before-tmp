@@ -158,15 +158,11 @@ public class UserController{
         String resultStr = null;
         try{
             HttpSession session = paramRe.getSession();
-            if(session == null){
+            if(session == null||session.getAttribute("user")==null){
                 return ParamUtils.errorSessionLosParam();
             }else{
-                String param = AuthorityUtil.addAuthority(paramRe);
-                if(param == null ){
-                    return ParamUtils.errorSessionLosParam();
-                }else{
-                    return processor.CRFList(param);
-                }
+                String userStr = session.getAttribute("user").toString();
+                return processor.CRFList(userStr);
             }
         }catch (Exception e){
             logger.error("",e);

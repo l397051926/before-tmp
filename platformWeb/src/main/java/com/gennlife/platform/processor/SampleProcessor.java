@@ -263,7 +263,12 @@ public class SampleProcessor {
         logger.info("sampleSetSearch url="+url);
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
         String sampleURI = paramObj.get("sampleURI").getAsString();
-        paramObj.remove(sampleURI);
+        String limitStr = paramObj.get("limit").getAsString();
+        int[] ls = ParamUtils.parseLimit(limitStr);
+        paramObj.addProperty("page",ls[0]-1);
+        paramObj.addProperty("size",ls[1]);
+        paramObj.remove("sampleURI");
+        paramObj.remove("limit");
         paramObj.addProperty("data_id",sampleURI);
         String paramNew = gson.toJson(paramObj);
         logger.info("转化后的请求参数="+paramNew);
@@ -334,6 +339,36 @@ public class SampleProcessor {
             }
         }catch (Exception e){
             logger.error("",e);
+            return ParamUtils.errorParam("出现异常");
+        }
+    }
+
+    public String uploadAdaptTag(String param) {
+        String url = ConfigurationService.getUrlBean().getSampleUploadAdaptTagURL();
+        logger.info("uploadAdaptTag url="+url);
+        JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+        String sampleURI = paramObj.get("sampleURI").getAsString();
+        paramObj.addProperty("data_id",sampleURI);
+        paramObj.remove("sampleURI");
+        String paramNew = gson.toJson(paramObj);
+        logger.info("转化后的请求参数="+paramNew);
+        String reStr = HttpRequestUtils.httpPost(url ,paramNew);
+        logger.info("uploadAdaptTag result="+reStr);
+        if(reStr == null || "".equals(reStr)){
+            return ParamUtils.errorParam("FS 返回空");
+        }
+        try{
+            JsonObject json = (JsonObject) jsonParser.parse(reStr);
+            boolean succeed = json.get("success").getAsBoolean();
+            ResultBean resultBean = new ResultBean();
+            if(succeed){
+                resultBean.setCode(1);
+                return gson.toJson(resultBean);
+            }else {
+                resultBean.setCode(0);
+                return gson.toJson(resultBean);
+            }
+        }catch (Exception e){
             return ParamUtils.errorParam("出现异常");
         }
     }

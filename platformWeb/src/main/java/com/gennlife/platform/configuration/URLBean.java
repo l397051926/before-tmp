@@ -14,6 +14,10 @@ public class URLBean {
     }
 
     /**
+     * 样本集上传使用不使用标签
+     */
+    private String sampleUploadAdaptTagURL = null;
+    /**
      * crf 文件导入结果查询
      */
     private String CRFImportResult = null;
@@ -850,5 +854,13 @@ public class URLBean {
 
     public void setCRFImportResult(String CRFImportResult) {
         this.CRFImportResult = CRFImportResult;
+    }
+
+    public String getSampleUploadAdaptTagURL() {
+        return sampleUploadAdaptTagURL;
+    }
+
+    public void setSampleUploadAdaptTagURL(String sampleUploadAdaptTagURL) {
+        this.sampleUploadAdaptTagURL = sampleUploadAdaptTagURL;
     }
 }

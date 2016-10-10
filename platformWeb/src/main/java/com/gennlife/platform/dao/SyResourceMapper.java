@@ -72,4 +72,14 @@ public interface SyResourceMapper {
      * @return
      */
     int getResourceByRoleIDCounter(@Param("orgID")String orgID,@Param("roleid")Integer roleid);
+
+    /**
+     * 获取科室对应的crf_id
+     * @param labID
+     * @return
+     */
+    String getCrfIDByLab(@Param("labID")String labID,@Param("orgID")String orgID);
+
+
+    List<String> getCrfIDListByLab(@Param("labIDs") String[] labIDs, @Param("orgID")String orgID);
 }
