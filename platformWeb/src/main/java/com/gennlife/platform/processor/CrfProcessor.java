@@ -456,4 +456,16 @@ public class CrfProcessor {
             return ParamUtils.errorParam("请求出错");
         }
     }
+
+    public String csvImportResult(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCRFImportResult();
+            logger.info("CRFImportResult url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("CRFImportResult result="+result);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
 }

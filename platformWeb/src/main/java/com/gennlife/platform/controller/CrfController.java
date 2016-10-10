@@ -502,4 +502,19 @@ public class CrfController {
         logger.info("导入CRF导入配置  post 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+
+    @RequestMapping(value="/CsvImportResult",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public @ResponseBody String CsvImportResult(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            resultStr = processor.csvImportResult(param);
+        }catch (Exception e){
+            logger.error("查询导入状态",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("查询导入状态  post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }

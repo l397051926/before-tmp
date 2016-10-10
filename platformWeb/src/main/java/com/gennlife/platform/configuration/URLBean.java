@@ -13,6 +13,10 @@ public class URLBean {
         this.caseAdmission_records = caseAdmission_records;
     }
 
+    /**
+     * crf 文件导入结果查询
+     */
+    private String CRFImportResult = null;
 
     /**
      * 数据集搜索
@@ -838,5 +842,13 @@ public class URLBean {
 
     public void setSampleDetailSearchURL(String sampleDetailSearchURL) {
         this.sampleDetailSearchURL = sampleDetailSearchURL;
+    }
+
+    public String getCRFImportResult() {
+        return CRFImportResult;
+    }
+
+    public void setCRFImportResult(String CRFImportResult) {
+        this.CRFImportResult = CRFImportResult;
     }
 }
