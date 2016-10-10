@@ -1,6 +1,7 @@
 package com.gennlife.platform.dao;
 
 
+import com.gennlife.platform.model.CRFLab;
 import com.gennlife.platform.model.LabResource;
 import com.gennlife.platform.model.Resource;
 import org.apache.ibatis.annotations.Param;
@@ -78,8 +79,8 @@ public interface SyResourceMapper {
      * @param labID
      * @return
      */
-    String getCrfIDByLab(@Param("labID")String labID,@Param("orgID")String orgID);
+    CRFLab getCrfIDByLab(@Param("labID")String labID, @Param("orgID")String orgID);
 
 
-    List<String> getCrfIDListByLab(@Param("labIDs") String[] labIDs, @Param("orgID")String orgID);
+    List<CRFLab> getCrfIDListByLab(@Param("labIDs") String[] labIDs, @Param("orgID")String orgID);
 }

@@ -2,10 +2,7 @@ package com.gennlife.platform.processor;
 
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.dao.AllDao;
-import com.gennlife.platform.model.Admin;
-import com.gennlife.platform.model.Resource;
-import com.gennlife.platform.model.Role;
-import com.gennlife.platform.model.User;
+import com.gennlife.platform.model.*;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.LogUtils;
@@ -237,10 +234,12 @@ public class UserProcessor {
 
     public String CRFList(String param) {
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+        String lab_name = paramObj.get("lab_name").getAsString();
         String labID = paramObj.get("labID").getAsString();
         String orgID = paramObj.get("orgID").getAsString();
         JsonArray roles = paramObj.get("roles").getAsJsonArray();
         List<String> labIDSet = new LinkedList<>();
+        Map<String,String> map = new HashMap<>();
         for(JsonElement roleItem:roles){
             JsonObject roleObj = roleItem.getAsJsonObject();
             JsonArray resources = roleObj.getAsJsonArray("resources");
@@ -249,22 +248,54 @@ public class UserProcessor {
                 String tmplabID = resourceObj.get("sid").getAsString();
                 if(!labIDSet.contains(tmplabID)){
                     labIDSet.add(tmplabID);
+                    map.put(tmplabID,resourceObj.get("slab_name").getAsString());
                 }
             }
         }
-        String defaultCrf_id = AllDao.getInstance().getSyResourceDao().getCrfIDByLab(labID,orgID);
-        String[] labIDs = labIDSet.toArray(new String[labIDSet.size()]);
-        List<String> list =  AllDao.getInstance().getSyResourceDao().getCrfIDListByLab(labIDs,orgID);
+        String[] labIDs = new String[]{labID};
         JsonObject result = new JsonObject();
-        result.addProperty("code",1);
         JsonObject data = new JsonObject();
         result.add("data",data);
-        data.addProperty("default",defaultCrf_id == null?"":defaultCrf_id);
+        List<CRFLab> defaultList = AllDao.getInstance().getSyResourceDao().getCrfIDListByLab(labIDs,orgID);
+        if(defaultList != null){
+            JsonObject defaultObj = new JsonObject();
+            defaultObj.addProperty("lab_name",lab_name);
+            defaultObj.addProperty("labID",labID);
+            JsonArray crfList = new JsonArray();
+            defaultObj.add("crfList",crfList);
+            for(CRFLab crfLab:defaultList){
+                JsonObject item = new JsonObject();
+                item.addProperty(crfLab.getCrf_id(),crfLab.getCrf_name());
+            }
+            if(crfList.size() == 0){
+                data.add("default",new JsonObject());
+            }else{
+                data.add("default",defaultObj);
+            }
+
+        }else{
+            data.add("default",new JsonObject());
+        }
+        labIDs = labIDSet.toArray(new String[labIDSet.size()]);
+        List<CRFLab> crfLablist =  AllDao.getInstance().getSyResourceDao().getCrfIDListByLab(labIDs,orgID);
         JsonArray listArray = new JsonArray();
-        for(String key:list){
-            listArray.add(key);
+        data.add("list",listArray);
+        for(String tmpID:map.keySet()){
+            JsonObject item = new JsonObject();
+            String name = map.get(tmpID);
+            item.addProperty("labName",name);
+            item.addProperty("labID",tmpID);
+            JsonObject crfList = new JsonObject();
+            item.add("crfList",crfList);
+            for(CRFLab crfLab:crfLablist){
+                if(crfLab.getLabID().equals(tmpID)){
+                    crfList.addProperty(crfLab.getCrf_id(),crfLab.getCrf_name());
+                }
+            }
+            listArray.add(item);
         }
         data.add("list",listArray);
+        result.addProperty("code",1);
         return gson.toJson(result);
     }
 }
