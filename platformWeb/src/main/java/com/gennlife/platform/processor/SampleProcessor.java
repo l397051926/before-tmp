@@ -309,7 +309,7 @@ public class SampleProcessor {
                 schema.addProperty("__property","数据类型");
                 JsonArray data = new JsonArray();
                 JsonArray DATAArray = json.getAsJsonArray("DATA");
-                int count = 0;
+
                 for(JsonElement dataItemArray:DATAArray){
                     JsonArray oneDataArray = dataItemArray.getAsJsonArray();
                     JsonObject entity = new JsonObject();
@@ -322,14 +322,14 @@ public class SampleProcessor {
                     String use = useMap.get(__SAMPLE_ID);
                     entity.addProperty("__use",use);
                     data.add(entity);
-                    JsonElement propertyItem = PROPERTY.get(count);
-                    entity.add("__property",propertyItem);
+
                 }
                 JsonObject result = new JsonObject();
                 JsonObject info = new JsonObject();
                 JsonElement counter = json.get("TOTAL");
                 info.add("schema",schema);
                 info.add("counter",counter);
+                info.add("property",PROPERTY);
                 result.addProperty("code",1);
                 result.add("info",info);
                 result.add("data",data);

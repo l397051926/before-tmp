@@ -28,11 +28,11 @@ public class SessionFilter implements Filter {
     private static View view = new View();
     private static Set<String> okSet= new HashSet<String>();
     private static Set<String> adminSet = new HashSet<>();
+
     static{
         okSet.add("/user/Login");
         okSet.add("/user/SendEmailForChangePWD");
         okSet.add("/user/ExistEmail");
-
         adminSet.add("/bsma/OrgMapData");
         adminSet.add("/bsma/DeleteOrg");
         adminSet.add("/bsma/UpdateOrg");
@@ -61,6 +61,7 @@ public class SessionFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
+
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String uri = request.getRequestURI();
         if(okSet.contains(uri)){//放行
