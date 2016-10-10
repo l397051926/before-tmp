@@ -306,7 +306,6 @@ public class SampleProcessor {
                     list.add(index);
                 }
                 schema.addProperty("__use","是否使用");
-                schema.addProperty("__property","数据类型");
                 JsonArray data = new JsonArray();
                 JsonArray DATAArray = json.getAsJsonArray("DATA");
 
