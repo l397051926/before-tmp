@@ -69,11 +69,11 @@ public class UserController{
         try{
             HttpSession session = paramRe.getSession();
             if(session == null){
-                return ParamUtils.errorParam("当前session已经失效");
+                return ParamUtils.errorSessionLosParam();
             }else{
                 User user = gson.fromJson((String)session.getAttribute("user"),User.class);
-                if(user == null){
-                    return ParamUtils.errorParam("当前session已经失效");
+                if(user == null ){
+                    return ParamUtils.errorSessionLosParam();
                 }
                 String param = ParamUtils.getParam(paramRe);
                 JsonObject paramObj = (JsonObject) jsonParser.parse(param);
@@ -149,6 +149,30 @@ public class UserController{
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("查看账户是否存在 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/CRFList",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String CRFList(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            HttpSession session = paramRe.getSession();
+            if(session == null){
+                return ParamUtils.errorSessionLosParam();
+            }else{
+                String param = AuthorityUtil.addAuthority(paramRe);
+                if(param == null ){
+                    return ParamUtils.errorSessionLosParam();
+                }else{
+                    return processor.CRFList(param);
+                }
+            }
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("用户可访问crf列表 post 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 }

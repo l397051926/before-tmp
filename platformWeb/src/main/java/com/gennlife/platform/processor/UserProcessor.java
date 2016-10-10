@@ -235,4 +235,9 @@ public class UserProcessor {
         }
         return user;
     }
+
+    public String CRFList(String param) {
+
+        return null;
+    }
 }

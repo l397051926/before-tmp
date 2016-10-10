@@ -20,6 +20,9 @@ public class AuthorityUtil {
         String param = ParamUtils.getParam(paramRe);
         JsonElement paramElement = jsonParser.parse(param);
         HttpSession session = paramRe.getSession();
+        if(session.getAttribute("user") == null){
+            return ParamUtils.errorSessionLosParam();
+        }
         String userStr = session.getAttribute("user").toString();
         JsonObject user = (JsonObject) jsonParser.parse(userStr);
         JsonArray roles = user.getAsJsonArray("roles");
