@@ -246,7 +246,8 @@ public class UserProcessor {
             for(JsonElement resourceItem:resources){
                 JsonObject resourceObj = resourceItem.getAsJsonObject();
                 String tmplabID = resourceObj.get("sid").getAsString();
-                if(!labIDSet.contains(tmplabID) ){
+                String has_addCRF = resourceObj.get("has_addCRF").getAsString();
+                if(!labIDSet.contains(tmplabID) && "有".equals(has_addCRF)){
                     labIDSet.add(tmplabID);
                     map.put(tmplabID,resourceObj.get("slab_name").getAsString());
                 }
