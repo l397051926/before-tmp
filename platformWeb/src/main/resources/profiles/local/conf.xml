@@ -40,7 +40,8 @@
         <property name="caseDischargeRecords" value="http://10.0.0.165:9900/FileService/PatientDetail/discharge_records"></property>
         <property name="caseCourseRecords" value="http://10.0.0.165:9900/FileService/PatientDetail/course_records/"></property>
         <property name="caseMedicalCourse" value="http://10.0.0.165:9900/FileService/PatientDetail/medical_course"></property>
-
+        <property name="caseDetailVisitClassifySectionURL" value="http://10.0.0.165:9900/FileService/VisitClassify/section"></property>
+        <property name="caseDetailVisitClassifyImageURL" value="http://10.0.0.165:9900/FileService/VisitClassify/image"></property>
         <!-- 样本操作 -->
         <property name="sampleImportIURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_export"/>
         <property name="sampleDetailURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_get"/>

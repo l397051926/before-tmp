@@ -14,6 +14,14 @@ public class URLBean {
     }
 
     /**
+     * 图片获取接口
+     */
+    private String caseDetailVisitClassifyImageURL = null;
+    /**
+     * 病史信息接口
+     */
+    private String caseDetailVisitClassifySectionURL = null;
+    /**
      * 样本集上传使用不使用标签
      */
     private String sampleUploadAdaptTagURL = null;
@@ -862,5 +870,21 @@ public class URLBean {
 
     public void setSampleUploadAdaptTagURL(String sampleUploadAdaptTagURL) {
         this.sampleUploadAdaptTagURL = sampleUploadAdaptTagURL;
+    }
+
+    public String getCaseDetailVisitClassifySectionURL() {
+        return caseDetailVisitClassifySectionURL;
+    }
+
+    public void setCaseDetailVisitClassifySectionURL(String caseDetailVisitClassifySectionURL) {
+        this.caseDetailVisitClassifySectionURL = caseDetailVisitClassifySectionURL;
+    }
+
+    public String getCaseDetailVisitClassifyImageURL() {
+        return caseDetailVisitClassifyImageURL;
+    }
+
+    public void setCaseDetailVisitClassifyImageURL(String caseDetailVisitClassifyImageURL) {
+        this.caseDetailVisitClassifyImageURL = caseDetailVisitClassifyImageURL;
     }
 }

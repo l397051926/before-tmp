@@ -378,4 +378,38 @@ public class DetailProcessor {
             return ParamUtils.errorParam("请求出错");
         }
     }
+
+    /**
+     * 病史信息接口
+     * @param param
+     * @return
+     */
+    public String visitClassifySection(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCaseDetailVisitClassifySectionURL();
+            logger.info("visitClassifySection url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("visitClassifySection result="+result);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    /**
+     * 图片获取接口
+     * @param param
+     * @return
+     */
+    public String visitClassifyImage(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCaseDetailVisitClassifyImageURL();
+            logger.info("visitClassifyImage url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("visitClassifyImage result="+result);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
 }

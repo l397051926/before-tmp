@@ -431,5 +431,38 @@ public class DetailController {
         return resultStr;
     }
 
+    @RequestMapping(value="/VisitClassifySection",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String VisitClassifySection(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = AuthorityUtil.addAuthority(paramRe);
+            logger.info("病史信息接口  get方式 参数="+param);
+            resultStr =  processor.visitClassifySection(param);
+        }catch (Exception e){
+            logger.error("病史信息接口",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("病史信息接口 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 
+
+    @RequestMapping(value="/VisitClassifyImage",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String VisitClassifyImage(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = AuthorityUtil.addAuthority(paramRe);
+            logger.info("图片获取接口  post方式 参数="+param);
+            resultStr =  processor.visitClassifyImage(param);
+        }catch (Exception e){
+            logger.error("图片获取接口",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("图片获取接口 post方式 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }

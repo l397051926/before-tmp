@@ -42,7 +42,8 @@
         <property name="caseDischargeRecords" value="http://10.0.0.22:8111/FileService/PatientDetail/discharge_records"></property>
         <property name="caseCourseRecords" value="http://10.0.0.22:8111/FileService/PatientDetail/course_records/"></property>
         <property name="caseMedicalCourse" value="http://10.0.0.22:8111/FileService/PatientDetail/medical_course"></property>
-
+        <property name="caseDetailVisitClassifySectionURL" value="http://10.0.0.22:8111/FileService/VisitClassify/section"></property>
+        <property name="caseDetailVisitClassifyImageURL" value="http://10.0.0.22:8111/FileService/VisitClassify/image"></property>
         <!--FS CRF导入文件 -->
         <property name="fileStoreForCRFImport" value="http://10.0.0.22:8111/FileService/PatientDetail/UploadCsvFile"></property>
 
