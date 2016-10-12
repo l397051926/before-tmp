@@ -14,6 +14,11 @@ public class URLBean {
     }
 
     /**
+     * 基线统计
+     */
+    private String CSBaseline = null;
+
+    /**
      * 图片获取接口
      */
     private String caseDetailVisitClassifyImageURL = null;
@@ -886,5 +891,13 @@ public class URLBean {
 
     public void setCaseDetailVisitClassifyImageURL(String caseDetailVisitClassifyImageURL) {
         this.caseDetailVisitClassifyImageURL = caseDetailVisitClassifyImageURL;
+    }
+
+    public String getCSBaseline() {
+        return CSBaseline;
+    }
+
+    public void setCSBaseline(String CSBaseline) {
+        this.CSBaseline = CSBaseline;
     }
 }

@@ -1,13 +1,15 @@
 package com.gennlife.platform.processor;
 
+import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Map;
 
 /**
  * Created by chen-song on 16/8/16.
@@ -15,7 +17,7 @@ import org.slf4j.LoggerFactory;
 public class ComputeProcessor {
     private Logger logger = LoggerFactory.getLogger(ComputeProcessor.class);
     private static Gson gson = GsonUtil.getGson();
-
+    private static JsonParser jsonParser = new JsonParser();
     /**
      * 计算服务因子图
      * @param paramObj
@@ -25,8 +27,46 @@ public class ComputeProcessor {
     public String smg(JsonObject paramObj) {
         String param = gson.toJson(paramObj);
         String url = ConfigurationService.getUrlBean().getCSSmg()+"?param="+ParamUtils.encodeURI(param);
-        logger.info("url="+url);
+        logger.info("smg url="+url);
         String result = HttpRequestUtils.httpGet(url);
         return result;
+    }
+
+    /**
+     * 基线统计
+     * @param paramObj
+     * @return
+     */
+    public String baseline(JsonObject paramObj) {
+        StringBuffer sb = new StringBuffer();
+        for(Map.Entry<String, JsonElement> item:paramObj.entrySet()){
+            String key = item.getKey();
+            JsonElement jsonElement = item.getValue();
+            if(jsonElement.isJsonPrimitive()){
+                String value = jsonElement.getAsString();
+                sb.append(key).append("=").append(ParamUtils.encodeURI(value)).append("&");
+            }else{
+                sb.append(key).append("=").append(ParamUtils.encodeURI(gson.toJson(jsonElement))).append("&");
+            }
+
+        }
+        String param = sb.toString().substring(0,sb.toString().length()-1);
+        String url = ConfigurationService.getUrlBean().getCSBaseline()+"?"+param;
+        logger.info("baseline url="+url);
+        String reStr = HttpRequestUtils.httpGet(url);
+        logger.info("baseline result="+reStr);
+        if(reStr == null || "".equals(reStr)){
+            return ParamUtils.errorParam("计算服务返回空");
+        }else{
+            try{
+                JsonObject result = new JsonObject();
+                JsonArray data = (JsonArray) jsonParser.parse(reStr);
+                result.addProperty("code",1);
+                result.add("data",data);
+                return gson.toJson(result);
+            }catch (Exception e){
+                return ParamUtils.errorParam("计算服务返回数据异常");
+            }
+        }
     }
 }

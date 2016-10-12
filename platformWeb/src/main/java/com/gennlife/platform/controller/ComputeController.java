@@ -37,4 +37,20 @@ public class ComputeController {
         logger.info("计算服务因子图 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+    @RequestMapping(value="/Baseline",method= RequestMethod.GET,produces = "application/xml;charset=UTF-8")
+    public @ResponseBody
+    String baseline(@RequestParam("param") String param){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            logger.info("基线统计 get方式 参数="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.baseline(paramObj);
+        }catch (Exception e){
+            logger.error("基线统计",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("基线统计 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }
