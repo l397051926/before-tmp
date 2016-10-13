@@ -61,28 +61,28 @@
         <property name="knowledgeDetailVariationSearchDrugURL" value="http://10.0.0.24:8080/knowledge/VariationInfo"/>
         <property name="knowledgePharmGKBSearchDrugURL" value="http://10.0.0.24:8080/knowledge/PharmGKBSearchDrug"/>
         <!--CRF 服务接口 -->
-        <property name="CRFProjectCRFListURL" value="http://192.168.1.111:9885/auto/ProjectCrfList"/>
-        <property name="CRFAutoMapURL" value="http://192.168.1.111:9885/auto/AutoMap"/>
-        <property name="CRFGetAttrID" value="http://192.168.1.111:9885/crf/GetAttrID"/>
-        <property name="CRFGetGroupID" value="http://192.168.1.111:9885/crf/GetGroupID"/>
-        <property name="CRFModelByProjectID" value="http://192.168.1.111:9885/crf/ModelByProjectID"/>
-        <property name="CRFModelForTraceByCRFID" value="http://192.168.1.111:9885/crf/ModelForTraceByCRFID"/>
-        <property name="CRFModelByCRFID" value="http://192.168.1.111:9885/crf/ModelByCRFID"/>
-        <property name="CRFEditModel" value="http://192.168.1.111:9885/crf/EditModel"/>
-        <property name="CRFSaveModel" value="http://192.168.1.111:9885/crf/SaveModel"/>
-        <property name="CRFGetData" value="http://192.168.1.111:9885/crf/GetData"/>
-        <property name="CRFSaveData" value="http://192.168.1.111:9885/crf/SaveData"/>
-        <property name="CRFSampleCaseList" value="http://192.168.1.111:9885/crf/SampleCaseList"/>
-        <property name="CRFDeleteSample" value="http://192.168.1.111:9885/crf/DeleteSample"/>
-        <property name="CRFUpLoadData" value="http://192.168.1.111:9885/crf/UpLoadData"/>
-        <property name="CRFSearchSampleList" value="http://192.168.1.111:9885/crf/SearchSampleList"/>
-        <property name="CRFGetPatientInfo" value="http://192.168.1.111:9885/auto/PatientInfo"/>
-        <property name="CRFPatientVisitDetail" value="http://192.168.1.111:9885/auto/PatientVisitDetail"/>
-        <property name="CRFPatientAllVisitsDetail" value="http://192.168.1.111:9885/auto/PatientAllVisitsDetail"/>
-        <property name="CRFUpLoadDataForCheck" value="http://192.168.1.111:9885/crf/UpLoadDataForCheck"></property>
-        <property name="CRFImportFile" value="http://192.168.1.111:9885/auto/CsvAddQueue"></property>
-        <property name="CRFImportMap" value="http://192.168.1.111:9885/auto/CsvImport"></property>
-        <property name="CRFImportResult" value="http://192.168.1.111:9885/auto/CsvImportResult"></property>
+        <property name="CRFProjectCRFListURL" value="http://10.0.0.30:8080/auto/ProjectCrfList"/>
+        <property name="CRFAutoMapURL" value="http://10.0.0.30:8080/auto/AutoMap"/>
+        <property name="CRFGetAttrID" value="http://10.0.0.30:8080/crf/GetAttrID"/>
+        <property name="CRFGetGroupID" value="http://10.0.0.30:8080/crf/GetGroupID"/>
+        <property name="CRFModelByProjectID" value="http://10.0.0.30:8080/crf/ModelByProjectID"/>
+        <property name="CRFModelForTraceByCRFID" value="http://10.0.0.30:8080/crf/ModelForTraceByCRFID"/>
+        <property name="CRFModelByCRFID" value="http://10.0.0.30:8080/crf/ModelByCRFID"/>
+        <property name="CRFEditModel" value="http://10.0.0.30:8080/crf/EditModel"/>
+        <property name="CRFSaveModel" value="http://10.0.0.30:8080/crf/SaveModel"/>
+        <property name="CRFGetData" value="http://10.0.0.30:8080/crf/GetData"/>
+        <property name="CRFSaveData" value="http://10.0.0.30:8080/crf/SaveData"/>
+        <property name="CRFSampleCaseList" value="http://10.0.0.30:8080/crf/SampleCaseList"/>
+        <property name="CRFDeleteSample" value="http://10.0.0.30:8080/crf/DeleteSample"/>
+        <property name="CRFUpLoadData" value="http://10.0.0.30:8080/crf/UpLoadData"/>
+        <property name="CRFSearchSampleList" value="http://10.0.0.30:8080/crf/SearchSampleList"/>
+        <property name="CRFGetPatientInfo" value="http://10.0.0.30:8080/auto/PatientInfo"/>
+        <property name="CRFPatientVisitDetail" value="http://10.0.0.30:8080/auto/PatientVisitDetail"/>
+        <property name="CRFPatientAllVisitsDetail" value="http://10.0.0.30:8080/auto/PatientAllVisitsDetail"/>
+        <property name="CRFUpLoadDataForCheck" value="http://10.0.0.30:8080/crf/UpLoadDataForCheck"></property>
+        <property name="CRFImportFile" value="http://10.0.0.30:8080/auto/CsvAddQueue"></property>
+        <property name="CRFImportMap" value="http://10.0.0.30:8080/auto/CsvImport"></property>
+        <property name="CRFImportResult" value="http://10.0.0.30:8080/auto/CsvImportResult"></property>
 
         <!--R 服务接口-->
         <property name="RRun" value="http://192.168.1.111:1235/r_run"/>
