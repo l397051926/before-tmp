@@ -91,9 +91,9 @@
         <property name="RLoad" value="http://10.0.0.40:1235/r_load"/>
         <property name="RList" value="http://10.0.0.40:1235/r_list"/>
         <!--工作区计算服务接口 -->
-        <property name="AtoolURL" value="http://10.8.0.26:81/get_statistic"/>
-        <property name="toolsURL" value="http://10.8.0.26:81/get_tools"/>
-        <property name="CSSmg" value="http://10.8.0.26:81/smg"/>
+        <property name="AtoolURL" value="http://10.0.0.59:81/get_statistic"/>
+        <property name="toolsURL" value="http://10.0.0.59:81/get_tools"/>
+        <property name="CSSmg" value="http://10.0.0.59:81/smg"/>
 
         <property name="EmailSendURL" value="http://10.0.0.170:80/uranus/verify_email.html?token="></property>
     </bean>
