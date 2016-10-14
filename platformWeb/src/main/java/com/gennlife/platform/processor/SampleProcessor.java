@@ -265,7 +265,7 @@ public class SampleProcessor {
         String sampleURI = paramObj.get("sampleURI").getAsString();
         String limitStr = paramObj.get("limit").getAsString();
         int[] ls = ParamUtils.parseLimit(limitStr);
-        paramObj.addProperty("page",ls[0]-1);
+        paramObj.addProperty("page",ls[0]);
         paramObj.addProperty("size",ls[1]);
         paramObj.remove("sampleURI");
         paramObj.remove("limit");
