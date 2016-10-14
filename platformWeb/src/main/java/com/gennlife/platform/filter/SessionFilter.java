@@ -96,6 +96,7 @@ public class SessionFilter implements Filter {
                     filterChain.doFilter(request,response);
                 }
             }catch (Exception e){
+                logger.error("",e);
                 view.viewString(ParamUtils.errorParam("session异常"),response);
             }
 
