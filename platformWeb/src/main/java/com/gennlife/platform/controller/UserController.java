@@ -47,8 +47,8 @@ public class UserController{
             ResultBean resultBean =  processor.login(param);
             if(resultBean.getCode() == 1){
                 User user = (User) resultBean.getData();
-                MemCachedUtil.setWithTime(sessionID,user.getUid(),sessionTimeOut);
-                MemCachedUtil.setWithTime(user.getUid(),sessionID,sessionTimeOut);
+                MemCachedUtil.set(sessionID,user.getUid());
+                MemCachedUtil.set(user.getUid(),sessionID);
                 user = processor.transformRole(user);
                 MemCachedUtil.setUserWithTime(user.getUid(),user,sessionTimeOut);
                 resultBean.setData(user);

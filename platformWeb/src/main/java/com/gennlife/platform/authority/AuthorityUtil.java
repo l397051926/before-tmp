@@ -4,7 +4,6 @@ import com.gennlife.platform.controller.UserController;
 import com.gennlife.platform.model.Admin;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.UserProcessor;
-import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.MemCachedUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.*;
