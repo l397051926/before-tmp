@@ -50,7 +50,7 @@ public class UserController{
                 MemCachedUtil.setWithTime(sessionID,user.getUid(),sessionTimeOut);
                 MemCachedUtil.setWithTime(user.getUid(),sessionID,sessionTimeOut);
                 user = processor.transformRole(user);
-                MemCachedUtil.setUser(user.getUid(),user);
+                MemCachedUtil.setUserWithTime(user.getUid(),user,sessionTimeOut);
                 resultBean.setData(user);
                 session.setAttribute("user",gson.toJson(user));
             }

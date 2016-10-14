@@ -1,7 +1,9 @@
 package com.gennlife.platform.authority;
 
+import com.gennlife.platform.controller.UserController;
 import com.gennlife.platform.model.Admin;
 import com.gennlife.platform.model.User;
+import com.gennlife.platform.processor.UserProcessor;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.MemCachedUtil;
 import com.gennlife.platform.util.ParamUtils;
@@ -27,6 +29,10 @@ public class AuthorityUtil {
             return ParamUtils.errorSessionLosParam();
         }
         User userS = MemCachedUtil.getUser(uid);
+        if(userS == null){
+            userS = UserProcessor.getUserByUid(uid);
+            MemCachedUtil.setUserWithTime(uid,userS, UserController.sessionTimeOut);
+        }
         JsonObject user = (JsonObject) jsonParser.parse(gson.toJson(userS));
         JsonArray roles = user.getAsJsonArray("roles");
         if(paramElement.isJsonObject()){

@@ -2,12 +2,10 @@ package com.gennlife.platform.processor;
 
 
 import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.controller.UserController;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.*;
-import com.gennlife.platform.util.ChineseToEnglish;
-import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.LogUtils;
-import com.gennlife.platform.util.ParamUtils;
+import com.gennlife.platform.util.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -330,6 +328,7 @@ public class LaboratoryProcessor {
         adduser.setPwd("ls123456");
         adduser.setOrg_name(user.getOrg_name());
         JsonObject re = insertUser(adduser);
+        MemCachedUtil.setUserWithTime(adduser.getUid(),adduser, UserController.sessionTimeOut);
         return gson.toJson(re);
     }
 
@@ -410,9 +409,14 @@ public class LaboratoryProcessor {
             return ParamUtils.errorParam("参数错误");
         }
         String[] uids = uidsList.toArray(new String[uidsList.size()]);
+
         AllDao.getInstance().getSyRoleDao().deleteByUids(uids);
         int counter = AllDao.getInstance().getSyUserDao().deleteUserByUids(uids);
         ResultBean re = new ResultBean();
+        for(String uid:uids){
+            MemCachedUtil.delete(uid);
+            MemCachedUtil.daleteUser(uid);
+        }
         if(counter > 0){
             re.setCode(1);
             Map<String,Object> map = new HashMap<>();
@@ -563,7 +567,6 @@ public class LaboratoryProcessor {
     public String deleteRoles(JsonArray paramObj, User user) {
         Integer[] paraRoleids = null;
         try{
-
             paraRoleids = new Integer[paramObj.size()];
             for(int index=0;index < paramObj.size();index ++){
                 paraRoleids[index] = paramObj.get(index).getAsInt();
@@ -575,7 +578,7 @@ public class LaboratoryProcessor {
         List<Integer> checkedRoleids = new LinkedList<>();
         for(Integer roleid:paraRoleids){
             Role role = AllDao.getInstance().getSyRoleDao().getRoleByroleid(roleid);
-            if(!"科室成员".equals(role.getRole()) && !checkedRoleids.equals(roleid)){
+            if(!"科室成员".equals(role.getRole()) && !checkedRoleids.contains(roleid)){
                 checkedRoleids.add(roleid);
             }
         }
@@ -583,6 +586,12 @@ public class LaboratoryProcessor {
         AllDao.getInstance().getSyRoleDao().deleteRelationsByRoleids(roleids);
         AllDao.getInstance().getSyRoleDao().deleteRelationsWithReourcesByRoleids(roleids);
         int counter = AllDao.getInstance().getSyRoleDao().deleteRolesByRoleids(roleids);
+        for(Integer roleid:roleids){
+            List<User> list = AllDao.getInstance().getSyUserDao().getUserByRoleID(roleid,0,10000);
+            for(User user1:list){
+                MemCachedUtil.daleteUser(user1.getUid());
+            }
+        }
         Map<String,Integer> map = new HashMap<>();
         map.put("succeed",counter);
         map.put("fail",paraRoleids.length - counter);
@@ -726,6 +735,10 @@ public class LaboratoryProcessor {
                 }
             }
             int counter = AllDao.getInstance().getSyRoleDao().updateUserRole(role);//更新用户信息
+            List<User> users = AllDao.getInstance().getSyUserDao().getUserByRoleID(role.getRoleid(),0,10000);
+            for(User user1:users){
+                MemCachedUtil.daleteUser(user1.getUid());
+            }
             if(counter == 0){
                 return ParamUtils.errorParam("更新失败");
             }else{

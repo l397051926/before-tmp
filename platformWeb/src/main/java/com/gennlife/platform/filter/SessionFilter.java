@@ -2,7 +2,9 @@ package com.gennlife.platform.filter;
 
 
 import com.gennlife.platform.authority.AuthorityUtil;
+import com.gennlife.platform.controller.UserController;
 import com.gennlife.platform.model.User;
+import com.gennlife.platform.processor.UserProcessor;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.MemCachedUtil;
 import com.gennlife.platform.util.ParamUtils;
@@ -77,6 +79,13 @@ public class SessionFilter implements Filter {
             }
             try{
                 User user = MemCachedUtil.getUser(uid);
+                if(user == null){
+                    user = UserProcessor.getUserByUid(uid);
+                    if(user == null){
+                        view.viewString(ParamUtils.errorParam("用户不存在"),response);
+                    }
+                    MemCachedUtil.setUserWithTime(uid,user, UserController.sessionTimeOut);
+                }
                 if(adminSet.contains(uri)){
                     if(!AuthorityUtil.isAdmin(user)){//没有管理权限
                         view.viewString(ParamUtils.errorAuthorityParam(),response);

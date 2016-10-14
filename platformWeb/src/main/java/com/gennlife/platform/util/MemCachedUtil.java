@@ -86,6 +86,9 @@ public class MemCachedUtil {
     public static boolean setUser(String uid,User value){
         return mcc.add(uid+"_info",value);
     }
+    public static boolean daleteUser(String uid){
+        return mcc.delete(uid+"_info");
+    }
     public static User getUser(String uid){
         return (User) mcc.get(uid+"_info");
     }
