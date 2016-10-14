@@ -5,6 +5,7 @@ import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.LaboratoryProcessor;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
+import com.gennlife.platform.util.MemCachedUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -71,7 +72,12 @@ public class BackstageManagementController {
         try{
             String param = ParamUtils.getParam(paramRe);
             HttpSession session = paramRe.getSession();
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user = MemCachedUtil.getUser(uid);
             logger.info("删除科室 get方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.deleteOrg(paramObj,user);
@@ -90,7 +96,12 @@ public class BackstageManagementController {
         try{
             String param = ParamUtils.getParam(paramRe);
             HttpSession session = paramRe.getSession();
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user = MemCachedUtil.getUser(uid);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.updateOrg(paramObj,user);
         }catch (Exception e){
@@ -108,7 +119,12 @@ public class BackstageManagementController {
         try{
             String param = ParamUtils.getParam(paramRe);
             HttpSession session = paramRe.getSession();
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user = MemCachedUtil.getUser(uid);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getStaffInfo(paramObj,user);
         }catch (Exception e){
@@ -126,7 +142,12 @@ public class BackstageManagementController {
         try{
             String param = ParamUtils.getParam(paramRe);
             HttpSession session = paramRe.getSession();
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user = MemCachedUtil.getUser(uid);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.addStaff(paramObj,user);
         }catch (Exception e){
@@ -143,7 +164,12 @@ public class BackstageManagementController {
         try{
             String param = ParamUtils.getParam(paramRe);
             HttpSession session = paramRe.getSession();
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user  = MemCachedUtil.getUser(uid);
             JsonArray paramObj = (JsonArray) jsonParser.parse(param);
             resultStr =  processor.deleteStaff(paramObj,user);
         }catch (Exception e){
@@ -160,7 +186,12 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             HttpSession session = paramRe.getSession();
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user= MemCachedUtil.getUser(uid);
             String orgID = user.getOrgID();
             resultStr =  processor.getProfessionList(orgID);
         }catch (Exception e){
@@ -177,7 +208,12 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             HttpSession session = paramRe.getSession();
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user =  MemCachedUtil.getUser(uid);
             String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getGetRoleInfo(paramObj,user);
@@ -196,7 +232,12 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             HttpSession session = paramRe.getSession();
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user = MemCachedUtil.getUser(uid);
             String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getStaffTree(paramObj,user);
@@ -215,8 +256,13 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession(false);
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            HttpSession session = paramRe.getSession();
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user = MemCachedUtil.getUser(uid);
             JsonArray paramObj = (JsonArray) jsonParser.parse(param);
             resultStr =  processor.deleteRoles(paramObj,user);
         }catch (Exception e){
@@ -233,8 +279,13 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession(false);
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            HttpSession session = paramRe.getSession();
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user = MemCachedUtil.getUser(uid);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.addRole(paramObj,user);
         }catch (Exception e){
@@ -250,8 +301,13 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession(false);
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            HttpSession session = paramRe.getSession();
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user = MemCachedUtil.getUser(uid);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.editRole(paramObj,user);
         }catch (Exception e){
@@ -287,8 +343,13 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession(false);
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            HttpSession session = paramRe.getSession();
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user= MemCachedUtil.getUser(uid);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getRoleStaff(paramObj,user);
         }catch (Exception e){
@@ -306,8 +367,13 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession(false);
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            HttpSession session = paramRe.getSession();
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user= MemCachedUtil.getUser(uid);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getRoleResource(paramObj,user);
         }catch (Exception e){
@@ -323,8 +389,13 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession(false);
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            HttpSession session = paramRe.getSession();
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user = MemCachedUtil.getUser(uid);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getResourceTree(paramObj,user);
         }catch (Exception e){
@@ -339,8 +410,13 @@ public class BackstageManagementController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            HttpSession session = paramRe.getSession(false);
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            HttpSession session = paramRe.getSession();
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user = MemCachedUtil.getUser(uid);
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
             resultBean.setData(user);

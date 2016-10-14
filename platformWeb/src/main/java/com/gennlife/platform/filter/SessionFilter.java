@@ -4,6 +4,7 @@ package com.gennlife.platform.filter;
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.util.GsonUtil;
+import com.gennlife.platform.util.MemCachedUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
@@ -68,18 +69,29 @@ public class SessionFilter implements Filter {
             filterChain.doFilter(request,response);
         }else {
             HttpSession session = request.getSession();
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
-            if(user == null || user.getUid() == null){
-                view.viewString(ParamUtils.errorSessionLosParam(),response);
-            }else if(adminSet.contains(uri)){
-                if(!AuthorityUtil.isAdmin(user)){//没有管理权限
-                    view.viewString(ParamUtils.errorParam("当前用户没有权限"),response);
-                }else{//放行
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            String exSessionID = MemCachedUtil.get(uid);
+            if(!sessionID.equals(exSessionID)){//一个用户两次登陆
+                MemCachedUtil.delete(exSessionID);
+            }
+            try{
+                User user = MemCachedUtil.getUser(uid);
+                if(adminSet.contains(uri)){
+                    if(!AuthorityUtil.isAdmin(user)){//没有管理权限
+                        view.viewString(ParamUtils.errorAuthorityParam(),response);
+                    }else{//放行
+                        filterChain.doFilter(request,response);
+                    }
+                }else {
                     filterChain.doFilter(request,response);
                 }
-            }else {
-                filterChain.doFilter(request,response);
+            }catch (Exception e){
+                view.viewString(ParamUtils.errorParam("session异常"),response);
             }
+
+
+
         }
     }
 

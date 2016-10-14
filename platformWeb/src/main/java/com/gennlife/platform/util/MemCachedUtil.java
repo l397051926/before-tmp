@@ -6,6 +6,8 @@ import com.gennlife.platform.configuration.MemCachedConf;
 import com.gennlife.platform.model.User;
 import org.springframework.context.ApplicationContext;
 
+import java.util.Date;
+
 /**
  * Created by chen-song on 16/9/23.
  */
@@ -55,6 +57,39 @@ public class MemCachedUtil {
         else
             return null;
     }
+    public static boolean delete(String key){
+        return mcc.delete(key);
+    }
+
+    /**
+     * 过期时间：单位分钟
+     * @param key
+     * @param value
+     * @param time
+     * @return
+     */
+    public static boolean setWithTime(String key,String value,int time){
+        return mcc.add(key,value,new Date(time * 60 * 1000));
+    }
+
+    /**
+     *
+     * @param uid:uid
+     * @param value
+     * @param time
+     * @return
+     */
+    public static boolean setUserWithTime(String uid,User value,int time){
+        return mcc.add(uid+"_info",value,new Date(time * 60 * 1000));
+    }
+
+    public static boolean setUser(String uid,User value){
+        return mcc.add(uid+"_info",value);
+    }
+    public static User getUser(String uid){
+        return (User) mcc.get(uid+"_info");
+    }
+
     public static boolean addUser(String email,User user){
         return mcc.set(email, user);
     }

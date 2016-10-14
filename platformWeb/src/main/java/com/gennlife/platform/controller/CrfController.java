@@ -1,7 +1,10 @@
 package com.gennlife.platform.controller;
 
+import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.CrfProcessor;
+import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
+import com.gennlife.platform.util.MemCachedUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -18,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by chen-song on 16/6/3.
@@ -155,8 +159,23 @@ public class CrfController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
+            HttpSession session = paramRe.getSession();
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user = MemCachedUtil.getUser(uid);
+            if(user == null || user.getOrgID() == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            String indexName = ConfigurationService.getOrgIDIndexNamemap().get(user.getOrgID());
+            if(indexName == null){
+                return ParamUtils.errorParam("用户所在的组织无法建立索引");
+            }
             logger.info("上传crf数据 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            paramObj.addProperty("indexName",indexName);
             resultStr = processor.upLoadData(paramObj);
         }catch (Exception e){
             logger.error("上传crf数据",e);
@@ -167,22 +186,6 @@ public class CrfController {
     }
 
 
-
-    @RequestMapping(value="/UpLoadData",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getUpLoadData(@RequestParam("param") String param) {
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            logger.info("上传crf数据 get方式 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.upLoadData(paramObj);
-        }catch (Exception e){
-            logger.error("上传crf数据",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("上传crf数据 get 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
 
     @RequestMapping(value="/SaveData",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody String postSaveData(HttpServletRequest paramRe) {
@@ -455,9 +458,19 @@ public class CrfController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            HttpSession session = paramRe.getSession();
+            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            if(user == null || user.getOrgID() == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            String indexName = ConfigurationService.getOrgIDIndexNamemap().get(user.getOrgID());
+            if(indexName == null){
+                return ParamUtils.errorParam("用户所在的组织无法建立索引");
+            }
             String param = ParamUtils.getParam(paramRe);
             logger.info("自动映射检验上传crf数据 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            paramObj.addProperty("indexName",indexName);
             resultStr = processor.upLoadDataForCheck(paramObj);
         }catch (Exception e){
             logger.error("自动映射检验上传crf数据",e);
@@ -493,8 +506,24 @@ public class CrfController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            HttpSession session = paramRe.getSession();
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user = MemCachedUtil.getUser(uid);
+            if(user == null || user.getOrgID() == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            String indexName = ConfigurationService.getOrgIDIndexNamemap().get(user.getOrgID());
+            if(indexName == null){
+                return ParamUtils.errorParam("用户所在的组织无法建立索引");
+            }
             String param = ParamUtils.getParam(paramRe);
-            resultStr = processor.importCRFMap(param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            paramObj.addProperty("indexName",indexName);
+            resultStr = processor.importCRFMap(paramObj);
         }catch (Exception e){
             logger.error("导入CRF导入配置",e);
             resultStr = ParamUtils.errorParam("出现异常");

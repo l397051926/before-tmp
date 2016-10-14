@@ -6,6 +6,7 @@ import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.LaboratoryProcessor;
 import com.gennlife.platform.processor.UserProcessor;
 import com.gennlife.platform.util.GsonUtil;
+import com.gennlife.platform.util.MemCachedUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
@@ -33,6 +34,7 @@ public class UserController{
     private static UserProcessor processor = new UserProcessor();
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
+    public static Integer sessionTimeOut = 10;
     private static View view = new View();
     @RequestMapping(value="/Login",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public void postLogin(HttpServletRequest paramRe, HttpServletResponse response){
@@ -40,19 +42,21 @@ public class UserController{
         String resultStr = null;
         try{
             HttpSession session = paramRe.getSession(true);
+            String sessionID = session.getId();
             String param = ParamUtils.getParam(paramRe);
-            if(session != null){
-                ResultBean resultBean =  processor.login(param);
-                if(resultBean.getCode() == 1){
-                    User user = (User) resultBean.getData();
-                    user = processor.transformRole(user);
-                    resultBean.setData(user);
-                    session.setAttribute("user",gson.toJson(user));
-                }
-                Cookie cookie = new Cookie("JSESSIONID",session.getId());
-                response.addCookie(cookie);
-                resultStr = gson.toJson(resultBean);
+            ResultBean resultBean =  processor.login(param);
+            if(resultBean.getCode() == 1){
+                User user = (User) resultBean.getData();
+                MemCachedUtil.setWithTime(sessionID,user.getUid(),sessionTimeOut);
+                MemCachedUtil.setWithTime(user.getUid(),sessionID,sessionTimeOut);
+                user = processor.transformRole(user);
+                MemCachedUtil.setUser(user.getUid(),user);
+                resultBean.setData(user);
+                session.setAttribute("user",gson.toJson(user));
             }
+            Cookie cookie = new Cookie("JSESSIONID",session.getId());
+            response.addCookie(cookie);
+            resultStr = gson.toJson(resultBean);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");

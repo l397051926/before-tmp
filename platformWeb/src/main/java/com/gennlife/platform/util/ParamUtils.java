@@ -101,6 +101,13 @@ public class ParamUtils {
         resultBean.setInfo(info);
         return gson.toJson(resultBean);
     }
+    public static String errorAuthorityParam(){
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(-2);
+        String info = "没有权限";
+        resultBean.setInfo(info);
+        return gson.toJson(resultBean);
+    }
 
     public static JsonArray indexNameTranformUIName(JsonArray array){
         JsonArray jsonArray = new JsonArray();

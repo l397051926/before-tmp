@@ -445,11 +445,11 @@ public class CrfProcessor {
 
     }
 
-    public String importCRFMap(String param) {
+    public String importCRFMap(JsonObject param) {
         try{
             String url = ConfigurationService.getUrlBean().getCRFImportMap();
             logger.info("CRFImportMap url="+url);
-            String result = HttpRequestUtils.httpPost(url,param);
+            String result = HttpRequestUtils.httpPost(url,gson.toJson(param));
             logger.info("CRFImportMap result="+result);
             return result;
         }catch (Exception e){

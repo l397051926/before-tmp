@@ -3,6 +3,7 @@ package com.gennlife.platform.authority;
 import com.gennlife.platform.model.Admin;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.util.GsonUtil;
+import com.gennlife.platform.util.MemCachedUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.*;
 
@@ -20,11 +21,13 @@ public class AuthorityUtil {
         String param = ParamUtils.getParam(paramRe);
         JsonElement paramElement = jsonParser.parse(param);
         HttpSession session = paramRe.getSession();
-        if(session.getAttribute("user") == null){
+        String sessionID = session.getId();
+        String uid = MemCachedUtil.get(sessionID);
+        if(uid == null){
             return ParamUtils.errorSessionLosParam();
         }
-        String userStr = session.getAttribute("user").toString();
-        JsonObject user = (JsonObject) jsonParser.parse(userStr);
+        User userS = MemCachedUtil.getUser(uid);
+        JsonObject user = (JsonObject) jsonParser.parse(gson.toJson(userS));
         JsonArray roles = user.getAsJsonArray("roles");
         if(paramElement.isJsonObject()){
             JsonObject paramObj = paramElement.getAsJsonObject();

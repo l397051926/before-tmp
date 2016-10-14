@@ -5,6 +5,7 @@ import com.gennlife.platform.processor.CommonProcessor;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.FileUploadUtil;
 import com.gennlife.platform.util.GsonUtil;
+import com.gennlife.platform.util.MemCachedUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
@@ -43,7 +44,12 @@ public class CommonController  {
         String resultStr = "";
         try{
             HttpSession session = paramRe.getSession();
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user = MemCachedUtil.getUser(uid);
             resultStr = processor.uploadFileForImportLab(file,user);
             logger.info("上传文件导入科室 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }catch (Exception e){
@@ -56,7 +62,9 @@ public class CommonController  {
     @RequestMapping(value="/DownloadFileForImportLabHistory",method= RequestMethod.GET)
     public void getDownloadFileForImportLabHistory(HttpServletRequest paramRe,HttpServletResponse response){
         HttpSession session = paramRe.getSession();
-        User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+        String sessionID = session.getId();
+        String uid = MemCachedUtil.get(sessionID);
+        User user = MemCachedUtil.getUser(uid);
         String file = FilePath+user.getOrg_name() + labImportsuffix;
         processor.downLoadFile(file,response,"最近组织导入结果.csv");
     }
@@ -67,7 +75,12 @@ public class CommonController  {
         String resultStr = "";
         try{
             HttpSession session = paramRe.getSession();
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user = MemCachedUtil.getUser(uid);
             resultStr = processor.uploadFileForImportStaff(file,user);
             logger.info("上传文件导入人员 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }catch (Exception e){
@@ -82,7 +95,9 @@ public class CommonController  {
     @RequestMapping(value="/DownloadFileForStaffHistory",method= RequestMethod.GET)
     public void getDownloadFileForStaffHistory(HttpServletRequest paramRe,HttpServletResponse response){
         HttpSession session = paramRe.getSession();
-        User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+        String sessionID = session.getId();
+        String uid = MemCachedUtil.get(sessionID);
+        User user = MemCachedUtil.getUser(uid);
         String file = FilePath+user.getOrg_name() + staffImportsuffix;
         processor.downLoadFile(file,response,"最近成员导入结果.csv");
     }
