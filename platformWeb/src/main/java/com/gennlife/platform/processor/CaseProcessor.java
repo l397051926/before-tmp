@@ -19,7 +19,7 @@ import java.util.*;
 public class CaseProcessor {
     private Logger logger = LoggerFactory.getLogger(CaseProcessor.class);
     private static JsonParser jsonParser = new JsonParser();
-    private static Gson gson = GsonUtil.getGson();
+    private static Gson gson = new GsonBuilder().disableHtmlEscaping().create();
 
 
     /**
@@ -269,6 +269,24 @@ public class CaseProcessor {
         if(newParam == null){
             return ParamUtils.errorSessionLosParam();
         }
+        JsonObject paramObj = (JsonObject) jsonParser.parse(newParam);
+        String sid = paramObj.get("sid").getAsString();
+        paramObj.remove("sid");
+        JsonArray roles = paramObj.getAsJsonArray("roles");
+        for(JsonElement json:roles){
+            JsonArray resources = json.getAsJsonObject().getAsJsonArray("resources");
+            JsonArray newresources = new JsonArray();
+            for(JsonElement jsonElement:resources){
+                JsonObject jsonObject = jsonElement.getAsJsonObject();
+                String sidRe = jsonObject.get("sid").getAsString();
+                if(sidRe.equals(sid)){
+                    newresources.add(jsonElement);
+                }
+            }
+            json.getAsJsonObject().add("resources",newresources);
+        }
+        newParam = gson.toJson(paramObj);
+        logger.info("转化后，搜索请求参数="+newParam);
         CaseSearchParser caseSearchParser = new CaseSearchParser(newParam);
         try {
             String searchResultStr = caseSearchParser.parser();

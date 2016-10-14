@@ -2,6 +2,7 @@ package com.gennlife.platform.parse;
 
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.HttpRequestUtils;
+import com.google.gson.JsonObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
