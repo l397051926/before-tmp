@@ -49,6 +49,11 @@
         <property name="sampleDetailURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_get"/>
         <property name="sampleDaleteURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_delete"/>
         <property name="sampleDetailSearchURL" value="http://10.0.0.165:9900/FileService/DataResultExport/SearchDataSet"/>
+
+        <property name="sampleUploadAdaptTagURL" value="http://10.0.0.165:9900/FileServcie/DataResultExport/UploadAdaptTag"/>
+
+
+
         <!--FS CRF导入文件 -->
         <property name="fileStoreForCRFImport" value="http://10.0.0.165:9900/FileService/PatientDetail/UploadCsvFile"></property>
 
