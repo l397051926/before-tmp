@@ -25,7 +25,7 @@ public class ConfigurationService {
     private static URLBean urlBean = null;
     private static FileBean fileBean = null;
     //<orgID,indexName>
-    private static Map<String,String> orgIDIndexNamemap = null;
+    private static Map<String,String> orgIDIndexNamemap = new HashMap<>();
     //全量属性的jsonobject
     private static List<JsonObject> allList = new LinkedList<JsonObject>();
     //index name,ui name
@@ -95,6 +95,7 @@ public class ConfigurationService {
         resourceTypeArray = resourceConfig.get("resourceTypeArray").getAsJsonArray();
 
         String orgIDIndexNameStr = FilesUtils.readFile("/UserOrgIDMapIndex.json");
+
         JsonObject orgIDIndexNameObj = (JsonObject) jsonParser.parse(orgIDIndexNameStr);
         for(Map.Entry<String, JsonElement> entity:orgIDIndexNameObj.entrySet()){
             String orgID = entity.getKey();
