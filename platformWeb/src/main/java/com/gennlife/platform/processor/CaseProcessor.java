@@ -270,23 +270,25 @@ public class CaseProcessor {
             return ParamUtils.errorSessionLosParam();
         }
         JsonObject paramObj = (JsonObject) jsonParser.parse(newParam);
-        String sid = paramObj.get("sid").getAsString();
-        paramObj.remove("sid");
-        JsonArray roles = paramObj.getAsJsonArray("roles");
-        for(JsonElement json:roles){
-            JsonArray resources = json.getAsJsonObject().getAsJsonArray("resources");
-            JsonArray newresources = new JsonArray();
-            for(JsonElement jsonElement:resources){
-                JsonObject jsonObject = jsonElement.getAsJsonObject();
-                String sidRe = jsonObject.get("sid").getAsString();
-                if(sidRe.equals(sid)){
-                    newresources.add(jsonElement);
+        if(paramObj.has("sid")){
+            String sid = paramObj.get("sid").getAsString();
+            paramObj.remove("sid");
+            JsonArray roles = paramObj.getAsJsonArray("roles");
+            for(JsonElement json:roles){
+                JsonArray resources = json.getAsJsonObject().getAsJsonArray("resources");
+                JsonArray newresources = new JsonArray();
+                for(JsonElement jsonElement:resources){
+                    JsonObject jsonObject = jsonElement.getAsJsonObject();
+                    String sidRe = jsonObject.get("sid").getAsString();
+                    if(sidRe.equals(sid)){
+                        newresources.add(jsonElement);
+                    }
                 }
+                json.getAsJsonObject().add("resources",newresources);
             }
-            json.getAsJsonObject().add("resources",newresources);
+            newParam = gson.toJson(paramObj);
+            logger.info("转化后，搜索请求参数="+newParam);
         }
-        newParam = gson.toJson(paramObj);
-        logger.info("转化后，搜索请求参数="+newParam);
         CaseSearchParser caseSearchParser = new CaseSearchParser(newParam);
         try {
             String searchResultStr = caseSearchParser.parser();
