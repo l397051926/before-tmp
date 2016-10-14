@@ -4,6 +4,8 @@ import com.danga.MemCached.MemCachedClient;
 import com.danga.MemCached.SockIOPool;
 import com.gennlife.platform.configuration.MemCachedConf;
 import com.gennlife.platform.model.User;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.context.ApplicationContext;
 
 import java.util.Date;
@@ -14,6 +16,7 @@ import java.util.Date;
 public class MemCachedUtil {
     private static MemCachedClient mcc = new MemCachedClient();
     private static MemCachedConf memCachedConf =  null;
+    private static Gson gson = new GsonBuilder().disableHtmlEscaping().create();
 
     private MemCachedUtil() {};
 
@@ -80,17 +83,25 @@ public class MemCachedUtil {
      * @return
      */
     public static boolean setUserWithTime(String uid,User value,int time){
-        return mcc.add(uid+"_info",value,new Date(time * 60 * 1000));
+        String str = gson.toJson(value);
+        return mcc.add(uid+"_info",str,new Date(time * 60 * 1000));
     }
 
     public static boolean setUser(String uid,User value){
-        return mcc.add(uid+"_info",value);
+        String str = gson.toJson(value);
+        return mcc.add(uid+"_info",str);
     }
     public static boolean daleteUser(String uid){
         return mcc.delete(uid+"_info");
     }
     public static User getUser(String uid){
-        return (User) mcc.get(uid+"_info");
+        if(mcc.keyExists(uid+"_info")){
+            String str = (String) mcc.get(uid+"_info");
+            User user = gson.fromJson(str,User.class);
+            return user;
+        }else {
+            return null;
+        }
     }
 
     public static boolean addUser(String email,User user){
