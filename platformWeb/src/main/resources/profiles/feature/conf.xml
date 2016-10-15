@@ -99,4 +99,25 @@
 
         <property name="EmailSendURL" value="http://10.0.0.20:80/uranus/verify_email.html?token="></property>
     </bean>
+
+    <bean id="MemCachedConf" class="com.gennlife.platform.configuration.MemCachedConf">
+        <property name="servers">
+            <array value-type="java.lang.String">
+                <value>10.0.0.29:11211</value>
+            </array>
+        </property>
+        <property name="weights">
+            <array value-type="java.lang.Integer">
+                <value>2</value>
+            </array>
+        </property>
+        <property name="initConnections" value="5"/>
+        <property name="minConnections" value="5" />
+        <property name="maxConnections" value="250" />
+        <property name="maxIdle" value="21600000" />
+        <property name="maintSleep" value="30" />
+        <property name="setNagle" value="false" />
+        <property name="socketConnectTO" value="0" />
+        <property name="socketTO" value="3000" />
+    </bean>
 </beans>
