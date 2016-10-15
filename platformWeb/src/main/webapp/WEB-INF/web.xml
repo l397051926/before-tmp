@@ -36,15 +36,7 @@
     </filter>
     <filter-mapping>
         <filter-name>sessionFilter</filter-name>
-        <url-pattern>/bsma/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>sessionFilter</filter-name>
-        <url-pattern>/detail/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>sessionFilter</filter-name>
-        <url-pattern>/common/*</url-pattern>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>UIService</servlet-name>
