@@ -48,6 +48,8 @@ public class UserController{
             if(resultBean.getCode() == 1){
                 User user = (User) resultBean.getData();
                 MemCachedUtil.set(sessionID,user.getUid());
+                String exSession = MemCachedUtil.get(user.getUid());
+                MemCachedUtil.delete(exSession);
                 MemCachedUtil.set(user.getUid(),sessionID);
                 user = processor.transformRole(user);
                 MemCachedUtil.setUserWithTime(user.getUid(),user,sessionTimeOut);
