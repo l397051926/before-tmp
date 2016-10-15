@@ -167,12 +167,14 @@ public class UserController{
         String resultStr = null;
         try{
             HttpSession session = paramRe.getSession();
-            if(session == null||session.getAttribute("user")==null){
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
                 return ParamUtils.errorSessionLosParam();
-            }else{
-                String userStr = session.getAttribute("user").toString();
-                return processor.CRFList(userStr);
             }
+            User user = MemCachedUtil.getUser(uid);
+            String userStr = gson.toJson(user);
+            return processor.CRFList(userStr);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
