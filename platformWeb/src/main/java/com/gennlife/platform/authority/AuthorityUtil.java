@@ -26,6 +26,9 @@ public class AuthorityUtil {
         String param = ParamUtils.getParam(paramRe);
         JsonElement paramElement = jsonParser.parse(param);
         HttpSession session = paramRe.getSession(false);
+        if(session == null){
+            return ParamUtils.errorSessionLosParam();
+        }
         String sessionID = session.getId();
         logger.debug("sessionID = "+sessionID);
         String uid = MemCachedUtil.get(sessionID);
