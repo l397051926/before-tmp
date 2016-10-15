@@ -288,6 +288,10 @@ public class CaseProcessor {
             }
             newParam = gson.toJson(paramObj);
             logger.info("转化后，搜索请求参数="+newParam);
+        }else{
+            if(paramObj.has("code") && paramObj.get("code").getAsInt() == -1){
+                return newParam;
+            }
         }
         CaseSearchParser caseSearchParser = new CaseSearchParser(newParam);
         try {
