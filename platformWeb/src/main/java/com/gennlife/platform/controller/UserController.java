@@ -48,11 +48,14 @@ public class UserController{
             if(resultBean.getCode() == 1){
                 User user = (User) resultBean.getData();
                 MemCachedUtil.set(sessionID,user.getUid());
+                logger.debug("登陆设置sessionID="+sessionID+"，uid="+user.getUid());
                 String exSession = MemCachedUtil.get(user.getUid());
                 MemCachedUtil.delete(exSession);
+                logger.debug("登陆删除 sessionID="+exSession);
                 MemCachedUtil.set(user.getUid(),sessionID);
+                logger.debug("登陆设置 uid="+user.getUid()+"，sessionID="+sessionID);
                 user = processor.transformRole(user);
-                MemCachedUtil.setUserWithTime(user.getUid(),user,sessionTimeOut);
+                MemCachedUtil.setUser(user.getUid(),user);
                 resultBean.setData(user);
                 session.setAttribute("user",gson.toJson(user));
             }

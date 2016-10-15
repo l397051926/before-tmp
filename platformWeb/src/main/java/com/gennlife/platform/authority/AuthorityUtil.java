@@ -7,23 +7,29 @@ import com.gennlife.platform.processor.UserProcessor;
 import com.gennlife.platform.util.MemCachedUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+
 /**
  * Created by chen-song on 16/9/23.
  */
 public class AuthorityUtil {
+    private static Logger logger = LoggerFactory.getLogger(AuthorityUtil.class);
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = new GsonBuilder().disableHtmlEscaping().create();
     public static String addAuthority(HttpServletRequest paramRe){
         String param = ParamUtils.getParam(paramRe);
         JsonElement paramElement = jsonParser.parse(param);
-        HttpSession session = paramRe.getSession();
+        HttpSession session = paramRe.getSession(false);
         String sessionID = session.getId();
+        logger.debug("sessionID = "+sessionID);
         String uid = MemCachedUtil.get(sessionID);
+        logger.debug("uid = "+uid);
         if(uid == null){
             return ParamUtils.errorSessionLosParam();
         }
