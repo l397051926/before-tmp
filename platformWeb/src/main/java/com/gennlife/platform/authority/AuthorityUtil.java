@@ -55,6 +55,9 @@ public class AuthorityUtil {
     }
     public static boolean isAdmin(User user){
         List<Admin> admins = user.getAdministrators();
+        if(admins == null){
+            return false;
+        }
         boolean isAdmin = false;
         for (Admin admin : admins) {
             if (admin.getPrivilegeType().equals("admin")
