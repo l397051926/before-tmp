@@ -459,7 +459,12 @@ public class CrfController {
         String resultStr = null;
         try{
             HttpSession session = paramRe.getSession();
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user = MemCachedUtil.getUser(uid);
             if(user == null || user.getOrgID() == null){
                 return ParamUtils.errorSessionLosParam();
             }

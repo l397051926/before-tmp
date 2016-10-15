@@ -25,7 +25,7 @@ public class AuthorityUtil {
     public static String addAuthority(HttpServletRequest paramRe){
         String param = ParamUtils.getParam(paramRe);
         JsonElement paramElement = jsonParser.parse(param);
-        HttpSession session = paramRe.getSession(false);
+        HttpSession session = paramRe.getSession();
         if(session == null){
             return ParamUtils.errorSessionLosParam();
         }
