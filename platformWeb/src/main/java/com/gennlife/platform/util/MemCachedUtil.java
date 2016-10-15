@@ -61,7 +61,12 @@ public class MemCachedUtil {
             return null;
     }
     public static boolean delete(String key){
-        return mcc.delete(key);
+        if (mcc.keyExists(key)){
+            return mcc.delete(key);
+        }else{
+            return true;
+        }
+
     }
 
     /**
@@ -92,7 +97,12 @@ public class MemCachedUtil {
         return mcc.add(uid+"_info",str);
     }
     public static boolean daleteUser(String uid){
-        return mcc.delete(uid+"_info");
+        if(mcc.keyExists(uid+"_info")){
+            return mcc.delete(uid+"_info");
+        }else{
+            return true;
+        }
+
     }
     public static User getUser(String uid){
         if(mcc.keyExists(uid+"_info")){

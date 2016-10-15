@@ -406,7 +406,7 @@ public class DetailProcessor {
             String url = ConfigurationService.getUrlBean().getCaseDetailVisitClassifyImageURL();
             logger.info("visitClassifyImage url="+url);
             String result = HttpRequestUtils.httpPost(url,param);
-            logger.info("visitClassifyImage result="+result);
+            //logger.info("visitClassifyImage result="+result);
             return result;
         }catch (Exception e){
             return ParamUtils.errorParam("请求出错");

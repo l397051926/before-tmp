@@ -73,35 +73,36 @@ public class SessionFilter implements Filter {
             HttpSession session = request.getSession();
             String sessionID = session.getId();
             String uid = MemCachedUtil.get(sessionID);
-            String exSessionID = MemCachedUtil.get(uid);
-            if(!sessionID.equals(exSessionID)){//一个用户两次登陆
-                MemCachedUtil.delete(exSessionID);
-            }
-            try{
-                User user = MemCachedUtil.getUser(uid);
-                if(user == null){
-                    user = UserProcessor.getUserByUid(uid);
-                    if(user == null){
-                        view.viewString(ParamUtils.errorParam("用户不存在"),response);
-                    }
-                    MemCachedUtil.setUserWithTime(uid,user, UserController.sessionTimeOut);
+            if(uid == null){//如果当前sessionID对应的uid不存在，即当前用户已经在其他机器登陆了
+                view.viewString(ParamUtils.errorSessionLosParam(),response);
+            }else{
+                String exSessionID = MemCachedUtil.get(uid);
+                if(!sessionID.equals(exSessionID)){//一个用户两次登陆
+                    MemCachedUtil.delete(exSessionID);
                 }
-                if(adminSet.contains(uri)){
-                    if(!AuthorityUtil.isAdmin(user)){//没有管理权限
-                        view.viewString(ParamUtils.errorAuthorityParam(),response);
-                    }else{//放行
+                try{
+                    User user = MemCachedUtil.getUser(uid);
+                    if(user == null){
+                        user = UserProcessor.getUserByUid(uid);
+                        if(user == null){
+                            view.viewString(ParamUtils.errorParam("用户不存在"),response);
+                        }
+                        MemCachedUtil.setUserWithTime(uid,user, UserController.sessionTimeOut);
+                    }
+                    if(adminSet.contains(uri)){
+                        if(!AuthorityUtil.isAdmin(user)){//没有管理权限
+                            view.viewString(ParamUtils.errorAuthorityParam(),response);
+                        }else{//放行
+                            filterChain.doFilter(request,response);
+                        }
+                    }else {
                         filterChain.doFilter(request,response);
                     }
-                }else {
-                    filterChain.doFilter(request,response);
+                }catch (Exception e){
+                    logger.error("",e);
+                    view.viewString(ParamUtils.errorParam("session异常"),response);
                 }
-            }catch (Exception e){
-                logger.error("",e);
-                view.viewString(ParamUtils.errorParam("session异常"),response);
             }
-
-
-
         }
     }
 
