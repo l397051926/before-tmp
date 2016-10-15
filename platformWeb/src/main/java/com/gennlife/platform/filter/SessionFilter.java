@@ -73,6 +73,7 @@ public class SessionFilter implements Filter {
             HttpSession session = request.getSession();
             String sessionID = session.getId();
             String uid = MemCachedUtil.get(sessionID);
+            logger.info("doFilter sessionID="+sessionID+",uid="+uid);
             if(uid == null){//如果当前sessionID对应的uid不存在，即当前用户已经在其他机器登陆了
                 view.viewString(ParamUtils.errorSessionLosParam(),response);
             }else{
