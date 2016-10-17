@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by chen-song on 16/5/13.
@@ -167,8 +168,9 @@ public class CaseController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
+            HttpSession session = paramRe.getSession();
             logger.info("病历搜索 post方式 原始参数="+param);
-            param = AuthorityUtil.addAuthority(paramRe);
+            param = AuthorityUtil.addAuthorityForString(param,session);
             logger.info("病历搜索 post方式 增加科室后参数="+param);
             resultStr =  processor.searchCase(param);
         }catch (Exception e){

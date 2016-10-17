@@ -69,4 +69,34 @@ public class AuthorityUtil {
         return isAdmin;
     }
 
+    public static String addAuthorityForString(String param,HttpSession session ){
+        JsonElement paramElement = jsonParser.parse(param);
+        if(session == null){
+            return ParamUtils.errorSessionLosParam();
+        }
+        String sessionID = session.getId();
+        logger.debug("sessionID = "+sessionID);
+        String uid = MemCachedUtil.get(sessionID);
+        logger.debug("uid = "+uid);
+        if(uid == null){
+            return ParamUtils.errorSessionLosParam();
+        }
+        User userS = MemCachedUtil.getUser(uid);
+        if(userS == null){
+            userS = UserProcessor.getUserByUid(uid);
+            MemCachedUtil.setUserWithTime(uid,userS, UserController.sessionTimeOut);
+        }
+        JsonObject user = (JsonObject) jsonParser.parse(gson.toJson(userS));
+        JsonArray roles = user.getAsJsonArray("roles");
+        if(paramElement.isJsonObject()){
+            JsonObject paramObj = paramElement.getAsJsonObject();
+            paramObj.add("roles",roles);
+            return gson.toJson(paramObj);
+        }else if(paramElement.isJsonArray()){
+            return gson.toJson(paramElement);
+        }else{
+            return null;
+        }
+    }
+
 }
