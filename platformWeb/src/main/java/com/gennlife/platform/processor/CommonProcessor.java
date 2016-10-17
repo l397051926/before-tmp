@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -54,18 +55,11 @@ public class CommonProcessor {
             byte[] bytes = file.getBytes();
             String string = new String(bytes,"GBK");
             logger.info("uploadFileForImportStaff="+string);
-            String path = ConfigurationService.getFileBean().getManageFileLocation();
-            File f = new File(path + LogUtils.getString_Time()+"-"+fileName);
-            if(f.exists()){
-                f.createNewFile();
+            String[] strings = string.split("\n");
+            List<String> list = new LinkedList();
+            for(String line:strings){
+                list.add(line);
             }
-
-            FileWriter fw = new FileWriter(f);
-            fw.write(new String(bytes,"utf-8"));
-            fw.flush();
-            fw.close();
-            List<File> list = new LinkedList<>();
-            list.add(f);
             return FileUploadUtil.handleStaff(list,user);
         }catch (Exception e){
             return ParamUtils.errorParam("出现异常");
@@ -79,16 +73,11 @@ public class CommonProcessor {
             byte[] bytes = file.getBytes();
             String string = new String(bytes,"GBK");
             logger.info("uploadFileForImportLab="+string);
-            String path = ConfigurationService.getFileBean().getManageFileLocation();
-            File f = new File(path + LogUtils.getString_Time()+"-"+fileName);
-            if(f.exists()){
-                f.createNewFile();
+            String[] strings = string.split("\n");
+            List<String> list = new LinkedList();
+            for(String line:strings){
+                list.add(line);
             }
-            FileWriter fileWritter = new FileWriter(f);
-            fileWritter.write(string);
-            fileWritter.close();
-            List<File> list = new LinkedList<>();
-            list.add(f);
             return FileUploadUtil.handleLab(list,user);
         }catch (Exception e){
             return ParamUtils.errorParam("出现异常");

@@ -33,59 +33,8 @@ public class FileUploadUtil {
     static{
         tempPath = ConfigurationService.getFileBean().getManageFileLocation();
     }
-    /**
-     * 文件上载
-     *
-     * @return true —— success; false —— fail.
-     */
-    public String Upload(String from,String labImportsuffix) {
-        DiskFileItemFactory factory = new DiskFileItemFactory();
-        try {
-            HttpSession session = null;
-            if(session == null){
-                return ParamUtils.errorParam("当前session已经失效");
-            }
-            User user = gson.fromJson((String)session.getAttribute("user"),User.class);
-            if(user == null){
-                return ParamUtils.errorParam("当前session已经失效");
-            }
-            String orgID = user.getOrgID();
-            //如果没有临时目录，则创建它
-            FilesUtils.makeDirectory(tempPath);
 
-            // the location for saving data that is larger than getSizeThreshold()
-            factory.setRepository(new File(tempPath));
-            ServletFileUpload upload = new ServletFileUpload(factory);
-            //设置允许用户上传文件大小,单位:字节
-
-
-            List<File> fileList = new LinkedList<>();
-
-            String str = null;
-            if("导入科室".equals(from)){
-                str = handleLab(fileList,user);
-            }else if("导入人员".equals(from)){
-                str = handleStaff(fileList,user);
-            }else{
-                str = from;
-            }
-            for(File file:fileList){
-                file.delete();
-            }
-            return str;
-        } catch (IOException e) {
-            logger.error("",e);
-            return ParamUtils.errorParam("导入失败");
-        } catch (FileUploadException e) {
-            logger.error("",e);
-            return ParamUtils.errorParam("导入失败");
-        } catch (Exception e) {
-            logger.error("",e);
-            return ParamUtils.errorParam("导入失败");
-        }
-    }
-
-    public static String handleStaff(List<File> fileList,User user) throws Exception {
+    public static String handleStaff(List<String> fileList,User user) throws Exception {
         List<String> list = importsStaffs(fileList,user.getOrgID(),user);
         File orgIDImportResultFile =new File(tempPath + user.getOrg_name() +"导入人员历史.csv");
         return writeResultFile(list,orgIDImportResultFile);
@@ -128,8 +77,8 @@ public class FileUploadUtil {
         return gson.toJson(resultBean);
     }
 
-    public static List<String> importsStaffs(List<File> fileList, String orgID, User user) throws Exception {
-        List<String> strList = readFiles(fileList);
+    public static List<String> importsStaffs(List<String> fileList, String orgID, User user) throws Exception {
+        List<String> strList = fileList;
         List<String> srcList = new LinkedList<>();
         Map<String,Integer> map = new HashMap<>();
         String termLine = strList.get(0);
@@ -300,7 +249,7 @@ public class FileUploadUtil {
         return false;
     }
 
-    public static String handleLab(List<File> fileList,User user) throws Exception {
+    public static String handleLab(List<String> fileList,User user) throws Exception {
         List<String> list = importLabs(fileList,user.getOrgID(),user.getUid());
         File orgIDImportResultFile =new File(tempPath + user.getOrg_name() +"导入科室历史.csv");
         return writeResultFile(list,orgIDImportResultFile);
@@ -320,8 +269,8 @@ public class FileUploadUtil {
      * @param fileList
      * @param orgID
      */
-    public static  List<String> importLabs(List<File> fileList,String orgID,String uid) throws Exception {
-        List<String> strList = readFiles(fileList);
+    public static  List<String> importLabs(List<String> fileList,String orgID,String uid) throws Exception {
+        List<String> strList = fileList;
         List<String> srcList = new LinkedList<>();
         List<Lab> newList = new LinkedList<>();
         for(String str:strList){
