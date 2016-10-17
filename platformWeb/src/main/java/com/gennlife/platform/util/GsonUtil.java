@@ -1,5 +1,6 @@
 package com.gennlife.platform.util;
 
+import com.gennlife.platform.model.Role;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
@@ -27,5 +28,11 @@ public class GsonUtil {
 
     public static Gson getGson() {
         return gson;
+    }
+
+    public static void main(String[] args){
+        Role role = new Role();
+        role.setCreatorID("aaa");
+        System.out.println(getGson().toJson(role));
     }
 }

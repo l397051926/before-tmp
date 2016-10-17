@@ -4,6 +4,7 @@ import com.gennlife.platform.controller.UserController;
 import com.gennlife.platform.model.Admin;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.UserProcessor;
+import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.MemCachedUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.*;
@@ -21,7 +22,7 @@ import java.util.List;
 public class AuthorityUtil {
     private static Logger logger = LoggerFactory.getLogger(AuthorityUtil.class);
     private static JsonParser jsonParser = new JsonParser();
-    private static Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+    private static Gson gson = GsonUtil.getGson();
     public static String addAuthority(HttpServletRequest paramRe){
         String param = ParamUtils.getParam(paramRe);
         JsonElement paramElement = jsonParser.parse(param);

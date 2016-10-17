@@ -16,7 +16,7 @@ import java.util.Date;
 public class MemCachedUtil {
     private static MemCachedClient mcc = new MemCachedClient();
     private static MemCachedConf memCachedConf =  null;
-    private static Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+    private static Gson gson = GsonUtil.getGson();
 
     private MemCachedUtil() {};
 
