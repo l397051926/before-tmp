@@ -166,8 +166,10 @@ public class CaseController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
-            logger.info("病历搜索 post方式 参数="+param);
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("病历搜索 post方式 原始参数="+param);
+            param = AuthorityUtil.addAuthority(paramRe);
+            logger.info("病历搜索 post方式 增加科室后参数="+param);
             resultStr =  processor.searchCase(param);
         }catch (Exception e){
             logger.error("病历搜索",e);

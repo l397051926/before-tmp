@@ -287,7 +287,7 @@ public class CaseProcessor {
                 json.getAsJsonObject().add("resources",newresources);
             }
             newParam = gson.toJson(paramObj);
-            logger.info("转化后，搜索请求参数="+newParam);
+            logger.info("通过sid转化后，搜索请求参数="+newParam);
         }else{
             if(paramObj.has("code") && paramObj.get("code").getAsInt() == -1){
                 return newParam;
