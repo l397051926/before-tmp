@@ -52,6 +52,9 @@ public class SampleProcessor {
             String data = HttpRequestUtils.httpPost(url,gson.toJson(param));
             Long startTime = System.currentTimeMillis();
             logger.info("data = " + data);
+            if(data == null || "".equals(data)){
+                return ParamUtils.errorParam("FS 返回空");
+            }
             JsonObject resultMap = jsonParser.parse(data).getAsJsonObject();
             logger.info("时间======" + (System.currentTimeMillis() - startTime));
             Boolean succeed = resultMap.get("success").getAsBoolean();
