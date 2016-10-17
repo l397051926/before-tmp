@@ -229,12 +229,12 @@ public interface ProjectMapper {
      * 导入样本集之后，项目的setCount字段自增
      * @param projectID
      */
-    public int autoAddSetCount(@Param("projectID")String projectID);
+    public int autoAddSetCountOne(@Param("projectID")String projectID);
 
     /**
      *
      * @param projectID
      * @return
      */
-    public int autoDeleteSetCount(@Param("projectID")String projectID);
+    public int autoDeleteSetCountOne(@Param("projectID")String projectID);
 }

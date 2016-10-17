@@ -254,7 +254,7 @@ public class ProjectProcessor {
             proLog.setLogText(user.getUname()+ LogActionEnum.DeleteSamples.getName() + setName);
             AllDao.getInstance().getProjectDao().insertProLog(proLog);
             counter = counter + AllDao.getInstance().getProjectDao().deleteProjectSet(confMap);
-            AllDao.getInstance().getProjectDao().autoDeleteSetCount(projectID);
+            AllDao.getInstance().getProjectDao().autoDeleteSetCountOne(projectID);
         }
         Map<String,Integer> info = new HashMap<String,Integer>();
         info.put("counter",counter);

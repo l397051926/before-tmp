@@ -62,7 +62,7 @@ public class SampleProcessor {
             ResultBean resultBean = new ResultBean();
             if (succeed) {
                 //项目对应的样本集数量增加1
-                AllDao.getInstance().getProjectDao().autoAddSetCount(projectID);
+                AllDao.getInstance().getProjectDao().autoAddSetCountOne(projectID);
                 String uri = resultMap.get("data_id").getAsString();
                 Integer total = resultMap.get("TOTAL").getAsInt();
                 Map<String, Object> conf = new HashMap<String, Object>();
