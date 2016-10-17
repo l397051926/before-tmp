@@ -36,7 +36,9 @@ public class UserProcessor {
             User user = null;
             try{
                 user = AllDao.getInstance().getSyUserDao().getUser(confMap);
-                user.setPwd(null);//密码不返回
+                if(user != null){
+                    user.setPwd(null);//密码不返回
+                }
             }catch (Exception e){
                 logger.error("", e);
             }
