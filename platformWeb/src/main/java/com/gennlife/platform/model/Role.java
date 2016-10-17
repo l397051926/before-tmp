@@ -10,6 +10,8 @@ public class Role {
     private String role;
     private String orgID;
     private String desctext;
+    private String creator;
+    private String creatorID;
     private String role_type;
     private String resourceDesc;
     private String ctime;
@@ -99,5 +101,21 @@ public class Role {
 
     public void setResources(Object resources) {
         this.resources = resources;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public String getCreatorID() {
+        return creatorID;
+    }
+
+    public void setCreatorID(String creatorID) {
+        this.creatorID = creatorID;
     }
 }

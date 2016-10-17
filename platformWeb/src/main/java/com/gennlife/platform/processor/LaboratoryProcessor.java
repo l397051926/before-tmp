@@ -639,6 +639,8 @@ public class LaboratoryProcessor {
         }
         role.setOrgID(user.getOrgID());
         role.setCtime(LogUtils.getStringTime());
+        role.setCreator(user.getUname());
+        role.setCreatorID(user.getUid());
         if(role.getDesctext() ==null){
             role.setDesctext("");
         }
