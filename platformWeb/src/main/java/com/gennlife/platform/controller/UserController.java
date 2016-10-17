@@ -50,7 +50,7 @@ public class UserController{
                 MemCachedUtil.set(sessionID,user.getUid());
                 logger.info("登陆设置sessionID="+sessionID+"，uid="+user.getUid());
                 String exSession = MemCachedUtil.get(user.getUid());
-                if(!exSession.equals(sessionID)){
+                if(!sessionID.equals(exSession)){
                     MemCachedUtil.delete(exSession);
                 }
                 logger.info("登陆删除 sessionID="+exSession);
