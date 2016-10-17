@@ -150,35 +150,37 @@ public class FileUploadUtil {
         Integer upositionIndex = map.get("职务");
         List<Lab> labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
         if(unumberIndex == null){
-            for(String line:strList){
+            for(int index=1;index<strList.size();index++){
+                String line = strList.get(index);
                 srcList.add(line+",失败,缺少工号列");
             }
             return srcList;
         }
         if(nameIndex == null){
-            for(String line:strList){
+            for(int index=1;index<strList.size();index++){
+                String line = strList.get(index);
                 srcList.add(line+",失败,缺少姓名列");
             }
             return srcList;
         }
         if(emailIndex == null){
-            for(String line:strList){
+            for(int index=1;index<strList.size();index++){
+                String line = strList.get(index);
                 srcList.add(line+",失败,缺少邮箱列");
             }
             return srcList;
         }
         if(labIndex == null){
-            for(String line:strList){
+            for(int index=1;index<strList.size();index++){
+                String line = strList.get(index);
                 srcList.add(line+",失败,缺少所属部门列");
             }
             return srcList;
         }
         List<User> userList = new LinkedList<>();
         List<String> lineList = new LinkedList<>();
-        for(String line:strList){
-            if(line.equals(termLine)){
-                continue;
-            }
+        for(int index=1;index<strList.size();index++){
+            String line = strList.get(index);
             String[] terms = line.split(",");
             if(terms.length < data.length ){
                 srcList.add(line+",失败,缺少数据");
