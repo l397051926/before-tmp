@@ -55,6 +55,7 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
+            logger.info("添加科室 param="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.addOrg(paramObj);
         }catch (Exception e){
