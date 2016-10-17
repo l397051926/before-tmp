@@ -188,6 +188,14 @@ public class FileUploadUtil {
                 String name = terms[nameIndex];
                 String lab_name = terms[labIndex];
                 String email = terms[emailIndex];
+                if(email == null || !email.contains("@")){
+                    srcList.add(line+",失败,邮箱失败");
+                    continue;
+                }
+                if(number == null || number.contains("")){
+                    srcList.add(line+",失败,工号为空");
+                    continue;
+                }
                 String tel = "";
                 if(telIndex != null){
                     tel = terms[telIndex];
@@ -256,16 +264,38 @@ public class FileUploadUtil {
                     }
                 }
             }else{//插入
-                int counter = AllDao.getInstance().getSyUserDao().insertOneUser(addUser);
-                if(counter >= 1){
-                    srcList.add(line+",成功,插入成功");
-                }else{
-                    srcList.add(line+",失败,插入失败");
+                //判定当前文件中是否存在相同工号
+                boolean exUserFile = getUserByUnumber(addUser,userList);
+                if(exUserFile){
+                    srcList.add(line+",失败,更新后的email是存在的");
+                }else {
+                    int counter = AllDao.getInstance().getSyUserDao().insertOneUser(addUser);
+                    if(counter >= 1){
+                        srcList.add(line+",成功,插入成功");
+                    }else{
+                        srcList.add(line+",失败,插入失败");
+                    }
                 }
+
             }
         }
         return srcList;
 
+    }
+
+    /**
+     *
+     * @param user
+     * @param userList
+     * @return
+     */
+    private static boolean getUserByUnumber(User user, List<User> userList) {
+        for(User exUnumber:userList){
+            if(!exUnumber.equals(user) && user.getUemail().equals(exUnumber.getUemail())){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static String handleLab(List<File> fileList,User user) throws Exception {

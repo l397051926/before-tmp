@@ -19,7 +19,7 @@ import java.util.*;
 public class CaseProcessor {
     private Logger logger = LoggerFactory.getLogger(CaseProcessor.class);
     private static JsonParser jsonParser = new JsonParser();
-    private static Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+    private static Gson gson = GsonUtil.getGson();
 
 
     /**

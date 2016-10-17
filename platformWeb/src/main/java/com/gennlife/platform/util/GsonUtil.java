@@ -21,6 +21,7 @@ public class GsonUtil {
         };
         gson = new GsonBuilder()
                 .setExclusionStrategies(myExclusionStrategy)
+                .disableHtmlEscaping()
                 .create();
     }
 
