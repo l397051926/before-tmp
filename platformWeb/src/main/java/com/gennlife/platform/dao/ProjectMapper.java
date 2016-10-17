@@ -224,4 +224,10 @@ public interface ProjectMapper {
      * @return
      */
     ProSample getSampleDataBySampleURI(@Param("sampleURI")String sampleURI);
+
+    /**
+     * 导入样本集之后，项目的setCount字段自增
+     * @param projectID
+     */
+    void autoAddSetCount(@Param("sampleURI")String projectID);
 }
