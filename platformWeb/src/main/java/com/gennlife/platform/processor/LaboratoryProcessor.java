@@ -438,33 +438,42 @@ public class LaboratoryProcessor {
             return ParamUtils.errorParam("参数错误");
         }
         List<String> admins = AllDao.getInstance().getSyUserDao().getAdminsByOrgID(user.getOrgID());
+        int count = 0;
         for(String admin:admins){
             if(uidsList.contains(admin)){
                 uidsList.remove(admin);
+                count ++;
             }
         }
-        String[] uids = uidsList.toArray(new String[uidsList.size()]);
-
-
-        AllDao.getInstance().getSyRoleDao().deleteByUids(uids);
-        int counter = AllDao.getInstance().getSyUserDao().deleteUserByUids(uids);
         ResultBean re = new ResultBean();
-        for(String uid:uids){
-            MemCachedUtil.delete(uid);
-            MemCachedUtil.daleteUser(uid);
-        }
-        if(counter > 0){
-            re.setCode(1);
-            Map<String,Object> map = new HashMap<>();
-            map.put("succeed",counter);
-            map.put("fail",uids.length - counter);
-            re.setData(map);
+        if(uidsList.size() == 0){
+            re.setCode(0);
+            re.setInfo("无法删除管理员");
             return gson.toJson(re);
         }else {
-            re.setCode(0);
-            re.setInfo("全部失败");
-            return gson.toJson(re);
+            String[] uids = uidsList.toArray(new String[uidsList.size()]);
+            AllDao.getInstance().getSyRoleDao().deleteByUids(uids);
+            int counter = AllDao.getInstance().getSyUserDao().deleteUserByUids(uids);
+
+            for(String uid:uids){
+                MemCachedUtil.delete(uid);
+                MemCachedUtil.daleteUser(uid);
+            }
+            if(counter > 0){
+                re.setCode(1);
+                Map<String,Object> map = new HashMap<>();
+                map.put("succeed",counter);
+                map.put("fail",uids.length - counter + count);
+                re.setData(map);
+                return gson.toJson(re);
+            }else {
+                re.setCode(0);
+                re.setInfo("全部失败");
+                return gson.toJson(re);
+            }
         }
+
+
     }
     public String getProfessionList(String orgID) {
         try{
