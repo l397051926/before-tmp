@@ -77,11 +77,16 @@ public class CommonProcessor {
         try{
             String fileName = file.getOriginalFilename();
             byte[] bytes = file.getBytes();
+            String string = new String(bytes,"GBK");
+            logger.info("uploadFileForImportStaff="+string);
             String path = ConfigurationService.getFileBean().getManageFileLocation();
             File f = new File(path + LogUtils.getString_Time()+"-"+fileName);
+            if(f.exists()){
+                f.createNewFile();
+            }
             FileWriter fileWritter = new FileWriter(f);
             BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
-            bufferWritter.write(new String(bytes,"gbk"));
+            bufferWritter.write(new String(bytes,"GBK"));
             bufferWritter.flush();
             bufferWritter.close();
             fileWritter.close();
