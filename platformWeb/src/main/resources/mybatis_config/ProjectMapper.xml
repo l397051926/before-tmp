@@ -683,7 +683,7 @@
         WHERE
         pro_sample.sampleURI = #{sampleURI}
     </select>
-    <update id="autoAddSetCount">
+    <update id="autoAddSetCount" >
         UPDATE
         p_project
         SET setCount = setCount + 1
