@@ -181,6 +181,7 @@ public class UserController{
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
+        logger.info("CRFList 返回="+resultStr);
         logger.info("用户可访问crf列表 post 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
