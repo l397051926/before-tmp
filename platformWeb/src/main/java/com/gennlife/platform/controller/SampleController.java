@@ -43,23 +43,10 @@ public class SampleController {
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("组织机构列表 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("样本导入 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
-    @RequestMapping(value="/Import",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getImport(@RequestParam("param")String param){
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.importSample(paramObj);
-        }catch (Exception e){
-            logger.error("",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("组织机构列表 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
+
 
 
     @RequestMapping(value="/SetDetail",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
