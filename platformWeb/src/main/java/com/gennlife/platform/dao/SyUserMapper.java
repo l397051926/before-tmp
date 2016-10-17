@@ -188,6 +188,22 @@ public interface SyUserMapper {
 
     int deleteSearchCondition(@Param("conditionIDs") Integer[] conditionIDs);
 
+    /**
+     * 更新科室的名称后，将科室下成员的个人信息，都更新了
+     * @param lab_name
+     * @param orgID
+     * @return
+     */
+    int updateUserLabNameByLabName(@Param("lab_name") String lab_name,@Param("old_name") String old_name, @Param("orgID") String orgID);
+
+    /**
+     * 通过
+     * @param labID
+     * @param orgID
+     * @return
+     */
+    List<User> getUserByLabID(@Param("labID") String labID, @Param("orgID") String orgID);
+
 
     /**
     public SyUser getOneUser(Map<String, Object> likeCondition);

@@ -227,6 +227,16 @@ public class LaboratoryProcessor {
             if(labNames.contains(lab_name)){
                 return ParamUtils.errorParam(lab_name+"已经存在");
             }
+            //当前科室下面的用户科室名称
+            AllDao.getInstance().getSyUserDao().updateUserLabNameByLabName(lab_name,lab.getLab_name(),orgID);
+            //获取当前科室的所有成员
+            List<User> userList = AllDao.getInstance().getSyUserDao().getUserByLabID(labID,orgID);
+            //更新缓存
+            for(User user1:userList){
+                MemCachedUtil.setUser(user1.getUid(),user1);
+            }
+
+
         }
         if(!lab.getLab_parent().equals(lab_parent)
                 && !lab_parent.equals(orgID)){//改变了上级部门,并且改变的上级部门不是当前医院,需要检查上级部门是否存在

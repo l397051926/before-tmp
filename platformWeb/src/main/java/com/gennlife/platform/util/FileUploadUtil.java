@@ -4,6 +4,7 @@ package com.gennlife.platform.util;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.Lab;
+import com.gennlife.platform.model.Role;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.LaboratoryProcessor;
 import com.gennlife.platform.service.ConfigurationService;
@@ -128,6 +129,7 @@ public class FileUploadUtil {
         }
         List<User> userList = new LinkedList<>();
         List<String> lineList = new LinkedList<>();
+        Role role = AllDao.getInstance().getSyRoleDao().getLabMember(orgID);
         for(int index=1;index<strList.size();index++){
             String line = strList.get(index);
             String[] terms = line.split(",");
@@ -200,6 +202,7 @@ public class FileUploadUtil {
                         srcList.add(line+",失败,更新后的email是存在的");
                     }else{
                         int counter = AllDao.getInstance().getSyUserDao().updateUserByUnumber(addUser);
+                        AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role.getRoleid(),addUser.getUid());
                         if(counter >= 1){
                             srcList.add(line+",成功,更新成功");
                         }else{

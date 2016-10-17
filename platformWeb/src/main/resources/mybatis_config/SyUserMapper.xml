@@ -29,7 +29,12 @@
 		FROM gennlife_user
 		<where> gennlife_user.uemail = #{email} AND gennlife_user.pwd = #{pwd} </where>
 	</select>
-
+	<select id="getUserByLabID" resultType="com.gennlife.platform.model.User">
+		SELECT
+		<include refid="userProperty" />
+		FROM gennlife_user
+		<where> gennlife_user.labID = #{labID} AND gennlife_user.orgID = #{orgID} </where>
+	</select>
 
 	<select id="getUidByEmail" resultType="java.lang.String" parameterType="map">
 		SELECT uid
@@ -43,7 +48,12 @@
 		FROM gennlife_user
 		<where> gennlife_user.uemail = #{email} limit 1 </where>
 	</select>
-
+	<update id="updateUserLabNameByLabName">
+		UPDATE
+			gennlife_user
+		SET lab_name = #{lab_name}
+		WHERE lab_name = #{old_name} AND orgID=#{orgID}
+	</update>
 	<update id="updateByUid" parameterType="com.gennlife.platform.model.User">
 		UPDATE
 			gennlife_user
