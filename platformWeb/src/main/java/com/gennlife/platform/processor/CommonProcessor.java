@@ -52,11 +52,14 @@ public class CommonProcessor {
         try{
             String fileName = file.getOriginalFilename();
             byte[] bytes = file.getBytes();
+            String string = new String(bytes,"GBK");
+            logger.info("uploadFileForImportStaff="+string);
             String path = ConfigurationService.getFileBean().getManageFileLocation();
             File f = new File(path + LogUtils.getString_Time()+"-"+fileName);
             if(f.exists()){
                 f.createNewFile();
             }
+
             FileWriter fw = new FileWriter(f);
             fw.write(new String(bytes,"utf-8"));
             fw.flush();
