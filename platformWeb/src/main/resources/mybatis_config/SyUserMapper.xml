@@ -430,7 +430,7 @@
 		WHERE gennlife_user_role.roleid = #{roleid}
 	</select>
 
-	<select id="getAdminsByOrgID" resultType="VARCHAR">
+	<select id="getAdminsByOrgID" resultType="java.lang.String">
 		SELECT
 		uid
 		FROM
