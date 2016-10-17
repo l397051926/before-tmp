@@ -204,6 +204,13 @@ public interface SyUserMapper {
      */
     List<User> getUserByLabID(@Param("labID") String labID, @Param("orgID") String orgID);
 
+    /**
+     * 获取组织内管理员
+     * @param orgID
+     * @return
+     */
+    List<String> getAdminsByOrgID(@Param("orgID") String orgID);
+
 
     /**
     public SyUser getOneUser(Map<String, Object> likeCondition);

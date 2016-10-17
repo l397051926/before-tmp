@@ -429,4 +429,13 @@
 		on gennlife_user.uid = gennlife_user_role.uid
 		WHERE gennlife_user_role.roleid = #{roleid}
 	</select>
+
+	<select id="getAdminsByOrgID" resultType="VARCHAR">
+		SELECT
+		uid
+		FROM
+		gennlife_manage
+		WHERE
+		orgID=#{orgID} and privilegeType='admin' AND privilegeValue = 'admin'
+	</select>
 </mapper>

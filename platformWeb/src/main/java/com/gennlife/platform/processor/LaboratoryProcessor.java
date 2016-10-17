@@ -437,7 +437,14 @@ public class LaboratoryProcessor {
         }catch (Exception e){
             return ParamUtils.errorParam("参数错误");
         }
+        List<String> admins = AllDao.getInstance().getSyUserDao().getAdminsByOrgID(user.getOrgID());
+        for(String admin:admins){
+            if(uidsList.contains(admin)){
+                uidsList.remove(admin);
+            }
+        }
         String[] uids = uidsList.toArray(new String[uidsList.size()]);
+
 
         AllDao.getInstance().getSyRoleDao().deleteByUids(uids);
         int counter = AllDao.getInstance().getSyUserDao().deleteUserByUids(uids);
