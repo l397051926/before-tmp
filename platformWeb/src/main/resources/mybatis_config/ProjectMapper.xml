@@ -689,4 +689,10 @@
         SET setCount = setCount + 1
         WHERE  projectID = #{projectID}
     </update>
+    <update id="autoDeleteSetCount">
+         UPDATE
+        p_project
+        SET setCount = setCount - 1
+        WHERE  projectID = #{projectID}
+    </update>
 </mapper>
