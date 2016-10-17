@@ -58,7 +58,7 @@ public class CommonProcessor {
                 f.createNewFile();
             }
             FileWriter fw = new FileWriter(f);
-            fw.write(new String(bytes,"gbk"));
+            fw.write(new String(bytes,"utf-8"));
             fw.flush();
             fw.close();
             List<File> list = new LinkedList<>();
