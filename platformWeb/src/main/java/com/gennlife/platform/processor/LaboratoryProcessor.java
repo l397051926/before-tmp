@@ -108,16 +108,21 @@ public class LaboratoryProcessor {
                 }
             }
         }
-        map.put("orgID",orgID);
-        map.put("labID",lab_parent);
-        Integer lab_level = AllDao.getInstance().getOrgDao().getLabLevel(map);
-        if(lab_level == null){
-            return ParamUtils.errorParam("无法获取"+lab_parent+"对应的科室信息");
-        }
         Lab lab = new Lab();
         lab.setOrgID(orgID);
+        if(lab_parent.equals(orgID)){//一级科室
+            lab.setLab_level(1);
+        }else{
+            map.put("orgID",orgID);
+            map.put("labID",lab_parent);
+            Integer lab_level = AllDao.getInstance().getOrgDao().getLabLevel(map);
+            if(lab_level == null){
+                return ParamUtils.errorParam("无法获取"+lab_parent+"对应的科室信息");
+            }else{
+                lab.setLab_level(lab_level+1);
+            }
+        }
         lab.setLab_leader(lab_leader);
-        lab.setLab_level(lab_level+1);
         lab.setLab_name(lab_name);
         lab.setAdd_time(LogUtils.getStringTime());
         lab.setAdd_user(uid);
