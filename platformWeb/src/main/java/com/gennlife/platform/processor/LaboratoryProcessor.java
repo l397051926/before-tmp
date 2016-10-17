@@ -94,6 +94,20 @@ public class LaboratoryProcessor {
             return ParamUtils.errorParam(lab_name+"已经存在");
         }
         String labID = orgID+"-"+ChineseToEnglish.getPingYin(lab_name);
+        //
+        Lab exLab = AllDao.getInstance().getOrgDao().getLabBylabID(labID);
+        if(exLab != null){
+            int count = 1;
+            while(true){
+                labID = labID + "_" + count;
+                exLab = AllDao.getInstance().getOrgDao().getLabBylabID(labID);
+                if(exLab != null){
+                    count ++;
+                }else {
+                    break;
+                }
+            }
+        }
         map.put("orgID",orgID);
         map.put("labID",lab_parent);
         Integer lab_level = AllDao.getInstance().getOrgDao().getLabLevel(map);
