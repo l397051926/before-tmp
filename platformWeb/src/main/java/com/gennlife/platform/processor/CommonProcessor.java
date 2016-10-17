@@ -54,10 +54,13 @@ public class CommonProcessor {
             byte[] bytes = file.getBytes();
             String path = ConfigurationService.getFileBean().getManageFileLocation();
             File f = new File(path + LogUtils.getString_Time()+"-"+fileName);
-            //BufferedOutputStream buffStream = new BufferedOutputStream(new FileOutputStream(f));
-            //buffStream.write(bytes);
-            //buffStream.close();
-            file.transferTo(f);
+            if(f.exists()){
+                f.createNewFile();
+            }
+            FileWriter fw = new FileWriter(f);
+            fw.write(new String(bytes,"gb2312"));
+            fw.flush();
+            fw.close();
             List<File> list = new LinkedList<>();
             list.add(f);
             return FileUploadUtil.handleStaff(list,user);
