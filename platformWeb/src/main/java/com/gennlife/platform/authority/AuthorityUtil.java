@@ -97,7 +97,7 @@ public class AuthorityUtil {
         if(paramElement.isJsonObject()){
             JsonObject paramObj = paramElement.getAsJsonObject();
             paramObj.add("roles",roles);
-            paramObj.addProperty("indexName",indexName);
+            //paramObj.addProperty("indexName",indexName);
             return gson.toJson(paramObj);
         }else if(paramElement.isJsonArray()){
             return gson.toJson(paramElement);
