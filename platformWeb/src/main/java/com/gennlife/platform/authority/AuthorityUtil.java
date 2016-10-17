@@ -4,6 +4,7 @@ import com.gennlife.platform.controller.UserController;
 import com.gennlife.platform.model.Admin;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.UserProcessor;
+import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.MemCachedUtil;
 import com.gennlife.platform.util.ParamUtils;
@@ -69,7 +70,7 @@ public class AuthorityUtil {
         return isAdmin;
     }
 
-    public static String addAuthorityForString(String param,HttpSession session ){
+    public static String addAuthorityForString(String param,HttpSession session){
         JsonElement paramElement = jsonParser.parse(param);
         if(session == null){
             return ParamUtils.errorSessionLosParam();
@@ -82,15 +83,21 @@ public class AuthorityUtil {
             return ParamUtils.errorSessionLosParam();
         }
         User userS = MemCachedUtil.getUser(uid);
+        String indexName = ConfigurationService.getOrgIDIndexNamemap().get(userS.getOrgID());
+
         if(userS == null){
             userS = UserProcessor.getUserByUid(uid);
             MemCachedUtil.setUserWithTime(uid,userS, UserController.sessionTimeOut);
         }
         JsonObject user = (JsonObject) jsonParser.parse(gson.toJson(userS));
         JsonArray roles = user.getAsJsonArray("roles");
+        if(indexName != null){
+
+        }
         if(paramElement.isJsonObject()){
             JsonObject paramObj = paramElement.getAsJsonObject();
             paramObj.add("roles",roles);
+            paramObj.addProperty("indexName",indexName);
             return gson.toJson(paramObj);
         }else if(paramElement.isJsonArray()){
             return gson.toJson(paramElement);
