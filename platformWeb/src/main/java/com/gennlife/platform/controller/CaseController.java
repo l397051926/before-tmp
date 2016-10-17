@@ -170,9 +170,9 @@ public class CaseController {
             String param = ParamUtils.getParam(paramRe);
             HttpSession session = paramRe.getSession();
             logger.info("病历搜索 post方式 原始参数="+param);
-            param = AuthorityUtil.addAuthorityForString(param,session);
-            logger.info("病历搜索 post方式 增加科室后参数="+param);
-            resultStr =  processor.searchCase(param);
+            String paramNew = AuthorityUtil.addAuthorityForString(param,session);
+            logger.info("病历搜索 post方式 增加科室后参数="+paramNew);
+            resultStr =  processor.searchCase(paramNew);
         }catch (Exception e){
             logger.error("病历搜索",e);
             resultStr = ParamUtils.errorParam("出现异常");
