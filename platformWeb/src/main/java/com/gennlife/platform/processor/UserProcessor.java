@@ -188,6 +188,20 @@ public class UserProcessor {
         User user = null;
         try {
             user = AllDao.getInstance().getSyUserDao().getUserByUid(uid);
+            Map<String,Object> confMap = new HashMap<>();
+            confMap.put("orgID",user.getOrgID());
+            confMap.put("uid",user.getUid());
+            List<Admin> adminList = AllDao.getInstance().getSyUserDao().getAdmins(confMap);
+            user.setAdministrators(adminList);
+            List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(confMap);
+            if(rolesList != null){
+                user.setRoles(rolesList);
+                for(Role role:rolesList){
+                    confMap.put("roleid",role.getRoleid());
+                    List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResources(confMap);
+                    role.setResources(resourcesList);
+                }
+            }
         }catch (Exception e){
             logger.error("",e);
         }

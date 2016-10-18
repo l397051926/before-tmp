@@ -84,6 +84,7 @@ public class SessionFilter implements Filter {
                     User user = MemCachedUtil.getUser(uid);
                     if(user == null){
                         user = UserProcessor.getUserByUid(uid);
+
                         if(user == null){
                             view.viewString(ParamUtils.errorParam("用户不存在"),response);
                         }

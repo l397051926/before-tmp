@@ -6,6 +6,7 @@ import com.gennlife.platform.bean.crf.SampleListBean;
 import com.gennlife.platform.bean.crf.SummaryBean;
 import com.gennlife.platform.enums.MongoCollectionNames;
 import com.gennlife.platform.enums.MongoDBNames;
+import com.gennlife.platform.model.User;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -347,4 +348,25 @@ public class MongoManager {
         query.put("crf_id",crf_id);
         return query;
     }
+
+
+    public static void setValue(String key,String value){
+        BasicDBObject update = new BasicDBObject();
+        update.put("_id",key);
+        sessionCollection.remove(update);
+        update.put("value",value);
+        sessionCollection.insert(update);
+    }
+    public static void setUser(String uid,User user){
+        BasicDBObject usObj = BasicDBObject.parse(gson.toJson(user));
+        BasicDBObject update = new BasicDBObject();
+        update.put("_id",uid+"_info");
+        sessionCollection.remove(update);
+        update.put("value",usObj);
+        sessionCollection.insert(update);
+    }
+
+
+
+
 }
