@@ -58,7 +58,7 @@ public class CommonProcessor {
             String[] strings = string.split("\n");
             List<String> list = new LinkedList();
             for(String line:strings){
-                list.add(line);
+                list.add(line.trim());
             }
             return FileUploadUtil.handleStaff(list,user);
         }catch (Exception e){
