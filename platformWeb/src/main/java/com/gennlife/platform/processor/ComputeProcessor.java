@@ -58,15 +58,7 @@ public class ComputeProcessor {
         if(reStr == null || "".equals(reStr)){
             return ParamUtils.errorParam("计算服务返回空");
         }else{
-            try{
-                JsonObject result = new JsonObject();
-                JsonArray data = (JsonArray) jsonParser.parse(reStr);
-                result.addProperty("code",1);
-                result.add("data",data);
-                return gson.toJson(result);
-            }catch (Exception e){
-                return ParamUtils.errorParam("计算服务返回数据异常");
-            }
+            return reStr;
         }
     }
 }
