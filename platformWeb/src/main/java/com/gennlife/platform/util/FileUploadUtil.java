@@ -36,9 +36,14 @@ public class FileUploadUtil {
     }
 
     public static String handleStaff(List<String> fileList,User user) throws Exception {
-        List<String> list = importsStaffs(fileList,user.getOrgID(),user);
-        File orgIDImportResultFile =new File(tempPath + user.getOrg_name() +"导入人员历史.csv");
-        return writeResultFile(list,orgIDImportResultFile);
+        if(fileList.size() == 0){
+            return ParamUtils.errorParam("文件为空");
+        }else {
+            List<String> list = importsStaffs(fileList,user.getOrgID(),user);
+            File orgIDImportResultFile =new File(tempPath + user.getOrg_name() +"导入人员历史.csv");
+            return writeResultFile(list,orgIDImportResultFile);
+        }
+
     }
 
 
@@ -83,6 +88,7 @@ public class FileUploadUtil {
         List<String> srcList = new LinkedList<>();
         Map<String,Integer> map = new HashMap<>();
         String termLine = strList.get(0);
+        termLine = termLine.trim();
         String[] data = termLine.split(",");
         for(int index = 0; index < data.length; index++){
             map.put(data[index],index);
