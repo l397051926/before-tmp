@@ -4,7 +4,8 @@ package com.gennlife.platform.enums;
  * Created by chen-song on 16/3/19.
  */
 public enum MongoDBNames {
-    CRFName("CRF_Model", 0);
+    CRFName("CRF_Model", 0),
+    Session("ssesionMem",1);
     private String name;
     private int index;
 

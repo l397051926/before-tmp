@@ -34,6 +34,7 @@ public class MongoManager {
     private static DBCollection summaryCollection = null;
     private static DBCollection metaCollection = null;
     private static DBCollection dataCollection = null;
+    private static DBCollection sessionCollection = null;
     private static Gson gson = GsonUtil.getGson();
     private static JsonParser jsonParser = new JsonParser();
     public static void init(MongoConf mongoConf){
@@ -65,6 +66,7 @@ public class MongoManager {
         summaryCollection = MongoManager.get(MongoDBNames.CRFName.getName(), MongoCollectionNames.SummaryName.getName());
         metaCollection = MongoManager.get(MongoDBNames.CRFName.getName(), MongoCollectionNames.MetaName.getName());
         dataCollection = MongoManager.get(MongoDBNames.CRFName.getName(), MongoCollectionNames.CrfDataName.getName());
+        sessionCollection = MongoManager.get(MongoDBNames.Session.getName(),MongoCollectionNames.SessionName.getName());
     }
     /**
      * 关闭mongo连接

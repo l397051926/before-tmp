@@ -7,8 +7,8 @@ public enum MongoCollectionNames {
 
     MetaName("meta", 0),
     SummaryName("summary", 1),
-    CrfDataName("crfdata", 2);
-
+    CrfDataName("crfdata", 2),
+    SessionName("sessionStorage",3);
     private String name;
     private int index;
 
