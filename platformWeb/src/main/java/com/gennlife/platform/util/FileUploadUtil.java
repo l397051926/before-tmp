@@ -151,7 +151,7 @@ public class FileUploadUtil {
                     srcList.add(line+",失败,邮箱失败");
                     continue;
                 }
-                if(number == null || number.contains("")){
+                if(number == null || number.equals("")){
                     srcList.add(line+",失败,工号为空");
                     continue;
                 }
@@ -227,7 +227,7 @@ public class FileUploadUtil {
                 //判定当前文件中是否存在相同工号
                 boolean exUserFile = getUserByUnumber(addUser,userList);
                 if(exUserFile){
-                    srcList.add(line+",失败,更新后的email是存在的");
+                    srcList.add(line+",失败,文件存在相同的email");
                 }else {
                     int counter = AllDao.getInstance().getSyUserDao().insertOneUser(addUser);
                     if(counter >= 1){
