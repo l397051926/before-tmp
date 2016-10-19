@@ -296,7 +296,7 @@ public class SampleProcessor {
                 }
 
                 JsonArray PROPERTY = json.getAsJsonArray("PROPERTY");
-
+                JsonElement RANGE = json.get("RANGE");
                 JsonArray schemaJson = json.getAsJsonArray("SCHEMA");
                 JsonObject schema = new JsonObject();
                 List<String> list = new LinkedList<>();
@@ -330,10 +330,15 @@ public class SampleProcessor {
                 }
                 JsonObject result = new JsonObject();
                 JsonObject info = new JsonObject();
-                JsonElement counter = json.get("TOTAL");
+                JsonElement TOTAL = json.get("TOTAL");
+                JsonElement SEARCH_TOTAL = json.get("SEARCH_TOTAL");
+                JsonElement USE_TOTAL = json.get("USE_TOTAL");
                 info.add("schema",schema);
-                info.add("counter",counter);
+                info.add("TOTAL",TOTAL);
+                info.add("SEARCH_TOTAL",SEARCH_TOTAL);
+                info.add("USE_TOTAL",USE_TOTAL);
                 info.add("property",PROPERTY);
+                info.add("RANGE",RANGE);
                 result.addProperty("code",1);
                 result.add("info",info);
                 result.add("data",data);
