@@ -11142,7 +11142,7 @@
         "IndexFieldName": "inpatient_basic_info.INPATIENT_DATE",
         "srchFieldName": "确诊入院基本信息.入院时间",
         "dataType": "date",
-        "dateFormat": ""
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
       },
       {
         "UIFieldName": "肿瘤位置",
@@ -11456,9 +11456,9 @@
         ]
       },
       {
-        "UIFieldName": "furmnan分级",
+        "UIFieldName": "Fuhrman分级",
         "IndexFieldName": "pathology_after_first_surgery.FURMNAN_GRADE",
-        "srchFieldName": "首次术后病理信息.furmnan分级",
+        "srchFieldName": "首次术后病理信息.Fuhrman分级",
         "dataType": "string",
         "dataMap": [
           "阴性",
