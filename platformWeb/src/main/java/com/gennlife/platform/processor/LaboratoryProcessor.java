@@ -342,6 +342,20 @@ public class LaboratoryProcessor {
             map.put("orgID",usr.getOrgID());
             map.put("uid",usr.getUid());
             List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(map);
+            if(rolesList != null){
+                for(Role role:rolesList){
+                    StringBuffer stringBuffer = new StringBuffer();
+                    List<Resource> reList= AllDao.getInstance().getSyResourceDao().getResourceByRoleID(user.getOrgID(),role.getRoleid(),0,3000);
+                    if(reList != null){
+                        for(Resource resource:reList){
+                            stringBuffer.append(resource.getSdesc()).append(",");
+                        }
+                    }
+                    if(stringBuffer.toString().length() > 1){
+                        role.setResourceDesc(stringBuffer.toString().substring(0,stringBuffer.toString().length()-1));
+                    }
+                }
+            }
             usr.setRoles(rolesList);
         }
 
