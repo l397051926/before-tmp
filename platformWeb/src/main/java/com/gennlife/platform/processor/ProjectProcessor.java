@@ -7,10 +7,7 @@ import com.gennlife.platform.enums.LogActionEnum;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.service.ArkService;
 import com.gennlife.platform.service.ConfigurationService;
-import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.HttpRequestUtils;
-import com.gennlife.platform.util.JsonUtils;
-import com.gennlife.platform.util.ParamUtils;
+import com.gennlife.platform.util.*;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,6 +56,9 @@ public class ProjectProcessor {
             Map<String,Object> confMap = new HashMap<String, Object>();
             for(MyProjectList myProjectList:list){
                 String projectID = myProjectList.getProjectID();
+                String creator = myProjectList.getCreator();
+                User user = UserProcessor.getUserByUid(creator);
+                myProjectList.setCreatorName(user.getUname());
                 confMap.put("projectID",projectID);
                 confMap.put("startIndex",0);
                 confMap.put("maxNum",5);
