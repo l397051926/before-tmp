@@ -267,25 +267,55 @@ public class CaseProcessor {
      */
     public static String transformSid(String param){
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-        if(paramObj.has("sid")){
+        if(paramObj.has("sid") && paramObj.has("roles")){
             String sid = paramObj.get("sid").getAsString();
             paramObj.remove("sid");
             JsonArray roles = paramObj.getAsJsonArray("roles");
-            for(JsonElement json:roles){
-                JsonArray resources = json.getAsJsonObject().getAsJsonArray("resources");
-                JsonArray newresources = new JsonArray();
-                for(JsonElement jsonElement:resources){
-                    JsonObject jsonObject = jsonElement.getAsJsonObject();
-                    String sidRe = jsonObject.get("sid").getAsString();
-                    if(sidRe.equals(sid)){
-                        newresources.add(jsonElement);
+            if(roles.size() == 0){
+                return ParamUtils.errorParam("无搜索权限");
+            }else{
+                int counter = 0;
+                for(JsonElement json:roles){
+                    if(json.getAsJsonObject().has("resources")){
+                        JsonArray resources = json.getAsJsonObject().getAsJsonArray("resources");
+                        JsonArray newresources = new JsonArray();
+                        for(JsonElement jsonElement:resources){
+                            JsonObject jsonObject = jsonElement.getAsJsonObject();
+                            String sidRe = jsonObject.get("sid").getAsString();
+                            if(sidRe.equals(sid)){
+                                newresources.add(jsonElement);
+                                counter ++;
+                            }
+                        }
+                        json.getAsJsonObject().add("resources",newresources);
                     }
                 }
-                json.getAsJsonObject().add("resources",newresources);
+                if(counter == 0){
+                    return ParamUtils.errorParam("无搜索权限");
+                }else {
+                    logger.info("通过sid转化后，搜索请求参数="+param);
+                    return gson.toJson(paramObj);
+                }
             }
-            logger.info("通过sid转化后，搜索请求参数="+param);
-            return gson.toJson(paramObj);
-
+        }else if(paramObj.has("roles")){//没有角色
+            JsonArray roles = paramObj.getAsJsonArray("roles");
+            if(roles.size() == 0){
+                return ParamUtils.errorParam("无搜索权限");
+            }else{
+                int counter = 0;
+                for(JsonElement json:roles){
+                    if(json.getAsJsonObject().has("resources")){
+                        JsonArray resources = json.getAsJsonObject().getAsJsonArray("resources");
+                        counter = resources.size() + counter;
+                    }
+                }
+                if(counter == 0){
+                    return ParamUtils.errorParam("无搜索权限");
+                }else {
+                    logger.info("通过sid转化后，搜索请求参数="+param);
+                    return gson.toJson(paramObj);
+                }
+            }
         }else{
             return param;
         }
