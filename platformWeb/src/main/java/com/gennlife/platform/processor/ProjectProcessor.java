@@ -58,7 +58,7 @@ public class ProjectProcessor {
                 String projectID = myProjectList.getProjectID();
                 String creator = myProjectList.getCreator();
                 User user = UserProcessor.getUserByUid(creator);
-                myProjectList.setCreatorName(user.getUname());
+                myProjectList.setCreatorName(user.getUname()+"");
                 confMap.put("projectID",projectID);
                 confMap.put("startIndex",0);
                 confMap.put("maxNum",5);
