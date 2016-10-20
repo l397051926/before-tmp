@@ -17,7 +17,7 @@ import java.util.*;
  * Created by chen-song on 16/5/13.
  */
 public class CaseProcessor {
-    private Logger logger = LoggerFactory.getLogger(CaseProcessor.class);
+    private static Logger logger = LoggerFactory.getLogger(CaseProcessor.class);
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
 
@@ -261,15 +261,12 @@ public class CaseProcessor {
     }
 
     /**
-     * 搜索病历
-     *
-     * @param newParam
+     * 搜索接口，sid 转化
+     * @param param
+     * @return
      */
-    public String searchCase(String newParam) {
-        if(newParam == null){
-            return ParamUtils.errorSessionLosParam();
-        }
-        JsonObject paramObj = (JsonObject) jsonParser.parse(newParam);
+    public static String transformSid(String param){
+        JsonObject paramObj = (JsonObject) jsonParser.parse(param);
         if(paramObj.has("sid")){
             String sid = paramObj.get("sid").getAsString();
             paramObj.remove("sid");
@@ -286,12 +283,26 @@ public class CaseProcessor {
                 }
                 json.getAsJsonObject().add("resources",newresources);
             }
-            newParam = gson.toJson(paramObj);
-            logger.info("通过sid转化后，搜索请求参数="+newParam);
+            logger.info("通过sid转化后，搜索请求参数="+param);
+            return gson.toJson(paramObj);
+
         }else{
-            if(paramObj.has("code") && paramObj.get("code").getAsInt() == -1){
-                return newParam;
-            }
+            return param;
+        }
+    }
+    /**
+     * 搜索病历
+     *
+     * @param newParam
+     */
+    public String searchCase(String newParam) {
+        if(newParam == null){
+            return ParamUtils.errorSessionLosParam();
+        }
+        String param = transformSid(newParam);
+        JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+        if(paramObj.has("code") && paramObj.get("code").getAsInt() == 0){
+            return param;
         }
         CaseSearchParser caseSearchParser = new CaseSearchParser(newParam);
         try {

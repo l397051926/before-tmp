@@ -45,10 +45,15 @@ public class SampleProcessor {
                 sampleDesc = jsonObject.get("sampleDesc").getAsString();
             }
             JsonObject query = jsonObject.get("query").getAsJsonObject();
+            logger.info("原始搜索条件="+gson.toJson(query));
+            String withSid = CaseProcessor.transformSid(gson.toJson(query));
+            JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
+            logger.info("sid 处理后搜索条件="+gson.toJson(queryNew));
             JsonArray source = query.getAsJsonArray("source");
             String url = ConfigurationService.getUrlBean().getSampleImportIURL();
             JsonObject param = new JsonObject();
-            param.add("query",query);
+            param.add("query",queryNew);
+
             String data = HttpRequestUtils.httpPostForSampleImport(url,gson.toJson(param));
             Long startTime = System.currentTimeMillis();
             logger.info("data = " + data);
