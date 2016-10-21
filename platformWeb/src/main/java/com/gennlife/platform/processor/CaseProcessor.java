@@ -338,7 +338,7 @@ public class CaseProcessor {
         if(paramObj.has("code") && paramObj.get("code").getAsInt() == 0){
             return param;
         }
-        CaseSearchParser caseSearchParser = new CaseSearchParser(newParam);
+        CaseSearchParser caseSearchParser = new CaseSearchParser(param);
         try {
             String searchResultStr = caseSearchParser.parser();
             JsonObject searchResult = (JsonObject) jsonParser.parse(searchResultStr);
