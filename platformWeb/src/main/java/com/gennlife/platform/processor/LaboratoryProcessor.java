@@ -371,7 +371,7 @@ public class LaboratoryProcessor {
         adduser.setPwd("ls123456");
         adduser.setOrg_name(user.getOrg_name());
         JsonObject re = insertUser(adduser);
-        MemCachedUtil.setUserWithTime(adduser.getUid(),adduser, UserController.sessionTimeOut);
+        //MemCachedUtil.setUserWithTime(adduser.getUid(),adduser, UserController.sessionTimeOut);
         return gson.toJson(re);
     }
 

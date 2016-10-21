@@ -147,6 +147,10 @@ public class FileUploadUtil {
                 String name = terms[nameIndex];
                 String lab_name = terms[labIndex];
                 String email = terms[emailIndex];
+                if(name == null || !name.equals("")){
+                    srcList.add(line+",失败,姓名为空");
+                    continue;
+                }
                 if(email == null || !email.contains("@")){
                     srcList.add(line+",失败,邮箱失败");
                     continue;
