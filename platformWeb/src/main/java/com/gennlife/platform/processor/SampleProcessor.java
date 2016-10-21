@@ -245,13 +245,15 @@ public class SampleProcessor {
         }
         ResultBean resultBean = new ResultBean();
         JsonObject all = ConfigurationService.getAllObj();
+        JsonObject allCopy = (JsonObject) jsonParser.parse(gson.toJson(all));
         JsonObject allNew = new JsonObject();
-        for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
+        for (Map.Entry<String, JsonElement> obj : allCopy.entrySet()) {
             String groupName = obj.getKey();
             JsonArray items = obj.getValue().getAsJsonArray();
             JsonArray newGroup = new JsonArray();
             for (JsonElement json : items) {
                 JsonObject item = json.getAsJsonObject();
+                item.remove("relatedItems");
                 String IndexFieldName = item.get("IndexFieldName").getAsString();
                 String UIFieldName = item.get("UIFieldName").getAsString();
                 if (set.contains(IndexFieldName)) {
