@@ -296,8 +296,8 @@ public class CaseProcessor {
                 if(newRoles.size() == 0){
                     return ParamUtils.errorParam("无搜索权限");
                 }else {
-                    logger.info("通过sid转化后，搜索请求参数="+param);
                     paramObj.add("roles",newRoles);
+                    logger.info("通过sid转化后，搜索请求参数="+gson.toJson(paramObj));
                     return gson.toJson(paramObj);
                 }
             }
