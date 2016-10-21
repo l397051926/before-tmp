@@ -139,6 +139,7 @@ public class CaseProcessor {
                     String UIFieldName = item.get("UIFieldName").getAsString();
                     if ("".equals(keywords) || UIFieldName.contains(keywords)) {
                         JsonObject itemNew = (JsonObject) jsonParser.parse(gson.toJson(item));
+                        itemNew.remove("relatedItems");//去除掉子属性
                         if (!"".equals(keywords)) {
                             UIFieldName = UIFieldName.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
                             itemNew.addProperty("UIFieldName", UIFieldName);
