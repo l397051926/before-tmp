@@ -1,6 +1,7 @@
 package com.gennlife.platform.controller;
 
 
+import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.SampleProcessor;
 import com.gennlife.platform.util.GsonUtil;
@@ -36,7 +37,7 @@ public class SampleController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = ParamUtils.getParam(paramRe);
+            String param = AuthorityUtil.addAuthority(paramRe);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.importSample(paramObj);
         }catch (Exception e){
