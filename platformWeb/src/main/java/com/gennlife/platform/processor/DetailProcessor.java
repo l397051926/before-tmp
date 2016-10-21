@@ -236,7 +236,7 @@ public class DetailProcessor {
             String url = ConfigurationService.getUrlBean().getCasePathological_examination();
             logger.info("PathologicalExamination url="+url);
             String result = HttpRequestUtils.httpPost(url,param);
-            logger.info("PathologicalExamination result="+result);
+            //logger.info("PathologicalExamination result="+result);
             return result;
         }catch (Exception e){
             return ParamUtils.errorParam("请求出错");

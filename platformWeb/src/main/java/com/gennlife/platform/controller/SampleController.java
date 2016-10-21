@@ -38,6 +38,7 @@ public class SampleController {
         String resultStr = null;
         try{
             String param = AuthorityUtil.addAuthority(paramRe);
+            logger.info("Import param="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.importSample(paramObj);
         }catch (Exception e){

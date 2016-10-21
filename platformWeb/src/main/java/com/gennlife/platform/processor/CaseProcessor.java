@@ -271,29 +271,33 @@ public class CaseProcessor {
             String sid = paramObj.get("sid").getAsString();
             paramObj.remove("sid");
             JsonArray roles = paramObj.getAsJsonArray("roles");
+            JsonArray newRoles = new JsonArray();
             if(roles.size() == 0){
                 return ParamUtils.errorParam("无搜索权限");
             }else{
-                int counter = 0;
                 for(JsonElement json:roles){
-                    if(json.getAsJsonObject().has("resources")){
-                        JsonArray resources = json.getAsJsonObject().getAsJsonArray("resources");
+                    JsonObject role = json.getAsJsonObject();
+                    if(role.has("resources")){
+                        JsonArray resources = role.getAsJsonArray("resources");
                         JsonArray newresources = new JsonArray();
                         for(JsonElement jsonElement:resources){
                             JsonObject jsonObject = jsonElement.getAsJsonObject();
                             String sidRe = jsonObject.get("sid").getAsString();
                             if(sidRe.equals(sid)){
                                 newresources.add(jsonElement);
-                                counter ++;
                             }
                         }
-                        json.getAsJsonObject().add("resources",newresources);
+                        if(newresources.size() > 0){
+                            role.add("resources",newresources);
+                            newRoles.add(role);
+                        }
                     }
                 }
-                if(counter == 0){
+                if(newRoles.size() == 0){
                     return ParamUtils.errorParam("无搜索权限");
                 }else {
                     logger.info("通过sid转化后，搜索请求参数="+param);
+                    paramObj.add("roles",newRoles);
                     return gson.toJson(paramObj);
                 }
             }
