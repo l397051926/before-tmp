@@ -45,6 +45,8 @@ public class SampleProcessor {
                 sampleDesc = jsonObject.get("sampleDesc").getAsString();
             }
             JsonObject query = jsonObject.get("query").getAsJsonObject();
+            JsonElement roles = jsonObject.get("roles");
+            query.add("roles",roles);
             logger.info("原始搜索条件="+gson.toJson(query));
             String withSid = CaseProcessor.transformSid(gson.toJson(query));
             JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
