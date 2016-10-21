@@ -1056,7 +1056,7 @@
         "dataType": "string"
       },
       {
-        "UIFieldName": "靶向用药TNM分期（I-VI期）",
+        "UIFieldName": "靶向用药TNM分期（I-IV期）",
         "IndexFieldName": "FIRST_LINE_TARGETED_THERAPY.STAGE_TNM_TARGET",
         "srchFieldName": "一线靶向治疗.靶向用药TNM分期（I-VI期）",
         "dataType": "string"
@@ -1191,7 +1191,7 @@
         "dataType": "string"
       },
       {
-        "UIFieldName": "靶向用药TNM分期（I-VI期）",
+        "UIFieldName": "靶向用药TNM分期（I-IV期）",
         "IndexFieldName": "SECOND_LINE_TARGETED_THERAPY.STAGE_TNM_TARGET",
         "srchFieldName": "二线靶向治疗.靶向用药TNM分期（I-VI期）",
         "dataType": "string"
@@ -11449,10 +11449,10 @@
         "srchFieldName": "首次术后病理信息.病理TNM整体分期",
         "dataType": "string",
         "dataMap": [
-          "I期",
+          "Ⅰ期",
           "Ⅱ期",
           "Ⅲ期",
-          "IV期"
+          "Ⅳ期"
         ]
       },
       {
@@ -12845,10 +12845,20 @@
         "UIFieldName": "靶向用药时分期",
         "IndexFieldName": "FIRST_LINE_TARGETED_THERAPY.STAGE_TARGET",
         "srchFieldName": "一线靶向治疗.靶向用药时分期",
-        "dataType": "string"
+        "dataType": "string",
+        "dataMap": [
+          "T0N0M0",
+          "T0N0M1",
+          "T0N1M0",
+          "T0N1M1",
+          "T1N0M0",
+          "T1N0M1",
+          "T1N1M0",
+          "T1N1M1"
+        ]
       },
       {
-        "UIFieldName": "靶向用药TNM分期（I-VI期）",
+        "UIFieldName": "靶向用药TNM分期（I-IV期）",
         "IndexFieldName": "FIRST_LINE_TARGETED_THERAPY.STAGE_TNM_TARGET",
         "srchFieldName": "一线靶向治疗.靶向用药TNM分期（I-VI期）",
         "dataType": "string"
@@ -12977,7 +12987,7 @@
         "dataType": "string"
       },
       {
-        "UIFieldName": "靶向用药TNM分期（I-VI期）",
+        "UIFieldName": "靶向用药TNM分期（I-IV期）",
         "IndexFieldName": "SECOND_LINE_TARGETED_THERAPY.STAGE_TNM_TARGET",
         "srchFieldName": "二线靶向治疗.靶向用药TNM分期（I-VI期）",
         "dataType": "string"
@@ -21922,10 +21932,16 @@
         "dataType": "string"
       },
       {
-        "UIFieldName": "靶向用药TNM分期（I-VI期）",
+        "UIFieldName": "靶向用药TNM分期（I-IV期）",
         "IndexFieldName": "FIRST_LINE_TARGETED_THERAPY.STAGE_TNM_TARGET",
         "srchFieldName": "一线靶向治疗.靶向用药TNM分期（I-VI期）",
-        "dataType": "string"
+        "dataType": "string",
+        "dataMap": [
+          "Ⅰ期",
+          "Ⅱ期",
+          "Ⅲ期",
+          "Ⅳ期"
+        ]
       },
       {
         "UIFieldName": "靶向药",
@@ -22048,13 +22064,29 @@
         "UIFieldName": "靶向用药时分期",
         "IndexFieldName": "SECOND_LINE_TARGETED_THERAPY.STAGE_TARGET",
         "srchFieldName": "二线靶向治疗.靶向用药时分期",
-        "dataType": "string"
+        "dataType": "string",
+        "dataMap": [
+          "T0N0M0",
+          "T0N0M1",
+          "T0N1M0",
+          "T0N1M1",
+          "T1N0M0",
+          "T1N0M1",
+          "T1N1M0",
+          "T1N1M1"
+        ]
       },
       {
-        "UIFieldName": "靶向用药TNM分期（I-VI期）",
+        "UIFieldName": "靶向用药TNM分期（I-IV期）",
         "IndexFieldName": "SECOND_LINE_TARGETED_THERAPY.STAGE_TNM_TARGET",
         "srchFieldName": "二线靶向治疗.靶向用药TNM分期（I-VI期）",
-        "dataType": "string"
+        "dataType": "string",
+        "dataMap": [
+          "Ⅰ期",
+          "Ⅱ期",
+          "Ⅲ期",
+          "Ⅳ期"
+        ]
       },
       {
         "UIFieldName": "靶向药",
