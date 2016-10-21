@@ -694,7 +694,7 @@ public class LaboratoryProcessor {
                 for(Object resource:resourceList){
                     Resource resourceObj = gson.fromJson(gson.toJson(resource),Resource.class);
                     resourceObj.setSorgID(user.getOrgID());
-                    resourceObj.setRoleid(role.getRoleid());
+                    resourceObj.setRoleid(exRole.getRoleid());
                     AllDao.getInstance().getSyResourceDao().insertRoleResourceRelation(resourceObj);
                 }
 
