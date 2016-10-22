@@ -468,4 +468,16 @@ public class CrfProcessor {
             return ParamUtils.errorParam("请求出错");
         }
     }
+
+    public String isExistPatient(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCRFIsExistPatient();
+            logger.info("isExistPatient url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("isExistPatient result="+result);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
 }

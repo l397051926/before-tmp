@@ -551,4 +551,21 @@ public class CrfController {
         logger.info("查询导入状态  post 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+
+
+
+    @RequestMapping(value="/IsExistPatient",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
+    public @ResponseBody String IsExistPatient(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            resultStr = processor.isExistPatient(param);
+        }catch (Exception e){
+            logger.error("病人编号是否存在",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("病人编号是否存在 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }

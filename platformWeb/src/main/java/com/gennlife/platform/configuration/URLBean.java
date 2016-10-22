@@ -14,6 +14,10 @@ public class URLBean {
     }
 
     /**
+     * crf 病人编号是否存在
+     */
+    private String CRFIsExistPatient = null;
+    /**
      * 基线统计
      */
     private String CSBaseline = null;
@@ -899,5 +903,13 @@ public class URLBean {
 
     public void setCSBaseline(String CSBaseline) {
         this.CSBaseline = CSBaseline;
+    }
+
+    public String getCRFIsExistPatient() {
+        return CRFIsExistPatient;
+    }
+
+    public void setCRFIsExistPatient(String CRFIsExistPatient) {
+        this.CRFIsExistPatient = CRFIsExistPatient;
     }
 }
