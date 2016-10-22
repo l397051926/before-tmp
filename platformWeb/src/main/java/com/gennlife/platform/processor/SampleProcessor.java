@@ -55,7 +55,9 @@ public class SampleProcessor {
             String url = ConfigurationService.getUrlBean().getSampleImportIURL();
             JsonObject param = new JsonObject();
             param.add("query",queryNew);
-
+            if(queryNew.has("code") && queryNew.get("code").getAsInt() ==0){
+                return gson.toJson(queryNew);
+            }
             String data = HttpRequestUtils.httpPostForSampleImport(url,gson.toJson(param));
             Long startTime = System.currentTimeMillis();
             logger.info("data = " + data);
