@@ -83,6 +83,7 @@
         <property name="CRFImportFile" value="http://localhost:8082/auto/CsvAddQueue"></property>
         <property name="CRFImportMap" value="http://192.168.1.111:9885/auto/CsvImport"></property>
         <property name="CRFImportResult" value="http://192.168.1.111:9885/auto/CsvImportResult"></property>
+        <property name="CRFIsExistPatient" value="http://192.168.1.111:9885/crf/IsExistPatient"></property>
 
         <property name="RRun" value="http://192.168.1.111:1235/r_run"/>
         <property name="RStop" value="http://192.168.1.111:1235/r_stop"/>

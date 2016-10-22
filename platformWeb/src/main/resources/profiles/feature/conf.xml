@@ -85,7 +85,7 @@
         <property name="CRFImportFile" value="http://10.0.0.30:8080/auto/CsvAddQueue"></property>
         <property name="CRFImportMap" value="http://10.0.0.30:8080/auto/CsvImport"></property>
         <property name="CRFImportResult" value="http://10.0.0.30:8080/auto/CsvImportResult"></property>
-
+        <property name="CRFIsExistPatient" value="http://10.0.0.30:8080/crf/IsExistPatient"></property>
         <!--R 服务接口-->
         <property name="RRun" value="http://10.0.0.63:1235/r_run"/>
         <property name="RStop" value="http://10.0.0.63:1235/r_stop"/>
