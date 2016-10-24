@@ -88,7 +88,7 @@
 			"data_type": "single_array",
 			"path_one": "$.drugName",
 			"name_one": "name",
-			"path_two": "$.drugUrl",
+			"path_two": "$.FdaReference.drugUrl",
 			"name_two": "url"
 		},
 		"disease": {
