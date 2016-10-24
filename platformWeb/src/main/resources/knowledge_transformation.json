@@ -1148,11 +1148,10 @@
 			"path": "$.term_name"
 		},
 		"gene": {
-			"data_type": "single_array",
-			"path_one": "$.Gene[0].symbol",
-			"path_two": "$.Gene[0].symbolUrl",
-			"name_one": "name",
-			"name_two": "url"
+			"data_type": "array",
+			"path": "$.Gene",
+			"name": "symbol",
+			"url": "symbolUrl"
 		},
 		"ref": {
 			"data_type": "array",
