@@ -113,4 +113,11 @@ public class CommonController  {
         processor.downLoadFile(file,response,"组织导入模版.csv");
     }
 
+
+    @RequestMapping(value="/DownloadFileForExplainCRFImport",method= RequestMethod.GET)
+    public void DownloadFileForExplainCRFImport(HttpServletRequest paramRe,HttpServletResponse response){
+        String file = FilePath+ "映射模型字段说明-V1.0.xlsx";
+        processor.downLoadFile(file,response,"映射模型字段说明-V1.0.xlsx");
+    }
+
 }
