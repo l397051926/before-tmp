@@ -192,9 +192,24 @@ public class CrfController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            HttpSession session = paramRe.getSession();
+            String sessionID = session.getId();
+            String uid = MemCachedUtil.get(sessionID);
+            if(uid == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            User user = MemCachedUtil.getUser(uid);
+            if(user == null || user.getOrgID() == null){
+                return ParamUtils.errorSessionLosParam();
+            }
+            String indexName = ConfigurationService.getOrgIDIndexNamemap().get(user.getOrgID());
+            if(indexName == null){
+                return ParamUtils.errorParam("用户所在的组织无法建立索引");
+            }
             String param = ParamUtils.getParam(paramRe);
             logger.info("录入完成接口 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            paramObj.addProperty("indexName",indexName);
             resultStr = processor.saveData(paramObj);
         }catch (Exception e){
             logger.error("录入完成接口",e);
@@ -204,21 +219,6 @@ public class CrfController {
         return resultStr;
     }
 
-    @RequestMapping(value="/SaveData",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getSaveData(@RequestParam("param") String param) {
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            logger.info("录入完成接口 get方式 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.saveData(paramObj);
-        }catch (Exception e){
-            logger.error("录入完成接口",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("录入完成接口 get 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
 
 
 
