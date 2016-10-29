@@ -174,7 +174,7 @@ public class UserController{
             if(uid == null){
                 return ParamUtils.errorSessionLosParam();
             }
-            User user = MemCachedUtil.getUser(uid);
+            User user = UserProcessor.getUserByUid(uid);
             String userStr = gson.toJson(user);
             return processor.CRFList(userStr);
         }catch (Exception e){
