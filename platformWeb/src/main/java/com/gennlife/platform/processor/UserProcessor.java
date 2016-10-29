@@ -202,6 +202,9 @@ public class UserProcessor {
                         List<Resource> reList = new LinkedList<>();
                         for(Resource resource:resourcesList){
                             if("1".equals(resource.getStype_role())){//本科室资源
+                                if(user.getLabID().equals(user.getOrgID())){
+                                    continue;
+                                }
                                 resource.setSid(user.getLabID());
                                 resource.setSlab_name(user.getLab_name());
                                 resource.setHas_addCRF("有");
