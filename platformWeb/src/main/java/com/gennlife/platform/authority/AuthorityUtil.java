@@ -38,11 +38,7 @@ public class AuthorityUtil {
         if(uid == null){
             return ParamUtils.errorSessionLosParam();
         }
-        User userS = MemCachedUtil.getUser(uid);
-        if(userS == null){
-            userS = UserProcessor.getUserByUid(uid);
-            //MemCachedUtil.setUserWithTime(uid,userS, UserController.sessionTimeOut);
-        }
+        User userS = UserProcessor.getUserByUid(uid);
         JsonObject user = (JsonObject) jsonParser.parse(gson.toJson(userS));
         JsonArray roles = user.getAsJsonArray("roles");
         if(paramElement.isJsonObject()){

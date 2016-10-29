@@ -45,31 +45,7 @@ public class UserProcessor {
             if(user == null){
                 return ParamUtils.errorParamResultBean("登陆失败");
             }else{
-                confMap.put("orgID",user.getOrgID());
-                confMap.put("uid",user.getUid());
-                List<Admin> adminList = AllDao.getInstance().getSyUserDao().getAdmins(confMap);
-                user.setAdministrators(adminList);
-                List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(confMap);
-                if(rolesList != null){
-                    user.setRoles(rolesList);
-                    for(Role role:rolesList){
-                        confMap.put("roleid",role.getRoleid());
-                        List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResources(confMap);
-                        List<Resource> reList = new LinkedList<>();
-                        for(Resource resource:resourcesList){
-                            if("1".equals(resource.getStype_role())){
-                                if(!user.getLabID().equals(user.getOrgID())){//不属于医院
-                                    resource.setSid(user.getLabID());
-                                    resource.setSlab_name(user.getLab_name());
-                                    reList.add(resource);
-                                }
-                            }else {
-                                reList.add(resource);
-                            }
-                        }
-                        role.setResources(reList);
-                    }
-                }
+                user = getUserByUid(user.getUid());
             }
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
@@ -209,9 +185,30 @@ public class UserProcessor {
             if(rolesList != null){
                 user.setRoles(rolesList);
                 for(Role role:rolesList){
-                    confMap.put("roleid",role.getRoleid());
-                    List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResources(confMap);
-                    role.setResources(resourcesList);
+                    if("1".equals(role.getRole_type())){
+                        List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResourcesBySid(user.getOrgID(),user.getLabID());
+                        List<Resource> reList = new LinkedList<>();
+                        for(Resource resource:resourcesList){
+                            resource.setHas_searchExport("有");
+                            resource.setHas_addCRF("有");
+                            resource.setHas_search("有");
+                            reList.add(resource);
+                            break;//保留一个就行了
+                        }
+                        role.setResources(reList);
+                    }else{
+                        confMap.put("roleid",role.getRoleid());
+                        List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResources(confMap);
+                        List<Resource> reList = new LinkedList<>();
+                        for(Resource resource:resourcesList){
+                            if("1".equals(resource.getStype_role())){//本科室资源
+                                resource.setHas_addCRF("有");
+                                resource.setHas_search("有");
+                                resource.setHas_searchExport("有");
+                            }
+                        }
+                        role.setResources(reList);
+                    }
                 }
             }
         }catch (Exception e){
