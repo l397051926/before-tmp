@@ -267,14 +267,14 @@ public class UserProcessor {
             return user;
         }
         for(Role role:roles){
-            if("科室成员".equals(role.getRole_type())){//如果存在本科室角色
-                List<Resource> resources = (List<Resource>) role.getResources();
-                for(Resource resource:resources){
-                    if("本科室资源".equals(resource.getSname())){
-                        resource.setSlab_name(user.getLab_name());
-                    }
+            List<Resource> resources = (List<Resource>) role.getResources();
+            for(Resource resource:resources){
+                if("1".equals(resource.getStype_role())){
+                    resource.setSlab_name(user.getLab_name());
+                    resource.setSid(user.getLabID());
                 }
             }
+
         }
         return user;
     }

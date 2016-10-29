@@ -29,6 +29,7 @@ public class Resource {
     private String has_deleteCRF;
     private String has_browseDetail;
     private String has_addBatchCRF;
+    private String stype_role;
 
     public Integer getRoleid() {
         return roleid;
@@ -156,5 +157,13 @@ public class Resource {
 
     public void setSorgID(String sorgID) {
         this.sorgID = sorgID;
+    }
+
+    public String getStype_role() {
+        return stype_role;
+    }
+
+    public void setStype_role(String stype_role) {
+        this.stype_role = stype_role;
     }
 }

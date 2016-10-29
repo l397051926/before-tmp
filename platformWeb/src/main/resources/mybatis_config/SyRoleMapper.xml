@@ -30,7 +30,7 @@
         FROM
         gennlife_role
         WHERE gennlife_role.orgID = #{orgID}
-        AND gennlife_role.role = '科室成员'
+        AND gennlife_role.role_type = '1'
     </select>
     <insert id="insertUserRoleRelation">
         insert into gennlife_user_role

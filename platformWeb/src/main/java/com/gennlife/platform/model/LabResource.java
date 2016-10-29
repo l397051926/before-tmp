@@ -12,7 +12,7 @@ public class LabResource {
     private String slab_name;
     private String sorgID;
     private String slab_parent;
-
+    private String stype_role;
     public String getSid() {
         return sid;
     }
@@ -75,5 +75,13 @@ public class LabResource {
 
     public void setSlab_parent(String slab_parent) {
         this.slab_parent = slab_parent;
+    }
+
+    public String getStype_role() {
+        return stype_role;
+    }
+
+    public void setStype_role(String stype_role) {
+        this.stype_role = stype_role;
     }
 }

@@ -18,10 +18,11 @@
     <result column="has_browseDetail" property="has_browseDetail" jdbcType="VARCHAR" />
     <result column="has_addBatchCRF" property="has_addBatchCRF" jdbcType="VARCHAR" />
     <result column="has_deleteCRF" property="has_deleteCRF" jdbcType="VARCHAR" />
+    <result column="stype_role" property="stype_role" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="resourceProperty">
     gennlife_resource.sid,sname,sdesc,stype,slab_type,slab_name,sorgID,has_search,has_searchExport,has_traceCRF,has_addCRF,
-    has_editCRF,has_browseDetail,has_addBatchCRF,has_deleteCRF
+    has_editCRF,has_browseDetail,has_addBatchCRF,has_deleteCRF,stype_role
   </sql>
   
   <select id="getResources" resultMap="com.gennlife.platform.model.Resource"  parameterType="map">
@@ -131,9 +132,10 @@
     <result column="sorgID" property="sorgID" jdbcType="VARCHAR" />
     <result column="slab_parent" property="slab_parent" jdbcType="VARCHAR" />
     <result column="slab_type" property="slab_type" jdbcType="VARCHAR" />
+    <result column="stype_role" property="stype_role" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="labResourceProperty">
-    sid,sname,sdesc,stype,slab_name,sorgID,slab_parent,slab_type
+    sid,sname,sdesc,stype,slab_name,sorgID,slab_parent,slab_type,stype_role
   </sql>
   <insert id="insertOneResource" parameterType="com.gennlife.platform.model.LabResource">
     insert into gennlife_resource
@@ -148,6 +150,9 @@
       <if test="slab_type != null" >
         slab_type,
       </if>
+      <if test="stype_role != null" >
+        stype_role,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       #{sid,jdbcType=VARCHAR},
@@ -159,6 +164,9 @@
       #{slab_parent,jdbcType=VARCHAR},
       <if test="slab_type != null" >
         #{slab_type,jdbcType=VARCHAR},
+      </if>
+      <if test="stype_role != null" >
+        #{stype_role,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>

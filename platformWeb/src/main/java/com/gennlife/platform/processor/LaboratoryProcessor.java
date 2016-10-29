@@ -39,6 +39,7 @@ public class LaboratoryProcessor {
         }
         User user = UserProcessor.getUserByUid(uid);
         String orgID = user.getOrgID();
+        //通过科室数据，初始化的数据结构
         Organization organization = getOrganization(orgID);
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(1);
@@ -93,6 +94,7 @@ public class LaboratoryProcessor {
         if(labNames.contains(lab_name)){
             return ParamUtils.errorParam(lab_name+"已经存在");
         }
+        //生成科室id
         String labID = orgID+"-"+ChineseToEnglish.getPingYin(lab_name);
         //
         Lab exLab = AllDao.getInstance().getOrgDao().getLabBylabID(labID);
@@ -152,12 +154,16 @@ public class LaboratoryProcessor {
         labResource.setStype("病例数据");
         labResource.setSname(lab.getLab_name()+"资源");
         labResource.setSlab_name(lab.getLab_name());
+        labResource.setStype_role("0");//初始化的是普通科室
         AllDao.getInstance().getSyResourceDao().insertOneResource(labResource);
     }
 
 
-
-
+    /**
+     * 获取某个医院的组织结构
+     * @param orgID
+     * @return
+     */
     public static Organization getOrganization(String orgID){
         Organization organization = AllDao.getInstance().getOrgDao().getOrganization(orgID);
         List<Lab> labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
@@ -524,7 +530,7 @@ public class LaboratoryProcessor {
         map.put("orgID",user.getOrgID());
         List<Role> list = AllDao.getInstance().getSyRoleDao().searchRoles(key,offset,limit,orgID);
         for(Role role:list){
-            if("科室成员".equals(role.getRole())){
+            if("1".equals(role.getRole_type())){
                 role.setResourceDesc("本科室资源");
             }else{
                 map.put("roleid",role.getRoleid());
@@ -637,7 +643,7 @@ public class LaboratoryProcessor {
         List<Integer> checkedRoleids = new LinkedList<>();
         for(Integer roleid:paraRoleids){
             Role role = AllDao.getInstance().getSyRoleDao().getRoleByroleid(roleid);
-            if(!"科室成员".equals(role.getRole()) && !checkedRoleids.contains(roleid)){
+            if("0".equals(role.getRole_type()) && !checkedRoleids.contains(roleid)){
                 checkedRoleids.add(roleid);
             }
         }
@@ -675,7 +681,7 @@ public class LaboratoryProcessor {
             role.setDesctext("");
         }
         if(role.getRole_type() == null){
-            role.setRole_type("");
+            role.setRole_type("0");
         }
         Role exRole = AllDao.getInstance().getSyRoleDao().getRoleByRoleName(user.getOrgID(),role.getRole());
         if(exRole != null){
@@ -787,6 +793,9 @@ public class LaboratoryProcessor {
             return ParamUtils.errorParam("该角色id对应角色不存在");
         }else{
             String roleName = role.getRole();
+            if("1".equals(exRole.getRole_type())){
+                return ParamUtils.errorParam("系统角色，禁止更新");
+            }
             //如果更新角色了名称
             if(!roleName.equals(exRole.getRole())){
                 //如果更新后的名字已经存在
