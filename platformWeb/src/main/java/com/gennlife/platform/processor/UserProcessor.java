@@ -57,7 +57,7 @@ public class UserProcessor {
                         List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResources(confMap);
                         List<Resource> reList = new LinkedList<>();
                         for(Resource resource:resourcesList){
-                            if("1".equals(resource.getSlab_type())){
+                            if("1".equals(resource.getStype_role())){
                                 if(!user.getLabID().equals(user.getOrgID())){//不属于医院
                                     resource.setSid(user.getLabID());
                                     resource.setSlab_name(user.getLab_name());
