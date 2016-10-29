@@ -1,5 +1,6 @@
 package com.gennlife.platform.controller;
 
+import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.processor.KnowledgeProcessor;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.JsonObject;
@@ -61,11 +62,12 @@ public class KnowledgeController extends HttpServlet {
 
     @RequestMapping(value="/DetailSearch",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String getDetailSearch(@RequestParam("param") String param){
-        logger.info("详情页知识库搜索 param=" + param);
+    String getDetailSearch(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = AuthorityUtil.addAuthority(paramRe);
+            logger.info("详情页知识库搜索 param=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.detailSearch(paramObj);
         }catch (Exception e){
@@ -81,7 +83,7 @@ public class KnowledgeController extends HttpServlet {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = ParamUtils.getParam(paramRe);
+            String param = AuthorityUtil.addAuthority(paramRe);
             logger.info("详情页知识库搜索 param=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.detailSearch(paramObj);
