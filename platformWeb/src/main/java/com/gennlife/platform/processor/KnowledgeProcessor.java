@@ -46,6 +46,8 @@ public class KnowledgeProcessor {
         String limit = null;
         String query = null;
         JsonArray queryArry = null;
+        //pubmed 搜索专用
+        JsonArray rawQueryArray = null;
         int currentPage = 1;
         int pageSize = 12;
         String tableName = null;
@@ -61,7 +63,7 @@ public class KnowledgeProcessor {
                     ||("geneArray".equals(from) && "pathway".equals(to))
               ){
             	queryArry = paramObj.getAsJsonArray("query");
-            }else{
+            }else {
             	query = paramObj.get("query").getAsString();
             }
             
@@ -102,6 +104,11 @@ public class KnowledgeProcessor {
             return ParamUtils.errorParam("请求参数to非法");
         }
         JsonObject newJson = buildQueryJson(from,to,query,currentPage,pageSize,tableName);
+
+        if("pubmed".equals(from) && "pubmed".equals(to)){
+            rawQueryArray = paramObj.getAsJsonArray("rawQueryArray");
+            newJson.add("rawQueryArray",rawQueryArray);
+        }
         //额外参数 
         if("diseaseGene".equals(from)&&"drug".equals(to)){
         	newJson.add("genes", genes);
