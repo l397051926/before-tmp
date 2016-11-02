@@ -143,10 +143,10 @@ public class FileUploadUtil {
                 srcList.add(line+",失败,缺少数据");
                 continue;
             }else{
-                String number = terms[unumberIndex];
-                String name = terms[nameIndex];
-                String lab_name = terms[labIndex];
-                String email = terms[emailIndex];
+                String number = terms[unumberIndex].replaceAll("\n","");
+                String name = terms[nameIndex].replaceAll("\n","");
+                String lab_name = terms[labIndex].replaceAll("\n","");
+                String email = terms[emailIndex].replaceAll("\n","");
                 if(name == null || name.equals("")){
                     srcList.add(line+",失败,姓名为空");
                     continue;
@@ -234,6 +234,8 @@ public class FileUploadUtil {
                     srcList.add(line+",失败,文件存在相同的email");
                 }else {
                     int counter = AllDao.getInstance().getSyUserDao().insertOneUser(addUser);
+                    Role role1 = AllDao.getInstance().getSyRoleDao().getLabMember(addUser.getOrgID());//科室成员
+                    AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role1.getRoleid(),addUser.getUid());
                     if(counter >= 1){
                         srcList.add(line+",成功,插入成功");
                     }else{
