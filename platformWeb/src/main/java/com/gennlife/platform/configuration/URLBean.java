@@ -14,6 +14,15 @@ public class URLBean {
     }
 
     /**
+     * 单次就诊放疗
+     */
+    private String caseyVisitRadiotherapy = null;
+    /**
+     * 分类详情放疗
+     */
+    private String casePatientRadiotherapy = null;
+
+    /**
      *分类详情DC治疗
      */
     private String casePatientDcOrder = null;
@@ -937,5 +946,21 @@ public class URLBean {
 
     public void setCasePatientDcOrder(String casePatientDcOrder) {
         this.casePatientDcOrder = casePatientDcOrder;
+    }
+
+    public String getCasePatientRadiotherapy() {
+        return casePatientRadiotherapy;
+    }
+
+    public void setCasePatientRadiotherapy(String casePatientRadiotherapy) {
+        this.casePatientRadiotherapy = casePatientRadiotherapy;
+    }
+
+    public String getCaseyVisitRadiotherapy() {
+        return caseyVisitRadiotherapy;
+    }
+
+    public void setCaseyVisitRadiotherapy(String caseyVisitRadiotherapy) {
+        this.caseyVisitRadiotherapy = caseyVisitRadiotherapy;
     }
 }

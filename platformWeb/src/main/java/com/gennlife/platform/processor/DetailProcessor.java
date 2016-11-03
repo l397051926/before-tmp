@@ -433,4 +433,26 @@ public class DetailProcessor {
             return ParamUtils.errorParam("请求出错");
         }
     }
+
+    public String PatientRadiotherapy(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCasePatientRadiotherapy();
+            logger.info("PatientRadiotherapy url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String VisitRadiotherapy(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCaseyVisitRadiotherapy();
+            logger.info("VisitRadiotherapy url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
 }

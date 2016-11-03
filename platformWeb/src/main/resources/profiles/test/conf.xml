@@ -46,7 +46,8 @@
         <property name="caseDetailVisitClassifyImageURL" value="http://10.0.0.171:8111/FileService/VisitClassify/image"></property>
         <property name="casePatientDcOrder" value="http://10.0.0.171:8111/FileService/PatientDetail/dc_order"></property>
         <property name="caseVisitDcOrder" value="http://10.0.0.171:8111/FileService/VisitDetail/dc_order"></property>
-
+        <property name="caseyVisitRadiotherapy" value="http://10.0.0.171:8111/FileService/VisitDetail/radiotherapy"></property>
+        <property name="casePatientRadiotherapy" value="http://10.0.0.171:8111/FileService/PatientDetail/radiotherapy"></property>
         <!-- FS 服务 样本操作 -->
         <property name="sampleImportIURL" value="http://10.0.0.171:8111/FileService/DataResultExport/data_export"/>
         <property name="sampleDetailURL" value="http://10.0.0.171:8111/FileService/DataResultExport/data_get"/>
