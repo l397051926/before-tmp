@@ -465,4 +465,38 @@ public class DetailController {
         logger.info("图片获取接口 post方式 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+
+
+    @RequestMapping(value="/VisitDcOrder",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String VisitDcOrder(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = AuthorityUtil.addAuthority(paramRe);
+            logger.info("单次就诊DC治疗   post方式 参数="+param);
+            resultStr =  processor.VisitDcOrder(param);
+        }catch (Exception e){
+            logger.error("单次就诊DC治疗",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("单次就诊DC治疗 post方式 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value="/PatientDcOrder",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String PatientDcOrder(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = AuthorityUtil.addAuthority(paramRe);
+            logger.info("分类详情DC治疗  post方式 参数="+param);
+            resultStr =  processor.PatientDcOrder(param);
+        }catch (Exception e){
+            logger.error("分类详情DC治疗",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("分类详情DC治疗 post方式 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }

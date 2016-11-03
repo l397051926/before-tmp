@@ -44,6 +44,9 @@
         <property name="caseMedicalCourse" value="http://10.0.0.22:8111/FileService/PatientDetail/medical_course"></property>
         <property name="caseDetailVisitClassifySectionURL" value="http://10.0.0.22:8111/FileService/VisitClassify/section"></property>
         <property name="caseDetailVisitClassifyImageURL" value="http://10.0.0.22:8111/FileService/VisitClassify/image"></property>
+        <property name="casePatientDcOrder" value="http://10.0.0.22:8111/FileService/PatientDetail/dc_order"></property>
+        <property name="caseVisitDcOrder" value="http://10.0.0.22:8111/FileService/VisitDetail/dc_order"></property>
+
         <!--FS CRF导入文件 -->
         <property name="fileStoreForCRFImport" value="http://10.0.0.22:8111/FileService/PatientDetail/UploadCsvFile"></property>
 

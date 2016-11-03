@@ -14,6 +14,16 @@ public class URLBean {
     }
 
     /**
+     *分类详情DC治疗
+     */
+    private String casePatientDcOrder = null;
+    /**
+     *单次就诊DC治疗
+     */
+    private String caseVisitDcOrder = null;
+
+
+    /**
      * crf 病人编号是否存在
      */
     private String CRFIsExistPatient = null;
@@ -911,5 +921,21 @@ public class URLBean {
 
     public void setCRFIsExistPatient(String CRFIsExistPatient) {
         this.CRFIsExistPatient = CRFIsExistPatient;
+    }
+
+    public String getCaseVisitDcOrder() {
+        return caseVisitDcOrder;
+    }
+
+    public void setCaseVisitDcOrder(String caseVisitDcOrder) {
+        this.caseVisitDcOrder = caseVisitDcOrder;
+    }
+
+    public String getCasePatientDcOrder() {
+        return casePatientDcOrder;
+    }
+
+    public void setCasePatientDcOrder(String casePatientDcOrder) {
+        this.casePatientDcOrder = casePatientDcOrder;
     }
 }

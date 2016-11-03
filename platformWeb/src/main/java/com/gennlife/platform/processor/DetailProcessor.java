@@ -406,7 +406,28 @@ public class DetailProcessor {
             String url = ConfigurationService.getUrlBean().getCaseDetailVisitClassifyImageURL();
             logger.info("visitClassifyImage url="+url);
             String result = HttpRequestUtils.httpPost(url,param);
-            //logger.info("visitClassifyImage result="+result);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String VisitDcOrder(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCaseVisitDcOrder();
+            logger.info("VisitDcOrder url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String PatientDcOrder(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCasePatientDcOrder();
+            logger.info("PatientDcOrder url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
             return result;
         }catch (Exception e){
             return ParamUtils.errorParam("请求出错");
