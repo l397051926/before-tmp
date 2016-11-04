@@ -48,6 +48,7 @@
         <property name="caseVisitDcOrder" value="http://10.0.0.22:8111/FileService/VisitDetail/dc_order"></property>
         <property name="caseyVisitRadiotherapy" value="http://10.0.0.22:8111/FileService/VisitDetail/radiotherapy"></property>
         <property name="casePatientRadiotherapy" value="http://10.0.0.22:8111/FileService/PatientDetail/radiotherapy"></property>
+        <property name="casePatientChemotherapyInfo" value="http://10.0.0.22:8111/FileService/PatientDetail/chemotherapy_info"></property>
         <!--FS CRF导入文件 -->
         <property name="fileStoreForCRFImport" value="http://10.0.0.22:8111/FileService/PatientDetail/UploadCsvFile"></property>
 

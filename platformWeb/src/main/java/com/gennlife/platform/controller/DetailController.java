@@ -533,4 +533,21 @@ public class DetailController {
         logger.info("单次就诊放疗 post方式 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+
+
+    @RequestMapping(value="/PatientChemotherapyInfo",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String PatientChemotherapyInfo(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = AuthorityUtil.addAuthority(paramRe);
+            logger.info("分类详情化疗  post方式 参数="+param);
+            resultStr =  processor.PatientChemotherapyInfo(param);
+        }catch (Exception e){
+            logger.error("分类详情化疗",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("分类详情化疗 post方式 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }

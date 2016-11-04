@@ -64,4 +64,18 @@ public class BaseController {
         return resultStr;
     }
 
+    @RequestMapping(value="/Test",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String Test(){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            resultStr =  processor.test();
+            logger.info("test 耗时:" + (System.currentTimeMillis()-start) +"ms");
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("test 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }

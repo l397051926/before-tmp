@@ -50,4 +50,9 @@ public class BaseProcessor {
         resultBean.setData(ArkService.getProjectDisease());
         return gson.toJson(resultBean);
     }
+
+    public String test() throws Exception {
+        //List<Lab> list = orgMapper.getLabs("tianjin_city_1");
+        return gson.toJson("");
+    }
 }

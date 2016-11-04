@@ -12,7 +12,7 @@ public class URLBean {
     public void setCaseAdmission_records(String caseAdmission_records) {
         this.caseAdmission_records = caseAdmission_records;
     }
-
+    private String casePatientChemotherapyInfo = null;
     /**
      * 单次就诊放疗
      */
@@ -962,5 +962,13 @@ public class URLBean {
 
     public void setCaseyVisitRadiotherapy(String caseyVisitRadiotherapy) {
         this.caseyVisitRadiotherapy = caseyVisitRadiotherapy;
+    }
+
+    public String getCasePatientChemotherapyInfo() {
+        return casePatientChemotherapyInfo;
+    }
+
+    public void setCasePatientChemotherapyInfo(String casePatientChemotherapyInfo) {
+        this.casePatientChemotherapyInfo = casePatientChemotherapyInfo;
     }
 }

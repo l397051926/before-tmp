@@ -6,10 +6,13 @@ import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
+import com.gennlife.platform.util.SpringContextUtil;
 import com.gennlife.platform.view.View;
 import com.google.gson.*;
+import org.mybatis.spring.SqlSessionFactoryBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
 
 import java.util.LinkedList;
 import java.util.List;
