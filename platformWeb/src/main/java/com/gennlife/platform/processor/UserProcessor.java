@@ -39,6 +39,7 @@ public class UserProcessor {
                 if(user != null){
                     user.setPwd(null);//密码不返回
                 }
+
             }catch (Exception e){
                 logger.error("", e);
             }
@@ -154,7 +155,6 @@ public class UserProcessor {
                     String url = ConfigurationService.getUrlBean().getEmailSendURL()+token;
                     Mailer.sendHTMLMail(email, url,user);
                 }
-
             }
 
         }catch (Exception e){
