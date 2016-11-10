@@ -84,13 +84,14 @@ public class SessionFilter implements Filter {
                     User user = MemCachedUtil.getUser(uid);
                     if(user == null){
                         user = UserProcessor.getUserByUid(uid);
-
                         if(user == null){
                             view.viewString(ParamUtils.errorParam("用户不存在"),response);
+                        }else {
+                            MemCachedUtil.setUserWithTime(uid,user, UserController.sessionTimeOut);
                         }
-                        MemCachedUtil.setUserWithTime(uid,user, UserController.sessionTimeOut);
                     }
                     if(adminSet.contains(uri)){
+                        logger.info("admin 判定"+gson.toJson(user));
                         if(!AuthorityUtil.isAdmin(user)){//没有管理权限
                             view.viewString(ParamUtils.errorAuthorityParam(),response);
                         }else{//放行

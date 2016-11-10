@@ -12,15 +12,15 @@
 			<value>com.mysql.jdbc.Driver</value>
 		</property>
 		<property name="url">
-			<value>jdbc:mysql://10.0.0.111:3306/userInfoDB?useUnicode=true&amp;characterEncoding=UTF-8</value>
+			<value>jdbc:mysql://10.0.0.26:3306/userInfoDB?useUnicode=true&amp;characterEncoding=UTF-8</value>
 		</property>
 		<property name="username">
-			<value>gennlife</value>
+			<value>userInfoDB</value>
 		</property>
 		<property name="password">
-			<value>admin123456</value>
-		</property> 
-    </bean>  
+			<value>@userInfoDB2015</value>
+		</property>
+	</bean>
       
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
         <property name="dataSource" ref="dataSource" />  

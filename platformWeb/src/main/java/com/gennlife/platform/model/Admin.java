@@ -4,10 +4,10 @@ package com.gennlife.platform.model;
  * Created by chen-song on 16/9/12.
  */
 public class Admin {
-    private String uid = "";
-    private String privilegeType = "ls123456";
-    private String privilegeValue = "";
-    private String orgID = "";
+    private String uid = null;
+    private String privilegeType = null;
+    private String privilegeValue = null;
+    private String orgID = null;
 
     public String getUid() {
         return uid;
