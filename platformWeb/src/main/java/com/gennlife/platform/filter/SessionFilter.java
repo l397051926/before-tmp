@@ -84,23 +84,22 @@ public class SessionFilter implements Filter {
                     User user = MemCachedUtil.getUser(uid);
                     if(user == null){
                         user = UserProcessor.getUserByUid(uid);
-                        if(user == null){
-                            view.viewString(ParamUtils.errorParam("用户不存在"),response);
-                        }else {
-                            if(adminSet.contains(uri)){
-                                logger.info("admin 判定"+gson.toJson(user));
-                                if(!AuthorityUtil.isAdmin(user)){//没有管理权限
-                                    view.viewString(ParamUtils.errorAuthorityParam(),response);
-                                }else{//放行
-                                    filterChain.doFilter(request,response);
-                                }
-                            }else {
+                    }
+                    if(user == null){
+                        view.viewString(ParamUtils.errorParam("用户不存在"),response);
+                    }else {
+                        if(adminSet.contains(uri)){
+                            logger.info("admin 判定"+gson.toJson(user));
+                            if(!AuthorityUtil.isAdmin(user)){//没有管理权限
+                                view.viewString(ParamUtils.errorAuthorityParam(),response);
+                            }else{//放行
                                 filterChain.doFilter(request,response);
                             }
-                            MemCachedUtil.setUserWithTime(uid,user, UserController.sessionTimeOut);
+                        }else {
+                            filterChain.doFilter(request,response);
                         }
+                        MemCachedUtil.setUserWithTime(uid,user, UserController.sessionTimeOut);
                     }
-
                 }catch (Exception e){
                     logger.error("",e);
                     view.viewString(ParamUtils.errorParam("session异常"),response);
