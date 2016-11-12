@@ -56,7 +56,7 @@ public class UserController{
                 logger.info("登陆删除 sessionID="+exSession);
                 MemCachedUtil.set(user.getUid(),sessionID);
                 logger.info("登陆设置 uid="+user.getUid()+"，sessionID="+sessionID);
-                user = processor.transformRole(user);
+                MemCachedUtil.daleteUser(user.getUid());
                 MemCachedUtil.setUser(user.getUid(),user);
                 resultBean.setData(user);
                 session.setAttribute("user",gson.toJson(user));
