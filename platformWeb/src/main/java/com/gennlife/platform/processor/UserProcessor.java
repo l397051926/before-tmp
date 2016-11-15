@@ -13,8 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -24,11 +22,8 @@ public class UserProcessor {
     private static Logger logger = LoggerFactory.getLogger(UserProcessor.class);
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
-    public ResultBean login(String param) throws IOException {
+    public User login(String email,String pwd) throws IOException {
         try{
-            JsonObject jsonObject = (JsonObject) jsonParser.parse(param);
-            String email = jsonObject.get("email").getAsString();
-            String pwd = jsonObject.get("pwd").getAsString();
             LogUtils.BussnissLog("用户：" + email + " >>> 进行登陆");
             Map<String,Object> confMap = new HashMap<String,Object>();
             confMap.put("email", email);
@@ -39,24 +34,20 @@ public class UserProcessor {
                 if(user != null){
                     user.setPwd(null);//密码不返回
                 }
-
             }catch (Exception e){
                 logger.error("", e);
             }
             if(user == null){
-                return ParamUtils.errorParamResultBean("登陆失败");
+                return null;
             }else{
                 user = getUserByUid(user.getUid());
+                return user;
             }
-            ResultBean resultBean = new ResultBean();
-            resultBean.setCode(1);
-            resultBean.setData(user);
-            return resultBean;
+
         }catch (Exception e){
             logger.error("",e);
-            return ParamUtils.errorParamResultBean("出现异常");
+            return null;
         }
-
     }
 
 
@@ -126,7 +117,14 @@ public class UserProcessor {
                 userBean.setData("获取更新后数据失败");
             }else{
                 map.put("pwd",user.getPwd());
-                userBean = login(gson.toJson(map));
+                User user1 = login(user.getUemail(),user.getPwd());
+                if(user1 == null){
+                    userBean.setCode(0);
+                    userBean.setData("更新失败");
+                }else {
+                    userBean.setCode(1);
+                    userBean.setData(user1);
+                }
             }
         }catch (Exception e){
             logger.error("",e);

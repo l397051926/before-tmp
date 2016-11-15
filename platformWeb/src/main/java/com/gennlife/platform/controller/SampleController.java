@@ -5,7 +5,6 @@ import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.SampleProcessor;
 import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.MemCachedUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -90,13 +89,7 @@ public class SampleController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.editSet(paramObj,user);
         }catch (Exception e){
@@ -112,13 +105,7 @@ public class SampleController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.editSet(paramObj,user);
         }catch (Exception e){

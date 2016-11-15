@@ -337,13 +337,14 @@ public class FileUploadUtil {
         newList.clear();
         List<Lab> labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
         for(Lab lab:invertedList){
-            Lab ex1Lab = getLabByName(lab.getLab_parentName(),invertedList);
-            Lab ex2Lab = getLabByName(lab.getLab_parentName(),labs);
+            Lab ex1Lab = getLabByName(lab.getLab_parentName(),invertedList);//在文件中查找
+            Lab ex2Lab = getLabByName(lab.getLab_parentName(),labs);//在现在数据库中查找
             if(ex1Lab == null && ex2Lab == null){//父节点不存在
                 lab.setLab_parentName("医院");
             }
             newList.add(lab);
         }
+
         List<Lab> sortList = sortnewLabs(newList,orgID);
         //插入的
         List<Lab> insertList = new LinkedList<>();
@@ -426,12 +427,13 @@ public class FileUploadUtil {
         }
         return null;
     }
+    //构建
     public static List<Lab> sortnewLabs(List<Lab> newlabs,String orgID){
         List<Lab> sort = new LinkedList<>();
         List<Lab> labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
         Map<String,String> namesMap = new HashMap<>();
         for(int i=1;i<5;i++){//支持五层
-            if(i==1){//一层
+            if(i == 1){//一层
                 for(Lab lab:newlabs){
                     if(lab.getLab_parentName().equals("医院")){
                         labs.add(lab);
@@ -441,7 +443,7 @@ public class FileUploadUtil {
                     if(lab.getLab_level() == 1){
                         if("未处理".equals(lab.status)){
                             String name = lab.getLab_name();
-                            String labID = getLabID(name,orgID,sort);
+                            String labID = getLabID(name,orgID,labs);
                             lab.setLabID(labID);
                         }
                         sort.add(lab);

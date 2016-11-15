@@ -12,6 +12,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import redis.clients.jedis.JedisCluster;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -23,21 +24,20 @@ public class LaboratoryProcessor {
     private static Logger logger = LoggerFactory.getLogger(LaboratoryProcessor.class);
     private static Gson gson = GsonUtil.getGson();
     private static JsonParser jsonParser = new JsonParser();
+    private static JedisCluster jedisCluster;
+    public LaboratoryProcessor(){
+        if(jedisCluster == null) {
+            jedisCluster = (JedisCluster)SpringContextUtil.getBean("jedisClusterFactory");
+        }
+    }
+
     /**
      * 获取科室组织信息
      *
-     * @param paramObj
+     * @param user
      * @return
      */
-    public String orgMapData(JsonObject paramObj) {
-        String uid = null;
-        try {
-            uid = paramObj.get("uid").getAsString();
-        } catch (Exception e) {
-            logger.error("", e);
-            return ParamUtils.errorParam("参数出错");
-        }
-        User user = UserProcessor.getUserByUid(uid);
+    public String orgMapData(User user) {
         String orgID = user.getOrgID();
         //通过科室数据，初始化的数据结构
         Organization organization = getOrganization(orgID);
@@ -53,7 +53,7 @@ public class LaboratoryProcessor {
             if(lab.getLab_parent().equals(key)){
                 lab.setOrgID(null);
                 result.add(lab);
-                if(maxLevel > lab.getLab_level()){
+                if(maxLevel >= lab.getLab_level()){
                     List<Lab> subLabs = generateLabTree(labs,lab.getLabID(),maxLevel);
                     if(subLabs.size() > 0){
                         lab.setSubLabs(subLabs);
@@ -244,7 +244,9 @@ public class LaboratoryProcessor {
             List<User> userList = AllDao.getInstance().getSyUserDao().getUserByLabID(labID,orgID);
             //更新缓存
             for(User user1:userList){
-                MemCachedUtil.setUser(user1.getUid(),user1);
+                if(jedisCluster.exists(user1.getUid()+"_info")){
+                    jedisCluster.del(user1.getUid()+"_info");
+                }
             }
 
 
@@ -476,8 +478,12 @@ public class LaboratoryProcessor {
             int counter = AllDao.getInstance().getSyUserDao().deleteUserByUids(uids);
 
             for(String uid:uids){
-                MemCachedUtil.delete(uid);
-                MemCachedUtil.daleteUser(uid);
+                if(jedisCluster.exists(uid+"_info")){
+                    jedisCluster.del(uid+"_info");
+                }
+                if(jedisCluster.exists(uid)){
+                    jedisCluster.del(uid);
+                }
             }
             if(counter > 0){
                 re.setCode(1);
@@ -654,7 +660,9 @@ public class LaboratoryProcessor {
         for(Integer roleid:roleids){
             List<User> list = AllDao.getInstance().getSyUserDao().getUserByRoleID(roleid,0,10000);
             for(User user1:list){
-                MemCachedUtil.daleteUser(user1.getUid());
+                if(jedisCluster.exists(user1.getUid()+"_info")){
+                    jedisCluster.del(user1.getUid()+"_info");
+                }
             }
         }
         Map<String,Integer> map = new HashMap<>();
@@ -807,7 +815,9 @@ public class LaboratoryProcessor {
             int counter = AllDao.getInstance().getSyRoleDao().updateUserRole(role);//更新用户信息
             List<User> users = AllDao.getInstance().getSyUserDao().getUserByRoleID(role.getRoleid(),0,10000);
             for(User user1:users){
-                MemCachedUtil.daleteUser(user1.getUid());
+                if(jedisCluster.exists(user1.getUid()+"_info")){
+                    jedisCluster.del(user1.getUid()+"_info");
+                }
             }
             if(counter == 0){
                 return ParamUtils.errorParam("更新失败");
