@@ -487,6 +487,13 @@ public class FileUploadUtil {
      * @return
      */
     public static String getLabID(String name, String orgID,List<Lab> sort) {
+        for(Lab lab:sort){
+            if(lab.getLab_name().equals(name)){
+                if(!"未处理".equals(lab.status)){
+                    return lab.getLabID();
+                }
+            }
+        }
         String labID = orgID + "-" + ChineseToEnglish.getPingYin(name);
         int counter = 0;
         while(true){
