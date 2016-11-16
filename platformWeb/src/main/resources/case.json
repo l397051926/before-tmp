@@ -313,6 +313,40 @@
         "dataMap": [
           "是",
           "否"
+        ],
+        "relatedItems": [
+          {
+            "IndexFieldName": "disease_history.G_HBP_YES_NO",
+            "dataType": "string",
+            "srchFieldName": "既往疾病史.有无高血压史",
+            "UIFieldName": "有无高血压史",
+            "dataMap": [
+              "有",
+              "无"
+            ]
+          },
+          {
+            "IndexFieldName": "disease_history.G_HBP_YEAR",
+            "dataType": "double",
+            "srchFieldName": "既往疾病史.高血压史年限",
+            "UIFieldName": "高血压史年限"
+          },
+          {
+            "IndexFieldName": "disease_history.G_HBP_YES_NO",
+            "dataType": "string",
+            "srchFieldName": "既往疾病史.有无高血压史",
+            "UIFieldName": "有无高血压史",
+            "dataMap": [
+              "有",
+              "无"
+            ]
+          },
+          {
+            "IndexFieldName": "disease_history.G_HBP_YEAR",
+            "dataType": "double",
+            "srchFieldName": "既往疾病史.高血压史年限",
+            "UIFieldName": "高血压史年限"
+          }
         ]
       },
       {
@@ -4181,7 +4215,8 @@
         "UIFieldName": "申请单编号",
         "IndexFieldName": "visits.inspection_reports.sub_inspection.APPLY_ID",
         "srchFieldName": "就诊.检验报告.申请单编号",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "检验子项中文名",
@@ -5479,16 +5514,16 @@
           {
             "IndexFieldName": "visits.chemotherapy.START_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.化疗.开始日期",
-            "UIFieldName": "开始日期"
+            "UIFieldName": "开始日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.chemotherapy.END_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.化疗.结束日期",
-            "UIFieldName": "结束日期"
+            "UIFieldName": "结束日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.chemotherapy.CHEMOTHERAPY_DEP",
@@ -5565,22 +5600,22 @@
           {
             "IndexFieldName": "visits.chemotherapy.IS_DELAY",
             "dataType": "boolean",
+            "srchFieldName": "就诊.化疗.是否延期",
+            "UIFieldName": "是否延期",
             "dataMap": [
               "是",
               "否"
-            ],
-            "srchFieldName": "就诊.化疗.是否延期",
-            "UIFieldName": "是否延期"
+            ]
           },
           {
             "IndexFieldName": "visits.chemotherapy.IS_DECREMENT",
             "dataType": "boolean",
+            "srchFieldName": "就诊.化疗.是否减量",
+            "UIFieldName": "是否减量",
             "dataMap": [
               "是",
               "否"
-            ],
-            "srchFieldName": "就诊.化疗.是否减量",
-            "UIFieldName": "是否减量"
+            ]
           }
         ]
       },
@@ -5617,22 +5652,22 @@
           {
             "IndexFieldName": "visits.chemotherapy.IS_DELAY",
             "dataType": "boolean",
+            "srchFieldName": "就诊.化疗.是否延期",
+            "UIFieldName": "是否延期",
             "dataMap": [
               "是",
               "否"
-            ],
-            "srchFieldName": "就诊.化疗.是否延期",
-            "UIFieldName": "是否延期"
+            ]
           },
           {
             "IndexFieldName": "visits.chemotherapy.IS_DECREMENT",
             "dataType": "boolean",
+            "srchFieldName": "就诊.化疗.是否减量",
+            "UIFieldName": "是否减量",
             "dataMap": [
               "是",
               "否"
-            ],
-            "srchFieldName": "就诊.化疗.是否减量",
-            "UIFieldName": "是否减量"
+            ]
           }
         ]
       }
@@ -6528,16 +6563,16 @@
           {
             "IndexFieldName": "visits.DC_orders.DATE_BEGIN",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.开始日期",
-            "UIFieldName": "开始日期"
+            "UIFieldName": "开始日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.DATE_END",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.结束日期",
-            "UIFieldName": "结束日期"
+            "UIFieldName": "结束日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.ORGNAME_LOC",
@@ -6590,30 +6625,30 @@
           {
             "IndexFieldName": "visits.DC_orders.DATE_CHECK",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.审核日期",
-            "UIFieldName": "审核日期"
+            "UIFieldName": "审核日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.DATE_EXECPRT",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.执行日期",
-            "UIFieldName": "执行日期"
+            "UIFieldName": "执行日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.DATE_INPUT",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.录入日期",
-            "UIFieldName": "录入日期"
+            "UIFieldName": "录入日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.DATE_APPLY",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.申请日期",
-            "UIFieldName": "申请日期"
+            "UIFieldName": "申请日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           }
         ]
       },
@@ -6626,16 +6661,16 @@
           {
             "IndexFieldName": "visits.DC_orders.DATE_BEGIN",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.开始日期",
-            "UIFieldName": "开始日期"
+            "UIFieldName": "开始日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.DATE_END",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.结束日期",
-            "UIFieldName": "结束日期"
+            "UIFieldName": "结束日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.ORGNAME_LOC",
@@ -6688,30 +6723,30 @@
           {
             "IndexFieldName": "visits.DC_orders.DATE_CHECK",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.审核日期",
-            "UIFieldName": "审核日期"
+            "UIFieldName": "审核日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.DATE_EXECPRT",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.执行日期",
-            "UIFieldName": "执行日期"
+            "UIFieldName": "执行日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.DATE_INPUT",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.录入日期",
-            "UIFieldName": "录入日期"
+            "UIFieldName": "录入日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.DATE_APPLY",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.申请日期",
-            "UIFieldName": "申请日期"
+            "UIFieldName": "申请日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           }
         ]
       }
@@ -6738,16 +6773,16 @@
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_BEGIN",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.开始日期",
-            "UIFieldName": "开始日期"
+            "UIFieldName": "开始日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_END",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.结束日期",
-            "UIFieldName": "结束日期"
+            "UIFieldName": "结束日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.ORGNAME_LOC",
@@ -6800,30 +6835,30 @@
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_CHECK",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.审核日期",
-            "UIFieldName": "审核日期"
+            "UIFieldName": "审核日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_EXECPRT",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.执行日期",
-            "UIFieldName": "执行日期"
+            "UIFieldName": "执行日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_INPUT",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.录入日期",
-            "UIFieldName": "录入日期"
+            "UIFieldName": "录入日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_APPLY",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.申请日期",
-            "UIFieldName": "申请日期"
+            "UIFieldName": "申请日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           }
         ]
       },
@@ -6836,16 +6871,16 @@
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_BEGIN",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.开始日期",
-            "UIFieldName": "开始日期"
+            "UIFieldName": "开始日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_END",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.结束日期",
-            "UIFieldName": "结束日期"
+            "UIFieldName": "结束日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.ORGNAME_LOC",
@@ -6898,30 +6933,30 @@
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_CHECK",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.审核日期",
-            "UIFieldName": "审核日期"
+            "UIFieldName": "审核日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_EXECPRT",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.执行日期",
-            "UIFieldName": "执行日期"
+            "UIFieldName": "执行日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_INPUT",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.录入日期",
-            "UIFieldName": "录入日期"
+            "UIFieldName": "录入日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_APPLY",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.申请日期",
-            "UIFieldName": "申请日期"
+            "UIFieldName": "申请日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           }
         ]
       }
@@ -8295,7 +8330,7 @@
         "IndexFieldName": "visits.check_orders.DISCHARGE_DATE",
         "srchFieldName": "就诊.检查医嘱.出院日期",
         "dataType": "date",
-        "dateFormat": ""
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
       },
       {
         "UIFieldName": "申请单号",
@@ -9480,16 +9515,16 @@
           {
             "IndexFieldName": "visits.Hospitalization.SYMPTOM_NAME.START_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.住院与诊断.症状及体征.开始日期",
-            "UIFieldName": "开始日期"
+            "UIFieldName": "开始日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Hospitalization.SYMPTOM_NAME.END_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.住院与诊断.症状及体征.结束日期",
-            "UIFieldName": "结束日期"
+            "UIFieldName": "结束日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Hospitalization.SYMPTOM_NAME.SYMPTOM_DESC",
@@ -9509,6 +9544,40 @@
         "dataMap": [
           "是",
           "否"
+        ],
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.DISEASE_HISTORY.HOS_HBP_YES_NO",
+            "dataType": "string",
+            "srchFieldName": "就诊.住院与诊断.既往疾病史.有无高血压史",
+            "UIFieldName": "有无高血压史",
+            "dataMap": [
+              "有",
+              "无"
+            ]
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.DISEASE_HISTORY.HOS_HBP_YEAR",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.既往疾病史.高血压史年限",
+            "UIFieldName": "高血压史年限"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.DISEASE_HISTORY.HOS_DIABETE_YES_NO",
+            "dataType": "string",
+            "srchFieldName": "就诊.住院与诊断.既往疾病史.有无糖尿病史",
+            "UIFieldName": "有无糖尿病史",
+            "dataMap": [
+              "有",
+              "无"
+            ]
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.DISEASE_HISTORY.HOS_DIABETE_YEAR",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.既往疾病史.糖尿病史年限",
+            "UIFieldName": "糖尿病史年限"
+          }
         ]
       },
       {
@@ -9520,13 +9589,14 @@
           "有",
           "无"
         ],
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "高血压史年限",
-        "IndexFieldName": "visits.Hospitalization.DISEASE_HISTORY.HOS_HBP_YEAR",
-        "srchFieldName": "就诊.住院与诊断.既往疾病史.高血压史年限",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.DISEASE_HISTORY.HOS_HBP_YEAR",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.既往疾病史.高血压史年限",
+            "UIFieldName": "高血压史年限"
+          }
+        ]
       },
       {
         "UIFieldName": "有无糖尿病史",
@@ -9537,13 +9607,14 @@
           "有",
           "无"
         ],
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "糖尿病史年限",
-        "IndexFieldName": "visits.Hospitalization.DISEASE_HISTORY.HOS_DIABETE_YEAR",
-        "srchFieldName": "就诊.住院与诊断.既往疾病史.糖尿病史年限",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.DISEASE_HISTORY.HOS_DIABETE_YEAR",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.既往疾病史.糖尿病史年限",
+            "UIFieldName": "糖尿病史年限"
+          }
+        ]
       }
     ],
     "就诊.住院与诊断.个人肿瘤史": [
@@ -9556,20 +9627,34 @@
           "有",
           "无"
         ],
-        "relatedItems": []
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.CANCER_HISTORY.HOS_CANCER_NAME",
+            "dataType": "string",
+            "srchFieldName": "就诊.住院与诊断.个人肿瘤史.肿瘤名称",
+            "UIFieldName": "肿瘤名称"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.CANCER_HISTORY.HOS_CANCER_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.个人肿瘤史.患病时长（年）",
+            "UIFieldName": "患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "肿瘤名称",
         "IndexFieldName": "visits.Hospitalization.CANCER_HISTORY.HOS_CANCER_NAME",
         "srchFieldName": "就诊.住院与诊断.个人肿瘤史.肿瘤名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "患病时长（年）",
-        "IndexFieldName": "visits.Hospitalization.CANCER_HISTORY.HOS_CANCER_TIME",
-        "srchFieldName": "就诊.住院与诊断.个人肿瘤史.患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.CANCER_HISTORY.HOS_CANCER_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.个人肿瘤史.患病时长（年）",
+            "UIFieldName": "患病时长（年）"
+          }
+        ]
       }
     ],
     "就诊.住院与诊断.家族肿瘤史": [
@@ -9582,72 +9667,138 @@
           "有",
           "无"
         ],
-        "relatedItems": []
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_FATHER_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.父亲肿瘤史名称",
+            "UIFieldName": "父亲肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_FATHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.父亲患病时长（年）",
+            "UIFieldName": "父亲患病时长（年）"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_MOTHER_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.母亲肿瘤史名称",
+            "UIFieldName": "母亲肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_MOTHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.母亲患病时长（年）",
+            "UIFieldName": "母亲患病时长（年）"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_BROTHER_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.兄弟肿瘤史名称",
+            "UIFieldName": "兄弟肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_BROTHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.兄弟患病时长（年）",
+            "UIFieldName": "兄弟患病时长（年）"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_SISTER_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.姐妹肿瘤史名称",
+            "UIFieldName": "姐妹肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_SISTER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.姐妹患病时长（年）",
+            "UIFieldName": "姐妹患病时长（年）"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_CHILD_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.子女肿瘤史名称",
+            "UIFieldName": "子女肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_CHILD_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.子女患病时长（年）",
+            "UIFieldName": "子女患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "父亲肿瘤史名称",
         "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_FATHER_CA",
         "srchFieldName": "就诊.住院与诊断.家族肿瘤史.父亲肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "父亲患病时长（年）",
-        "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_FATHER_CA_TIME",
-        "srchFieldName": "就诊.住院与诊断.家族肿瘤史.父亲患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_FATHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.父亲患病时长（年）",
+            "UIFieldName": "父亲患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "母亲肿瘤史名称",
         "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_MOTHER_CA",
         "srchFieldName": "就诊.住院与诊断.家族肿瘤史.母亲肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "母亲患病时长（年）",
-        "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_MOTHER_CA_TIME",
-        "srchFieldName": "就诊.住院与诊断.家族肿瘤史.母亲患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_MOTHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.母亲患病时长（年）",
+            "UIFieldName": "母亲患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "兄弟肿瘤史名称",
         "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_BROTHER_CA",
         "srchFieldName": "就诊.住院与诊断.家族肿瘤史.兄弟肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "兄弟患病时长（年）",
-        "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_BROTHER_CA_TIME",
-        "srchFieldName": "就诊.住院与诊断.家族肿瘤史.兄弟患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_BROTHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.兄弟患病时长（年）",
+            "UIFieldName": "兄弟患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "姐妹肿瘤史名称",
         "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_SISTER_CA",
         "srchFieldName": "就诊.住院与诊断.家族肿瘤史.姐妹肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "姐妹患病时长（年）",
-        "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_SISTER_CA_TIME",
-        "srchFieldName": "就诊.住院与诊断.家族肿瘤史.姐妹患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_SISTER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.姐妹患病时长（年）",
+            "UIFieldName": "姐妹患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "子女肿瘤史名称",
         "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_CHILD_CA",
         "srchFieldName": "就诊.住院与诊断.家族肿瘤史.子女肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "子女患病时长（年）",
-        "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_CHILD_CA_TIME",
-        "srchFieldName": "就诊.住院与诊断.家族肿瘤史.子女患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_CHILD_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.子女患病时长（年）",
+            "UIFieldName": "子女患病时长（年）"
+          }
+        ]
       }
     ],
     "就诊.住院与诊断.吸烟史": [
@@ -9659,19 +9810,22 @@
         "dataMap": [
           "有",
           "无"
-        ]
+        ],
+        "relatedItems": []
       },
       {
         "UIFieldName": "吸烟量（支/天）",
         "IndexFieldName": "visits.Hospitalization.PAST_SMOKE_HISTORY.HOS_SMOKE_RATE",
         "srchFieldName": "就诊.住院与诊断.吸烟史.吸烟量（支/天）",
-        "dataType": "double"
+        "dataType": "double",
+        "relatedItems": []
       },
       {
         "UIFieldName": "吸烟时长（年）",
         "IndexFieldName": "visits.Hospitalization.PAST_SMOKE_HISTORY.HOS_SMOKE_YEARS",
         "srchFieldName": "就诊.住院与诊断.吸烟史.吸烟时长（年）",
-        "dataType": "double"
+        "dataType": "double",
+        "relatedItems": []
       },
       {
         "UIFieldName": "是否戒烟",
@@ -9681,13 +9835,15 @@
         "dataMap": [
           "是",
           "否"
-        ]
+        ],
+        "relatedItems": []
       },
       {
         "UIFieldName": "戒烟时间（年）",
         "IndexFieldName": "visits.Hospitalization.PAST_SMOKE_HISTORY.HOS_QUIT_YEARS",
         "srchFieldName": "就诊.住院与诊断.吸烟史.戒烟时间（年）",
-        "dataType": "double"
+        "dataType": "double",
+        "relatedItems": []
       }
     ],
     "就诊.住院与诊断.饮酒史": [
@@ -9699,19 +9855,22 @@
         "dataMap": [
           "有",
           "无"
-        ]
+        ],
+        "relatedItems": []
       },
       {
         "UIFieldName": "饮酒年限（年）",
         "IndexFieldName": "visits.Hospitalization.PAST_DRINK_HISTORY.HOS_PAST_DRINK_HISTORY_YEARS",
         "srchFieldName": "就诊.住院与诊断.饮酒史.饮酒年限（年）",
-        "dataType": "double"
+        "dataType": "double",
+        "relatedItems": []
       },
       {
         "UIFieldName": "饮酒强度",
         "IndexFieldName": "visits.Hospitalization.PAST_DRINK_HISTORY.HOS_PAST_DRINK_HISTORY_RATE",
         "srchFieldName": "就诊.住院与诊断.饮酒史.饮酒强度",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       }
     ],
     "就诊.住院与诊断.出院诊断": [
@@ -10155,16 +10314,16 @@
           {
             "IndexFieldName": "visits.Outpatient.SYMPTOM_NAME.START_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.症状及体征.开始日期",
-            "UIFieldName": "开始日期"
+            "UIFieldName": "开始日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Outpatient.SYMPTOM_NAME.END_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.症状及体征.结束日期",
-            "UIFieldName": "结束日期"
+            "UIFieldName": "结束日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Outpatient.SYMPTOM_NAME.SYMPTOM_DESC",
@@ -10184,6 +10343,40 @@
         "dataMap": [
           "是",
           "否"
+        ],
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.DISEASE_HISTORY.OUT_HBP_YES_NO",
+            "dataType": "string",
+            "srchFieldName": "就诊.门急诊.既往疾病史.有无高血压史",
+            "UIFieldName": "有无高血压史",
+            "dataMap": [
+              "有",
+              "无"
+            ]
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.DISEASE_HISTORY.OUT_HBP_YEAR",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.既往疾病史.高血压史年限",
+            "UIFieldName": "高血压史年限"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.DISEASE_HISTORY.OUT_DIABETE_YES_NO",
+            "dataType": "string",
+            "srchFieldName": "就诊.门急诊.既往疾病史.有无糖尿病史",
+            "UIFieldName": "有无糖尿病史",
+            "dataMap": [
+              "有",
+              "无"
+            ]
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.DISEASE_HISTORY.OUT_DIABETE_YEAR",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.既往疾病史.糖尿病史年限",
+            "UIFieldName": "糖尿病史年限"
+          }
         ]
       },
       {
@@ -10195,13 +10388,14 @@
           "有",
           "无"
         ],
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "高血压史年限",
-        "IndexFieldName": "visits.Outpatient.DISEASE_HISTORY.OUT_HBP_YEAR",
-        "srchFieldName": "就诊.门急诊.既往疾病史.高血压史年限",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.DISEASE_HISTORY.OUT_HBP_YEAR",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.既往疾病史.高血压史年限",
+            "UIFieldName": "高血压史年限"
+          }
+        ]
       },
       {
         "UIFieldName": "有无糖尿病史",
@@ -10212,13 +10406,14 @@
           "有",
           "无"
         ],
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "糖尿病史年限",
-        "IndexFieldName": "visits.Outpatient.DISEASE_HISTORY.OUT_DIABETE_YEAR",
-        "srchFieldName": "就诊.门急诊.既往疾病史.糖尿病史年限",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.DISEASE_HISTORY.OUT_DIABETE_YEAR",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.既往疾病史.糖尿病史年限",
+            "UIFieldName": "糖尿病史年限"
+          }
+        ]
       }
     ],
     "就诊.门急诊.个人肿瘤史": [
@@ -10231,20 +10426,34 @@
           "有",
           "无"
         ],
-        "relatedItems": []
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.CANCER_HISTORY.OUT_CANCER_NAME",
+            "dataType": "string",
+            "srchFieldName": "就诊.门急诊.个人肿瘤史.肿瘤名称",
+            "UIFieldName": "肿瘤名称"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.CANCER_HISTORY.OUT_CANCER_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.个人肿瘤史.患病时间",
+            "UIFieldName": "患病时间"
+          }
+        ]
       },
       {
         "UIFieldName": "肿瘤名称",
         "IndexFieldName": "visits.Outpatient.CANCER_HISTORY.OUT_CANCER_NAME",
         "srchFieldName": "就诊.门急诊.个人肿瘤史.肿瘤名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "患病时间",
-        "IndexFieldName": "visits.Outpatient.CANCER_HISTORY.OUT_CANCER_TIME",
-        "srchFieldName": "就诊.门急诊.个人肿瘤史.患病时间",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.CANCER_HISTORY.OUT_CANCER_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.个人肿瘤史.患病时间",
+            "UIFieldName": "患病时间"
+          }
+        ]
       }
     ],
     "就诊.门急诊.家族肿瘤史": [
@@ -10257,72 +10466,138 @@
           "有",
           "无"
         ],
-        "relatedItems": []
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_FATHER_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.父亲肿瘤史名称",
+            "UIFieldName": "父亲肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_FATHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.父亲患病时长（年）",
+            "UIFieldName": "父亲患病时长（年）"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_MOTHER_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.母亲肿瘤史名称",
+            "UIFieldName": "母亲肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_MOTHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.母亲患病时长（年）",
+            "UIFieldName": "母亲患病时长（年）"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_BROTHER_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.兄弟肿瘤史名称",
+            "UIFieldName": "兄弟肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_BROTHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.兄弟患病时长（年）",
+            "UIFieldName": "兄弟患病时长（年）"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_SISTER_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.姐妹肿瘤史名称",
+            "UIFieldName": "姐妹肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_SISTER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.姐妹患病时长（年）",
+            "UIFieldName": "姐妹患病时长（年）"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_CHILD_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.子女肿瘤史名称",
+            "UIFieldName": "子女肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_CHILD_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.子女患病时长（年）",
+            "UIFieldName": "子女患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "父亲肿瘤史名称",
         "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_FATHER_CA",
         "srchFieldName": "就诊.门急诊.家族肿瘤史.父亲肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "父亲患病时长（年）",
-        "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_FATHER_CA_TIME",
-        "srchFieldName": "就诊.门急诊.家族肿瘤史.父亲患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_FATHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.父亲患病时长（年）",
+            "UIFieldName": "父亲患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "母亲肿瘤史名称",
         "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_MOTHER_CA",
         "srchFieldName": "就诊.门急诊.家族肿瘤史.母亲肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "母亲患病时长（年）",
-        "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_MOTHER_CA_TIME",
-        "srchFieldName": "就诊.门急诊.家族肿瘤史.母亲患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_MOTHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.母亲患病时长（年）",
+            "UIFieldName": "母亲患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "兄弟肿瘤史名称",
         "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_BROTHER_CA",
         "srchFieldName": "就诊.门急诊.家族肿瘤史.兄弟肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "兄弟患病时长（年）",
-        "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_BROTHER_CA_TIME",
-        "srchFieldName": "就诊.门急诊.家族肿瘤史.兄弟患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_BROTHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.兄弟患病时长（年）",
+            "UIFieldName": "兄弟患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "姐妹肿瘤史名称",
         "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_SISTER_CA",
         "srchFieldName": "就诊.门急诊.家族肿瘤史.姐妹肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "姐妹患病时长（年）",
-        "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_SISTER_CA_TIME",
-        "srchFieldName": "就诊.门急诊.家族肿瘤史.姐妹患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_SISTER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.姐妹患病时长（年）",
+            "UIFieldName": "姐妹患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "子女肿瘤史名称",
         "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_CHILD_CA",
         "srchFieldName": "就诊.门急诊.家族肿瘤史.子女肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "子女患病时长（年）",
-        "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_CHILD_CA_TIME",
-        "srchFieldName": "就诊.门急诊.家族肿瘤史.子女患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_CHILD_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.子女患病时长（年）",
+            "UIFieldName": "子女患病时长（年）"
+          }
+        ]
       }
     ],
     "就诊.门急诊.吸烟史": [
@@ -10399,9 +10674,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -10414,9 +10689,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -10429,9 +10704,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -10444,9 +10719,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -10459,9 +10734,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -10474,9 +10749,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -10489,9 +10764,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -10504,9 +10779,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -10519,9 +10794,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -10534,9 +10809,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -10549,9 +10824,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       }
@@ -11377,9 +11652,9 @@
           {
             "IndexFieldName": "visits.Operation.ADJUVANT_THERAPY.ADJUVANT_THERAPY_START_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.手术治疗.辅助治疗.开始治疗日期",
-            "UIFieldName": "开始治疗日期"
+            "UIFieldName": "开始治疗日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Operation.ADJUVANT_THERAPY.ADJUVANT_THERAPY_PERIOD_COUNT",
@@ -11390,12 +11665,12 @@
           {
             "IndexFieldName": "visits.Operation.ADJUVANT_THERAPY.ADJUVANT_THERAPY_DISCONTINUED",
             "dataType": "string",
+            "srchFieldName": "就诊.手术治疗.辅助治疗.是否停止治疗",
+            "UIFieldName": "是否停止治疗",
             "dataMap": [
               "是",
               "否"
-            ],
-            "srchFieldName": "就诊.手术治疗.辅助治疗.是否停止治疗",
-            "UIFieldName": "是否停止治疗"
+            ]
           }
         ]
       }
@@ -11678,16 +11953,16 @@
           {
             "IndexFieldName": "visits.Electrocardiographic_reports.EXAMNIATION_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.电生理检查.检查日期",
-            "UIFieldName": "检查日期"
+            "UIFieldName": "检查日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Electrocardiographic_reports.REPORT_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.电生理检查.报告日期",
-            "UIFieldName": "报告日期"
+            "UIFieldName": "报告日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Electrocardiographic_reports.EXAMINATION_FINDINGS",
@@ -11712,16 +11987,16 @@
           {
             "IndexFieldName": "visits.Electrocardiographic_reports.EXAMNIATION_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.电生理检查.检查日期",
-            "UIFieldName": "检查日期"
+            "UIFieldName": "检查日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Electrocardiographic_reports.REPORT_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.电生理检查.报告日期",
-            "UIFieldName": "报告日期"
+            "UIFieldName": "报告日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Electrocardiographic_reports.EXAMINATION_FINDINGS",
@@ -11748,16 +12023,16 @@
           {
             "IndexFieldName": "visits.Physical_examination.PHYSICAL_EXAMINATION_BASIC_INFO.EXAMNIATION_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.体格检查.检查基本信息.检查日期",
-            "UIFieldName": "检查日期"
+            "UIFieldName": "检查日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Physical_examination.PHYSICAL_EXAMINATION_BASIC_INFO.REPORT_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.体格检查.检查基本信息.报告日期",
-            "UIFieldName": "报告日期"
+            "UIFieldName": "报告日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Physical_examination.PHYSICAL_EXAMINATION_BASIC_INFO.STAGE_BASIS",
@@ -11824,16 +12099,16 @@
           {
             "IndexFieldName": "visits.Physical_examination.PHYSICAL_EXAMINATION_BASIC_INFO.EXAMNIATION_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.体格检查.检查基本信息.检查日期",
-            "UIFieldName": "检查日期"
+            "UIFieldName": "检查日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Physical_examination.PHYSICAL_EXAMINATION_BASIC_INFO.REPORT_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.体格检查.检查基本信息.报告日期",
-            "UIFieldName": "报告日期"
+            "UIFieldName": "报告日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Physical_examination.PHYSICAL_EXAMINATION_BASIC_INFO.STAGE_BASIS",
@@ -11937,81 +12212,235 @@
         "UIFieldName": "检查编号",
         "IndexFieldName": "visits.Microscopic_exam_reports.EXAMINATION_SN",
         "srchFieldName": "就诊.内窥镜检查.检查编号",
-        "dataType": "string"
-      },
-      {
-        "UIFieldName": "检查日期",
-        "IndexFieldName": "visits.Microscopic_exam_reports.EXAMINATION_DATE",
-        "srchFieldName": "就诊.内窥镜检查.检查日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      },
-      {
-        "UIFieldName": "报告日期",
-        "IndexFieldName": "visits.Microscopic_exam_reports.REPORT_DATE",
-        "srchFieldName": "就诊.内窥镜检查.报告日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      },
-      {
-        "UIFieldName": "科室",
-        "IndexFieldName": "visits.Microscopic_exam_reports.DEPARTMENT",
-        "srchFieldName": "就诊.内窥镜检查.科室",
-        "dataType": "string"
-      },
-      {
-        "UIFieldName": "检查类别",
-        "IndexFieldName": "visits.Microscopic_exam_reports.EXAMINATION_TYPE",
-        "srchFieldName": "就诊.内窥镜检查.检查类别",
-        "dataType": "string"
-      },
-      {
-        "UIFieldName": "活检部位",
-        "IndexFieldName": "visits.Microscopic_exam_reports.BIOPSY_PARTS",
-        "srchFieldName": "就诊.内窥镜检查.活检部位",
-        "dataType": "string"
-      },
-      {
-        "UIFieldName": "检查所见",
-        "IndexFieldName": "visits.Microscopic_exam_reports.VISIBLE_PATHOLOGY",
-        "srchFieldName": "就诊.内窥镜检查.检查所见",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.EXAMINATION_DATE",
+            "dataType": "date",
+            "srchFieldName": "就诊.内窥镜检查.检查日期",
+            "UIFieldName": "检查日期",
+            "dateFormat": "yyyy-MM-dd"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.REPORT_DATE",
+            "dataType": "date",
+            "srchFieldName": "就诊.内窥镜检查.报告日期",
+            "UIFieldName": "报告日期",
+            "dateFormat": "yyyy-MM-dd"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.DEPARTMENT",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.科室",
+            "UIFieldName": "科室"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.EXAMINATION_TYPE",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.检查类别",
+            "UIFieldName": "检查类别"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.BIOPSY_PARTS",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.活检部位",
+            "UIFieldName": "活检部位"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.VISIBLE_PATHOLOGY",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.检查所见",
+            "UIFieldName": "检查所见"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.UNDER_MICROSCOPE",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.镜下诊断",
+            "UIFieldName": "镜下诊断"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.EXAMNIATION_RESULT",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.检查结论",
+            "UIFieldName": "检查结论"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.TUMOR_LOCATION",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.肿瘤位置",
+            "UIFieldName": "肿瘤位置"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.RENAL_CARCINOMA_LESION_LOCATION",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.肾癌病灶位置",
+            "UIFieldName": "肾癌病灶位置"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.MAXIUM_DIAMETER",
+            "dataType": "double",
+            "srchFieldName": "就诊.内窥镜检查.最长直径",
+            "UIFieldName": "最长直径"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.UNIT",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.单位",
+            "UIFieldName": "单位"
+          }
+        ]
       },
       {
         "UIFieldName": "镜下诊断",
         "IndexFieldName": "visits.Microscopic_exam_reports.UNDER_MICROSCOPE",
         "srchFieldName": "就诊.内窥镜检查.镜下诊断",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.EXAMINATION_DATE",
+            "dataType": "date",
+            "srchFieldName": "就诊.内窥镜检查.检查日期",
+            "UIFieldName": "检查日期",
+            "dateFormat": "yyyy-MM-dd"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.REPORT_DATE",
+            "dataType": "date",
+            "srchFieldName": "就诊.内窥镜检查.报告日期",
+            "UIFieldName": "报告日期",
+            "dateFormat": "yyyy-MM-dd"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.DEPARTMENT",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.科室",
+            "UIFieldName": "科室"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.EXAMINATION_TYPE",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.检查类别",
+            "UIFieldName": "检查类别"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.BIOPSY_PARTS",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.活检部位",
+            "UIFieldName": "活检部位"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.VISIBLE_PATHOLOGY",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.检查所见",
+            "UIFieldName": "检查所见"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.EXAMNIATION_RESULT",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.检查结论",
+            "UIFieldName": "检查结论"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.TUMOR_LOCATION",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.肿瘤位置",
+            "UIFieldName": "肿瘤位置"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.RENAL_CARCINOMA_LESION_LOCATION",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.肾癌病灶位置",
+            "UIFieldName": "肾癌病灶位置"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.MAXIUM_DIAMETER",
+            "dataType": "double",
+            "srchFieldName": "就诊.内窥镜检查.最长直径",
+            "UIFieldName": "最长直径"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.UNIT",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.单位",
+            "UIFieldName": "单位"
+          }
+        ]
       },
       {
         "UIFieldName": "检查结论",
         "IndexFieldName": "visits.Microscopic_exam_reports.EXAMNIATION_RESULT",
         "srchFieldName": "就诊.内窥镜检查.检查结论",
-        "dataType": "string"
-      },
-      {
-        "UIFieldName": "肿瘤位置",
-        "IndexFieldName": "visits.Microscopic_exam_reports.TUMOR_LOCATION",
-        "srchFieldName": "就诊.内窥镜检查.肿瘤位置",
-        "dataType": "string"
-      },
-      {
-        "UIFieldName": "肾癌病灶位置",
-        "IndexFieldName": "visits.Microscopic_exam_reports.RENAL_CARCINOMA_LESION_LOCATION",
-        "srchFieldName": "就诊.内窥镜检查.肾癌病灶位置",
-        "dataType": "string"
-      },
-      {
-        "UIFieldName": "最长直径",
-        "IndexFieldName": "visits.Microscopic_exam_reports.MAXIUM_DIAMETER",
-        "srchFieldName": "就诊.内窥镜检查.最长直径",
-        "dataType": "double"
-      },
-      {
-        "UIFieldName": "单位",
-        "IndexFieldName": "visits.Microscopic_exam_reports.UNIT",
-        "srchFieldName": "就诊.内窥镜检查.单位",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.EXAMINATION_DATE",
+            "dataType": "date",
+            "srchFieldName": "就诊.内窥镜检查.检查日期",
+            "UIFieldName": "检查日期",
+            "dateFormat": "yyyy-MM-dd"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.REPORT_DATE",
+            "dataType": "date",
+            "srchFieldName": "就诊.内窥镜检查.报告日期",
+            "UIFieldName": "报告日期",
+            "dateFormat": "yyyy-MM-dd"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.DEPARTMENT",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.科室",
+            "UIFieldName": "科室"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.EXAMINATION_TYPE",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.检查类别",
+            "UIFieldName": "检查类别"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.BIOPSY_PARTS",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.活检部位",
+            "UIFieldName": "活检部位"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.VISIBLE_PATHOLOGY",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.检查所见",
+            "UIFieldName": "检查所见"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.UNDER_MICROSCOPE",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.镜下诊断",
+            "UIFieldName": "镜下诊断"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.TUMOR_LOCATION",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.肿瘤位置",
+            "UIFieldName": "肿瘤位置"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.RENAL_CARCINOMA_LESION_LOCATION",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.肾癌病灶位置",
+            "UIFieldName": "肾癌病灶位置"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.MAXIUM_DIAMETER",
+            "dataType": "double",
+            "srchFieldName": "就诊.内窥镜检查.最长直径",
+            "UIFieldName": "最长直径"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.UNIT",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.单位",
+            "UIFieldName": "单位"
+          }
+        ]
       }
     ],
     "就诊.病理学检查": [
@@ -12019,81 +12448,94 @@
         "UIFieldName": "病理号",
         "IndexFieldName": "visits.Pathology_reports.PARHOLOGY_NUMBER",
         "srchFieldName": "就诊.病理学检查.病理号",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "检查名称",
         "IndexFieldName": "visits.Pathology_reports.EXAMINATION_NAME",
         "srchFieldName": "就诊.病理学检查.检查名称",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "检查日期",
         "IndexFieldName": "visits.Pathology_reports.EXAMNIATION_DATE",
         "srchFieldName": "就诊.病理学检查.检查日期",
         "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
+        "dateFormat": "yyyy-MM-dd",
+        "relatedItems": []
       },
       {
         "UIFieldName": "报告日期",
         "IndexFieldName": "visits.Pathology_reports.REPORT_DATE",
         "srchFieldName": "就诊.病理学检查.报告日期",
         "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
+        "dateFormat": "yyyy-MM-dd",
+        "relatedItems": []
       },
       {
         "UIFieldName": "标本名称",
         "IndexFieldName": "visits.Pathology_reports.SPECIMENS_NAME",
         "srchFieldName": "就诊.病理学检查.标本名称",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "肉眼所见",
         "IndexFieldName": "visits.Pathology_reports.VISIBLE_PATHOLOGY",
         "srchFieldName": "就诊.病理学检查.肉眼所见",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "临床诊断",
         "IndexFieldName": "visits.Pathology_reports.CLINICAL_DIAGNOSIS",
         "srchFieldName": "就诊.病理学检查.临床诊断",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "镜下所见",
         "IndexFieldName": "visits.Pathology_reports.UNDER_MICROSCOPE",
         "srchFieldName": "就诊.病理学检查.镜下所见",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "病理诊断",
         "IndexFieldName": "visits.Pathology_reports.PATHOLOGY_DIAGNOSIS",
         "srchFieldName": "就诊.病理学检查.病理诊断",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "肿瘤大小",
         "IndexFieldName": "visits.Pathology_reports.TUMOR_SIZE",
         "srchFieldName": "就诊.病理学检查.肿瘤大小",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "肿瘤位置",
         "IndexFieldName": "visits.Pathology_reports.TUMOR_LOCATION",
         "srchFieldName": "就诊.病理学检查.肿瘤位置",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "切面颜色",
         "IndexFieldName": "visits.Pathology_reports.PATHOLOGICAL_SECTION_COLOR",
         "srchFieldName": "就诊.病理学检查.切面颜色",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "质地",
         "IndexFieldName": "visits.Pathology_reports.PATHOLOGICAL_TEXTURE",
         "srchFieldName": "就诊.病理学检查.质地",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "有无包膜",
@@ -12103,25 +12545,29 @@
         "dataMap": [
           "有",
           "无"
-        ]
+        ],
+        "relatedItems": []
       },
       {
         "UIFieldName": "病理组织来源",
         "IndexFieldName": "visits.Pathology_reports.PATHOLOGICAL_TISSUE_SOURCE",
         "srchFieldName": "就诊.病理学检查.病理组织来源",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "病灶数量",
         "IndexFieldName": "visits.Pathology_reports.LESION_COUNT",
         "srchFieldName": "就诊.病理学检查.病灶数量",
-        "dataType": "long"
+        "dataType": "long",
+        "relatedItems": []
       },
       {
         "UIFieldName": "脉管瘤栓",
         "IndexFieldName": "visits.Pathology_reports.CARCINOMA CELL_EMBOLUS",
         "srchFieldName": "就诊.病理学检查.脉管瘤栓",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       }
     ],
     "就诊.实验室检验.检验基本信息": [
@@ -12129,27 +12575,31 @@
         "UIFieldName": "检验名称",
         "IndexFieldName": "visits.Inspection_reports.INSPECTION.EXAMINATION_NAME",
         "srchFieldName": "就诊.实验室检验.检验基本信息.检验名称",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "检验编号",
         "IndexFieldName": "visits.Inspection_reports.INSPECTION.SPECIMEN_SN",
         "srchFieldName": "就诊.实验室检验.检验基本信息.检验编号",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "医嘱日期",
         "IndexFieldName": "visits.Inspection_reports.INSPECTION.ORDER_TIME",
         "srchFieldName": "就诊.实验室检验.检验基本信息.医嘱日期",
         "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
+        "dateFormat": "yyyy-MM-dd",
+        "relatedItems": []
       },
       {
         "UIFieldName": "报告日期",
         "IndexFieldName": "visits.Inspection_reports.INSPECTION.REPORT_TIME",
         "srchFieldName": "就诊.实验室检验.检验基本信息.报告日期",
         "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
+        "dateFormat": "yyyy-MM-dd",
+        "relatedItems": []
       }
     ],
     "就诊.实验室检验.检验子项": [
@@ -12216,16 +12666,16 @@
           {
             "IndexFieldName": "visits.Chemotherapy.START_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.化疗信息.开始日期",
-            "UIFieldName": "开始日期"
+            "UIFieldName": "开始日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Chemotherapy.END_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.化疗信息.结束日期",
-            "UIFieldName": "结束日期"
+            "UIFieldName": "结束日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Chemotherapy.CHEMOTHERAPY_DEP",
@@ -12350,22 +12800,22 @@
           {
             "IndexFieldName": "visits.Chemotherapy.IS_DELAY",
             "dataType": "boolean",
+            "srchFieldName": "就诊.化疗信息.是否延期",
+            "UIFieldName": "是否延期",
             "dataMap": [
               "是",
               "否"
-            ],
-            "srchFieldName": "就诊.化疗信息.是否延期",
-            "UIFieldName": "是否延期"
+            ]
           },
           {
             "IndexFieldName": "visits.Chemotherapy.IS_DECREMENT",
             "dataType": "boolean",
+            "srchFieldName": "就诊.化疗信息.是否减量",
+            "UIFieldName": "是否减量",
             "dataMap": [
               "是",
               "否"
-            ],
-            "srchFieldName": "就诊.化疗信息.是否减量",
-            "UIFieldName": "是否减量"
+            ]
           }
         ]
       },
@@ -12386,16 +12836,16 @@
           {
             "IndexFieldName": "visits.Radiotherapy.START_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.放疗信息.开始日期",
-            "UIFieldName": "开始日期"
+            "UIFieldName": "开始日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Radiotherapy.END_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.放疗信息.结束日期",
-            "UIFieldName": "结束日期"
+            "UIFieldName": "结束日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Radiotherapy.CHEMOTHERAPY_AT_THE_SAME_TIME",
@@ -15112,6 +15562,40 @@
         "dataMap": [
           "是",
           "否"
+        ],
+        "relatedItems": [
+          {
+            "IndexFieldName": "disease_history.G_HBP_YES_NO",
+            "dataType": "string",
+            "srchFieldName": "既往疾病史.有无高血压史",
+            "UIFieldName": "有无高血压史",
+            "dataMap": [
+              "有",
+              "无"
+            ]
+          },
+          {
+            "IndexFieldName": "disease_history.G_HBP_YEAR",
+            "dataType": "double",
+            "srchFieldName": "既往疾病史.高血压史年限",
+            "UIFieldName": "高血压史年限"
+          },
+          {
+            "IndexFieldName": "disease_history.G_HBP_YES_NO",
+            "dataType": "string",
+            "srchFieldName": "既往疾病史.有无高血压史",
+            "UIFieldName": "有无高血压史",
+            "dataMap": [
+              "有",
+              "无"
+            ]
+          },
+          {
+            "IndexFieldName": "disease_history.G_HBP_YEAR",
+            "dataType": "double",
+            "srchFieldName": "既往疾病史.高血压史年限",
+            "UIFieldName": "高血压史年限"
+          }
         ]
       },
       {
@@ -18680,7 +19164,8 @@
         "UIFieldName": "申请单编号",
         "IndexFieldName": "visits.inspection_reports.sub_inspection.APPLY_ID",
         "srchFieldName": "就诊.检验报告.申请单编号",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "检验子项中文名",
@@ -19966,16 +20451,16 @@
           {
             "IndexFieldName": "visits.chemotherapy.START_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.化疗.开始日期",
-            "UIFieldName": "开始日期"
+            "UIFieldName": "开始日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.chemotherapy.END_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.化疗.结束日期",
-            "UIFieldName": "结束日期"
+            "UIFieldName": "结束日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.chemotherapy.CHEMOTHERAPY_DEP",
@@ -20052,22 +20537,22 @@
           {
             "IndexFieldName": "visits.chemotherapy.IS_DELAY",
             "dataType": "boolean",
+            "srchFieldName": "就诊.化疗.是否延期",
+            "UIFieldName": "是否延期",
             "dataMap": [
               "是",
               "否"
-            ],
-            "srchFieldName": "就诊.化疗.是否延期",
-            "UIFieldName": "是否延期"
+            ]
           },
           {
             "IndexFieldName": "visits.chemotherapy.IS_DECREMENT",
             "dataType": "boolean",
+            "srchFieldName": "就诊.化疗.是否减量",
+            "UIFieldName": "是否减量",
             "dataMap": [
               "是",
               "否"
-            ],
-            "srchFieldName": "就诊.化疗.是否减量",
-            "UIFieldName": "是否减量"
+            ]
           }
         ]
       },
@@ -20104,22 +20589,22 @@
           {
             "IndexFieldName": "visits.chemotherapy.IS_DELAY",
             "dataType": "boolean",
+            "srchFieldName": "就诊.化疗.是否延期",
+            "UIFieldName": "是否延期",
             "dataMap": [
               "是",
               "否"
-            ],
-            "srchFieldName": "就诊.化疗.是否延期",
-            "UIFieldName": "是否延期"
+            ]
           },
           {
             "IndexFieldName": "visits.chemotherapy.IS_DECREMENT",
             "dataType": "boolean",
+            "srchFieldName": "就诊.化疗.是否减量",
+            "UIFieldName": "是否减量",
             "dataMap": [
               "是",
               "否"
-            ],
-            "srchFieldName": "就诊.化疗.是否减量",
-            "UIFieldName": "是否减量"
+            ]
           }
         ]
       }
@@ -21015,16 +21500,16 @@
           {
             "IndexFieldName": "visits.DC_orders.DATE_BEGIN",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.开始日期",
-            "UIFieldName": "开始日期"
+            "UIFieldName": "开始日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.DATE_END",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.结束日期",
-            "UIFieldName": "结束日期"
+            "UIFieldName": "结束日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.ORGNAME_LOC",
@@ -21077,30 +21562,30 @@
           {
             "IndexFieldName": "visits.DC_orders.DATE_CHECK",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.审核日期",
-            "UIFieldName": "审核日期"
+            "UIFieldName": "审核日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.DATE_EXECPRT",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.执行日期",
-            "UIFieldName": "执行日期"
+            "UIFieldName": "执行日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.DATE_INPUT",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.录入日期",
-            "UIFieldName": "录入日期"
+            "UIFieldName": "录入日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.DATE_APPLY",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.申请日期",
-            "UIFieldName": "申请日期"
+            "UIFieldName": "申请日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           }
         ]
       },
@@ -21113,16 +21598,16 @@
           {
             "IndexFieldName": "visits.DC_orders.DATE_BEGIN",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.开始日期",
-            "UIFieldName": "开始日期"
+            "UIFieldName": "开始日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.DATE_END",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.结束日期",
-            "UIFieldName": "结束日期"
+            "UIFieldName": "结束日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.ORGNAME_LOC",
@@ -21175,30 +21660,30 @@
           {
             "IndexFieldName": "visits.DC_orders.DATE_CHECK",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.审核日期",
-            "UIFieldName": "审核日期"
+            "UIFieldName": "审核日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.DATE_EXECPRT",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.执行日期",
-            "UIFieldName": "执行日期"
+            "UIFieldName": "执行日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.DATE_INPUT",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.录入日期",
-            "UIFieldName": "录入日期"
+            "UIFieldName": "录入日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.DC_orders.DATE_APPLY",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.DC_医嘱.申请日期",
-            "UIFieldName": "申请日期"
+            "UIFieldName": "申请日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           }
         ]
       }
@@ -21225,16 +21710,16 @@
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_BEGIN",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.开始日期",
-            "UIFieldName": "开始日期"
+            "UIFieldName": "开始日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_END",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.结束日期",
-            "UIFieldName": "结束日期"
+            "UIFieldName": "结束日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.ORGNAME_LOC",
@@ -21287,30 +21772,30 @@
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_CHECK",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.审核日期",
-            "UIFieldName": "审核日期"
+            "UIFieldName": "审核日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_EXECPRT",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.执行日期",
-            "UIFieldName": "执行日期"
+            "UIFieldName": "执行日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_INPUT",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.录入日期",
-            "UIFieldName": "录入日期"
+            "UIFieldName": "录入日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_APPLY",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.申请日期",
-            "UIFieldName": "申请日期"
+            "UIFieldName": "申请日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           }
         ]
       },
@@ -21323,16 +21808,16 @@
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_BEGIN",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.开始日期",
-            "UIFieldName": "开始日期"
+            "UIFieldName": "开始日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_END",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.结束日期",
-            "UIFieldName": "结束日期"
+            "UIFieldName": "结束日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.ORGNAME_LOC",
@@ -21385,30 +21870,30 @@
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_CHECK",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.审核日期",
-            "UIFieldName": "审核日期"
+            "UIFieldName": "审核日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_EXECPRT",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.执行日期",
-            "UIFieldName": "执行日期"
+            "UIFieldName": "执行日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_INPUT",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.录入日期",
-            "UIFieldName": "录入日期"
+            "UIFieldName": "录入日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           },
           {
             "IndexFieldName": "visits.radiotherapy_orders.DATE_APPLY",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd HH:mm:ss",
             "srchFieldName": "就诊.放疗医嘱.申请日期",
-            "UIFieldName": "申请日期"
+            "UIFieldName": "申请日期",
+            "dateFormat": "yyyy-MM-dd HH:mm:ss"
           }
         ]
       }
@@ -22784,16 +23269,16 @@
           {
             "IndexFieldName": "visits.Hospitalization.SYMPTOM_NAME.START_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.住院与诊断.症状及体征.开始日期",
-            "UIFieldName": "开始日期"
+            "UIFieldName": "开始日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Hospitalization.SYMPTOM_NAME.END_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.住院与诊断.症状及体征.结束日期",
-            "UIFieldName": "结束日期"
+            "UIFieldName": "结束日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Hospitalization.SYMPTOM_NAME.SYMPTOM_DESC",
@@ -22813,6 +23298,40 @@
         "dataMap": [
           "是",
           "否"
+        ],
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.DISEASE_HISTORY.HOS_HBP_YES_NO",
+            "dataType": "string",
+            "srchFieldName": "就诊.住院与诊断.既往疾病史.有无高血压史",
+            "UIFieldName": "有无高血压史",
+            "dataMap": [
+              "有",
+              "无"
+            ]
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.DISEASE_HISTORY.HOS_HBP_YEAR",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.既往疾病史.高血压史年限",
+            "UIFieldName": "高血压史年限"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.DISEASE_HISTORY.HOS_DIABETE_YES_NO",
+            "dataType": "string",
+            "srchFieldName": "就诊.住院与诊断.既往疾病史.有无糖尿病史",
+            "UIFieldName": "有无糖尿病史",
+            "dataMap": [
+              "有",
+              "无"
+            ]
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.DISEASE_HISTORY.HOS_DIABETE_YEAR",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.既往疾病史.糖尿病史年限",
+            "UIFieldName": "糖尿病史年限"
+          }
         ]
       },
       {
@@ -22824,13 +23343,14 @@
           "有",
           "无"
         ],
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "高血压史年限",
-        "IndexFieldName": "visits.Hospitalization.DISEASE_HISTORY.HOS_HBP_YEAR",
-        "srchFieldName": "就诊.住院与诊断.既往疾病史.高血压史年限",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.DISEASE_HISTORY.HOS_HBP_YEAR",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.既往疾病史.高血压史年限",
+            "UIFieldName": "高血压史年限"
+          }
+        ]
       },
       {
         "UIFieldName": "有无糖尿病史",
@@ -22841,13 +23361,14 @@
           "有",
           "无"
         ],
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "糖尿病史年限",
-        "IndexFieldName": "visits.Hospitalization.DISEASE_HISTORY.HOS_DIABETE_YEAR",
-        "srchFieldName": "就诊.住院与诊断.既往疾病史.糖尿病史年限",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.DISEASE_HISTORY.HOS_DIABETE_YEAR",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.既往疾病史.糖尿病史年限",
+            "UIFieldName": "糖尿病史年限"
+          }
+        ]
       }
     ],
     "就诊.住院与诊断.个人肿瘤史": [
@@ -22860,20 +23381,34 @@
           "有",
           "无"
         ],
-        "relatedItems": []
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.CANCER_HISTORY.HOS_CANCER_NAME",
+            "dataType": "string",
+            "srchFieldName": "就诊.住院与诊断.个人肿瘤史.肿瘤名称",
+            "UIFieldName": "肿瘤名称"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.CANCER_HISTORY.HOS_CANCER_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.个人肿瘤史.患病时长（年）",
+            "UIFieldName": "患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "肿瘤名称",
         "IndexFieldName": "visits.Hospitalization.CANCER_HISTORY.HOS_CANCER_NAME",
         "srchFieldName": "就诊.住院与诊断.个人肿瘤史.肿瘤名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "患病时长（年）",
-        "IndexFieldName": "visits.Hospitalization.CANCER_HISTORY.HOS_CANCER_TIME",
-        "srchFieldName": "就诊.住院与诊断.个人肿瘤史.患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.CANCER_HISTORY.HOS_CANCER_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.个人肿瘤史.患病时长（年）",
+            "UIFieldName": "患病时长（年）"
+          }
+        ]
       }
     ],
     "就诊.住院与诊断.家族肿瘤史": [
@@ -22886,72 +23421,138 @@
           "有",
           "无"
         ],
-        "relatedItems": []
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_FATHER_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.父亲肿瘤史名称",
+            "UIFieldName": "父亲肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_FATHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.父亲患病时长（年）",
+            "UIFieldName": "父亲患病时长（年）"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_MOTHER_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.母亲肿瘤史名称",
+            "UIFieldName": "母亲肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_MOTHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.母亲患病时长（年）",
+            "UIFieldName": "母亲患病时长（年）"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_BROTHER_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.兄弟肿瘤史名称",
+            "UIFieldName": "兄弟肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_BROTHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.兄弟患病时长（年）",
+            "UIFieldName": "兄弟患病时长（年）"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_SISTER_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.姐妹肿瘤史名称",
+            "UIFieldName": "姐妹肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_SISTER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.姐妹患病时长（年）",
+            "UIFieldName": "姐妹患病时长（年）"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_CHILD_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.子女肿瘤史名称",
+            "UIFieldName": "子女肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_CHILD_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.子女患病时长（年）",
+            "UIFieldName": "子女患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "父亲肿瘤史名称",
         "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_FATHER_CA",
         "srchFieldName": "就诊.住院与诊断.家族肿瘤史.父亲肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "父亲患病时长（年）",
-        "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_FATHER_CA_TIME",
-        "srchFieldName": "就诊.住院与诊断.家族肿瘤史.父亲患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_FATHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.父亲患病时长（年）",
+            "UIFieldName": "父亲患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "母亲肿瘤史名称",
         "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_MOTHER_CA",
         "srchFieldName": "就诊.住院与诊断.家族肿瘤史.母亲肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "母亲患病时长（年）",
-        "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_MOTHER_CA_TIME",
-        "srchFieldName": "就诊.住院与诊断.家族肿瘤史.母亲患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_MOTHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.母亲患病时长（年）",
+            "UIFieldName": "母亲患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "兄弟肿瘤史名称",
         "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_BROTHER_CA",
         "srchFieldName": "就诊.住院与诊断.家族肿瘤史.兄弟肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "兄弟患病时长（年）",
-        "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_BROTHER_CA_TIME",
-        "srchFieldName": "就诊.住院与诊断.家族肿瘤史.兄弟患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_BROTHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.兄弟患病时长（年）",
+            "UIFieldName": "兄弟患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "姐妹肿瘤史名称",
         "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_SISTER_CA",
         "srchFieldName": "就诊.住院与诊断.家族肿瘤史.姐妹肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "姐妹患病时长（年）",
-        "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_SISTER_CA_TIME",
-        "srchFieldName": "就诊.住院与诊断.家族肿瘤史.姐妹患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_SISTER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.姐妹患病时长（年）",
+            "UIFieldName": "姐妹患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "子女肿瘤史名称",
         "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_CHILD_CA",
         "srchFieldName": "就诊.住院与诊断.家族肿瘤史.子女肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "子女患病时长（年）",
-        "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_CHILD_CA_TIME",
-        "srchFieldName": "就诊.住院与诊断.家族肿瘤史.子女患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Hospitalization.FIRSTFAMI_CANCER_HISTORY.HOS_CHILD_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.住院与诊断.家族肿瘤史.子女患病时长（年）",
+            "UIFieldName": "子女患病时长（年）"
+          }
+        ]
       }
     ],
     "就诊.住院与诊断.吸烟史": [
@@ -22963,19 +23564,22 @@
         "dataMap": [
           "有",
           "无"
-        ]
+        ],
+        "relatedItems": []
       },
       {
         "UIFieldName": "吸烟量（支/天）",
         "IndexFieldName": "visits.Hospitalization.PAST_SMOKE_HISTORY.HOS_SMOKE_RATE",
         "srchFieldName": "就诊.住院与诊断.吸烟史.吸烟量（支/天）",
-        "dataType": "double"
+        "dataType": "double",
+        "relatedItems": []
       },
       {
         "UIFieldName": "吸烟时长（年）",
         "IndexFieldName": "visits.Hospitalization.PAST_SMOKE_HISTORY.HOS_SMOKE_YEARS",
         "srchFieldName": "就诊.住院与诊断.吸烟史.吸烟时长（年）",
-        "dataType": "double"
+        "dataType": "double",
+        "relatedItems": []
       },
       {
         "UIFieldName": "是否戒烟",
@@ -22985,13 +23589,15 @@
         "dataMap": [
           "是",
           "否"
-        ]
+        ],
+        "relatedItems": []
       },
       {
         "UIFieldName": "戒烟时间（年）",
         "IndexFieldName": "visits.Hospitalization.PAST_SMOKE_HISTORY.HOS_QUIT_YEARS",
         "srchFieldName": "就诊.住院与诊断.吸烟史.戒烟时间（年）",
-        "dataType": "double"
+        "dataType": "double",
+        "relatedItems": []
       }
     ],
     "就诊.住院与诊断.饮酒史": [
@@ -23003,19 +23609,22 @@
         "dataMap": [
           "有",
           "无"
-        ]
+        ],
+        "relatedItems": []
       },
       {
         "UIFieldName": "饮酒年限（年）",
         "IndexFieldName": "visits.Hospitalization.PAST_DRINK_HISTORY.HOS_PAST_DRINK_HISTORY_YEARS",
         "srchFieldName": "就诊.住院与诊断.饮酒史.饮酒年限（年）",
-        "dataType": "double"
+        "dataType": "double",
+        "relatedItems": []
       },
       {
         "UIFieldName": "饮酒强度",
         "IndexFieldName": "visits.Hospitalization.PAST_DRINK_HISTORY.HOS_PAST_DRINK_HISTORY_RATE",
         "srchFieldName": "就诊.住院与诊断.饮酒史.饮酒强度",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       }
     ],
     "就诊.住院与诊断.出院诊断": [
@@ -23459,16 +24068,16 @@
           {
             "IndexFieldName": "visits.Outpatient.SYMPTOM_NAME.START_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.症状及体征.开始日期",
-            "UIFieldName": "开始日期"
+            "UIFieldName": "开始日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Outpatient.SYMPTOM_NAME.END_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.症状及体征.结束日期",
-            "UIFieldName": "结束日期"
+            "UIFieldName": "结束日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Outpatient.SYMPTOM_NAME.SYMPTOM_DESC",
@@ -23488,6 +24097,40 @@
         "dataMap": [
           "是",
           "否"
+        ],
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.DISEASE_HISTORY.OUT_HBP_YES_NO",
+            "dataType": "string",
+            "srchFieldName": "就诊.门急诊.既往疾病史.有无高血压史",
+            "UIFieldName": "有无高血压史",
+            "dataMap": [
+              "有",
+              "无"
+            ]
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.DISEASE_HISTORY.OUT_HBP_YEAR",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.既往疾病史.高血压史年限",
+            "UIFieldName": "高血压史年限"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.DISEASE_HISTORY.OUT_DIABETE_YES_NO",
+            "dataType": "string",
+            "srchFieldName": "就诊.门急诊.既往疾病史.有无糖尿病史",
+            "UIFieldName": "有无糖尿病史",
+            "dataMap": [
+              "有",
+              "无"
+            ]
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.DISEASE_HISTORY.OUT_DIABETE_YEAR",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.既往疾病史.糖尿病史年限",
+            "UIFieldName": "糖尿病史年限"
+          }
         ]
       },
       {
@@ -23499,13 +24142,14 @@
           "有",
           "无"
         ],
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "高血压史年限",
-        "IndexFieldName": "visits.Outpatient.DISEASE_HISTORY.OUT_HBP_YEAR",
-        "srchFieldName": "就诊.门急诊.既往疾病史.高血压史年限",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.DISEASE_HISTORY.OUT_HBP_YEAR",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.既往疾病史.高血压史年限",
+            "UIFieldName": "高血压史年限"
+          }
+        ]
       },
       {
         "UIFieldName": "有无糖尿病史",
@@ -23516,13 +24160,14 @@
           "有",
           "无"
         ],
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "糖尿病史年限",
-        "IndexFieldName": "visits.Outpatient.DISEASE_HISTORY.OUT_DIABETE_YEAR",
-        "srchFieldName": "就诊.门急诊.既往疾病史.糖尿病史年限",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.DISEASE_HISTORY.OUT_DIABETE_YEAR",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.既往疾病史.糖尿病史年限",
+            "UIFieldName": "糖尿病史年限"
+          }
+        ]
       }
     ],
     "就诊.门急诊.个人肿瘤史": [
@@ -23535,20 +24180,34 @@
           "有",
           "无"
         ],
-        "relatedItems": []
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.CANCER_HISTORY.OUT_CANCER_NAME",
+            "dataType": "string",
+            "srchFieldName": "就诊.门急诊.个人肿瘤史.肿瘤名称",
+            "UIFieldName": "肿瘤名称"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.CANCER_HISTORY.OUT_CANCER_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.个人肿瘤史.患病时间",
+            "UIFieldName": "患病时间"
+          }
+        ]
       },
       {
         "UIFieldName": "肿瘤名称",
         "IndexFieldName": "visits.Outpatient.CANCER_HISTORY.OUT_CANCER_NAME",
         "srchFieldName": "就诊.门急诊.个人肿瘤史.肿瘤名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "患病时间",
-        "IndexFieldName": "visits.Outpatient.CANCER_HISTORY.OUT_CANCER_TIME",
-        "srchFieldName": "就诊.门急诊.个人肿瘤史.患病时间",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.CANCER_HISTORY.OUT_CANCER_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.个人肿瘤史.患病时间",
+            "UIFieldName": "患病时间"
+          }
+        ]
       }
     ],
     "就诊.门急诊.家族肿瘤史": [
@@ -23561,72 +24220,138 @@
           "有",
           "无"
         ],
-        "relatedItems": []
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_FATHER_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.父亲肿瘤史名称",
+            "UIFieldName": "父亲肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_FATHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.父亲患病时长（年）",
+            "UIFieldName": "父亲患病时长（年）"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_MOTHER_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.母亲肿瘤史名称",
+            "UIFieldName": "母亲肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_MOTHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.母亲患病时长（年）",
+            "UIFieldName": "母亲患病时长（年）"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_BROTHER_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.兄弟肿瘤史名称",
+            "UIFieldName": "兄弟肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_BROTHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.兄弟患病时长（年）",
+            "UIFieldName": "兄弟患病时长（年）"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_SISTER_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.姐妹肿瘤史名称",
+            "UIFieldName": "姐妹肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_SISTER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.姐妹患病时长（年）",
+            "UIFieldName": "姐妹患病时长（年）"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_CHILD_CA",
+            "dataType": "string",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.子女肿瘤史名称",
+            "UIFieldName": "子女肿瘤史名称"
+          },
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_CHILD_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.子女患病时长（年）",
+            "UIFieldName": "子女患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "父亲肿瘤史名称",
         "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_FATHER_CA",
         "srchFieldName": "就诊.门急诊.家族肿瘤史.父亲肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "父亲患病时长（年）",
-        "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_FATHER_CA_TIME",
-        "srchFieldName": "就诊.门急诊.家族肿瘤史.父亲患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_FATHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.父亲患病时长（年）",
+            "UIFieldName": "父亲患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "母亲肿瘤史名称",
         "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_MOTHER_CA",
         "srchFieldName": "就诊.门急诊.家族肿瘤史.母亲肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "母亲患病时长（年）",
-        "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_MOTHER_CA_TIME",
-        "srchFieldName": "就诊.门急诊.家族肿瘤史.母亲患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_MOTHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.母亲患病时长（年）",
+            "UIFieldName": "母亲患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "兄弟肿瘤史名称",
         "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_BROTHER_CA",
         "srchFieldName": "就诊.门急诊.家族肿瘤史.兄弟肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "兄弟患病时长（年）",
-        "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_BROTHER_CA_TIME",
-        "srchFieldName": "就诊.门急诊.家族肿瘤史.兄弟患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_BROTHER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.兄弟患病时长（年）",
+            "UIFieldName": "兄弟患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "姐妹肿瘤史名称",
         "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_SISTER_CA",
         "srchFieldName": "就诊.门急诊.家族肿瘤史.姐妹肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "姐妹患病时长（年）",
-        "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_SISTER_CA_TIME",
-        "srchFieldName": "就诊.门急诊.家族肿瘤史.姐妹患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_SISTER_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.姐妹患病时长（年）",
+            "UIFieldName": "姐妹患病时长（年）"
+          }
+        ]
       },
       {
         "UIFieldName": "子女肿瘤史名称",
         "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_CHILD_CA",
         "srchFieldName": "就诊.门急诊.家族肿瘤史.子女肿瘤史名称",
         "dataType": "string",
-        "relatedItems": []
-      },
-      {
-        "UIFieldName": "子女患病时长（年）",
-        "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_CHILD_CA_TIME",
-        "srchFieldName": "就诊.门急诊.家族肿瘤史.子女患病时长（年）",
-        "dataType": "double"
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Outpatient.FIRSTFAMI_CANCER_HISTORY.OUT_CHILD_CA_TIME",
+            "dataType": "double",
+            "srchFieldName": "就诊.门急诊.家族肿瘤史.子女患病时长（年）",
+            "UIFieldName": "子女患病时长（年）"
+          }
+        ]
       }
     ],
     "就诊.门急诊.吸烟史": [
@@ -23703,9 +24428,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -23718,9 +24443,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -23733,9 +24458,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -23748,9 +24473,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -23763,9 +24488,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -23778,9 +24503,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -23793,9 +24518,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -23808,9 +24533,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -23823,9 +24548,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -23838,9 +24563,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       },
@@ -23853,9 +24578,9 @@
           {
             "IndexFieldName": "visits.Outpatient.DISCHARGE_DIAGNOSE.DISCHARGE_DIAGNOSE_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.门急诊.出院诊断.诊断日期",
-            "UIFieldName": "诊断日期"
+            "UIFieldName": "诊断日期",
+            "dateFormat": "yyyy-MM-dd"
           }
         ]
       }
@@ -24681,9 +25406,9 @@
           {
             "IndexFieldName": "visits.Operation.ADJUVANT_THERAPY.ADJUVANT_THERAPY_START_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.手术治疗.辅助治疗.开始治疗日期",
-            "UIFieldName": "开始治疗日期"
+            "UIFieldName": "开始治疗日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Operation.ADJUVANT_THERAPY.ADJUVANT_THERAPY_PERIOD_COUNT",
@@ -24694,12 +25419,12 @@
           {
             "IndexFieldName": "visits.Operation.ADJUVANT_THERAPY.ADJUVANT_THERAPY_DISCONTINUED",
             "dataType": "string",
+            "srchFieldName": "就诊.手术治疗.辅助治疗.是否停止治疗",
+            "UIFieldName": "是否停止治疗",
             "dataMap": [
               "是",
               "否"
-            ],
-            "srchFieldName": "就诊.手术治疗.辅助治疗.是否停止治疗",
-            "UIFieldName": "是否停止治疗"
+            ]
           }
         ]
       }
@@ -24982,16 +25707,16 @@
           {
             "IndexFieldName": "visits.Electrocardiographic_reports.EXAMNIATION_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.电生理检查.检查日期",
-            "UIFieldName": "检查日期"
+            "UIFieldName": "检查日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Electrocardiographic_reports.REPORT_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.电生理检查.报告日期",
-            "UIFieldName": "报告日期"
+            "UIFieldName": "报告日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Electrocardiographic_reports.EXAMINATION_FINDINGS",
@@ -25016,16 +25741,16 @@
           {
             "IndexFieldName": "visits.Electrocardiographic_reports.EXAMNIATION_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.电生理检查.检查日期",
-            "UIFieldName": "检查日期"
+            "UIFieldName": "检查日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Electrocardiographic_reports.REPORT_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.电生理检查.报告日期",
-            "UIFieldName": "报告日期"
+            "UIFieldName": "报告日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Electrocardiographic_reports.EXAMINATION_FINDINGS",
@@ -25052,16 +25777,16 @@
           {
             "IndexFieldName": "visits.Physical_examination.PHYSICAL_EXAMINATION_BASIC_INFO.EXAMNIATION_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.体格检查.检查基本信息.检查日期",
-            "UIFieldName": "检查日期"
+            "UIFieldName": "检查日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Physical_examination.PHYSICAL_EXAMINATION_BASIC_INFO.REPORT_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.体格检查.检查基本信息.报告日期",
-            "UIFieldName": "报告日期"
+            "UIFieldName": "报告日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Physical_examination.PHYSICAL_EXAMINATION_BASIC_INFO.STAGE_BASIS",
@@ -25128,16 +25853,16 @@
           {
             "IndexFieldName": "visits.Physical_examination.PHYSICAL_EXAMINATION_BASIC_INFO.EXAMNIATION_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.体格检查.检查基本信息.检查日期",
-            "UIFieldName": "检查日期"
+            "UIFieldName": "检查日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Physical_examination.PHYSICAL_EXAMINATION_BASIC_INFO.REPORT_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.体格检查.检查基本信息.报告日期",
-            "UIFieldName": "报告日期"
+            "UIFieldName": "报告日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Physical_examination.PHYSICAL_EXAMINATION_BASIC_INFO.STAGE_BASIS",
@@ -25241,81 +25966,235 @@
         "UIFieldName": "检查编号",
         "IndexFieldName": "visits.Microscopic_exam_reports.EXAMINATION_SN",
         "srchFieldName": "就诊.内窥镜检查.检查编号",
-        "dataType": "string"
-      },
-      {
-        "UIFieldName": "检查日期",
-        "IndexFieldName": "visits.Microscopic_exam_reports.EXAMINATION_DATE",
-        "srchFieldName": "就诊.内窥镜检查.检查日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      },
-      {
-        "UIFieldName": "报告日期",
-        "IndexFieldName": "visits.Microscopic_exam_reports.REPORT_DATE",
-        "srchFieldName": "就诊.内窥镜检查.报告日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      },
-      {
-        "UIFieldName": "科室",
-        "IndexFieldName": "visits.Microscopic_exam_reports.DEPARTMENT",
-        "srchFieldName": "就诊.内窥镜检查.科室",
-        "dataType": "string"
-      },
-      {
-        "UIFieldName": "检查类别",
-        "IndexFieldName": "visits.Microscopic_exam_reports.EXAMINATION_TYPE",
-        "srchFieldName": "就诊.内窥镜检查.检查类别",
-        "dataType": "string"
-      },
-      {
-        "UIFieldName": "活检部位",
-        "IndexFieldName": "visits.Microscopic_exam_reports.BIOPSY_PARTS",
-        "srchFieldName": "就诊.内窥镜检查.活检部位",
-        "dataType": "string"
-      },
-      {
-        "UIFieldName": "检查所见",
-        "IndexFieldName": "visits.Microscopic_exam_reports.VISIBLE_PATHOLOGY",
-        "srchFieldName": "就诊.内窥镜检查.检查所见",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.EXAMINATION_DATE",
+            "dataType": "date",
+            "srchFieldName": "就诊.内窥镜检查.检查日期",
+            "UIFieldName": "检查日期",
+            "dateFormat": "yyyy-MM-dd"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.REPORT_DATE",
+            "dataType": "date",
+            "srchFieldName": "就诊.内窥镜检查.报告日期",
+            "UIFieldName": "报告日期",
+            "dateFormat": "yyyy-MM-dd"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.DEPARTMENT",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.科室",
+            "UIFieldName": "科室"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.EXAMINATION_TYPE",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.检查类别",
+            "UIFieldName": "检查类别"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.BIOPSY_PARTS",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.活检部位",
+            "UIFieldName": "活检部位"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.VISIBLE_PATHOLOGY",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.检查所见",
+            "UIFieldName": "检查所见"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.UNDER_MICROSCOPE",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.镜下诊断",
+            "UIFieldName": "镜下诊断"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.EXAMNIATION_RESULT",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.检查结论",
+            "UIFieldName": "检查结论"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.TUMOR_LOCATION",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.肿瘤位置",
+            "UIFieldName": "肿瘤位置"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.RENAL_CARCINOMA_LESION_LOCATION",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.肾癌病灶位置",
+            "UIFieldName": "肾癌病灶位置"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.MAXIUM_DIAMETER",
+            "dataType": "double",
+            "srchFieldName": "就诊.内窥镜检查.最长直径",
+            "UIFieldName": "最长直径"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.UNIT",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.单位",
+            "UIFieldName": "单位"
+          }
+        ]
       },
       {
         "UIFieldName": "镜下诊断",
         "IndexFieldName": "visits.Microscopic_exam_reports.UNDER_MICROSCOPE",
         "srchFieldName": "就诊.内窥镜检查.镜下诊断",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.EXAMINATION_DATE",
+            "dataType": "date",
+            "srchFieldName": "就诊.内窥镜检查.检查日期",
+            "UIFieldName": "检查日期",
+            "dateFormat": "yyyy-MM-dd"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.REPORT_DATE",
+            "dataType": "date",
+            "srchFieldName": "就诊.内窥镜检查.报告日期",
+            "UIFieldName": "报告日期",
+            "dateFormat": "yyyy-MM-dd"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.DEPARTMENT",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.科室",
+            "UIFieldName": "科室"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.EXAMINATION_TYPE",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.检查类别",
+            "UIFieldName": "检查类别"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.BIOPSY_PARTS",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.活检部位",
+            "UIFieldName": "活检部位"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.VISIBLE_PATHOLOGY",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.检查所见",
+            "UIFieldName": "检查所见"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.EXAMNIATION_RESULT",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.检查结论",
+            "UIFieldName": "检查结论"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.TUMOR_LOCATION",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.肿瘤位置",
+            "UIFieldName": "肿瘤位置"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.RENAL_CARCINOMA_LESION_LOCATION",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.肾癌病灶位置",
+            "UIFieldName": "肾癌病灶位置"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.MAXIUM_DIAMETER",
+            "dataType": "double",
+            "srchFieldName": "就诊.内窥镜检查.最长直径",
+            "UIFieldName": "最长直径"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.UNIT",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.单位",
+            "UIFieldName": "单位"
+          }
+        ]
       },
       {
         "UIFieldName": "检查结论",
         "IndexFieldName": "visits.Microscopic_exam_reports.EXAMNIATION_RESULT",
         "srchFieldName": "就诊.内窥镜检查.检查结论",
-        "dataType": "string"
-      },
-      {
-        "UIFieldName": "肿瘤位置",
-        "IndexFieldName": "visits.Microscopic_exam_reports.TUMOR_LOCATION",
-        "srchFieldName": "就诊.内窥镜检查.肿瘤位置",
-        "dataType": "string"
-      },
-      {
-        "UIFieldName": "肾癌病灶位置",
-        "IndexFieldName": "visits.Microscopic_exam_reports.RENAL_CARCINOMA_LESION_LOCATION",
-        "srchFieldName": "就诊.内窥镜检查.肾癌病灶位置",
-        "dataType": "string"
-      },
-      {
-        "UIFieldName": "最长直径",
-        "IndexFieldName": "visits.Microscopic_exam_reports.MAXIUM_DIAMETER",
-        "srchFieldName": "就诊.内窥镜检查.最长直径",
-        "dataType": "double"
-      },
-      {
-        "UIFieldName": "单位",
-        "IndexFieldName": "visits.Microscopic_exam_reports.UNIT",
-        "srchFieldName": "就诊.内窥镜检查.单位",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": [
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.EXAMINATION_DATE",
+            "dataType": "date",
+            "srchFieldName": "就诊.内窥镜检查.检查日期",
+            "UIFieldName": "检查日期",
+            "dateFormat": "yyyy-MM-dd"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.REPORT_DATE",
+            "dataType": "date",
+            "srchFieldName": "就诊.内窥镜检查.报告日期",
+            "UIFieldName": "报告日期",
+            "dateFormat": "yyyy-MM-dd"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.DEPARTMENT",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.科室",
+            "UIFieldName": "科室"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.EXAMINATION_TYPE",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.检查类别",
+            "UIFieldName": "检查类别"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.BIOPSY_PARTS",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.活检部位",
+            "UIFieldName": "活检部位"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.VISIBLE_PATHOLOGY",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.检查所见",
+            "UIFieldName": "检查所见"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.UNDER_MICROSCOPE",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.镜下诊断",
+            "UIFieldName": "镜下诊断"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.TUMOR_LOCATION",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.肿瘤位置",
+            "UIFieldName": "肿瘤位置"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.RENAL_CARCINOMA_LESION_LOCATION",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.肾癌病灶位置",
+            "UIFieldName": "肾癌病灶位置"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.MAXIUM_DIAMETER",
+            "dataType": "double",
+            "srchFieldName": "就诊.内窥镜检查.最长直径",
+            "UIFieldName": "最长直径"
+          },
+          {
+            "IndexFieldName": "visits.Microscopic_exam_reports.UNIT",
+            "dataType": "string",
+            "srchFieldName": "就诊.内窥镜检查.单位",
+            "UIFieldName": "单位"
+          }
+        ]
       }
     ],
     "就诊.病理学检查": [
@@ -25323,81 +26202,94 @@
         "UIFieldName": "病理号",
         "IndexFieldName": "visits.Pathology_reports.PARHOLOGY_NUMBER",
         "srchFieldName": "就诊.病理学检查.病理号",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "检查名称",
         "IndexFieldName": "visits.Pathology_reports.EXAMINATION_NAME",
         "srchFieldName": "就诊.病理学检查.检查名称",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "检查日期",
         "IndexFieldName": "visits.Pathology_reports.EXAMNIATION_DATE",
         "srchFieldName": "就诊.病理学检查.检查日期",
         "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
+        "dateFormat": "yyyy-MM-dd",
+        "relatedItems": []
       },
       {
         "UIFieldName": "报告日期",
         "IndexFieldName": "visits.Pathology_reports.REPORT_DATE",
         "srchFieldName": "就诊.病理学检查.报告日期",
         "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
+        "dateFormat": "yyyy-MM-dd",
+        "relatedItems": []
       },
       {
         "UIFieldName": "标本名称",
         "IndexFieldName": "visits.Pathology_reports.SPECIMENS_NAME",
         "srchFieldName": "就诊.病理学检查.标本名称",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "肉眼所见",
         "IndexFieldName": "visits.Pathology_reports.VISIBLE_PATHOLOGY",
         "srchFieldName": "就诊.病理学检查.肉眼所见",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "临床诊断",
         "IndexFieldName": "visits.Pathology_reports.CLINICAL_DIAGNOSIS",
         "srchFieldName": "就诊.病理学检查.临床诊断",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "镜下所见",
         "IndexFieldName": "visits.Pathology_reports.UNDER_MICROSCOPE",
         "srchFieldName": "就诊.病理学检查.镜下所见",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "病理诊断",
         "IndexFieldName": "visits.Pathology_reports.PATHOLOGY_DIAGNOSIS",
         "srchFieldName": "就诊.病理学检查.病理诊断",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "肿瘤大小",
         "IndexFieldName": "visits.Pathology_reports.TUMOR_SIZE",
         "srchFieldName": "就诊.病理学检查.肿瘤大小",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "肿瘤位置",
         "IndexFieldName": "visits.Pathology_reports.TUMOR_LOCATION",
         "srchFieldName": "就诊.病理学检查.肿瘤位置",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "切面颜色",
         "IndexFieldName": "visits.Pathology_reports.PATHOLOGICAL_SECTION_COLOR",
         "srchFieldName": "就诊.病理学检查.切面颜色",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "质地",
         "IndexFieldName": "visits.Pathology_reports.PATHOLOGICAL_TEXTURE",
         "srchFieldName": "就诊.病理学检查.质地",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "有无包膜",
@@ -25407,25 +26299,29 @@
         "dataMap": [
           "有",
           "无"
-        ]
+        ],
+        "relatedItems": []
       },
       {
         "UIFieldName": "病理组织来源",
         "IndexFieldName": "visits.Pathology_reports.PATHOLOGICAL_TISSUE_SOURCE",
         "srchFieldName": "就诊.病理学检查.病理组织来源",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "病灶数量",
         "IndexFieldName": "visits.Pathology_reports.LESION_COUNT",
         "srchFieldName": "就诊.病理学检查.病灶数量",
-        "dataType": "long"
+        "dataType": "long",
+        "relatedItems": []
       },
       {
         "UIFieldName": "脉管瘤栓",
         "IndexFieldName": "visits.Pathology_reports.CARCINOMA CELL_EMBOLUS",
         "srchFieldName": "就诊.病理学检查.脉管瘤栓",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       }
     ],
     "就诊.实验室检验.检验基本信息": [
@@ -25433,27 +26329,31 @@
         "UIFieldName": "检验名称",
         "IndexFieldName": "visits.Inspection_reports.INSPECTION.EXAMINATION_NAME",
         "srchFieldName": "就诊.实验室检验.检验基本信息.检验名称",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "检验编号",
         "IndexFieldName": "visits.Inspection_reports.INSPECTION.SPECIMEN_SN",
         "srchFieldName": "就诊.实验室检验.检验基本信息.检验编号",
-        "dataType": "string"
+        "dataType": "string",
+        "relatedItems": []
       },
       {
         "UIFieldName": "医嘱日期",
         "IndexFieldName": "visits.Inspection_reports.INSPECTION.ORDER_TIME",
         "srchFieldName": "就诊.实验室检验.检验基本信息.医嘱日期",
         "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
+        "dateFormat": "yyyy-MM-dd",
+        "relatedItems": []
       },
       {
         "UIFieldName": "报告日期",
         "IndexFieldName": "visits.Inspection_reports.INSPECTION.REPORT_TIME",
         "srchFieldName": "就诊.实验室检验.检验基本信息.报告日期",
         "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
+        "dateFormat": "yyyy-MM-dd",
+        "relatedItems": []
       }
     ],
     "就诊.实验室检验.检验子项": [
@@ -25520,16 +26420,16 @@
           {
             "IndexFieldName": "visits.Chemotherapy.START_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.化疗信息.开始日期",
-            "UIFieldName": "开始日期"
+            "UIFieldName": "开始日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Chemotherapy.END_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.化疗信息.结束日期",
-            "UIFieldName": "结束日期"
+            "UIFieldName": "结束日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Chemotherapy.CHEMOTHERAPY_DEP",
@@ -25654,22 +26554,22 @@
           {
             "IndexFieldName": "visits.Chemotherapy.IS_DELAY",
             "dataType": "boolean",
+            "srchFieldName": "就诊.化疗信息.是否延期",
+            "UIFieldName": "是否延期",
             "dataMap": [
               "是",
               "否"
-            ],
-            "srchFieldName": "就诊.化疗信息.是否延期",
-            "UIFieldName": "是否延期"
+            ]
           },
           {
             "IndexFieldName": "visits.Chemotherapy.IS_DECREMENT",
             "dataType": "boolean",
+            "srchFieldName": "就诊.化疗信息.是否减量",
+            "UIFieldName": "是否减量",
             "dataMap": [
               "是",
               "否"
-            ],
-            "srchFieldName": "就诊.化疗信息.是否减量",
-            "UIFieldName": "是否减量"
+            ]
           }
         ]
       },
@@ -25690,16 +26590,16 @@
           {
             "IndexFieldName": "visits.Radiotherapy.START_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.放疗信息.开始日期",
-            "UIFieldName": "开始日期"
+            "UIFieldName": "开始日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Radiotherapy.END_DATE",
             "dataType": "date",
-            "dateFormat": "yyyy-MM-dd",
             "srchFieldName": "就诊.放疗信息.结束日期",
-            "UIFieldName": "结束日期"
+            "UIFieldName": "结束日期",
+            "dateFormat": "yyyy-MM-dd"
           },
           {
             "IndexFieldName": "visits.Radiotherapy.CHEMOTHERAPY_AT_THE_SAME_TIME",
@@ -27222,6 +28122,40 @@
         "dataMap": [
           "是",
           "否"
+        ],
+        "relatedItems": [
+          {
+            "IndexFieldName": "disease_history.G_HBP_YES_NO",
+            "dataType": "string",
+            "srchFieldName": "既往疾病史.有无高血压史",
+            "UIFieldName": "有无高血压史",
+            "dataMap": [
+              "有",
+              "无"
+            ]
+          },
+          {
+            "IndexFieldName": "disease_history.G_HBP_YEAR",
+            "dataType": "double",
+            "srchFieldName": "既往疾病史.高血压史年限",
+            "UIFieldName": "高血压史年限"
+          },
+          {
+            "IndexFieldName": "disease_history.G_HBP_YES_NO",
+            "dataType": "string",
+            "srchFieldName": "既往疾病史.有无高血压史",
+            "UIFieldName": "有无高血压史",
+            "dataMap": [
+              "有",
+              "无"
+            ]
+          },
+          {
+            "IndexFieldName": "disease_history.G_HBP_YEAR",
+            "dataType": "double",
+            "srchFieldName": "既往疾病史.高血压史年限",
+            "UIFieldName": "高血压史年限"
+          }
         ]
       },
       {
@@ -29523,7 +30457,7 @@
         "IndexFieldName": "visits.check_orders.DISCHARGE_DATE",
         "srchFieldName": "就诊.检查医嘱.出院日期",
         "dataType": "date",
-        "dateFormat": ""
+        "dateFormat": "yyyy-MM-dd HH:mm:ss"
       }
     ],
     "就诊.检验医嘱": [
@@ -29773,36 +30707,22 @@
         "dateFormat": "yyyy-MM-dd"
       }
     ],
-    "就诊.内窥镜检查": [
-      {
-        "UIFieldName": "检查日期",
-        "IndexFieldName": "visits.Microscopic_exam_reports.EXAMINATION_DATE",
-        "srchFieldName": "就诊.内窥镜检查.检查日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      },
-      {
-        "UIFieldName": "报告日期",
-        "IndexFieldName": "visits.Microscopic_exam_reports.REPORT_DATE",
-        "srchFieldName": "就诊.内窥镜检查.报告日期",
-        "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
-      }
-    ],
     "就诊.病理学检查": [
       {
         "UIFieldName": "检查日期",
         "IndexFieldName": "visits.Pathology_reports.EXAMNIATION_DATE",
         "srchFieldName": "就诊.病理学检查.检查日期",
         "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
+        "dateFormat": "yyyy-MM-dd",
+        "relatedItems": []
       },
       {
         "UIFieldName": "报告日期",
         "IndexFieldName": "visits.Pathology_reports.REPORT_DATE",
         "srchFieldName": "就诊.病理学检查.报告日期",
         "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
+        "dateFormat": "yyyy-MM-dd",
+        "relatedItems": []
       }
     ],
     "就诊.实验室检验.检验基本信息": [
@@ -29811,14 +30731,16 @@
         "IndexFieldName": "visits.Inspection_reports.INSPECTION.ORDER_TIME",
         "srchFieldName": "就诊.实验室检验.检验基本信息.医嘱日期",
         "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
+        "dateFormat": "yyyy-MM-dd",
+        "relatedItems": []
       },
       {
         "UIFieldName": "报告日期",
         "IndexFieldName": "visits.Inspection_reports.INSPECTION.REPORT_TIME",
         "srchFieldName": "就诊.实验室检验.检验基本信息.报告日期",
         "dataType": "date",
-        "dateFormat": "yyyy-MM-dd"
+        "dateFormat": "yyyy-MM-dd",
+        "relatedItems": []
       }
     ],
     "就诊.不良事件与合并用药.不良事件": [
