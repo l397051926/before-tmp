@@ -3,11 +3,10 @@ package com.gennlife.platform.controller;
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.model.User;
-import com.gennlife.platform.processor.LaboratoryProcessor;
 import com.gennlife.platform.processor.UserProcessor;
 import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.MemCachedUtil;
 import com.gennlife.platform.util.ParamUtils;
+import com.gennlife.platform.util.SpringContextUtil;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import redis.clients.jedis.JedisCluster;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +36,7 @@ public class UserController{
     private static Gson gson = GsonUtil.getGson();
     public static Integer sessionTimeOut = 10;
     private static View view = new View();
+    private JedisCluster jedisCluster = (JedisCluster) SpringContextUtil.getBean("jedisClusterFactory");
     @RequestMapping(value="/Login",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public void postLogin(HttpServletRequest paramRe, HttpServletResponse response){
         Long start = System.currentTimeMillis();
@@ -44,22 +45,33 @@ public class UserController{
             HttpSession session = paramRe.getSession(true);
             String sessionID = session.getId();
             String param = ParamUtils.getParam(paramRe);
-            ResultBean resultBean =  processor.login(param);
-            if(resultBean.getCode() == 1){
-                User user = (User) resultBean.getData();
-                MemCachedUtil.set(sessionID,user.getUid());
-                logger.info("登陆设置sessionID="+sessionID+"，uid="+user.getUid());
-                String exSession = MemCachedUtil.get(user.getUid());
-                if(!sessionID.equals(exSession)){
-                    MemCachedUtil.delete(exSession);
+            logger.info("Login param="+param);
+            String email = null;
+            String pwd = null;
+            try{
+                JsonObject user = (JsonObject)jsonParser.parse(param);
+                email = user.get("email").getAsString();
+                pwd = user.get("pwd").getAsString();
+            }catch (Exception e) {
+                view.viewString(ParamUtils.errorParam("参数错误"), response);
+                return;
+            }
+            User user = processor.login(email,pwd);
+            ResultBean resultBean = new ResultBean();
+            if(user != null){
+                if(jedisCluster.exists(user.getUid()).booleanValue()){//使已经登陆失效
+                    String exSessionID = this.jedisCluster.get(user.getUid());
+                    this.jedisCluster.del(exSessionID);
+                    this.jedisCluster.del(user.getUid());
+                    this.jedisCluster.del(user.getUid() + "_info");
                 }
-                logger.info("登陆删除 sessionID="+exSession);
-                MemCachedUtil.set(user.getUid(),sessionID);
-                logger.info("登陆设置 uid="+user.getUid()+"，sessionID="+sessionID);
-                MemCachedUtil.daleteUser(user.getUid());
-                MemCachedUtil.setUser(user.getUid(),user);
+                this.jedisCluster.append(user.getUid() + "_info", gson.toJson(user));
+                this.jedisCluster.append(sessionID, user.getUid());
+                this.jedisCluster.append(user.getUid(), sessionID);
+                resultBean.setCode(1);
                 resultBean.setData(user);
-                session.setAttribute("user",gson.toJson(user));
+            }else {
+                view.viewString(ParamUtils.errorParam("登陆失败"), response);
             }
             Cookie cookie = new Cookie("JSESSIONID",session.getId());
             response.addCookie(cookie);
@@ -168,13 +180,7 @@ public class UserController{
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = UserProcessor.getUserByUid(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             String userStr = gson.toJson(user);
             return processor.CRFList(userStr);
         }catch (Exception e){

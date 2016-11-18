@@ -5,7 +5,6 @@ import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.LaboratoryProcessor;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.MemCachedUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -16,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,13 +32,12 @@ public class BackstageManagementController {
     private static LaboratoryProcessor processor = new LaboratoryProcessor();
     @RequestMapping(value="/OrgMapData",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postOrgMapData(@RequestParam("param") String param){
+    String postOrgMapData(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            logger.info("获取科室组织信息 get方式 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.orgMapData(paramObj);
+            User user = (User)paramRe.getAttribute("currentUser");
+            resultStr =  processor.orgMapData(user);
         }catch (Exception e){
             logger.error("获取科室组织信息",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -72,13 +69,7 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             logger.info("删除科室 get方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.deleteOrg(paramObj,user);
@@ -96,13 +87,7 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.updateOrg(paramObj,user);
         }catch (Exception e){
@@ -119,13 +104,7 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getStaffInfo(paramObj,user);
         }catch (Exception e){
@@ -142,13 +121,7 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.addStaff(paramObj,user);
         }catch (Exception e){
@@ -164,13 +137,7 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user  = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             JsonArray paramObj = (JsonArray) jsonParser.parse(param);
             resultStr =  processor.deleteStaff(paramObj,user);
         }catch (Exception e){
@@ -186,13 +153,7 @@ public class BackstageManagementController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user= MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             String orgID = user.getOrgID();
             resultStr =  processor.getProfessionList(orgID);
         }catch (Exception e){
@@ -208,13 +169,7 @@ public class BackstageManagementController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user =  MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getGetRoleInfo(paramObj,user);
@@ -232,13 +187,7 @@ public class BackstageManagementController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getStaffTree(paramObj,user);
@@ -257,13 +206,7 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             JsonArray paramObj = (JsonArray) jsonParser.parse(param);
             resultStr =  processor.deleteRoles(paramObj,user);
         }catch (Exception e){
@@ -280,13 +223,7 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.addRole(paramObj,user);
         }catch (Exception e){
@@ -302,13 +239,7 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.editRole(paramObj,user);
         }catch (Exception e){
@@ -344,13 +275,7 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user= MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getRoleStaff(paramObj,user);
         }catch (Exception e){
@@ -368,13 +293,7 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user= MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getRoleResource(paramObj,user);
         }catch (Exception e){
@@ -390,13 +309,7 @@ public class BackstageManagementController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getResourceTree(paramObj,user);
         }catch (Exception e){
@@ -411,13 +324,7 @@ public class BackstageManagementController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
             resultBean.setData(user);

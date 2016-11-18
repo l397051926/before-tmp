@@ -4,7 +4,6 @@ import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.CrfProcessor;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.MemCachedUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -12,12 +11,10 @@ import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -159,16 +156,7 @@ public class CrfController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
-            if(user == null || user.getOrgID() == null){
-                return ParamUtils.errorSessionLosParam();
-            }
+            User user = (User)paramRe.getAttribute("currentUser");
             String indexName = ConfigurationService.getOrgIDIndexNamemap().get(user.getOrgID());
             if(indexName == null){
                 return ParamUtils.errorParam("用户所在的组织无法建立索引");
@@ -192,16 +180,7 @@ public class CrfController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
-            if(user == null || user.getOrgID() == null){
-                return ParamUtils.errorSessionLosParam();
-            }
+            User user = (User)paramRe.getAttribute("currentUser");
             String indexName = ConfigurationService.getOrgIDIndexNamemap().get(user.getOrgID());
             if(indexName == null){
                 return ParamUtils.errorParam("用户所在的组织无法建立索引");
@@ -458,16 +437,7 @@ public class CrfController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
-            if(user == null || user.getOrgID() == null){
-                return ParamUtils.errorSessionLosParam();
-            }
+            User user = (User)paramRe.getAttribute("currentUser");
             String indexName = ConfigurationService.getOrgIDIndexNamemap().get(user.getOrgID());
             if(indexName == null){
                 return ParamUtils.errorParam("用户所在的组织无法建立索引");
@@ -511,16 +481,7 @@ public class CrfController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
-            if(user == null || user.getOrgID() == null){
-                return ParamUtils.errorSessionLosParam();
-            }
+            User user = (User)paramRe.getAttribute("currentUser");
             String indexName = ConfigurationService.getOrgIDIndexNamemap().get(user.getOrgID());
             if(indexName == null){
                 return ParamUtils.errorParam("用户所在的组织无法建立索引");

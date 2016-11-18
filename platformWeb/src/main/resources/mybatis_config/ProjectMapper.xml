@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.gennlife.platform.dao.ProjectMapper">
     <insert id="insertCreateProject" parameterType="com.gennlife.platform.bean.projectBean.CreateProject" >
-        insert into p_project
+        insert into userInfoDB.p_project
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="projectID != null" >
                 projectID,
@@ -114,7 +114,7 @@
 
 
     <insert id="insertProUserList" parameterType="java.util.List" >
-        insert into pro_user (uid,projectID,role)
+        insert into userInfoDB.pro_user (uid,projectID,role)
         values
         <foreach collection="list" item="item" index="index" separator="," >
             (#{item.uid},#{item.projectID},#{item.role})
@@ -122,7 +122,7 @@
     </insert>
 
     <insert id="insertProLog" parameterType="com.gennlife.platform.bean.projectBean.ProLog" >
-        insert into p_prolog
+        insert into userInfoDB.p_prolog
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="projectID != null" >
                 projectID,
@@ -178,7 +178,7 @@
     </insert>
 
     <insert id="insertProjectMember" parameterType="map" >
-        insert into pro_user
+        insert into userInfoDB.pro_user
         (uid,projectID,role) values (#{uid,,jdbcType=VARCHAR},#{projectID},2);
     </insert>
 
@@ -195,21 +195,21 @@
     <select id="getProjectLog" resultType="com.gennlife.platform.bean.projectBean.ProLog" parameterType="map">
         select
         p.projectID,p.planName,uid,action,date_format(logTime,"%Y-%m-%d %H:%i") AS lTime,logText,p.sampleName
-        from p_prolog p
+        from userInfoDB.p_prolog p
         <where>p.projectID=#{projectID} order by logTime desc limit #{startIndex},#{maxNum}</where>
     </select>
 
     <select id="getProjectLogCounter" resultType="java.lang.Integer" parameterType="map">
         select
         count(*)
-        from p_prolog p
+        from userInfoDB.p_prolog p
         <where>p.projectID=#{projectID}</where>
     </select>
 
     <select id="getProjectSetNameList" resultType="java.lang.String" parameterType="map">
         select
         sampleName
-        from pro_sample p
+        from userInfoDB.pro_sample p
         <where>p.projectID=#{projectID} ORDER BY opTime desc</where>
     </select>
 
@@ -228,13 +228,13 @@
     <select id="getProjectPlan" resultType="com.gennlife.platform.bean.projectBean.ProjectPlan" parameterType="map">
         select
         id,projectID,planName,planDesc,creator,planStatus,createTime,date_format(createTime,"%Y-%m-%d") AS cTime,modifier,taskID,taskName
-        from p_plan p
+        from userInfoDB.p_plan p
         <where>p.projectID=#{projectID} and planStatus > 0 order by createTime asc limit #{startIndex},#{maxNum}</where>
     </select>
     <select id="getProjectPlanCounter" resultType="java.lang.Integer" parameterType="map">
         select
         count(*)
-        from p_plan p
+        from userInfoDB.p_plan p
         <where>p.projectID=#{projectID} and planStatus > 0 </where>
     </select>
 
@@ -247,27 +247,27 @@
     <select id="getProjectSetName" resultType="java.lang.String" parameterType="map">
         select
         sampleName
-        from pro_sample
+        from userInfoDB.pro_sample
         <where>pro_sample.projectID=#{projectID}  and sampleURI = #{uri}</where>
     </select>
 
     <delete id="deleteProjectSet"  parameterType="map">
-        DELETE from pro_sample
+        DELETE from userInfoDB.pro_sample
         <where> projectID=#{projectID} and sampleURI = #{uri}</where>
     </delete>
 
     <delete id="deleteProjectMember"  parameterType="map">
-        DELETE from pro_user
+        DELETE from userInfoDB.pro_user
         <where> projectID=#{projectID} and uid = #{uid}</where>
     </delete>
 
     <delete id="deleteProject"  parameterType="map">
-        DELETE from pro_user
+        DELETE from userInfoDB.pro_user
         <where> projectID=#{projectID}</where>
     </delete>
 
     <update id="updateProPlan" parameterType="com.gennlife.platform.bean.projectBean.ProjectPlan">
-        UPDATE p_plan
+        UPDATE userInfoDB.p_plan
         <set>planStatus = #{planStatus},modifier = #{modifier},planName=#{planName},modifTime=#{modifTime},planDesc=#{planDesc},modifTime=#{modifTime,jdbcType=TIMESTAMP,javaType=java.util.Date}, </set>
         <where> projectID=#{projectID} and id = #{id}</where>
     </update>
@@ -335,7 +335,7 @@
     <select id="getProjectSampleMembers" resultType="com.gennlife.platform.bean.projectBean.SampleMember" parameterType="map">
         select
         uid,role
-        from pro_user p
+        from userInfoDB.pro_user p
         <where>p.projectID=#{projectID}</where>
     </select>
 
@@ -353,7 +353,7 @@
         <result column="sampleDesc" property="sampleDesc" jdbcType="VARCHAR"/>
     </resultMap>
     <insert id="insertProSample" parameterType="com.gennlife.platform.bean.projectBean.ProSample" >
-        insert into pro_sample
+        insert into userInfoDB.pro_sample
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="projectID != null" >
                 projectID,
@@ -426,7 +426,7 @@
     <select id="getMaxBatchID" resultType="java.lang.Integer" parameterType="map">
         select
         max(batchID)
-        from pro_sample p
+        from userInfoDB.pro_sample p
         <where>p.projectID=#{projectID} </where>
     </select>
 
@@ -434,14 +434,14 @@
     <select id="getSampleDataInitList" resultType="com.gennlife.platform.bean.projectBean.ProSample" parameterType="map">
         select
         planName,sampleURI,sampleName,opTime,batchID,total,items,sampleDesc
-        from pro_sample p
+        from userInfoDB.pro_sample p
         <where>p.projectID=#{projectID} and bstatus = 1</where>
     </select>
 
     <select id="searchSampleSetList" resultType="com.gennlife.platform.bean.projectBean.ProSample" parameterType="map">
         select
         planName,sampleURI,sampleName,opTime,batchID,total,items,sampleDesc
-        from pro_sample p
+        from userInfoDB.pro_sample p
         <where>p.projectID=#{projectID} and sampleName LIKE '%${key}%'
             order by opTime desc limit #{startIndex},#{maxNum}</where>
     </select>
@@ -449,22 +449,24 @@
     <select id="searchSampleSetListCounter" resultType="java.lang.Integer" parameterType="map">
         select
         count(*)
-        from pro_sample p
+        from userInfoDB.pro_sample p
         <where>p.projectID=#{projectID} and sampleName LIKE '%${key}%'</where>
     </select>
 
     <select id="getSampleDataListByPlanName" resultType="com.gennlife.platform.bean.projectBean.ProSample" parameterType="map">
         select
         planName,sampleURI,sampleName,opTime,batchID,total,items,sampleDesc
-        from pro_sample p
+        from userInfoDB.pro_sample p
         <where>p.projectID=#{projectID} and p.planName=#{planName}</where>
     </select>
     <select id="getPlanName" resultType="java.lang.String" parameterType="map">
-        select planName from p_plan where projectID=#{projectID} and id = #{id}
+        select planName
+        from userInfoDB.p_plan
+        where projectID=#{projectID} and id = #{id}
     </select>
 
     <update id="updateProject"  parameterType="map">
-        UPDATE p_project
+        UPDATE userInfoDB.p_project
         <set> projectName= #{projectName},
             projectDesp = #{projectDesp},
             <if test="startTime != null" >
@@ -498,7 +500,7 @@
     <select id="getProjectDisease" resultType="java.lang.String" parameterType="map">
         select
         disease
-        from p_project
+        from userInfoDB.p_project
         <where>p_project.projectID=#{projectID} limit 1</where>
     </select>
 
@@ -511,17 +513,17 @@
     <select id="isExistPlan" resultType="java.lang.Integer" parameterType="map">
         select
         count(*)
-        from p_plan
+        from userInfoDB.p_plan
         <where>p_plan.projectID=#{projectID} AND p_plan.planName=#{planName}</where>
     </select>
     <select id="isExistSet" resultType="java.lang.Integer" parameterType="map">
         select
         count(*)
-        from pro_sample
+        from userInfoDB.pro_sample
         <where>pro_sample.projectID=#{projectID} AND pro_sample.sampleName=#{sampleName}</where>
     </select>
     <update id="updateSetInfo" parameterType="map">
-        UPDATE pro_sample
+        UPDATE userInfoDB.pro_sample
         <set>sampleName = #{sampleName},sampleDesc=#{sampleDesc}</set>
         <where> projectID=#{projectID} and sampleURI = #{sampleURI}</where>
     </update>
@@ -555,7 +557,7 @@
             parameterType="map">
         select
         <include refid="MyProjectListSelect" />
-        from p_project p
+        from userInfoDB.p_project p
         <where>p.projectID=#{projectID} limit 0,1</where>
     </select>
 
@@ -564,7 +566,7 @@
             parameterType="map">
         select
         <include refid="MyProjectListSelect" />
-        from p_project p JOIN pro_user u on u.projectID = p.projectID
+        from userInfoDB.p_project p JOIN userInfoDB.pro_user u on u.projectID = p.projectID
         <where>u.uid=#{uid} order by createTime  desc</where>
     </select>
 
@@ -572,7 +574,7 @@
             parameterType="map">
         select
         <include refid="MyProjectListSelect" />
-        from p_project p JOIN pro_user u on u.projectID = p.projectID
+        from userInfoDB.p_project p JOIN userInfoDB.pro_user u on u.projectID = p.projectID
         <where>u.uid=#{loginname} and p.projectName like '%${key}%' order by createTime  desc limit #{startIndex},#{maxNum}</where>
     </select>
 
@@ -580,7 +582,7 @@
     <select id="getProjectCounter" resultType="java.lang.Integer" parameterType="map">
         select
         count(*)
-        from p_project p JOIN pro_user u on u.projectID = p.projectID
+        from userInfoDB.p_project p JOIN userInfoDB.pro_user u on u.projectID = p.projectID
         <where>u.uid=#{loginname} and p.projectName like '%${key}%'</where>
     </select>
 
@@ -623,8 +625,8 @@
     <select id="getProjectMemberList" resultMap="projectUser"  parameterType="map">
         select
         <include refid="userProperty" />
-        FROM gennlife_user
-        JOIN pro_user ON gennlife_user.uid = pro_user.uid
+        FROM userInfoDB.gennlife_user
+        JOIN userInfoDB.pro_user ON gennlife_user.uid = pro_user.uid
         <where> pro_user.projectID = #{projectID}
             ORDER BY ctime DESC </where>
     </select>
@@ -632,7 +634,7 @@
     <select id="getProjectMemberCounter" resultType="java.lang.Integer"  parameterType="map">
         select
         count(gennlife_user.uid)
-        FROM gennlife_user JOIN pro_user ON gennlife_user.uid = pro_user.uid
+        FROM userInfoDB.gennlife_user JOIN userInfoDB.pro_user ON gennlife_user.uid = pro_user.uid
         <where> pro_user.projectID = #{projectID}
             ORDER BY ctime DESC  </where>
     </select>
@@ -641,7 +643,7 @@
     <select id="searchMemberList" resultMap="projectUser"  parameterType="map">
         select
         <include refid="userProperty" />
-        FROM gennlife_user
+        FROM userInfoDB.gennlife_user
         <where>(gennlife_user.uid LIKE '%${searchMemberkey}%' OR
             gennlife_user.org_name LIKE '%${searchMemberkey}%' OR
             gennlife_user.uname LIKE '%${searchMemberkey}%' OR
@@ -659,7 +661,7 @@
     <select id="searchMemberCounter" resultType="java.lang.Integer"  parameterType="map">
         select
         count(gennlife_user.uid)
-        FROM gennlife_user
+        FROM userInfoDB.gennlife_user
         <where>
             (gennlife_user.uid LIKE '%${searchMemberkey}%' OR
             gennlife_user.org_name LIKE '%${searchMemberkey}%' OR
@@ -679,19 +681,19 @@
         SELECT
         <include refid="ProSampleProperty"/>
         FROM
-        pro_sample
+        userInfoDB.pro_sample
         WHERE
         pro_sample.sampleURI = #{sampleURI}
     </select>
     <update id="autoAddSetCountOne" >
         UPDATE
-        p_project
+        userInfoDB.p_project
         SET setCount = setCount + 1
         WHERE  projectID = #{projectID}
     </update>
     <update id="autoDeleteSetCountOne">
          UPDATE
-        p_project
+        userInfoDB.p_project
         SET setCount = setCount - 1
         WHERE  projectID = #{projectID}
     </update>

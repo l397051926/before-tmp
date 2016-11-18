@@ -123,4 +123,23 @@
         <property name="socketConnectTO" value="0" />
         <property name="socketTO" value="3000" />
     </bean>
+
+    <!--redis 配置-->
+    <bean name="genericObjectPoolConfig" class="org.apache.commons.pool2.impl.GenericObjectPoolConfig">
+        <property name="maxWaitMillis" value="-1" />
+        <property name="maxTotal" value="8" />
+        <property name="minIdle" value="0" />
+        <property name="maxIdle" value="8" />
+    </bean>
+    <bean id="jedisClusterFactory" class="com.gennlife.platform.configuration.JedisClusterFactory">
+        <property name="connectionTimeout" value="3000" />
+        <property name="soTimeout" value="3000" />
+        <property name="maxRedirections" value="5" />
+        <property name="genericObjectPoolConfig" ref="genericObjectPoolConfig" />
+        <property name="jedisClusterNodes">
+            <set>
+                <value>10.0.0.70:6379</value>
+            </set>
+        </property>
+    </bean>
 </beans>

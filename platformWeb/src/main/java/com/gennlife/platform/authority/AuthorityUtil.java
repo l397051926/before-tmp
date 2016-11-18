@@ -1,19 +1,14 @@
 package com.gennlife.platform.authority;
 
-import com.gennlife.platform.controller.UserController;
 import com.gennlife.platform.model.Admin;
 import com.gennlife.platform.model.User;
-import com.gennlife.platform.processor.UserProcessor;
-import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.MemCachedUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -27,28 +22,19 @@ public class AuthorityUtil {
     public static String addAuthority(HttpServletRequest paramRe){
         String param = ParamUtils.getParam(paramRe);
         JsonElement paramElement = jsonParser.parse(param);
-        HttpSession session = paramRe.getSession();
-        if(session == null){
+        Object object = paramRe.getAttribute("currentUser");
+        if(object == null){
             return ParamUtils.errorSessionLosParam();
-        }
-        String sessionID = session.getId();
-        logger.debug("sessionID = "+sessionID);
-        String uid = MemCachedUtil.get(sessionID);
-        logger.debug("uid = "+uid);
-        if(uid == null){
-            return ParamUtils.errorSessionLosParam();
-        }
-        User userS = UserProcessor.getUserByUid(uid);
-        JsonObject user = (JsonObject) jsonParser.parse(gson.toJson(userS));
-        JsonArray roles = user.getAsJsonArray("roles");
-        if(paramElement.isJsonObject()){
-            JsonObject paramObj = paramElement.getAsJsonObject();
-            paramObj.add("roles",roles);
-            return gson.toJson(paramObj);
-        }else if(paramElement.isJsonArray()){
-            return gson.toJson(paramElement);
-        }else{
-            return null;
+        }else {
+            JsonObject user = (JsonObject)jsonParser.parse(gson.toJson(object));
+            JsonArray roles = user.getAsJsonArray("roles");
+            if(paramElement.isJsonObject()) {
+                JsonObject paramObj = paramElement.getAsJsonObject();
+                paramObj.add("roles", roles);
+                return gson.toJson(paramObj);
+            } else {
+                return paramElement.isJsonArray()?gson.toJson(paramElement):null;
+            }
         }
     }
     public static boolean isAdmin(User user){
@@ -65,32 +51,4 @@ public class AuthorityUtil {
         }
         return isAdmin;
     }
-
-    public static String addAuthorityForString(String param,HttpSession session){
-        JsonElement paramElement = jsonParser.parse(param);
-        if(session == null){
-            return ParamUtils.errorSessionLosParam();
-        }
-        String sessionID = session.getId();
-        logger.debug("sessionID = "+sessionID);
-        String uid = MemCachedUtil.get(sessionID);
-        logger.debug("uid = "+uid);
-        if(uid == null){
-            return ParamUtils.errorSessionLosParam();
-        }
-        User userS = UserProcessor.getUserByUid(uid);
-        JsonObject user = (JsonObject) jsonParser.parse(gson.toJson(userS));
-        JsonArray roles = user.getAsJsonArray("roles");
-        if(paramElement.isJsonObject()){
-            JsonObject paramObj = paramElement.getAsJsonObject();
-            paramObj.add("roles",roles);
-            //paramObj.addProperty("indexName",indexName);
-            return gson.toJson(paramObj);
-        }else if(paramElement.isJsonArray()){
-            return gson.toJson(paramElement);
-        }else{
-            return null;
-        }
-    }
-
 }

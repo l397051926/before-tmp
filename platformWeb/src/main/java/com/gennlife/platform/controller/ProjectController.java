@@ -3,7 +3,6 @@ package com.gennlife.platform.controller;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.ProjectProcessor;
 import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.MemCachedUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -200,13 +199,7 @@ public class ProjectController {
         logger.info("CreateNewPlan param ="+param);
         String resultStr = null;
         try{
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             resultStr =  processor.createNewPlan(param,user);
         }catch (Exception e){
             logger.error("",e);
@@ -223,13 +216,7 @@ public class ProjectController {
         logger.info("AddMember param ="+param);
         String resultStr = null;
         try{
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             resultStr =  processor.addMember(param,user);
         }catch (Exception e){
             logger.error("",e);
@@ -263,13 +250,7 @@ public class ProjectController {
         logger.info("EditProject param ="+param);
         String resultStr = null;
         try{
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             resultStr =  processor.editProject(param,user);
         }catch (Exception e){
             logger.error("",e);
@@ -305,13 +286,7 @@ public class ProjectController {
         try{
             String param = ParamUtils.getParam(paramRe);
             logger.info("DeleteProject param ="+param);
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             resultStr =  processor.deleteProject(param,user);
         }catch (Exception e){
             logger.error("",e);
@@ -328,13 +303,7 @@ public class ProjectController {
         try{
             String param = ParamUtils.getParam(paramRe);
             logger.info("DeletePlan param ="+param);
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             resultStr =  processor.deletePlan(param,user);
         }catch (Exception e){
             logger.error("",e);
@@ -351,13 +320,7 @@ public class ProjectController {
         try{
             String param = ParamUtils.getParam(paramRe);
             logger.info("DeleteProjectSet param ="+param);
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             resultStr =  processor.deleteSet(param,user);
         }catch (Exception e){
             logger.error("",e);
@@ -373,13 +336,7 @@ public class ProjectController {
         try{
             String param = ParamUtils.getParam(paramRe);
             logger.info("DeleteProjectSet param ="+param);
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid = MemCachedUtil.get(sessionID);
-            if(uid == null){
-                return ParamUtils.errorSessionLosParam();
-            }
-            User user = MemCachedUtil.getUser(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             logger.info("DeleteMember param ="+param);
             resultStr =  processor.deleteMember(param,user);
         }catch (Exception e){
