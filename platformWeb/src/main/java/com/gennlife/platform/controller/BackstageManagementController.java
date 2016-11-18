@@ -404,7 +404,7 @@ public class BackstageManagementController {
         return resultStr;
     }
 
-    @RequestMapping(value="/IsExistGroupName",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/IsExistGroupName",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String IsExistGroupName(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
