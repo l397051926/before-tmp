@@ -28,9 +28,11 @@ public class AuthorityUtil {
         }else {
             JsonObject user = (JsonObject)jsonParser.parse(gson.toJson(object));
             JsonArray roles = user.getAsJsonArray("roles");
+            JsonArray groups = user.getAsJsonArray("groups");
             if(paramElement.isJsonObject()) {
                 JsonObject paramObj = paramElement.getAsJsonObject();
                 paramObj.add("roles", roles);
+                paramObj.add("groups",groups);
                 return gson.toJson(paramObj);
             } else {
                 return paramElement.isJsonArray()?gson.toJson(paramElement):null;
