@@ -16,8 +16,9 @@ def sortItem(itemArray,allSortIndexName):
     return newArray
 
 def process():
-    data = xlrd.open_workbook('/Users/chen-song/Downloads/病人维度临床数据字段配置_V2.1.35.xls')
+    data = xlrd.open_workbook('/Users/chen-song/Downloads/肾癌病人维度临床数据字段配置_V2.1.48_5.xls')
     allItemList = OrderedDict()
+    allItemListCopy = {}
     sheet = data.sheets()[0]
     rowsNum = sheet.nrows#行数
     keylist = sheet.row_values(1)
@@ -29,7 +30,6 @@ def process():
         rows = sheet.row_values(i)
         if rows[0] == '':
             continue
-        #print('length=',len(rows),'item=',rows)
         for i in range(0,len(keylist)):
             key = keylist[i].strip()
             value = rows[i]
@@ -44,10 +44,8 @@ def process():
         reItem['advanced_search'] = item['advanced_search'].strip()
         reItem['imported'] = item['imported'].strip()
         reItem['group_en_name'] = item['group_en_name'].strip()
-
         if reItem['group_cn_name'] not in allSortGroupName:
             allSortGroupName.append(reItem['group_cn_name'])
-
         if reItem['IndexFieldName'] not in allSortIndexName:
             allSortIndexName.append(reItem['IndexFieldName'])
 
@@ -65,16 +63,31 @@ def process():
             reItem['attendant'] = item['attendant']
         allItemList[reItem['IndexFieldName']] = reItem
 
+        reItemStr = json.dumps(reItem)
+        reItemCopy = json.loads(reItemStr)
+
+        del (reItemCopy['imported'])
+        del (reItemCopy['advanced_search'])
+        del (reItemCopy['default_show'])
+        del (reItemCopy['group_en_name'])
+        del (reItemCopy['group_cn_name'])
+        if 'attendant' in reItemCopy:
+            del (reItemCopy['attendant'])
+        allItemListCopy[reItemCopy['IndexFieldName']] = reItemCopy
+    subItem = []#保存子属性IndexFieldName
+    subItemLive = []#保存是子属性，又是主属性
     for IndexFieldName in allSortIndexName:
         reItem = allItemList[IndexFieldName]
         if 'attendant' in reItem:
             valueStr = reItem['attendant']
+            subItemLive.append(IndexFieldName)
             valueList = valueStr.split("；")
             relatedItems = []
             for v in valueList:
-                keyIndex = reItem['group_en_name'] + '.' + v
-                if keyIndex in allItemList:
-                    relatedItems.append(allItemList[keyIndex])
+                keyIndex = reItem['group_en_name'] + '.' + v.strip()
+                subItem.append(keyIndex)
+                if keyIndex in allItemListCopy:
+                    relatedItems.append(allItemListCopy[keyIndex])
             reItem['relatedItems'] = relatedItems
 
     result = OrderedDict()
@@ -89,6 +102,15 @@ def process():
         imported = reItem['imported']
         group_cn_name = reItem['group_cn_name']
         groupArray = []
+        if (IndexFieldName in subItem and IndexFieldName in subItemLive) or (IndexFieldName not in subItem): #非单纯子属性进行
+            if advanced_search.strip() == "是":
+                advanced_searchTmpGroup = []
+                if group_cn_name in advancedGroup:
+                    advanced_searchTmpGroup = advancedGroup[group_cn_name]
+                else:
+                    advancedGroup[group_cn_name] = advanced_searchTmpGroup
+                advanced_searchTmpGroup.append(reItem)
+
         if group_cn_name in allGroup:
             groupArray = allGroup[group_cn_name]
         else:
@@ -101,14 +123,8 @@ def process():
                 defaultTmpGroup = defaultGroup[group_cn_name]
             else:
                 defaultGroup[group_cn_name] = defaultTmpGroup
-            defaultTmpGroup.append(reItem)
-        if advanced_search.strip() == "是":
-            advanced_searchTmpGroup = []
-            if group_cn_name in advancedGroup:
-                advanced_searchTmpGroup = advancedGroup[group_cn_name]
-            else:
-                advancedGroup[group_cn_name] = advanced_searchTmpGroup
-            advanced_searchTmpGroup.append(reItem)
+            reItemCopy = allItemListCopy[reItem['IndexFieldName']]
+            defaultTmpGroup.append(reItemCopy)
 
         if imported.strip() == "是":
             importedTmpGroup = []
@@ -116,7 +132,8 @@ def process():
                 importedTmpGroup = importedGroup[group_cn_name]
             else:
                 importedGroup[group_cn_name] = importedTmpGroup
-            importedTmpGroup.append(reItem)
+            reItemCopy = allItemListCopy[reItem['IndexFieldName']]
+            importedTmpGroup.append(reItemCopy)
         del (reItem['imported'])
         del (reItem['advanced_search'])
         del (reItem['default_show'])
@@ -129,7 +146,7 @@ def process():
     result['default'] = defaultGroup
     result['advancedSearch'] = advancedGroup
     result['import'] = importedGroup
-    compare={}
+    compare=OrderedDict()
     for groupName in allGroup.keys():
         itemList = allGroup[groupName]
         for item in itemList:
