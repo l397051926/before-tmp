@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gennlife.platform.dao.GroupMapper" >
+    <resultMap id="Group" type="com.gennlife.platform.model.Group" >
+        <result column="gennlife_group.orgID" property="orgID" jdbcType="VARCHAR" />
+        <result column="gennlife_group.groupID" property="groupID" jdbcType="VARCHAR" />
+        <result column="gennlife_group.groupName" property="groupName" jdbcType="VARCHAR" />
+        <result column="gennlife_group.groupDesc" property="groupDesc" jdbcType="VARCHAR" />
+        <result column="gennlife_group.groupCreator" property="groupCreator" jdbcType="VARCHAR" />
+        <result column="gennlife_group.groupCreatTime" property="groupCreatTime" jdbcType="VARCHAR" />
+        <result column="gennlife_group.has_search" property="has_search" jdbcType="VARCHAR" />
+        <result column="gennlife_group.has_searchExport" property="has_searchExport" jdbcType="VARCHAR" />
+        <result column="gennlife_group.has_traceCRF" property="has_traceCRF" jdbcType="VARCHAR" />
+        <result column="gennlife_group.has_addCRF" property="has_addCRF" jdbcType="VARCHAR" />
+        <result column="gennlife_group.has_deleteCRF" property="has_deleteCRF" jdbcType="VARCHAR" />
+        <result column="gennlife_group.has_addBatchCRF" property="has_addBatchCRF" jdbcType="VARCHAR" />
+        <result column="gennlife_group.has_browseDetail" property="has_browseDetail" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="GroupColumn">
+        gennlife_group.orgID,
+        gennlife_group.groupID,
+        gennlife_group.groupName,
+        gennlife_group.groupDesc,
+        gennlife_group.groupCreator,
+        gennlife_group.groupCreatTime,
+        gennlife_group.has_search,
+        gennlife_group.has_searchExport,
+        gennlife_group.has_traceCRF,
+        gennlife_group.has_addCRF,
+        gennlife_group.has_deleteCRF,
+        gennlife_group.has_addBatchCRF,
+        gennlife_group.has_browseDetail
+    </sql>
+    <select id="getGroupsBySearchName" parameterType="map" resultMap="Group">
+        SELECT
+        <include refid="GroupColumn"/>
+        FROM gennlife_group
+        WHERE
+        gennlife_group.orgID = #{orgID}
+        AND
+        gennlife_group.groupName LIKE CONCAT(CONCAT('%', #{skey}), '%')
+        ORDER BY gennlife_group.groupCreatTime DESC
+        limit #{startIndex},#{maxNum}
+    </select>
+
+    <select id="getGroupsByName" parameterType="map" resultMap="Group">
+        SELECT
+        <include refid="GroupColumn"/>
+        FROM gennlife_group
+        WHERE
+        gennlife_group.orgID = #{orgID}
+        AND
+        gennlife_group.groupName = #{groupName}
+    </select>
+
+    <select id="getGroupsBySearchNameCounter" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+        COUNT(gennlife_group.groupID)
+        FROM gennlife_group
+        WHERE
+        gennlife_group.orgID = #{orgID}
+        AND
+        gennlife_group.groupName LIKE CONCAT(CONCAT('%', #{skey}), '%')
+    </select>
+
+    <sql id="GroupMemberColumn">
+        gennlife_user.uid,
+        uname,pwd,
+        uposition,
+        uprofession,
+        orgID,
+        org_name,
+        labID,
+        lab_name,
+        telphone,
+        uemail,
+        age,
+        sex,
+        ctime,
+        uptime,
+        unumber
+    </sql>
+    <select id="getUsersByGroupID" parameterType="map" resultMap="com.gennlife.platform.model.User">
+        SELECT
+        <include refid="GroupMemberColumn"/>
+        FROM gennlife_user JOIN gennlife_user_group ON gennlife_user.uid = gennlife_user_group.uid
+        WHERE gennlife_user_group.groupID = #{groupID} AND gennlife_user_group.orgID = #{orgID}
+    </select>
+    <insert id="insertOneGroup" parameterType="com.gennlife.platform.model.Group">
+        insert into userInfoDB.gennlife_group
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="orgID != null" >
+                orgID,
+            </if>
+            <if test="groupID != null" >
+                groupID,
+            </if>
+            <if test="groupName != null" >
+                groupName,
+            </if>
+            <if test="groupDesc != null" >
+                groupDesc,
+            </if>
+            <if test="groupCreator != null" >
+                groupCreator,
+            </if>
+            <if test="groupCreatTime != null" >
+                groupCreatTime,
+            </if>
+            <if test="has_search != null" >
+                has_search,
+            </if>
+            <if test="has_searchExport != null" >
+                has_searchExport,
+            </if>
+
+            <if test="has_traceCRF != null" >
+                has_traceCRF,
+            </if>
+            <if test="has_addCRF != null" >
+                has_addCRF,
+            </if>
+            <if test="has_editCRF != null" >
+                has_editCRF,
+            </if>
+            <if test="has_deleteCRF != null" >
+                has_deleteCRF,
+            </if>
+            <if test="has_browseDetail != null" >
+                has_browseDetail,
+            </if>
+            <if test="has_addBatchCRF != null" >
+                has_addBatchCRF,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="orgID != null" >
+                #{orgID,jdbcType=VARCHAR},
+            </if>
+            <if test="groupID != null" >
+                #{groupID,jdbcType=INTEGER},
+            </if>
+            <if test="groupName != null" >
+                #{groupName,jdbcType=VARCHAR},
+            </if>
+            <if test="groupDesc != null" >
+                #{groupDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="groupCreator != null" >
+                #{groupCreator,jdbcType=VARCHAR},
+            </if>
+            <if test="groupCreatTime != null" >
+                #{groupCreatTime,jdbcType=VARCHAR},
+            </if>
+            <if test="has_search != null" >
+                #{has_search,jdbcType=VARCHAR},
+            </if>
+            <if test="has_searchExport != null" >
+                #{has_searchExport,jdbcType=VARCHAR},
+            </if>
+            <if test="has_traceCRF != null" >
+                #{has_traceCRF,jdbcType=VARCHAR},
+            </if>
+            <if test="has_addCRF != null" >
+                #{has_addCRF,jdbcType=VARCHAR},
+            </if>
+            <if test="has_editCRF != null" >
+                #{has_editCRF,jdbcType=VARCHAR},
+            </if>
+            <if test="has_deleteCRF != null" >
+                #{has_deleteCRF,jdbcType=VARCHAR},
+            </if>
+            <if test="has_browseDetail != null" >
+                #{has_browseDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="has_addBatchCRF != null" >
+                #{has_addBatchCRF,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertOneGroupRelationUid" parameterType="map">
+        insert into userInfoDB.gennlife_user_group
+        (groupID,uid,orgID) VALUES (#{groupID},#{uid},#{orgID})
+    </insert>
+    <update id="updateOneGroup" parameterType="com.gennlife.platform.model.Group">
+        UPDATE userInfoDB.gennlife_group
+        <set>
+            groupName = #{groupName},
+            <if test="groupDesc != null" >
+                groupDesc=#{groupDesc},
+            </if>
+            <if test="has_search != null" >
+                has_search=#{has_search},
+            </if>
+            <if test="has_searchExport != null" >
+                has_searchExport=#{has_searchExport},
+            </if>
+            <if test="has_traceCRF != null" >
+                has_traceCRF=#{has_traceCRF},
+            </if>
+            <if test="has_addCRF != null" >
+                has_addCRF=#{has_addCRF},
+            </if>
+            <if test="has_editCRF != null" >
+                has_editCRF=#{has_editCRF},
+            </if>
+            <if test="has_deleteCRF != null" >
+                has_deleteCRF=#{has_deleteCRF},
+            </if>
+            <if test="has_browseDetail != null" >
+                has_browseDetail=#{has_browseDetail},
+            </if>
+            <if test="has_addBatchCRF != null" >
+                has_addBatchCRF=#{has_addBatchCRF},
+            </if>
+        </set>
+        <where> groupID=#{groupID}</where>
+    </update>
+    <delete id="deleteGroupRelationUid" >
+        DELETE from gennlife_user_group
+        WHERE groupID=#{groupID}
+    </delete>
+    <select id="getUsersBySearchNameGroupID" parameterType="map" resultType="com.gennlife.platform.model.User">
+        SELECT
+        <include refid="GroupMemberColumn"/>
+        FROM gennlife_user JOIN gennlife_user_group ON gennlife_user.uid = gennlife_user_group.uid
+        WHERE
+        gennlife_user_group.groupID = #{groupID}
+        AND
+        gennlife_user_group.orgID = #{orgID}
+        AND
+        gennlife_user.uname LIKE CONCAT(CONCAT('%', #{skey}), '%')
+        ORDER BY gennlife_user.ctime DESC
+        limit #{startIndex},#{maxNum}
+    </select>
+    <select id="getUsersBySearchNameGroupIDCounter" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+        COUNT(gennlife_user.uid)
+        FROM gennlife_user JOIN gennlife_user_group ON gennlife_user.uid = gennlife_user_group.uid
+        WHERE
+        gennlife_user_group.groupID = #{groupID}
+        AND
+        gennlife_user_group.orgID = #{orgID}
+        AND
+        gennlife_user.uname LIKE CONCAT(CONCAT('%', #{skey}), '%')
+        ORDER BY gennlife_user.ctime DESC
+        limit #{startIndex},#{maxNum}
+    </select>
+</mapper>

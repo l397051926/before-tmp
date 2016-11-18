@@ -23,22 +23,22 @@ public class User {
      `unumber` varchar(50) DEFAULT NULL COMMENT '工号',
      `md5` varchar(40) DEFAULT NULL COMMENT '修改密码的md5校验',
      */
-    private String uid = "";
-    private String pwd = "ls123456";
-    private String uname = "";
-    private String uemail = "";
-    private String uposition = "";
-    private String uprofession = "";
-    private String orgID = "";
-    private String org_name = "";
-    private String labID ="";
-    private String lab_name = "";
-    private String telphone = "";
-    private int age = 0;
-    private int sex = 0;
+    private String uid;
+    private String pwd;
+    private String uname;
+    private String uemail;
+    private String uposition;
+    private String uprofession;
+    private String orgID;
+    private String org_name;
+    private String labID;
+    private String lab_name;
+    private String telphone;
+    private int age;
+    private int sex;
     private String ctime;
     private String uptime;
-    private String unumber = "";
+    private String unumber;
     private List<Role> roles;//角色列表
     private List<Admin> administrators;//管理员角色
 

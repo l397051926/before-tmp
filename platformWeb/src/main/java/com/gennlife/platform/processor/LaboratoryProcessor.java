@@ -900,4 +900,158 @@ public class LaboratoryProcessor {
         }
         return false;
     }
+
+    public String groupList(JsonObject paramObj, User user) {
+        String skey = null;
+        String limit = null;
+        try{
+            skey = paramObj.get("key").getAsString();
+            limit = paramObj.get("limit").getAsString();
+        }catch (Exception e){
+            return ParamUtils.errorParam("参数错误");
+        }
+        int[] result = ParamUtils.parseLimit(limit);
+        Map<String,Object> conf = new HashMap<String, Object>();
+        int startIndex = result[0];
+        int maxNum = result[1];
+        conf.put("orgID",user.getOrgID());
+        conf.put("startIndex",(startIndex - 1) * maxNum);
+        conf.put("maxNum",maxNum);
+        conf.put("skey",skey);
+        List<Group> list = AllDao.getInstance().getGroupDao().getGroupsBySearchName(conf);
+        Integer counter = AllDao.getInstance().getGroupDao().getGroupsBySearchNameCounter(conf);
+        Map<String,Object> map = new HashMap<>();
+        map.put("orgID",user.getOrgID());
+        for(Group group:list){
+            map.put("groupID",group.getGroupID());
+            List<User> userList = AllDao.getInstance().getGroupDao().getUsersByGroupID(map);
+            if(userList.size() > 5){
+                userList = userList.subList(0,5);
+            }
+            User creator = AllDao.getInstance().getSyUserDao().getUserByUid(group.getGroupCreator());
+            if(creator != null){
+                group.setGroupCreatName(creator.getUname());
+            }
+            group.setMembers(userList);
+        }
+        Map<String,Object> info = new HashMap<>();
+        info.put("count",counter);
+        ResultBean re = new ResultBean();
+        re.setCode(1);
+        re.setData(list);
+        re.setInfo(info);
+        return gson.toJson(re);
+    }
+
+    public String addGroup(String param, User user) {
+        Group group = null;
+        try{
+            group = gson.fromJson(param,Group.class);
+        }catch (Exception e){
+            return ParamUtils.errorParam("参数异常");
+        }
+        UUID uuid = UUID.randomUUID();
+        group.setOrgID(user.getOrgID());
+        group.setGroupID(uuid.toString());
+        group.setGroupCreator(user.getUid());
+        group.setGroupCreatName(LogUtils.getStringTime());
+        int counter = AllDao.getInstance().getGroupDao().insertOneGroup(group);
+        if(counter != 1){
+            return ParamUtils.errorParam("插入失败");
+        }else {
+            List<String> list = (List<String>) group.getMembers();
+            Map<String,Object> map = new HashMap<>();
+            map.put("groupID",group.getGroupID());
+            map.put("orgID",group.getOrgID());
+            for(String uid:list){
+                map.put("uid",uid);
+                AllDao.getInstance().getGroupDao().insertOneGroupRelationUid(map);
+            }
+        }
+        ResultBean re = new ResultBean();
+        re.setCode(1);
+        return gson.toJson(re);
+    }
+
+    public String editGroup(String param, User user) {
+        Group group = null;
+        try{
+            group = gson.fromJson(param,Group.class);
+        }catch (Exception e){
+            return ParamUtils.errorParam("参数异常");
+        }
+        List<String> list = (List<String>) group.getMembers();
+        int count = AllDao.getInstance().getGroupDao().updateOneGroup(group);
+        ResultBean re = new ResultBean();
+        if(count == 1){
+            AllDao.getInstance().getGroupDao().deleteGroupRelationUid(group.getGroupID());
+            Map<String,Object> map = new HashMap<>();
+            map.put("groupID",group.getGroupID());
+            map.put("orgID",user.getOrgID());
+            for(String uid:list){
+                map.put("uid",uid);
+                AllDao.getInstance().getGroupDao().insertOneGroupRelationUid(map);
+            }
+            re.setCode(1);
+        }else {
+            re.setCode(0);
+        }
+        return gson.toJson(re);
+    }
+
+    public String groupMenbers(String param, User user) {
+        String skey = null;
+        String limit = null;
+        String groupID = null;
+        try{
+            JsonObject jsonObj = (JsonObject) jsonParser.parse(param);
+            skey = jsonObj.get("key").getAsString();
+            limit = jsonObj.get("limit").getAsString();
+            groupID = jsonObj.get("groupID").toString();
+        }catch (Exception e){
+            return ParamUtils.errorParam("参数错误");
+        }
+        int[] result = ParamUtils.parseLimit(limit);
+        Map<String,Object> conf = new HashMap<String, Object>();
+        int startIndex = result[0];
+        int maxNum = result[1];
+        conf.put("orgID",user.getOrgID());
+        conf.put("startIndex",(startIndex - 1) * maxNum);
+        conf.put("maxNum",maxNum);
+        conf.put("skey",skey);
+        conf.put("groupID",groupID);
+        List<User> userList = AllDao.getInstance().getGroupDao().getUsersBySearchNameGroupID(conf);
+        int counter = AllDao.getInstance().getGroupDao().getUsersBySearchNameGroupIDCounter(conf);
+        ResultBean re = new ResultBean();
+        re.setCode(1);
+        re.setData(userList);
+        Map<String,Object> info = new HashMap<>();
+        info.put("count",counter);
+        re.setInfo(info);
+        return gson.toJson(re);
+    }
+
+    public String isExistGroupName(String param, User user) {
+        String groupName = null;
+        try{
+            JsonObject jsonObj = (JsonObject) jsonParser.parse(param);
+            groupName = jsonObj.get("groupName").getAsString();
+        }catch (Exception e){
+            return ParamUtils.errorParam("参数错误");
+        }
+        Map<String,Object> map = new HashMap<>();
+        map.put("groupName",groupName);
+        map.put("orgID",user.getOrgID());
+        List<Group> list = AllDao.getInstance().getGroupDao().getGroupsByName(map);
+        Map<String,Object> info = new HashMap<>();
+        if(list == null || list.size() == 0){
+            info.put("count",0);
+        }else {
+            info.put("count",list.size());
+        }
+        ResultBean re = new ResultBean();
+        re.setCode(1);
+        re.setInfo(info);
+        return gson.toJson(re);
+    }
 }

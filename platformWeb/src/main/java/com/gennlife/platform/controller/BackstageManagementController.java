@@ -336,4 +336,87 @@ public class BackstageManagementController {
         logger.info("无参数获取用户信息 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+
+    @RequestMapping(value="/GroupList",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String GroupList(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            User user = (User)paramRe.getAttribute("currentUser");
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.groupList(paramObj,user);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取用户组列表 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value="/AddGroup",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String AddGroup(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            User user = (User)paramRe.getAttribute("currentUser");
+            resultStr =  processor.addGroup(param,user);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("新建用户组 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/EditGroup",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String EditGroup(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            User user = (User)paramRe.getAttribute("currentUser");
+            resultStr =  processor.editGroup(param,user);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("新建用户组 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value="/GroupMenbers",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String GroupMenbers(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            User user = (User)paramRe.getAttribute("currentUser");
+            resultStr =  processor.groupMenbers(param,user);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("新建用户组 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/IsExistGroupName",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String IsExistGroupName(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            User user = (User)paramRe.getAttribute("currentUser");
+            resultStr =  processor.isExistGroupName(param,user);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("新建用户组 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }

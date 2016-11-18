@@ -12,6 +12,7 @@ public class AllDao {
     private SyResourceMapper syResourceDao;
     private OrgMapper orgDao;
     private ProjectMapper projectDao;
+    private GroupMapper groupDao;
 
     public ProjectMapper getProjectDao() {
         return projectDao;
@@ -59,5 +60,13 @@ public class AllDao {
 
     public void setSyResourceDao(SyResourceMapper syResourceDao) {
         this.syResourceDao = syResourceDao;
+    }
+
+    public GroupMapper getGroupDao() {
+        return groupDao;
+    }
+
+    public void setGroupDao(GroupMapper groupDao) {
+        this.groupDao = groupDao;
     }
 }

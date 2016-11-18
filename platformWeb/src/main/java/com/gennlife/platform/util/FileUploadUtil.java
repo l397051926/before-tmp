@@ -302,7 +302,7 @@ public class FileUploadUtil {
                         srcList.add(str+",失败,科室名称为空");
                         continue;
                     }else if("".equals(parentName)){
-                        srcList.add(str+",失败,上级科室名称");
+                        srcList.add(str+",失败,上级科室名称为空");
                         continue;
                     }else{
                         Lab lab = new Lab();
