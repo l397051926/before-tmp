@@ -53,7 +53,12 @@
         AND
         gennlife_group.groupName = #{groupName}
     </select>
-
+    <select id="getGroupsByUid" parameterType="map" resultMap="Group">
+        SELECT
+        <include refid="GroupColumn"/>
+        FROM gennlife_group JOIN gennlife_user_group ON gennlife_group.groupID = gennlife_user_group.groupID
+        WHERE gennlife_user_group.uid = #{uid} AND gennlife_group.orgID = #{orgID}
+    </select>
     <select id="getGroupsBySearchNameCounter" parameterType="map" resultType="java.lang.Integer">
         SELECT
         COUNT(gennlife_group.groupID)
@@ -66,10 +71,10 @@
 
     <sql id="GroupMemberColumn">
         gennlife_user.uid,
-        uname,pwd,
+        uname,
+        pwd,
         uposition,
         uprofession,
-        orgID,
         org_name,
         labID,
         lab_name,

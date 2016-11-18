@@ -52,34 +52,6 @@ public class UserProcessor {
 
 
 
-    public static User getUid(String uid){
-        User user = null;
-        try{
-            user = AllDao.getInstance().getSyUserDao().getUserByUid(uid);
-            user.setPwd(null);//密码不返回
-        }catch (Exception e){
-            logger.error("", e);
-        }
-        if(user == null){
-            return null;
-        }else{
-            Map<String,Object> confMap = new HashMap<>();
-            confMap.put("orgID",user.getOrgID());
-            confMap.put("uid",user.getUid());
-            List<Admin> adminList = AllDao.getInstance().getSyUserDao().getAdmins(confMap);
-            user.setAdministrators(adminList);
-            List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(confMap);
-            if(rolesList != null){
-                user.setRoles(rolesList);
-                for(Role role:rolesList){
-                    confMap.put("roleid",role.getRoleid());
-                    List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResources(confMap);
-                    role.setResources(resourcesList);
-                }
-            }
-            return transformRole(user);
-        }
-    }
 
     public ResultBean update(String param) throws IOException {
         boolean flag = true;
@@ -216,6 +188,16 @@ public class UserProcessor {
                     }
                 }
             }
+            List<Group> list = AllDao.getInstance().getGroupDao().getGroupsByUid(confMap);
+            Map<String,Object> map = new HashMap<>();
+            map.put("orgID",user.getOrgID());
+            for(Group group:list){
+                String groupID = group.getGroupID();
+                map.put("groupID",groupID);
+                List<User> userList = AllDao.getInstance().getGroupDao().getUsersByGroupID(map);
+                group.setMembers(userList);
+            }
+            user.setGroups(list);
         }catch (Exception e){
             logger.error("",e);
         }

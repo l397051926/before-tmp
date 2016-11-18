@@ -41,4 +41,6 @@ public interface GroupMapper {
     int getUsersBySearchNameGroupIDCounter(Map<String, Object> conf);
 
     List<Group> getGroupsByName(Map<String, Object> map);
+
+    List<Group> getGroupsByUid(Map<String, Object> confMap);
 }

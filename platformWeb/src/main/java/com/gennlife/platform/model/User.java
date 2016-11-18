@@ -6,23 +6,6 @@ import java.util.List;
  * Created by chen-song on 16/9/8.
  */
 public class User {
-    /**
-     *`uid` varchar(20) DEFAULT NULL COMMENT '用户id',
-     `pwd` varchar(40) DEFAULT NULL COMMENT '用户密码加密后的',
-     `uname` varchar(50) DEFAULT NULL COMMENT '用户名称',
-     `uemail` varchar(50) DEFAULT NULL COMMENT '用户邮箱',
-     `uposition` varchar(20) DEFAULT NULL COMMENT '职位',
-     `uprofession` varchar(20) DEFAULT NULL COMMENT '职业',
-     `orgID` varchar(100) DEFAULT NULL COMMENT '所在单位ID',
-     `labID` varchar(50) DEFAULT NULL COMMENT '科室,XXX科',
-     `telphone` varchar(20) DEFAULT NULL COMMENT '电话',
-     `age` tinyint(4) DEFAULT NULL COMMENT '年龄',
-     `sex` tinyint(4) DEFAULT NULL COMMENT '性别，1为男，0为女',
-     `ctime` varchar(30) DEFAULT NULL COMMENT 'yyyy-MM-dd HH:mm:ss格式时间',
-     `uptime` varchar(30) DEFAULT NULL COMMENT '最后一次修改数据时间',
-     `unumber` varchar(50) DEFAULT NULL COMMENT '工号',
-     `md5` varchar(40) DEFAULT NULL COMMENT '修改密码的md5校验',
-     */
     private String uid;
     private String pwd;
     private String uname;
@@ -41,7 +24,7 @@ public class User {
     private String unumber;
     private List<Role> roles;//角色列表
     private List<Admin> administrators;//管理员角色
-
+    private List<Group> groups;
     public String getLab_name() {
         return lab_name;
     }
@@ -184,5 +167,13 @@ public class User {
 
     public void setAdministrators(List<Admin> administrators) {
         this.administrators = administrators;
+    }
+
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
     }
 }
