@@ -388,14 +388,14 @@ public class BackstageManagementController {
     }
 
 
-    @RequestMapping(value="/GroupMenbers",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/GroupMembers",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String GroupMenbers(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
             User user = (User)paramRe.getAttribute("currentUser");
-            resultStr =  processor.groupMenbers(param,user);
+            resultStr =  processor.groupMembers(param,user);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");

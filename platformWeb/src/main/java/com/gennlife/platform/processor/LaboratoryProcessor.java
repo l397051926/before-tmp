@@ -999,7 +999,7 @@ public class LaboratoryProcessor {
         return gson.toJson(re);
     }
 
-    public String groupMenbers(String param, User user) {
+    public String groupMembers(String param, User user) {
         String skey = null;
         String limit = null;
         String groupID = null;
