@@ -65,9 +65,9 @@ public class UserController{
                     this.jedisCluster.del(user.getUid());
                     this.jedisCluster.del(user.getUid() + "_info");
                 }
-                this.jedisCluster.append(user.getUid() + "_info", gson.toJson(user));
-                this.jedisCluster.append(sessionID, user.getUid());
-                this.jedisCluster.append(user.getUid(), sessionID);
+                this.jedisCluster.set(user.getUid() + "_info", gson.toJson(user));
+                this.jedisCluster.set(sessionID, user.getUid());
+                this.jedisCluster.set(user.getUid(), sessionID);
                 resultBean.setCode(1);
                 resultBean.setData(user);
             }else {
