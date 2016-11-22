@@ -213,6 +213,25 @@ public interface SyUserMapper {
 
 
     /**
+     * 删除用户在vitaboard的配置
+     */
+    int deleteVitaCong(@Param("uid") String uid);
+
+    /**
+     * 插入vitaboard的配置
+     */
+    int insertVitaCong(@Param("uid") String uid,@Param("data") String data);
+
+    /**
+     * 获取用户vitaboard的配置
+     * @param uid
+     * @return
+     */
+    String getVitaCong(@Param("uid") String uid);
+
+
+
+    /**
     public SyUser getOneUser(Map<String, Object> likeCondition);
     public int updateByUid(SyUser record);
     public int getProjectCounter(Map<String,Object> likeCondition);

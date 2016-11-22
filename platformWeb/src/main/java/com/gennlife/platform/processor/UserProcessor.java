@@ -327,7 +327,6 @@ public class UserProcessor {
         data.add("list",listArray);
         if(labIDSet.size() > 0){
             List<CRFLab> crfLablist =  AllDao.getInstance().getSyResourceDao().getCrfIDListByLab(labIDs,orgID);
-
             for(String tmpID:map.keySet()){
                 JsonObject item = new JsonObject();
                 String name = map.get(tmpID);
@@ -347,5 +346,41 @@ public class UserProcessor {
         data.add("list",listArray);
         result.addProperty("code",1);
         return gson.toJson(result);
+    }
+
+    /**
+     *
+     * @param uid
+     * @param param
+     * @return
+     */
+    public String vitaBoardConfigSave(String uid, String param) {
+        JsonObject paramObj = null;
+        String dataStr = null;
+        try{
+            paramObj = (JsonObject) jsonParser.parse(param);
+            JsonArray dataArray = paramObj.getAsJsonArray("data");
+            dataStr = gson.toJson(dataArray);
+        }catch (Exception e){
+            return ParamUtils.errorParam("参数错误");
+        }
+        AllDao.getInstance().getSyUserDao().deleteVitaCong(uid);
+        int count = AllDao.getInstance().getSyUserDao().insertVitaCong(uid,dataStr);
+        ResultBean re = new ResultBean();
+        if(count == 1){
+            re.setCode(1);
+        }else {
+            re.setCode(0);
+        }
+        return gson.toJson(re);
+    }
+
+    public String VitaBoardConfig(String uid) {
+        String data = AllDao.getInstance().getSyUserDao().getVitaCong(uid);
+        JsonArray dataArray = (JsonArray) jsonParser.parse(data);
+        ResultBean re = new ResultBean();
+        re.setCode(1);
+        re.setData(dataArray);
+        return gson.toJson(re);
     }
 }

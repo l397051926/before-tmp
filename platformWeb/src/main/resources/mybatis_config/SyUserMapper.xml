@@ -438,4 +438,24 @@
 		WHERE
 		orgID=#{orgID} and privilegeType='admin' AND privilegeValue = 'admin'
 	</select>
+
+
+
+	<delete id="deleteVitaCong">
+		DELETE FROM gennlife_user_vitaConfig
+		WHERE
+		uid =#{uid}
+	</delete>
+
+	<insert id="insertVitaCong">
+		insert into gennlife_user_vitaConfig (uid,dataArray) values (#{uid},#{data})
+	</insert>
+	<select id="getVitaCong" resultType="java.lang.String">
+		SELECT
+		dataArray
+		FROM
+		gennlife_user_vitaConfig
+		WHERE uid = #{uid}
+	</select>
+
 </mapper>
