@@ -3,6 +3,7 @@ package com.gennlife.platform.filter;
 
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.model.User;
+import com.gennlife.platform.processor.UserProcessor;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.util.SpringContextUtil;
@@ -64,6 +65,9 @@ public class SessionFilter implements Filter {
                     JsonReader jsonReader = new JsonReader(new StringReader(userStr));
                     jsonReader.setLenient(true);
                     user = gson.fromJson(jsonReader, User.class);
+                }else{
+                    user = UserProcessor.getUserByUid(uid);
+                    jedisCluster.set(uid+"_info",gson.toJson(user));
                 }
                 servletRequest.setAttribute("currentUser", user);
                 if(adminSet.contains(uri) && !AuthorityUtil.isAdmin(user)) {
