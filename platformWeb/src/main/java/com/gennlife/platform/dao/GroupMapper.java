@@ -19,6 +19,7 @@ public interface GroupMapper {
      * @return
      */
     List<Group> getGroupsBySearchName(Map<String, Object> conf);
+
     int getGroupsBySearchNameCounter(Map<String, Object> conf);
     /**
      * 通过组id 获取小组成员

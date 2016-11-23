@@ -146,6 +146,7 @@ public class UserProcessor {
         User user = null;
         try {
             user = AllDao.getInstance().getSyUserDao().getUserByUid(uid);
+            user.setPwd(null);
             Map<String,Object> confMap = new HashMap<>();
             confMap.put("orgID",user.getOrgID());
             confMap.put("uid",user.getUid());
@@ -192,8 +193,8 @@ public class UserProcessor {
             Map<String,Object> map = new HashMap<>();
             map.put("orgID",user.getOrgID());
             for(Group group:list){
-                String groupID = group.getGroupID();
-                map.put("groupID",groupID);
+                String gid = group.getGid();
+                map.put("gid",gid);
                 List<User> userList = AllDao.getInstance().getGroupDao().getUsersByGroupID(map);
                 group.setMembers(userList);
             }

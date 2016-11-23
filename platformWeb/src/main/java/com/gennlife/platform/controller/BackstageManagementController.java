@@ -383,7 +383,7 @@ public class BackstageManagementController {
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("新建用户组 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("编辑小组 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 
@@ -400,7 +400,7 @@ public class BackstageManagementController {
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("新建用户组 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("获取组成员列表 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 
@@ -416,7 +416,7 @@ public class BackstageManagementController {
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("新建用户组 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("判定组名称是否存在 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 }

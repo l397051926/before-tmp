@@ -923,7 +923,7 @@ public class LaboratoryProcessor {
         Map<String,Object> map = new HashMap<>();
         map.put("orgID",user.getOrgID());
         for(Group group:list){
-            map.put("groupID",group.getGroupID());
+            map.put("gid",group.getGid());
             List<User> userList = AllDao.getInstance().getGroupDao().getUsersByGroupID(map);
             if(userList.size() > 5){
                 userList = userList.subList(0,5);
@@ -952,7 +952,7 @@ public class LaboratoryProcessor {
         }
         UUID uuid = UUID.randomUUID();
         group.setOrgID(user.getOrgID());
-        group.setGroupID(uuid.toString());
+        group.setGid(uuid.toString());
         group.setGroupCreator(user.getUid());
         group.setGroupCreatName(LogUtils.getStringTime());
         int counter = AllDao.getInstance().getGroupDao().insertOneGroup(group);
@@ -961,7 +961,7 @@ public class LaboratoryProcessor {
         }else {
             List<String> list = (List<String>) group.getMembers();
             Map<String,Object> map = new HashMap<>();
-            map.put("groupID",group.getGroupID());
+            map.put("gid",group.getGid());
             map.put("orgID",group.getOrgID());
             for(String uid:list){
                 map.put("uid",uid);
@@ -984,9 +984,9 @@ public class LaboratoryProcessor {
         int count = AllDao.getInstance().getGroupDao().updateOneGroup(group);
         ResultBean re = new ResultBean();
         if(count == 1){
-            AllDao.getInstance().getGroupDao().deleteGroupRelationUid(group.getGroupID());
+            AllDao.getInstance().getGroupDao().deleteGroupRelationUid(group.getGid());
             Map<String,Object> map = new HashMap<>();
-            map.put("groupID",group.getGroupID());
+            map.put("gid",group.getGid());
             map.put("orgID",user.getOrgID());
             for(String uid:list){
                 map.put("uid",uid);
@@ -1012,14 +1012,14 @@ public class LaboratoryProcessor {
             return ParamUtils.errorParam("参数错误");
         }
         int[] result = ParamUtils.parseLimit(limit);
-        Map<String,Object> conf = new HashMap<String, Object>();
+        Map<String,Object> conf = new HashMap<>();
         int startIndex = result[0];
         int maxNum = result[1];
         conf.put("orgID",user.getOrgID());
         conf.put("startIndex",(startIndex - 1) * maxNum);
         conf.put("maxNum",maxNum);
         conf.put("skey",skey);
-        conf.put("groupID",groupID);
+        conf.put("gid",groupID);
         List<User> userList = AllDao.getInstance().getGroupDao().getUsersBySearchNameGroupID(conf);
         int counter = AllDao.getInstance().getGroupDao().getUsersBySearchNameGroupIDCounter(conf);
         ResultBean re = new ResultBean();

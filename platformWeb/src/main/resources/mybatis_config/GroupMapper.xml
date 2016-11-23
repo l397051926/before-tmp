@@ -3,7 +3,7 @@
 <mapper namespace="com.gennlife.platform.dao.GroupMapper" >
     <resultMap id="Group" type="com.gennlife.platform.model.Group" >
         <result column="gennlife_group.orgID" property="orgID" jdbcType="VARCHAR" />
-        <result column="gennlife_group.groupID" property="groupID" jdbcType="VARCHAR" />
+        <result column="gennlife_group.gid" property="gid" jdbcType="VARCHAR" />
         <result column="gennlife_group.groupName" property="groupName" jdbcType="VARCHAR" />
         <result column="gennlife_group.groupDesc" property="groupDesc" jdbcType="VARCHAR" />
         <result column="gennlife_group.groupCreator" property="groupCreator" jdbcType="VARCHAR" />
@@ -19,7 +19,7 @@
 
     <sql id="GroupColumn">
         gennlife_group.orgID,
-        gennlife_group.groupID,
+        gennlife_group.gid,
         gennlife_group.groupName,
         gennlife_group.groupDesc,
         gennlife_group.groupCreator,
@@ -53,15 +53,19 @@
         AND
         gennlife_group.groupName = #{groupName}
     </select>
+
     <select id="getGroupsByUid" parameterType="map" resultMap="Group">
         SELECT
         <include refid="GroupColumn"/>
-        FROM gennlife_group JOIN gennlife_user_group ON gennlife_group.groupID = gennlife_user_group.groupID
-        WHERE gennlife_user_group.uid = #{uid} AND gennlife_group.orgID = #{orgID}
+         FROM gennlife_group JOIN gennlife_user_group
+        ON gennlife_group.gid = gennlife_user_group.gid
+        WHERE gennlife_user_group.uid = #{uid} AND gennlife_group.orgID =#{orgID}
     </select>
+
+
     <select id="getGroupsBySearchNameCounter" parameterType="map" resultType="java.lang.Integer">
         SELECT
-        COUNT(gennlife_group.groupID)
+        COUNT(gennlife_group.gid)
         FROM gennlife_group
         WHERE
         gennlife_group.orgID = #{orgID}
@@ -71,8 +75,9 @@
 
     <sql id="GroupMemberColumn">
         gennlife_user.uid,
-        uname,
+        gennlife_user.orgID,
         pwd,
+        uname,
         uposition,
         uprofession,
         org_name,
@@ -86,20 +91,25 @@
         uptime,
         unumber
     </sql>
+    <sql id="userProperty">
+        gennlife_user.uid,uname,pwd,uposition,uprofession,gennlife_user.orgID,org_name,labID,lab_name,telphone,uemail,age,sex,ctime,uptime,unumber
+    </sql>
+
     <select id="getUsersByGroupID" parameterType="map" resultMap="com.gennlife.platform.model.User">
         SELECT
         <include refid="GroupMemberColumn"/>
         FROM gennlife_user JOIN gennlife_user_group ON gennlife_user.uid = gennlife_user_group.uid
-        WHERE gennlife_user_group.groupID = #{groupID} AND gennlife_user_group.orgID = #{orgID}
+        WHERE gennlife_user_group.gid = #{gid} AND gennlife_user_group.orgID = #{orgID}
     </select>
+
     <insert id="insertOneGroup" parameterType="com.gennlife.platform.model.Group">
         insert into userInfoDB.gennlife_group
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="orgID != null" >
                 orgID,
             </if>
-            <if test="groupID != null" >
-                groupID,
+            <if test="gid != null" >
+                gid,
             </if>
             <if test="groupName != null" >
                 groupName,
@@ -143,8 +153,8 @@
             <if test="orgID != null" >
                 #{orgID,jdbcType=VARCHAR},
             </if>
-            <if test="groupID != null" >
-                #{groupID,jdbcType=INTEGER},
+            <if test="gid != null" >
+                #{gid,jdbcType=INTEGER},
             </if>
             <if test="groupName != null" >
                 #{groupName,jdbcType=VARCHAR},
@@ -186,7 +196,7 @@
     </insert>
     <insert id="insertOneGroupRelationUid" parameterType="map">
         insert into userInfoDB.gennlife_user_group
-        (groupID,uid,orgID) VALUES (#{groupID},#{uid},#{orgID})
+        (gid,uid,orgID) VALUES (#{gid},#{uid},#{orgID})
     </insert>
     <update id="updateOneGroup" parameterType="com.gennlife.platform.model.Group">
         UPDATE userInfoDB.gennlife_group
@@ -220,35 +230,32 @@
                 has_addBatchCRF=#{has_addBatchCRF},
             </if>
         </set>
-        <where> groupID=#{groupID}</where>
+        <where> gid=#{gid}</where>
     </update>
     <delete id="deleteGroupRelationUid" >
         DELETE from gennlife_user_group
-        WHERE groupID=#{groupID}
+        WHERE gid=#{gid}
     </delete>
-    <select id="getUsersBySearchNameGroupID" parameterType="map" resultType="com.gennlife.platform.model.User">
+    <select id="getUsersBySearchNameGroupID" parameterType="map" resultMap="com.gennlife.platform.model.User">
         SELECT
-        <include refid="GroupMemberColumn"/>
+        <include refid="userProperty"/>
         FROM gennlife_user JOIN gennlife_user_group ON gennlife_user.uid = gennlife_user_group.uid
-        WHERE
-        gennlife_user_group.groupID = #{groupID}
-        AND
-        gennlife_user_group.orgID = #{orgID}
-        AND
-        gennlife_user.uname LIKE CONCAT(CONCAT('%', #{skey}), '%')
+        WHERE gennlife_user_group.gid = #{gid} AND gennlife_user_group.orgID = #{orgID} AND gennlife_user.uname LIKE CONCAT(CONCAT('%', #{skey,jdbcType=VARCHAR}), '%')
         ORDER BY gennlife_user.ctime DESC
-        limit #{startIndex},#{maxNum}
+        LIMIT #{startIndex},#{maxNum}
+
+
     </select>
     <select id="getUsersBySearchNameGroupIDCounter" parameterType="map" resultType="java.lang.Integer">
         SELECT
         COUNT(gennlife_user.uid)
         FROM gennlife_user JOIN gennlife_user_group ON gennlife_user.uid = gennlife_user_group.uid
         WHERE
-        gennlife_user_group.groupID = #{groupID}
+        gennlife_user_group.gid = #{gid,jdbcType=VARCHAR}
         AND
-        gennlife_user_group.orgID = #{orgID}
+        gennlife_user_group.orgID = #{orgID,jdbcType=VARCHAR}
         AND
-        gennlife_user.uname LIKE CONCAT(CONCAT('%', #{skey}), '%')
+        gennlife_user.uname LIKE CONCAT(CONCAT('%', #{skey,jdbcType=VARCHAR}), '%')
         ORDER BY gennlife_user.ctime DESC
         limit #{startIndex},#{maxNum}
     </select>

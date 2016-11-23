@@ -1,11 +1,12 @@
 package com.gennlife.platform.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by chen-song on 2016/11/17.
  */
 public class Group {
     private String orgID;
-    private String groupID;
     private String groupName;
     private String groupDesc;
     private String groupCreator;
@@ -19,7 +20,17 @@ public class Group {
     private String has_deleteCRF;
     private String has_browseDetail;
     private String has_addBatchCRF;
+    @SerializedName("groupID")
+    private String gid;
     private Object members;
+
+    public String getGid() {
+        return gid;
+    }
+
+    public void setGid(String gid) {
+        this.gid = gid;
+    }
 
     public String getGroupCreatName() {
         return groupCreatName;
@@ -51,14 +62,6 @@ public class Group {
 
     public void setOrgID(String orgID) {
         this.orgID = orgID;
-    }
-
-    public String getGroupID() {
-        return groupID;
-    }
-
-    public void setGroupID(String groupID) {
-        this.groupID = groupID;
     }
 
     public String getGroupName() {
