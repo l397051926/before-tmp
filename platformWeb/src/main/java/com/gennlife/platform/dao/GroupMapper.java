@@ -35,7 +35,7 @@ public interface GroupMapper {
 
     int updateOneGroup(Group group);
 
-    int deleteGroupRelationUid(@Param("groupID") String groupID);
+    int deleteGroupRelationUid(@Param("gid") String groupID);
 
     List<User> getUsersBySearchNameGroupID(Map<String, Object> conf);
 
