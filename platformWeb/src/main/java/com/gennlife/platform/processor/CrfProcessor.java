@@ -97,7 +97,7 @@ public class CrfProcessor {
         }
         for(String labID:validLabID){
             CRFLab crfLab = AllDao.getInstance().getSyResourceDao().getCrfIDByLab(labID,orgID);
-            if(crf_id.equals(crfLab.getCrf_id())){
+            if(crfLab != null && crf_id.equals(crfLab.getCrf_id())){
                 flag = true;
                 break;
             }
