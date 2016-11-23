@@ -39,7 +39,7 @@ public class CrfProcessor {
         try {
             JsonArray roles = paramObj.getAsJsonArray("roles");
             String crf_id = paramObj.get("crf_id").getAsString();
-            String caseID = paramObj.has("caseID")?"":paramObj.get("caseID").getAsString();
+            String caseID = paramObj.has("caseID")?paramObj.get("caseID").getAsString():"";
             boolean flag = getCRFFlag(roles,orgID,crf_id,null,caseID);
             if(flag){
                 String url = ConfigurationService.getUrlBean().getCRFGetData();
