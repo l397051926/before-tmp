@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class User {
     private String uid;
-    private String pwd;
+    private transient String pwd;
     private String uname;
     private String uemail;
     private String uposition;

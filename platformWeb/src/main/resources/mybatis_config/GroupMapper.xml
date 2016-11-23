@@ -91,9 +91,6 @@
         uptime,
         unumber
     </sql>
-    <sql id="userProperty">
-        gennlife_user.uid,uname,pwd,uposition,uprofession,gennlife_user.orgID,org_name,labID,lab_name,telphone,uemail,age,sex,ctime,uptime,unumber
-    </sql>
 
     <select id="getUsersByGroupID" parameterType="map" resultMap="com.gennlife.platform.model.User">
         SELECT
@@ -238,13 +235,9 @@
     </delete>
     <select id="getUsersBySearchNameGroupID" parameterType="map" resultMap="com.gennlife.platform.model.User">
         SELECT
-        <include refid="userProperty"/>
+        <include refid="GroupMemberColumn"/>
         FROM gennlife_user JOIN gennlife_user_group ON gennlife_user.uid = gennlife_user_group.uid
-        WHERE gennlife_user_group.gid = #{gid} AND gennlife_user_group.orgID = #{orgID} AND gennlife_user.uname LIKE CONCAT(CONCAT('%', #{skey,jdbcType=VARCHAR}), '%')
-        ORDER BY gennlife_user.ctime DESC
-        LIMIT #{startIndex},#{maxNum}
-
-
+        WHERE gennlife_user_group.gid = #{gid} AND gennlife_user_group.orgID = #{orgID}
     </select>
     <select id="getUsersBySearchNameGroupIDCounter" parameterType="map" resultType="java.lang.Integer">
         SELECT

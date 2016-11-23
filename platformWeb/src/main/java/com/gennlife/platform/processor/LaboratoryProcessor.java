@@ -1007,21 +1007,21 @@ public class LaboratoryProcessor {
             JsonObject jsonObj = (JsonObject) jsonParser.parse(param);
             skey = jsonObj.get("key").getAsString();
             limit = jsonObj.get("limit").getAsString();
-            groupID = jsonObj.get("groupID").toString();
+            groupID = jsonObj.get("groupID").getAsString();
         }catch (Exception e){
             return ParamUtils.errorParam("参数错误");
         }
         int[] result = ParamUtils.parseLimit(limit);
-        Map<String,Object> conf = new HashMap<>();
+        Map<String,Object> map = new HashMap<>();
+        map.put("orgID",user.getOrgID());
+        map.put("gid",groupID);
         int startIndex = result[0];
         int maxNum = result[1];
-        conf.put("orgID",user.getOrgID());
-        conf.put("startIndex",(startIndex - 1) * maxNum);
-        conf.put("maxNum",maxNum);
-        conf.put("skey",skey);
-        conf.put("gid",groupID);
-        List<User> userList = AllDao.getInstance().getGroupDao().getUsersBySearchNameGroupID(conf);
-        int counter = AllDao.getInstance().getGroupDao().getUsersBySearchNameGroupIDCounter(conf);
+        map.put("startIndex",(startIndex - 1) * maxNum);
+        map.put("maxNum",maxNum);
+        map.put("skey",skey);
+        List<User> userList = AllDao.getInstance().getGroupDao().getUsersBySearchNameGroupID(map);
+        int counter = AllDao.getInstance().getGroupDao().getUsersBySearchNameGroupIDCounter(map);
         ResultBean re = new ResultBean();
         re.setCode(1);
         re.setData(userList);
