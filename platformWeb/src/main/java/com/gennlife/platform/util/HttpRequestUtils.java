@@ -73,6 +73,38 @@ public class HttpRequestUtils {
 		return null;
 	}
 
+
+	public static String httpPostPubMed(String url, String jsonParam) {
+		HttpClient httpClient = HttpClients.createDefault();
+
+		HttpPost method = new HttpPost(url);
+
+		try {
+			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(60000).setConnectTimeout(10000).build();
+			method.setConfig(requestConfig);
+			if (null != jsonParam) {
+				StringEntity entity = new StringEntity(jsonParam,"utf-8");
+				entity.setContentEncoding("UTF-8");
+				entity.setContentType("application/json");
+
+				method.setEntity(entity);
+			}
+			HttpResponse result = httpClient.execute(method);
+			url = URLDecoder.decode(url, "UTF-8");
+			if (result.getStatusLine().getStatusCode() == 200) {
+				String str = "";
+				try {
+					str = EntityUtils.toString(result.getEntity());
+					return str;
+				} catch (Exception e) {
+					logger.error("" + url, e);
+				}
+			}
+		} catch (IOException e) {
+			logger.error("" + url, e);
+		}
+		return null;
+	}
 	/**
 	 * post
 	 * @param url

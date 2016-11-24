@@ -133,10 +133,12 @@ public class KnowledgeProcessor {
         logger.info("knowledge req=" + newParam);
         String url = ConfigurationService.getUrlBean().getKnowledgeURL();
         logger.info("knowledge url=" + url);
-        String resultStr = HttpRequestUtils.httpPost(url,newParam);
         if("pubmed".equals(from)){
+            String resultStr = HttpRequestUtils.httpPostPubMed(url,newParam);
             return resultStr;
         }
+        String resultStr = HttpRequestUtils.httpPost(url,newParam);
+
         logger.info("knowledge result=" + resultStr);
         JsonArray resultArray = null;
         if(StringUtils.isEmpty(resultStr)){
