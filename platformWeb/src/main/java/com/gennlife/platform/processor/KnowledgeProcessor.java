@@ -108,7 +108,34 @@ public class KnowledgeProcessor {
 
         if("pubmed".equals(from) && "pubmed".equals(to)){
             rawQueryArray = paramObj.getAsJsonArray("rawQueryArray");
+            if(paramObj.has("cntOnly")){
+                JsonElement cntOnly = paramObj.get("cntOnly");
+                newJson.add("cntOnly",cntOnly);
+            }
+            if(paramObj.has("sort")){
+                JsonElement sort = paramObj.get("sort");
+                newJson.add("sort",sort);
+            }
+            if(paramObj.has("mindate") && paramObj.has("maxdate")){
+                JsonElement mindate = paramObj.get("mindate");
+                newJson.add("mindate",mindate);
+                JsonElement maxdate = paramObj.get("maxdate");
+                newJson.add("maxdate",maxdate);
+            }
+            if(paramObj.has("reldate")){
+                JsonElement reldate = paramObj.get("reldate");
+                newJson.add("reldate",reldate);
+            }
+            if(paramObj.has("highQuality")){
+                JsonElement highQuality = paramObj.get("highQuality");
+                newJson.add("highQuality",highQuality);
+            }
+            if(paramObj.has("pubType")){
+                JsonElement pubType = paramObj.get("pubType");
+                newJson.add("pubType",pubType);
+            }
             newJson.add("rawQueryArray",rawQueryArray);
+
         }
         //额外参数 
         if("diseaseGene".equals(from)&&"drug".equals(to)){
