@@ -14,6 +14,7 @@
         <result column="gennlife_group.has_addCRF" property="has_addCRF" jdbcType="VARCHAR" />
         <result column="gennlife_group.has_deleteCRF" property="has_deleteCRF" jdbcType="VARCHAR" />
         <result column="gennlife_group.has_addBatchCRF" property="has_addBatchCRF" jdbcType="VARCHAR" />
+        <result column="gennlife_group.has_editCRF" property="has_editCRF" jdbcType="VARCHAR" />
         <result column="gennlife_group.has_browseDetail" property="has_browseDetail" jdbcType="VARCHAR" />
     </resultMap>
 
@@ -30,7 +31,8 @@
         gennlife_group.has_addCRF,
         gennlife_group.has_deleteCRF,
         gennlife_group.has_addBatchCRF,
-        gennlife_group.has_browseDetail
+        gennlife_group.has_browseDetail,
+        gennlife_group.has_editCRF
     </sql>
     <select id="getGroupsBySearchName" parameterType="map" resultMap="Group">
         SELECT
