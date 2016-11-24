@@ -207,7 +207,7 @@
     SELECT
     <include refid="CRFLabProperty"/>
     FROM gennlife_lab_crf
-    WHERE labID=#{labID} AND orgID = #{orgID} AND crf_id != NULL
+    WHERE labID=#{labID} AND orgID = #{orgID}
   </select>
 
   <select id="getCrfIDListByLab" resultType="com.gennlife.platform.model.CRFLab">

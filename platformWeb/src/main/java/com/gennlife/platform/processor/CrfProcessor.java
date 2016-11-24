@@ -102,7 +102,7 @@ public class CrfProcessor {
                 break;
             }
         }
-        return true;
+        return flag;
     }
 
 
