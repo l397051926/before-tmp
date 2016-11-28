@@ -16,7 +16,7 @@ def sortItem(itemArray,allSortIndexName):
     return newArray
 
 def process():
-    data = xlrd.open_workbook('/Users/chen-song/Downloads/肾癌病人维度临床数据字段配置_V2.1.48_5.xls')
+    data = xlrd.open_workbook('/Users/chen-song/Downloads/肾癌病人维度临床数据字段配置_V2.1.48_8.xls')
     allItemList = OrderedDict()
     allItemListCopy = {}
     sheet = data.sheets()[0]
@@ -44,6 +44,17 @@ def process():
         reItem['advanced_search'] = item['advanced_search'].strip()
         reItem['imported'] = item['imported'].strip()
         reItem['group_en_name'] = item['group_en_name'].strip()
+        show_attendant = item['show_attendant'].strip()
+
+        show_attendantArray = show_attendant.split("；")
+        displayMainValue = []
+        for show_attendantValue in show_attendantArray:
+            if show_attendantValue != "" and show_attendantValue != "无定义":
+                displayMainValue.append(show_attendantValue)
+        if len(displayMainValue) > 0:
+            reItem['displayMainValue'] = displayMainValue
+
+
         if reItem['group_cn_name'] not in allSortGroupName:
             allSortGroupName.append(reItem['group_cn_name'])
         if reItem['IndexFieldName'] not in allSortIndexName:
