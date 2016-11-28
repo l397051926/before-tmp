@@ -2,18 +2,14 @@ package com.gennlife.platform.processor;
 
 
 import com.gennlife.platform.bean.ResultBean;
-import com.gennlife.platform.controller.UserController;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.*;
 import com.gennlife.platform.util.*;
 import com.google.gson.*;
-import com.sun.javafx.collections.MappingChange;
-import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.JedisCluster;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
