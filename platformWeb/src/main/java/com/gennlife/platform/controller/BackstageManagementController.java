@@ -404,6 +404,22 @@ public class BackstageManagementController {
         return resultStr;
     }
 
+    @RequestMapping(value="/DeleteGroup",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String DeleteGroup(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            User user = (User)paramRe.getAttribute("currentUser");
+            resultStr =  processor.deleteGroup(param,user);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("删除小组 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
     @RequestMapping(value="/IsExistGroupName",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String IsExistGroupName(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();

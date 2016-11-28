@@ -6,10 +6,9 @@ import com.gennlife.platform.controller.UserController;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.*;
 import com.gennlife.platform.util.*;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
+import com.sun.javafx.collections.MappingChange;
+import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.JedisCluster;
@@ -1051,6 +1050,40 @@ public class LaboratoryProcessor {
         }
         ResultBean re = new ResultBean();
         re.setCode(1);
+        re.setInfo(info);
+        return gson.toJson(re);
+    }
+
+    public String deleteGroup(String param, User user) {
+        Set<String> set = new HashSet<>();
+        try{
+            JsonArray gArray = (JsonArray)jsonParser.parse(param);
+            for(JsonElement item:gArray){
+                set.add(item.getAsString());
+            }
+        }catch (Exception e){
+            return ParamUtils.errorParam("参数异常");
+        }
+        Map<String,Object> data = new HashMap<>();
+        int succeed = 0;
+        int fail = 0;
+        for(String gid:set){
+            int count = AllDao.getInstance().getGroupDao().deleteGroupByGID(gid);
+            if(count == 1){
+                data.put(gid,true);
+                AllDao.getInstance().getGroupDao().deleteGroupRelationUid(gid);
+                succeed ++;
+            }else {
+                data.put(gid,false);
+                fail ++;
+            }
+        }
+        Map<String,Object> info = new HashMap<>();
+        info.put("succeed",succeed);
+        info.put("fail",fail);
+        ResultBean re = new ResultBean();
+        re.setCode(1);
+        re.setData(data);
         re.setInfo(info);
         return gson.toJson(re);
     }

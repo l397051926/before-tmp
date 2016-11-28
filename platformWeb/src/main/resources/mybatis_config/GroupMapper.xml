@@ -254,4 +254,8 @@
         ORDER BY gennlife_user.ctime DESC
         limit #{startIndex},#{maxNum}
     </select>
+    <delete id="deleteGroupByGID" >
+        DELETE from gennlife_group
+        WHERE gid=#{gid}
+    </delete>
 </mapper>
