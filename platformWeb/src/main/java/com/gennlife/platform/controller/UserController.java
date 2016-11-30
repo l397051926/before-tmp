@@ -110,8 +110,16 @@ public class UserController{
                     return ParamUtils.errorParam("缺少uid");
                 }
                 ResultBean resultBean =  processor.update(param);
-                if(resultBean.getCode() == 1 && user.getUid().equals(uid)){
-                    session.setAttribute("user",gson.toJson(resultBean.getData()));
+                if(resultBean.getCode() == 1){
+                    try{
+                        User realUser = (User) resultBean.getData();
+                        if(realUser != null && this.jedisCluster.exists(realUser.getUid() + "_info")){
+                            this.jedisCluster.del(realUser.getUid() + "_info");
+                        }
+                    }catch (Exception e){
+                        logger.error("",e);
+                    }
+
                 }
                 resultStr = gson.toJson(resultBean);
 
