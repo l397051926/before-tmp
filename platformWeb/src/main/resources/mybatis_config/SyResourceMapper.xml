@@ -39,10 +39,11 @@
     select
     <include refid="resourceProperty" />
     FROM
-    gennlife_role_resource JOIN gennlife_resource on gennlife_role_resource.sid = gennlife_resource.sid
+    gennlife_role_resource,gennlife_resource
     where
     gennlife_resource.sorgID=#{orgID}
     AND gennlife_resource.sid = #{sid}
+    AND gennlife_role_resource.roleid = #{roleid}
   </select>
   <select id="getResourceByRoleID" resultMap="com.gennlife.platform.model.Resource">
     SELECT

@@ -153,7 +153,7 @@ public class UserProcessor {
                 user.setRoles(rolesList);
                 for(Role role:rolesList){
                     if("1".equals(role.getRole_type())){
-                        List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResourcesBySid(user.getOrgID(),user.getLabID());
+                        List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResourcesBySid(user.getOrgID(),user.getLabID(),role.getRoleid());
                         List<Resource> reList = new LinkedList<>();
                         for(Resource resource:resourcesList){
                             resource.setHas_searchExport("有");

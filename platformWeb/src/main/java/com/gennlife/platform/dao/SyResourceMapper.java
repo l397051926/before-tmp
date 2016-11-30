@@ -24,7 +24,7 @@ public interface SyResourceMapper {
 
 
 
-    public List<Resource> getResourcesBySid(@Param("orgID")String orgID,@Param("sid") String sid);
+    public List<Resource> getResourcesBySid(@Param("orgID")String orgID,@Param("sid") String sid,@Param("roleid")Integer roleid);
 
     /**
      * 通过
