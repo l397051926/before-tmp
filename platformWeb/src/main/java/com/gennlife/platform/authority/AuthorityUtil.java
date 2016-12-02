@@ -1,15 +1,19 @@
 package com.gennlife.platform.authority;
 
 import com.gennlife.platform.model.Admin;
+import com.gennlife.platform.model.Role;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.*;
+import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -32,7 +36,11 @@ public class AuthorityUtil {
             if(paramElement.isJsonObject()) {
                 JsonObject paramObj = paramElement.getAsJsonObject();
                 paramObj.add("roles", roles);
+                //从groups数组扩展权限
                 paramObj.add("groups",groups);
+                for(JsonElement group:groups){
+                    JsonObject groupObj = group.getAsJsonObject();
+                }
                 return gson.toJson(paramObj);
             } else {
                 return paramElement.isJsonArray()?gson.toJson(paramElement):null;
@@ -52,5 +60,22 @@ public class AuthorityUtil {
             }
         }
         return isAdmin;
+    }
+    public static JsonArray mergeRoles(JsonObject groupObj,Role role, JsonArray roles){
+        boolean flag = false;
+
+        for(JsonElement roleElement:roles){
+            JsonObject roleObj = roleElement.getAsJsonObject();
+            int roleid = roleObj.get("roleid").getAsInt();
+            if(roleid == role.getRoleid()){
+
+                flag = true;
+            }
+        }
+        if(!flag){
+            JsonObject roleObj = (JsonObject) jsonParser.parse(gson.toJson(role));
+            roles.add(roleObj);
+        }
+        return roles;
     }
 }

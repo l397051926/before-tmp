@@ -8,6 +8,7 @@ import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.*;
+import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -267,6 +268,8 @@ public class CaseProcessor {
      */
     public static String transformSid(String param){
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+        JsonArray groupsArray = paramObj.getAsJsonArray("groups");
+
         if(paramObj.has("sid") && paramObj.has("roles")){
             String sid = paramObj.get("sid").getAsString();
             paramObj.remove("sid");
@@ -301,8 +304,9 @@ public class CaseProcessor {
                     return gson.toJson(paramObj);
                 }
             }
-        }else if(paramObj.has("roles")){//没有角色
+        }else if(paramObj.has("roles")){//角色,完成小组扩展
             JsonArray roles = paramObj.getAsJsonArray("roles");
+
             if(roles.size() == 0){
                 return ParamUtils.errorParam("无搜索权限");
             }else{
@@ -323,6 +327,8 @@ public class CaseProcessor {
         }else{
             return param;
         }
+
+
     }
     /**
      * 搜索病历
