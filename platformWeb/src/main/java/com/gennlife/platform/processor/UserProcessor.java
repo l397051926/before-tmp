@@ -380,4 +380,23 @@ public class UserProcessor {
         re.setData(dataArray);
         return gson.toJson(re);
     }
+
+    public String labTransformCrfId(User user, String param) {
+        String labID = null;
+        try{
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            labID = paramObj.get("labID").getAsString();
+        }catch (Exception e){
+            return ParamUtils.errorParam("参数错误");
+        }
+        CRFLab crfLab = AllDao.getInstance().getSyResourceDao().getCrfIDByLab(labID,user.getOrgID());
+        if(crfLab == null){
+            return ParamUtils.errorParam("没有找到对应的参数");
+        }else {
+            ResultBean re = new ResultBean();
+            re.setCode(1);
+            re.setData(crfLab);
+            return gson.toJson(re);
+        }
+    }
 }

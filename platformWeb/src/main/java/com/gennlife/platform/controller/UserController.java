@@ -232,4 +232,21 @@ public class UserController{
         logger.info("用户可访问crf列表 post 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+
+    @RequestMapping(value="/LabTransformCrfId",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String LabTransformCrfId(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            User user = (User)paramRe.getAttribute("currentUser");
+            String param = ParamUtils.getParam(paramRe);
+            return processor.labTransformCrfId(user,param);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("科室转化成病种id 返回="+resultStr);
+        logger.info("科室转化成病种id get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }
