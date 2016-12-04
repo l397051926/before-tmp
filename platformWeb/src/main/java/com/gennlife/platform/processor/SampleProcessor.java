@@ -218,8 +218,15 @@ public class SampleProcessor {
 
     }
 
-    public String importTree() {
-        return gson.toJson(ConfigurationService.getImportTree());
+    public String importTree(JsonObject paramObj) {
+        String crf_id = "kidney_cancer";
+        try {
+            crf_id = paramObj.get("crf_id").getAsString();
+        }catch (Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("参数错误");
+        }
+        return gson.toJson(ConfigurationService.getImportTree(crf_id));
     }
 
     /**
@@ -230,10 +237,14 @@ public class SampleProcessor {
     public String sampleSetDirectoryList(String param) {
         String sampleURI = null;
         String key = null;
+        String crf_id = "kidney_cancer";
         try{
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             sampleURI = paramObj.get("sampleURI").getAsString();
             key = paramObj.get("keywords").getAsString();
+            if(paramObj.has("crf_id")){
+                crf_id = paramObj.get("crf_id").getAsString();
+            }
         }catch (Exception e){
             logger.error("",e);
             return ParamUtils.errorParam("参数错误");
@@ -246,7 +257,7 @@ public class SampleProcessor {
             set.add(jsonElement.getAsString());
         }
         ResultBean resultBean = new ResultBean();
-        JsonObject all = ConfigurationService.getAllObj();
+        JsonObject all = ConfigurationService.getAllObj(crf_id);
         JsonObject allCopy = (JsonObject) jsonParser.parse(gson.toJson(all));
         JsonObject allNew = new JsonObject();
         for (Map.Entry<String, JsonElement> obj : allCopy.entrySet()) {

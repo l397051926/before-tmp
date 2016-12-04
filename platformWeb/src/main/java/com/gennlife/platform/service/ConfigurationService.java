@@ -26,21 +26,24 @@ public class ConfigurationService {
     private static FileBean fileBean = null;
     //<orgID,indexName>
     private static Map<String,String> orgIDIndexNamemap = new HashMap<>();
-    //全量属性的jsonobject
-    private static List<JsonObject> allList = new LinkedList<JsonObject>();
-    //index name,ui name
-    private static Map<String,String> nameMap = new HashMap<>();
+    //全量属性的jsonobject<病种，List>
+    private static Map<String,List<JsonObject>> alldiseaseList = new HashMap<>();
+    //<病种，<index name,ui name>>
+    private static Map<String,Map<String,String>> nameMap = new HashMap<>();
 
-    private static JsonObject importTree = new JsonObject();
-
-    private static JsonObject advancedSearch = new JsonObject();
-    private static JsonArray resourceTypeArray = null;
+    //导出可选属性<病种，对应配置>
+    private static Map<String,JsonObject> importMap = new HashMap<>();
+    //高级搜索
+    private static Map<String,JsonObject> advancedSearchMap = new HashMap<>();
     //默认的搜索列表
-    private static JsonObject defaultObj = null;
+    private static Map<String,JsonObject> defaultMap = new HashMap<>();
     //全部的搜索列表
-    private static JsonObject allObj = null;
+    private static Map<String,JsonObject> allMap = new HashMap<>();
     //比较因子属性列表
-    private static JsonObject compareObj = null;
+    private static Map<String,JsonObject> compareMap = new HashMap<>();
+
+    private static JsonArray resourceTypeArray = null;
+
     private static Gson gson = GsonUtil.getGson();
     public static void init() {
         try{
@@ -71,24 +74,44 @@ public class ConfigurationService {
     public static void loadConfigurationInfo() throws IOException {
         String caseStr = FilesUtils.readFile("/case.json");
         //logger.info("case.json="+caseStr);
-        JsonObject jsonObject = (JsonObject) jsonParser.parse(caseStr);
-        defaultObj = jsonObject.getAsJsonObject("default");
-        allObj = jsonObject.getAsJsonObject("all");
-        advancedSearch = jsonObject.getAsJsonObject("advancedSearch");
-        compareObj =  jsonObject.getAsJsonObject("compare");
-        importTree = jsonObject.getAsJsonObject("import");
-        for(Map.Entry<String, JsonElement> entity:allObj.entrySet()){
-            String key = entity.getKey();
-            JsonArray object = allObj.getAsJsonArray(key);
-            for(JsonElement jsonElement:object){
-                JsonObject json = jsonElement.getAsJsonObject();
-                String UIFieldName = json.get("UIFieldName").getAsString();
-                String IndexFieldName = json.get("IndexFieldName").getAsString();
-                nameMap.put(IndexFieldName,UIFieldName);
-                allList.add(json);
+        JsonObject allDiseasesObj = (JsonObject) jsonParser.parse(caseStr);
+        for(Map.Entry<String, JsonElement> item:allDiseasesObj.entrySet()){
+            String crf_id = item.getKey();
+            JsonObject jsonObject = item.getValue().getAsJsonObject();
+            JsonObject defaultObj = jsonObject.getAsJsonObject("default");
+            JsonObject allObj = jsonObject.getAsJsonObject("all");
+            JsonObject advancedSearch = jsonObject.getAsJsonObject("advancedSearch");
+            JsonObject compareObj =  jsonObject.getAsJsonObject("compare");
+            JsonObject importTree = jsonObject.getAsJsonObject("import");
+            for(Map.Entry<String, JsonElement> entity:allObj.entrySet()){
+                String key = entity.getKey();
+                JsonArray object = allObj.getAsJsonArray(key);
+                for(JsonElement jsonElement:object){
+                    JsonObject json = jsonElement.getAsJsonObject();
+                    String UIFieldName = json.get("UIFieldName").getAsString();
+                    String IndexFieldName = json.get("IndexFieldName").getAsString();
+                    if(!nameMap.containsKey(crf_id)){
+                        Map<String,String> tmpName = new HashMap<>();
+                        tmpName.put(IndexFieldName,UIFieldName);
+                        nameMap.put(crf_id,tmpName);
+                        List<JsonObject> tmpList = new LinkedList<>();
+                        tmpList.add(json);
+                        alldiseaseList.put(crf_id,tmpList);
+                    }else{
+                        Map<String,String> tmpName = nameMap.get(crf_id);
+                        tmpName.put(IndexFieldName,UIFieldName);
+                        List<JsonObject> tmpList = alldiseaseList.get(crf_id);
+                        tmpList.add(json);
+                    }
+                }
             }
-
+            importMap.put(crf_id,importTree);
+            advancedSearchMap.put(crf_id,advancedSearch);
+            defaultMap.put(crf_id,defaultObj);
+            allMap.put(crf_id,allObj);
+            compareMap.put(crf_id,compareObj);
         }
+
 
         String resourceStr = FilesUtils.readFile("/resourceConfig.json");
         JsonObject resourceConfig = (JsonObject) jsonParser.parse(resourceStr);
@@ -104,34 +127,66 @@ public class ConfigurationService {
         }
     }
 
-    public static JsonObject getAllObj() {
-        String copy = gson.toJson(allObj);
-        JsonObject target = (JsonObject) jsonParser.parse(copy);
-        return target;
+    public static JsonObject getAllObj(String crf_id) {
+        JsonObject jsonObject = allMap.get(crf_id);
+        if(jsonObject != null){
+            String copy = gson.toJson(jsonObject);
+            JsonObject target = (JsonObject) jsonParser.parse(copy);
+            return target;
+        }
+        return null;
     }
 
-    public static List<JsonObject> getAllList() {
-        return allList;
+
+    public static JsonObject getDefaultObj(String crf_id) {
+        JsonObject jsonObject = defaultMap.get(crf_id);
+        if(jsonObject != null){
+            String copy = gson.toJson(jsonObject);
+            JsonObject target = (JsonObject) jsonParser.parse(copy);
+            return target;
+        }
+        return null;
     }
 
-    public static JsonObject getDefaultObj() {
-        return defaultObj;
+    public static JsonObject getImportTree(String crf_id) {
+        JsonObject jsonObject = importMap.get(crf_id);
+        if(jsonObject != null){
+            String copy = gson.toJson(jsonObject);
+            JsonObject target = (JsonObject) jsonParser.parse(copy);
+            return target;
+        }
+        return null;
     }
 
-    public static JsonObject getImportTree() {
-        return importTree;
+    public static JsonObject getAdvancedSearch(String crf_id) {
+        JsonObject jsonObject = advancedSearchMap.get(crf_id);
+        if(jsonObject != null){
+            String copy = gson.toJson(jsonObject);
+            JsonObject target = (JsonObject) jsonParser.parse(copy);
+            return target;
+        }
+        return null;
     }
 
-    public static JsonObject getAdvancedSearch() {
-        return advancedSearch;
-    }
 
-    public static void setAdvancedSearch(JsonObject advancedSearch) {
-        ConfigurationService.advancedSearch = advancedSearch;
+    public  static String getUIFieldName(String IndexFieldName,String crf_id){
+        Map<String,String> tmpName = nameMap.get(crf_id);
+        if(tmpName == null){
+            return null;
+        }else {
+            return tmpName.get(IndexFieldName);
+        }
     }
 
     public  static String getUIFieldName(String IndexFieldName){
-        return nameMap.get(IndexFieldName);
+        for(String crf_id:nameMap.keySet()){
+            Map<String,String> tmpName = nameMap.get(crf_id);
+            if(tmpName.containsKey(IndexFieldName)){
+                return tmpName.get(IndexFieldName);
+            }
+        }
+        return null;
+
     }
 
 
@@ -139,8 +194,14 @@ public class ConfigurationService {
         return resourceTypeArray;
     }
 
-    public static JsonObject getCompareObj() {
-        return compareObj;
+    public static JsonObject getCompareObj(String crf_id) {
+        JsonObject jsonObject = compareMap.get(crf_id);
+        if(jsonObject != null){
+            String copy = gson.toJson(jsonObject);
+            JsonObject target = (JsonObject) jsonParser.parse(copy);
+            return target;
+        }
+        return null;
     }
 
     public static FileBean getFileBean(){
@@ -150,5 +211,10 @@ public class ConfigurationService {
 
     public static Map<String, String> getOrgIDIndexNamemap() {
         return orgIDIndexNamemap;
+    }
+
+    public static List<JsonObject> getAllList(String crf_id) {
+
+        return alldiseaseList.get(crf_id);
     }
 }

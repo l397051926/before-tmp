@@ -33,6 +33,7 @@ public class CaseProcessor {
         String searchKey = null;
         String keywords = null;
         String status = null;
+        String crf_id = "kidney_cancer";//默认是肾癌
         Set<String> set = new HashSet<String>();
         ResultBean resultBean = new ResultBean();
         try {
@@ -50,16 +51,19 @@ public class CaseProcessor {
             for (JsonElement json : arrange) {
                 set.add(json.getAsString());
             }
+            if(paramObj.has("crf_id")){
+                crf_id = paramObj.get("kidney_cancer").getAsString();
+            }
         } catch (Exception e) {
             logger.error("",e);
             return ParamUtils.errorParam("请求参数出错");
         }
         if ("0".equals(status)) {//搜索结果,默认
-            JsonObject result = ConfigurationService.getDefaultObj();
+            JsonObject result = ConfigurationService.getDefaultObj(crf_id);
             resultBean.setCode(1);
             resultBean.setData(result);
         } else if ("1".equals(status)) {//属性可选
-            JsonObject all = ConfigurationService.getAllObj();
+            JsonObject all = ConfigurationService.getAllObj(crf_id);
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                 String groupName = obj.getKey();
@@ -79,7 +83,7 @@ public class CaseProcessor {
             resultBean.setCode(1);
             resultBean.setData(allNew);
         } else if ("2".equals(status)) {//高级搜索,所有属性,带有搜索功能
-            JsonObject all = ConfigurationService.getAdvancedSearch();
+            JsonObject all = ConfigurationService.getAdvancedSearch(crf_id);
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                 String groupName = obj.getKey();
@@ -104,7 +108,7 @@ public class CaseProcessor {
             resultBean.setCode(1);
             resultBean.setData(allNew);
         }else if("3".equals(status)){//更改属性,所有属性,带有搜索功能
-            JsonObject all = ConfigurationService.getAllObj();
+            JsonObject all = ConfigurationService.getAllObj(crf_id);
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                 String groupName = obj.getKey();
@@ -129,7 +133,7 @@ public class CaseProcessor {
             resultBean.setCode(1);
             resultBean.setData(allNew);
         }else if("4".equals(status)){//比较因子属性,所有属性,带有搜索功能
-            JsonObject all = ConfigurationService.getCompareObj();
+            JsonObject all = ConfigurationService.getCompareObj(crf_id);
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                 String groupName = obj.getKey();
@@ -230,19 +234,25 @@ public class CaseProcessor {
         String param = null;
         String keywords = null;
         ResultBean resultBean = new ResultBean();
+        String crf_id = "kidney_cancer";
         try {
             keywords = paramObj.get("keywords").getAsString();
+            if(paramObj.has("crf_id")){
+                crf_id = paramObj.get("crf_id").getAsString();
+            }
         } catch (Exception e) {
             return ParamUtils.errorParam("请求参数出错");
         }
         List<JsonObject> list = new LinkedList<JsonObject>();
 
         if (null != keywords) {
-            List<JsonObject> set = ConfigurationService.getAllList();
-            for (JsonObject jsonObject : set) {
-                String UIFieldName = jsonObject.get("UIFieldName").getAsString();
-                if (UIFieldName.startsWith(keywords)) {
-                    list.add(jsonObject);
+            List<JsonObject> set = ConfigurationService.getAllList(crf_id);
+            if(set != null){
+                for (JsonObject jsonObject : set) {
+                    String UIFieldName = jsonObject.get("UIFieldName").getAsString();
+                    if (UIFieldName.startsWith(keywords)) {
+                        list.add(jsonObject);
+                    }
                 }
             }
         }

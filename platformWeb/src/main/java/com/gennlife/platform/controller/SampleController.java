@@ -118,11 +118,19 @@ public class SampleController {
 
 
     @RequestMapping(value="/ImportTree",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getImportTree(){
+    public @ResponseBody String getImportTree(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            resultStr =  processor.importTree();
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = new JsonObject();
+            if(param == null || "".equals(param)){
+                paramObj.addProperty("crf_id","kidney_cancer");
+            }else {
+                paramObj = (JsonObject) jsonParser.parse(param);
+            }
+
+            resultStr =  processor.importTree(paramObj);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
