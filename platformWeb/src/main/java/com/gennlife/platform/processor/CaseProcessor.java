@@ -52,7 +52,7 @@ public class CaseProcessor {
                 set.add(json.getAsString());
             }
             if(paramObj.has("crf_id")){
-                crf_id = paramObj.get("kidney_cancer").getAsString();
+                crf_id = paramObj.get("crf_id").getAsString();
             }
         } catch (Exception e) {
             logger.error("",e);
