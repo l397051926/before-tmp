@@ -132,6 +132,7 @@ public class ConfigurationService {
         if(jsonObject != null){
             String copy = gson.toJson(jsonObject);
             JsonObject target = (JsonObject) jsonParser.parse(copy);
+            target = removeDiseasePrefix(target);
             return target;
         }
         return null;
@@ -143,6 +144,7 @@ public class ConfigurationService {
         if(jsonObject != null){
             String copy = gson.toJson(jsonObject);
             JsonObject target = (JsonObject) jsonParser.parse(copy);
+            target = removeDiseasePrefix(target);
             return target;
         }
         return null;
@@ -153,6 +155,7 @@ public class ConfigurationService {
         if(jsonObject != null){
             String copy = gson.toJson(jsonObject);
             JsonObject target = (JsonObject) jsonParser.parse(copy);
+            target = removeDiseasePrefix(target);
             return target;
         }
         return null;
@@ -163,6 +166,7 @@ public class ConfigurationService {
         if(jsonObject != null){
             String copy = gson.toJson(jsonObject);
             JsonObject target = (JsonObject) jsonParser.parse(copy);
+            target = removeDiseasePrefix(target);
             return target;
         }
         return null;
@@ -199,6 +203,7 @@ public class ConfigurationService {
         if(jsonObject != null){
             String copy = gson.toJson(jsonObject);
             JsonObject target = (JsonObject) jsonParser.parse(copy);
+            target = removeDiseasePrefix(target);
             return target;
         }
         return null;
@@ -217,4 +222,18 @@ public class ConfigurationService {
 
         return alldiseaseList.get(crf_id);
     }
+
+    public static JsonObject removeDiseasePrefix(JsonObject target){
+        JsonObject newTarget = new JsonObject();
+        for(Map.Entry<String, JsonElement> item:target.entrySet()){
+            String groupName = item.getKey();
+            JsonElement groupValue = item.getValue();
+            groupName = groupName.replaceFirst("肺癌.","");
+            groupName = groupName.replaceFirst("肝癌.","");
+            newTarget.add(groupName,groupValue);
+        }
+        return newTarget;
+    }
+
+
 }
