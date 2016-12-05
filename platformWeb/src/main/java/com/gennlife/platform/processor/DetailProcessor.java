@@ -490,8 +490,8 @@ public class DetailProcessor {
      */
     public String patientDetailVitaboardParam(String param) {
         try{
-            String url = ConfigurationService.getUrlBean().getCasePatientDetailVitaboardparam();
-            logger.info("PatientDetailVitaboardParam url="+url);
+            String url = ConfigurationService.getUrlBean().getCaseSimilarServiceVitaboardparam();
+            logger.info("SimilarServiceVitaboardParam url="+url);
             String result = HttpRequestUtils.httpPost(url,param);
             return result;
         }catch (Exception e){

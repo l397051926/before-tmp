@@ -21,7 +21,7 @@ public class URLBean {
     /**
      * 获取vitaboard默认参数接口
      */
-    private String casePatientDetailVitaboardparam = null;
+    private String caseSimilarServiceVitaboardparam = null;
     /**
      *相似病人默认参数获取
      */
@@ -1001,12 +1001,12 @@ public class URLBean {
         this.caseSimilarServiceGetSimilars = caseSimilarServiceGetSimilars;
     }
 
-    public String getCasePatientDetailVitaboardparam() {
-        return casePatientDetailVitaboardparam;
+    public String getCaseSimilarServiceVitaboardparam() {
+        return caseSimilarServiceVitaboardparam;
     }
 
-    public void setCasePatientDetailVitaboardparam(String casePatientDetailVitaboardparam) {
-        this.casePatientDetailVitaboardparam = casePatientDetailVitaboardparam;
+    public void setCaseSimilarServiceVitaboardparam(String caseSimilarServiceVitaboardparam) {
+        this.caseSimilarServiceVitaboardparam = caseSimilarServiceVitaboardparam;
     }
 
     public String getCaseSimilarServiceSimilarParam() {

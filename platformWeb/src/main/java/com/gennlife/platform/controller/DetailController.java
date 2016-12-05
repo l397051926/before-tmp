@@ -566,7 +566,7 @@ public class DetailController {
         return resultStr;
     }
 
-    @RequestMapping(value="/PatientDetailVitaboardParam",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/SimilarServiceVitaboardParam",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody String PatientDetailVitaboardParam(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
