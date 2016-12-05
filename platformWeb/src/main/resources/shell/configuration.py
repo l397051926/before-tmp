@@ -3,6 +3,8 @@ import xlrd
 import json
 from collections import OrderedDict
 
+output = open('case.json', 'w')
+
 def sortItem(itemArray,allSortIndexName):
     newArray = []
     for name in allSortIndexName:
@@ -16,7 +18,9 @@ def sortItem(itemArray,allSortIndexName):
     return newArray
 
 def process():
-    data = xlrd.open_workbook('/Users/chen-song/Downloads/肾癌病人维度临床数据字段配置_V2.1.48_8.xls')
+    data = xlrd.open_workbook('/Users/chen-song/Downloads/病人维度临床数据字段配置_V2.1.50.xls')
+
+
     allItemList = OrderedDict()
     allItemListCopy = {}
     sheet = data.sheets()[0]
@@ -85,6 +89,8 @@ def process():
         if 'attendant' in reItemCopy:
             del (reItemCopy['attendant'])
         allItemListCopy[reItemCopy['IndexFieldName']] = reItemCopy
+
+
     subItem = []#保存子属性IndexFieldName
     subItemLive = []#保存是子属性，又是主属性
     for IndexFieldName in allSortIndexName:
@@ -170,7 +176,150 @@ def process():
                     compare[groupName] = newItemList
                     newItemList.append(item)
     result['compare'] = compare
-    print(json.dumps(result,ensure_ascii=False))
+
+    mergeResult = OrderedDict()
+    # 肝癌
+    liver = OrderedDict()
+    # 肺癌
+    lung = OrderedDict()
+    # 肾癌
+    kidney = OrderedDict()
+    mergeResult['liver_cancer'] = liver
+    mergeResult['lung_cancer'] = lung
+    mergeResult['kidney_cancer'] = kidney
+    all_liver = OrderedDict()
+    default_liver = OrderedDict()
+    advancedSearch_liver = OrderedDict()
+    import_liver = OrderedDict()
+    compare_liver = OrderedDict()
+
+    all_lung = OrderedDict()
+    default_lung = OrderedDict()
+    advancedSearch_lung = OrderedDict()
+    import_lung = OrderedDict()
+    compare_lung = OrderedDict()
+
+    all_kidney = OrderedDict()
+    default_kidney = OrderedDict()
+    advancedSearch_kidney = OrderedDict()
+    import_kidney = OrderedDict()
+    compare_kidney = OrderedDict()
+
+    for key in allGroup:
+        if key == '患者基本信息':
+            all_liver[key] = allGroup[key]
+            all_lung[key] = allGroup[key]
+            all_kidney[key] = allGroup[key]
+        if key.startswith('肝癌'):
+            all_liver[key] = allGroup[key]
+        elif key.startswith('肺癌'):
+            all_lung[key] = allGroup[key]
+        elif not key.startswith('就诊') and not key.startswith("门诊") and not key.startswith('临床相关基因变异'):
+            all_kidney[key] = allGroup[key]
+
+    for key in allGroup:
+        if key.startswith('就诊') or key.startswith('门诊') or key.startswith('临床相关基因变异'):
+            all_liver[key] = allGroup[key]
+            all_lung[key] = allGroup[key]
+            all_kidney[key] = allGroup[key]
+    liver['all'] = all_liver
+    lung['all'] = all_lung
+    kidney['all'] = all_kidney
+
+
+    for key in defaultGroup:
+        if key == '患者基本信息':
+            default_liver[key] = defaultGroup[key]
+            default_lung[key] = defaultGroup[key]
+            default_kidney[key] = defaultGroup[key]
+
+        if key.startswith('肝癌'):
+            default_liver[key] = defaultGroup[key]
+        elif key.startswith('肺癌'):
+            default_lung[key] = defaultGroup[key]
+        elif not key.startswith('就诊') and not key.startswith("门诊") and not key.startswith('临床相关基因变异'):
+            default_kidney[key] = defaultGroup[key]
+
+    for key in defaultGroup:
+        if key.startswith('就诊') or key.startswith('门诊') or key.startswith('临床相关基因变异'):
+            default_liver[key] = defaultGroup[key]
+            default_lung[key] = defaultGroup[key]
+            default_kidney[key] = defaultGroup[key]
+
+    liver['default'] = default_liver
+    lung['default'] = default_lung
+    kidney['default'] = default_kidney
+
+
+    for key in advancedGroup:
+        if key == '患者基本信息':
+            advancedSearch_liver[key] = advancedGroup[key]
+            advancedSearch_lung[key] = advancedGroup[key]
+            advancedSearch_kidney[key] = advancedGroup[key]
+        if key.startswith('肝癌'):
+            advancedSearch_liver[key] = advancedGroup[key]
+        elif key.startswith('肺癌'):
+            advancedSearch_lung[key] = advancedGroup[key]
+        elif not key.startswith('就诊') and not key.startswith("门诊") and not key.startswith('临床相关基因变异'):
+            advancedSearch_kidney[key] = advancedGroup[key]
+
+    for key in advancedGroup:
+        if key.startswith('就诊') or key.startswith('门诊') or key.startswith('临床相关基因变异'):
+            advancedSearch_liver[key] = advancedGroup[key]
+            advancedSearch_lung[key] = advancedGroup[key]
+            advancedSearch_kidney[key] = advancedGroup[key]
+    liver['advancedSearch'] = advancedSearch_liver
+    lung['advancedSearch'] = advancedSearch_lung
+    kidney['advancedSearch'] = advancedSearch_kidney
+
+    for key in importedGroup:
+        if key == '患者基本信息':
+            import_liver[key] = importedGroup[key]
+            import_lung[key] = importedGroup[key]
+            import_kidney[key] = importedGroup[key]
+        if key.startswith('肝癌'):
+            import_liver[key] = importedGroup[key]
+        elif key.startswith('肺癌'):
+            import_lung[key] = importedGroup[key]
+        elif not key.startswith('就诊') and not key.startswith("门诊") and not key.startswith('临床相关基因变异'):
+            import_kidney[key] = importedGroup[key]
+
+    for key in importedGroup:
+        if key.startswith('就诊') or key.startswith('门诊') or key.startswith('临床相关基因变异'):
+            import_liver[key] = importedGroup[key]
+            import_lung[key] = importedGroup[key]
+            import_kidney[key] = importedGroup[key]
+    liver['import'] = import_liver
+    lung['import'] = import_lung
+    kidney['import'] = import_kidney
+
+    for key in compare:
+        if key == '患者基本信息':
+            compare_liver[key] = compare[key]
+            compare_lung[key] = compare[key]
+            compare_kidney[key] = compare[key]
+        if key.startswith('肝癌'):
+            compare_liver[key] = compare[key]
+        elif key.startswith('肺癌'):
+            compare_lung[key] = compare[key]
+        elif not key.startswith('就诊') and not key.startswith("门诊") and not key.startswith('临床相关基因变异'):
+            compare_kidney[key] = compare[key]
+
+    for key in compare:
+        if key.startswith('就诊') or key.startswith('门诊') or key.startswith('临床相关基因变异'):
+            compare_liver[key] = compare[key]
+            compare_lung[key] = compare[key]
+            compare_kidney[key] = compare[key]
+    liver['compare'] = import_liver
+    lung['compare'] = import_lung
+    kidney['compare'] = import_kidney
+    output.write(json.dumps(mergeResult, ensure_ascii=False))
+
+    # 患者基本信息
+    basic = OrderedDict()
+    # EMR数据
+    emr = OrderedDict()
+
 
 if __name__ == '__main__':
     process()
