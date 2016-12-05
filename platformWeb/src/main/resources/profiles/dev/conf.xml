@@ -49,11 +49,22 @@
         <property name="caseyVisitRadiotherapy" value="http://10.0.0.165:9900/FileService/VisitDetail/radiotherapy"></property>
         <property name="casePatientRadiotherapy" value="http://10.0.0.165:9900/FileService/PatientDetail/radiotherapy"></property>
         <property name="casePatientChemotherapyInfo" value="http://10.0.0.165:9900/FileService/PatientDetail/chemotherapy_info"></property>
+        <!--vitaBoard 服务-->
+        <property name="casePatientDetailVitaboardparam" value="http://10.0.0.165:9900/FileService/PatientDetail/vitaboardparam"></property>
+        <property name="caseSimilarServiceSimilarParam" value="http://10.0.0.165:9900/FileService/SimilarService/SimilarParam"></property>
+        <property name="caseSimilarServiceGetSimilars" value="http://10.0.0.165:9900/FileService/SimilarService/getsimilars"></property>
+        <property name="caseSimilarServiceSimilarQuery" value="http://10.0.0.165:9900/FileService/SimilarService/SimilarQuery"></property>
+
+
+
         <!--FS 样本操作 -->
         <property name="sampleImportIURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_export"/>
         <property name="sampleDetailURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_get"/>
         <property name="sampleDaleteURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_delete"/>
         <property name="sampleDetailSearchURL" value="http://10.0.0.165:9900/FileService/DataResultExport/SearchDataSet"/>
+
+
+
 
         <property name="sampleUploadAdaptTagURL" value="http://10.0.0.165:9900/FileService/DataResultExport/UploadAdaptTag"/>
 

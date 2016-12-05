@@ -466,4 +466,63 @@ public class DetailProcessor {
             return ParamUtils.errorParam("请求出错");
         }
     }
+
+    /**
+     * vitaboard画图数据获取接口
+     * @param param
+     * @return
+     */
+    public String similarServiceGetSimilars(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCaseSimilarServiceGetSimilars();
+            logger.info("SimilarServiceGetSimilars url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    /**
+     *
+     * @param param
+     * @return
+     */
+    public String patientDetailVitaboardParam(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCasePatientDetailVitaboardparam();
+            logger.info("PatientDetailVitaboardParam url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String similarServiceSimilarParam(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCaseSimilarServiceSimilarParam();
+            logger.info("similarServiceSimilarParam url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    /**
+     * 生成相似病人查询条件接口
+     * @param param
+     * @return
+     */
+    public String similarServiceSimilarQuery(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCaseSimilarServiceSimilarQuery();
+            logger.info("similarServiceSimilarQuery url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
 }

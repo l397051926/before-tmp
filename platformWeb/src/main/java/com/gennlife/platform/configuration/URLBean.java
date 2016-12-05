@@ -12,6 +12,27 @@ public class URLBean {
     public void setCaseAdmission_records(String caseAdmission_records) {
         this.caseAdmission_records = caseAdmission_records;
     }
+
+    /**
+     * vitaboard画图数据获取接口
+     */
+    private String caseSimilarServiceGetSimilars = null;
+
+    /**
+     * 获取vitaboard默认参数接口
+     */
+    private String casePatientDetailVitaboardparam = null;
+    /**
+     *相似病人默认参数获取
+     */
+    private String caseSimilarServiceSimilarParam = null;
+
+    /**
+     * 生成相似病人查询条件接口
+     */
+    private String caseSimilarServiceSimilarQuery = null;
+
+
     private String casePatientChemotherapyInfo = null;
     /**
      * 单次就诊放疗
@@ -970,5 +991,37 @@ public class URLBean {
 
     public void setCasePatientChemotherapyInfo(String casePatientChemotherapyInfo) {
         this.casePatientChemotherapyInfo = casePatientChemotherapyInfo;
+    }
+
+    public String getCaseSimilarServiceGetSimilars() {
+        return caseSimilarServiceGetSimilars;
+    }
+
+    public void setCaseSimilarServiceGetSimilars(String caseSimilarServiceGetSimilars) {
+        this.caseSimilarServiceGetSimilars = caseSimilarServiceGetSimilars;
+    }
+
+    public String getCasePatientDetailVitaboardparam() {
+        return casePatientDetailVitaboardparam;
+    }
+
+    public void setCasePatientDetailVitaboardparam(String casePatientDetailVitaboardparam) {
+        this.casePatientDetailVitaboardparam = casePatientDetailVitaboardparam;
+    }
+
+    public String getCaseSimilarServiceSimilarParam() {
+        return caseSimilarServiceSimilarParam;
+    }
+
+    public void setCaseSimilarServiceSimilarParam(String caseSimilarServiceSimilarParam) {
+        this.caseSimilarServiceSimilarParam = caseSimilarServiceSimilarParam;
+    }
+
+    public String getCaseSimilarServiceSimilarQuery() {
+        return caseSimilarServiceSimilarQuery;
+    }
+
+    public void setCaseSimilarServiceSimilarQuery(String caseSimilarServiceSimilarQuery) {
+        this.caseSimilarServiceSimilarQuery = caseSimilarServiceSimilarQuery;
     }
 }

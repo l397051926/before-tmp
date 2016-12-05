@@ -550,4 +550,66 @@ public class DetailController {
         logger.info("分类详情化疗 post方式 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+    @RequestMapping(value="/SimilarServiceGetSimilars",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String SimilarServiceGetSimilars(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = AuthorityUtil.addAuthority(paramRe);
+            resultStr =  processor.similarServiceGetSimilars(param);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("vitaboard画图数据获取接口 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/PatientDetailVitaboardParam",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String PatientDetailVitaboardParam(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = AuthorityUtil.addAuthority(paramRe);
+            resultStr =  processor.patientDetailVitaboardParam(param);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取vitaboard默认参数接口 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/SimilarServiceSimilarParam",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String SimilarServiceVitaboardParam(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = AuthorityUtil.addAuthority(paramRe);
+            resultStr =  processor.similarServiceSimilarParam(param);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取vitaboard默认参数接口 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/SimilarServiceSimilarQuery",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String SimilarServiceSimilarQuery(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addAuthority(paramRe);
+            resultStr = processor.similarServiceSimilarQuery(param);
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("生成相似病人查询条件接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }
