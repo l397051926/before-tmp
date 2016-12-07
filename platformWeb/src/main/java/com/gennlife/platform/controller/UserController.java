@@ -90,41 +90,34 @@ public class UserController{
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            HttpSession session = paramRe.getSession();
-            if(session == null){
+            User user = (User)paramRe.getAttribute("currentUser");
+            if(user == null ){
                 return ParamUtils.errorSessionLosParam();
-            }else{
-                User user = gson.fromJson((String)session.getAttribute("user"),User.class);
-                if(user == null ){
-                    return ParamUtils.errorSessionLosParam();
+            }
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            String uid = null;
+            try{
+                uid = paramObj.get("uid").getAsString();
+                if(!user.getUid().equals(uid) && !AuthorityUtil.isAdmin(user)){//不是自己修改,不是管理员修改
+                    return ParamUtils.errorParam("无权限更新");
                 }
-                String param = ParamUtils.getParam(paramRe);
-                JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-                String uid = null;
+            }catch (Exception e){
+                return ParamUtils.errorParam("缺少uid");
+            }
+            ResultBean resultBean =  processor.update(param);
+            if(resultBean.getCode() == 1){
                 try{
-                    uid = paramObj.get("uid").getAsString();
-                    if(!user.getUid().equals(uid) && !AuthorityUtil.isAdmin(user)){//不是自己修改,不是管理员修改
-                        return ParamUtils.errorParam("无权限更新");
+                    User realUser = (User) resultBean.getData();
+                    if(realUser != null && this.jedisCluster.exists(realUser.getUid() + "_info")){
+                        this.jedisCluster.del(realUser.getUid() + "_info");
                     }
                 }catch (Exception e){
-                    return ParamUtils.errorParam("缺少uid");
+                    logger.error("",e);
                 }
-                ResultBean resultBean =  processor.update(param);
-                if(resultBean.getCode() == 1){
-                    try{
-                        User realUser = (User) resultBean.getData();
-                        if(realUser != null && this.jedisCluster.exists(realUser.getUid() + "_info")){
-                            this.jedisCluster.del(realUser.getUid() + "_info");
-                        }
-                    }catch (Exception e){
-                        logger.error("",e);
-                    }
-
-                }
-                resultStr = gson.toJson(resultBean);
 
             }
-
+            resultStr = gson.toJson(resultBean);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
