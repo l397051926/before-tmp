@@ -34,7 +34,6 @@ public class UserController{
     private static UserProcessor processor = new UserProcessor();
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
-    public static Integer sessionTimeOut = 10;
     private static View view = new View();
     private JedisCluster jedisCluster = (JedisCluster) SpringContextUtil.getBean("jedisClusterFactory");
     @RequestMapping(value="/Login",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
@@ -162,7 +161,7 @@ public class UserController{
         return resultStr;
     }
     @RequestMapping(value="/ExistEmail",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postExistEmail(@RequestParam("param")String param,HttpSession session){
+    public @ResponseBody String postExistEmail(@RequestParam("param")String param){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
