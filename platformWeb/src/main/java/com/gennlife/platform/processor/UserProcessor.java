@@ -28,7 +28,6 @@ public class UserProcessor {
             jedisCluster = (JedisCluster) SpringContextUtil.getBean("jedisClusterFactory");
         }
     }
-
     public User login(String email,String pwd) throws IOException {
         try{
             LogUtils.BussnissLog("用户：" + email + " >>> 进行登陆");
@@ -202,6 +201,7 @@ public class UserProcessor {
         }
         return user;
     }
+
 
 
     public static User getUserByUser(User user){
