@@ -241,4 +241,21 @@ public class UserController{
         logger.info("科室转化成病种id get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+
+    @RequestMapping(value="/OffLineUser",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String OffLineUser(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            User user = (User)paramRe.getAttribute("currentUser");
+            String param = ParamUtils.getParam(paramRe);
+            return processor.offLineUser(param);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("清空缓存中用户信息 返回="+resultStr);
+        logger.info(" get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 }

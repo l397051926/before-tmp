@@ -3,6 +3,7 @@ package com.gennlife.platform.authority;
 import com.gennlife.platform.model.Admin;
 import com.gennlife.platform.model.Role;
 import com.gennlife.platform.model.User;
+import com.gennlife.platform.processor.UserProcessor;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.*;
@@ -33,14 +34,13 @@ public class AuthorityUtil {
             JsonObject user = (JsonObject)jsonParser.parse(gson.toJson(object));
             JsonArray roles = user.getAsJsonArray("roles");
             JsonArray groups = user.getAsJsonArray("groups");
+            JsonObject power = user.getAsJsonObject("power");
             if(paramElement.isJsonObject()) {
                 JsonObject paramObj = paramElement.getAsJsonObject();
                 paramObj.add("roles", roles);
                 //从groups数组扩展权限
                 paramObj.add("groups",groups);
-                for(JsonElement group:groups){
-                    JsonObject groupObj = group.getAsJsonObject();
-                }
+                paramObj.add("power",power);
                 return gson.toJson(paramObj);
             } else {
                 return paramElement.isJsonArray()?gson.toJson(paramElement):null;
@@ -60,22 +60,5 @@ public class AuthorityUtil {
             }
         }
         return isAdmin;
-    }
-    public static JsonArray mergeRoles(JsonObject groupObj,Role role, JsonArray roles){
-        boolean flag = false;
-
-        for(JsonElement roleElement:roles){
-            JsonObject roleObj = roleElement.getAsJsonObject();
-            int roleid = roleObj.get("roleid").getAsInt();
-            if(roleid == role.getRoleid()){
-
-                flag = true;
-            }
-        }
-        if(!flag){
-            JsonObject roleObj = (JsonObject) jsonParser.parse(gson.toJson(role));
-            roles.add(roleObj);
-        }
-        return roles;
     }
 }

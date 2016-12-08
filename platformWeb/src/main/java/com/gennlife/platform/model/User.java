@@ -25,6 +25,7 @@ public class User {
     private List<Role> roles;//角色列表
     private List<Admin> administrators;//管理员角色
     private List<Group> groups;
+    private Power power = new Power();//权限
     public String getLab_name() {
         return lab_name;
     }
@@ -175,5 +176,13 @@ public class User {
 
     public void setGroups(List<Group> groups) {
         this.groups = groups;
+    }
+
+    public Power getPower() {
+        return power;
+    }
+
+    public void setPower(Power power) {
+        this.power = power;
     }
 }

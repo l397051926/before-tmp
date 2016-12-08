@@ -239,7 +239,7 @@
         SELECT
         <include refid="GroupMemberColumn"/>
         FROM gennlife_user JOIN gennlife_user_group ON gennlife_user.uid = gennlife_user_group.uid
-        WHERE gennlife_user_group.gid = #{gid} AND gennlife_user_group.orgID = #{orgID}
+        WHERE gennlife_user_group.gid = #{gid} AND gennlife_user_group.orgID = #{orgID} limit #{startIndex},#{maxNum}
     </select>
     <select id="getUsersBySearchNameGroupIDCounter" parameterType="map" resultType="java.lang.Integer">
         SELECT
@@ -252,7 +252,7 @@
         AND
         gennlife_user.uname LIKE CONCAT(CONCAT('%', #{skey,jdbcType=VARCHAR}), '%')
         ORDER BY gennlife_user.ctime DESC
-        limit #{startIndex},#{maxNum}
+
     </select>
     <delete id="deleteGroupByGID" >
         DELETE from gennlife_group

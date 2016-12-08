@@ -278,62 +278,38 @@ public class CaseProcessor {
      */
     public static String transformSid(String param){
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-        JsonArray groupsArray = paramObj.getAsJsonArray("groups");
-
-        if(paramObj.has("sid") && paramObj.has("roles")){
+        if(paramObj.has("sid") && paramObj.has("power")){
             String sid = paramObj.get("sid").getAsString();
+            paramObj.remove("groups");
             paramObj.remove("sid");
-            JsonArray roles = paramObj.getAsJsonArray("roles");
-            JsonArray newRoles = new JsonArray();
-            if(roles.size() == 0){
-                return ParamUtils.errorParam("无搜索权限");
-            }else{
-                for(JsonElement json:roles){
-                    JsonObject role = json.getAsJsonObject();
-                    if(role.has("resources")){
-                        JsonArray resources = role.getAsJsonArray("resources");
-                        JsonArray newresources = new JsonArray();
-                        for(JsonElement jsonElement:resources){
-                            JsonObject jsonObject = jsonElement.getAsJsonObject();
-                            String sidRe = jsonObject.get("sid").getAsString();
-                            if(sidRe.equals(sid)){
-                                newresources.add(jsonElement);
-                            }
-                        }
-                        if(newresources.size() > 0){
-                            role.add("resources",newresources);
-                            newRoles.add(role);
-                        }
-                    }
-                }
-                if(newRoles.size() == 0){
-                    return ParamUtils.errorParam("无搜索权限");
-                }else {
-                    paramObj.add("roles",newRoles);
-                    logger.info("通过sid转化后，搜索请求参数="+gson.toJson(paramObj));
-                    return gson.toJson(paramObj);
+            JsonObject power = paramObj.getAsJsonObject("power");
+            JsonArray has_searchArray  = power.getAsJsonArray("has_search");
+            JsonArray newHas_searchArray = new JsonArray();
+            for(JsonElement item:has_searchArray){
+                JsonObject has_searchObj = item.getAsJsonObject();
+                String tmpSid = has_searchObj.get("sid").getAsString();
+                if(tmpSid.equals(sid)){
+                    newHas_searchArray.add(has_searchObj);
                 }
             }
-        }else if(paramObj.has("roles")){//角色,完成小组扩展
-            JsonArray roles = paramObj.getAsJsonArray("roles");
+            if(newHas_searchArray.size() == 0){
+                return ParamUtils.errorParam("无搜索权限");
+            }else {
+                power.add("has_search",newHas_searchArray);
+            }
+            paramObj.add("power",power);
+            logger.info("通过sid转化后，搜索请求参数="+gson.toJson(paramObj));
+            return gson.toJson(paramObj);
+        }else if(paramObj.has("power")){//角色,完成小组扩展
+            JsonObject power = paramObj.getAsJsonObject("power");
+            JsonArray has_searchArray  = power.getAsJsonArray("has_search");
+            if(has_searchArray.size() == 0){
+                return ParamUtils.errorParam("无搜索权限");
+            }else {
+                return gson.toJson(paramObj);
+            }
 
-            if(roles.size() == 0){
-                return ParamUtils.errorParam("无搜索权限");
-            }else{
-                int counter = 0;
-                for(JsonElement json:roles){
-                    if(json.getAsJsonObject().has("resources")){
-                        JsonArray resources = json.getAsJsonObject().getAsJsonArray("resources");
-                        counter = resources.size() + counter;
-                    }
-                }
-                if(counter == 0){
-                    return ParamUtils.errorParam("无搜索权限");
-                }else {
-                    logger.info("通过sid转化后，搜索请求参数="+param);
-                    return gson.toJson(paramObj);
-                }
-            }
+
         }else{
             return param;
         }
