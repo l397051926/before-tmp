@@ -4,6 +4,7 @@ import com.gennlife.platform.configuration.FileBean;
 import com.gennlife.platform.configuration.URLBean;
 import com.gennlife.platform.util.FilesUtils;
 import com.gennlife.platform.util.GsonUtil;
+import com.gennlife.platform.util.RedisUtil;
 import com.gennlife.platform.util.SpringContextUtil;
 import com.google.gson.*;
 import org.slf4j.Logger;
@@ -50,10 +51,7 @@ public class ConfigurationService {
             ApplicationContext context = SpringContextUtil.getApplicationContext();
             urlBean = (URLBean) context.getBean("com.gennlife.platform.configuration.URLBean");
             fileBean = (FileBean) context.getBean("FileLocation");
-            logger.info("新的搜索后端接口:"+urlBean.getCaseSearchURL());
-            logger.info("详情页患者基础信息接口:"+urlBean.getCaseDetailPatientBasicInfoURL());
-            logger.info("基本统计图形&筛选条件:"+urlBean.getCaseDetailPatientBasicFigureURL());
-            logger.info("详情页时间轴信息接口:"+urlBean.getCasePatientBasicTimeAxisURL());
+            RedisUtil.init();
         }catch (Exception e){
             e.printStackTrace();
             logger.error("",e);

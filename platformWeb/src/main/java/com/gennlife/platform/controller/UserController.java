@@ -6,7 +6,7 @@ import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.UserProcessor;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
-import com.gennlife.platform.util.SpringContextUtil;
+import com.gennlife.platform.util.RedisUtil;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import redis.clients.jedis.JedisCluster;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +34,7 @@ public class UserController{
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
     private static View view = new View();
-    private JedisCluster jedisCluster = (JedisCluster) SpringContextUtil.getBean("jedisClusterFactory");
+
     @RequestMapping(value="/Login",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public void postLogin(HttpServletRequest paramRe, HttpServletResponse response){
         Long start = System.currentTimeMillis();
@@ -58,15 +57,7 @@ public class UserController{
             User user = processor.login(email,pwd);
             ResultBean resultBean = new ResultBean();
             if(user != null){
-                if(jedisCluster.exists(user.getUid()).booleanValue()){//使已经登陆失效
-                    String exSessionID = this.jedisCluster.get(user.getUid());
-                    this.jedisCluster.del(exSessionID);
-                    this.jedisCluster.del(user.getUid());
-                    this.jedisCluster.del(user.getUid() + "_info");
-                }
-                this.jedisCluster.set(user.getUid() + "_info", gson.toJson(user));
-                this.jedisCluster.set(sessionID, user.getUid());
-                this.jedisCluster.set(user.getUid(), sessionID);
+                RedisUtil.setUserOnLine(user,sessionID);
                 resultBean.setCode(1);
                 resultBean.setData(user);
             }else {
@@ -108,8 +99,8 @@ public class UserController{
             if(resultBean.getCode() == 1){
                 try{
                     User realUser = (User) resultBean.getData();
-                    if(realUser != null && this.jedisCluster.exists(realUser.getUid() + "_info")){
-                        this.jedisCluster.del(realUser.getUid() + "_info");
+                    if(realUser != null ){
+                        RedisUtil.deleteUser(realUser.getUid());
                     }
                 }catch (Exception e){
                     logger.error("",e);
@@ -242,14 +233,13 @@ public class UserController{
         return resultStr;
     }
 
-    @RequestMapping(value="/OffLineUser",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/SetRedis",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String OffLineUser(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            User user = (User)paramRe.getAttribute("currentUser");
             String param = ParamUtils.getParam(paramRe);
-            return processor.offLineUser(param);
+            return processor.setRedis(param);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");

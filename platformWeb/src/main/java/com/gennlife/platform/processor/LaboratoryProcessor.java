@@ -8,7 +8,6 @@ import com.gennlife.platform.util.*;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import redis.clients.jedis.JedisCluster;
 
 import java.util.*;
 
@@ -19,12 +18,6 @@ public class LaboratoryProcessor {
     private static Logger logger = LoggerFactory.getLogger(LaboratoryProcessor.class);
     private static Gson gson = GsonUtil.getGson();
     private static JsonParser jsonParser = new JsonParser();
-    private static JedisCluster jedisCluster;
-    public LaboratoryProcessor(){
-        if(jedisCluster == null) {
-            jedisCluster = (JedisCluster)SpringContextUtil.getBean("jedisClusterFactory");
-        }
-    }
 
     /**
      * 获取科室组织信息
@@ -81,7 +74,7 @@ public class LaboratoryProcessor {
             logger.error("",e);
             return ParamUtils.errorParam("请求参数有错误");
         }
-        User user = UserProcessor.getUserByUid(uid);
+        User user = UserProcessor.getUserByUids(uid);
         String orgID = user.getOrgID();
         Organization organization = null;
         Map<String,Object> map = new HashMap<>();
@@ -239,9 +232,7 @@ public class LaboratoryProcessor {
             List<User> userList = AllDao.getInstance().getSyUserDao().getUserByLabID(labID,orgID);
             //更新缓存
             for(User user1:userList){
-                if(jedisCluster.exists(user1.getUid()+"_info")){
-                    jedisCluster.del(user1.getUid()+"_info");
-                }
+                RedisUtil.deleteUser(user1.getUid());
             }
 
 
@@ -473,12 +464,8 @@ public class LaboratoryProcessor {
             int counter = AllDao.getInstance().getSyUserDao().deleteUserByUids(uids);
 
             for(String uid:uids){
-                if(jedisCluster.exists(uid+"_info")){
-                    jedisCluster.del(uid+"_info");
-                }
-                if(jedisCluster.exists(uid)){
-                    jedisCluster.del(uid);
-                }
+                RedisUtil.deleteUser(uid);
+                RedisUtil.deleteKey(uid);
             }
             if(counter > 0){
                 re.setCode(1);
@@ -655,9 +642,7 @@ public class LaboratoryProcessor {
         for(Integer roleid:roleids){
             List<User> list = AllDao.getInstance().getSyUserDao().getUserByRoleID(roleid,0,10000);
             for(User user1:list){
-                if(jedisCluster.exists(user1.getUid()+"_info")){
-                    jedisCluster.del(user1.getUid()+"_info");
-                }
+               RedisUtil.deleteUser(user1.getUid());
             }
         }
         Map<String,Integer> map = new HashMap<>();
@@ -810,9 +795,7 @@ public class LaboratoryProcessor {
             int counter = AllDao.getInstance().getSyRoleDao().updateUserRole(role);//更新用户信息
             List<User> users = AllDao.getInstance().getSyUserDao().getUserByRoleID(role.getRoleid(),0,10000);
             for(User user1:users){
-                if(jedisCluster.exists(user1.getUid()+"_info")){
-                    jedisCluster.del(user1.getUid()+"_info");
-                }
+                RedisUtil.deleteUser(user1.getUid());
             }
             if(counter == 0){
                 return ParamUtils.errorParam("更新失败");

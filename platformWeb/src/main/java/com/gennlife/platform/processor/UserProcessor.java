@@ -22,12 +22,7 @@ public class UserProcessor {
     private static Logger logger = LoggerFactory.getLogger(UserProcessor.class);
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
-    private static JedisCluster jedisCluster = null;
-    public UserProcessor(){
-        if (jedisCluster == null){
-            jedisCluster = (JedisCluster) SpringContextUtil.getBean("jedisClusterFactory");
-        }
-    }
+
     public User login(String email,String pwd) throws IOException {
         try{
             LogUtils.BussnissLog("用户：" + email + " >>> 进行登陆");
@@ -43,7 +38,7 @@ public class UserProcessor {
             if(user == null){
                 return null;
             }else{
-                user = getUserByUid(user.getUid());
+                user = getUserByUids(user.getUid());
                 return user;
             }
 
@@ -83,7 +78,7 @@ public class UserProcessor {
                 logger.error("更新失败",e);
                 return ParamUtils.errorParamResultBean("更新失败");
             }
-            user = getUserByUid(user.getUid());
+            user = getUserByUids(user.getUid());
             if(!flag){
                 userBean.setCode(0);
                 userBean.setData("更新失败");
@@ -145,56 +140,46 @@ public class UserProcessor {
 
     }
 
-    public static User getUserByUid(String uid){
-        if (jedisCluster == null){
-            jedisCluster = (JedisCluster) SpringContextUtil.getBean("jedisClusterFactory");
-        }
+    public static User getUserByUids(String uid){
         User user = null;
         try {
-            if(jedisCluster.exists(uid+"_info")){//如果存在，直接返回
-                String userStr = jedisCluster.get(uid + "_info");
-                JsonReader jsonReader = new JsonReader(new StringReader(userStr));
-                jsonReader.setLenient(true);
-                user = gson.fromJson(jsonReader, User.class);
-                return user;
-            }else {//缓存中不存在
-                user = AllDao.getInstance().getSyUserDao().getUserByUid(uid);
-                Map<String,Object> confMap = new HashMap<>();
-                confMap.put("orgID",user.getOrgID());
-                confMap.put("uid",user.getUid());
-                List<Admin> adminList = AllDao.getInstance().getSyUserDao().getAdmins(confMap);
-                user.setAdministrators(adminList);
-                List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(confMap);
-                //转化本科室信息
-                Power power = transformRole(user,rolesList);
-                List<Group> list = AllDao.getInstance().getGroupDao().getGroupsByUid(confMap);
-                Map<String,Object> map = new HashMap<>();
-                map.put("orgID",user.getOrgID());
-                for(Group group:list){
-                    String gid = group.getGid();
-                    map.put("gid",gid);
-                    List<User> userList = AllDao.getInstance().getGroupDao().getUsersByGroupID(map);
-                    List<User> newUserList = new LinkedList<>();
-                    for(User member:userList){//补充成员的角色信息
-                        User newMember = getUserByUser(member);
-                        List<Role> roleList = newMember.getRoles();
-                        if(roleList != null){
-                            for(Role role:roleList){
-                                if(role.getResources() != null){
-                                    List<Resource> resourceList = (List<Resource>) role.getResources();
-                                    for(Resource r:resourceList){
-                                        power = addResourceInGroupToPower(power,r,group);
-                                    }
+            user = AllDao.getInstance().getSyUserDao().getUserByUid(uid);
+            Map<String,Object> confMap = new HashMap<>();
+            confMap.put("orgID",user.getOrgID());
+            confMap.put("uid",user.getUid());
+            List<Admin> adminList = AllDao.getInstance().getSyUserDao().getAdmins(confMap);
+            user.setAdministrators(adminList);
+            List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(confMap);
+            //转化本科室信息
+            Power power = transformRole(user,rolesList);
+            user.setPower(power);
+            List<Group> list = AllDao.getInstance().getGroupDao().getGroupsByUid(confMap);
+            Map<String,Object> map = new HashMap<>();
+            map.put("orgID",user.getOrgID());
+            for(Group group:list){
+                String gid = group.getGid();
+                map.put("gid",gid);
+                List<User> userList = AllDao.getInstance().getGroupDao().getUsersByGroupID(map);
+                List<User> newUserList = new LinkedList<>();
+                for(User member:userList){//补充成员的角色信息
+                    User newMember = getUserByUser(member);
+                    List<Role> roleList = newMember.getRoles();
+                    if(roleList != null){
+                        for(Role role:roleList){
+                            if(role.getResources() != null){
+                                List<Object> resourceList = (List<Object>) role.getResources();
+                                for(Object r:resourceList){
+                                    Resource resource = gson.fromJson(gson.toJson(r),Resource.class);
+                                    addResourceInGroupToPower(power,resource,group);
                                 }
-
                             }
+
                         }
                     }
-                    group.setMembers(newUserList);
                 }
-                user.setGroups(list);
-                user.setPower(power);
+                group.setMembers(newUserList);
             }
+            user.setGroups(list);
 
         }catch (Exception e){
             logger.error("",e);
@@ -202,21 +187,17 @@ public class UserProcessor {
         return user;
     }
 
-
+    public static User getUserByUidFromRedis(String uid){
+        return RedisUtil.getUser(uid);
+    }
 
     public static User getUserByUser(User user){
-        if (jedisCluster == null){
-            jedisCluster = (JedisCluster) SpringContextUtil.getBean("jedisClusterFactory");
-        }
         if(user == null){
             return null;
         }else {
-            if(jedisCluster.exists(user.getUid()+"_info")){
-                String userStr = jedisCluster.get(user.getUid() + "_info");
-                JsonReader jsonReader = new JsonReader(new StringReader(userStr));
-                jsonReader.setLenient(true);
-                user = gson.fromJson(jsonReader, User.class);
-                return user;
+            User exuser = RedisUtil.getUser(user.getUid());
+            if(exuser != null){
+                return exuser;
             }else {
                 user = AllDao.getInstance().getSyUserDao().getUserByUid(user.getUid());
                 Map<String,Object> confMap = new HashMap<>();
@@ -585,12 +566,16 @@ public class UserProcessor {
         }
     }
 
-    public String offLineUser(String param) {
-        JsonObject obj = (JsonObject) jsonParser.parse(param);
-        String uid = obj.get("uid").getAsString();
-        if(jedisCluster.exists(uid+"_info")){
-            jedisCluster.del("*_info");
-        }
-        return "ok";
+
+
+    public String setRedis(String param) {
+        boolean flag = true;
+        JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+        flag = paramObj.get("flag").getAsBoolean();
+        RedisUtil.setFlag(flag);
+        ResultBean re = new ResultBean();
+        re.setCode(1);
+        re.setInfo("ok");
+        return gson.toJson(re);
     }
 }

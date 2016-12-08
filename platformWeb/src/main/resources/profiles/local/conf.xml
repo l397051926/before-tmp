@@ -13,8 +13,8 @@
 
 
     <bean id="com.gennlife.platform.configuration.URLBean" class="com.gennlife.platform.configuration.URLBean">
-        <property name="caseSearchURL" value="http://10.0.0.32:8989/search-server/search"/>
-        <property name="caseSuggestURL" value="http://10.0.0.32:8989/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
+        <property name="caseSearchURL" value="http://10.0.0.152:8080/search-server/search"/>
+        <property name="caseSuggestURL" value="http://10.0.0.152:8080/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
 
         <property name="caseDetailPatientBasicInfoURL" value="http://10.0.0.165:9900/FileService/PatientDetail/patient_basic_info"/>
         <property name="caseDetailPatientBasicFigureURL" value="http://10.0.0.165:9900/FileService/PatientDetail/PatientBasicFigure"/>

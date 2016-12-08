@@ -4,23 +4,17 @@ package com.gennlife.platform.filter;
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.UserProcessor;
-import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
-import com.gennlife.platform.util.SpringContextUtil;
+import com.gennlife.platform.util.RedisUtil;
 import com.gennlife.platform.view.View;
-import com.google.gson.Gson;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import redis.clients.jedis.JedisCluster;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,17 +23,12 @@ import java.util.Set;
  */
 public class SessionFilter implements Filter {
     private static Logger logger = LoggerFactory.getLogger(SessionFilter.class);
-    private static Gson gson = GsonUtil.getGson();
-    private static JsonParser jsonParser = new JsonParser();
     private static View view = new View();
     private static Set<String> okSet = new HashSet();
     private static Set<String> adminSet = new HashSet();
-    private static JedisCluster jedisCluster;
 
     public SessionFilter() {
-        if(jedisCluster == null) {
-            jedisCluster = (JedisCluster) SpringContextUtil.getBean("jedisClusterFactory");
-        }
+
     }
 
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -54,20 +43,16 @@ public class SessionFilter implements Filter {
         } else {
             HttpSession session = request.getSession();
             String sessionID = session.getId();
-            if(!jedisCluster.exists(sessionID).booleanValue()) {
+            String uid = RedisUtil.getValue(sessionID);
+            if(uid == null) {
                 view.viewString(ParamUtils.errorSessionLosParam(), response);
             } else {
-                String uid = jedisCluster.get(sessionID);
-                String userStr = null;
-                User user = null;
-                if(jedisCluster.exists(uid + "_info").booleanValue()) {
-                    userStr = jedisCluster.get(uid + "_info");
-                    JsonReader jsonReader = new JsonReader(new StringReader(userStr));
-                    jsonReader.setLenient(true);
-                    user = gson.fromJson(jsonReader, User.class);
-                }else{
-                    user = UserProcessor.getUserByUid(uid);
-                    jedisCluster.set(uid+"_info",gson.toJson(user));
+                User user = RedisUtil.getUser(uid);
+                if(user == null) {
+                    user = UserProcessor.getUserByUidFromRedis(uid);
+                    if(user == null){
+                        view.viewString(ParamUtils.errorSessionLosParam(), response);
+                    }
                 }
                 servletRequest.setAttribute("currentUser", user);
                 if(adminSet.contains(uri) && !AuthorityUtil.isAdmin(user)) {
@@ -88,6 +73,7 @@ public class SessionFilter implements Filter {
         okSet.add("/base/Login");
         okSet.add("/user/SendEmailForChangePWD");
         okSet.add("/user/ExistEmail");
+        okSet.add("/user/SetRedis");
         adminSet.add("/bsma/OrgMapData");
         adminSet.add("/bsma/DeleteOrg");
         adminSet.add("/bsma/UpdateOrg");

@@ -58,7 +58,7 @@ public class ProjectProcessor {
                 String projectID = myProjectList.getProjectID();
                 String creator = myProjectList.getCreator();
                 if(creator != null){
-                    User user = UserProcessor.getUserByUid(creator);
+                    User user = UserProcessor.getUserByUids(creator);
                     if(user != null){
                         myProjectList.setCreatorName(user.getUname()+"");
                     }
