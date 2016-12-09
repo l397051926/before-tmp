@@ -4,6 +4,8 @@ import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.projectBean.MyProjectList;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.CRFLab;
+import com.gennlife.platform.model.Power;
+import com.gennlife.platform.model.User;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
@@ -35,12 +37,18 @@ public class CrfProcessor {
     private static Gson gson = GsonUtil.getGson();
 
 
-    public String getData(JsonObject paramObj,String orgID) {
+    public String getData(JsonObject paramObj, String orgID, User user) {
         try {
             JsonArray roles = paramObj.getAsJsonArray("roles");
             String crf_id = paramObj.get("crf_id").getAsString();
             String caseID = paramObj.has("caseID")?paramObj.get("caseID").getAsString():"";
-            boolean flag = getCRFFlag(roles,orgID,crf_id,null,caseID);
+            Power power = user.getPower();
+            boolean flag = true;
+            if("".equals(caseID)){
+                flag = getCRFFlag(power,orgID,crf_id,"has_addCRF");
+            }else {
+                flag = getCRFFlag(power,orgID,crf_id,"has_editCRF");
+            }
             if(flag){
                 String url = ConfigurationService.getUrlBean().getCRFGetData();
                 String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
@@ -60,40 +68,19 @@ public class CrfProcessor {
      * 如果caseID 为null，以key作为权限控制判断依据
      * 如果caseID 为"",判断录入的
      * 如果caseID 不为null,不为""，判断编辑
-     * @param roles
      * @param orgID
      * @param crf_id
-     * @param key
-     * @param caseID
      * @return
      */
-    public static boolean getCRFFlag(JsonArray roles,String orgID,String crf_id,String key,String caseID){
+    public static boolean getCRFFlag(Power power,String orgID,String crf_id,String key){
         boolean flag = false;
         Set<String> validLabID = new HashSet<>();
-        for(JsonElement role:roles){
-            JsonObject roleObj = role.getAsJsonObject();
-            if(roleObj.has("resources")){
-                JsonArray resources = roleObj.getAsJsonArray("resources");
-                for(JsonElement resource:resources){
-                    JsonObject resourceObj = resource.getAsJsonObject();
-                    String labID = resourceObj.get("sid").getAsString();
-                    if(caseID == null){
-                        if(resourceObj.has(key) && ("有".equals(resourceObj.get(key).getAsString()))){
-                            validLabID.add(labID);
-                        }
-                    }
-                    else if ("".equals(caseID)){//录入权限判断
-                        if(resourceObj.has("has_addCRF") && ("有".equals(resourceObj.get("has_addCRF").getAsString()))){
-                            validLabID.add(labID);
-                        }
-                    }else{//编辑crf数据判定
-                        if(resourceObj.has("has_editCRF") && ("有".equals(resourceObj.get("has_editCRF").getAsString()))){
-                            validLabID.add(labID);
-                        }
-                    }
-
-                }
-            }
+        JsonObject powerObj = (JsonObject) jsonParser.parse(gson.toJson(power));
+        JsonArray array = powerObj.getAsJsonArray(key);
+        for(JsonElement item:array){
+            JsonObject itemObj = item.getAsJsonObject();
+            String sid = itemObj.get("sid").getAsString();
+            validLabID.add(sid);
         }
         for(String labID:validLabID){
             CRFLab crfLab = AllDao.getInstance().getSyResourceDao().getCrfIDByLab(labID,orgID);
@@ -136,11 +123,11 @@ public class CrfProcessor {
 
 
 
-    public String deleteSample(JsonObject paramObj,String orgID) {
+    public String deleteSample(JsonObject paramObj,String orgID,User user) {
         try {
-            JsonArray roles = paramObj.getAsJsonArray("roles");
+            Power power = user.getPower();
             String crf_id = paramObj.get("crf_id").getAsString();
-            boolean flag = getCRFFlag(roles,orgID,crf_id,"has_deleteCRF",null);
+            boolean flag = getCRFFlag(power,orgID,crf_id,"has_deleteCRF");
             if(flag){
                 String url = ConfigurationService.getUrlBean().getCRFDeleteSample();
                 String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
@@ -298,12 +285,13 @@ public class CrfProcessor {
     }
 
 
-    public String modelForTraceByCRFID(String param,String orgID) {
+    public String modelForTraceByCRFID(String param,String orgID,User user) {
         try {
+            Power power = user.getPower();
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             JsonArray roles = paramObj.getAsJsonArray("roles");
             String crf_id = paramObj.get("crf_id").getAsString();
-            boolean flag = getCRFFlag(roles,orgID,crf_id,"has_traceCRF",null);
+            boolean flag = getCRFFlag(power,orgID,crf_id,"has_traceCRF");
             if(flag){//有权限请求
                 String url = ConfigurationService.getUrlBean().getCRFModelForTraceByCRFID();
                 logger.info("request url:" + url);
@@ -333,9 +321,10 @@ public class CrfProcessor {
     }
 
 
-    public String uploadFileForImportCRF(MultipartFile file, String crf_id,JsonArray roles,String orgID) {
+    public String uploadFileForImportCRF(MultipartFile file, String crf_id,JsonArray roles,String orgID,User user) {
+        Power power = user.getPower();
         logger.info("crf_id:"+crf_id);
-        boolean flag = getCRFFlag(roles,orgID,crf_id,"has_addBatchCRF",null);
+        boolean flag = getCRFFlag(power,orgID,crf_id,"has_addBatchCRF");
         if(flag){
             String url = ConfigurationService.getUrlBean().getFileStoreForCRFImport();
             if (!file.isEmpty()) {

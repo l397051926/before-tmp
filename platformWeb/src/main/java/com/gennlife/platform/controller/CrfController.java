@@ -60,7 +60,7 @@ public class CrfController {
             logger.info("数据录入时,请求某个case数据 get方式 参数="+param);
             User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.getData(paramObj,user.getOrgID());
+            resultStr =  processor.getData(paramObj,user.getOrgID(),user);
         }catch (Exception e){
             logger.error("数据录入时,请求某个case数据",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -138,7 +138,7 @@ public class CrfController {
             User user = (User)paramRe.getAttribute("currentUser");
             logger.info("删除某个case数据 post方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.deleteSample(paramObj,user.getOrgID());
+            resultStr = processor.deleteSample(paramObj,user.getOrgID(),user);
         }catch (Exception e){
             logger.error("删除某个case数据",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -247,7 +247,7 @@ public class CrfController {
             String param = AuthorityUtil.addAuthority(paramRe);
             User user = (User)paramRe.getAttribute("currentUser");
             logger.info("溯源简化的模型接口 参数="+param);
-            resultStr = processor.modelForTraceByCRFID(param,user.getOrgID());
+            resultStr = processor.modelForTraceByCRFID(param,user.getOrgID(),user);
         }catch (Exception e){
             logger.error("溯源简化的模型接口",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -295,7 +295,7 @@ public class CrfController {
             if(file.isEmpty()){
                 return ParamUtils.errorParam("文件为空");
             }
-            resultStr = processor.uploadFileForImportCRF(file,crf_id,roles,user.getOrgID());
+            resultStr = processor.uploadFileForImportCRF(file,crf_id,roles,user.getOrgID(),user);
         }catch (Exception e){
             logger.error("上传CRF数据文件",e);
             resultStr = ParamUtils.errorParam("出现异常");
