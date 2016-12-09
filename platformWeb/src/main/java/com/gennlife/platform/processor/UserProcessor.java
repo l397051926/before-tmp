@@ -250,9 +250,10 @@ public class UserProcessor {
                         }
                         resource.setSid(user.getLabID());
                         resource.setSlab_name(user.getLab_name());
-                        power = addResourceToPower(power,resource);
+
                     }
                     reList.add(resource);
+                    power = addResourceToPower(power,resource);
                 }
                 role.setResources(reList);
             }
