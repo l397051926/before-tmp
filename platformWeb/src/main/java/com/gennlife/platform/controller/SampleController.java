@@ -36,9 +36,10 @@ public class SampleController {
         String resultStr = null;
         try{
             String param = AuthorityUtil.addAuthority(paramRe);
+            User user = (User)paramRe.getAttribute("currentUser");
             logger.info("Import param="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.importSample(paramObj);
+            resultStr =  processor.importSample(paramObj,user);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");

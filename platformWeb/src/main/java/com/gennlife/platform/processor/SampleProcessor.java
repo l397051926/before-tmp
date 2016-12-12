@@ -32,7 +32,7 @@ public class SampleProcessor {
      *
      * @param jsonObject
      */
-    public String importSample(JsonObject jsonObject) {
+    public String importSample(JsonObject jsonObject,User user) {
         try {
             String projectID = jsonObject.get("projectID").getAsString();
             String sampleName = null;
@@ -48,7 +48,7 @@ public class SampleProcessor {
             JsonElement roles = jsonObject.get("roles");
             query.add("roles",roles);
             logger.info("原始搜索条件="+gson.toJson(query));
-            String withSid = CaseProcessor.transformSid(gson.toJson(query));
+            String withSid = CaseProcessor.transformSid(gson.toJson(query),user);
             JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
             logger.info("sid 处理后搜索条件="+gson.toJson(queryNew));
             JsonArray source = query.getAsJsonArray("source");
