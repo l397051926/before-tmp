@@ -130,7 +130,6 @@ public class ConfigurationService {
         if(jsonObject != null){
             String copy = gson.toJson(jsonObject);
             JsonObject target = (JsonObject) jsonParser.parse(copy);
-            target = removeDiseasePrefix(target);
             return target;
         }
         return null;
@@ -153,7 +152,6 @@ public class ConfigurationService {
         if(jsonObject != null){
             String copy = gson.toJson(jsonObject);
             JsonObject target = (JsonObject) jsonParser.parse(copy);
-            target = removeDiseasePrefix(target);
             return target;
         }
         return null;
@@ -164,7 +162,6 @@ public class ConfigurationService {
         if(jsonObject != null){
             String copy = gson.toJson(jsonObject);
             JsonObject target = (JsonObject) jsonParser.parse(copy);
-            target = removeDiseasePrefix(target);
             return target;
         }
         return null;
@@ -201,7 +198,6 @@ public class ConfigurationService {
         if(jsonObject != null){
             String copy = gson.toJson(jsonObject);
             JsonObject target = (JsonObject) jsonParser.parse(copy);
-            target = removeDiseasePrefix(target);
             return target;
         }
         return null;
