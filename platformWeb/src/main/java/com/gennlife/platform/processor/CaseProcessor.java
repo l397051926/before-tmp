@@ -291,7 +291,7 @@ public class CaseProcessor {
             group.setMembers(userList);
             JsonObject groupObj = (JsonObject) jsonParser.parse(gson.toJson(group));
             groups.add(groupObj);
-
+            paramObj.add("groups",groups);
         }
         if(paramObj.has("sid") && paramObj.has("power")){
             String sid = paramObj.get("sid").getAsString();
@@ -316,15 +316,7 @@ public class CaseProcessor {
             logger.info("通过sid转化后，搜索请求参数="+gson.toJson(paramObj));
             return gson.toJson(paramObj);
         }else if(paramObj.has("power")){//角色,完成小组扩展
-            JsonObject power = paramObj.getAsJsonObject("power");
-            JsonArray has_searchArray  = power.getAsJsonArray("has_search");
-            if(has_searchArray.size() == 0){
-                return ParamUtils.errorParam("无搜索权限");
-            }else {
-                return gson.toJson(paramObj);
-            }
-
-
+            return gson.toJson(paramObj);
         }else{
             return param;
         }
