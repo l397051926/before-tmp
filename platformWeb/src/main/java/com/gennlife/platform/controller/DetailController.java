@@ -549,7 +549,13 @@ public class DetailController {
         logger.info("分类详情化疗 post方式 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
-    @RequestMapping(value="/SimilarServiceGetSimilars",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+
+    /**
+     * 后期修改名称了，原先叫SimilarServiceGetSimilars
+     * @param paramRe
+     * @return
+     */
+    @RequestMapping(value="/SimilarServiceVitaboard",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
     String SimilarServiceGetSimilars(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
