@@ -1,6 +1,7 @@
 package com.gennlife.platform.authority;
 
 import com.gennlife.platform.model.Admin;
+import com.gennlife.platform.model.Group;
 import com.gennlife.platform.model.Role;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.UserProcessor;

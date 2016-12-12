@@ -15,7 +15,7 @@ public class CaseSearchParser implements Callable<String> {
     private static Logger logger = LoggerFactory.getLogger(CaseSearchParser.class);
     private String queryStr;
     public CaseSearchParser(String queryStr){
-        logger.info("请求参数="+queryStr);
+        logger.info("搜索请求参数="+queryStr);
         this.queryStr = queryStr;
 
     }

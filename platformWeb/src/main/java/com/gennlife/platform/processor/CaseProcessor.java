@@ -1,6 +1,8 @@
 package com.gennlife.platform.processor;
 
 import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.model.Group;
+import com.gennlife.platform.model.User;
 import com.gennlife.platform.parse.CaseSearchParser;
 import com.gennlife.platform.parse.CaseSuggestParser;
 import com.gennlife.platform.service.ConfigurationService;
@@ -276,8 +278,21 @@ public class CaseProcessor {
      * @param param
      * @return
      */
-    public static String transformSid(String param){
+    public static String transformSid(String param,User user){
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+        JsonArray groups = paramObj.getAsJsonArray("groups");
+        if(groups.size() == 0){//如果
+            Group group = new Group();
+            group.setGroupDesc("无小组信息时，补充个人工号");
+            group.setHas_search("有");
+            group.setHas_searchExport("有");
+            List<User> userList = new LinkedList<>();
+            userList.add(user);
+            group.setMembers(userList);
+            JsonObject groupObj = (JsonObject) jsonParser.parse(gson.toJson(group));
+            groups.add(groupObj);
+
+        }
         if(paramObj.has("sid") && paramObj.has("power")){
             String sid = paramObj.get("sid").getAsString();
             paramObj.remove("groups");
@@ -321,11 +336,11 @@ public class CaseProcessor {
      *
      * @param newParam
      */
-    public String searchCase(String newParam) {
+    public String searchCase(String newParam,User user) {
         if(newParam == null){
             return ParamUtils.errorSessionLosParam();
         }
-        String param = transformSid(newParam);
+        String param = transformSid(newParam,user);
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
         if(paramObj.has("code") && paramObj.get("code").getAsInt() == 0){
             return param;

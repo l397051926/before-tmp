@@ -1,6 +1,7 @@
 package com.gennlife.platform.controller;
 
 import com.gennlife.platform.authority.AuthorityUtil;
+import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.CaseProcessor;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
@@ -166,8 +167,9 @@ public class CaseController {
         String resultStr = null;
         try{
             String paramNew = AuthorityUtil.addAuthority(paramRe);
+            User user = (User)paramRe.getAttribute("currentUser");
             logger.info("病历搜索 post方式 增加科室后参数="+paramNew);
-            resultStr =  processor.searchCase(paramNew);
+            resultStr =  processor.searchCase(paramNew,user);
         }catch (Exception e){
             logger.error("病历搜索",e);
             resultStr = ParamUtils.errorParam("出现异常");
