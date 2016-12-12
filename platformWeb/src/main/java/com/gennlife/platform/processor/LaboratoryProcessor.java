@@ -782,7 +782,21 @@ public class LaboratoryProcessor {
         }else{
             String roleName = role.getRole();
             if("1".equals(exRole.getRole_type())){
-                return ParamUtils.errorParam("系统角色，禁止更新");
+                Role role1 = AllDao.getInstance().getSyRoleDao().getRoleByroleid(role.getRoleid());
+                if(role1 != null){//
+                    List<String> uidList = (List<String>) role.getStaff();
+                    Integer[] roleids = new Integer[]{role.getRoleid()};
+                    AllDao.getInstance().getSyRoleDao().deleteRelationsByRoleids(roleids);//删除原有的关联关系
+                    for(String uid:uidList){
+                        AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(exRole.getRoleid(),uid);//插入新的
+                    }
+                    ResultBean resultBean = new ResultBean();
+                    resultBean.setCode(1);
+                    resultBean.setInfo("系统角色 更新完成");
+                    return gson.toJson(resultBean);
+                }else {
+                    return ParamUtils.errorParam("该角色id对应角色不存在");
+                }
             }
             //如果更新角色了名称
             if(!roleName.equals(exRole.getRole())){
