@@ -617,4 +617,19 @@ public class DetailController {
         logger.info("生成相似病人查询条件接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+    @RequestMapping(value="/SimilarServiceSimilarBasicDetail",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String SimilarServiceSimilarBasicDetail(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addAuthority(paramRe);
+            resultStr = processor.similarServiceSimilarBasicDetail(param);
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("生成相似病人查询条件接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }

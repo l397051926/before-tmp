@@ -14,6 +14,10 @@ public class URLBean {
     }
 
     /**
+     * 获取相似病人情况的基本信息
+     */
+    private  String caseSimilarServiceSimilarBasicDetail;
+    /**
      * vitaboard画图数据获取接口
      */
     private String caseSimilarServiceGetSimilars = null;
@@ -1023,5 +1027,13 @@ public class URLBean {
 
     public void setCaseSimilarServiceSimilarQuery(String caseSimilarServiceSimilarQuery) {
         this.caseSimilarServiceSimilarQuery = caseSimilarServiceSimilarQuery;
+    }
+
+    public String getCaseSimilarServiceSimilarBasicDetail() {
+        return caseSimilarServiceSimilarBasicDetail;
+    }
+
+    public void setCaseSimilarServiceSimilarBasicDetail(String caseSimilarServiceSimilarBasicDetail) {
+        this.caseSimilarServiceSimilarBasicDetail = caseSimilarServiceSimilarBasicDetail;
     }
 }
