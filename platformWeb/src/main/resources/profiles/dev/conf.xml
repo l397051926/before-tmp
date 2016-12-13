@@ -18,60 +18,60 @@
         <property name="caseSuggestURL" value="http://10.0.0.152:8080/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
         <property name="caseGeneErrorURL" value="http://10.0.0.152:8080/search-server/verify"/>
         <!--FS 详情页 -->
-        <property name="caseDetailPatientBasicInfoURL" value="http://10.0.0.165:9900/FileService/PatientDetail/patient_basic_info"/>
-        <property name="caseDetailPatientBasicFigureURL" value="http://10.0.0.165:9900/FileService/PatientDetail/PatientBasicFigure"/>
-        <property name="casePatientBasicTimeAxisURL" value="http://10.0.0.165:9900/FileService/PatientDetail/visit_timeline"/>
-        <property name="casePhysical_examination_list" value="http://10.0.0.165:9900/FileService/PatientDetail/quota_name_list"/>
-        <property name="casePhysical_examination" value="http://10.0.0.165:9900/FileService/PatientDetail/quota_reports"/>
-        <property name="caseVisit_detail" value="http://10.0.0.165:9900/FileService/VisitDetail/visit_detail_info"/>
-        <property name="caseLab_result_item" value="http://10.0.0.165:9900/FileService/PatientDetail/lab_result_item"/>
-        <property name="caseLab_result_item_list" value="http://10.0.0.165:9900/FileService/PatientDetail/lab_result_item_list"/>
-        <property name="caseGenetic_disease" value="http://10.0.0.165:9900/FileService/PatientDetail/genetic_disease"/>
-        <property name="caseDrug_reaction" value="http://10.0.0.165:9900/FileService/PatientDetail/drug_reaction"/>
-        <property name="caseCategory_catalog" value="http://10.0.0.165:9900/FileService/PatientDetail/category_catalog"/>
-        <property name="caseMolecular_detection" value="http://10.0.0.165:9900/FileService/PatientDetail/molecular_detection"/>
-        <property name="caseBiological_specimen" value="http://10.0.0.165:9900/FileService/PatientDetail/biological_specimen"/>
-        <property name="caseExam_result" value="http://10.0.0.165:9900/FileService/PatientDetail/exam_result"/>
-        <property name="casePathological_examination" value="http://10.0.0.165:9900/FileService/PatientDetail/pathological_examination"/>
-        <property name="caseDiagnose" value="http://10.0.0.165:9900/FileService/VisitDetail/diagnose"/>
-        <property name="caseAdmission_records" value="http://10.0.0.165:9900/FileService/PatientDetail/admission_records"></property>
+        <property name="caseDetailPatientBasicInfoURL" value="http://192.168.1.111:9999/FileService/PatientDetail/patient_basic_info"/>
+        <property name="caseDetailPatientBasicFigureURL" value="http://192.168.1.111:9999/FileService/PatientDetail/PatientBasicFigure"/>
+        <property name="casePatientBasicTimeAxisURL" value="http://192.168.1.111:9999/FileService/PatientDetail/visit_timeline"/>
+        <property name="casePhysical_examination_list" value="http://192.168.1.111:9999/FileService/PatientDetail/quota_name_list"/>
+        <property name="casePhysical_examination" value="http://192.168.1.111:9999/FileService/PatientDetail/quota_reports"/>
+        <property name="caseVisit_detail" value="http://192.168.1.111:9999/FileService/VisitDetail/visit_detail_info"/>
+        <property name="caseLab_result_item" value="http://192.168.1.111:9999/FileService/PatientDetail/lab_result_item"/>
+        <property name="caseLab_result_item_list" value="http://192.168.1.111:9999/FileService/PatientDetail/lab_result_item_list"/>
+        <property name="caseGenetic_disease" value="http://192.168.1.111:9999/FileService/PatientDetail/genetic_disease"/>
+        <property name="caseDrug_reaction" value="http://192.168.1.111:9999/FileService/PatientDetail/drug_reaction"/>
+        <property name="caseCategory_catalog" value="http://192.168.1.111:9999/FileService/PatientDetail/category_catalog"/>
+        <property name="caseMolecular_detection" value="http://192.168.1.111:9999/FileService/PatientDetail/molecular_detection"/>
+        <property name="caseBiological_specimen" value="http://192.168.1.111:9999/FileService/PatientDetail/biological_specimen"/>
+        <property name="caseExam_result" value="http://192.168.1.111:9999/FileService/PatientDetail/exam_result"/>
+        <property name="casePathological_examination" value="http://192.168.1.111:9999/FileService/PatientDetail/pathological_examination"/>
+        <property name="caseDiagnose" value="http://192.168.1.111:9999/FileService/VisitDetail/diagnose"/>
+        <property name="caseAdmission_records" value="http://192.168.1.111:9999/FileService/PatientDetail/admission_records"></property>
 
-        <property name="caseMedicalRecord" value="http://10.0.0.165:9900/FileService/PatientDetail/medical_records"></property>
-        <property name="caseOperationRecords" value="http://10.0.0.165:9900/FileService/PatientDetail/operation_records"></property>
-        <property name="casePharmacy" value="http://10.0.0.165:9900/FileService/PatientDetail/pharmacy"></property>
-        <property name="caseDischargeRecords" value="http://10.0.0.165:9900/FileService/PatientDetail/discharge_records"></property>
-        <property name="caseCourseRecords" value="http://10.0.0.165:9900/FileService/PatientDetail/course_records/"></property>
-        <property name="caseMedicalCourse" value="http://10.0.0.165:9900/FileService/PatientDetail/medical_course"></property>
-        <property name="caseDetailVisitClassifySectionURL" value="http://10.0.0.165:9900/FileService/VisitClassify/section"></property>
-        <property name="caseDetailVisitClassifyImageURL" value="http://10.0.0.165:9900/FileService/VisitClassify/image"></property>
-        <property name="casePatientDcOrder" value="http://10.0.0.165:9900/FileService/PatientDetail/dc_order"></property>
-        <property name="caseVisitDcOrder" value="http://10.0.0.165:9900/FileService/VisitDetail/dc_order"></property>
-        <property name="caseyVisitRadiotherapy" value="http://10.0.0.165:9900/FileService/VisitDetail/radiotherapy"></property>
-        <property name="casePatientRadiotherapy" value="http://10.0.0.165:9900/FileService/PatientDetail/radiotherapy"></property>
-        <property name="casePatientChemotherapyInfo" value="http://10.0.0.165:9900/FileService/PatientDetail/chemotherapy_info"></property>
+        <property name="caseMedicalRecord" value="http://192.168.1.111:9999/FileService/PatientDetail/medical_records"></property>
+        <property name="caseOperationRecords" value="http://192.168.1.111:9999/FileService/PatientDetail/operation_records"></property>
+        <property name="casePharmacy" value="http://192.168.1.111:9999/FileService/PatientDetail/pharmacy"></property>
+        <property name="caseDischargeRecords" value="http://192.168.1.111:9999/FileService/PatientDetail/discharge_records"></property>
+        <property name="caseCourseRecords" value="http://192.168.1.111:9999/FileService/PatientDetail/course_records/"></property>
+        <property name="caseMedicalCourse" value="http://192.168.1.111:9999/FileService/PatientDetail/medical_course"></property>
+        <property name="caseDetailVisitClassifySectionURL" value="http://192.168.1.111:9999/FileService/VisitClassify/section"></property>
+        <property name="caseDetailVisitClassifyImageURL" value="http://192.168.1.111:9999/FileService/VisitClassify/image"></property>
+        <property name="casePatientDcOrder" value="http://192.168.1.111:9999/FileService/PatientDetail/dc_order"></property>
+        <property name="caseVisitDcOrder" value="http://192.168.1.111:9999/FileService/VisitDetail/dc_order"></property>
+        <property name="caseyVisitRadiotherapy" value="http://192.168.1.111:9999/FileService/VisitDetail/radiotherapy"></property>
+        <property name="casePatientRadiotherapy" value="http://192.168.1.111:9999/FileService/PatientDetail/radiotherapy"></property>
+        <property name="casePatientChemotherapyInfo" value="http://192.168.1.111:9999/FileService/PatientDetail/chemotherapy_info"></property>
         <!--vitaBoard 服务-->
-        <property name="caseSimilarServiceVitaboardparam" value="http://10.0.0.165:9900/FileService/SimilarService/vitaboardparam"></property>
-        <property name="caseSimilarServiceSimilarParam" value="http://10.0.0.165:9900/FileService/SimilarService/SimilarParam"></property>
-        <property name="caseSimilarServiceGetSimilars" value="http://10.0.0.165:9900/FileService/SimilarService/vitaboard"></property>
-        <property name="caseSimilarServiceSimilarQuery" value="http://10.0.0.165:9900/FileService/SimilarService/SimilarQuery"></property>
+        <property name="caseSimilarServiceVitaboardparam" value="http://192.168.1.111:9999/FileService/SimilarService/vitaboardparam"></property>
+        <property name="caseSimilarServiceSimilarParam" value="http://192.168.1.111:9999/FileService/SimilarService/SimilarParam"></property>
+        <property name="caseSimilarServiceGetSimilars" value="http://192.168.1.111:9999/FileService/SimilarService/vitaboard"></property>
+        <property name="caseSimilarServiceSimilarQuery" value="http://192.168.1.111:9999/FileService/SimilarService/SimilarQuery"></property>
 
 
 
         <!--FS 样本操作 -->
-        <property name="sampleImportIURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_export"/>
-        <property name="sampleDetailURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_get"/>
-        <property name="sampleDaleteURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_delete"/>
-        <property name="sampleDetailSearchURL" value="http://10.0.0.165:9900/FileService/DataResultExport/SearchDataSet"/>
+        <property name="sampleImportIURL" value="http://192.168.1.111:9999/FileService/DataResultExport/data_export"/>
+        <property name="sampleDetailURL" value="http://192.168.1.111:9999/FileService/DataResultExport/data_get"/>
+        <property name="sampleDaleteURL" value="http://192.168.1.111:9999/FileService/DataResultExport/data_delete"/>
+        <property name="sampleDetailSearchURL" value="http://192.168.1.111:9999/FileService/DataResultExport/SearchDataSet"/>
 
 
 
 
-        <property name="sampleUploadAdaptTagURL" value="http://10.0.0.165:9900/FileService/DataResultExport/UploadAdaptTag"/>
+        <property name="sampleUploadAdaptTagURL" value="http://192.168.1.111:9999/FileService/DataResultExport/UploadAdaptTag"/>
 
 
 
         <!--FS CRF导入文件 -->
-        <property name="fileStoreForCRFImport" value="http://10.0.0.165:9900/FileService/PatientDetail/UploadCsvFile"></property>
+        <property name="fileStoreForCRFImport" value="http://192.168.1.111:9999/FileService/PatientDetail/UploadCsvFile"></property>
 
 
         <!--知识库服务 接口 -->
