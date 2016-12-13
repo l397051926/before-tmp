@@ -280,8 +280,9 @@ public class CaseProcessor {
      */
     public static String transformSid(String param,User user){
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-        JsonArray groups = paramObj.getAsJsonArray("groups");
-        if(groups.size() == 0){//如果
+        List<Group> groupList = user.getGroups();
+        JsonArray groups = new JsonArray();
+        if(groupList.size() == 0){
             Group group = new Group();
             group.setGroupDesc("无小组信息时，补充个人工号");
             group.setHas_search("有");
