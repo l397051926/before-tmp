@@ -6,6 +6,7 @@ import com.gennlife.platform.bean.projectBean.ProLog;
 import com.gennlife.platform.bean.projectBean.ProSample;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.enums.LogActionEnum;
+import com.gennlife.platform.model.Group;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
@@ -47,6 +48,22 @@ public class SampleProcessor {
             JsonObject query = jsonObject.get("query").getAsJsonObject();
             JsonElement roles = jsonObject.get("roles");
             query.add("roles",roles);
+            JsonElement power = jsonObject.get("power");
+            query.add("power",power);
+            JsonArray groups = jsonObject.get("groups").getAsJsonArray();
+            List<Group> groupList = user.getGroups();
+            if(groups.size() == 0){
+                Group group = new Group();
+                group.setGroupDesc("无小组信息时，补充个人工号");
+                group.setHas_search("有");
+                group.setHas_searchExport("有");
+                List<User> userList = new LinkedList<>();
+                userList.add(user);
+                group.setMembers(userList);
+                JsonObject groupObj = (JsonObject) jsonParser.parse(gson.toJson(group));
+                groups.add(groupObj);
+            }
+            query.add("groups",groups);
             logger.info("原始搜索条件="+gson.toJson(query));
             String withSid = CaseProcessor.transformSid(gson.toJson(query),user);
             JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
