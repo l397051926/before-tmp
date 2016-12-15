@@ -280,23 +280,11 @@ public class CaseProcessor {
      */
     public static String transformSid(String param,User user){
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-        List<Group> groupList = user.getGroups();
-        JsonArray groups = new JsonArray();
-        if(groupList.size() == 0){
-            Group group = new Group();
-            group.setGroupDesc("无小组信息时，补充个人工号");
-            group.setHas_search("有");
-            group.setHas_searchExport("有");
-            List<User> userList = new LinkedList<>();
-            userList.add(user);
-            group.setMembers(userList);
-            JsonObject groupObj = (JsonObject) jsonParser.parse(gson.toJson(group));
-            groups.add(groupObj);
-            paramObj.add("groups",groups);
-        }
+
+
         if(paramObj.has("sid") && paramObj.has("power")){
             String sid = paramObj.get("sid").getAsString();
-            paramObj.remove("groups");
+            paramObj.remove("groups");//选择科室后，工号权限小时
             paramObj.remove("sid");
             JsonObject power = paramObj.getAsJsonObject("power");
             JsonArray has_searchArray  = power.getAsJsonArray("has_search");
@@ -317,6 +305,18 @@ public class CaseProcessor {
             logger.info("通过sid转化后，搜索请求参数="+gson.toJson(paramObj));
             return gson.toJson(paramObj);
         }else if(paramObj.has("power")){//角色,完成小组扩展
+            JsonArray groups = paramObj.getAsJsonArray("groups");
+            //构建虚拟小组，确保工号权限生效
+            Group group = new Group();
+            group.setGroupDesc("无小组信息时，补充个人工号");
+            group.setHas_search("有");
+            group.setHas_searchExport("有");
+            List<User> userList = new LinkedList<>();
+            userList.add(user);
+            group.setMembers(userList);
+            JsonObject groupObj = (JsonObject) jsonParser.parse(gson.toJson(group));
+            groups.add(groupObj);
+            paramObj.add("groups",groups);
             return gson.toJson(paramObj);
         }else{
             return param;
