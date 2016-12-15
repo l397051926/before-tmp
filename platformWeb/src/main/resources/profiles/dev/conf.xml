@@ -14,7 +14,7 @@
 
     <bean id="com.gennlife.platform.configuration.URLBean" class="com.gennlife.platform.configuration.URLBean">
         <!-- 搜索服务 -->
-        <property name="caseSearchURL" value="http://10.0.0.152:8080/search-server/search"/>
+        <property name="caseSearchURL" value="http://10.0.0.31:8989/search-server/search"/>
         <property name="caseSuggestURL" value="http://10.0.0.31:8989/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
         <property name="caseGeneErrorURL" value="http://10.0.0.31:8989/search-server/verify"/>
         <!--FS 详情页 -->
