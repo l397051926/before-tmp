@@ -337,15 +337,25 @@ public class CaseProcessor {
             paramObj.remove("sid");
             JsonObject power = paramObj.getAsJsonObject("power");
             JsonArray has_searchExportArray  = power.getAsJsonArray("has_searchExport");
+            JsonArray newhas_searchExportArray = new JsonArray();
+            JsonArray has_searchArray  = power.getAsJsonArray("has_search");
             JsonArray newHas_searchArray = new JsonArray();
             for(JsonElement item:has_searchExportArray){
                 JsonObject has_searchExportObj = item.getAsJsonObject();
                 String tmpSid = has_searchExportObj.get("sid").getAsString();
                 if(tmpSid.equals(sid)){
-                    newHas_searchArray.add(has_searchExportObj);
+                    newhas_searchExportArray.add(has_searchExportObj);
                 }
             }
-            power.add("has_searchExport",newHas_searchArray);
+            for(JsonElement item:has_searchArray){
+                JsonObject has_searchObj = item.getAsJsonObject();
+                String tmpSid = has_searchObj.get("sid").getAsString();
+                if(tmpSid.equals(sid)){
+                    newHas_searchArray.add(has_searchObj);
+                }
+            }
+            power.add("has_search",newHas_searchArray);
+            power.add("has_searchExport",newhas_searchExportArray);
             paramObj.add("power",power);
             logger.info("通过sid转化后，搜索请求参数="+gson.toJson(paramObj));
             return gson.toJson(paramObj);
