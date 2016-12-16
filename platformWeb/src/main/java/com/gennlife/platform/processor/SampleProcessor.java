@@ -424,20 +424,24 @@ public class SampleProcessor {
             logger.info("原始搜索条件="+gson.toJson(query));
             String withSid = CaseProcessor.transformSid(gson.toJson(query),user);
             JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
-            logger.info("sid 处理后搜索条件="+gson.toJson(queryNew));
-            String url = ConfigurationService.getUrlBean().getSampleImportChecKIURL();
-            JsonObject param = new JsonObject();
-            param.add("query",queryNew);
             if(queryNew.has("code") && queryNew.get("code").getAsInt() ==0){
                 return gson.toJson(queryNew);
             }
-            String data = HttpRequestUtils.httpPostForSampleImport(url,gson.toJson(param));
+            logger.info("sid 处理后搜索条件="+gson.toJson(queryNew));
+            String url = ConfigurationService.getUrlBean().getSampleImportChecKIURL();
+            JsonObject param = new JsonObject();
+            String data = HttpRequestUtils.httpPostForSampleImport(url,gson.toJson(queryNew));
             if(data == null){
                 return ParamUtils.errorParam("FS 返回为空");
             }else {
                 JsonObject resultBean = new JsonObject();
                 JsonObject dataObj = (JsonObject) jsonParser.parse(data);
-                resultBean.addProperty("code",1);
+                boolean success = dataObj.get("success").getAsBoolean();
+                if(success){
+                    resultBean.addProperty("code",1);
+                }else {
+                    resultBean.addProperty("code",0);
+                }
                 resultBean.add("data",dataObj);
                 return gson.toJson(resultBean);
             }
