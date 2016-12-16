@@ -48,7 +48,24 @@ public class SampleController {
         return resultStr;
     }
 
-
+    @RequestMapping(value="/ImportCheck",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String ImportCheck(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = AuthorityUtil.addAuthority(paramRe);
+            User user = (User)paramRe.getAttribute("currentUser");
+            logger.info("Import param="+param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =  processor.importSampleCheck(paramObj,user);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("样本导入 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
 
     @RequestMapping(value="/SetDetail",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody

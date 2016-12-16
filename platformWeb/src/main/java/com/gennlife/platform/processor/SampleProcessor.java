@@ -51,19 +51,8 @@ public class SampleProcessor {
             JsonElement power = jsonObject.get("power");
             query.add("power",power);
             JsonArray groups = jsonObject.get("groups").getAsJsonArray();
-            List<Group> groupList = user.getGroups();
-            if(groups.size() == 0){
-                Group group = new Group();
-                group.setGroupDesc("无小组信息时，补充个人工号");
-                group.setHas_search("有");
-                group.setHas_searchExport("有");
-                List<User> userList = new LinkedList<>();
-                userList.add(user);
-                group.setMembers(userList);
-                JsonObject groupObj = (JsonObject) jsonParser.parse(gson.toJson(group));
-                groups.add(groupObj);
-            }
             query.add("groups",groups);
+
             logger.info("原始搜索条件="+gson.toJson(query));
             String withSid = CaseProcessor.transformSid(gson.toJson(query),user);
             JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
@@ -419,5 +408,43 @@ public class SampleProcessor {
         }catch (Exception e){
             return ParamUtils.errorParam("出现异常");
         }
+    }
+
+    public String importSampleCheck(JsonObject jsonObject, User user) {
+        try {
+
+            JsonObject query = jsonObject.get("query").getAsJsonObject();
+            JsonElement roles = jsonObject.get("roles");
+            query.add("roles",roles);
+            JsonElement power = jsonObject.get("power");
+            query.add("power",power);
+            JsonArray groups = jsonObject.get("groups").getAsJsonArray();
+            query.add("groups",groups);
+
+            logger.info("原始搜索条件="+gson.toJson(query));
+            String withSid = CaseProcessor.transformSid(gson.toJson(query),user);
+            JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
+            logger.info("sid 处理后搜索条件="+gson.toJson(queryNew));
+            String url = ConfigurationService.getUrlBean().getSampleImportChecKIURL();
+            JsonObject param = new JsonObject();
+            param.add("query",queryNew);
+            if(queryNew.has("code") && queryNew.get("code").getAsInt() ==0){
+                return gson.toJson(queryNew);
+            }
+            String data = HttpRequestUtils.httpPostForSampleImport(url,gson.toJson(param));
+            if(data == null){
+                return ParamUtils.errorParam("FS 返回为空");
+            }else {
+                JsonObject resultBean = new JsonObject();
+                JsonObject dataObj = (JsonObject) jsonParser.parse(data);
+                resultBean.addProperty("code",1);
+                resultBean.add("data",dataObj);
+                return gson.toJson(resultBean);
+            }
+        } catch (Exception e) {
+            logger.error("", e);
+            return ParamUtils.errorParam("出现异常");
+        }
+
     }
 }

@@ -117,6 +117,19 @@ public class URLBean {
      */
     private String sampleImportIURL = null;
     /**
+     * 导出数据校验
+     */
+    private String sampleImportChecKIURL = null;
+
+    public String getSampleImportChecKIURL() {
+        return sampleImportChecKIURL;
+    }
+
+    public void setSampleImportChecKIURL(String sampleImportChecKIURL) {
+        this.sampleImportChecKIURL = sampleImportChecKIURL;
+    }
+
+    /**
      * 样本详情接口
      */
     private String sampleDetailURL = null;
