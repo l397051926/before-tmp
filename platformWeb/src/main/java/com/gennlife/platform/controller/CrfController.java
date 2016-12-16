@@ -149,13 +149,15 @@ public class CrfController {
 
 
     @RequestMapping(value="/SearchSampleList",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getSearchSampleList(@RequestParam("param")  String param) {
+    public @ResponseBody String getSearchSampleList(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
+            String param = AuthorityUtil.addAuthority(paramRe);
+            User user = (User)paramRe.getAttribute("currentUser");
             logger.info("搜索病历列表 get方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.searchSampleList(paramObj);
+            resultStr = processor.searchSampleList(paramObj,user);
         }catch (Exception e){
             logger.error("搜索病历列表",e);
             resultStr = ParamUtils.errorParam("出现异常");

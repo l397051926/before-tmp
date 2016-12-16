@@ -39,7 +39,6 @@ public class CrfProcessor {
 
     public String getData(JsonObject paramObj, String orgID, User user) {
         try {
-            JsonArray roles = paramObj.getAsJsonArray("roles");
             String crf_id = paramObj.get("crf_id").getAsString();
             String caseID = paramObj.has("caseID")?paramObj.get("caseID").getAsString():"";
             Power power = user.getPower();
@@ -142,11 +141,24 @@ public class CrfProcessor {
         }
     }
 
-    public String searchSampleList(JsonObject paramObj) {
+    public String searchSampleList(JsonObject paramObj,User user) {
         try {
-            String url = ConfigurationService.getUrlBean().getCRFSearchSampleList();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
-            return result;
+            String crf_id = paramObj.get("crf_id").getAsString();
+            Power power = user.getPower();
+            boolean flag1 = getCRFFlag(power,user.getOrgID(),crf_id,"has_deleteCRF");
+            boolean flag2 = getCRFFlag(power,user.getOrgID(),crf_id,"has_traceCRF");
+            boolean flag3 = getCRFFlag(power,user.getOrgID(),crf_id,"has_addCRF");
+            boolean flag4 = getCRFFlag(power,user.getOrgID(),crf_id,"has_editCRF");
+            boolean flag5 = getCRFFlag(power,user.getOrgID(),crf_id,"has_addBatchCRF");
+            boolean flag = flag1 || flag2 || flag3 || flag4 || flag5;
+            if(flag){
+                String url = ConfigurationService.getUrlBean().getCRFSearchSampleList();
+                String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+                return result;
+            }else {
+                return ParamUtils.errorAuthorityParam();
+            }
+
         } catch (Exception e) {
             logger.error("请求发生异常", e);
             return ParamUtils.errorParam("请求发生异常");
