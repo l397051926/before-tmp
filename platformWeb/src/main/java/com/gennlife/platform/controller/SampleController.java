@@ -56,14 +56,14 @@ public class SampleController {
         try{
             String param = AuthorityUtil.addAuthority(paramRe);
             User user = (User)paramRe.getAttribute("currentUser");
-            logger.info("Import param="+param);
+            logger.info("ImportCheck param="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.importSampleCheck(paramObj,user);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("样本导入 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("样本导入校验 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 
