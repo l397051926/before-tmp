@@ -422,7 +422,7 @@ public class SampleProcessor {
             query.add("groups",groups);
 
             logger.info("原始搜索条件="+gson.toJson(query));
-            String withSid = CaseProcessor.transformSid(gson.toJson(query),user);
+            String withSid = CaseProcessor.transformSidForImport(gson.toJson(query),user);
             JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
             if(queryNew.has("code") && queryNew.get("code").getAsInt() ==0){
                 return gson.toJson(queryNew);
