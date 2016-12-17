@@ -541,4 +541,20 @@ public class DetailProcessor {
             return ParamUtils.errorParam("请求出错");
         }
     }
+
+    /**
+     * 当前病人的信息
+     * @param param
+     * @return
+     */
+    public String similarServiceSimilarPatientInfo(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getCaseSimilarServiceSimilarPatientInfo();
+            logger.info("similarServiceSimilarPatientInfo url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
 }

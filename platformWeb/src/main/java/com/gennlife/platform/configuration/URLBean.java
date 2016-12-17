@@ -14,6 +14,11 @@ public class URLBean {
     }
 
     /**
+     * 当前病人的信息
+     */
+
+    private String caseSimilarServiceSimilarPatientInfo;
+    /**
      * 获取相似病人情况的基本信息
      */
     private  String caseSimilarServiceSimilarBasicDetail;
@@ -1048,5 +1053,13 @@ public class URLBean {
 
     public void setCaseSimilarServiceSimilarBasicDetail(String caseSimilarServiceSimilarBasicDetail) {
         this.caseSimilarServiceSimilarBasicDetail = caseSimilarServiceSimilarBasicDetail;
+    }
+
+    public String getCaseSimilarServiceSimilarPatientInfo() {
+        return caseSimilarServiceSimilarPatientInfo;
+    }
+
+    public void setCaseSimilarServiceSimilarPatientInfo(String caseSimilarServiceSimilarPatientInfo) {
+        this.caseSimilarServiceSimilarPatientInfo = caseSimilarServiceSimilarPatientInfo;
     }
 }
