@@ -421,7 +421,7 @@ public class SampleProcessor {
             logger.info("sid 处理后搜索条件="+gson.toJson(queryNew));
             String url = ConfigurationService.getUrlBean().getSampleImportChecKIURL();
             String data = HttpRequestUtils.httpPostForSampleImport(url,gson.toJson(queryNew));
-            if(data == null){
+            if(data == null || "".equals(data)){
                 return ParamUtils.errorParam("FS 返回为空");
             }else {
                 JsonObject resultBean = new JsonObject();
