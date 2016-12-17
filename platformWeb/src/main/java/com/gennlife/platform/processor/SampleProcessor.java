@@ -57,7 +57,7 @@ public class SampleProcessor {
             String withSid = CaseProcessor.transformSid(gson.toJson(query),user);
             JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
             logger.info("sid 处理后搜索条件="+gson.toJson(queryNew));
-            //JsonArray source = query.getAsJsonArray("source");
+            JsonArray source = query.getAsJsonArray("source");
             String url = ConfigurationService.getUrlBean().getSampleImportIURL();
             JsonObject param = new JsonObject();
             param.add("query",queryNew);
@@ -100,7 +100,7 @@ public class SampleProcessor {
                 proSample.setSampleName(sampleName);
                 proSample.setBatchID(batchID);
                 proSample.setTotal(total);
-                proSample.setItems("");
+                proSample.setItems(gson.toJson(source));
                 proSample.setSampleDesc(sampleDesc);
                 int counter = AllDao.getInstance().getProjectDao().insertProSample(proSample);
                 ProLog proLog = new ProLog();
