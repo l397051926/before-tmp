@@ -1091,6 +1091,6 @@ public class URLBean {
     }
 
     public void setVitaGramServerMedicalHistoryRecommendPath(String vitaGramServerMedicalHistoryRecommendPath) {
-        vitaGramServerMedicalHistoryRecommendPath = vitaGramServerMedicalHistoryRecommendPath;
+        this.vitaGramServerMedicalHistoryRecommendPath = vitaGramServerMedicalHistoryRecommendPath;
     }
 }
