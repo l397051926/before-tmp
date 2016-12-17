@@ -12,7 +12,11 @@ public class URLBean {
     public void setCaseAdmission_records(String caseAdmission_records) {
         this.caseAdmission_records = caseAdmission_records;
     }
-
+    private String vitaGramServerMedicalHistoryRecommendPath = null;
+    /**
+     * 获取NCCN推荐路径
+     */
+    private String vitaGramServerNccnRecommendPath = null;
     /**
      * 当前病人的信息
      */
@@ -26,7 +30,10 @@ public class URLBean {
      * vitaboard画图数据获取接口
      */
     private String caseSimilarServiceGetSimilars = null;
-
+    /**
+     * 获取vitaGram图数据接口
+     */
+    private String vitaGramServerVitaGramData = null;
     /**
      * 获取vitaboard默认参数接口
      */
@@ -1061,5 +1068,29 @@ public class URLBean {
 
     public void setCaseSimilarServiceSimilarPatientInfo(String caseSimilarServiceSimilarPatientInfo) {
         this.caseSimilarServiceSimilarPatientInfo = caseSimilarServiceSimilarPatientInfo;
+    }
+
+    public String getVitaGramServerVitaGramData() {
+        return vitaGramServerVitaGramData;
+    }
+
+    public void setVitaGramServerVitaGramData(String vitaGramServerVitaGramData) {
+        this.vitaGramServerVitaGramData = vitaGramServerVitaGramData;
+    }
+
+    public String getVitaGramServerNccnRecommendPath() {
+        return vitaGramServerNccnRecommendPath;
+    }
+
+    public void setVitaGramServerNccnRecommendPath(String vitaGramServerNccnRecommendPath) {
+        this.vitaGramServerNccnRecommendPath = vitaGramServerNccnRecommendPath;
+    }
+
+    public String getVitaGramServerMedicalHistoryRecommendPath() {
+        return vitaGramServerMedicalHistoryRecommendPath;
+    }
+
+    public void setVitaGramServerMedicalHistoryRecommendPath(String vitaGramServerMedicalHistoryRecommendPath) {
+        vitaGramServerMedicalHistoryRecommendPath = vitaGramServerMedicalHistoryRecommendPath;
     }
 }

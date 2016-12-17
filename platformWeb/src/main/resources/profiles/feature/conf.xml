@@ -61,6 +61,10 @@
         <property name="caseSimilarServiceSimilarBasicDetail" value="http://10.0.0.22:8111/FileService/SimilarService/SimilarBasicDetail"></property>
         <property name="caseSimilarServiceSimilarPatientInfo" value="http://10.0.0.22:8111/FileService/SimilarService/SimilarPatientInfo"></property>
 
+        <!--vitaGram 服务-->
+        <property name="vitaGramServerMedicalHistoryRecommendPath" value="http://10.0.0.27:8989/vitaGram-server/medical_history_recommend_path"></property>
+        <property name="vitaGramServerNccnRecommendPath" value="http://10.0.0.27:8989/vitaGram-server/nccn_recommend_path"></property>
+        <property name="vitaGramServerVitaGramData" value="http://10.0.0.27:8989/vitaGram-server/vitaGramData"></property>
 
 
         <!--FS 样本操作 -->

@@ -57,6 +57,10 @@
         <property name="caseSimilarServiceGetSimilars" value="http://10.0.0.12:8111/FileService/SimilarService/vitaboard"></property>
         <property name="caseSimilarServiceSimilarQuery" value="http://10.0.0.12:8111/FileService/SimilarService/SimilarQuery"></property>
         <property name="caseSimilarServiceSimilarPatientInfo" value="http://10.0.0.12:8111/FileService/SimilarService/SimilarPatientInfo"></property>
+        <!--vitaGram 服务-->
+        <property name="vitaGramServerMedicalHistoryRecommendPath" value="http://10.0.0.17:8989/vitaGram-server/medical_history_recommend_path"></property>
+        <property name="vitaGramServerNccnRecommendPath" value="http://10.0.0.17:8989/vitaGram-server/nccn_recommend_path"></property>
+        <property name="vitaGramServerVitaGramData" value="http://10.0.0.17:8989/vitaGram-server/vitaGramData"></property>
 
         <!--FS 样本操作 -->
         <property name="sampleImportIURL" value="http://10.0.0.12:8111/FileService/DataResultExport/data_export"/>

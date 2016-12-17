@@ -1,5 +1,6 @@
 package com.gennlife.platform.controller;
 
+import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.processor.BaseProcessor;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.JsonObject;
@@ -8,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by chen-song on 16/6/3.
@@ -76,6 +79,48 @@ public class BaseController {
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("test 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+    @RequestMapping(value="/VitaGramServerVitaGramData",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String VitaGramServerVitaGramData(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = AuthorityUtil.addAuthority(paramRe);
+            resultStr =  processor.vitaGramServerVitaGramData(param);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取vitaGram图数据接口 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+    @RequestMapping(value="/VitaGramServerNccnRecommendPath",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String VitaGramServerNccnRecommendPath(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = AuthorityUtil.addAuthority(paramRe);
+            resultStr =  processor.vitaGramServerNccnRecommendPath(param);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取NCCN推荐路径 耗时"+(System.currentTimeMillis()-start) +"ms");
+        return resultStr;
+    }
+    @RequestMapping(value="/VitaGramServerMedicalHistoryRecommendPath",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String VitaGramServerMedicalHistoryRecommendPath(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = AuthorityUtil.addAuthority(paramRe);
+            resultStr =  processor.VitaGramServerMedicalHistoryRecommendPath(param);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取实例推荐路径 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
 }
