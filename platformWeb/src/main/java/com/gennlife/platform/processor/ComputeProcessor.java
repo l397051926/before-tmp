@@ -28,8 +28,12 @@ public class ComputeProcessor {
         String param = gson.toJson(paramObj);
         String url = ConfigurationService.getUrlBean().getCSSmg()+"?param="+ParamUtils.encodeURI(param);
         logger.info("smg url="+url);
-        String result = HttpRequestUtils.httpGet(url);
-        return result;
+        try{
+            String result = HttpRequestUtils.httpGet(url);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("超时");
+        }
     }
 
     /**

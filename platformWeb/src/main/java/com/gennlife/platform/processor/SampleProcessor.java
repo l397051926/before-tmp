@@ -425,6 +425,7 @@ public class SampleProcessor {
                 return ParamUtils.errorParam("FS 返回为空");
             }else {
                 JsonObject resultBean = new JsonObject();
+                logger.info("FS 返回="+data);
                 JsonObject dataObj = (JsonObject) jsonParser.parse(data);
                 boolean success = dataObj.get("success").getAsBoolean();
                 if(success){
