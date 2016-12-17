@@ -14,6 +14,7 @@ import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
 import com.google.gson.*;
+import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -412,13 +413,21 @@ public class SampleProcessor {
 
     public String importSampleCheck(JsonObject jsonObject, User user) {
         try {
-            logger.info("原始搜索条件="+gson.toJson(jsonObject));
-            String withSid = CaseProcessor.transformSidForImport(gson.toJson(jsonObject),user);
+            JsonObject query = jsonObject.get("query").getAsJsonObject();
+            JsonArray roles = jsonObject.get("roles").getAsJsonArray();
+            JsonArray groups = jsonObject.get("groups").getAsJsonArray();
+            JsonObject power = jsonObject.getAsJsonObject("power");
+            query.add("roles",roles);
+            query.add("groups",groups);
+            query.add("power",power);
+            logger.info("原始搜索条件="+gson.toJson(query));
+
+            String withSid = CaseProcessor.transformSidForImport(gson.toJson(query),user);
             JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
             if(queryNew.has("code") && queryNew.get("code").getAsInt() ==0){
                 return gson.toJson(queryNew);
             }
-            logger.info("sid 处理后搜索条件="+gson.toJson(queryNew));
+            logger.info("sid 处理后导出条件="+gson.toJson(queryNew));
             String url = ConfigurationService.getUrlBean().getSampleImportChecKIURL();
             String data = HttpRequestUtils.httpPostForSampleImport(url,gson.toJson(queryNew));
             if(data == null || "".equals(data)){
