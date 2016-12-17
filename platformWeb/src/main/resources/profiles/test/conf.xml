@@ -150,7 +150,7 @@
         <property name="genericObjectPoolConfig" ref="genericObjectPoolConfig" />
         <property name="jedisClusterNodes">
             <set>
-                <value>10.0.0.179:6379</value>
+                <value>10.0.0.179:7001</value>
             </set>
         </property>
     </bean>
