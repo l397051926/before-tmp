@@ -412,24 +412,14 @@ public class SampleProcessor {
 
     public String importSampleCheck(JsonObject jsonObject, User user) {
         try {
-
-            JsonObject query = jsonObject.get("query").getAsJsonObject();
-            JsonElement roles = jsonObject.get("roles");
-            query.add("roles",roles);
-            JsonElement power = jsonObject.get("power");
-            query.add("power",power);
-            JsonArray groups = jsonObject.get("groups").getAsJsonArray();
-            query.add("groups",groups);
-
-            logger.info("原始搜索条件="+gson.toJson(query));
-            String withSid = CaseProcessor.transformSidForImport(gson.toJson(query),user);
+            logger.info("原始搜索条件="+gson.toJson(jsonObject));
+            String withSid = CaseProcessor.transformSidForImport(gson.toJson(jsonObject),user);
             JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
             if(queryNew.has("code") && queryNew.get("code").getAsInt() ==0){
                 return gson.toJson(queryNew);
             }
             logger.info("sid 处理后搜索条件="+gson.toJson(queryNew));
             String url = ConfigurationService.getUrlBean().getSampleImportChecKIURL();
-            JsonObject param = new JsonObject();
             String data = HttpRequestUtils.httpPostForSampleImport(url,gson.toJson(queryNew));
             if(data == null){
                 return ParamUtils.errorParam("FS 返回为空");
