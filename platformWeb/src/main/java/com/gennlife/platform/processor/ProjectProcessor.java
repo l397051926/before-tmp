@@ -49,16 +49,20 @@ public class ProjectProcessor {
             conf.put("key",key);
             List<MyProjectList> list = null;
             int counter = 0;
+            Long start = System.currentTimeMillis();
             list = AllDao.getInstance().getProjectDao().getMyProjectList(conf);
+            Long start1 = System.currentTimeMillis();
+            logger.debug("getMyProjectList mysql耗时:"+(start1-start)+"ms");
                     //getSyUserDao().getMyProjectList(conf);
             counter  = AllDao.getInstance().getProjectDao().getProjectCounter(conf);
-                    //getSyUserDao().getProjectCounter(conf);
+            Long start2 = System.currentTimeMillis();
+            logger.debug("getProjectCounter mysql耗时:"+(start2-start1)+"ms");
             Map<String,Object> confMap = new HashMap<String, Object>();
             for(MyProjectList myProjectList:list){
                 String projectID = myProjectList.getProjectID();
                 String creator = myProjectList.getCreator();
                 if(creator != null){
-                    User user = UserProcessor.getUserByUids(creator);
+                    User user = AllDao.getInstance().getSyUserDao().getUserByUid(creator);
                     if(user != null){
                         myProjectList.setCreatorName(user.getUname()+"");
                     }
@@ -74,6 +78,8 @@ public class ProjectProcessor {
                 }
                 myProjectList.setLogs(logList);
             }
+            Long start3 = System.currentTimeMillis();
+            logger.debug("填充日志 mysql耗时:"+(start3-start2)+"ms");
             Map<String,Integer> info = new HashMap<String,Integer>();
             info.put("counter", counter);
             ResultBean resultBean = new ResultBean();
