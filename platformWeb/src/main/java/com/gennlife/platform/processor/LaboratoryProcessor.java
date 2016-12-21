@@ -776,20 +776,29 @@ public class LaboratoryProcessor {
         if(role.getRoleid() == null){
             return ParamUtils.errorParam("无角色id");
         }
+        Long start = System.currentTimeMillis();
         Role exRole = AllDao.getInstance().getSyRoleDao().getRoleByroleid(role.getRoleid());
+        Long start1 = System.currentTimeMillis();
+        //System.out.println("exRole="+(start1-start)+"ms");
         if(exRole == null){
             return ParamUtils.errorParam("该角色id对应角色不存在");
         }else{
             String roleName = role.getRole();
             if("1".equals(exRole.getRole_type())){
                 Role role1 = AllDao.getInstance().getSyRoleDao().getRoleByroleid(role.getRoleid());
+                Long start2 = System.currentTimeMillis();
+                //System.out.println("role1="+(start2-start1)+"ms");
                 if(role1 != null){//
                     List<String> uidList = (List<String>) role.getStaff();
                     Integer[] roleids = new Integer[]{role.getRoleid()};
                     AllDao.getInstance().getSyRoleDao().deleteRelationsByRoleids(roleids);//删除原有的关联关系
+                    Long start3 = System.currentTimeMillis();
+                    //System.out.println("deleteRelationsByRoleids="+(start3-start2)+"ms");
                     for(String uid:uidList){
                         AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(exRole.getRoleid(),uid);//插入新的
                     }
+                    Long start4 = System.currentTimeMillis();
+                    //System.out.println("insertUserRoleRelation="+(start4-start3)+"ms");
                     ResultBean resultBean = new ResultBean();
                     resultBean.setCode(1);
                     resultBean.setInfo("系统角色 更新完成");
@@ -801,19 +810,28 @@ public class LaboratoryProcessor {
             //如果更新角色了名称
             if(!roleName.equals(exRole.getRole())){
                 //如果更新后的名字已经存在
+                Long start2 = System.currentTimeMillis();
                 Role exRenameRole = AllDao.getInstance().getSyRoleDao().getRoleByRoleName(user.getOrgID(),roleName);
+                Long start3 = System.currentTimeMillis();
+                //System.out.println("exRenameRole="+(start3-start2)+"ms");
                 if(exRenameRole != null){
                     return ParamUtils.errorParam("角色已经存在");
                 }
             }
+            Long start2 = System.currentTimeMillis();
             int counter = AllDao.getInstance().getSyRoleDao().updateUserRole(role);//更新用户信息
+            Long start3 = System.currentTimeMillis();
+            //System.out.println("counter="+(start3-start2)+"ms");
             List<User> users = AllDao.getInstance().getSyUserDao().getUserByRoleID(role.getRoleid(),0,10000);
+            Long start4 = System.currentTimeMillis();
+            //System.out.println("getUserByRoleID="+(start4-start3)+"ms");
             for(User user1:users){
                 RedisUtil.deleteUser(user1.getUid());
             }
             if(counter == 0){
                 return ParamUtils.errorParam("更新失败");
             }else{
+                Long start5 = System.currentTimeMillis();
                 List<String> uidList = (List<String>) role.getStaff();
                 Integer[] roleids = new Integer[]{role.getRoleid()};
                 AllDao.getInstance().getSyRoleDao().deleteRelationsByRoleids(roleids);//删除原有的关联关系
@@ -828,6 +846,8 @@ public class LaboratoryProcessor {
                     resourceObj.setRoleid(role.getRoleid());
                     AllDao.getInstance().getSyResourceDao().insertRoleResourceRelation(resourceObj);//插入新的
                 }
+                Long start6 = System.currentTimeMillis();
+                //System.out.println("end="+(start6-start5)+"ms");
                 ResultBean resultBean = new ResultBean();
                 resultBean.setCode(1);
                 return gson.toJson(resultBean);

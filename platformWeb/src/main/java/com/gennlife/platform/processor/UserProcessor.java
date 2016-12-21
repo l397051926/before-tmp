@@ -6,13 +6,11 @@ import com.gennlife.platform.model.*;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.*;
 import com.google.gson.*;
-import com.google.gson.stream.JsonReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import redis.clients.jedis.JedisCluster;
+
 
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.*;
 
 /**
@@ -143,7 +141,10 @@ public class UserProcessor {
     public static User getUserByUids(String uid){
         User user = null;
         try {
+            Long start = System.currentTimeMillis();
             user = AllDao.getInstance().getSyUserDao().getUserByUid(uid);
+            Long start1 = System.currentTimeMillis();
+            System.out.println("查user="+(start1-start)+"ms");
             Map<String,Object> confMap = new HashMap<>();
             confMap.put("orgID",user.getOrgID());
             confMap.put("uid",user.getUid());
@@ -154,6 +155,7 @@ public class UserProcessor {
             Power power = transformRole(user,rolesList);
             user.setPower(power);
             List<Group> list = AllDao.getInstance().getGroupDao().getGroupsByUid(confMap);
+            Long start5 = System.currentTimeMillis();
             Map<String,Object> map = new HashMap<>();
             map.put("orgID",user.getOrgID());
             for(Group group:list){
@@ -179,6 +181,8 @@ public class UserProcessor {
                 }
                 group.setMembers(newUserList);
             }
+            Long start6 = System.currentTimeMillis();
+            //System.out.println("设置组成员="+(start6-start5)+"ms");
             user.setGroups(list);
 
         }catch (Exception e){
@@ -203,8 +207,6 @@ public class UserProcessor {
                 Map<String,Object> confMap = new HashMap<>();
                 confMap.put("orgID",user.getOrgID());
                 confMap.put("uid",user.getUid());
-                List<Admin> adminList = AllDao.getInstance().getSyUserDao().getAdmins(confMap);
-                user.setAdministrators(adminList);
                 List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(confMap);
                 //转化本科室信息
                 Power power = transformRole(user,rolesList);
