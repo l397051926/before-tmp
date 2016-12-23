@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+    <bean id="com.gennlife.platform.util.MongoConf" class="com.gennlife.platform.util.MongoConf">
+        <property name="host" value="118.102.29.249"/>
+        <property name="port" value="27017"/>
+        <property name="poolSize" value="10"/>
+        <property name="blockSize" value="10"/>
+    </bean>
+
+
+    <bean id="com.gennlife.platform.configuration.URLBean" class="com.gennlife.platform.configuration.URLBean">
+        <!-- 搜索服务 -->
+        <property name="caseSearchURL" value="http://118.102.29.249:8989/search-server/search"/>
+        <property name="caseSuggestURL" value="http://118.102.29.249:8989/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
+        <property name="caseGeneErrorURL" value="http://118.102.29.249:8989/search-server/verify"/>
+        <!--FS 详情页 -->
+        <property name="caseDetailPatientBasicInfoURL" value="http://118.102.29.249:8111/FileService/PatientDetail/patient_basic_info"/>
+        <property name="caseDetailPatientBasicFigureURL" value="http://118.102.29.249:8111/FileService/PatientDetail/PatientBasicFigure"/>
+        <property name="casePatientBasicTimeAxisURL" value="http://118.102.29.249:8111/FileService/PatientDetail/visit_timeline"/>
+        <property name="casePhysical_examination_list" value="http://118.102.29.249:8111/FileService/PatientDetail/quota_name_list"/>
+        <property name="casePhysical_examination" value="http://118.102.29.249:8111/FileService/PatientDetail/quota_reports"/>
+        <property name="caseVisit_detail" value="http://118.102.29.249:8111/FileService/VisitDetail/visit_detail_info"/>
+        <property name="caseLab_result_item" value="http://118.102.29.249:8111/FileService/PatientDetail/lab_result_item"/>
+        <property name="caseLab_result_item_list" value="http://118.102.29.249:8111/FileService/PatientDetail/lab_result_item_list"/>
+        <property name="caseGenetic_disease" value="http://118.102.29.249:8111/FileService/PatientDetail/genetic_disease"/>
+        <property name="caseDrug_reaction" value="http://118.102.29.249:8111/FileService/PatientDetail/drug_reaction"/>
+        <property name="caseCategory_catalog" value="http://118.102.29.249:8111/FileService/PatientDetail/category_catalog"/>
+        <property name="caseMolecular_detection" value="http://118.102.29.249:8111/FileService/PatientDetail/molecular_detection"/>
+        <property name="caseBiological_specimen" value="http://118.102.29.249:8111/FileService/PatientDetail/biological_specimen"/>
+        <property name="caseExam_result" value="http://118.102.29.249:8111/FileService/PatientDetail/exam_result"/>
+        <property name="casePathological_examination" value="http://118.102.29.249:8111/FileService/PatientDetail/pathological_examination"/>
+        <property name="caseDiagnose" value="http://118.102.29.249:8111/FileService/VisitDetail/diagnose"/>
+        <property name="caseAdmission_records" value="http://118.102.29.249:8111/FileService/PatientDetail/admission_records"></property>
+
+        <property name="caseMedicalRecord" value="http://118.102.29.249:8111/FileService/PatientDetail/medical_records"></property>
+        <property name="caseOperationRecords" value="http://118.102.29.249:8111/FileService/PatientDetail/operation_records"></property>
+        <property name="casePharmacy" value="http://118.102.29.249:8111/FileService/PatientDetail/pharmacy"></property>
+        <property name="caseDischargeRecords" value="http://118.102.29.249:8111/FileService/PatientDetail/discharge_records"></property>
+        <property name="caseCourseRecords" value="http://118.102.29.249:8111/FileService/PatientDetail/course_records/"></property>
+        <property name="caseMedicalCourse" value="http://118.102.29.249:8111/FileService/PatientDetail/medical_course"></property>
+        <property name="caseDetailVisitClassifySectionURL" value="http://118.102.29.249:8111/FileService/VisitClassify/section"></property>
+        <property name="caseDetailVisitClassifyImageURL" value="http://118.102.29.249:8111/FileService/VisitClassify/image"></property>
+        <property name="casePatientDcOrder" value="http://118.102.29.249:8111/FileService/PatientDetail/dc_order"></property>
+        <property name="caseVisitDcOrder" value="http://118.102.29.249:8111/FileService/VisitDetail/dc_order"></property>
+        <property name="caseyVisitRadiotherapy" value="http://118.102.29.249:8111/FileService/VisitDetail/radiotherapy"></property>
+        <property name="casePatientRadiotherapy" value="http://118.102.29.249:8111/FileService/PatientDetail/radiotherapy"></property>
+        <property name="casePatientChemotherapyInfo" value="http://118.102.29.249:8111/FileService/PatientDetail/chemotherapy_info"></property>
+
+        <!--vitaBoard 服务-->
+        <property name="caseSimilarServiceVitaboardparam" value="http://118.102.29.249:8111/FileService/SimilarService/vitaboardparam"></property>
+        <property name="caseSimilarServiceSimilarParam" value="http://118.102.29.249:8111/FileService/SimilarService/SimilarParam"></property>
+        <property name="caseSimilarServiceGetSimilars" value="http://118.102.29.249:8111/FileService/SimilarService/vitaboard"></property>
+        <property name="caseSimilarServiceSimilarQuery" value="http://118.102.29.249:8111/FileService/SimilarService/SimilarQuery"></property>
+        <property name="caseSimilarServiceSimilarBasicDetail" value="http://118.102.29.249:8111/FileService/SimilarService/SimilarBasicDetail"></property>
+        <property name="caseSimilarServiceSimilarPatientInfo" value="http://118.102.29.249:8111/FileService/SimilarService/SimilarPatientInfo"></property>
+
+        <!--vitaGram 服务-->
+        <property name="vitaGramServerMedicalHistoryRecommendPath" value="http://118.102.29.249:9900/vitaGram-server/medical_history_recommend_path"></property>
+        <property name="vitaGramServerNccnRecommendPath" value="http://118.102.29.249:9900/vitaGram-server/nccn_recommend_path"></property>
+        <property name="vitaGramServerVitaGramData" value="http://118.102.29.249:9900/vitaGram-server/vitaGramData"></property>
+
+        <!--FS 样本操作 -->
+        <property name="sampleImportIURL" value="http://118.102.29.249:8111/FileService/DataResultExport/data_export"/>
+        <property name="sampleDetailURL" value="http://118.102.29.249:8111/FileService/DataResultExport/data_get"/>
+        <property name="sampleDaleteURL" value="http://118.102.29.249:8111/FileService/DataResultExport/data_delete"/>
+        <property name="sampleDetailSearchURL" value="http://118.102.29.249:8111/FileService/DataResultExport/SearchDataSet"/>
+        <property name="sampleUploadAdaptTagURL" value="http://118.102.29.249:8111/FileService/DataResultExport/UploadAdaptTag"/>
+        <property name="sampleImportChecKIURL" value="http://118.102.29.249:8111/FileService/DataResultExport/data_check"></property>
+
+
+        <!--FS CRF导入文件 -->
+        <property name="fileStoreForCRFImport" value="http://118.102.29.249:8111/FileService/PatientDetail/UploadCsvFile"></property>
+
+
+        <!--知识库服务 接口 -->
+        <property name="knowledgeURL" value="http://118.102.29.249:8081/knowledge/graph"/>
+        <property name="knowledgeDiseaseSearchGenesURL" value="http://118.102.29.249:8081/knowledge/DiseaseSearchGenes"/>
+        <property name="knowledgeGeneInfoURL" value="http://118.102.29.249:8081/knowledge/GeneInfo"/>
+        <property name="knowledgeVariationInfoURL" value="http://118.102.29.249:8081/knowledge/VariationInfo"/>
+        <property name="knowledgeDetailVariationSearchDiseaseURL" value="http://118.102.29.249:8081/knowledge/VariationInfo"/>
+        <property name="knowledgeDetailVariationSearchDrugURL" value="http://118.102.29.249:8081/knowledge/VariationInfo"/>
+        <property name="knowledgePharmGKBSearchDrugURL" value="http://118.102.29.249:8081/knowledge/PharmGKBSearchDrug"/>
+        <!--CRF 服务接口 -->
+        <property name="CRFProjectCRFListURL" value="http://118.102.29.249:6060/auto/ProjectCrfList"/>
+        <property name="CRFAutoMapURL" value="http://118.102.29.249:6060/auto/AutoMap"/>
+        <property name="CRFGetAttrID" value="http://118.102.29.249:6060/crf/GetAttrID"/>
+        <property name="CRFGetGroupID" value="http://118.102.29.249:6060/crf/GetGroupID"/>
+        <property name="CRFModelByProjectID" value="http://118.102.29.249:6060/crf/ModelByProjectID"/>
+        <property name="CRFModelByCRFID" value="http://118.102.29.249:6060/crf/ModelByCRFID"/>
+        <property name="CRFModelForTraceByCRFID" value="http://118.102.29.249:6060/crf/ModelForTraceByCRFID"/>
+        <property name="CRFEditModel" value="http://118.102.29.249:6060/crf/EditModel"/>
+        <property name="CRFSaveModel" value="http://118.102.29.249:6060/crf/SaveModel"/>
+        <property name="CRFGetData" value="http://118.102.29.249:6060/crf/GetData"/>
+        <property name="CRFSaveData" value="http://118.102.29.249:6060/crf/SaveData"/>
+        <property name="CRFSampleCaseList" value="http://118.102.29.249:6060/crf/SampleCaseList"/>
+        <property name="CRFDeleteSample" value="http://118.102.29.249:6060/crf/DeleteSample"/>
+        <property name="CRFUpLoadData" value="http://118.102.29.249:6060/crf/UpLoadData"/>
+        <property name="CRFSearchSampleList" value="http://118.102.29.249:6060/crf/SearchSampleList"/>
+		<property name="CRFGetPatientInfo" value="http://118.102.29.249:6060/auto/PatientInfo"/>
+        <property name="CRFPatientVisitDetail" value="http://118.102.29.249:6060/auto/PatientVisitDetail"/>
+        <property name="CRFPatientAllVisitsDetail" value="http://118.102.29.249:6060/auto/PatientAllVisitsDetail"/>
+        <property name="CRFUpLoadDataForCheck" value="http://118.102.29.249:6060/crf/UpLoadDataForCheck"></property>
+        <property name="CRFImportFile" value="http://118.102.29.249:6060/auto/CsvAddQueue"></property>
+        <property name="CRFImportMap" value="http://118.102.29.249:6060/auto/CsvImport"></property>
+        <property name="CRFImportResult" value="http://118.102.29.249:6060/auto/CsvImportResult"></property>
+        <property name="CRFIsExistPatient" value="http://118.102.29.249:6060/crf/IsExistPatient"></property>
+
+        <!--R 服务接口-->
+        <property name="RRun" value="http://118.102.29.249:1235/r_run"/>
+        <property name="RStop" value="http://118.102.29.249:1235/r_stop"/>
+        <property name="RSave" value="http://118.102.29.249:1235/r_save"/>
+        <property name="RLoad" value="http://118.102.29.249:1235/r_load"/>
+        <property name="RList" value="http://118.102.29.249:1235/r_list"/>
+        <!--工作区计算服务接口 -->
+        <property name="AtoolURL" value="http://118.102.29.249:81/get_statistic"/>
+        <property name="toolsURL" value="http://118.102.29.249:81/get_tools"/>
+        <property name="CSSmg" value="http://118.102.29.249:81/smg"/>
+
+        <property name="EmailSendURL" value="http://192.168.0.103/uranus/verify_email.html?token="></property>
+        <property name="CSBaseline" value="http://118.102.29.249:81/baseline"/>
+    </bean>
+    <!--MemCached配置-->
+    <bean id="MemCachedConf" class="com.gennlife.platform.configuration.MemCachedConf">
+        <property name="servers">
+            <array value-type="java.lang.String">
+                <value>118.102.29.249:11211</value>
+            </array>
+        </property>
+        <property name="weights">
+            <array value-type="java.lang.Integer">
+                <value>2</value>
+            </array>
+        </property>
+        <property name="initConnections" value="5"/>
+        <property name="minConnections" value="5" />
+        <property name="maxConnections" value="250" />
+        <property name="maxIdle" value="21600000" />
+        <property name="maintSleep" value="30" />
+        <property name="setNagle" value="false" />
+        <property name="socketConnectTO" value="0" />
+        <property name="socketTO" value="3000" />
+    </bean>
+    <!--redis 配置-->
+    <bean name="genericObjectPoolConfig" class="org.apache.commons.pool2.impl.GenericObjectPoolConfig">
+        <property name="maxWaitMillis" value="-1" />
+        <property name="maxTotal" value="8" />
+        <property name="minIdle" value="0" />
+        <property name="maxIdle" value="8" />
+    </bean>
+    <bean id="jedisClusterFactory" class="com.gennlife.platform.configuration.JedisClusterFactory">
+        <property name="connectionTimeout" value="3000" />
+        <property name="soTimeout" value="3000" />
+        <property name="maxRedirections" value="5" />
+        <property name="genericObjectPoolConfig" ref="genericObjectPoolConfig" />
+        <property name="jedisClusterNodes">
+            <set>
+                <value>118.102.29.249:6379</value>
+            </set>
+        </property>
+    </bean>
+</beans>
