@@ -55,6 +55,8 @@
         <property name="caseSimilarServiceGetSimilars" value="http://10.0.0.165:9900/FileService/SimilarService/vitaboard"></property>
         <property name="caseSimilarServiceSimilarQuery" value="http://10.0.0.165:9900/FileService/SimilarService/SimilarQuery"></property>
         <property name="caseSimilarServiceSimilarPatientInfo" value="http://10.0.0.162:9900/FileService/SimilarService/SimilarPatientInfo"></property>
+        <property name="caseSimilarServiceSimilarPatientExtraInfo" value="http://10.0.0.162:9900/FileService/SimilarService/SimilarPatientExtraInfo"></property>
+
         <!--vitaGram 服务-->
         <property name="vitaGramServerMedicalHistoryRecommendPath" value="http://10.0.0.165:9900/vitaGram-server/medical_history_recommend_path"></property>
         <property name="vitaGramServerNccnRecommendPath" value="http://10.0.0.165:9900/vitaGram-server/nccn_recommend_path"></property>

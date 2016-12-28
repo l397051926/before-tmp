@@ -648,4 +648,20 @@ public class DetailController {
         logger.info("当前病人的信息 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value="/SimilarServiceSimilarPatientExtraInfo",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String SimilarServiceSimilarPatientExtraInfo(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addAuthority(paramRe);
+            resultStr = processor.similarServiceSimilarPatientExtraInfo(param);
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取当前病人的指定字段的信息 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }

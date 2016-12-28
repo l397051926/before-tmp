@@ -12,6 +12,13 @@ public class URLBean {
     public void setCaseAdmission_records(String caseAdmission_records) {
         this.caseAdmission_records = caseAdmission_records;
     }
+
+    /**
+     * 获取当前病人的指定字段的信息
+     */
+    private String caseSimilarServiceSimilarPatientExtraInfo;
+
+
     private String vitaGramServerMedicalHistoryRecommendPath = null;
     /**
      * 获取NCCN推荐路径
@@ -1092,5 +1099,13 @@ public class URLBean {
 
     public void setVitaGramServerMedicalHistoryRecommendPath(String vitaGramServerMedicalHistoryRecommendPath) {
         this.vitaGramServerMedicalHistoryRecommendPath = vitaGramServerMedicalHistoryRecommendPath;
+    }
+
+    public String getCaseSimilarServiceSimilarPatientExtraInfo() {
+        return caseSimilarServiceSimilarPatientExtraInfo;
+    }
+
+    public void setCaseSimilarServiceSimilarPatientExtraInfo(String caseSimilarServiceSimilarPatientExtraInfo) {
+        this.caseSimilarServiceSimilarPatientExtraInfo = caseSimilarServiceSimilarPatientExtraInfo;
     }
 }
