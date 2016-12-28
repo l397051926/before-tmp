@@ -489,7 +489,6 @@ public class ProjectProcessor {
                 limit = jsonObject.get("limit").getAsString();
             }
             int[] ls = ParamUtils.parseLimit(limit);
-
             confMap.put("startIndex",(ls[0]-1) * ls[1]);
             confMap.put("maxNum",ls[1]);
             confMap.put("projectID", projectID);
@@ -498,7 +497,9 @@ public class ProjectProcessor {
         }
         List<ProjectPlan> plansList = AllDao.getInstance().getProjectDao().getProjectPlan(confMap);
         for(ProjectPlan projectPlan:plansList){
-
+            String creator = projectPlan.getCreator();
+            User cUser = AllDao.getInstance().getSyUserDao().getUserByUid(creator);
+            projectPlan.setCreatorName(cUser.getUname());
         }
         int count = AllDao.getInstance().getProjectDao().getProjectPlanCounter(confMap);
         Map<String,Object> info = new HashMap<String, Object>();

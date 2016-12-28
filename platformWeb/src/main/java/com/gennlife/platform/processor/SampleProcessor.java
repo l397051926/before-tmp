@@ -107,7 +107,7 @@ public class SampleProcessor {
                 ProLog proLog = new ProLog();
                 proLog.setAction(LogActionEnum.ImportSamples.getName());
                 proLog.setLogTime(new Date());
-                proLog.setLogText("<" + sampleName + ">");
+                proLog.setLogText(user.getUname()+LogActionEnum.ImportSamples.getName()+"<" + sampleName + ">");
                 proLog.setSampleURI(uri);
                 proLog.setProjectID(projectID);
                 proLog.setUid(uid);

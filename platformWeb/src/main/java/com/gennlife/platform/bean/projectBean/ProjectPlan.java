@@ -11,6 +11,7 @@ public class ProjectPlan {
     private String planName;
     private String planDesc;
     private String creator;
+    private String creatorName;
     private int planStatus;
     private Date modifTime;
     private Date createTime;
@@ -18,6 +19,14 @@ public class ProjectPlan {
     private String modifier;
     private String taskID;
     private String taskName;
+
+    public String getCreatorName() {
+        return creatorName;
+    }
+
+    public void setCreatorName(String creatorName) {
+        this.creatorName = creatorName;
+    }
 
     public String getTaskName() {
         return taskName;
