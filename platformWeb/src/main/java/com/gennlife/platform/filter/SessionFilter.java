@@ -69,6 +69,7 @@ public class SessionFilter implements Filter {
     }
 
     static {
+        okSet.add("/user/Info");
         okSet.add("/user/Login");
         okSet.add("/base/Login");
         okSet.add("/user/SendEmailForChangePWD");
