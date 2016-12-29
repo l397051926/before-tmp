@@ -248,21 +248,4 @@ public class UserController{
         logger.info(" get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
-
-    @RequestMapping(value="/Info",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String Info(){
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            JsonObject result = new JsonObject();
-            result.addProperty("hello","Gennlife");
-            return processor.setRedis(result.toString());
-        }catch (Exception e){
-            logger.error("",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info(" 返回="+resultStr);
-        logger.info(" get 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
 }
