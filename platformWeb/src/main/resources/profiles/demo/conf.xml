@@ -120,7 +120,7 @@
         <property name="CSSmg" value="http://10.0.0.50:81/smg"/>
 
         <property name="EmailSendURL" value="http://10.0.0.10/uranus/verify_email.html?token="></property>
-
+        <property name="CSBaseline" value="http://10.0.0.50:81/baseline"/>
     </bean>
 
     <bean id="MemCachedConf" class="com.gennlife.platform.configuration.MemCachedConf">
