@@ -499,7 +499,9 @@ public class ProjectProcessor {
         for(ProjectPlan projectPlan:plansList){
             String creator = projectPlan.getCreator();
             User cUser = AllDao.getInstance().getSyUserDao().getUserByUid(creator);
-            projectPlan.setCreatorName(cUser.getUname());
+            if(cUser != null){
+                projectPlan.setCreatorName(cUser.getUname());
+            }
         }
         int count = AllDao.getInstance().getProjectDao().getProjectPlanCounter(confMap);
         Map<String,Object> info = new HashMap<String, Object>();
