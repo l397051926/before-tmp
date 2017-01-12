@@ -79,51 +79,51 @@
 
 
         <!--知识库服务 接口 -->
-        <property name="knowledgeURL" value="http://192.168.1.111:9883/knowledge/graph"/>
-        <property name="knowledgeDiseaseSearchGenesURL" value="http://192.168.1.111:9883/knowledge/DiseaseSearchGenes"/>
-        <property name="knowledgeGeneInfoURL" value="http://192.168.1.111:9883/knowledge/GeneInfo"/>
-        <property name="knowledgeVariationInfoURL" value="http://192.168.1.111:9883/knowledge/VariationInfo"/>
-        <property name="knowledgeDetailVariationSearchDiseaseURL" value="http://192.168.1.111:9883/knowledge/VariationInfo"/>
-        <property name="knowledgeDetailVariationSearchDrugURL" value="http://192.168.1.111:9883/knowledge/VariationInfo"/>
-        <property name="knowledgePharmGKBSearchDrugURL" value="http://192.168.1.111:9883/knowledge/PharmGKBSearchDrug"/>
+        <property name="knowledgeURL" value="http://localhost:9883/knowledge/graph"/>
+        <property name="knowledgeDiseaseSearchGenesURL" value="http://localhost:9883/knowledge/DiseaseSearchGenes"/>
+        <property name="knowledgeGeneInfoURL" value="http://localhost:9883/knowledge/GeneInfo"/>
+        <property name="knowledgeVariationInfoURL" value="http://localhost:9883/knowledge/VariationInfo"/>
+        <property name="knowledgeDetailVariationSearchDiseaseURL" value="http://localhost:9883/knowledge/VariationInfo"/>
+        <property name="knowledgeDetailVariationSearchDrugURL" value="http://localhost:9883/knowledge/VariationInfo"/>
+        <property name="knowledgePharmGKBSearchDrugURL" value="http://localhost:9883/knowledge/PharmGKBSearchDrug"/>
         <!--CRF 服务接口 -->
-        <property name="CRFProjectCRFListURL" value="http://192.168.1.111:9885/auto/ProjectCrfList"/>
-        <property name="CRFAutoMapURL" value="http://192.168.1.111:9885/auto/AutoMap"/>
-        <property name="CRFGetAttrID" value="http://192.168.1.111:9885/crf/GetAttrID"/>
-        <property name="CRFGetGroupID" value="http://192.168.1.111:9885/crf/GetGroupID"/>
-        <property name="CRFModelByProjectID" value="http://192.168.1.111:9885/crf/ModelByProjectID"/>
-        <property name="CRFModelByCRFID" value="http://192.168.1.111:9885/crf/ModelByCRFID"/>
-        <property name="CRFModelForTraceByCRFID" value="http://192.168.1.111:9885/crf/ModelForTraceByCRFID"/>
-        <property name="CRFEditModel" value="http://192.168.1.111:9885/crf/EditModel"/>
-        <property name="CRFSaveModel" value="http://192.168.1.111:9885/crf/SaveModel"/>
-        <property name="CRFGetData" value="http://192.168.1.111:9885/crf/GetData"/>
-        <property name="CRFSaveData" value="http://192.168.1.111:9885/crf/SaveData"/>
-        <property name="CRFSampleCaseList" value="http://192.168.1.111:9885/crf/SampleCaseList"/>
-        <property name="CRFDeleteSample" value="http://192.168.1.111:9885/crf/DeleteSample"/>
-        <property name="CRFUpLoadData" value="http://192.168.1.111:9885/crf/UpLoadData"/>
-        <property name="CRFSearchSampleList" value="http://192.168.1.111:9885/crf/SearchSampleList"/>
-		<property name="CRFGetPatientInfo" value="http://192.168.1.111:9885/auto/PatientInfo"/>
-        <property name="CRFPatientVisitDetail" value="http://192.168.1.111:9885/auto/PatientVisitDetail"/>
-        <property name="CRFPatientAllVisitsDetail" value="http://192.168.1.111:9885/auto/PatientAllVisitsDetail"/>
-        <property name="CRFUpLoadDataForCheck" value="http://192.168.1.111:9885/crf/UpLoadDataForCheck"></property>
-        <property name="CRFImportFile" value="http://192.168.1.111:9885/auto/CsvAddQueue"></property>
-        <property name="CRFImportMap" value="http://192.168.1.111:9885/auto/CsvImport"></property>
-        <property name="CRFImportResult" value="http://192.168.1.111:9885/auto/CsvImportResult"></property>
-        <property name="CRFIsExistPatient" value="http://192.168.1.111:9885/crf/IsExistPatient"></property>
+        <property name="CRFProjectCRFListURL" value="http://localhost:9885/auto/ProjectCrfList"/>
+        <property name="CRFAutoMapURL" value="http://localhost:9885/auto/AutoMap"/>
+        <property name="CRFGetAttrID" value="http://localhost:9885/crf/GetAttrID"/>
+        <property name="CRFGetGroupID" value="http://localhost:9885/crf/GetGroupID"/>
+        <property name="CRFModelByProjectID" value="http://localhost:9885/crf/ModelByProjectID"/>
+        <property name="CRFModelByCRFID" value="http://localhost:9885/crf/ModelByCRFID"/>
+        <property name="CRFModelForTraceByCRFID" value="http://localhost:9885/crf/ModelForTraceByCRFID"/>
+        <property name="CRFEditModel" value="http://localhost:9885/crf/EditModel"/>
+        <property name="CRFSaveModel" value="http://localhost:9885/crf/SaveModel"/>
+        <property name="CRFGetData" value="http://localhost:9885/crf/GetData"/>
+        <property name="CRFSaveData" value="http://localhost:9885/crf/SaveData"/>
+        <property name="CRFSampleCaseList" value="http://localhost:9885/crf/SampleCaseList"/>
+        <property name="CRFDeleteSample" value="http://localhost:9885/crf/DeleteSample"/>
+        <property name="CRFUpLoadData" value="http://localhost:9885/crf/UpLoadData"/>
+        <property name="CRFSearchSampleList" value="http://localhost:9885/crf/SearchSampleList"/>
+		<property name="CRFGetPatientInfo" value="http://localhost:9885/auto/PatientInfo"/>
+        <property name="CRFPatientVisitDetail" value="http://localhost:9885/auto/PatientVisitDetail"/>
+        <property name="CRFPatientAllVisitsDetail" value="http://localhost:9885/auto/PatientAllVisitsDetail"/>
+        <property name="CRFUpLoadDataForCheck" value="http://localhost:9885/crf/UpLoadDataForCheck"></property>
+        <property name="CRFImportFile" value="http://localhost:9885/auto/CsvAddQueue"></property>
+        <property name="CRFImportMap" value="http://localhost:9885/auto/CsvImport"></property>
+        <property name="CRFImportResult" value="http://localhost:9885/auto/CsvImportResult"></property>
+        <property name="CRFIsExistPatient" value="http://localhost:9885/crf/IsExistPatient"></property>
 
         <!--R 服务接口-->
-        <property name="RRun" value="http://192.168.1.111:1235/r_run"/>
-        <property name="RStop" value="http://192.168.1.111:1235/r_stop"/> 
-        <property name="RSave" value="http://192.168.1.111:1235/r_save"/>
-        <property name="RLoad" value="http://192.168.1.111:1235/r_load"/>
-        <property name="RList" value="http://192.168.1.111:1235/r_list"/>
+        <property name="RRun" value="http://10.8.0.54:1235/r_run"/>
+        <property name="RStop" value="http://10.8.0.54:1235/r_stop"/>
+        <property name="RSave" value="http://10.8.0.54:1235/r_save"/>
+        <property name="RLoad" value="http://10.8.0.54:1235/r_load"/>
+        <property name="RList" value="http://10.8.0.54:1235/r_list"/>
         <!--工作区计算服务接口 -->
-        <property name="AtoolURL" value="http://192.168.1.111:81/get_statistic"/>
-        <property name="toolsURL" value="http://192.168.1.111:81/get_tools"/>
-        <property name="CSSmg" value="http://192.168.1.111:81/smg"/>
+        <property name="AtoolURL" value="http://10.8.0.54:81/get_statistic"/>
+        <property name="toolsURL" value="http://10.8.0.54:81/get_tools"/>
+        <property name="CSSmg" value="http://10.8.0.54:81/smg"/>
 
-        <property name="EmailSendURL" value="http://192.168.1.111:10081/uranus/verify_email.html?token="></property>
-        <property name="CSBaseline" value="http://192.168.1.111:81/baseline"/>
+        <property name="EmailSendURL" value="http://10.8.0.54:10081/uranus/verify_email.html?token="></property>
+        <property name="CSBaseline" value="http://10.8.0.54:81/baseline"/>
     </bean>
     <!--MemCached配置-->
     <bean id="MemCachedConf" class="com.gennlife.platform.configuration.MemCachedConf">
