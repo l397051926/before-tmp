@@ -45,12 +45,14 @@ public class SessionFilter implements Filter {
             String sessionID = session.getId();
             String uid = RedisUtil.getValue(sessionID);
             if(uid == null) {
+                logger.error("RedisUtil.getValue取不到数据:"+sessionID);
                 view.viewString(ParamUtils.errorSessionLosParam(), response);
             } else {
                 User user = RedisUtil.getUser(uid);
                 if(user == null) {
                     user = UserProcessor.getUserByUidFromRedis(uid);
                     if(user == null){
+                        logger.error("RedisUtil.getUser取不到数据:"+uid);
                         view.viewString(ParamUtils.errorSessionLosParam(), response);
                     }
                 }

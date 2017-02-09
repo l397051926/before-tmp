@@ -30,6 +30,7 @@ public class AuthorityUtil {
         JsonElement paramElement = jsonParser.parse(param);
         Object object = paramRe.getAttribute("currentUser");
         if(object == null){
+            logger.error("paramRe里面无currentUser");
             return ParamUtils.errorSessionLosParam();
         }else {
             JsonObject user = (JsonObject)jsonParser.parse(gson.toJson(object));

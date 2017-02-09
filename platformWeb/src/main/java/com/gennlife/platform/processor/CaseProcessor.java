@@ -386,6 +386,7 @@ public class CaseProcessor {
      */
     public String searchCase(String newParam,User user) {
         if(newParam == null){
+            logger.error("searchCase缺失参数");
             return ParamUtils.errorSessionLosParam();
         }
         String param = transformSid(newParam,user);

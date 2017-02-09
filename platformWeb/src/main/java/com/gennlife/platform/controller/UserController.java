@@ -82,6 +82,7 @@ public class UserController{
         try{
             User user = (User)paramRe.getAttribute("currentUser");
             if(user == null ){
+                logger.error("paramRe里面无currentUser");
                 return ParamUtils.errorSessionLosParam();
             }
             String param = ParamUtils.getParam(paramRe);
