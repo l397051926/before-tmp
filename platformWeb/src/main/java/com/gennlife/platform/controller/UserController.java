@@ -43,6 +43,7 @@ public class UserController{
             HttpSession session = paramRe.getSession(true);
             String sessionID = session.getId();
             String param = ParamUtils.getParam(paramRe);
+            logger.info("Login sessionID="+sessionID);
             logger.info("Login param="+param);
             String email = null;
             String pwd = null;
@@ -63,7 +64,7 @@ public class UserController{
             }else {
                 view.viewString(ParamUtils.errorParam("登陆失败"), response);
             }
-            Cookie cookie = new Cookie("JSESSIONID",session.getId());
+            Cookie cookie = new Cookie("JSESSIONID",sessionID);
             response.addCookie(cookie);
             resultStr = gson.toJson(resultBean);
         }catch (Exception e){

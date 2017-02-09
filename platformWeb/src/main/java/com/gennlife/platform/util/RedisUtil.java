@@ -1,16 +1,21 @@
 package com.gennlife.platform.util;
 
 import com.gennlife.platform.model.User;
+import com.gennlife.platform.parse.CaseSearchParser;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import redis.clients.jedis.JedisCluster;
 
 import java.io.StringReader;
+
 
 /**
  * Created by chen-song on 2016/12/8.
  */
 public class RedisUtil {
+    private static Logger logger = LoggerFactory.getLogger(RedisUtil.class);
     private static JedisCluster jedisCluster = null;
     private static Gson gson = GsonUtil.getGson();
     private static String suffix = "_info";
@@ -73,6 +78,7 @@ public class RedisUtil {
         }
         setValue(user.getUid(),sessionID);
         setValue(sessionID,user.getUid());
+        logger.info("登录设置:"+sessionID+"="+user.getUid()+"成功");
         setUser(user);
     }
     public static void setFlag(boolean v){
