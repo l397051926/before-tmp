@@ -61,11 +61,11 @@ public class UserController{
                 RedisUtil.setUserOnLine(user,sessionID);
                 resultBean.setCode(1);
                 resultBean.setData(user);
+                Cookie cookie = new Cookie("JSESSIONID",sessionID);
+                response.addCookie(cookie);
             }else {
                 view.viewString(ParamUtils.errorParam("登陆失败"), response);
             }
-            Cookie cookie = new Cookie("JSESSIONID",sessionID);
-            response.addCookie(cookie);
             resultStr = gson.toJson(resultBean);
         }catch (Exception e){
             logger.error("",e);
