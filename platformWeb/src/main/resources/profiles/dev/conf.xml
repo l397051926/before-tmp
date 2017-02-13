@@ -14,9 +14,9 @@
 
     <bean id="com.gennlife.platform.configuration.URLBean" class="com.gennlife.platform.configuration.URLBean">
         <!-- 搜索服务 -->
-        <property name="caseSearchURL" value="http://10.0.0.31:8989/search-server/search"/>
-        <property name="caseSuggestURL" value="http://10.0.0.31:8989/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
-        <property name="caseGeneErrorURL" value="http://10.0.0.31:8989/search-server/verify"/>
+        <property name="caseSearchURL" value="http://10.0.0.66:8989/search-server/search"/>
+        <property name="caseSuggestURL" value="http://10.0.0.66:8989/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
+        <property name="caseGeneErrorURL" value="http://10.0.0.66:8989/search-server/verify"/>
         <!--FS 详情页 -->
         <property name="caseDetailPatientBasicInfoURL" value="http://10.0.0.165:9900/FileService/PatientDetail/patient_basic_info"/>
         <property name="caseDetailPatientBasicFigureURL" value="http://10.0.0.165:9900/FileService/PatientDetail/PatientBasicFigure"/>
@@ -59,9 +59,9 @@
         <property name="caseSimilarServiceSimilarPatientExtraInfo" value="http://10.0.0.165:9900/FileService/SimilarService/SimilarPatientExtraInfo"></property>
 
         <!--vitaGram 服务-->
-        <property name="vitaGramServerMedicalHistoryRecommendPath" value="http://10.0.0.31:8989/vitaGram-server/medical_history_recommend_path"></property>
-        <property name="vitaGramServerNccnRecommendPath" value="http://10.0.0.31:8989/vitaGram-server/nccn_recommend_path"></property>
-        <property name="vitaGramServerVitaGramData" value="http://10.0.0.31:8989/vitaGram-server/vitaGramData"></property>
+        <property name="vitaGramServerMedicalHistoryRecommendPath" value="http://10.0.0.66:8989/vitaGram-server/medical_history_recommend_path"></property>
+        <property name="vitaGramServerNccnRecommendPath" value="http://10.0.0.66:8989/vitaGram-server/nccn_recommend_path"></property>
+        <property name="vitaGramServerVitaGramData" value="http://10.0.0.66:8989/vitaGram-server/vitaGramData"></property>
 
 
         <!--FS 样本操作 -->
