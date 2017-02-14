@@ -4,7 +4,6 @@ import json
 from collections import OrderedDict
 
 output = open('case.json', 'w')
-
 def sortItem(itemArray,allSortIndexName):
     newArray = []
     for name in allSortIndexName:
@@ -18,11 +17,9 @@ def sortItem(itemArray,allSortIndexName):
     return newArray
 
 def process():
-    data = xlrd.open_workbook('/Users/chen-song/Downloads/病人维度临床数据字段配置_V2.1.50.xls')
-
-
+    data = xlrd.open_workbook('/Users/chen-song/Downloads/病人维度临床数据字段配置_V2.1.58_3.xls')
     allItemList = OrderedDict()
-    allItemListCopy = {}
+    allItemListCopy = OrderedDict()
     sheet = data.sheets()[0]
     rowsNum = sheet.nrows#行数
     keylist = sheet.row_values(1)
@@ -214,8 +211,9 @@ def process():
             all_liver[key] = allGroup[key]
         elif key.startswith('肺癌'):
             all_lung[key] = allGroup[key]
-        elif not key.startswith('就诊') and not key.startswith("门诊") and not key.startswith('临床相关基因变异'):
+        elif not key.startswith('就诊') or not key.startswith('门诊') or not key.startswith('临床相关基因变异'):
             all_kidney[key] = allGroup[key]
+
 
     for key in allGroup:
         if key.startswith('就诊') or key.startswith('门诊') or key.startswith('临床相关基因变异'):
@@ -225,6 +223,10 @@ def process():
     liver['all'] = all_liver
     lung['all'] = all_lung
     kidney['all'] = all_kidney
+
+
+
+
 
 
     for key in defaultGroup:
@@ -237,7 +239,7 @@ def process():
             default_liver[key] = defaultGroup[key]
         elif key.startswith('肺癌'):
             default_lung[key] = defaultGroup[key]
-        elif not key.startswith('就诊') and not key.startswith("门诊") and not key.startswith('临床相关基因变异'):
+        elif not key.startswith('就诊') or not key.startswith('门诊') or not key.startswith('临床相关基因变异'):
             default_kidney[key] = defaultGroup[key]
 
     for key in defaultGroup:
@@ -260,8 +262,9 @@ def process():
             advancedSearch_liver[key] = advancedGroup[key]
         elif key.startswith('肺癌'):
             advancedSearch_lung[key] = advancedGroup[key]
-        elif not key.startswith('就诊') and not key.startswith("门诊") and not key.startswith('临床相关基因变异'):
+        elif not key.startswith('就诊') or not key.startswith('门诊') or not key.startswith('临床相关基因变异'):
             advancedSearch_kidney[key] = advancedGroup[key]
+
 
     for key in advancedGroup:
         if key.startswith('就诊') or key.startswith('门诊') or key.startswith('临床相关基因变异'):
@@ -281,7 +284,7 @@ def process():
             import_liver[key] = importedGroup[key]
         elif key.startswith('肺癌'):
             import_lung[key] = importedGroup[key]
-        elif not key.startswith('就诊') and not key.startswith("门诊") and not key.startswith('临床相关基因变异'):
+        elif not key.startswith('就诊') or not key.startswith('门诊') or not key.startswith('临床相关基因变异'):
             import_kidney[key] = importedGroup[key]
 
     for key in importedGroup:
@@ -302,7 +305,7 @@ def process():
             compare_liver[key] = compare[key]
         elif key.startswith('肺癌'):
             compare_lung[key] = compare[key]
-        elif not key.startswith('就诊') and not key.startswith("门诊") and not key.startswith('临床相关基因变异'):
+        elif not key.startswith('就诊') or not key.startswith('门诊') or not key.startswith('临床相关基因变异'):
             compare_kidney[key] = compare[key]
 
     for key in compare:
@@ -310,10 +313,11 @@ def process():
             compare_liver[key] = compare[key]
             compare_lung[key] = compare[key]
             compare_kidney[key] = compare[key]
-    liver['compare'] = import_liver
-    lung['compare'] = import_lung
-    kidney['compare'] = import_kidney
-    output.write(json.dumps(mergeResult, ensure_ascii=False))
+
+    liver['compare'] = compare_liver
+    lung['compare'] = compare_lung
+    kidney['compare'] = compare_kidney
+    output.write(json.dumps(mergeResult,ensure_ascii=False))
 
     # 患者基本信息
     basic = OrderedDict()
