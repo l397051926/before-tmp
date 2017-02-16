@@ -58,6 +58,11 @@ public class UserController{
             User user = processor.login(email,pwd);
             ResultBean resultBean = new ResultBean();
             if(user != null){
+                boolean hasLogin=UserProcessor.getUserByUidFromRedis(user.getUid())!=null;
+                if(hasLogin)
+                {
+                    logger.warn("用户 "+email+" 已经登陆在其他session,进行重新登陆");
+                }
                 RedisUtil.setUserOnLine(user,sessionID);
                 resultBean.setCode(1);
                 resultBean.setData(user);
