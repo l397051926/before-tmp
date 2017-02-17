@@ -66,17 +66,24 @@ public class UserController{
                 RedisUtil.setUserOnLine(user,sessionID);
                 resultBean.setCode(1);
                 resultBean.setData(user);
+                boolean isSet=false;
                 for(Cookie cookieitem:paramRe.getCookies())
                 {
                     if(cookieitem.getName().equals("JSESSIONID")&&!sessionID.equals(cookieitem.getValue()))
                     {
-                        cookieitem.setMaxAge(0);
+                        cookieitem.setValue(sessionID);
+                        cookieitem.setPath("/");
+                        cookieitem.setHttpOnly(true);
+                        isSet=true;
                     }
                 }
-                Cookie cookie = new Cookie("JSESSIONID",sessionID);
-                cookie.setPath("/");
-                cookie.setHttpOnly(true);
-                response.addCookie(cookie);
+                if(!isSet)
+                {
+                    Cookie cookie = new Cookie("JSESSIONID",sessionID);
+                    cookie.setPath("/");
+                    cookie.setHttpOnly(true);
+                    response.addCookie(cookie);
+                }
             }else {
                 view.viewString(ParamUtils.errorParam("登陆失败"), response);
             }
