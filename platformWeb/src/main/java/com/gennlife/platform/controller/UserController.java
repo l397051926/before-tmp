@@ -66,9 +66,16 @@ public class UserController{
                 RedisUtil.setUserOnLine(user,sessionID);
                 resultBean.setCode(1);
                 resultBean.setData(user);
+                for(Cookie cookieitem:paramRe.getCookies())
+                {
+                    if(cookieitem.getName().equals("JSESSIONID")&&!sessionID.equals(cookieitem.getValue()))
+                    {
+                        cookieitem.setMaxAge(0);
+                    }
+                }
                 Cookie cookie = new Cookie("JSESSIONID",sessionID);
-                /*cookie.setPath("/");
-                cookie.setHttpOnly(true);*/
+                cookie.setPath("/");
+                cookie.setHttpOnly(true);
                 response.addCookie(cookie);
             }else {
                 view.viewString(ParamUtils.errorParam("登陆失败"), response);
