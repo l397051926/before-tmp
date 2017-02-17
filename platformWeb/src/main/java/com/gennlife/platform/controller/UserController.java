@@ -67,8 +67,8 @@ public class UserController{
                 resultBean.setCode(1);
                 resultBean.setData(user);
                 Cookie cookie = new Cookie("JSESSIONID",sessionID);
-                cookie.setPath("/");
-                cookie.setHttpOnly(true);
+                /*cookie.setPath("/");
+                cookie.setHttpOnly(true);*/
                 response.addCookie(cookie);
             }else {
                 view.viewString(ParamUtils.errorParam("登陆失败"), response);
