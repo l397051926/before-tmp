@@ -43,7 +43,7 @@ public class SessionFilter implements Filter {
         {
             String msg="";
             for(Cookie cookie:cookies)
-                msg=msg+"cookie "+cookie.getName()+" = "+cookie.getValue()+"\r\n";
+                msg=msg+"cookie "+cookie.getName()+" = "+cookie.getValue()+" path "+cookie.getPath()+"\r\n";
             logger.info(msg);
         }
         String uri = request.getRequestURI();
