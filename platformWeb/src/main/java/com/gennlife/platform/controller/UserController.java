@@ -69,7 +69,7 @@ public class UserController{
                 boolean isSet=false;
                 for(Cookie cookieitem:paramRe.getCookies())
                 {
-                    if(cookieitem.getName().equals("JSESSIONID")&&!sessionID.equals(cookieitem.getValue()))
+                    if(cookieitem.getName().equals("JSESSIONID"))
                     {
                         cookieitem.setValue(sessionID);
                         cookieitem.setPath("/");
