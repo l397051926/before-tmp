@@ -41,8 +41,10 @@ public class SessionFilter implements Filter {
         Cookie[] cookies = request.getCookies();
         if(cookies!=null)
         {
+            String msg="";
             for(Cookie cookie:cookies)
-                logger.info("cookie "+cookie.getName()+" = "+cookie.getValue());
+                msg=msg+"cookie "+cookie.getName()+" = "+cookie.getValue()+"\r\n";
+            logger.info(msg);
         }
         String uri = request.getRequestURI();
         if(okSet.contains(uri)) {
