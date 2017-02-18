@@ -2,18 +2,12 @@ package com.gennlife.platform.controller;
 
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.processor.DetailProcessor;
-import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -657,6 +651,24 @@ public class DetailController {
         try {
             String param = AuthorityUtil.addAuthority(paramRe);
             resultStr = processor.similarServiceSimilarPatientExtraInfo(param);
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取当前病人的指定字段的信息 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+    /**
+     * 非隐私数据查询
+     * */
+    @RequestMapping(value="/PatientBatchDataConsultingRoom",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String PatientBatchDataConsultingRoom(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addAuthority(paramRe);
+            resultStr = processor.PatientBatchDataConsultingRoom(param);
         } catch (Exception e) {
             logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");

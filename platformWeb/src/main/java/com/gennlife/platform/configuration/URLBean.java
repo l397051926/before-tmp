@@ -5,6 +5,11 @@ package com.gennlife.platform.configuration;
  */
 public class URLBean {
 
+    /**
+     * 非隐私信息接口
+     * */
+    private String casePatientBatchDataConsultingRoom;
+
     public String getCaseAdmission_records() {
         return caseAdmission_records;
     }
@@ -1107,5 +1112,13 @@ public class URLBean {
 
     public void setCaseSimilarServiceSimilarPatientExtraInfo(String caseSimilarServiceSimilarPatientExtraInfo) {
         this.caseSimilarServiceSimilarPatientExtraInfo = caseSimilarServiceSimilarPatientExtraInfo;
+    }
+
+    public void setCasePatientBatchDataConsultingRoom(String casePatientBatchDataConsultingRoom) {
+        this.casePatientBatchDataConsultingRoom = casePatientBatchDataConsultingRoom;
+    }
+
+    public String getCasePatientBatchDataConsultingRoom() {
+        return casePatientBatchDataConsultingRoom;
     }
 }
