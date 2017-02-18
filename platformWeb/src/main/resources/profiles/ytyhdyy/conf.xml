@@ -51,13 +51,13 @@
         <property name="casePatientChemotherapyInfo" value="http://192.168.0.95:8111/FileService/PatientDetail/chemotherapy_info"></property>
 
         <!--vitaBoard 服务-->
-        <property name="caseSimilarServiceVitaboardparam" value="http://10.0.0.95:8111/FileService/SimilarService/vitaboardparam"></property>
-        <property name="caseSimilarServiceSimilarParam" value="http://10.0.0.95:8111/FileService/SimilarService/SimilarParam"></property>
-        <property name="caseSimilarServiceGetSimilars" value="http://10.0.0.95:8111/FileService/SimilarService/vitaboard"></property>
-        <property name="caseSimilarServiceSimilarQuery" value="http://10.0.0.95:8111/FileService/SimilarService/SimilarQuery"></property>
-        <property name="caseSimilarServiceSimilarBasicDetail" value="http://10.0.0.95:8111/FileService/SimilarService/SimilarBasicDetail"></property>
-        <property name="caseSimilarServiceSimilarPatientInfo" value="http://10.0.0.95:8111/FileService/SimilarService/SimilarPatientInfo"></property>
-        <property name="caseSimilarServiceSimilarPatientExtraInfo" value="http://10.0.0.95:8111/FileService/SimilarService/SimilarPatientExtraInfo"></property>
+        <property name="caseSimilarServiceVitaboardparam" value="http://192.168.0.95:8111/FileService/SimilarService/vitaboardparam"></property>
+        <property name="caseSimilarServiceSimilarParam" value="http://192.168.0.95:8111/FileService/SimilarService/SimilarParam"></property>
+        <property name="caseSimilarServiceGetSimilars" value="http://192.168.0.95:8111/FileService/SimilarService/vitaboard"></property>
+        <property name="caseSimilarServiceSimilarQuery" value="http://192.168.0.95:8111/FileService/SimilarService/SimilarQuery"></property>
+        <property name="caseSimilarServiceSimilarBasicDetail" value="http://192.168.0.95:8111/FileService/SimilarService/SimilarBasicDetail"></property>
+        <property name="caseSimilarServiceSimilarPatientInfo" value="http://192.168.0.95:8111/FileService/SimilarService/SimilarPatientInfo"></property>
+        <property name="caseSimilarServiceSimilarPatientExtraInfo" value="http://192.168.0.95:8111/FileService/SimilarService/SimilarPatientExtraInfo"></property>
 
         <!--vitaGram 服务-->
         <property name="vitaGramServerMedicalHistoryRecommendPath" value="http://10.0.0.165:9900/vitaGram-server/medical_history_recommend_path"></property>
