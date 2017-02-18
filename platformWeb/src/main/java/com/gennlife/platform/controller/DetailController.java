@@ -673,7 +673,7 @@ public class DetailController {
             logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("获取当前病人的指定字段的信息 耗时" + (System.currentTimeMillis() - start) + "ms");
+        logger.info("获取非隐私数据 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 }
