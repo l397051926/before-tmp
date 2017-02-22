@@ -310,6 +310,10 @@ public class FileUploadUtil {
                     {
                         srcList.add(str+",失败,上级科室名称大于30个字符");
                         continue;
+                    }else if(parentName.equals(name))
+                    {
+                        srcList.add(str+",失败,上级科室与当前科室名称一致");
+                        continue;
                     }else{
                         Lab lab = new Lab();
                         lab.setOrgID(orgID);
