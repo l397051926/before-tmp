@@ -138,6 +138,16 @@ public class JsonUtils {
         }
         return result;
     }
+    public  static JsonObject getJsonObject(String param)
+    {
+        try {
+            return jsonParser.parse(param).getAsJsonObject();
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
 
 
 

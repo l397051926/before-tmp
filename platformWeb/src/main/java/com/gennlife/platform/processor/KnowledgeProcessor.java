@@ -67,8 +67,9 @@ public class KnowledgeProcessor {
             }else {
             	query = paramObj.get("query").getAsString();
             }
-            
-            
+
+            if(StringUtils.isEmpty(query))
+                return ParamUtils.errorParam("查询条件为空");
             int[] li = ParamUtils.parseLimit(limit);
             currentPage = li[0];
             pageSize = li[1];
