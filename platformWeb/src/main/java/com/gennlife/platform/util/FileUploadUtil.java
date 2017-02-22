@@ -10,8 +10,11 @@ import com.gennlife.platform.processor.LaboratoryProcessor;
 import com.gennlife.platform.service.ConfigurationService;
 import com.google.gson.Gson;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
+
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -292,11 +295,20 @@ public class FileUploadUtil {
                     String leader = data[1].trim();
                     String parentName = data[3].trim();
                     String leaderName = data[2].trim();
-                    if("".equals(name)){
+                    if(StringUtils.isEmpty(name)){
                         srcList.add(str+",失败,科室名称为空");
                         continue;
-                    }else if("".equals(parentName)){
+                    }else if(name.length()>30)
+                    {
+                        srcList.add(str+",失败,科室名称大于30个字符");
+                        continue;
+                    }
+                    else if(StringUtils.isEmpty(parentName)){
                         srcList.add(str+",失败,上级科室名称为空");
+                        continue;
+                    }else if(parentName.length()>30)
+                    {
+                        srcList.add(str+",失败,上级科室名称大于30个字符");
                         continue;
                     }else{
                         Lab lab = new Lab();
@@ -488,7 +500,7 @@ public class FileUploadUtil {
                 }
             }
         }
-        String labID = orgID + "-" + ChineseToEnglish.getPingYin(name);
+        String labID = orgID + "-" + GStringUtils.toHexString(name);
         int counter = 0;
         while(true){
             boolean flag = false;
@@ -498,7 +510,7 @@ public class FileUploadUtil {
                 }
             }
             if(flag){
-                labID = orgID + "-" + ChineseToEnglish.getPingYin(name)+"_"+counter;
+                labID = orgID + "-" + GStringUtils.toHexString(name)+counter;
                 counter ++;
             }else {
                 break;

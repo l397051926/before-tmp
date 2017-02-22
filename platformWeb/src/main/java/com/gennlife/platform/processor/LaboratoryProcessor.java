@@ -964,7 +964,7 @@ public class LaboratoryProcessor {
         }
         UUID uuid = UUID.randomUUID();
         group.setOrgID(user.getOrgID());
-        group.setGid(uuid.toString());
+        group.setGid(uuid.toString()+Long.toHexString(System.currentTimeMillis()));
         group.setGroupCreator(user.getUid());
         group.setGroupCreatName(LogUtils.getStringTime());
         int counter = AllDao.getInstance().getGroupDao().insertOneGroup(group);
