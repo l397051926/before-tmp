@@ -96,7 +96,27 @@ public class UserController{
         view.viewString(resultStr,response);
     }
 
-
+    @RequestMapping(value="/getUserInfo",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public void getUserInfo(HttpServletRequest paramRe, HttpServletResponse response){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            HttpSession session = paramRe.getSession(true);
+            String sessionID = session.getId();
+            String uid=RedisUtil.getValue(sessionID);
+            logger.info("get userInfo sessionID="+sessionID +" uid="+uid);
+            User user=UserProcessor.getUserByUidFromRedis(uid);
+            ResultBean resultBean = new ResultBean();
+            resultBean.setCode(1);
+            resultBean.setData(user);
+            resultStr = gson.toJson(resultBean);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("getUserInfo 耗时"+(System.currentTimeMillis()-start) +"ms");
+        view.viewString(resultStr,response);
+    }
     @RequestMapping(value="/UpdateInfo",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody String postUpdate(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
