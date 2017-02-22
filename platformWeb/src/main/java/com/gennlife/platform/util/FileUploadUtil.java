@@ -504,7 +504,7 @@ public class FileUploadUtil {
                 }
             }
         }
-        String labID = orgID + "-" + GStringUtils.toHexString(name);
+        String labID = orgID + "-" + ChineseToEnglish.getPingYin(name);
         int counter = 0;
         while(true){
             boolean flag = false;
@@ -514,7 +514,7 @@ public class FileUploadUtil {
                 }
             }
             if(flag){
-                labID = orgID + "-" + GStringUtils.toHexString(name)+counter;
+                labID = orgID + "-" +  ChineseToEnglish.getPingYin(name)+counter;
                 counter ++;
             }else {
                 break;
