@@ -17,6 +17,9 @@
     <listener>
         <listener-class>com.gennlife.platform.listener.ArkListener</listener-class>
     </listener>
+    <listener>
+        <listener-class>com.gennlife.platform.listener.SessionListen</listener-class>
+    </listener>
     <filter>
         <filter-name>encoding</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

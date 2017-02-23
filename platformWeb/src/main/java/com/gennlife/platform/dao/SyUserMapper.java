@@ -175,6 +175,8 @@ public interface SyUserMapper {
      */
     List<User> getUserByRoleID(@Param("roleid")Integer roleid, @Param("offset")int offset, @Param("limit")int limit);
 
+    List<String> getAllUserIDByRoleID(@Param("roleids") Integer[] roleids);
+
     List<User> searchUsersByOrgIDNoLimit(@Param("skey") String key,@Param("orgID") String orgID);;
 
     List<User> searchUsersByLabIDsNoLimit(@Param("skey") String key,@Param("labIDs") String[] labIDs);
@@ -204,6 +206,7 @@ public interface SyUserMapper {
      */
     List<User> getUserByLabID(@Param("labID") String labID, @Param("orgID") String orgID);
 
+    List<String> getUserIDByLabID(@Param("labID") String labID, @Param("orgID") String orgID);
     /**
      * 获取组织内管理员
      * @param orgID
@@ -229,6 +232,7 @@ public interface SyUserMapper {
      */
     String getVitaCong(@Param("uid") String uid);
 
+    List<String> getAllUserIDByGroupID(@Param("gid") String groupID);
 
 
     /**

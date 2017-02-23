@@ -55,7 +55,7 @@ public class FileUploadUtil {
         int update = 0;
         for(String line:list){
             String[] data = line.split(",");
-            if(data.length > 2){
+            if(data.length >= 4){
                 if("成功".equals(data[data.length-2])){
                     if("更新成功".equals(data[data.length-1])){
                         update ++;
@@ -287,14 +287,12 @@ public class FileUploadUtil {
         List<Lab> newList = new LinkedList<>();
         for(String str:strList){
             String[] data = str.split(",");
-            if(data.length >= 4){
+            if(data.length >= 2){
                 if("科室名称".equals(data[0].trim())){
                     srcList.add(str);
                 }else{
                     String name = data[0].trim();
-                    String leader = data[1].trim();
-                    String parentName = data[3].trim();
-                    String leaderName = data[2].trim();
+                    String parentName = data[1].trim();
                     if(StringUtils.isEmpty(name)){
                         srcList.add(str+",失败,科室名称为空");
                         continue;
@@ -318,8 +316,6 @@ public class FileUploadUtil {
                         Lab lab = new Lab();
                         lab.setOrgID(orgID);
                         lab.setLab_level(1);
-                        lab.setLab_leaderName(leaderName);
-                        lab.setLab_leader(leader);
                         lab.setLab_parent(orgID);
                         lab.setLab_name(name);
                         lab.setLab_parentName(parentName);

@@ -36,6 +36,11 @@
 		<where> gennlife_user.labID = #{labID} AND gennlife_user.orgID = #{orgID} </where>
 	</select>
 
+	<select id="getUserIDByLabID" resultType="java.lang.String">
+		SELECT uid
+		FROM gennlife_user
+		<where> gennlife_user.labID = #{labID} AND gennlife_user.orgID = #{orgID} </where>
+	</select>
 	<select id="getUidByEmail" resultType="java.lang.String" parameterType="map">
 		SELECT uid
 		From gennlife_user
@@ -125,6 +130,12 @@
 		count(uid)
 		FROM gennlife_user
 		<where> gennlife_user.uemail=#{email} </where>
+	</select>
+	<select id="getAllUserIDByGroupID"  resultType="java.lang.String">
+		SELECT
+		uid
+		FROM  gennlife_user_group
+		WHERE gennlife_user_group.gid = #{gid}
 	</select>
 	<select id="existUnumber" resultType="java.lang.Integer">
 		SELECT
@@ -421,6 +432,22 @@
 		WHERE gennlife_user_role.roleid = #{roleid}
 		LIMIT #{offset},#{limit}
 	</select>
+
+
+	<select id="getAllUserIDByRoleID" resultType="java.lang.String">
+		SELECT
+		uid
+		FROM gennlife_user_role
+		WHERE
+		roleid in
+		<foreach collection="roleids" item="item" index="index" open="(" separator="," close=")">
+			#{item,jdbcType=INTEGER}
+		</foreach>
+
+	</select>
+
+
+
 	<select id="getUserByRoleIDCounter" resultType="INTEGER">
 		SELECT
 		count(gennlife_user.uid)

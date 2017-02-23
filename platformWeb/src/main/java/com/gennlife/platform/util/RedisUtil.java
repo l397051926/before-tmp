@@ -1,14 +1,16 @@
 package com.gennlife.platform.util;
 
 import com.gennlife.platform.model.User;
-import com.gennlife.platform.parse.CaseSearchParser;
+import com.gennlife.platform.processor.UserProcessor;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 import redis.clients.jedis.JedisCluster;
 
 import java.io.StringReader;
+import java.util.Collection;
 
 
 /**
@@ -81,6 +83,23 @@ public class RedisUtil {
         logger.info("登录设置:"+sessionID+"="+user.getUid()+"成功");
         setUser(user);
     }
+    public static void userLogout(String sessionID){
+        String uid = getValue(sessionID);
+        if(!StringUtils.isEmpty(uid)){
+            deleteKey(sessionID);
+            deleteKey(uid);
+            deleteUser(uid);
+            logger.info("退出设置:"+sessionID+"="+uid+"成功");
+        }
+
+    }
+    public static void updateUserOnLine(String uid){
+        String sessionID=getValue(uid);
+        if(StringUtils.isEmpty(sessionID)) return;
+        User user=UserProcessor.getUserByUids(uid);
+        logger.info("更新设置:"+sessionID+"="+user.getUid()+"成功");
+        setUser(user);
+    }
     public static void setFlag(boolean v){
         flag = v;
         if(!v){//false,关闭redis，清空redis 用户信息
@@ -89,4 +108,9 @@ public class RedisUtil {
         }
     }
 
+    public static void updateUserOnLine(Collection<String> uidList) {
+        if(uidList==null || uidList.size()==0) return;
+        for(String uid:uidList)
+            updateUserOnLine(uid);
+    }
 }

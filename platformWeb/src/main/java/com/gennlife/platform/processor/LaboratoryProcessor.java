@@ -8,6 +8,7 @@ import com.gennlife.platform.util.*;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -144,6 +145,8 @@ public class LaboratoryProcessor {
         labResource.setSlab_name(lab.getLab_name());
         labResource.setStype_role("0");//初始化的是普通科室
         AllDao.getInstance().getSyResourceDao().insertOneResource(labResource);
+        List<String> uids=AllDao.getInstance().getSyUserDao().getUserIDByLabID(lab.getLabID(),lab.getOrgID());
+        RedisUtil.updateUserOnLine(uids);
     }
 
 
@@ -182,6 +185,8 @@ public class LaboratoryProcessor {
         //同步删除资源
         AllDao.getInstance().getSyResourceDao().deleteLabsReource(labIDs);
         int fail = labIDsList.size()-counter;
+        //更新用户信息
+
         logger.info("成功删除"+counter+"个科室信息,失败"+fail+"个");
         organization = getOrganization(orgID);
         ResultBean resultBean = new ResultBean();
@@ -229,11 +234,9 @@ public class LaboratoryProcessor {
             //当前科室下面的用户科室名称
             AllDao.getInstance().getSyUserDao().updateUserLabNameByLabName(lab_name,lab.getLab_name(),orgID);
             //获取当前科室的所有成员
-            List<User> userList = AllDao.getInstance().getSyUserDao().getUserByLabID(labID,orgID);
+            List<String> userIds = AllDao.getInstance().getSyUserDao().getUserIDByLabID(labID,orgID);
             //更新缓存
-            for(User user1:userList){
-                RedisUtil.deleteUser(user1.getUid());
-            }
+            RedisUtil.updateUserOnLine(userIds);
 
 
         }
@@ -463,10 +466,7 @@ public class LaboratoryProcessor {
             AllDao.getInstance().getSyRoleDao().deleteByUids(uids);
             int counter = AllDao.getInstance().getSyUserDao().deleteUserByUids(uids);
 
-            for(String uid:uids){
-                RedisUtil.deleteUser(uid);
-                RedisUtil.deleteKey(uid);
-            }
+            RedisUtil.updateUserOnLine(uidsList);
             if(counter > 0){
                 re.setCode(1);
                 Map<String,Object> map = new HashMap<>();
@@ -631,23 +631,28 @@ public class LaboratoryProcessor {
         List<Integer> checkedRoleids = new LinkedList<>();
         for(Integer roleid:paraRoleids){
             Role role = AllDao.getInstance().getSyRoleDao().getRoleByroleid(roleid);
-            if("0".equals(role.getRole_type()) && !checkedRoleids.contains(roleid)){
+            if(("0".equals(role.getRole_type()) || StringUtils.isEmpty(role.getRole_type())) && !checkedRoleids.contains(roleid)){
                 checkedRoleids.add(roleid);
             }
         }
-        Integer[] roleids = checkedRoleids.toArray(new Integer[checkedRoleids.size()]);
-        AllDao.getInstance().getSyRoleDao().deleteRelationsByRoleids(roleids);
-        AllDao.getInstance().getSyRoleDao().deleteRelationsWithReourcesByRoleids(roleids);
-        int counter = AllDao.getInstance().getSyRoleDao().deleteRolesByRoleids(roleids);
-        for(Integer roleid:roleids){
-            List<User> list = AllDao.getInstance().getSyUserDao().getUserByRoleID(roleid,0,10000);
-            for(User user1:list){
-               RedisUtil.deleteUser(user1.getUid());
-            }
-        }
         Map<String,Integer> map = new HashMap<>();
-        map.put("succeed",counter);
-        map.put("fail",paraRoleids.length - counter);
+        if(checkedRoleids.size()>0)
+        {
+            Integer[] roleids = checkedRoleids.toArray(new Integer[checkedRoleids.size()]);
+            AllDao.getInstance().getSyRoleDao().deleteRelationsByRoleids(roleids);
+            AllDao.getInstance().getSyRoleDao().deleteRelationsWithReourcesByRoleids(roleids);
+            int counter = AllDao.getInstance().getSyRoleDao().deleteRolesByRoleids(roleids);
+            List<String> userIds=AllDao.getInstance().getSyUserDao().getAllUserIDByRoleID(roleids);
+            RedisUtil.updateUserOnLine(userIds);
+            map.put("succeed",counter);
+            map.put("fail",paraRoleids.length - counter);
+        }
+        else
+        {
+            map.put("succeed",0);
+            map.put("fail",paraRoleids.length);
+        }
+
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(1);
         resultBean.setData(map);
@@ -691,7 +696,7 @@ public class LaboratoryProcessor {
                     resourceObj.setRoleid(exRole.getRoleid());
                     AllDao.getInstance().getSyResourceDao().insertRoleResourceRelation(resourceObj);
                 }
-
+                RedisUtil.updateUserOnLine(uidList);
                 ResultBean resultBean = new ResultBean();
                 resultBean.setCode(1);
                 return gson.toJson(resultBean);
@@ -799,6 +804,7 @@ public class LaboratoryProcessor {
                     }
                     Long start4 = System.currentTimeMillis();
                     //System.out.println("insertUserRoleRelation="+(start4-start3)+"ms");
+                    RedisUtil.updateUserOnLine(uidList);
                     ResultBean resultBean = new ResultBean();
                     resultBean.setCode(1);
                     resultBean.setInfo("系统角色 更新完成");
@@ -821,13 +827,8 @@ public class LaboratoryProcessor {
             Long start2 = System.currentTimeMillis();
             int counter = AllDao.getInstance().getSyRoleDao().updateUserRole(role);//更新用户信息
             Long start3 = System.currentTimeMillis();
-            //System.out.println("counter="+(start3-start2)+"ms");
-            List<User> users = AllDao.getInstance().getSyUserDao().getUserByRoleID(role.getRoleid(),0,10000);
-            Long start4 = System.currentTimeMillis();
+
             //System.out.println("getUserByRoleID="+(start4-start3)+"ms");
-            for(User user1:users){
-                RedisUtil.deleteUser(user1.getUid());
-            }
             if(counter == 0){
                 return ParamUtils.errorParam("更新失败");
             }else{
@@ -846,6 +847,8 @@ public class LaboratoryProcessor {
                     resourceObj.setRoleid(role.getRoleid());
                     AllDao.getInstance().getSyResourceDao().insertRoleResourceRelation(resourceObj);//插入新的
                 }
+                List<String> uids = (List<String>) role.getStaff();
+                RedisUtil.updateUserOnLine(uids);
                 Long start6 = System.currentTimeMillis();
                 //System.out.println("end="+(start6-start5)+"ms");
                 ResultBean resultBean = new ResultBean();
@@ -979,6 +982,7 @@ public class LaboratoryProcessor {
                 map.put("uid",uid);
                 AllDao.getInstance().getGroupDao().insertOneGroupRelationUid(map);
             }
+            RedisUtil.updateUserOnLine(list);
         }
         ResultBean re = new ResultBean();
         re.setCode(1);
@@ -1004,6 +1008,7 @@ public class LaboratoryProcessor {
                 map.put("uid",uid);
                 AllDao.getInstance().getGroupDao().insertOneGroupRelationUid(map);
             }
+            RedisUtil.updateUserOnLine(list);
             re.setCode(1);
         }else {
             re.setCode(0);
@@ -1084,7 +1089,9 @@ public class LaboratoryProcessor {
             int count = AllDao.getInstance().getGroupDao().deleteGroupByGID(gid);
             if(count == 1){
                 data.put(gid,true);
+                List<String> uidList=AllDao.getInstance().getSyUserDao().getAllUserIDByGroupID(gid);
                 AllDao.getInstance().getGroupDao().deleteGroupRelationUid(gid);
+                RedisUtil.updateUserOnLine(uidList);
                 succeed ++;
             }else {
                 data.put(gid,false);

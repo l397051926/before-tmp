@@ -101,6 +101,11 @@
         WHERE gennlife_user_group.gid = #{gid} AND gennlife_user_group.orgID = #{orgID}
     </select>
 
+
+
+
+
+
     <insert id="insertOneGroup" parameterType="com.gennlife.platform.model.Group">
         insert into userInfoDB.gennlife_group
         <trim prefix="(" suffix=")" suffixOverrides="," >
