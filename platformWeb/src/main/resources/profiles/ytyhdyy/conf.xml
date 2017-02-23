@@ -165,4 +165,8 @@
             </set>
         </property>
     </bean>
+    <bean id="xrealip" class="com.gennlife.platform.model.XRealIp" scope="singleton">
+        <property name="key" value="x-real-ip"/>
+        <property name="value" value="医院ip"/>
+    </bean>
 </beans>

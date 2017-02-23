@@ -3,10 +3,12 @@ package com.gennlife.platform.controller;
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.model.User;
+import com.gennlife.platform.model.XRealIp;
 import com.gennlife.platform.processor.UserProcessor;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.util.RedisUtil;
+import com.gennlife.platform.util.SpringContextUtil;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -14,6 +16,7 @@ import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +26,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 /**
  * Created by chensong on 2015/12/5.
  */
@@ -67,16 +71,18 @@ public class UserController{
                 resultBean.setCode(1);
                 resultBean.setData(user);
                 boolean isSet=false;
-                for(Cookie cookieitem:paramRe.getCookies())
-                {
-                    if(cookieitem.getName().equals("JSESSIONID"))
+                Cookie[] cookies =paramRe.getCookies();
+                if(cookies!=null)
+                    for(Cookie cookieitem:cookies)
                     {
-                        cookieitem.setValue(sessionID);
-                        cookieitem.setPath("/");
-                        cookieitem.setHttpOnly(true);
-                        isSet=true;
+                        if(cookieitem.getName().equals("JSESSIONID"))
+                        {
+                            cookieitem.setValue(sessionID);
+                            cookieitem.setPath("/");
+                            cookieitem.setHttpOnly(true);
+                            isSet=true;
+                        }
                     }
-                }
                 if(!isSet)
                 {
                     Cookie cookie = new Cookie("JSESSIONID",sessionID);
@@ -305,5 +311,42 @@ public class UserController{
             logger.error("",e);
             return ParamUtils.errorParam("出现异常");
         }
+    }
+    @RequestMapping(value="/IsInnerNet",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String IsInnerNet(HttpServletRequest paramRe){
+        Object xRealIpobj=null;
+        try {
+            xRealIpobj = SpringContextUtil.getBean("xrealip");
+            if (xRealIpobj == null) {
+                return ParamUtils.errorParam("无内外网限制");
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return ParamUtils.errorParam("无内外网限制");
+        }
+        XRealIp xRealIp=(XRealIp)xRealIpobj;
+        String value=paramRe.getHeader(xRealIp.getKey());
+        if(StringUtils.isEmpty(value))
+        {
+            return ParamUtils.errorParam("无对应key");
+        }
+        ResultBean resultBean=new ResultBean();
+        resultBean.setCode(1);
+        JsonObject json=new JsonObject();
+        logger.info("ip  "+value);
+        if(value.equals(xRealIp.getValue()))
+        {
+            json.addProperty("inner",true);
+            resultBean.setMsg("内网");
+        }
+        else
+        {
+            json.addProperty("inner",false);
+            resultBean.setMsg("外网");
+            resultBean.setData(json);
+        }
+        return gson.toJson(resultBean);
     }
 }

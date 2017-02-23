@@ -2,10 +2,12 @@ package com.gennlife.platform.controller;
 
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.model.User;
+import com.gennlife.platform.model.XRealIp;
 import com.gennlife.platform.processor.LaboratoryProcessor;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
+import com.gennlife.platform.util.SpringContextUtil;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -13,6 +15,7 @@ import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -434,4 +437,5 @@ public class BackstageManagementController {
         logger.info("判定组名称是否存在 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+
 }
