@@ -84,6 +84,7 @@ public class RedisUtil {
         setUser(user);
     }
     public static void userLogout(String sessionID){
+        if(StringUtils.isEmpty(sessionID))return;
         String uid = getValue(sessionID);
         if(!StringUtils.isEmpty(uid)){
             deleteKey(sessionID);

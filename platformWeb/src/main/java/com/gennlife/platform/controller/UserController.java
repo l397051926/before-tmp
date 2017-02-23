@@ -291,4 +291,19 @@ public class UserController{
         logger.info(" get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+    @RequestMapping(value="/logout",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String logout(HttpServletRequest paramRe){
+        try {
+            String sessionId = paramRe.getSession().getId();
+            RedisUtil.userLogout(sessionId);
+            ResultBean resultBean = new ResultBean();
+            resultBean.setCode(1);
+            return gson.toJson(resultBean);
+        }
+        catch (Exception e)
+        {
+            logger.error("",e);
+            return ParamUtils.errorParam("出现异常");
+        }
+    }
 }
