@@ -6,7 +6,6 @@ import com.gennlife.platform.bean.projectBean.ProLog;
 import com.gennlife.platform.bean.projectBean.ProSample;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.enums.LogActionEnum;
-import com.gennlife.platform.model.Group;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
@@ -14,7 +13,6 @@ import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
 import com.google.gson.*;
-import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -293,10 +291,16 @@ public class SampleProcessor {
     }
 
     public String sampleSetSearch(String param) {
+        String sampleURI=jsonParser.parse(param).getAsJsonObject().get("sampleURI").getAsString();
+        int count = AllDao.getInstance().getProjectDao().isExistSample(sampleURI);
+        if(count<=0)
+        {
+            return SampleIsNotExists();
+        }
         String url = ConfigurationService.getUrlBean().getSampleDetailSearchURL();
         logger.info("sampleSetSearch url="+url);
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-        String sampleURI = paramObj.get("sampleURI").getAsString();
+        sampleURI = paramObj.get("sampleURI").getAsString();
         String limitStr = paramObj.get("limit").getAsString();
         int[] ls = ParamUtils.parseLimit(limitStr);
         paramObj.addProperty("page",ls[0]);
@@ -381,11 +385,24 @@ public class SampleProcessor {
         }
     }
 
+    private String SampleIsNotExists() {
+        JsonObject json=new JsonObject();
+        json.addProperty("code",0);
+        json.addProperty("success",false);
+        json.addProperty("info","no data");
+        return gson.toJson(json);
+    }
+
     public String uploadAdaptTag(String param) {
         String url = ConfigurationService.getUrlBean().getSampleUploadAdaptTagURL();
         logger.info("uploadAdaptTag url="+url);
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
         String sampleURI = paramObj.get("sampleURI").getAsString();
+        int count = AllDao.getInstance().getProjectDao().isExistSample(sampleURI);
+        if(count<=0)
+        {
+            return SampleIsNotExists();
+        }
         paramObj.addProperty("data_id",sampleURI);
         paramObj.remove("sampleURI");
         String paramNew = gson.toJson(paramObj);

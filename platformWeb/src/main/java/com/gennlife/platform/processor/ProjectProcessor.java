@@ -256,7 +256,13 @@ public class ProjectProcessor {
             Map<String,Object> confMap = new HashMap<String, Object>();
             confMap.put("projectID",projectID);
             confMap.put("uri",uri);
-            String setName =  AllDao.getInstance().getProjectDao().getProjectSetName(confMap);
+            List<String> setNames=AllDao.getInstance().getProjectDao().getProjectSetNameList(confMap);
+            String setName =  null;
+            if(setNames.size()>0)
+                setName=setNames.get(0);
+            else {
+                return ParamUtils.errorParam("sample不存在");
+            }
             ProLog proLog = new ProLog();
             proLog.setUid(uid);
             proLog.setProjectID(projectID);

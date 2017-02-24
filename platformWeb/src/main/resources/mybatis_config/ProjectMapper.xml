@@ -210,7 +210,7 @@
         select
         sampleName
         from userInfoDB.pro_sample p
-        <where>p.projectID=#{projectID} ORDER BY opTime desc</where>
+        <where>p.projectID=#{projectID} and sampledelete!=1 ORDER BY opTime desc</where>
     </select>
 
     <resultMap id="com.gennlife.platform.bean.projectBean.ProjectPlan" type="com.gennlife.platform.bean.projectBean.ProjectPlan">
@@ -229,42 +229,42 @@
         select
         id,projectID,planName,planDesc,creator,planStatus,createTime,date_format(createTime,"%Y-%m-%d") AS cTime,modifier,taskID,taskName
         from userInfoDB.p_plan p
-        <where>p.projectID=#{projectID} and planStatus > 0 order by createTime asc limit #{startIndex},#{maxNum}</where>
+        <where>p.projectID=#{projectID} and planStatus > 0 and plandelete!=1 order by createTime asc limit #{startIndex},#{maxNum}</where>
     </select>
     <select id="getProjectPlanCounter" resultType="java.lang.Integer" parameterType="map">
         select
         count(*)
         from userInfoDB.p_plan p
-        <where>p.projectID=#{projectID} and planStatus > 0 </where>
+        <where>p.projectID=#{projectID} and planStatus > 0 and plandelete!=1 </where>
     </select>
 
 
-    <delete id="deleteProPlan"  parameterType="map">
-        DELETE from p_plan
+    <update id="deleteProPlan"  parameterType="map">
+        update p_plan set plandelete=1
         <where> projectID=#{projectID} and id = #{id}</where>
-    </delete>
+    </update>
 
     <select id="getProjectSetName" resultType="java.lang.String" parameterType="map">
         select
         sampleName
         from userInfoDB.pro_sample
-        <where>pro_sample.projectID=#{projectID}  and sampleURI = #{uri}</where>
+        <where>pro_sample.projectID=#{projectID}  and sampleURI = #{uri} and sampledelete!=1</where>
     </select>
 
-    <delete id="deleteProjectSet"  parameterType="map">
-        DELETE from userInfoDB.pro_sample
+    <update id="deleteProjectSet"  parameterType="map">
+         update set sampledelete=1 from userInfoDB.pro_sample
         <where> projectID=#{projectID} and sampleURI = #{uri}</where>
-    </delete>
+    </update>
 
-    <delete id="deleteProjectMember"  parameterType="map">
-        DELETE from userInfoDB.pro_user
+    <update id="deleteProjectMember"  parameterType="map">
+        update userInfoDB.pro_user set puisdelete=1
         <where> projectID=#{projectID} and uid = #{uid}</where>
-    </delete>
+    </update>
 
-    <delete id="deleteProject"  parameterType="map">
-        DELETE from userInfoDB.pro_user
+    <update id="deleteProject"  parameterType="map">
+        UPDATE p_project set isdelete=1
         <where> projectID=#{projectID}</where>
-    </delete>
+    </update>
 
     <update id="updateProPlan" parameterType="com.gennlife.platform.bean.projectBean.ProjectPlan">
         UPDATE userInfoDB.p_plan
@@ -336,7 +336,7 @@
         select
         uid,role
         from userInfoDB.pro_user p
-        <where>p.projectID=#{projectID}</where>
+        <where>p.projectID=#{projectID} and puisdelete!=1</where>
     </select>
 
     <resultMap id="com.gennlife.platform.bean.projectBean.ProSample" type="com.gennlife.platform.bean.projectBean.ProSample">
@@ -427,7 +427,7 @@
         select
         max(batchID)
         from userInfoDB.pro_sample p
-        <where>p.projectID=#{projectID} </where>
+        <where>p.projectID=#{projectID}  and sampledelete!=1</where>
     </select>
 
 
@@ -435,34 +435,34 @@
         select
         planName,sampleURI,sampleName,opTime,batchID,total,items,sampleDesc
         from userInfoDB.pro_sample p
-        <where>p.projectID=#{projectID} and bstatus = 1</where>
+        <where>p.projectID=#{projectID} and bstatus = 1 and sampledelete!=1</where>
     </select>
 
     <select id="searchSampleSetList" resultType="com.gennlife.platform.bean.projectBean.ProSample" parameterType="map">
         select
         planName,sampleURI,sampleName,opTime,batchID,total,items,sampleDesc
         from userInfoDB.pro_sample p
-        <where>p.projectID=#{projectID} and sampleName LIKE '%${key}%'
-            order by opTime desc limit #{startIndex},#{maxNum}</where>
+        <where>p.projectID=#{projectID} and sampleName LIKE '%${key}%' and sampledelete!=1
+            order by opTime desc limit #{startIndex},#{maxNum} </where>
     </select>
 
     <select id="searchSampleSetListCounter" resultType="java.lang.Integer" parameterType="map">
         select
         count(*)
         from userInfoDB.pro_sample p
-        <where>p.projectID=#{projectID} and sampleName LIKE '%${key}%'</where>
+        <where>p.projectID=#{projectID} and sampleName LIKE '%${key}%' and sampledelete!=1</where>
     </select>
 
     <select id="getSampleDataListByPlanName" resultType="com.gennlife.platform.bean.projectBean.ProSample" parameterType="map">
         select
         planName,sampleURI,sampleName,opTime,batchID,total,items,sampleDesc
         from userInfoDB.pro_sample p
-        <where>p.projectID=#{projectID} and p.planName=#{planName}</where>
+        <where>p.projectID=#{projectID} and p.planName=#{planName} and sampledelete!=1</where>
     </select>
     <select id="getPlanName" resultType="java.lang.String" parameterType="map">
         select planName
         from userInfoDB.p_plan
-        where projectID=#{projectID} and id = #{id}
+        where projectID=#{projectID} and id = #{id} and plandelete!=1
     </select>
 
     <update id="updateProject"  parameterType="map">
@@ -501,26 +501,32 @@
         select
         disease
         from userInfoDB.p_project
-        <where>p_project.projectID=#{projectID} limit 1</where>
+        <where>p_project.projectID=#{projectID} and isdelete!=1 limit 1</where>
     </select>
 
     <select id="isExistProject" resultType="java.lang.Integer" parameterType="map">
         select
         count(p.projectID)
         from p_project p JOIN pro_user u on u.projectID = p.projectID
-        <where>u.uid=#{uid} AND p.projectName=#{projectName}</where>
+        <where>u.uid=#{uid} AND p.projectName=#{projectName} and isdelete!=1</where>
     </select>
     <select id="isExistPlan" resultType="java.lang.Integer" parameterType="map">
         select
         count(*)
         from userInfoDB.p_plan
-        <where>p_plan.projectID=#{projectID} AND p_plan.planName=#{planName}</where>
+        <where>p_plan.projectID=#{projectID} AND p_plan.planName=#{planName} and plandelete!=1</where>
     </select>
     <select id="isExistSet" resultType="java.lang.Integer" parameterType="map">
         select
         count(*)
         from userInfoDB.pro_sample
-        <where>pro_sample.projectID=#{projectID} AND pro_sample.sampleName=#{sampleName}</where>
+        <where>pro_sample.projectID=#{projectID} AND pro_sample.sampleName=#{sampleName} and  sampledelete!=1</where>
+    </select>
+    <select id="isExistSample" resultType="java.lang.Integer">
+        select
+        count(*)
+        from userInfoDB.pro_sample
+        <where>pro_sample.sampleName=#{sampleName} and  sampledelete!=1</where>
     </select>
     <update id="updateSetInfo" parameterType="map">
         UPDATE userInfoDB.pro_sample
@@ -558,7 +564,7 @@
         select
         <include refid="MyProjectListSelect" />
         from userInfoDB.p_project p
-        <where>p.projectID=#{projectID} limit 0,1</where>
+        <where>p.projectID=#{projectID} and isdelete!=1 limit 0,1</where>
     </select>
 
 
@@ -567,7 +573,7 @@
         select
         <include refid="MyProjectListSelect" />
         from userInfoDB.p_project p JOIN userInfoDB.pro_user u on u.projectID = p.projectID
-        <where>u.uid=#{uid} order by createTime  desc</where>
+        <where>u.uid=#{uid} and isdelete!=1 order by createTime  desc</where>
     </select>
 
     <select id="getMyProjectList" resultMap="com.gennlife.platform.bean.projectBean.MyProjectList"
@@ -575,7 +581,7 @@
         select
         <include refid="MyProjectListSelect" />
         from userInfoDB.p_project p JOIN userInfoDB.pro_user u on u.projectID = p.projectID
-        <where>u.uid=#{loginname} and p.projectName like '%${key}%' order by createTime  desc limit #{startIndex},#{maxNum}</where>
+        <where>u.uid=#{loginname} and p.projectName like '%${key}%' and isdelete!=1 order by createTime  desc limit #{startIndex},#{maxNum}</where>
     </select>
 
 
@@ -583,7 +589,7 @@
         select
         count(*)
         from userInfoDB.p_project p JOIN userInfoDB.pro_user u on u.projectID = p.projectID
-        <where>u.uid=#{loginname} and p.projectName like '%${key}%'</where>
+        <where>u.uid=#{loginname} and p.projectName like '%${key}%' and isdelete!=1</where>
     </select>
 
     <resultMap id="projectUser" type="com.gennlife.platform.model.User">
@@ -627,7 +633,7 @@
         <include refid="userProperty" />
         FROM userInfoDB.gennlife_user
         JOIN userInfoDB.pro_user ON gennlife_user.uid = pro_user.uid
-        <where> pro_user.projectID = #{projectID}
+        <where> pro_user.projectID = #{projectID} and puisdelete!=1
             ORDER BY ctime DESC </where>
     </select>
 
@@ -635,7 +641,7 @@
         select
         count(gennlife_user.uid)
         FROM userInfoDB.gennlife_user JOIN userInfoDB.pro_user ON gennlife_user.uid = pro_user.uid
-        <where> pro_user.projectID = #{projectID}
+        <where> pro_user.projectID = #{projectID} and puisdelete!=1
             ORDER BY ctime DESC  </where>
     </select>
 
@@ -652,6 +658,7 @@
             select gennlife_user.uid
             FROM pro_user JOIN gennlife_user ON gennlife_user.uid = pro_user.uid
             WHERE pro_user.projectID = #{projectID}
+            and puisdelete!=1
             )
             ORDER BY ctime DESC  limit #{startIndex},#{maxNum}
         </where>
@@ -671,6 +678,7 @@
             select gennlife_user.uid
             FROM pro_user JOIN gennlife_user ON gennlife_user.uid = pro_user.uid
             WHERE pro_user.projectID = #{projectID}
+            and puisdelete!=1
             )
         </where>
     </select>
@@ -683,18 +691,20 @@
         FROM
         userInfoDB.pro_sample
         WHERE
-        pro_sample.sampleURI = #{sampleURI}
+        pro_sample.sampleURI = #{sampleURI} and sampledelete!=1
     </select>
     <update id="autoAddSetCountOne" >
         UPDATE
         userInfoDB.p_project
         SET setCount = setCount + 1
         WHERE  projectID = #{projectID}
+        and isdelete!=1
     </update>
     <update id="autoDeleteSetCountOne">
          UPDATE
         userInfoDB.p_project
         SET setCount = setCount - 1
         WHERE  projectID = #{projectID}
+        and isdelete!=1
     </update>
 </mapper>

@@ -136,6 +136,7 @@ public interface ProjectMapper {
     public int isExistPlan(Map<String, Object> map);
 
     public int isExistSet(Map<String, Object> map);
+    public int isExistSample(@Param("sampleName") String  sampleName);
 
     /**
      * 搜索样本集
