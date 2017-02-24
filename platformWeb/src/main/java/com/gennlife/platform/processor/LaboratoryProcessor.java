@@ -405,7 +405,7 @@ public class LaboratoryProcessor {
                 User exUnumber = AllDao.getInstance().getSyUserDao().getUserByUnumber(unumber,adduser.getOrgID());
                 if(exUnumber != null){
                     resultBean.addProperty("code",0);
-                    resultBean.addProperty("info","工号"+exUnumber+"已经存在了");
+                    resultBean.addProperty("info","工号"+unumber+"已经存在了");
                     return resultBean;
                 }else{
                     if(lab_name.equals(adduser.getOrg_name())){
