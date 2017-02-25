@@ -252,7 +252,7 @@
     </select>
 
     <update id="deleteProjectSet"  parameterType="map">
-         update set sampledelete=1 from userInfoDB.pro_sample
+         update userInfoDB.pro_sample set sampledelete=1
         <where> projectID=#{projectID} and sampleURI = #{uri}</where>
     </update>
 
