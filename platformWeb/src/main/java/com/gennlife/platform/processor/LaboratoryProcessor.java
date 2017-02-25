@@ -8,6 +8,7 @@ import com.gennlife.platform.util.*;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.util.StringUtils;
 
 import java.util.*;
@@ -425,15 +426,23 @@ public class LaboratoryProcessor {
                     Role role = AllDao.getInstance().getSyRoleDao().getLabMember(adduser.getOrgID());
                     UUID uuid = UUID.randomUUID();
                     adduser.setUid(uuid.toString());
-                    Integer counter = AllDao.getInstance().getSyUserDao().insertOneUser(adduser);
-                    if(counter == null || counter <=0){
-                        resultBean.addProperty("code",0);
-                        resultBean.addProperty("info","插入失败");
-                        return resultBean;
-                    }else{
-                        counter = AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role.getRoleid(),adduser.getUid());
-                        resultBean.addProperty("code",1);
-                        resultBean.addProperty("info","插入成功");
+                    try {
+                        Integer counter = AllDao.getInstance().getSyUserDao().insertOneUser(adduser);
+                        if (counter == null || counter <= 0) {
+                            resultBean.addProperty("code", 0);
+                            resultBean.addProperty("info", "插入失败");
+                            return resultBean;
+                        } else {
+                            counter = AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role.getRoleid(), adduser.getUid());
+                            resultBean.addProperty("code", 1);
+                            resultBean.addProperty("info", "插入成功");
+                            return resultBean;
+                        }
+                    }
+                    catch (DataIntegrityViolationException e)
+                    {
+                        resultBean.addProperty("code", 0);
+                        resultBean.addProperty("info", "插入失败,有些信息输入太长,填入的字符请不要不超过20个");
                         return resultBean;
                     }
                 }

@@ -78,6 +78,7 @@ public class SessionFilter implements Filter {
         okSet.add("/user/SendEmailForChangePWD");
         okSet.add("/user/ExistEmail");
         okSet.add("/user/SetRedis");
+        okSet.add("/user/UpdatePWD");
         adminSet.add("/bsma/OrgMapData");
         adminSet.add("/bsma/DeleteOrg");
         adminSet.add("/bsma/UpdateOrg");
