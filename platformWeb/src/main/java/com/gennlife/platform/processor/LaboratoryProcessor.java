@@ -971,6 +971,18 @@ public class LaboratoryProcessor {
         Group group = null;
         try{
             group = gson.fromJson(param,Group.class);
+            if(StringUtils.isEmpty(group.getGroupName()))
+            {
+                return ParamUtils.errorParam("插入失败,小组名称不能为空");
+            }
+            if(group.getGroupName().length()>20)
+            {
+                return ParamUtils.errorParam("插入失败,小组名称必须小于20个字符");
+            }
+            if(group.getGroupDesc().length()>20)
+            {
+                return ParamUtils.errorParam("插入失败,小组描述必须小于20个字符");
+            }
         }catch (Exception e){
             return ParamUtils.errorParam("参数异常");
         }
@@ -979,22 +991,7 @@ public class LaboratoryProcessor {
         group.setGid(uuid.toString()+Long.toHexString(System.currentTimeMillis()));
         group.setGroupCreator(user.getUid());
         group.setGroupCreatName(LogUtils.getStringTime());
-        if(StringUtils.isEmpty(group.getGroupName()))
-        {
-            return ParamUtils.errorParam("插入失败,小组名称不能为空");
-        }
-        if(StringUtils.isEmpty(group.getGroupDesc()))
-        {
-            group.setGroupDesc("");
-        }
-        if(group.getGroupName().length()>20)
-        {
-            return ParamUtils.errorParam("插入失败,小组名称必须小于20个字符");
-        }
-        if(group.getGroupDesc().length()>20)
-        {
-            return ParamUtils.errorParam("插入失败,小组描述必须小于20个字符");
-        }
+
         int counter = AllDao.getInstance().getGroupDao().insertOneGroup(group);
         if(counter != 1){
             return ParamUtils.errorParam("插入失败");
