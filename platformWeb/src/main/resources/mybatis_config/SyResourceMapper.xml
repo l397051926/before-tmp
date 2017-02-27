@@ -200,16 +200,16 @@
     gennlife_resource
     <set>
       <if test="sname !=null">
-      sname={#sname,jdbcType=VARCHAR},
+      sname=#{sname,jdbcType=VARCHAR},
       </if>
       <if test="sdesc != null">
-      sdesc={#sdesc,jdbcType=VARCHAR},
+      sdesc=#{sdesc,jdbcType=VARCHAR},
       </if>
       <if test="slab_name != null">
-      slab_name={#slab_name,jdbcType=VARCHAR},
+      slab_name=#{slab_name,jdbcType=VARCHAR},
       </if>
       <if test="slab_parent!=null">
-        slab_parent={#slab_parent,jdbcType=VARCHAR},
+        slab_parent=#{slab_parent,jdbcType=VARCHAR},
       </if>
     </set>
     WHERE sid = #{sid,jdbcType=VARCHAR} and sorgID = {#sorgID,jdbcType=VARCHAR}
