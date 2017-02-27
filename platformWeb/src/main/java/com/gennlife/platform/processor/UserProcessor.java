@@ -77,7 +77,7 @@ public class UserProcessor {
                     flag = false;
                 }
             }catch (DataIntegrityViolationException e){
-                return ParamUtils.errorParamResultBean("输入的信息过长,更新失败");
+                return ParamUtils.errorParamResultBean("填入内容的长度超过20,更新失败");
             }catch (Exception e){
                 logger.error("更新失败",e);
                 return ParamUtils.errorParamResultBean("更新失败");

@@ -442,7 +442,7 @@ public class LaboratoryProcessor {
                     catch (DataIntegrityViolationException e)
                     {
                         resultBean.addProperty("code", 0);
-                        resultBean.addProperty("info", "插入失败,有些信息输入太长,填入的字符请不要不超过20个");
+                        resultBean.addProperty("info", "插入失败,填入的字符数超过20");
                         return resultBean;
                     }
                     catch (Exception e)
