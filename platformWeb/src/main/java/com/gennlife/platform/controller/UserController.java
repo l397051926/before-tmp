@@ -145,17 +145,6 @@ public class UserController{
                 return ParamUtils.errorParam("缺少uid");
             }
             ResultBean resultBean =  processor.update(param);
-            if(resultBean.getCode() == 1){
-                try{
-                    User realUser = (User) resultBean.getData();
-                    if(realUser != null ){
-                        RedisUtil.updateUserOnLine(user.getUid());
-                    }
-                }catch (Exception e){
-                    logger.error("",e);
-                }
-
-            }
             resultStr = gson.toJson(resultBean);
         }catch (Exception e){
             logger.error("",e);
