@@ -44,6 +44,7 @@
         <include refid="labProperty" />
         from gennlife_lab
         where orgID = #{orgID}
+        order by gennlife_lab.lab_name
     </select>
     <select id="getLabsByparentID" parameterType="String" resultMap="com.gennlife.platform.model.Lab">
         select

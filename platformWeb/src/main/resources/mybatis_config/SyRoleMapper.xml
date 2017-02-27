@@ -59,6 +59,7 @@
           AND
         (gennlife_role.role LIKE CONCAT(CONCAT('%', #{skey}), '%') OR
         gennlife_role.desctext LIKE CONCAT(CONCAT('%', #{skey}), '%'))
+        order by gennlife_role.role
         LIMIT #{offset},#{limit}
     </select>
     <select id="searchRolesCounter" resultType="java.lang.Integer">
