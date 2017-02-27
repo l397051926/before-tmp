@@ -985,7 +985,7 @@ public class LaboratoryProcessor {
             {
                 return ParamUtils.errorParam("插入失败,小组名称必须小于20个字符");
             }
-            if(group.getGroupDesc().length()>20)
+            if(!StringUtils.isEmpty(group.getGroupDesc())&&group.getGroupDesc().length()>20)
             {
                 return ParamUtils.errorParam("插入失败,小组描述必须小于20个字符");
             }
