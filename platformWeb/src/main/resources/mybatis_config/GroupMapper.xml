@@ -73,6 +73,7 @@
         gennlife_group.orgID = #{orgID}
         AND
         gennlife_group.groupName LIKE CONCAT(CONCAT('%', #{skey}), '%')
+         order by gennlife_group.groupName
     </select>
 
     <sql id="GroupMemberColumn">
