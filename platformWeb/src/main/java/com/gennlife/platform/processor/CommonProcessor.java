@@ -1,9 +1,7 @@
 package com.gennlife.platform.processor;
 
 import com.gennlife.platform.model.User;
-import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.FileUploadUtil;
-import com.gennlife.platform.util.LogUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
 import org.slf4j.Logger;
@@ -12,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -58,7 +55,7 @@ public class CommonProcessor {
             String[] strings = string.split("\n");
             List<String> list = new LinkedList();
             for(String line:strings){
-                list.add(line.trim());
+                list.add(line.trim().replace("\r",""));
             }
             return FileUploadUtil.handleStaff(list,user);
         }catch (Exception e){

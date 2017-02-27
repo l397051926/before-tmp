@@ -286,6 +286,7 @@ public class FileUploadUtil {
         List<String> srcList = new LinkedList<>();
         List<Lab> newList = new LinkedList<>();
         for(String str:strList){
+            str=str.replace("\r","");
             String[] data = str.split(",");
             if(data.length >= 2){
                 if("科室名称".equals(data[0].trim())){
