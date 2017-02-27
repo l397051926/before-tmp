@@ -83,4 +83,5 @@ public interface SyResourceMapper {
 
 
     List<CRFLab> getCrfIDListByLab(@Param("labIDs") String[] labIDs, @Param("orgID")String orgID);
+    int updateResource(LabResource labResource);
 }

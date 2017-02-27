@@ -233,8 +233,19 @@ public class LaboratoryProcessor {
                 return ParamUtils.errorParam(lab_name+"已经存在");
             }
             //当前科室下面的用户科室名称
+
             AllDao.getInstance().getSyUserDao().updateUserLabNameByLabName(lab_name,lab.getLab_name(),orgID);
-            //获取当前科室的所有成员
+            LabResource labResource = new LabResource();
+            labResource.setSorgID(lab.getOrgID());
+            labResource.setSdesc(lab.getLab_name()+"病例数据资源");
+            labResource.setSid(lab.getLabID());
+            labResource.setSlab_parent(lab.getLab_parent());
+            labResource.setSlab_type(lab.getLab_level()+"");
+            labResource.setStype("病例数据");
+            labResource.setSname(lab.getLab_name()+"资源");
+            labResource.setSlab_name(lab.getLab_name());
+            AllDao.getInstance().getSyResourceDao().updateResource(labResource);
+
             List<String> userIds = AllDao.getInstance().getSyUserDao().getUserIDByLabID(labID,orgID);
             //更新缓存
             RedisUtil.updateUserOnLine(userIds);

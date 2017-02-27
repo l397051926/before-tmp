@@ -195,6 +195,26 @@
     AND gennlife_role_resource.roleid = #{roleid}
   </select>
 
+  <update id="updateResource" parameterType="com.gennlife.platform.model.LabResource">
+    UPDATE
+    gennlife_resource
+    <set>
+      <if test="sname !=null">
+      sname={#sname,jdbcType=VARCHAR},
+      </if>
+      <if test="sdesc != null">
+      sdesc={#sdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="slab_name != null">
+      slab_name={#slab_name,jdbcType=VARCHAR},
+      </if>
+      <if test="slab_parent!=null">
+        slab_parent={#slab_parent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    WHERE sid = #{sid,jdbcType=VARCHAR} and sorgID = {#sorgID,jdbcType=VARCHAR}
+  </update>
+
 
   <resultMap id="com.gennlife.platform.model.CRFLab" type="com.gennlife.platform.model.CRFLab">
     <result column="gennlife_lab_crf.labID" property="labID" jdbcType="VARCHAR" />
