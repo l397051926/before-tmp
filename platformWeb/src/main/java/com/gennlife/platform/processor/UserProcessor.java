@@ -84,22 +84,17 @@ public class UserProcessor {
                 logger.error("更新失败",e);
                 return ParamUtils.errorParamResultBean("更新失败");
             }
-            user = getUserByUids(user.getUid());
             if(!flag){
                 userBean.setCode(0);
                 userBean.setData("更新失败");
-            } if(user == null){
-                userBean.setCode(0);
-                userBean.setData("获取更新后数据失败");
-            }else{
-                map.put("pwd",user.getPwd());
-                User user1 = login(user.getUemail(),user.getPwd());
-                if(user1 == null){
+            } else{
+                user = getUserByUids(user.getUid());
+                if(user == null){
                     userBean.setCode(0);
                     userBean.setData("更新失败");
                 }else {
                     userBean.setCode(1);
-                    userBean.setData(user1);
+                    userBean.setData(user);
                 }
             }
         }catch (Exception e){
