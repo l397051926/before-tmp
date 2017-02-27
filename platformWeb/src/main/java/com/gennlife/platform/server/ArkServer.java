@@ -1,6 +1,7 @@
 package com.gennlife.platform.server;
 
 import com.gennlife.platform.service.ArkService;
+import com.gennlife.platform.util.MongoManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,6 +40,7 @@ public class ArkServer {
         SERVER_STATUS = SERVER_STATUS_STOPPING;
         logger.info("ArkServer 启动销毁中 .......");
         arkService.destroy();
+        MongoManager.destory();
         logger.info("ArkServer 销毁耗时："+ (System.currentTimeMillis() - serverStop) +"");
         SERVER_STATUS = SERVER_STATUS_PENDING;
     }

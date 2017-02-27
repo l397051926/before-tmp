@@ -108,7 +108,6 @@ public class RedisUtil {
     }
 
     public static void updateUserOnLine(String uid){
-        if(true) userLogoutByUid(uid);//强制下线
         String sessionID=getValue(uid);
         if(StringUtils.isEmpty(sessionID)) return;
         User user=UserProcessor.getUserByUids(uid);
