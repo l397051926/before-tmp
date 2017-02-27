@@ -212,7 +212,7 @@
         slab_parent=#{slab_parent,jdbcType=VARCHAR},
       </if>
     </set>
-    WHERE sid = #{sid,jdbcType=VARCHAR} and sorgID = {#sorgID,jdbcType=VARCHAR}
+    WHERE sid = #{sid,jdbcType=VARCHAR} and sorgID = #{sorgID,jdbcType=VARCHAR}
   </update>
 
 
