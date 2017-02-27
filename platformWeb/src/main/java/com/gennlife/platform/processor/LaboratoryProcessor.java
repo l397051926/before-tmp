@@ -990,6 +990,7 @@ public class LaboratoryProcessor {
                 return ParamUtils.errorParam("插入失败,小组描述必须小于20个字符");
             }
         }catch (Exception e){
+            logger.error("参数异常 ",e);
             return ParamUtils.errorParam("参数异常");
         }
         UUID uuid = UUID.randomUUID();
