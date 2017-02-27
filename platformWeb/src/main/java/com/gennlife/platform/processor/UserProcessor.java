@@ -8,10 +8,14 @@ import com.gennlife.platform.util.*;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by chensong on 2015/12/4.
@@ -58,7 +62,7 @@ public class UserProcessor {
             Map<String,Object> map = new HashMap<>();
             map.put("email",user.getUemail());
             String uidEx =  AllDao.getInstance().getSyUserDao().getUidByEmail(map);
-            if(!user.getUid().equals(uidEx)){//更新的email不合法,已经存在
+            if(!StringUtils.isEmpty(uidEx)&&!user.getUid().equals(uidEx)){//更新的email不合法,已经存在
                 return ParamUtils.errorParamResultBean("更新的email不合法,已经存在");
             }
             user.setCtime(null);//创建时间不可更新
@@ -72,6 +76,8 @@ public class UserProcessor {
                 if(counter == 0){
                     flag = false;
                 }
+            }catch (DataIntegrityViolationException e){
+                return ParamUtils.errorParamResultBean("输入的信息过长,更新失败");
             }catch (Exception e){
                 logger.error("更新失败",e);
                 return ParamUtils.errorParamResultBean("更新失败");

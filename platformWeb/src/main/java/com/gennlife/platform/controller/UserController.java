@@ -149,7 +149,7 @@ public class UserController{
                 try{
                     User realUser = (User) resultBean.getData();
                     if(realUser != null ){
-                        RedisUtil.deleteUser(realUser.getUid());
+                        RedisUtil.updateUserOnLine(user.getUid());
                     }
                 }catch (Exception e){
                     logger.error("",e);

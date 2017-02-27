@@ -87,14 +87,28 @@ public class RedisUtil {
         if(StringUtils.isEmpty(sessionID))return;
         String uid = getValue(sessionID);
         if(!StringUtils.isEmpty(uid)){
-            deleteKey(sessionID);
-            deleteKey(uid);
-            deleteUser(uid);
-            logger.info("退出设置:"+sessionID+"="+uid+"成功");
+            exit(uid, sessionID);
         }
 
     }
+    public static void userLogoutByUid(String uid){
+        if(StringUtils.isEmpty(uid))return;
+        String sessionID = getValue(uid);
+        if(!StringUtils.isEmpty(sessionID)){
+            exit(uid, sessionID);
+        }
+
+    }
+
+    private static void exit(String uid, String sessionID) {
+        deleteKey(sessionID);
+        deleteKey(uid);
+        deleteUser(uid);
+        logger.info("退出设置:"+sessionID+"="+uid+"成功");
+    }
+
     public static void updateUserOnLine(String uid){
+        if(true) userLogoutByUid(uid);//强制下线
         String sessionID=getValue(uid);
         if(StringUtils.isEmpty(sessionID)) return;
         User user=UserProcessor.getUserByUids(uid);
