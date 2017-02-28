@@ -143,6 +143,14 @@
 		FROM gennlife_user
 		<where> gennlife_user.unumber=#{unumber} AND gennlife_user.orgID=#{orgID}</where>
 	</select>
+
+	<select id="checkUnumber" resultType="java.lang.Integer">
+		SELECT
+		count(uid)
+		FROM gennlife_user
+		<where> gennlife_user.unumber=#{unumber} AND gennlife_user.orgID=
+			(select gu.orgID from gennlife_user as gu where gu.uid=#{uid})</where>
+	</select>
 	<resultMap id="com.gennlife.platform.model.Admin" type="com.gennlife.platform.model.Admin">
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
 		<result column="privilegeType" property="privilegeType" jdbcType="VARCHAR" />

@@ -234,6 +234,8 @@ public interface SyUserMapper {
 
     List<String> getAllUserIDByGroupID(@Param("gid") String groupID);
 
+    int  checkUnumber(@Param("unumber") String unumber,@Param("uid") String uid);
+
 
     /**
     public SyUser getOneUser(Map<String, Object> likeCondition);

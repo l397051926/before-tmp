@@ -72,6 +72,8 @@ public class UserProcessor {
             user.setRoles(null);//角色不可修改
             user.setPwd(null);//密码不可修改
             try{
+                int count=AllDao.getInstance().getSyUserDao().checkUnumber(user.getUnumber(),user.getUid());
+                if(count>0) return ParamUtils.errorParamResultBean("更新的工号已经存在");
                 int counter = AllDao.getInstance().getSyUserDao().updateByUid(user);
                 if(counter == 0){
                     flag = false;
