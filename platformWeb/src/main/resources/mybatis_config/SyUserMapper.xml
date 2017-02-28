@@ -148,8 +148,8 @@
 		SELECT
 		count(uid)
 		FROM gennlife_user
-		<where> gennlife_user.unumber=#{unumber} AND gennlife_user.orgID=
-			(select gu.orgID from gennlife_user as gu where gu.uid=#{uid})</where>
+		<where> gennlife_user.unumber=#{unumber} AND uid!=#{uid} AND gennlife_user.orgID=
+			(select gu.orgID from gennlife_user as gu where gu.uid=#{uid}) </where>
 	</select>
 	<resultMap id="com.gennlife.platform.model.Admin" type="com.gennlife.platform.model.Admin">
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
