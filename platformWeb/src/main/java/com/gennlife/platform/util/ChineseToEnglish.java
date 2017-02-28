@@ -7,12 +7,14 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
+import java.nio.charset.UnsupportedCharsetException;
+
 /**
  * Created by chen-song on 16/3/22.
  */
 public class ChineseToEnglish {
     // 将汉字转换为全拼
-    public static String getPingYin(String src) {
+    public static String getPingYin(String src) throws UnsupportedCharsetException {
 
         char[] t1 = null;
         t1 = src.toCharArray();
@@ -30,7 +32,7 @@ public class ChineseToEnglish {
                 if (java.lang.Character.toString(t1[i]).matches(
                         "[\\u4E00-\\u9FA5]+")) {
                     t2 = PinyinHelper.toHanyuPinyinStringArray(t1[i], t3);
-                    if(t2==null||t2.length==0) continue;
+                    if(t2==null||t2.length==0) throw new UnsupportedCharsetException("未知编码");
                     t4 += t2[0];
                 } else
                     t4 += java.lang.Character.toString(t1[i]);

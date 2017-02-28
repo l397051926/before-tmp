@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.nio.charset.UnsupportedCharsetException;
 
 /**
  * Created by chen-song on 16/9/12.
@@ -50,11 +51,16 @@ public class BackstageManagementController {
     public @ResponseBody String postChangePWD(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = ParamUtils.getParam(paramRe);
-            logger.info("添加科室 param="+param);
+            logger.info("添加科室 param=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.addOrg(paramObj);
+            resultStr = processor.addOrg(paramObj);
+        }
+        catch (UnsupportedCharsetException e)
+        {
+            resultStr = ParamUtils.errorParam("无法识别当前编码");
+
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");

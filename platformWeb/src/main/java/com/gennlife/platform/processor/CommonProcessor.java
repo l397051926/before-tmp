@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.nio.charset.UnsupportedCharsetException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -65,17 +66,21 @@ public class CommonProcessor {
 
 
     public String uploadFileForImportLab(MultipartFile file,User user) {
-        try{
+        try {
             String fileName = file.getOriginalFilename();
             byte[] bytes = file.getBytes();
-            String string = new String(bytes,"GBK");
-            logger.info("uploadFileForImportLab="+string);
+            String string = new String(bytes, "GBK");
+            logger.info("uploadFileForImportLab=" + string);
             String[] strings = string.split("\n");
             List<String> list = new LinkedList();
-            for(String line:strings){
+            for (String line : strings) {
                 list.add(line);
             }
-            return FileUploadUtil.handleLab(list,user);
+            return FileUploadUtil.handleLab(list, user);
+        }
+        catch (UnsupportedCharsetException e)
+        {
+            return ParamUtils.errorParam("文件含有无法识别的字符");
         }catch (Exception e){
             logger.error("",e);
             return ParamUtils.errorParam("出现异常");

@@ -9,8 +9,6 @@ import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.LaboratoryProcessor;
 import com.gennlife.platform.service.ConfigurationService;
 import com.google.gson.Gson;
-
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -450,7 +448,7 @@ public class FileUploadUtil {
                     if(lab.getLab_level() == 1){
                         if("未处理".equals(lab.status)){
                             String name = lab.getLab_name();
-                            String labID = getLabID(name,orgID,labs);
+                            String labID = getLabID(name, orgID, labs);
                             lab.setLabID(labID);
                         }
                         sort.add(lab);
