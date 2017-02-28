@@ -224,6 +224,7 @@ public class ConfigurationService {
             JsonElement groupValue = item.getValue();
             groupName = groupName.replaceFirst("肺癌.","");
             groupName = groupName.replaceFirst("肝癌.","");
+            groupName = groupName.replaceFirst("肾癌.","");
             newTarget.add(groupName,groupValue);
         }
         return newTarget;
