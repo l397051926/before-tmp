@@ -111,6 +111,7 @@ public class RedisUtil {
         String sessionID=getValue(uid);
         if(StringUtils.isEmpty(sessionID)) return;
         User user=UserProcessor.getUserByUids(uid);
+        if(user==null) return;
         logger.info("更新设置:"+sessionID+"="+user.getUid()+"成功");
         setUser(user);
     }
