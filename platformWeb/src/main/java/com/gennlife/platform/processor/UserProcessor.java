@@ -148,6 +148,7 @@ public class UserProcessor {
         try {
             Long start = System.currentTimeMillis();
             user = AllDao.getInstance().getSyUserDao().getUserByUid(uid);
+            if(user==null) return null;
             Long start1 = System.currentTimeMillis();
             System.out.println("查user="+(start1-start)+"ms");
             Map<String,Object> confMap = new HashMap<>();
