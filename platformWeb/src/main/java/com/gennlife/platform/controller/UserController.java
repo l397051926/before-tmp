@@ -145,6 +145,7 @@ public class UserController{
                 return ParamUtils.errorParam("缺少uid");
             }
             ResultBean resultBean =  processor.update(param);
+            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession().getId());
             resultStr = gson.toJson(resultBean);
         }catch (Exception e){
             logger.error("",e);
@@ -153,6 +154,7 @@ public class UserController{
         logger.info("用户更新个人信息 post 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+
 
 
     @RequestMapping(value="/UpdatePWD",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")

@@ -2,12 +2,11 @@ package com.gennlife.platform.controller;
 
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.model.User;
-import com.gennlife.platform.model.XRealIp;
 import com.gennlife.platform.processor.LaboratoryProcessor;
+import com.gennlife.platform.processor.UserProcessor;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
-import com.gennlife.platform.util.SpringContextUtil;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -15,7 +14,6 @@ import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -75,6 +73,7 @@ public class BackstageManagementController {
             logger.info("删除科室 get方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.deleteOrg(paramObj,user);
+            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession().getId());
         }catch (Exception e){
             logger.error("删除科室",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -92,6 +91,7 @@ public class BackstageManagementController {
             User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.updateOrg(paramObj,user);
+            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession().getId());
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -228,6 +228,7 @@ public class BackstageManagementController {
             User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.addRole(paramObj,user);
+            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession().getId());
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -244,6 +245,7 @@ public class BackstageManagementController {
             User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.editRole(paramObj,user);
+            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession().getId());
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -365,6 +367,7 @@ public class BackstageManagementController {
             String param = ParamUtils.getParam(paramRe);
             User user = (User)paramRe.getAttribute("currentUser");
             resultStr =  processor.addGroup(param,user);
+            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession().getId());
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -381,6 +384,7 @@ public class BackstageManagementController {
             String param = ParamUtils.getParam(paramRe);
             User user = (User)paramRe.getAttribute("currentUser");
             resultStr =  processor.editGroup(param,user);
+            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession().getId());
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -414,6 +418,7 @@ public class BackstageManagementController {
             String param = ParamUtils.getParam(paramRe);
             User user = (User)paramRe.getAttribute("currentUser");
             resultStr =  processor.deleteGroup(param,user);
+            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession().getId());
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");

@@ -101,6 +101,15 @@ public class RedisUtil {
     }
 
     private static void exit(String uid, String sessionID) {
+        if(StringUtils.isEmpty(uid)&&StringUtils.isEmpty(sessionID))return;
+        if(StringUtils.isEmpty(uid)){
+            uid=getValue(sessionID);
+            if(StringUtils.isEmpty(uid))return;
+        }
+        if(StringUtils.isEmpty(sessionID)){
+            sessionID=getValue(uid);
+            if(StringUtils.isEmpty(sessionID))return;
+        }
         deleteKey(sessionID);
         deleteKey(uid);
         deleteUser(uid);
@@ -108,6 +117,8 @@ public class RedisUtil {
     }
 
     public static void updateUserOnLine(String uid){
+        if(true)exit(uid,null);
+        //除了当前用户，其余全部下线
         String sessionID=getValue(uid);
         if(StringUtils.isEmpty(sessionID)) return;
         User user=UserProcessor.getUserByUids(uid);
