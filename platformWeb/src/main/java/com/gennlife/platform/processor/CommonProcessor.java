@@ -52,6 +52,7 @@ public class CommonProcessor {
             String fileName = file.getOriginalFilename();
             byte[] bytes = file.getBytes();
             String string = new String(bytes,"GBK");
+            if(!string.equals(new String(bytes))) return ParamUtils.errorParam("文件里含有非GBK编码的字符");
             logger.info("uploadFileForImportStaff="+string);
             String[] strings = string.split("\n");
             List<String> list = new LinkedList();
@@ -70,6 +71,7 @@ public class CommonProcessor {
             String fileName = file.getOriginalFilename();
             byte[] bytes = file.getBytes();
             String string = new String(bytes, "GBK");
+            if(!string.equals(new String(bytes))) return ParamUtils.errorParam("文件里含有非GBK编码的字符");
             logger.info("uploadFileForImportLab=" + string);
             String[] strings = string.split("\n");
             List<String> list = new LinkedList();
@@ -80,7 +82,7 @@ public class CommonProcessor {
         }
         catch (UnsupportedCharsetException e)
         {
-            return ParamUtils.errorParam("文件含有无法识别的字符");
+            return ParamUtils.errorParam("文件含有无法识别的字符,需要GBK编码");
         }catch (Exception e){
             logger.error("",e);
             return ParamUtils.errorParam("出现异常");
