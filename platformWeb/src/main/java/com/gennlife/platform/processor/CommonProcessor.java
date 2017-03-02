@@ -1,6 +1,7 @@
 package com.gennlife.platform.processor;
 
 import com.gennlife.platform.model.User;
+import com.gennlife.platform.util.ChineseToEnglish;
 import com.gennlife.platform.util.FileUploadUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
@@ -52,7 +53,7 @@ public class CommonProcessor {
             String fileName = file.getOriginalFilename();
             byte[] bytes = file.getBytes();
             String string = new String(bytes,"GBK");
-            if(!string.equals(new String(bytes))) return ParamUtils.errorParam("文件里含有非GBK编码的字符");
+            if(ChineseToEnglish.isMessyCode(string)) return ParamUtils.errorParam("文件里含有非GBK编码的字符");
             logger.info("uploadFileForImportStaff="+string);
             String[] strings = string.split("\n");
             List<String> list = new LinkedList();
@@ -73,7 +74,7 @@ public class CommonProcessor {
             String string = new String(bytes, "GBK");
             logger.info("GBK "+string);
             logger.info("default "+new String(bytes));
-            if(!string.equals(new String(bytes))) {
+            if(ChineseToEnglish.isMessyCode(string))  {
                 return ParamUtils.errorParam("文件里含有非GBK编码的字符");
             }
             logger.info("uploadFileForImportLab=" + string);
