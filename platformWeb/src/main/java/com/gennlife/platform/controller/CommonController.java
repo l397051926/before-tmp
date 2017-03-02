@@ -34,7 +34,7 @@ public class CommonController  {
     }
     //后缀
     private static String suffix = ".csv";
-    @RequestMapping(value="/UploadFileForImportLab",method= RequestMethod.POST)
+    @RequestMapping(value="/UploadFileForImportLab",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody String postUploadFileForImportLab(@RequestParam("name") MultipartFile file,HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = "";
@@ -56,7 +56,7 @@ public class CommonController  {
         processor.downLoadFile(file,response,"最近组织导入结果.csv");
     }
 
-    @RequestMapping(value="/UploadFileForImportStaff",method= RequestMethod.POST)
+    @RequestMapping(value="/UploadFileForImportStaff",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody String postUploadFileForImportStaff(@RequestParam("name") MultipartFile file,HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = "";
