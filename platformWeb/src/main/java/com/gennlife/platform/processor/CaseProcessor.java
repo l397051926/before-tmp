@@ -10,7 +10,6 @@ import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.*;
-import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -403,6 +402,7 @@ public class CaseProcessor {
             result.add("data",searchResult);
             return gson.toJson(result);
         } catch (Exception e) {
+            logger.error("error",e);
             return ParamUtils.errorParam("搜索失败");
         }
     }

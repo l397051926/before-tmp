@@ -32,8 +32,16 @@ public class CaseSearchParser implements Callable<String> {
         String url = ConfigurationService.getUrlBean().getCaseSearchURL();
         JsonObject queryjson=JsonUtils.getJsonObject(queryStr);
         if(queryjson==null) return ParamUtils.errorParam("非法json");
-        if(StringUtils.isEmpty(queryjson.get("query").getAsString().trim()))
+        if(queryjson.has("query"))
+        {
+            if(StringUtils.isEmpty(queryjson.get("query").toString().trim()))
                 return ParamUtils.errorParam("查询条件为空");
+        }
+        else if(queryjson.has("keywords"))
+        {
+            if(StringUtils.isEmpty(queryjson.get("keywords").toString().trim()))
+                return ParamUtils.errorParam("查询条件为空");
+        }
         isOk=true;
         return HttpRequestUtils.httpPost(url,queryStr);
     }
