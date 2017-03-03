@@ -264,21 +264,28 @@ public class UserProcessor {
 
         JsonArray resource = gson.toJsonTree(list).getAsJsonArray();
         JsonArray insert = new JsonArray();
+
         for (JsonElement json : resource) {
+
             JsonObject jsonobj = json.getAsJsonObject();
-            String sid = jsonobj.get("sid").getAsString();
-            List<String> departName = departNames.get(sid);
-            if (departName != null && departName.size() > 0) {
-                for (String department : departName) {
-                    JsonObject jsonCopy = deepCopy(jsonobj);
-                    jsonCopy.addProperty("slab_name", department);
-                    insert.add(jsonCopy);
+            if (jsonobj.get("has_search") != null && jsonobj.get("has_search").getAsString() == "有") {
+                String sid = jsonobj.get("sid").getAsString();
+                List<String> departName = departNames.get(sid);
+                if (departName != null && departName.size() > 0) {
+                    for (String department : departName) {
+                        JsonObject jsonCopy = deepCopy(jsonobj);
+                        jsonCopy.addProperty("slab_name", department);
+                        insert.add(jsonCopy);
+                    }
+                } else {
+                    insert.add(json);
                 }
             } else {
                 insert.add(json);
             }
         }
-        return gson.fromJson(insert,new TypeToken<List<Resource>>(){}.getType());
+
+        return gson.fromJson(insert, new TypeToken<List<Resource>>(){}.getType());
     }
 
     public static Map<String, List<String>> getDepartmentFromMysql(List<DepartmentMap> departName) {
@@ -352,7 +359,7 @@ public class UserProcessor {
         }
         //////////// 处理roles和power ////////////////
         Map<String, List<String>> mapDep = getDepartmentFromMysql(AllDao.getInstance().getSyRoleDao().getSlabNames());
-        departmentMapping(user, mapDep);
+        // departmentMapping(user, mapDep);
 
         power.setHas_addBatchCRF(addDepartmentPower(power.getHas_addBatchCRF(), mapDep));
         power.setHas_search(addDepartmentPower(power.getHas_search(), mapDep));
