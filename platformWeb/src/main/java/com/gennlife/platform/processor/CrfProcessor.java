@@ -1,9 +1,7 @@
 package com.gennlife.platform.processor;
 
-import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.projectBean.MyProjectList;
 import com.gennlife.platform.dao.AllDao;
-import com.gennlife.platform.model.CRFLab;
 import com.gennlife.platform.model.Power;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.service.ConfigurationService;
@@ -12,19 +10,14 @@ import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.LogUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.*;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.ProgressListener;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -82,9 +75,10 @@ public class CrfProcessor {
             validLabID.add(sid);
         }
         for(String labID:validLabID){
-            CRFLab crfLab = AllDao.getInstance().getSyResourceDao().getCrfIDByLab(labID,orgID);
-            if(crfLab != null && crf_id.equals(crfLab.getCrf_id())){
-                flag = true;
+            int count = AllDao.getInstance().getSyResourceDao().isExistsCrfID(labID,orgID,crf_id);
+            if(count>0)
+            {
+                flag=true;
                 break;
             }
         }
