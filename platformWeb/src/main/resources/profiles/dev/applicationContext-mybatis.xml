@@ -8,11 +8,11 @@
 	<!-- 数据源定义-->
 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName">jdbc:mysql://10.0.0.68:3306/userInfoDB?useUnicode=true&amp;characterEncoding=UTF-8
+		<property name="driverClassName">
 			<value>com.mysql.jdbc.Driver</value>
 		</property>
 		<property name="url">
-			<value></value>
+			<value>jdbc:mysql://10.0.0.68:3306/userInfoDB?useUnicode=true&amp;characterEncoding=UTF-8</value>
 		</property>
 		<property name="username">
 			<value>userInfoDB</value>
