@@ -268,7 +268,7 @@ public class UserProcessor {
         for (JsonElement json : resource) {
 
             JsonObject jsonobj = json.getAsJsonObject();
-            if (jsonobj.get("has_search") != null && jsonobj.get("has_search").getAsString() == "有") {
+            if (!jsonobj.get("has_search").isJsonNull() && jsonobj.get("has_search").getAsString().equals("有")) {
                 String sid = jsonobj.get("sid").getAsString();
                 List<String> departName = departNames.get(sid);
                 if (departName != null && departName.size() > 0) {
