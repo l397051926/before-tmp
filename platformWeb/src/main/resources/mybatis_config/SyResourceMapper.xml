@@ -230,6 +230,12 @@
     FROM gennlife_lab_crf
     WHERE labID=#{labID} AND orgID = #{orgID}
   </select>
+  <select id="isExistsCrfID" resultType="java.lang.Integer">
+    SELECT
+    count(1)
+    FROM gennlife_lab_crf
+    WHERE labID=#{labID} AND orgID = #{orgID} and crf_id=#{crf_id}
+  </select>
 
   <select id="getCrfIDListByLab" resultType="com.gennlife.platform.model.CRFLab">
     SELECT

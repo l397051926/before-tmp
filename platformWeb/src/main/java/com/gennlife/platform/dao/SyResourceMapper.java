@@ -79,8 +79,8 @@ public interface SyResourceMapper {
      * @param labID
      * @return
      */
-    CRFLab getCrfIDByLab(@Param("labID")String labID, @Param("orgID")String orgID);
-
+    List<CRFLab> getCrfIDByLab(@Param("labID")String labID, @Param("orgID")String orgID);
+    int isExistsCrfID(@Param("labID")String labID, @Param("orgID")String orgID,@Param("crf_id")String crf_id);
 
     List<CRFLab> getCrfIDListByLab(@Param("labIDs") String[] labIDs, @Param("orgID")String orgID);
     int updateResource(LabResource labResource);
