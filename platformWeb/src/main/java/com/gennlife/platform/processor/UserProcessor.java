@@ -564,10 +564,11 @@ public class UserProcessor {
         }catch (Exception e){
             return ParamUtils.errorParam("参数错误");
         }
-        CRFLab crfLab = AllDao.getInstance().getSyResourceDao().getCrfIDByLab(labID,user.getOrgID());
-        if(crfLab == null){
+        List<CRFLab> crfLablist = AllDao.getInstance().getSyResourceDao().getCrfIDByLab(labID,user.getOrgID());
+        if(crfLablist == null || crfLablist.size()==0){
             return ParamUtils.errorParam("没有找到对应的参数");
         }else {
+            CRFLab crfLab = crfLablist.get(0);
             ResultBean re = new ResultBean();
             re.setCode(1);
             re.setData(crfLab);
