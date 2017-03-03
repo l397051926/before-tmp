@@ -22,7 +22,7 @@ public class CaseSearchParser implements Callable<String> {
     private String queryStr;
     private boolean isOk=false;
     public CaseSearchParser(String queryStr){
-        logger.info("搜索请求参数="+queryStr);
+    // logger.info("搜索请求参数="+queryStr);
         this.queryStr = queryStr;
 
     }
@@ -39,6 +39,7 @@ public class CaseSearchParser implements Callable<String> {
         } else {
             // 去掉roles
             queryjson.add("roles", new JsonArray());
+            logger.info("搜索请求参数=" + queryjson.toString());
         }
         if (queryjson.has("query")) {
             if (StringUtils.isEmpty(queryjson.get("query").toString().trim()))
