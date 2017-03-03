@@ -6,16 +6,14 @@ import com.gennlife.platform.model.*;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.*;
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by chensong on 2015/12/4.
@@ -34,6 +32,7 @@ public class UserProcessor {
             User user = null;
             try{
                 user = AllDao.getInstance().getSyUserDao().getUser(confMap);
+                System.out.println(user);
             }catch (Exception e){
                 logger.error("", e);
             }
@@ -49,7 +48,6 @@ public class UserProcessor {
             return null;
         }
     }
-
 
 
 
@@ -159,6 +157,7 @@ public class UserProcessor {
             List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(confMap);
             //转化本科室信息
             Power power = transformRole(user,rolesList);
+            //
             user.setPower(power);
             List<Group> list = AllDao.getInstance().getGroupDao().getGroupsByUid(confMap);
             Long start5 = System.currentTimeMillis();
@@ -189,10 +188,12 @@ public class UserProcessor {
             }
             Long start6 = System.currentTimeMillis();
             //System.out.println("设置组成员="+(start6-start5)+"ms");
+            //
             user.setGroups(list);
 
         }catch (Exception e){
             logger.error("",e);
+            e.printStackTrace();
         }
         return user;
     }
@@ -223,7 +224,88 @@ public class UserProcessor {
 
     }
 
+    public static void addDepartmentRole(Role role, Map<String, List<String>> departNames) {
 
+        // 处理role下的 resources 调用 addDepartmentPower
+        JsonArray resource = gson.toJsonTree(role.getResources()).getAsJsonArray();
+        // resource.get("key").getAsJsonObject()
+
+        JsonArray insert = new JsonArray();
+
+        for (JsonElement json : resource) {
+            JsonObject jsonobj = json.getAsJsonObject();
+            String sid = jsonobj.get("sid").getAsString();
+            List<String> departName = departNames.get(sid);
+            if (departName != null && departName.size() > 0) {
+                for (String department : departName) {
+                    JsonObject jsonCopy = deepCopy(jsonobj);
+                    jsonCopy.addProperty("slab_name", department);
+                    insert.add(jsonCopy);
+                }
+            } else {
+                insert.add(json);
+            }
+        }
+        if (insert.size() > 0) {
+            role.setResources(insert);
+        }
+    }
+    public static JsonObject deepCopy(JsonObject json) {
+        JsonObject copy = new JsonObject();
+        for (Map.Entry<String, JsonElement> item : json.entrySet()) {
+            copy.add(item.getKey(), item.getValue());
+        }
+        return copy;
+    }
+
+
+
+    public static List<Resource> addDepartmentPower(List<Resource> list, Map<String, List<String>> departNames) {
+
+        JsonArray resource = gson.toJsonTree(list).getAsJsonArray();
+        JsonArray insert = new JsonArray();
+        for (JsonElement json : resource) {
+            JsonObject jsonobj = json.getAsJsonObject();
+            String sid = jsonobj.get("sid").getAsString();
+            List<String> departName = departNames.get(sid);
+            if (departName != null && departName.size() > 0) {
+                for (String department : departName) {
+                    JsonObject jsonCopy = deepCopy(jsonobj);
+                    jsonCopy.addProperty("slab_name", department);
+                    insert.add(jsonCopy);
+                }
+            } else {
+                insert.add(json);
+            }
+        }
+        return gson.fromJson(insert,new TypeToken<List<Resource>>(){}.getType());
+    }
+
+    public static Map<String, List<String>> getDepartmentFromMysql(List<DepartmentMap> departName) {
+        Map<String, List<String>> mapDep = new HashMap<String, List<String>>();
+        for (DepartmentMap dep: departName) {
+
+            List<String> array = new LinkedList<String>();
+
+            List<String> arrayList = mapDep.get(dep.getLab_id());
+            if (arrayList != null && arrayList.size() != 0) {
+                arrayList.add(dep.getDepart_name());
+                mapDep.put(dep.getLab_id(), arrayList);
+            } else {
+                array.add(dep.getDepart_name());
+                mapDep.put(dep.getLab_id(), array);
+            }
+        }
+        return mapDep;
+    }
+
+    public static void departmentMapping(User user, Map<String, List<String>> mapDep) {
+
+        List<Role> roles = user.getRoles();
+        for (Role role : roles) {
+            addDepartmentRole(role, mapDep);
+        }
+    }
 
     public static Power transformRole(User user,List<Role> rolesList){
         if(rolesList == null){
@@ -233,7 +315,9 @@ public class UserProcessor {
             return null;
         }
         Power power = new Power();
+        //
         user.setRoles(rolesList);
+
         Map<String,Object> confMap = new HashMap<>();
         confMap.put("orgID",user.getOrgID());
         confMap.put("uid",user.getUid());
@@ -266,6 +350,19 @@ public class UserProcessor {
                 role.setResources(reList);
             }
         }
+        //////////// 处理roles和power ////////////////
+        Map<String, List<String>> mapDep = getDepartmentFromMysql(AllDao.getInstance().getSyRoleDao().getSlabNames());
+        departmentMapping(user, mapDep);
+
+        power.setHas_addBatchCRF(addDepartmentPower(power.getHas_addBatchCRF(), mapDep));
+        power.setHas_search(addDepartmentPower(power.getHas_search(), mapDep));
+        power.setHas_searchExport(addDepartmentPower(power.getHas_searchExport(), mapDep));
+        power.setHas_traceCRF(addDepartmentPower(power.getHas_traceCRF(), mapDep));
+        power.setHas_addCRF(addDepartmentPower(power.getHas_addCRF(), mapDep));
+        power.setHas_editCRF(addDepartmentPower(power.getHas_editCRF(), mapDep));
+        power.setHas_deleteCRF(addDepartmentPower(power.getHas_deleteCRF(), mapDep));
+        power.setHas_browseDetail(addDepartmentPower(power.getHas_browseDetail(), mapDep));
+        /////////////////////////////////////////////
         return power;
     }
 

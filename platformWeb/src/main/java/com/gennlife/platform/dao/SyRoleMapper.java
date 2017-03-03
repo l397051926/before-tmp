@@ -1,12 +1,15 @@
 package com.gennlife.platform.dao;
 
 
+import com.gennlife.platform.model.DepartmentMap;
 import com.gennlife.platform.model.Resource;
 import com.gennlife.platform.model.Role;
 import com.gennlife.platform.model.User;
 import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.Mapper;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -118,4 +121,7 @@ public interface SyRoleMapper {
      * @return
      */
     int updateUserRole(Role role);
+
+    List<DepartmentMap> getSlabNames();
+
 }

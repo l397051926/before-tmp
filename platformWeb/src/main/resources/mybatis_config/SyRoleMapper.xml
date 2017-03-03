@@ -12,6 +12,10 @@
         <result column="creatorID" property="creatorID" jdbcType="VARCHAR" />
         <result column="ctime" property="ctime" jdbcType="VARCHAR" />
     </resultMap>
+    <resultMap id="com.gennlife.platform.model.DepartmentMap" type="com.gennlife.platform.model.DepartmentMap" >
+        <result column="lab_id" property="lab_id" jdbcType="VARCHAR" />
+        <result column="depart_name" property="depart_name" jdbcType="VARCHAR" />
+    </resultMap>
     <sql id="roleProperty">
         gennlife_role.roleid,role,orgID,desctext,role_type,ctime,creator,creatorID
     </sql>
@@ -151,4 +155,10 @@
         </set>
 		WHERE roleid = #{roleid,jdbcType=INTEGER}
     </update>
+    <select id="getSlabNames" resultMap="com.gennlife.platform.model.DepartmentMap">
+        SELECT
+        *
+        FROM
+        gennlife_lab_map
+    </select>
 </mapper>

@@ -60,6 +60,7 @@ public class UserController{
                 return;
             }
             User user = processor.login(email,pwd);
+
             ResultBean resultBean = new ResultBean();
             if(user != null){
                 boolean hasLogin=UserProcessor.getUserByUidFromRedis(user.getUid())!=null;
