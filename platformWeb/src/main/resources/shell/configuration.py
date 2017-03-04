@@ -1,4 +1,8 @@
 #coding=utf8
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
 import xlrd
 import json
 from collections import OrderedDict
@@ -17,7 +21,7 @@ def sortItem(itemArray,allSortIndexName):
     return newArray
 
 def process():
-    data = xlrd.open_workbook('/Users/chen-song/Downloads/病人维度临床数据字段配置_V2.1.58_3.xls')
+    data = xlrd.open_workbook('/Users/luoxupan/Downloads/病人维度临床数据字段配置_V0.2.1_beta.xls')
     allItemList = OrderedDict()
     allItemListCopy = OrderedDict()
     sheet = data.sheets()[0]
