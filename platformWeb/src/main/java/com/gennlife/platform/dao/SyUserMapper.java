@@ -270,7 +270,9 @@ public interface SyUserMapper {
     public MyProjectList baiscInfo(Map<String, Object> map);
      */
 
+    public List<String> getUserIdByLabID( @Param("orgID")String orgID, @Param("labID")String labID);
 
-
+    int updateUseInfoWhenDelLab(@Param("labPID") String labPID,@Param("lab_pname") String lab_pname,
+                                @Param("labID") String labID,@Param("orgID") String orgID);
 
 }

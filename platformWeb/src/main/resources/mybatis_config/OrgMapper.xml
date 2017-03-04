@@ -197,4 +197,31 @@
           orgID = #{orgID}
         ORDER  BY ulevel ASC
     </select>
+
+    <select id="getLabPInfo" resultMap="com.gennlife.platform.model.Lab">
+        select
+        <include refid="labProperty"></include>
+        from gennlife_lab
+        where labID =(SELECT
+        lab_parent
+        FROM
+        gennlife_lab where labID=#{labID} and orgID=#{orgID}  limit 1)
+    </select>
+
+    <select id="getSubLabs" resultType="java.lang.String" parameterType="java.lang.String">
+        select labID FROM gennlife_lab WHERE
+        gennlife_lab.lab_parent =#{labID}
+        and orgID=#{orgID}
+    </select>
+    <update id="updateSubLabPid">
+        update gennlife_lab
+        set lab_parent=#{pid}
+        WHERE
+        gennlife_lab.labID in
+        <foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+        and orgID=#{orgID}
+    </update>
+
 </mapper>

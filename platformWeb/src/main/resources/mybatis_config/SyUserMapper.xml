@@ -493,4 +493,17 @@
 		WHERE uid = #{uid}
 	</select>
 
+
+	<select id="getUserIdByLabID" resultType="java.lang.String">
+		SELECT
+		uid
+		FROM
+		gennlife_user
+		WHERE  orgID=#{orgID} and labID=#{labID}
+	</select>
+	<update id="updateUseInfoWhenDelLab" >
+		update   gennlife_user set
+		labID=#{labPID},lab_name=#{lab_pname},uposition="",uprofession=""
+		where  orgID=#{orgID} and labID=#{labID}
+	</update>
 </mapper>

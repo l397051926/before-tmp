@@ -132,7 +132,7 @@ public class ConfigurationService {
             JsonObject target = (JsonObject) jsonParser.parse(copy);
             return target;
         }
-        return null;
+        return new JsonObject();
     }
 
 
@@ -144,7 +144,7 @@ public class ConfigurationService {
             target = removeDiseasePrefix(target);
             return target;
         }
-        return null;
+        return new JsonObject();
     }
 
     public static JsonObject getImportTree(String crf_id) {
@@ -154,7 +154,7 @@ public class ConfigurationService {
             JsonObject target = (JsonObject) jsonParser.parse(copy);
             return target;
         }
-        return null;
+        return new JsonObject();
     }
 
     public static JsonObject getAdvancedSearch(String crf_id) {
@@ -164,7 +164,7 @@ public class ConfigurationService {
             JsonObject target = (JsonObject) jsonParser.parse(copy);
             return target;
         }
-        return null;
+        return new JsonObject();
     }
 
 
