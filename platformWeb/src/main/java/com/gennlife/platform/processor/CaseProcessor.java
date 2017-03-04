@@ -213,7 +213,6 @@ public class CaseProcessor {
                 set.add(key);
             }
         } catch (Exception e) {
-            e.printStackTrace();
             logger.error("", e);
             return ParamUtils.errorParam("请求出错");
 

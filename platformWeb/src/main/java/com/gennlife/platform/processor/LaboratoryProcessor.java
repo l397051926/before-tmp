@@ -3,6 +3,8 @@ package com.gennlife.platform.processor;
 
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.dao.AllDao;
+import com.gennlife.platform.dao.OrgMapper;
+import com.gennlife.platform.dao.SyUserMapper;
 import com.gennlife.platform.model.*;
 import com.gennlife.platform.util.*;
 import com.google.gson.*;
@@ -181,14 +183,39 @@ public class LaboratoryProcessor {
         }
         String[] labIDs = labIDsList.toArray(new String[labIDsList.size()]);
         String orgID = user.getOrgID();
+        String orgName=user.getOrg_name();
         Organization organization = null;
+        Set<String> uids=new TreeSet<>();
+        OrgMapper orgdao = AllDao.getInstance().getOrgDao();
+        SyUserMapper userdao = AllDao.getInstance().getSyUserDao();
+        for(String labID:labIDs)
+        {
+            Lab parent=orgdao.getLabPInfo(labID,orgID);
+            if(parent==null) {
+                parent = new Lab();
+                parent.setLabID(orgID);
+                parent.setLab_name(orgName);
+            }
+            //下级科室处理
+            List<String> subLabs = orgdao.getSubLabs(labID,orgID);
+            if(subLabs!=null&&subLabs.size()>0){
+                orgdao.updateSubLabPid(subLabs.toArray(new String[subLabs.size()]),orgID,parent.getLabID());
+            }
+            //用户处理
+            List<String> uidList=userdao.getUserIDByLabID(labID,orgID);
+            if(uidList!=null&&uidList.size()>0)
+            {
+                uids.addAll(uidList);
+                userdao.updateUseInfoWhenDelLab(parent.getLabID(),parent.getLab_name(),labID,orgID);
+            }
+        }
         int counter = AllDao.getInstance().getOrgDao().deleteLabs(labIDs);
         //同步删除资源
         AllDao.getInstance().getSyResourceDao().deleteLabsReource(labIDs);
         int fail = labIDsList.size()-counter;
         //更新用户信息
-
         logger.info("成功删除"+counter+"个科室信息,失败"+fail+"个");
+        RedisUtil.updateUserOnLine(uids);
         organization = getOrganization(orgID);
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(1);
