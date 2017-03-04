@@ -208,7 +208,7 @@
         gennlife_lab where labID=#{labID} and orgID=#{orgID}  limit 1)
     </select>
 
-    <select id="getSubLabs">
+    <select id="getSubLabs" resultType="java.lang.String" parameterType="java.lang.String">
         select labID FROM gennlife_lab WHERE
         gennlife_lab.lab_parent =#{labID}
         and orgID=#{orgID}
