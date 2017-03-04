@@ -4,6 +4,7 @@ import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.JsonUtils;
 import com.gennlife.platform.util.ParamUtils;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,15 +33,35 @@ public class CaseSearchParser implements Callable<String> {
         String url = ConfigurationService.getUrlBean().getCaseSearchURL();
         JsonObject queryjson=JsonUtils.getJsonObject(queryStr);
         if(queryjson==null) return ParamUtils.errorParam("非法json");
+        JsonElement item=null;
         if(queryjson.has("query"))
         {
-            if(StringUtils.isEmpty(queryjson.get("query").toString().trim()))
-                return ParamUtils.errorParam("查询条件为空");
+            item=queryjson.get("query");
+
         }
         else if(queryjson.has("keywords"))
         {
-            if(StringUtils.isEmpty(queryjson.get("keywords").toString().trim()))
-                return ParamUtils.errorParam("查询条件为空");
+            item=queryjson.get("keywords");
+
+        }
+        if(item==null)  return ParamUtils.errorParam("查询条件为空");
+        else
+        {
+            if(item.isJsonPrimitive())
+            {
+                if(StringUtils.isEmpty(item.getAsString()))
+                {
+                    return ParamUtils.errorParam("查询条件为空");
+                }
+            }
+            else if(item.isJsonArray())
+            {
+                if(item.getAsJsonArray().size()==0)
+                {
+                    return ParamUtils.errorParam("查询条件为空");
+                }
+            }
+            else return ParamUtils.errorParam("错误的查询条件");
         }
         isOk=true;
         return HttpRequestUtils.httpPost(url,queryStr);
