@@ -12,6 +12,7 @@ import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -180,6 +181,7 @@ public class CaseProcessor {
                 indexName = paramObj.get("indexName").getAsString();
             }
             keywords = paramObj.get("keywords").getAsString();
+            if(StringUtils.isEmpty(keywords)) return ParamUtils.errorParam("查询条件为空");
             if (paramObj.get("size") != null) {
                 size = paramObj.get("size").getAsString();
             }
