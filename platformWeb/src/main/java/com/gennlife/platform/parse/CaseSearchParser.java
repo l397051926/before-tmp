@@ -1,14 +1,17 @@
 package com.gennlife.platform.parse;
 
+import com.gennlife.platform.model.Resource;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.JsonUtils;
 import com.gennlife.platform.util.ParamUtils;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.concurrent.Callable;
 
 /**
@@ -19,7 +22,7 @@ public class CaseSearchParser implements Callable<String> {
     private String queryStr;
     private boolean isOk=false;
     public CaseSearchParser(String queryStr){
-        logger.info("搜索请求参数="+queryStr);
+    // logger.info("搜索请求参数="+queryStr);
         this.queryStr = queryStr;
 
     }
@@ -31,22 +34,24 @@ public class CaseSearchParser implements Callable<String> {
         isOk=false;
         String url = ConfigurationService.getUrlBean().getCaseSearchURL();
         JsonObject queryjson=JsonUtils.getJsonObject(queryStr);
-        if(queryjson==null) return ParamUtils.errorParam("非法json");
-        if(queryjson.has("query"))
-        {
-            if(StringUtils.isEmpty(queryjson.get("query").toString().trim()))
+        if (queryjson==null) {
+            return ParamUtils.errorParam("非法json");
+        } else {
+            // 去掉roles
+            queryjson.add("roles", new JsonArray());
+            logger.info("搜索请求参数=" + queryjson.toString());
+        }
+        if (queryjson.has("query")) {
+            if (StringUtils.isEmpty(queryjson.get("query").toString().trim()))
+                return ParamUtils.errorParam("查询条件为空");
+        } else if (queryjson.has("keywords")) {
+            if (StringUtils.isEmpty(queryjson.get("keywords").toString().trim()))
                 return ParamUtils.errorParam("查询条件为空");
         }
-        else if(queryjson.has("keywords"))
-        {
-            if(StringUtils.isEmpty(queryjson.get("keywords").toString().trim()))
-                return ParamUtils.errorParam("查询条件为空");
-        }
-        isOk=true;
-        return HttpRequestUtils.httpPost(url,queryStr);
+        isOk = true;
+        return HttpRequestUtils.httpPost(url, queryStr);
     }
-    public boolean isOk()
-    {
+    public boolean isOk() {
         return isOk;
     }
 }
