@@ -264,13 +264,13 @@ public class LaboratoryProcessor {
             AllDao.getInstance().getSyUserDao().updateUserLabNameByLabName(lab_name,lab.getLab_name(),orgID);
             LabResource labResource = new LabResource();
             labResource.setSorgID(lab.getOrgID());
-            labResource.setSdesc(lab.getLab_name()+"病例数据资源");
-            labResource.setSid(lab.getLabID());
-            labResource.setSlab_parent(lab.getLab_parent());
+            labResource.setSdesc(lab_name+"病例数据资源");
+            labResource.setSid(labID);
+            labResource.setSlab_parent(lab_parent);
             labResource.setSlab_type(lab.getLab_level()+"");
             labResource.setStype("病例数据");
-            labResource.setSname(lab.getLab_name()+"资源");
-            labResource.setSlab_name(lab.getLab_name());
+            labResource.setSname(lab_name+"资源");
+            labResource.setSlab_name(lab_name);
             logger.info("update "+gson.toJson(labResource));
             AllDao.getInstance().getSyResourceDao().updateResource(labResource);
 
