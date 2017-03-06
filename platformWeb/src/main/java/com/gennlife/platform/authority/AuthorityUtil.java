@@ -36,7 +36,7 @@ public class AuthorityUtil {
             Power power = user.getPower();
             if(paramElement.isJsonObject()) {
                 JsonObject paramObj = paramElement.getAsJsonObject();
-                paramObj.add("roles", gson.toJsonTree(roles));
+                //paramObj.add("roles", gson.toJsonTree(roles));
                 //从groups数组扩展权限
                 paramObj.add("groups",gson.toJsonTree(groups));
                 paramObj.add("power",gson.toJsonTree(power));

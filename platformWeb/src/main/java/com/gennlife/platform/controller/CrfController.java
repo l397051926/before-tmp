@@ -7,7 +7,6 @@ import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
@@ -295,12 +294,11 @@ public class CrfController {
             {
                 return ParamUtils.errorParam("crf_id为空");
             }
-            User user = (User)paramRe.getAttribute("currentUser");
-            JsonArray roles=gson.toJsonTree(user.getRoles()).getAsJsonArray();
             if(file.isEmpty()){
                 return ParamUtils.errorParam("文件为空");
             }
-            resultStr = processor.uploadFileForImportCRF(file,crf_id,roles,user.getOrgID(),user);
+            User user = (User)paramRe.getAttribute("currentUser");
+            resultStr = processor.uploadFileForImportCRF(file,crf_id,user.getOrgID(),user);
         }catch (Exception e){
             logger.error("上传CRF数据文件",e);
             resultStr = ParamUtils.errorParam("出现异常");

@@ -278,8 +278,6 @@ public class KnowledgeProcessor {
     public String detailSearch(JsonObject paramObj) {
         try{
             JsonObject fsParam = paramObj.get("filter").getAsJsonObject();
-            JsonArray roles = paramObj.getAsJsonArray("roles");
-            fsParam.add("roles",roles);
             paramObj.remove("filter");
             String fsParamStr = gson.toJson(fsParam);
             String url = ConfigurationService.getUrlBean().getCaseMolecular_detection();

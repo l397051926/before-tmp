@@ -45,8 +45,6 @@ public class SampleProcessor {
                 sampleDesc = jsonObject.get("sampleDesc").getAsString();
             }
             JsonObject query = jsonObject.get("query").getAsJsonObject();
-            JsonElement roles = jsonObject.get("roles");
-            query.add("roles",roles);
             JsonElement power = jsonObject.get("power");
             query.add("power",power);
             JsonArray groups = jsonObject.get("groups").getAsJsonArray();
@@ -431,10 +429,8 @@ public class SampleProcessor {
     public String importSampleCheck(JsonObject jsonObject, User user) {
         try {
             JsonObject query = jsonObject.get("query").getAsJsonObject();
-            JsonArray roles = jsonObject.get("roles").getAsJsonArray();
             JsonArray groups = jsonObject.get("groups").getAsJsonArray();
             JsonObject power = jsonObject.getAsJsonObject("power");
-            query.add("roles",roles);
             query.add("groups",groups);
             query.add("power",power);
             logger.info("原始搜索条件="+gson.toJson(query));

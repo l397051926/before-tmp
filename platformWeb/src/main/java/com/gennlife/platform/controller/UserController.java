@@ -212,8 +212,7 @@ public class UserController{
         String resultStr = null;
         try{
             User user = (User)paramRe.getAttribute("currentUser");
-            String userStr = gson.toJson(user);
-            return processor.CRFList(userStr);
+            return processor.CRFList(user);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
