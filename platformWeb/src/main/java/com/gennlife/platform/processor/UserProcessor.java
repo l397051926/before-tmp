@@ -358,12 +358,12 @@ public class UserProcessor {
             }
         }
         //////////// 处理roles和power ////////////////
-//        Map<String, List<String>> mapDep = getDepartmentFromMysql(AllDao.getInstance().getSyRoleDao().getSlabNames());
+        Map<String, List<String>> mapDep = getDepartmentFromMysql(AllDao.getInstance().getSyRoleDao().getSlabNames());
         // departmentMapping(user, mapDep);
 
 //        power.setHas_addBatchCRF(addDepartmentPower(power.getHas_addBatchCRF(), mapDep));
-//        power.setHas_search(addDepartmentPower(power.getHas_search(), mapDep));
-//        power.setHas_searchExport(addDepartmentPower(power.getHas_searchExport(), mapDep));
+        power.setHas_search(addDepartmentPower(power.getHas_search(), mapDep));
+        power.setHas_searchExport(addDepartmentPower(power.getHas_searchExport(), mapDep));
 //        power.setHas_traceCRF(addDepartmentPower(power.getHas_traceCRF(), mapDep));
 //        power.setHas_addCRF(addDepartmentPower(power.getHas_addCRF(), mapDep));
 //        power.setHas_editCRF(addDepartmentPower(power.getHas_editCRF(), mapDep));
