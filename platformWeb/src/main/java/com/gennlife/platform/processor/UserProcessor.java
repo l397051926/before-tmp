@@ -551,15 +551,25 @@ public class UserProcessor {
         return user;
     }
 
-    public String CRFList(String param) {
-        JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-        String lab_name = paramObj.get("lab_name").getAsString();
-        String labID = paramObj.get("labID").getAsString();
-        String orgID = paramObj.get("orgID").getAsString();
-        JsonArray roles = paramObj.get("roles").getAsJsonArray();
+    public String CRFList(User user) {
+        //JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+        String lab_name = user.getLab_name();
+        String labID = user.getLabID();
+        String orgID = user.getOrgID();
+        Power power = user.getPower();
         List<String> labIDSet = new LinkedList<>();
         Map<String,String> map = new HashMap<>();
-        for(JsonElement roleItem:roles){
+        List<Resource> addlist = power.getHas_addCRF();
+        for(Resource resource:addlist)
+        {
+            String sid=resource.getSid();
+            String has_addCRF=resource.getHas_addCRF();
+            if(!labIDSet.contains(sid) && "有".equals(has_addCRF)){
+                labIDSet.add(sid);
+                map.put(sid,resource.getSlab_name());
+            }
+        }
+/*        for(JsonElement roleItem:roles){
             JsonObject roleObj = roleItem.getAsJsonObject();
             JsonArray resources = roleObj.getAsJsonArray("resources");
             for(JsonElement resourceItem:resources){
@@ -573,7 +583,7 @@ public class UserProcessor {
                     }
                 }
             }
-        }
+        }*/
         String[] labIDs = new String[]{labID};
         JsonObject result = new JsonObject();
         JsonObject data = new JsonObject();

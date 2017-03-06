@@ -36,6 +36,7 @@ public class ParamUtils {
         BufferedReader reader = null;
         try {
             reader = request.getReader();
+            if(!reader.ready()) return jb.toString();
             while ((line = reader.readLine()) != null)
                 jb.append(line);
         } catch (Exception e) {

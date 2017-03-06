@@ -1,20 +1,18 @@
 package com.gennlife.platform.authority;
 
-import com.gennlife.platform.model.Admin;
-import com.gennlife.platform.model.Group;
-import com.gennlife.platform.model.Role;
-import com.gennlife.platform.model.User;
-import com.gennlife.platform.processor.UserProcessor;
+import com.gennlife.platform.model.*;
+import com.gennlife.platform.processor.CaseProcessor;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 /**
@@ -32,17 +30,17 @@ public class AuthorityUtil {
             logger.error("paramRe里面无currentUser");
             return ParamUtils.errorSessionLosParam();
         }else {
-            JsonObject user = (JsonObject)jsonParser.parse(gson.toJson(object));
-            JsonArray roles = user.getAsJsonArray("roles");
-            JsonArray groups = user.getAsJsonArray("groups");
-            JsonObject power = user.getAsJsonObject("power");
+            User user = (User)paramRe.getAttribute("currentUser");
+            List<Role> roles = user.getRoles();
+            List<Group> groups = user.getGroups();
+            Power power = user.getPower();
             if(paramElement.isJsonObject()) {
                 JsonObject paramObj = paramElement.getAsJsonObject();
-                paramObj.add("roles", roles);
+                //paramObj.add("roles", gson.toJsonTree(roles));
                 //从groups数组扩展权限
-                paramObj.add("groups",groups);
-                paramObj.add("power",power);
-                return gson.toJson(paramObj);
+                paramObj.add("groups",gson.toJsonTree(groups));
+                paramObj.add("power",gson.toJsonTree(power));
+                return CaseProcessor.transformSid(paramObj,user);
             } else {
                 return paramElement.isJsonArray()?gson.toJson(paramElement):null;
             }

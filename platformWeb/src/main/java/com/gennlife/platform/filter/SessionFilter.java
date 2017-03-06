@@ -61,7 +61,6 @@ public class SessionFilter implements Filter {
                 if(adminSet.contains(uri) && !AuthorityUtil.isAdmin(user)) {
                     view.viewString(ParamUtils.errorAuthorityParam(), response);
                 }
-
                 filterChain.doFilter(request, response);
             }
         }

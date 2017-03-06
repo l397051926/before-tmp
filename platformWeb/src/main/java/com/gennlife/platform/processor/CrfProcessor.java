@@ -295,7 +295,6 @@ public class CrfProcessor {
         try {
             Power power = user.getPower();
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            JsonArray roles = paramObj.getAsJsonArray("roles");
             String crf_id = paramObj.get("crf_id").getAsString();
             boolean flag = getCRFFlag(power,orgID,crf_id,"has_traceCRF");
             if(flag){//有权限请求
@@ -327,7 +326,7 @@ public class CrfProcessor {
     }
 
 
-    public String uploadFileForImportCRF(MultipartFile file, String crf_id,JsonArray roles,String orgID,User user) {
+    public String uploadFileForImportCRF(MultipartFile file, String crf_id,String orgID,User user) {
         Power power = user.getPower();
         logger.info("crf_id:"+crf_id);
         boolean flag = getCRFFlag(power,orgID,crf_id,"has_addBatchCRF");
@@ -340,7 +339,9 @@ public class CrfProcessor {
                     String path = ConfigurationService.getFileBean().getCRFFileLocation();
                     File f = new File(path + LogUtils.getString_Time()+"-"+fileName);
                     if(!f.exists()){
+                        logger.info("文件路径 "+f.getAbsolutePath());
                         f.createNewFile();
+
                     }
                     FileWriter fileWritter = new FileWriter(f);
                     BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
