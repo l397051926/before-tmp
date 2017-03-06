@@ -1,6 +1,8 @@
 package com.gennlife.platform.util;
 
-import com.squareup.okhttp.*;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -9,26 +11,19 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.params.HttpParams;
-import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.charset.Charset;
 
@@ -42,68 +37,15 @@ public class HttpRequestUtils {
 	 * @return
 	 */
 	public static String httpPost(String url, String jsonParam) {
-		HttpClient httpClient = HttpClients.createDefault();
+		RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(30000).setConnectTimeout(3000).build();
+		return httpPostExecute(url,jsonParam,requestConfig);
 
-		HttpPost method = new HttpPost(url);
-
-		try {
-			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(30000).setConnectTimeout(3000).build();
-			method.setConfig(requestConfig);
-			if (null != jsonParam) {
-				StringEntity entity = new StringEntity(jsonParam,"utf-8");
-				entity.setContentEncoding("UTF-8");
-				entity.setContentType("application/json");
-
-				method.setEntity(entity);
-			}
-			HttpResponse result = httpClient.execute(method);
-			url = URLDecoder.decode(url, "UTF-8");
-			if (result.getStatusLine().getStatusCode() == 200) {
-				String str = "";
-				try {
-					str = EntityUtils.toString(result.getEntity());
-					return str;
-				} catch (Exception e) {
-					logger.error("" + url, e);
-				}
-			}
-		} catch (IOException e) {
-			logger.error("" + url, e);
-		}
-		return null;
 	}
 
 
 	public static String httpPostPubMed(String url, String jsonParam) {
-		HttpClient httpClient = HttpClients.createDefault();
-
-		HttpPost method = new HttpPost(url);
-
-		try {
-			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(60000).setConnectTimeout(10000).build();
-			method.setConfig(requestConfig);
-			if (null != jsonParam) {
-				StringEntity entity = new StringEntity(jsonParam,"utf-8");
-				entity.setContentEncoding("UTF-8");
-				entity.setContentType("application/json");
-
-				method.setEntity(entity);
-			}
-			HttpResponse result = httpClient.execute(method);
-			url = URLDecoder.decode(url, "UTF-8");
-			if (result.getStatusLine().getStatusCode() == 200) {
-				String str = "";
-				try {
-					str = EntityUtils.toString(result.getEntity());
-					return str;
-				} catch (Exception e) {
-					logger.error("" + url, e);
-				}
-			}
-		} catch (IOException e) {
-			logger.error("" + url, e);
-		}
-		return null;
+		RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(60000).setConnectTimeout(10000).build();
+		return httpPostExecute(url,jsonParam,requestConfig);
 	}
 	/**
 	 * post
@@ -112,13 +54,16 @@ public class HttpRequestUtils {
 	 * @return
 	 */
 	public static String httpPostForSampleImport(String url, String jsonParam) {
+		RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(30000).setConnectTimeout(10000).build();
+		return httpPostExecute(url,jsonParam,requestConfig);
+	}
+	public static String httpPostExecute(String url, String jsonParam,RequestConfig requestConfig) {
 		HttpClient httpClient = HttpClients.createDefault();
 
 		HttpPost method = new HttpPost(url);
 
 		try {
-			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(30000).setConnectTimeout(10000).build();
-			method.setConfig(requestConfig);
+			if(requestConfig!=null)method.setConfig(requestConfig);
 			if (null != jsonParam) {
 				StringEntity entity = new StringEntity(jsonParam,"utf-8");
 				entity.setContentEncoding("UTF-8");
@@ -134,8 +79,11 @@ public class HttpRequestUtils {
 					str = EntityUtils.toString(result.getEntity());
 					return str;
 				} catch (Exception e) {
-					logger.error("" + url, e);
+					logger.error("" + url+" param "+jsonParam, e);
 				}
+			}else
+			{
+				logger.error("error code "+result.getStatusLine().getStatusCode()+" url " + url+" param "+jsonParam);
 			}
 		} catch (IOException e) {
 			logger.error("" + url, e);
@@ -149,35 +97,7 @@ public class HttpRequestUtils {
 	 * @return
 	 */
 	public static String httpPostForRRun(String url, String jsonParam) {
-		HttpClient httpClient = HttpClients.createDefault();
-
-		HttpPost method = new HttpPost(url);
-
-		try {
-			//RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(6000).setConnectTimeout(3000).build();
-			//method.setConfig(requestConfig);
-			if (null != jsonParam) {
-				StringEntity entity = new StringEntity(jsonParam,"utf-8");
-				entity.setContentEncoding("UTF-8");
-				entity.setContentType("application/json");
-
-				method.setEntity(entity);
-			}
-			HttpResponse result = httpClient.execute(method);
-			url = URLDecoder.decode(url, "UTF-8");
-			if (result.getStatusLine().getStatusCode() == 200) {
-				String str = "";
-				try {
-					str = EntityUtils.toString(result.getEntity());
-					return str;
-				} catch (Exception e) {
-					logger.error("" + url, e);
-				}
-			}
-		} catch (IOException e) {
-			logger.error("" + url, e);
-		}
-		return null;
+		return httpPostExecute(url,jsonParam,null);
 	}
 
 
@@ -196,6 +116,9 @@ public class HttpRequestUtils {
 				} catch (Exception e) {
 					logger.error("" + url, e);
 				}
+			}else
+			{
+				logger.error("error code "+result.getStatusLine().getStatusCode()+" url" + url);
 			}
 		} catch (IOException e) {
 			logger.error("" + url, e);
@@ -218,29 +141,6 @@ public class HttpRequestUtils {
 			logger.error("" + url, e);
 			return ParamUtils.errorParam("出现异常");
 		}
-	}
-
-	public static String httpPost(String url) {
-		HttpClient httpClient = HttpClients.createDefault();
-		HttpPost method = new HttpPost(url);
-		try {
-			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(3000).setConnectTimeout(3000).build();
-			method.setConfig(requestConfig);
-			HttpResponse result = httpClient.execute(method);
-			url = URLDecoder.decode(url, "UTF-8");
-			if (result.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-				String str = null;
-				try {
-					str = EntityUtils.toString(result.getEntity());
-					return str;
-				} catch (Exception e) {
-					logger.error("" + url, e);
-				}
-			}
-		} catch (IOException e) {
-			logger.error("" + url, e);
-		}
-		return null;
 	}
 
 	public static void main(String[] args){
