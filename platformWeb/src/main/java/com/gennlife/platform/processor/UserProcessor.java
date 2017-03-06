@@ -12,10 +12,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by chensong on 2015/12/4.
@@ -190,7 +187,7 @@ public class UserProcessor {
             Long start6 = System.currentTimeMillis();
             //System.out.println("设置组成员="+(start6-start5)+"ms");
             user.setGroups(list);
-            user.setRoles(null);
+            user.setRoles(new ArrayList<Role>(0));
         }catch (Exception e){
             logger.error("",e);
         }
