@@ -27,10 +27,7 @@ public class FilesUtils {
     }
 
     public static String readFile(String fileName) throws IOException {
-        String filename=FilesUtils.class.getClassLoader().getResource(fileName).getFile();
-        System.out.println(filename);
-        //InputStream inputStream5 =  FilesUtils.class.getResourceAsStream(fileName);
-        InputStream inputStream5=new FileInputStream(filename);
+        InputStream inputStream5 =  FilesUtils.class.getResourceAsStream(fileName);
         String data = FilesUtils.readString(inputStream5, "utf-8");
         inputStream5.close();
         return data;

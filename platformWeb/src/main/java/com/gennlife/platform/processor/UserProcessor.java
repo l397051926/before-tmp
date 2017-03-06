@@ -223,7 +223,7 @@ public class UserProcessor {
         }
 
     }
-
+    @Deprecated
     public static void addDepartmentRole(Role role, Map<String, List<String>> departNames) {
 
         // 处理role下的 resources 调用 addDepartmentPower
@@ -305,7 +305,7 @@ public class UserProcessor {
         }
         return mapDep;
     }
-
+    @Deprecated
     public static void departmentMapping(User user, Map<String, List<String>> mapDep) {
 
         List<Role> roles = user.getRoles();
@@ -357,19 +357,15 @@ public class UserProcessor {
                 role.setResources(reList);
             }
         }
-        //////////// 处理roles和power ////////////////
-        Map<String, List<String>> mapDep = getDepartmentFromMysql(AllDao.getInstance().getSyRoleDao().getSlabNames());
-        // departmentMapping(user, mapDep);
+        try {
+            Map<String, List<String>> mapDep = getDepartmentFromMysql(AllDao.getInstance().getSyRoleDao().getSlabNames());
+            power.setHas_search(addDepartmentPower(power.getHas_search(), mapDep));
+            power.setHas_searchExport(addDepartmentPower(power.getHas_searchExport(), mapDep));
+        }
+        catch (Exception e)
+        {
 
-//        power.setHas_addBatchCRF(addDepartmentPower(power.getHas_addBatchCRF(), mapDep));
-        power.setHas_search(addDepartmentPower(power.getHas_search(), mapDep));
-        power.setHas_searchExport(addDepartmentPower(power.getHas_searchExport(), mapDep));
-//        power.setHas_traceCRF(addDepartmentPower(power.getHas_traceCRF(), mapDep));
-//        power.setHas_addCRF(addDepartmentPower(power.getHas_addCRF(), mapDep));
-//        power.setHas_editCRF(addDepartmentPower(power.getHas_editCRF(), mapDep));
-//        power.setHas_deleteCRF(addDepartmentPower(power.getHas_deleteCRF(), mapDep));
-//        power.setHas_browseDetail(addDepartmentPower(power.getHas_browseDetail(), mapDep));
-        /////////////////////////////////////////////
+        }
         return power;
     }
 
