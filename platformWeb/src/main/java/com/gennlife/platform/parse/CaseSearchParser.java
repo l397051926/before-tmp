@@ -4,7 +4,6 @@ import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.JsonUtils;
 import com.gennlife.platform.util.ParamUtils;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.slf4j.Logger;
