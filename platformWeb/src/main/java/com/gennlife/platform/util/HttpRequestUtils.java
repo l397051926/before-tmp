@@ -83,7 +83,7 @@ public class HttpRequestUtils {
 				}
 			}else
 			{
-				logger.error("error code "+result.getStatusLine().getStatusCode()+" url" + url+" param "+jsonParam);
+				logger.error("error code "+result.getStatusLine().getStatusCode()+" url " + url+" param "+jsonParam);
 			}
 		} catch (IOException e) {
 			logger.error("" + url, e);
