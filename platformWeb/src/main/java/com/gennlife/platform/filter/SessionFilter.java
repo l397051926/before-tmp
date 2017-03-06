@@ -2,6 +2,7 @@ package com.gennlife.platform.filter;
 
 
 import com.gennlife.platform.authority.AuthorityUtil;
+import com.gennlife.platform.model.Role;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.UserProcessor;
 import com.gennlife.platform.util.ParamUtils;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -57,11 +59,15 @@ public class SessionFilter implements Filter {
                         view.viewString(ParamUtils.errorSessionLosParam(), response);
                     }
                 }
+                //详情页，搜索 不要roles,
+                if(uri.startsWith("/detail/")|| uri.startsWith("/case/"))
+                {
+                    user.setRoles(new ArrayList<Role>(0));
+                }
                 servletRequest.setAttribute("currentUser", user);
                 if(adminSet.contains(uri) && !AuthorityUtil.isAdmin(user)) {
                     view.viewString(ParamUtils.errorAuthorityParam(), response);
                 }
-
                 filterChain.doFilter(request, response);
             }
         }

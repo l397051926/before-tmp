@@ -187,7 +187,6 @@ public class UserProcessor {
             Long start6 = System.currentTimeMillis();
             //System.out.println("设置组成员="+(start6-start5)+"ms");
             user.setGroups(list);
-            user.setRoles(new ArrayList<Role>(0));
         }catch (Exception e){
             logger.error("",e);
         }

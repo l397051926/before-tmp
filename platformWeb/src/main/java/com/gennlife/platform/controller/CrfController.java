@@ -13,6 +13,7 @@ import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -285,15 +286,17 @@ public class CrfController {
 
 
     @RequestMapping(value="/UploadFileForImportCRF",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
-    public @ResponseBody String UploadFileForImportCRF(@RequestParam(value="file") CommonsMultipartFile file,HttpServletRequest paramRe){
+    public @ResponseBody String UploadFileForImportCRF(@RequestParam(value="file") CommonsMultipartFile file,HttpServletRequest paramRe,@RequestParam(value="crf_id") String crf_id){
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            String crf_id = paramObj.get("crf_id").getAsString();
-            JsonArray roles = paramObj.getAsJsonArray("roles");
+            //String crf_id = paramObj.get("crf_id").getAsString();
+            if(StringUtils.isEmpty(crf_id))
+            {
+                return ParamUtils.errorParam("crf_id为空");
+            }
             User user = (User)paramRe.getAttribute("currentUser");
+            JsonArray roles=gson.toJsonTree(user.getRoles()).getAsJsonArray();
             if(file.isEmpty()){
                 return ParamUtils.errorParam("文件为空");
             }

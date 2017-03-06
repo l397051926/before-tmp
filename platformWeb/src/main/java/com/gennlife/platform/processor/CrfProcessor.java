@@ -295,7 +295,6 @@ public class CrfProcessor {
         try {
             Power power = user.getPower();
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            JsonArray roles = paramObj.getAsJsonArray("roles");
             String crf_id = paramObj.get("crf_id").getAsString();
             boolean flag = getCRFFlag(power,orgID,crf_id,"has_traceCRF");
             if(flag){//有权限请求
