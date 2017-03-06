@@ -280,6 +280,10 @@ public class CaseProcessor {
      */
     public static String transformSid(String param,User user){
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+        return transformSid(paramObj,user);
+
+    }
+    public static String transformSid(JsonObject paramObj,User user){
         if(paramObj.has("sid") && paramObj.has("power")){
             String sid = paramObj.get("sid").getAsString();
             paramObj.remove("groups");//选择科室后，工号权限小时
@@ -317,12 +321,10 @@ public class CaseProcessor {
             paramObj.add("groups",groups);
             return gson.toJson(paramObj);
         }else{
-            return param;
+            return gson.toJson(paramObj);
         }
 
-
     }
-
 
     /**
      * 导出接口，sid 转化
