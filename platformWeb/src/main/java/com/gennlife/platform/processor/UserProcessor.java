@@ -190,7 +190,7 @@ public class UserProcessor {
             //System.out.println("设置组成员="+(start6-start5)+"ms");
             //
             user.setGroups(list);
-
+            user.setRoles(null);
         }catch (Exception e){
             logger.error("",e);
             e.printStackTrace();
