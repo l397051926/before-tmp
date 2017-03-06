@@ -307,23 +307,26 @@ public class CaseProcessor {
             logger.info("通过sid转化后，搜索请求参数="+gson.toJson(paramObj));
             return gson.toJson(paramObj);
         }else if(paramObj.has("power")){//角色,完成小组扩展
-            JsonArray groups = paramObj.getAsJsonArray("groups");
-            //构建虚拟小组，确保工号权限生效
-            Group group = new Group();
-            group.setGroupDesc("无小组信息时，补充个人工号");
-            group.setHas_search("有");
-            group.setHas_searchExport("有");
-            List<User> userList = new LinkedList<>();
-            userList.add(user);
-            group.setMembers(userList);
-            JsonObject groupObj = (JsonObject) jsonParser.parse(gson.toJson(group));
-            groups.add(groupObj);
-            paramObj.add("groups",groups);
+            buildGroup(paramObj, user);
             return gson.toJson(paramObj);
         }else{
             return gson.toJson(paramObj);
         }
 
+    }
+
+    private static void buildGroup(JsonObject paramObj, User user) {
+        JsonArray groups = paramObj.getAsJsonArray("groups");
+        //构建虚拟小组，确保工号权限生效
+        Group group = new Group();
+        group.setGroupDesc("无小组信息时，补充个人工号");
+        group.setHas_search("有");
+        group.setHas_searchExport("有");
+        List<User> userList = new LinkedList<>();
+        userList.add(user);
+        group.setMembers(userList);
+        groups.add(gson.toJson(group));
+        paramObj.add("groups",groups);
     }
 
     /**
@@ -362,18 +365,7 @@ public class CaseProcessor {
             logger.info("通过sid转化后，搜索请求参数="+gson.toJson(paramObj));
             return gson.toJson(paramObj);
         }else if(paramObj.has("power")){//角色,完成小组扩展
-            JsonArray groups = paramObj.getAsJsonArray("groups");
-            //构建虚拟小组，确保工号权限生效
-            Group group = new Group();
-            group.setGroupDesc("无小组信息时，补充个人工号");
-            group.setHas_search("有");
-            group.setHas_searchExport("有");
-            List<User> userList = new LinkedList<>();
-            userList.add(user);
-            group.setMembers(userList);
-            JsonObject groupObj = (JsonObject) jsonParser.parse(gson.toJson(group));
-            groups.add(groupObj);
-            paramObj.add("groups",groups);
+            buildGroup(paramObj, user);
             return gson.toJson(paramObj);
         }else{
             return param;
