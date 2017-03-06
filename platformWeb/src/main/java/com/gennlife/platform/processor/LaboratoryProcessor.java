@@ -271,6 +271,7 @@ public class LaboratoryProcessor {
             labResource.setStype("病例数据");
             labResource.setSname(lab.getLab_name()+"资源");
             labResource.setSlab_name(lab.getLab_name());
+            logger.info("update "+gson.toJson(labResource));
             AllDao.getInstance().getSyResourceDao().updateResource(labResource);
 
             List<String> userIds = AllDao.getInstance().getSyUserDao().getUserIDByLabID(labID,orgID);
