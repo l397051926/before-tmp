@@ -35,7 +35,8 @@ public class CaseProcessor {
         String searchKey = null;
         String keywords = null;
         String status = null;
-        String crf_id = "kidney_cancer";//默认是肾癌
+//        String crf_id = "kidney_cancer";//默认是肾癌
+        String crf_id = "Angiocardiopathy";
         Set<String> set = new HashSet<String>();
         ResultBean resultBean = new ResultBean();
         try {
