@@ -5,7 +5,7 @@
             http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
 
-<!-- 数据源定义-->  
+<!-- 数据源定义 -->
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
         <property name="driverClassName">

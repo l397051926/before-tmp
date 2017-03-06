@@ -14,9 +14,9 @@
 
     <bean id="com.gennlife.platform.configuration.URLBean" class="com.gennlife.platform.configuration.URLBean">
         <!-- 搜索服务 -->
-        <property name="caseSearchURL" value="http://192.168.0.95:8989/search-server/search"/>
-        <property name="caseSuggestURL" value="http://192.168.0.95:8989/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
-        <property name="caseGeneErrorURL" value="http://192.168.0.95:8989/search-server/verify"/>
+        <property name="caseSearchURL" value="http://192.168.0.110:8989/search-server/search"/>
+        <property name="caseSuggestURL" value="http://192.168.0.110:8989/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
+        <property name="caseGeneErrorURL" value="http://192.168.0.110:8989/search-server/verify"/>
         <!-- 非隐私信息接口-->
         <property name="casePatientBatchDataConsultingRoom" value="http://192.168.0.95:8989/FileService/PatientBatchData/ConsultingRoom"/>
         <!--FS 详情页 -->
