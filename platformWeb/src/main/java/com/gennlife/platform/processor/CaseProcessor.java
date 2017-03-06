@@ -12,6 +12,7 @@ import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -180,6 +181,7 @@ public class CaseProcessor {
                 indexName = paramObj.get("indexName").getAsString();
             }
             keywords = paramObj.get("keywords").getAsString();
+            if(StringUtils.isEmpty(keywords)) return ParamUtils.errorParam("查询条件为空");
             if (paramObj.get("size") != null) {
                 size = paramObj.get("size").getAsString();
             }
@@ -213,7 +215,6 @@ public class CaseProcessor {
                 set.add(key);
             }
         } catch (Exception e) {
-            e.printStackTrace();
             logger.error("", e);
             return ParamUtils.errorParam("请求出错");
 
@@ -396,6 +397,10 @@ public class CaseProcessor {
         CaseSearchParser caseSearchParser = new CaseSearchParser(param);
         try {
             String searchResultStr = caseSearchParser.parser();
+            if(StringUtils.isEmpty(searchResultStr)){
+                logger.error("search empty");
+                return ParamUtils.errorParam("搜索无结果");
+            }
             JsonObject searchResult = (JsonObject) jsonParser.parse(searchResultStr);
             JsonObject result = new JsonObject();
             result.addProperty("code",1);

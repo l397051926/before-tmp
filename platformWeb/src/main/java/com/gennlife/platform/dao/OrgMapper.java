@@ -121,4 +121,12 @@ public interface OrgMapper {
      * @return
      */
     List<String> getProfessionList(@Param("orgID")String orgID);
-}
+
+    /**
+    * 获取科室的上级信息
+    * */
+    Lab getLabPInfo(@Param("labID") String labID,@Param("orgID") String orgID);
+
+    public List<String> getSubLabs(@Param("labID") String labID,@Param("orgID") String orgID);
+    int updateSubLabPid(@Param("labIDs") String[] labIDs,@Param("orgID") String orgID,@Param("pid") String pid);
+    }
