@@ -357,7 +357,6 @@ public class UserProcessor {
                 role.setResources(reList);
             }
         }
-
         user.setFrontEndPower((Power)gson.fromJson(gson.toJsonTree(power).getAsJsonObject(), new TypeToken<Power>(){}.getType()));
         try {
             Map<String, List<String>> mapDep = getDepartmentFromMysql(AllDao.getInstance().getSyRoleDao().getSlabNames());
