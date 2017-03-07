@@ -9,7 +9,7 @@ public class ProUser implements Serializable {
     private String uid;
     private String projectID;
     private Integer role;
-
+    private int puisdelete=0;
     public String getUid() {
         return uid;
     }
@@ -32,5 +32,13 @@ public class ProUser implements Serializable {
 
     public void setProjectID(String projectID) {
         this.projectID = projectID;
+    }
+
+    public int getPuisdelete() {
+        return puisdelete;
+    }
+
+    public void setPuisdelete(int puisdelete) {
+        this.puisdelete = puisdelete;
     }
 }

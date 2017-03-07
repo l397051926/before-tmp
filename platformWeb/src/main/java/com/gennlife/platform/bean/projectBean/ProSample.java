@@ -18,6 +18,7 @@ public class ProSample {
     private int total;
     private String items;
     private String sampleDesc="";
+    private int sampledelete=0;
 
     public String getSampleDesc() {
         return sampleDesc;
@@ -113,5 +114,13 @@ public class ProSample {
 
     public void setOpTime(Date opTime) {
         this.opTime = opTime;
+    }
+
+    public int getSampledelete() {
+        return sampledelete;
+    }
+
+    public void setSampledelete(int sampledelete) {
+        this.sampledelete = sampledelete;
     }
 }

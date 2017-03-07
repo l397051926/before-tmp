@@ -55,6 +55,9 @@
             <if test="manager != null" >
                 manager,
             </if>
+            <if test="isdelete != null" >
+                isdelete
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="projectID != null" >
@@ -109,15 +112,18 @@
             <if test="manager != null" >
                 #{manager,jdbcType=VARCHAR},
             </if>
+            <if test="isdelete != null" >
+                #{isdelete,jdbcType=INTEGER}
+            </if>
         </trim>
     </insert>
 
 
     <insert id="insertProUserList" parameterType="java.util.List" >
-        insert into userInfoDB.pro_user (uid,projectID,role)
+        insert into userInfoDB.pro_user (uid,projectID,role,puisdelete)
         values
         <foreach collection="list" item="item" index="index" separator="," >
-            (#{item.uid},#{item.projectID},#{item.role})
+            (#{item.uid},#{item.projectID},#{item.role},#{item.puisdelete})
         </foreach>
     </insert>
 
@@ -224,6 +230,7 @@
         <result column="cTime" property="cTime" jdbcType="VARCHAR"/>
         <result column="taskID" property="taskID" jdbcType="VARCHAR"/>
         <result column="taskName" property="taskName" jdbcType="VARCHAR"/>
+        <result column="plandelete" property="plandelete" jdbcType="INTEGER"/>
     </resultMap>
     <select id="getProjectPlan" resultType="com.gennlife.platform.bean.projectBean.ProjectPlan" parameterType="map">
         select
@@ -298,6 +305,10 @@
             <if test="taskName != null" >
                 taskName,
             </if>
+            <if test="plandelete != null" >
+                plandelete
+            </if>
+
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="projectID != null" >
@@ -323,6 +334,9 @@
             </if>
             <if test="taskName != null" >
                 #{taskName,jdbcType=VARCHAR},
+            </if>
+            <if test="plandelete != null" >
+                #{plandelete,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
@@ -351,6 +365,7 @@
         <result column="total" property="total" jdbcType="INTEGER"/>
         <result column="items" property="items" jdbcType="VARCHAR"/>
         <result column="sampleDesc" property="sampleDesc" jdbcType="VARCHAR"/>
+        <result column="sampledelete" property="sampledelete" jdbcType="INTEGER"/>
     </resultMap>
     <insert id="insertProSample" parameterType="com.gennlife.platform.bean.projectBean.ProSample" >
         insert into userInfoDB.pro_sample
@@ -385,6 +400,10 @@
             <if test="sampleDesc != null">
                 sampleDesc
             </if>
+            <if test="sampledelete != null">
+                sampledelete
+            </if>
+
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="projectID != null" >
@@ -420,6 +439,10 @@
             <if test="sampleDesc != null" >
                 #{sampleDesc,jdbcType=VARCHAR},
             </if>
+            <if test="sampledelete != null" >
+                #{sampledelete,jdbcType=INTEGER}
+            </if>
+
         </trim>
     </insert>
 

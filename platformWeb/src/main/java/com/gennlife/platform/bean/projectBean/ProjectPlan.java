@@ -19,6 +19,7 @@ public class ProjectPlan {
     private String modifier;
     private String taskID;
     private String taskName;
+    private int plandelete=0;
 
     public String getCreatorName() {
         return creatorName;
@@ -122,5 +123,13 @@ public class ProjectPlan {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getPlandelete() {
+        return plandelete;
+    }
+
+    public void setPlandelete(int plandelete) {
+        this.plandelete = plandelete;
     }
 }
