@@ -357,7 +357,9 @@ public class UserProcessor {
                 role.setResources(reList);
             }
         }
-        user.setFrontEndPower((Power)gson.fromJson(gson.toJsonTree(power).getAsJsonObject(), new TypeToken<Power>(){}.getType()));
+        //user.setFrontEndPower((Power)gson.fromJson(gson.toJsonTree(power).getAsJsonObject(), new TypeToken<Power>(){}.getType()));
+        //临时处理
+        user.setPower(power);
         try {
             Map<String, List<String>> mapDep = getDepartmentFromMysql(AllDao.getInstance().getSyRoleDao().getSlabNames());
             power.setHas_search(addDepartmentPower(power.getHas_search(), mapDep));
