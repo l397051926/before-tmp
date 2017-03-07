@@ -1,6 +1,7 @@
 package com.gennlife.platform.processor;
 
 import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.model.Group;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.parse.CaseSearchParser;
@@ -9,6 +10,7 @@ import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
+import com.gennlife.platform.util.SpringContextUtil;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,8 +37,7 @@ public class CaseProcessor {
         String searchKey = null;
         String keywords = null;
         String status = null;
-//        String crf_id = "kidney_cancer";//默认是肾癌
-        String crf_id = "Angiocardiopathy";
+        String crf_id = ((SystemDefault)SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
         Set<String> set = new HashSet<String>();
         ResultBean resultBean = new ResultBean();
         try {
@@ -318,6 +319,7 @@ public class CaseProcessor {
 
     private static void buildGroup(JsonObject paramObj, User user) {
         JsonArray groups = paramObj.getAsJsonArray("groups");
+        if(groups==null) groups=new JsonArray();
         //构建虚拟小组，确保工号权限生效
         Group group = new Group();
         group.setGroupDesc("无小组信息时，补充个人工号");
