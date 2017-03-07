@@ -1,4 +1,8 @@
 #coding=utf8
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
 import xlrd
 import json
 from collections import OrderedDict
@@ -17,7 +21,7 @@ def sortItem(itemArray,allSortIndexName):
     return newArray
 
 def process():
-    data = xlrd.open_workbook('/Users/luoxupan/Downloads/病人维度临床数据字段配置_V0.2.1_beta.xls')
+    data = xlrd.open_workbook('/Users/luoxupan/Downloads/病人维度临床数据字段配置_V2.1.58_4.xls')
     allItemList = OrderedDict()
     allItemListCopy = OrderedDict()
     sheet = data.sheets()[0]
@@ -181,9 +185,15 @@ def process():
     lung = OrderedDict()
     # 肾癌
     kidney = OrderedDict()
-    mergeResult['liver_cancer'] = liver
-    mergeResult['lung_cancer'] = lung
+    # 心血管
+    angiocardiopathy = OrderedDict()
+
+    # mergeResult['liver_cancer'] = liver
+    # mergeResult['lung_cancer'] = lung
     mergeResult['kidney_cancer'] = kidney
+    # ///////////////////////////////////////////////////////////////////////////////////////////////////
+    # mergeResult["Angiocardiopathy"] = angiocardiopathy
+    # ///////////////////////////////////////////////////////////////////////////////////////////////////
     all_liver = OrderedDict()
     default_liver = OrderedDict()
     advancedSearch_liver = OrderedDict()
@@ -202,17 +212,29 @@ def process():
     import_kidney = OrderedDict()
     compare_kidney = OrderedDict()
 
+    # ////
+    all_angiocardiopathy = OrderedDict()
+    default_angiocardiopathy = OrderedDict()
+    advancedSearch_angiocardiopathy = OrderedDict()
+    import_angiocardiopathy = OrderedDict()
+    compare_angiocardiopathy = OrderedDict()
+
     for key in allGroup:
         if key == '患者基本信息':
             all_liver[key] = allGroup[key]
             all_lung[key] = allGroup[key]
             all_kidney[key] = allGroup[key]
+            # ////
+            all_angiocardiopathy[key] = allGroup[key]
+
         if key.startswith('肝癌'):
             all_liver[key] = allGroup[key]
         elif key.startswith('肺癌'):
             all_lung[key] = allGroup[key]
         elif not key.startswith('就诊') or not key.startswith('门诊') or not key.startswith('临床相关基因变异'):
             all_kidney[key] = allGroup[key]
+            # ////
+            all_angiocardiopathy[key] = allGroup[key]
 
 
     for key in allGroup:
@@ -220,9 +242,12 @@ def process():
             all_liver[key] = allGroup[key]
             all_lung[key] = allGroup[key]
             all_kidney[key] = allGroup[key]
+            all_angiocardiopathy[key] = allGroup[key]
     liver['all'] = all_liver
     lung['all'] = all_lung
     kidney['all'] = all_kidney
+    # ////
+    angiocardiopathy['all'] = all_angiocardiopathy
 
 
 
@@ -234,6 +259,8 @@ def process():
             default_liver[key] = defaultGroup[key]
             default_lung[key] = defaultGroup[key]
             default_kidney[key] = defaultGroup[key]
+            # ////
+            default_angiocardiopathy[key] = defaultGroup[key]
 
         if key.startswith('肝癌'):
             default_liver[key] = defaultGroup[key]
@@ -241,16 +268,22 @@ def process():
             default_lung[key] = defaultGroup[key]
         elif not key.startswith('就诊') or not key.startswith('门诊') or not key.startswith('临床相关基因变异'):
             default_kidney[key] = defaultGroup[key]
+            # ////
+            default_angiocardiopathy[key] = defaultGroup[key]
 
     for key in defaultGroup:
         if key.startswith('就诊') or key.startswith('门诊') or key.startswith('临床相关基因变异'):
             default_liver[key] = defaultGroup[key]
             default_lung[key] = defaultGroup[key]
             default_kidney[key] = defaultGroup[key]
+            # ////
+            default_angiocardiopathy[key] = defaultGroup[key]
 
     liver['default'] = default_liver
     lung['default'] = default_lung
     kidney['default'] = default_kidney
+    # ////
+    angiocardiopathy['default'] = default_angiocardiopathy
 
 
     for key in advancedGroup:
@@ -258,12 +291,17 @@ def process():
             advancedSearch_liver[key] = advancedGroup[key]
             advancedSearch_lung[key] = advancedGroup[key]
             advancedSearch_kidney[key] = advancedGroup[key]
+            # ////
+            advancedSearch_angiocardiopathy[key] = advancedGroup[key]
         if key.startswith('肝癌'):
             advancedSearch_liver[key] = advancedGroup[key]
         elif key.startswith('肺癌'):
             advancedSearch_lung[key] = advancedGroup[key]
         elif not key.startswith('就诊') or not key.startswith('门诊') or not key.startswith('临床相关基因变异'):
             advancedSearch_kidney[key] = advancedGroup[key]
+            # ////
+            advancedSearch_angiocardiopathy[key] = advancedGroup[key]
+
 
 
     for key in advancedGroup:
@@ -271,52 +309,73 @@ def process():
             advancedSearch_liver[key] = advancedGroup[key]
             advancedSearch_lung[key] = advancedGroup[key]
             advancedSearch_kidney[key] = advancedGroup[key]
+            # ////
+            advancedSearch_angiocardiopathy[key] = advancedGroup[key]
     liver['advancedSearch'] = advancedSearch_liver
     lung['advancedSearch'] = advancedSearch_lung
     kidney['advancedSearch'] = advancedSearch_kidney
+    # ////
+    angiocardiopathy['advancedSearch'] = advancedSearch_angiocardiopathy
 
     for key in importedGroup:
         if key == '患者基本信息':
             import_liver[key] = importedGroup[key]
             import_lung[key] = importedGroup[key]
             import_kidney[key] = importedGroup[key]
+            # ////
+            import_angiocardiopathy[key] = importedGroup[key]
         if key.startswith('肝癌'):
             import_liver[key] = importedGroup[key]
         elif key.startswith('肺癌'):
             import_lung[key] = importedGroup[key]
         elif not key.startswith('就诊') or not key.startswith('门诊') or not key.startswith('临床相关基因变异'):
             import_kidney[key] = importedGroup[key]
+            # ////
+            import_angiocardiopathy[key] = importedGroup[key]
 
     for key in importedGroup:
         if key.startswith('就诊') or key.startswith('门诊') or key.startswith('临床相关基因变异'):
             import_liver[key] = importedGroup[key]
             import_lung[key] = importedGroup[key]
             import_kidney[key] = importedGroup[key]
+            # ////
+            import_angiocardiopathy[key] = importedGroup[key]
     liver['import'] = import_liver
     lung['import'] = import_lung
     kidney['import'] = import_kidney
+    # ////
+    angiocardiopathy['import'] = import_angiocardiopathy
 
     for key in compare:
         if key == '患者基本信息':
             compare_liver[key] = compare[key]
             compare_lung[key] = compare[key]
             compare_kidney[key] = compare[key]
+            # ////
+            compare_angiocardiopathy[key] = compare[key]
         if key.startswith('肝癌'):
             compare_liver[key] = compare[key]
         elif key.startswith('肺癌'):
             compare_lung[key] = compare[key]
         elif not key.startswith('就诊') or not key.startswith('门诊') or not key.startswith('临床相关基因变异'):
             compare_kidney[key] = compare[key]
+            # ////
+            compare_angiocardiopathy[key] = compare[key]
+
 
     for key in compare:
         if key.startswith('就诊') or key.startswith('门诊') or key.startswith('临床相关基因变异'):
             compare_liver[key] = compare[key]
             compare_lung[key] = compare[key]
             compare_kidney[key] = compare[key]
+            # ////
+            compare_angiocardiopathy[key] = compare[key]
 
     liver['compare'] = compare_liver
     lung['compare'] = compare_lung
     kidney['compare'] = compare_kidney
+    # ////
+    angiocardiopathy['compare'] = compare_angiocardiopathy
     output.write(json.dumps(mergeResult,ensure_ascii=False))
 
     # 患者基本信息
