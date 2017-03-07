@@ -328,7 +328,7 @@ public class CaseProcessor {
         List<User> userList = new LinkedList<>();
         userList.add(user);
         group.setMembers(userList);
-        groups.add(gson.toJson(group));
+        groups.add(gson.toJsonTree(group));
         paramObj.add("groups",groups);
     }
 
