@@ -2,6 +2,7 @@ package com.gennlife.platform.controller;
 
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.model.Group;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.model.XRealIp;
 import com.gennlife.platform.processor.UserProcessor;
@@ -11,7 +12,6 @@ import com.gennlife.platform.util.RedisUtil;
 import com.gennlife.platform.util.SpringContextUtil;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
@@ -27,6 +27,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  * Created by chensong on 2015/12/5.
@@ -115,6 +116,8 @@ public class UserController{
             logger.info("get userInfo sessionID = " + sessionID + " uid = " + uid);
             User user = UserProcessor.getUserByUidFromRedis(uid);
 
+            user.setPower(null);
+            user.setGroups(new ArrayList<Group>(0));
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
             resultBean.setData(user);
