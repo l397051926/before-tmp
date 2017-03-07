@@ -299,15 +299,15 @@ public class CaseProcessor {
                     newHas_searchArray.add(has_searchObj);
                 }
             }
-            if(newHas_searchArray.size() == 0){
+            if (newHas_searchArray.size() == 0) {
                 return ParamUtils.errorParam("无搜索权限");
-            }else {
+            } else {
                 power.add("has_search",newHas_searchArray);
             }
             paramObj.add("power",power);
             logger.info("通过sid转化后，搜索请求参数="+gson.toJson(paramObj));
             return gson.toJson(paramObj);
-        }else if(paramObj.has("power")){//角色,完成小组扩展
+        } else if(paramObj.has("power") && !paramObj.getAsJsonArray("groups").isJsonNull()){//角色,完成小组扩展
             JsonArray groups = paramObj.getAsJsonArray("groups");
             //构建虚拟小组，确保工号权限生效
             Group group = new Group();
@@ -321,10 +321,9 @@ public class CaseProcessor {
             groups.add(groupObj);
             paramObj.add("groups",groups);
             return gson.toJson(paramObj);
-        }else{
+        } else {
             return gson.toJson(paramObj);
         }
-
     }
 
     /**
@@ -332,7 +331,7 @@ public class CaseProcessor {
      * @param param
      * @return
      */
-    public static String transformSidForImport(String param,User user){
+    public static String transformSidForImport(String param,User user) {
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
         if(paramObj.has("sid") && paramObj.has("power")){
             String sid = paramObj.get("sid").getAsString();
