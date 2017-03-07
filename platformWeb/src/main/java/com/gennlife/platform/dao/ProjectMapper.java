@@ -238,4 +238,10 @@ public interface ProjectMapper {
      * @return
      */
     public int autoDeleteSetCountOne(@Param("projectID")String projectID);
+
+    int deleteSampleByProjectID(@Param("projectID") String projectID);
+
+    int deletePlanByProjectID(@Param("projectID") String projectID);
+
+    int deleteMemberByProjectID(@Param("projectID") String projectID);
 }
