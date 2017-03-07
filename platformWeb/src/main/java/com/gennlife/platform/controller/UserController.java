@@ -11,7 +11,6 @@ import com.gennlife.platform.util.RedisUtil;
 import com.gennlife.platform.util.SpringContextUtil;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
@@ -114,14 +113,10 @@ public class UserController{
             String uid=RedisUtil.getValue(sessionID);
             logger.info("get userInfo sessionID = " + sessionID + " uid = " + uid);
             User user = UserProcessor.getUserByUidFromRedis(uid);
-            JsonObject userJson =  gson.toJsonTree(user).getAsJsonObject();
-            userJson.add("roles", new JsonArray());
-            userJson.add("power", new JsonArray());
-
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
-            //  resultBean.setData(user);
-            resultBean.setData(userJson);
+            resultBean.setData(user);
+            //resultBean.setData(userJson);
             resultStr = gson.toJson(resultBean);
         } catch (Exception e) {
             logger.error("getUserInfo 出错：", e);
