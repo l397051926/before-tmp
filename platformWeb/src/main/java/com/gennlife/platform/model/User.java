@@ -22,10 +22,18 @@ public class User {
     private String ctime;
     private String uptime;
     private String unumber;
-    private List<Role> roles;//角色列表
-    private List<Admin> administrators;//管理员角色
+    private List<Role> roles; // 角色列表
+    private List<Admin> administrators; // 管理员角色
     private List<Group> groups;
-    private Power power = new Power();//权限
+    private Power power = new Power(); // 权限
+    private Power frontEndPower = new Power();
+
+    public Power getFrontEndPower() {
+        return frontEndPower;
+    }
+    public void setFrontEndPower(Power power) {
+        this.frontEndPower = power;
+    }
     public String getLab_name() {
         return lab_name;
     }

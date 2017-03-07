@@ -24,27 +24,27 @@ public class UserProcessor {
     private static Gson gson = GsonUtil.getGson();
 
     public User login(String email,String pwd) throws IOException {
-        try{
+        try {
             LogUtils.BussnissLog("用户：" + email + " >>> 进行登陆");
             Map<String,Object> confMap = new HashMap<String,Object>();
             confMap.put("email", email);
             confMap.put("pwd", pwd);
             User user = null;
-            try{
+            try {
                 user = AllDao.getInstance().getSyUserDao().getUser(confMap);
-                System.out.println(user);
-            }catch (Exception e){
+            //  System.out.println(user);
+            } catch (Exception e) {
                 logger.error("", e);
             }
-            if(user == null){
+            if (user == null) {
                 return null;
-            }else{
+            } else {
                 user = getUserByUids(user.getUid());
                 return user;
             }
 
-        }catch (Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             return null;
         }
     }
@@ -146,12 +146,12 @@ public class UserProcessor {
         try {
             Long start = System.currentTimeMillis();
             user = AllDao.getInstance().getSyUserDao().getUserByUid(uid);
-            if(user==null) return null;
+            if (user==null) return null;
             Long start1 = System.currentTimeMillis();
             System.out.println("查user="+(start1-start)+"ms");
             Map<String,Object> confMap = new HashMap<>();
-            confMap.put("orgID",user.getOrgID());
-            confMap.put("uid",user.getUid());
+            confMap.put("orgID", user.getOrgID());
+            confMap.put("uid", user.getUid());
             List<Admin> adminList = AllDao.getInstance().getSyUserDao().getAdmins(confMap);
             user.setAdministrators(adminList);
             List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(confMap);
@@ -328,17 +328,17 @@ public class UserProcessor {
         Map<String,Object> confMap = new HashMap<>();
         confMap.put("orgID",user.getOrgID());
         confMap.put("uid",user.getUid());
-        for(Role role:rolesList){
-            if("1".equals(role.getRole_type())){
+        for (Role role:rolesList) {
+            if ("1".equals(role.getRole_type())){
                 List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResourcesBySid(user.getOrgID(),user.getLabID(),role.getRoleid());
                 List<Resource> reList = new LinkedList<>();
-                for(Resource resource:resourcesList){
+                for (Resource resource:resourcesList) {
                     reList.add(resource);
                     power = addResourceToPower(power,resource);
                     break;//保留一个就行了
                 }
                 role.setResources(reList);
-            }else{
+            } else {
                 confMap.put("roleid",role.getRoleid());
                 List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResources(confMap);
                 List<Resource> reList = new LinkedList<>();
@@ -357,14 +357,14 @@ public class UserProcessor {
                 role.setResources(reList);
             }
         }
+        user.setFrontEndPower((Power)gson.fromJson(gson.toJsonTree(power).getAsJsonObject(), new TypeToken<Power>(){}.getType()));
         try {
             Map<String, List<String>> mapDep = getDepartmentFromMysql(AllDao.getInstance().getSyRoleDao().getSlabNames());
             power.setHas_search(addDepartmentPower(power.getHas_search(), mapDep));
             power.setHas_searchExport(addDepartmentPower(power.getHas_searchExport(), mapDep));
-        }
-        catch (Exception e)
-        {
-
+        } catch (Exception e) {
+            logger.error("科室映射失败：", e);
+            e.printStackTrace();
         }
         return power;
     }
