@@ -114,8 +114,8 @@ public class UserController{
             logger.info("get userInfo sessionID = " + sessionID + " uid = " + uid);
             User user = UserProcessor.getUserByUidFromRedis(uid);
             user.setPower(user.getFrontEndPower());
-            user.setPower(null);
             user.setGroups(null);
+            user.setFrontEndPower(null);
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
             resultBean.setData(user);
