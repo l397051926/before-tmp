@@ -114,14 +114,10 @@ public class UserController{
             String uid=RedisUtil.getValue(sessionID);
             logger.info("get userInfo sessionID = " + sessionID + " uid = " + uid);
             User user = UserProcessor.getUserByUidFromRedis(uid);
-            JsonObject userJson =  gson.toJsonTree(user).getAsJsonObject();
-            userJson.add("roles", new JsonArray());
-            userJson.add("power", new JsonArray());
 
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
-            //  resultBean.setData(user);
-            resultBean.setData(userJson);
+            resultBean.setData(user);
             resultStr = gson.toJson(resultBean);
         } catch (Exception e) {
             logger.error("getUserInfo 出错：", e);
