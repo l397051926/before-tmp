@@ -11,6 +11,7 @@ import com.gennlife.platform.util.RedisUtil;
 import com.gennlife.platform.util.SpringContextUtil;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
@@ -107,22 +108,27 @@ public class UserController{
     public void getUserInfo(HttpServletRequest paramRe, HttpServletResponse response){
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             HttpSession session = paramRe.getSession(true);
             String sessionID = session.getId();
             String uid=RedisUtil.getValue(sessionID);
-            logger.info("get userInfo sessionID="+sessionID +" uid="+uid);
-            User user=UserProcessor.getUserByUidFromRedis(uid);
+            logger.info("get userInfo sessionID = " + sessionID + " uid = " + uid);
+            User user = UserProcessor.getUserByUidFromRedis(uid);
+            JsonObject userJson =  gson.toJsonTree(user).getAsJsonObject();
+            userJson.add("roles", new JsonArray());
+            userJson.add("power", new JsonArray());
+
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
-            resultBean.setData(user);
+            //  resultBean.setData(user);
+            resultBean.setData(userJson);
             resultStr = gson.toJson(resultBean);
-        }catch (Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("getUserInfo 出错：", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("getUserInfo 耗时"+(System.currentTimeMillis()-start) +"ms");
-        view.viewString(resultStr,response);
+        logger.info("getUserInfo 耗时: " + (System.currentTimeMillis()-start) + "ms");
+        view.viewString(resultStr, response);
     }
     @RequestMapping(value="/UpdateInfo",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody String postUpdate(HttpServletRequest paramRe){
