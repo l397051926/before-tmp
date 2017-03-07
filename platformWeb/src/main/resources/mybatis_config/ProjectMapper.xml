@@ -549,7 +549,7 @@
         select
         count(*)
         from userInfoDB.pro_sample
-        <where>pro_sample.sampleName=#{sampleName} and  sampledelete!=1</where>
+        <where>pro_sample.sampleURI=#{sampleURI} and  sampledelete!=1</where>
     </select>
     <update id="updateSetInfo" parameterType="map">
         UPDATE userInfoDB.pro_sample
@@ -729,5 +729,20 @@
         SET setCount = setCount - 1
         WHERE  projectID = #{projectID}
         and isdelete!=1
+    </update>
+    <update id="deleteSampleByProjectID">
+        update pro_sample
+        set sampledelete=1
+        where projectID = #{projectID}
+    </update>
+    <update id="deletePlanByProjectID">
+        update p_plan
+        set plandelete=1
+        where projectID = #{projectID}
+    </update>
+    <update id="deleteMemberByProjectID">
+        update pro_user
+        set puisdelete=1
+        where projectID = #{projectID}
     </update>
 </mapper>

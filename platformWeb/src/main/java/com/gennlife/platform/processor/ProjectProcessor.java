@@ -220,6 +220,9 @@ public class ProjectProcessor {
             String projectID = jsonElement.getAsString();
             confMap.put("projectID",projectID);
             int count = AllDao.getInstance().getProjectDao().deleteProject(confMap);
+            AllDao.getInstance().getProjectDao().deleteSampleByProjectID(projectID);
+            AllDao.getInstance().getProjectDao().deletePlanByProjectID(projectID);
+            AllDao.getInstance().getProjectDao().deleteMemberByProjectID(projectID);
             c = c + count;
             if(count == 1){
                 ProLog proLog = new ProLog();
