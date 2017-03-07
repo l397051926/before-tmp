@@ -12,6 +12,7 @@ import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedWriter;
@@ -350,7 +351,7 @@ public class CrfProcessor {
                     bufferWritter.close();
                     fileWritter.close();
                     String str =  HttpRequestUtils.httpPost(url,f,fileName);
-                    if(str == null){
+                    if(StringUtils.isEmpty(str )){
                         return ParamUtils.errorParam("导入文件失败");
                     }
                     JsonObject filebackObj = (JsonObject) jsonParser.parse(str);

@@ -73,7 +73,7 @@
         <property name="sampleUploadAdaptTagURL" value="http://10.0.0.165:9900/FileService/DataResultExport/UploadAdaptTag"/>
         <property name="sampleImportChecKIURL" value="http://10.0.0.165:9900/FileService/DataResultExport/data_check"></property>
         <!--FS CRF导入文件 -->
-        <property name="fileStoreForCRFImport" value="http://localhost:8080/PatientDetail/UploadCsvFile"></property>
+        <property name="fileStoreForCRFImport" value="http://10.0.0.165:9900/FileService/PatientDetail/UploadCsvFile"></property>
 
         <property name="knowledgeURL" value="http://192.168.1.111:9881/knowledge/graph"/>
         <property name="knowledgeDiseaseSearchGenesURL" value="http://192.168.1.111:9881/knowledge/DiseaseSearchGenes"/>
@@ -103,7 +103,7 @@
         <property name="CRFPatientVisitDetail" value="http://192.168.1.111:9885/auto/PatientVisitDetail"/>
         <property name="CRFPatientAllVisitsDetail" value="http://192.168.1.111:9885/auto/PatientAllVisitsDetail"/>
         <property name="CRFUpLoadDataForCheck" value="http://192.168.1.111:9885/crf/UpLoadDataForCheck"></property>
-        <property name="CRFImportFile" value="http://localhost:8082/auto/CsvAddQueue"></property>
+        <property name="CRFImportFile" value="http://10.0.0.152:9885/auto/CsvAddQueue"></property>
         <property name="CRFImportMap" value="http://192.168.1.111:9885/auto/CsvImport"></property>
         <property name="CRFImportResult" value="http://192.168.1.111:9885/auto/CsvImportResult"></property>
         <property name="CRFIsExistPatient" value="http://192.168.1.111:9885/crf/IsExistPatient"></property>

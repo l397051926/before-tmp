@@ -10,6 +10,6 @@
     <import resource="defaultconf.xml"></import>
     <bean id = "FileLocation" class="com.gennlife.platform.configuration.FileBean">
         <property name="manageFileLocation" value="/home/tomcat_demo2_web/update/"/>
-        <property name="CRFFileLocation" value="/home/tomcat_demo2_web/crf/"/>
+        <property name="CRFFileLocation" value=""/>
     </bean>
 </beans>
