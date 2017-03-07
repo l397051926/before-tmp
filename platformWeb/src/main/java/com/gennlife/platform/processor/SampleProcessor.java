@@ -387,7 +387,7 @@ public class SampleProcessor {
         JsonObject json=new JsonObject();
         json.addProperty("code",0);
         json.addProperty("success",false);
-        json.addProperty("info","no data");
+        json.addProperty("info","no exisit");
         return gson.toJson(json);
     }
 

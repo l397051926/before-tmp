@@ -549,7 +549,7 @@
         select
         count(*)
         from userInfoDB.pro_sample
-        <where>pro_sample.sampleName=#{sampleName} and  sampledelete!=1</where>
+        <where>pro_sample.sampleURI=#{sampleURI} and  sampledelete!=1</where>
     </select>
     <update id="updateSetInfo" parameterType="map">
         UPDATE userInfoDB.pro_sample
