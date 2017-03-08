@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
  * Created by chen-song on 16/6/3.
@@ -299,9 +300,14 @@ public class CrfController {
             }
             User user = (User)paramRe.getAttribute("currentUser");
             resultStr = processor.uploadFileForImportCRF(file,crf_id,user.getOrgID(),user);
-        }catch (Exception e){
+        }
+        catch (Exception e){
             logger.error("上传CRF数据文件",e);
-            resultStr = ParamUtils.errorParam("出现异常");
+            if(e instanceof IOException)
+            {
+                resultStr = ParamUtils.errorParam("出现异常 "+e.getMessage());
+            }
+            else resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("上传CRF数据文件  post 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;

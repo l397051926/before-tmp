@@ -1,9 +1,15 @@
 package com.gennlife.platform.configuration;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+
 /**
  * Created by chen-song on 16/10/1.
  */
 public class FileBean {
+    private static Logger logger= LoggerFactory.getLogger(FileBean.class);
     /**
      * 科室,人员管理文件导入缓存位置
      */
@@ -20,6 +26,7 @@ public class FileBean {
 
     public void setManageFileLocation(String manageFileLocation) {
         this.manageFileLocation = manageFileLocation;
+        mkdir(manageFileLocation);
     }
 
     public String getCRFFileLocation() {
@@ -28,5 +35,21 @@ public class FileBean {
 
     public void setCRFFileLocation(String CRFFileLocation) {
         this.CRFFileLocation = CRFFileLocation;
+        mkdir(CRFFileLocation);
+    }
+    private static void mkdir(String path)
+    {
+        File dir= new File(path);
+        if(dir.isDirectory())
+        {
+            if(!dir.exists())
+            {
+                if(dir.mkdirs())
+                {
+                    logger.info("创建目录"+path+"成功");
+                }
+                else logger.error("创建目录"+path+"失败");
+            }
+        }
     }
 }
