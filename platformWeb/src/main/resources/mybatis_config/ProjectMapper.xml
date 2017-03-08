@@ -222,7 +222,7 @@
         select
         sampleName
         from userInfoDB.pro_sample p
-        <where>p.projectID=#{projectID} and sampledelete!=1 and sampleURL= #{url} limit 1</where>
+        <where>p.projectID=#{projectID} and sampledelete!=1 and sampleURI= #{url} limit 1</where>
     </select>
 
     <resultMap id="com.gennlife.platform.bean.projectBean.ProjectPlan" type="com.gennlife.platform.bean.projectBean.ProjectPlan">
