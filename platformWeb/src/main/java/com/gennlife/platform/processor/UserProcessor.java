@@ -148,7 +148,7 @@ public class UserProcessor {
             user = AllDao.getInstance().getSyUserDao().getUserByUid(uid);
             if (user==null) return null;
             Long start1 = System.currentTimeMillis();
-            System.out.println("查user="+(start1-start)+"ms");
+            logger.info("查user="+(start1-start)+"ms");
             Map<String,Object> confMap = new HashMap<>();
             confMap.put("orgID", user.getOrgID());
             confMap.put("uid", user.getUid());
@@ -193,7 +193,6 @@ public class UserProcessor {
             user.setRoles(new ArrayList<Role>(0));
         }catch (Exception e){
             logger.error("",e);
-            e.printStackTrace();
         }
         return user;
     }
@@ -364,7 +363,6 @@ public class UserProcessor {
             power.setHas_searchExport(addDepartmentPower(power.getHas_searchExport(), mapDep));
         } catch (Exception e) {
             logger.error("科室映射失败：", e);
-            e.printStackTrace();
         }
         return power;
     }

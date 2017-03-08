@@ -319,7 +319,7 @@ public class UserController{
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            logger.error("error 无内外网限制 ",e);
             return ParamUtils.errorParam("无内外网限制");
         }
         XRealIp xRealIp=(XRealIp)xRealIpobj;

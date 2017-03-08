@@ -53,7 +53,6 @@ public class ConfigurationService {
             fileBean = (FileBean) context.getBean("FileLocation");
             RedisUtil.init();
         }catch (Exception e){
-            e.printStackTrace();
             logger.error("",e);
             throw new RuntimeException();
         }
