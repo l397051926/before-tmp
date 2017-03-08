@@ -11,6 +11,7 @@ import com.gennlife.platform.util.*;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -259,11 +260,9 @@ public class ProjectProcessor {
             Map<String,Object> confMap = new HashMap<String, Object>();
             confMap.put("projectID",projectID);
             confMap.put("uri",uri);
-            List<String> setNames=AllDao.getInstance().getProjectDao().getProjectSetNameList(confMap);
-            String setName =  null;
-            if(setNames.size()>0)
-                setName=setNames.get(0);
-            else {
+            String setName=AllDao.getInstance().getProjectDao().getProjectSampleName(confMap);
+            if(StringUtils.isEmpty(setName))
+            {
                 return ParamUtils.errorParam("sample不存在");
             }
             ProLog proLog = new ProLog();
