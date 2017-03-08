@@ -260,7 +260,7 @@ public class ProjectProcessor {
             Map<String,Object> confMap = new HashMap<String, Object>();
             confMap.put("projectID",projectID);
             confMap.put("uri",uri);
-            String setName=AllDao.getInstance().getProjectDao().getProjectSampleName(confMap);
+            String setName=AllDao.getInstance().getProjectDao().getProjectSampleName(projectID,uri);
             if(StringUtils.isEmpty(setName))
             {
                 return ParamUtils.errorParam("sample不存在");

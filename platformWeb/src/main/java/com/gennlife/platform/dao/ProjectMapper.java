@@ -82,7 +82,7 @@ public interface ProjectMapper {
      */
     public List<String> getProjectSetNameList(Map<String, Object> likeCondition);
 
-    public String getProjectSampleName(Map<String, Object> likeCondition);
+    public String getProjectSampleName(@Param("projectID") String projectID,@Param("uri") String uri);
     /**
      * 删除样本集合
      *
