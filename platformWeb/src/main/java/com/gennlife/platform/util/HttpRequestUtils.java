@@ -53,8 +53,8 @@ public class HttpRequestUtils {
 	 * @param jsonParam
 	 * @return
 	 */
-	public static String httpPostForSampleImport(String url, String jsonParam) {
-		RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(30000).setConnectTimeout(10000).build();
+	public static String httpPostForSampleImport(String url, String jsonParam, int timeOut) {
+		RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(timeOut).setConnectTimeout(10000).build();
 		return httpPostExecute(url,jsonParam,requestConfig);
 	}
 	public static String httpPostExecute(String url, String jsonParam,RequestConfig requestConfig) {

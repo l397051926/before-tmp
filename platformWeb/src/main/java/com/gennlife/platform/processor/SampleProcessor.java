@@ -61,7 +61,7 @@ public class SampleProcessor {
             if(queryNew.has("code") && queryNew.get("code").getAsInt() ==0){
                 return gson.toJson(queryNew);
             }
-            String data = HttpRequestUtils.httpPostForSampleImport(url,gson.toJson(param));
+            String data = HttpRequestUtils.httpPostForSampleImport(url,gson.toJson(param), 180000);
             Long startTime = System.currentTimeMillis();
             logger.info("data = " + data);
             if(data == null || "".equals(data)){
@@ -442,7 +442,7 @@ public class SampleProcessor {
             }
             logger.info("sid 处理后导出条件="+gson.toJson(queryNew));
             String url = ConfigurationService.getUrlBean().getSampleImportChecKIURL();
-            String data = HttpRequestUtils.httpPostForSampleImport(url,gson.toJson(queryNew));
+            String data = HttpRequestUtils.httpPostForSampleImport(url,gson.toJson(queryNew), 30000);
             if(data == null || "".equals(data)){
                 return ParamUtils.errorParam("FS 返回为空");
             }else {
