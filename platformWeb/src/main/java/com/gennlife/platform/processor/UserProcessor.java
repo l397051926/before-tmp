@@ -170,6 +170,7 @@ public class UserProcessor {
                 List<User> newUserList = new LinkedList<>();
                 for(User member:userList){//补充成员的角色信息
                     User newMember = getUserByUser(member);
+                    newUserList.add(newMember);
                     List<Role> roleList = newMember.getRoles();
                     if(roleList != null){
                         for(Role role:roleList){
@@ -183,6 +184,10 @@ public class UserProcessor {
 
                         }
                     }
+                    newMember.setFrontEndPower(null);
+                    newMember.setRoles(null);
+                    if(!newMember.getUid().equals(uid))
+                        newMember.setAdministrators(null);
                 }
                 group.setMembers(newUserList);
             }
