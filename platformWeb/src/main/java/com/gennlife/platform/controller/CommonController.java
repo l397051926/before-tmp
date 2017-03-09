@@ -101,21 +101,23 @@ public class CommonController  {
         String oparam = ParamUtils.getParam(paramRe);
         JsonObject json = (JsonObject)jsonParser.parse(oparam);
         String file = FilePath;
-        String name;
-        String crfId = json.get("crf_id").getAsString();
+        String liver_cancer = "映射模型字段说明-肝癌-V1.0.xlsx";
+        String lung_cancer = "映射模型字段说明-肺癌-V1.0.xlsx";
+        String kidney_cancer = "映射模型字段说明-肾癌-V1.0.xlsx";
+        String crfId = json.get("crf_id").getAsString().trim();
+        String fileName = "";
         if (crfId == "liver_cancer") {
-            name = "映射模型字段说明-肝癌-V1.0.xlsx";
-            file += name;
+            file += liver_cancer;
+            fileName = liver_cancer;
         } else if (crfId == "lung_cancer") {
-            name = "映射模型字段说明-肺癌-V1.0.xlsx";
-            file += name;
+            file += lung_cancer;
+            fileName = lung_cancer;
         } else {
-            name = "映射模型字段说明-肾癌-V1.0.xlsx";
-            file += name;
+            file += kidney_cancer;
+            fileName = kidney_cancer;
         }
-        logger.info("DownloadFileForExplainCRFImport: " + crfId + " : " + file);
-//        String file = FilePath+ "映射模型字段说明-V1.0.xlsx";
-        processor.downLoadFile(file, response, name);
+        logger.info("DownloadFileForExplainCRFImport: " + crfId + " : " + fileName);
+        processor.downLoadFile(file, response, fileName);
     }
 
 }
