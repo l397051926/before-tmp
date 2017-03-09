@@ -113,6 +113,7 @@ public class CommonController  {
             name = "映射模型字段说明-肾癌-V1.0.xlsx";
             file += name;
         }
+        logger.info("DownloadFileForExplainCRFImport: " + crfId + " : " + file);
 //        String file = FilePath+ "映射模型字段说明-V1.0.xlsx";
         processor.downLoadFile(file, response, name);
     }
