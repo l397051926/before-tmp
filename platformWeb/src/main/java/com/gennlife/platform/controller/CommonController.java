@@ -11,6 +11,7 @@ import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -104,12 +105,20 @@ public class CommonController  {
         String liver_cancer = "映射模型字段说明-肝癌-V1.0.xlsx";
         String lung_cancer = "映射模型字段说明-肺癌-V1.0.xlsx";
         String kidney_cancer = "映射模型字段说明-肾癌-V1.0.xlsx";
-        String crfId = json.get("crf_id").getAsString().trim();
-        String fileName = "";
-        if (crfId == "liver_cancer") {
+        String crfId = null;
+        try {
+            crfId = json.get("crf_id").getAsString().trim();
+            if (StringUtils.isEmpty(crfId)) {
+                return ;
+            }
+        } catch (Exception e) {
+            return ;
+        }
+        String fileName = null;
+        if (crfId.equals("liver_cancer")) {
             file += liver_cancer;
             fileName = liver_cancer;
-        } else if (crfId == "lung_cancer") {
+        } else if (crfId.equals("lung_cancer")) {
             file += lung_cancer;
             fileName = lung_cancer;
         } else {
@@ -119,5 +128,4 @@ public class CommonController  {
         logger.info("DownloadFileForExplainCRFImport: " + crfId + " : " + fileName);
         processor.downLoadFile(file, response, fileName);
     }
-
 }
