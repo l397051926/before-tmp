@@ -320,6 +320,7 @@ public class CaseProcessor {
     private static void buildGroup(JsonObject paramObj, User user) {
         JsonArray groups = paramObj.getAsJsonArray("groups");
         if(groups==null) groups=new JsonArray();
+        else if(groups.size()>0) return;
         //构建虚拟小组，确保工号权限生效
         Group group = new Group();
         group.setGroupDesc("无小组信息时，补充个人工号");
