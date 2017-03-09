@@ -6,6 +6,8 @@ import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,7 @@ public class CommonController  {
     private static Logger logger = LoggerFactory.getLogger(CommonController.class);
     private static String labImportsuffix = "导入科室历史.csv";
     private static String staffImportsuffix = "导入人员历史.csv";
+    private static JsonParser jsonParser = new JsonParser();
     private static CommonProcessor processor = new CommonProcessor();
     private static Gson gson = GsonUtil.getGson();
     //存放文件的位置
@@ -94,8 +97,25 @@ public class CommonController  {
 
     @RequestMapping(value="/DownloadFileForExplainCRFImport",method= RequestMethod.GET)
     public void DownloadFileForExplainCRFImport(HttpServletRequest paramRe,HttpServletResponse response){
-        String file = FilePath+ "映射模型字段说明-V1.0.xlsx";
-        processor.downLoadFile(file,response,"映射模型字段说明-V1.0.xlsx");
+
+        String oparam = ParamUtils.getParam(paramRe);
+        JsonObject json = (JsonObject)jsonParser.parse(oparam);
+        String file = FilePath;
+        String name;
+        String crfId = json.get("crf_id").getAsString();
+        if (crfId == "liver_cancer") {
+            name = "映射模型字段说明-肝癌-V1.0.xlsx";
+            file += name;
+        } else if (crfId == "lung_cancer") {
+            name = "映射模型字段说明-肺癌-V1.0.xlsx";
+            file += name;
+        } else {
+            name = "映射模型字段说明-肾癌-V1.0.xlsx";
+            file += name;
+        }
+        logger.info("DownloadFileForExplainCRFImport: " + crfId + " : " + file);
+//        String file = FilePath+ "映射模型字段说明-V1.0.xlsx";
+        processor.downLoadFile(file, response, name);
     }
 
 }
