@@ -295,8 +295,7 @@ public class SampleProcessor {
     public String sampleSetSearch(String param) {
         String sampleURI=jsonParser.parse(param).getAsJsonObject().get("sampleURI").getAsString();
         int count = AllDao.getInstance().getProjectDao().isExistSample(sampleURI);
-        if(count<=0)
-        {
+        if (count <= 0) {
             return SampleIsNotExists();
         }
         String url = ConfigurationService.getUrlBean().getSampleDetailSearchURL();

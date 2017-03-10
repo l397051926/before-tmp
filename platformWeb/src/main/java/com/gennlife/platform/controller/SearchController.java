@@ -80,13 +80,8 @@ public class SearchController extends HttpServlet {
         String resultStr = null;
         try{
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            int count = AllDao.getInstance().getProjectDao().isExistProjectID(paramObj.get("projectID").getAsString());
-            if (count <= 0) {
-                return SampleProcessor.projectIDIsNotExists();
-            } else {
-                resultStr =  processor.searchSetList(paramObj);
-                logger.info("搜索用户列表 get 耗时:" + (System.currentTimeMillis()-start) +"ms");
-            }
+            resultStr =  processor.searchSetList(paramObj);
+            logger.info("搜索用户列表 get 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");

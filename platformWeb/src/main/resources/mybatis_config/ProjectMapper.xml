@@ -557,10 +557,22 @@
         from userInfoDB.pro_sample
         <where>pro_sample.sampleURI=#{sampleURI} and  sampledelete!=1</where>
     </select>
-    <select id="isExistProjectID" resultType="java.lang.Integer">
+    <select id="isSampleExistProjectID" resultType="java.lang.Integer">
         select
         count(*)
         from userInfoDB.pro_sample
+        <where>pro_sample.projectID=#{projectID} and  sampledelete!=1</where>
+    </select>
+    <select id="isPplanExistProjectID" resultType="java.lang.Integer">
+        select
+        count(*)
+        from userInfoDB.p_plan
+        <where>pro_sample.projectID=#{projectID} and  sampledelete!=1</where>
+    </select>
+    <select id="isPprojectExistProjectID" resultType="java.lang.Integer">
+        select
+        count(*)
+        from userInfoDB.p_project
         <where>pro_sample.projectID=#{projectID} and  sampledelete!=1</where>
     </select>
     <update id="updateSetInfo" parameterType="map">

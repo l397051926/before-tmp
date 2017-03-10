@@ -108,7 +108,7 @@ public class SampleController {
         try{
             String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = (JsonObject)jsonParser.parse(param);
-            int count = AllDao.getInstance().getProjectDao().isExistProjectID(paramObj.get("projectID").getAsString());
+            int count = AllDao.getInstance().getProjectDao().isSampleExistProjectID(paramObj.get("projectID").getAsString());
             if (count <= 0) {
                 return SampleProcessor.projectIDIsNotExists();
             } else {

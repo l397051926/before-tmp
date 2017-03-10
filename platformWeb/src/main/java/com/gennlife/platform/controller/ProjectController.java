@@ -87,13 +87,8 @@ public class ProjectController {
         String resultStr = null;
         try{
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            int count = AllDao.getInstance().getProjectDao().isExistProjectID(paramObj.get("projectID").getAsString());
-            if (count <= 0) {
-                return SampleProcessor.projectIDIsNotExists();
-            } else {
-                resultStr =  processor.projectPlanList(paramObj);
-                logger.info("项目方案列表 耗时:" + (System.currentTimeMillis()-start) +"ms");
-            }
+            resultStr =  processor.projectPlanList(paramObj);
+            logger.info("项目方案列表 耗时:" + (System.currentTimeMillis()-start) +"ms");
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -124,8 +119,13 @@ public class ProjectController {
         String resultStr = null;
         try{
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.baiscInfo(paramObj);
-            logger.info("请求项目详情 耗时:" + (System.currentTimeMillis()-start) +"ms");
+            int count = AllDao.getInstance().getProjectDao().isPprojectExistProjectID(paramObj.get("projectID").getAsString());
+            if (count <= 0) {
+                return SampleProcessor.projectIDIsNotExists();
+            } else {
+                resultStr =  processor.baiscInfo(paramObj);
+                logger.info("请求项目详情 耗时:" + (System.currentTimeMillis()-start) +"ms");
+            }
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -140,12 +140,7 @@ public class ProjectController {
         String resultStr = null;
         try{
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            int count = AllDao.getInstance().getProjectDao().isExistProjectID(paramObj.get("projectID").getAsString());
-            if (count <= 0) {
-                return SampleProcessor.projectIDIsNotExists();
-            } else {
-                resultStr =  processor.isExistPlan(paramObj);
-            }
+            resultStr =  processor.isExistPlan(paramObj);
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -262,7 +257,7 @@ public class ProjectController {
         String resultStr = null;
         try{
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            int count = AllDao.getInstance().getProjectDao().isExistProjectID(paramObj.get("projectID").getAsString());
+            int count = AllDao.getInstance().getProjectDao().isPprojectExistProjectID(paramObj.get("projectID").getAsString());
             if (count <= 0) {
                 return SampleProcessor.projectIDIsNotExists();
             } else {
@@ -286,7 +281,7 @@ public class ProjectController {
         try{
             String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = (JsonObject)jsonParser.parse(param);
-            int count = AllDao.getInstance().getProjectDao().isExistProjectID(paramObj.get("projectID").getAsString());
+            int count = AllDao.getInstance().getProjectDao().isPplanExistProjectID(paramObj.get("projectID").getAsString());
             if (count <= 0) {
                 return SampleProcessor.projectIDIsNotExists();
             } else {
