@@ -1,7 +1,9 @@
 package com.gennlife.platform.controller;
 
+import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.ProjectProcessor;
+import com.gennlife.platform.processor.SampleProcessor;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
@@ -85,8 +87,13 @@ public class ProjectController {
         String resultStr = null;
         try{
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.projectPlanList(paramObj);
-            logger.info("项目方案列表 耗时:" + (System.currentTimeMillis()-start) +"ms");
+            int count = AllDao.getInstance().getProjectDao().isExistProjectID(paramObj.get("projectID").getAsString());
+            if (count <= 0) {
+                return SampleProcessor.projectIDIsNotExists();
+            } else {
+                resultStr =  processor.projectPlanList(paramObj);
+                logger.info("项目方案列表 耗时:" + (System.currentTimeMillis()-start) +"ms");
+            }
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -133,7 +140,12 @@ public class ProjectController {
         String resultStr = null;
         try{
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.isExistPlan(paramObj);
+            int count = AllDao.getInstance().getProjectDao().isExistProjectID(paramObj.get("projectID").getAsString());
+            if (count <= 0) {
+                return SampleProcessor.projectIDIsNotExists();
+            } else {
+                resultStr =  processor.isExistPlan(paramObj);
+            }
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -249,8 +261,14 @@ public class ProjectController {
         logger.info("EditProject param ="+param);
         String resultStr = null;
         try{
-            User user = (User)paramRe.getAttribute("currentUser");
-            resultStr =  processor.editProject(param,user);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            int count = AllDao.getInstance().getProjectDao().isExistProjectID(paramObj.get("projectID").getAsString());
+            if (count <= 0) {
+                return SampleProcessor.projectIDIsNotExists();
+            } else {
+                User user = (User)paramRe.getAttribute("currentUser");
+                resultStr =  processor.editProject(param,user);
+            }
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -267,8 +285,14 @@ public class ProjectController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            logger.info("EditPlan param ="+param);
-            resultStr =  processor.editPlan(param);
+            JsonObject paramObj = (JsonObject)jsonParser.parse(param);
+            int count = AllDao.getInstance().getProjectDao().isExistProjectID(paramObj.get("projectID").getAsString());
+            if (count <= 0) {
+                return SampleProcessor.projectIDIsNotExists();
+            } else {
+                logger.info("EditPlan param ="+param);
+                resultStr =  processor.editPlan(param);
+            }
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");

@@ -1,6 +1,8 @@
 package com.gennlife.platform.controller;
 
 
+import com.gennlife.platform.dao.AllDao;
+import com.gennlife.platform.processor.SampleProcessor;
 import com.gennlife.platform.processor.SearchProcessor;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.JsonArray;
@@ -78,8 +80,13 @@ public class SearchController extends HttpServlet {
         String resultStr = null;
         try{
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.searchSetList(paramObj);
-            logger.info("搜索用户列表 get 耗时:" + (System.currentTimeMillis()-start) +"ms");
+            int count = AllDao.getInstance().getProjectDao().isExistProjectID(paramObj.get("projectID").getAsString());
+            if (count <= 0) {
+                return SampleProcessor.projectIDIsNotExists();
+            } else {
+                resultStr =  processor.searchSetList(paramObj);
+                logger.info("搜索用户列表 get 耗时:" + (System.currentTimeMillis()-start) +"ms");
+            }
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");

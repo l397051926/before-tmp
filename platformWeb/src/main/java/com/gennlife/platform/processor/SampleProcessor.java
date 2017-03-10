@@ -391,6 +391,14 @@ public class SampleProcessor {
         return gson.toJson(json);
     }
 
+    public static String projectIDIsNotExists() {
+        JsonObject json = new JsonObject();
+        json.addProperty("code", 0);
+        json.addProperty("success", false);
+        json.addProperty("info", "no exisit");
+        return gson.toJson(json);
+    }
+
     public String uploadAdaptTag(String param) {
         String url = ConfigurationService.getUrlBean().getSampleUploadAdaptTagURL();
         logger.info("uploadAdaptTag url="+url);

@@ -557,6 +557,12 @@
         from userInfoDB.pro_sample
         <where>pro_sample.sampleURI=#{sampleURI} and  sampledelete!=1</where>
     </select>
+    <select id="isExistProjectID" resultType="java.lang.Integer">
+        select
+        count(*)
+        from userInfoDB.pro_sample
+        <where>pro_sample.projectID=#{projectID} and  sampledelete!=1</where>
+    </select>
     <update id="updateSetInfo" parameterType="map">
         UPDATE userInfoDB.pro_sample
         <set>sampleName = #{sampleName},sampleDesc=#{sampleDesc}</set>

@@ -139,6 +139,8 @@ public interface ProjectMapper {
     public int isExistSet(Map<String, Object> map);
     public int isExistSample(@Param("sampleURI") String  sampleURI);
 
+    public int isExistProjectID(@Param("projectID") String  projectID);
+
     /**
      * 搜索样本集
      *

@@ -2,6 +2,7 @@ package com.gennlife.platform.controller;
 
 
 import com.gennlife.platform.authority.AuthorityUtil;
+import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.SampleProcessor;
 import com.gennlife.platform.util.GsonUtil;
@@ -106,9 +107,14 @@ public class SampleController {
         String resultStr = null;
         try{
             String param = ParamUtils.getParam(paramRe);
-            User user = (User)paramRe.getAttribute("currentUser");
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.editSet(paramObj,user);
+            JsonObject paramObj = (JsonObject)jsonParser.parse(param);
+            int count = AllDao.getInstance().getProjectDao().isExistProjectID(paramObj.get("projectID").getAsString());
+            if (count <= 0) {
+                return SampleProcessor.projectIDIsNotExists();
+            } else {
+                User user = (User)paramRe.getAttribute("currentUser");
+                resultStr =  processor.editSet(paramObj,user);
+            }
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
