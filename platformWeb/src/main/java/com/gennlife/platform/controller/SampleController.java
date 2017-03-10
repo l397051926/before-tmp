@@ -100,7 +100,7 @@ public class SampleController {
     }
 
 
-    @RequestMapping(value="/EditSet",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/EditSet",method= {RequestMethod.POST,RequestMethod.GET},produces = "application/json;charset=UTF-8")
     public @ResponseBody
     String postEditSet(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
@@ -122,23 +122,6 @@ public class SampleController {
         logger.info("编辑样本集  耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
-    @RequestMapping(value="/EditSet",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getEditSet(HttpServletRequest paramRe){
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            String param = ParamUtils.getParam(paramRe);
-            User user = (User)paramRe.getAttribute("currentUser");
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.editSet(paramObj,user);
-        }catch (Exception e){
-            logger.error("",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("编辑样本集 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
-
 
     @RequestMapping(value="/ImportTree",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String getImportTree(HttpServletRequest paramRe){

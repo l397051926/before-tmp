@@ -187,10 +187,14 @@ public class SampleProcessor {
         String sampleName = null;
         Map<String, Object> map = new HashMap<String, Object>();
         ResultBean resultBean = new ResultBean();
-
         try {
             projectID = paramObj.get("projectID").getAsString();
             String sampleURI = paramObj.get("sampleURI").getAsString();
+            int count = AllDao.getInstance().getProjectDao().isExistSample(sampleURI);
+            if(count<=0)
+            {
+                return SampleIsNotExists();
+            }
             sampleName = paramObj.get("sampleName").getAsString();
             String sampleDesc = paramObj.get("sampleDesc").getAsString();
             uid = paramObj.get("uid").getAsString();
