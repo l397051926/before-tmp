@@ -567,13 +567,13 @@
         select
         count(*)
         from userInfoDB.p_plan
-        <where>p_plan.projectID=#{projectID} and  sampledelete!=1</where>
+        <where>p_plan.projectID=#{projectID} and  plandelete!=1</where>
     </select>
     <select id="isPprojectExistProjectID" resultType="java.lang.Integer">
         select
         count(*)
         from userInfoDB.p_project
-        <where>p_project.projectID=#{projectID} and  sampledelete!=1</where>
+        <where>p_project.projectID=#{projectID} and  isdelete!=1</where>
     </select>
     <update id="updateSetInfo" parameterType="map">
         UPDATE userInfoDB.pro_sample
