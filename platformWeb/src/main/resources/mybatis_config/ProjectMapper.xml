@@ -563,11 +563,11 @@
         from userInfoDB.pro_sample
         <where>pro_sample.projectID=#{projectID} and  sampledelete!=1</where>
     </select>
-    <select id="isPplanExistProjectID" resultType="java.lang.Integer">
+    <select id="isPplanExistId" resultType="java.lang.Integer">
         select
         count(*)
         from userInfoDB.p_plan
-        <where>p_plan.projectID=#{projectID} and  plandelete!=1</where>
+        <where>p_plan.id=#{id} and  plandelete!=1</where>
     </select>
     <select id="isPprojectExistProjectID" resultType="java.lang.Integer">
         select

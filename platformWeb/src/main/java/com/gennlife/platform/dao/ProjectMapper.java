@@ -141,7 +141,7 @@ public interface ProjectMapper {
 
     public int isSampleExistProjectID(@Param("projectID") String  projectID);
 
-    public int isPplanExistProjectID(@Param("projectID") String  projectID);
+    public int isPplanExistId(@Param("id") String  id);
 
     public int isPprojectExistProjectID(@Param("projectID") String  projectID);
 
