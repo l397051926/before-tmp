@@ -78,7 +78,7 @@ public class csvInputToMysql {
         JsonObject json = new JsonObject();
         Map<String, ArrayList<String>> mapFromCsv;
         Map<String, String> map = new HashMap<String, String>();
-        String url = "jdbc:mysql://10.0.0.68:3306/userInfoDB?useUnicode=true&characterEncoding=UTF-8&" + "user=userInfoDB&password=@userInfoDB2015";
+        String url = "jdbc:mysql://119.253.135.14:3306/userInfoDB?useUnicode=true&characterEncoding=UTF-8&" + "user=userInfoDB&password=@userInfoDB2015";
         String sql = "SELECT labID, lab_name FROM gennlife_lab";
 
         try {

@@ -377,11 +377,11 @@ public class SampleProcessor {
                 result.add("info",info);
                 result.add("data",data);
                 return gson.toJson(result);
-            }else{
+            } else {
                 return ParamUtils.errorParam("FS出现异常");
             }
-        }catch (Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             return ParamUtils.errorParam("出现异常");
         }
     }
@@ -390,7 +390,7 @@ public class SampleProcessor {
         JsonObject json=new JsonObject();
         json.addProperty("code",0);
         json.addProperty("success",false);
-        json.addProperty("info","no exisit");
+        json.addProperty("info","not exist");
         return gson.toJson(json);
     }
 
@@ -398,7 +398,7 @@ public class SampleProcessor {
         JsonObject json = new JsonObject();
         json.addProperty("code", 0);
         json.addProperty("success", false);
-        json.addProperty("info", "no exisit");
+        json.addProperty("info", "not exist");
         return gson.toJson(json);
     }
 
@@ -408,8 +408,7 @@ public class SampleProcessor {
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
         String sampleURI = paramObj.get("sampleURI").getAsString();
         int count = AllDao.getInstance().getProjectDao().isExistSample(sampleURI);
-        if(count<=0)
-        {
+        if (count<=0) {
             return SampleIsNotExists();
         }
         paramObj.addProperty("data_id",sampleURI);
@@ -418,21 +417,20 @@ public class SampleProcessor {
         logger.info("转化后的请求参数="+paramNew);
         String reStr = HttpRequestUtils.httpPost(url ,paramNew);
         logger.info("uploadAdaptTag result="+reStr);
-        if(reStr == null || "".equals(reStr)){
+        if (reStr == null || "".equals(reStr)) {
             return ParamUtils.errorParam("FS 返回空");
-        }
-        try{
+        } try {
             JsonObject json = (JsonObject) jsonParser.parse(reStr);
             boolean succeed = json.get("success").getAsBoolean();
             ResultBean resultBean = new ResultBean();
-            if(succeed){
+            if (succeed) {
                 resultBean.setCode(1);
                 return gson.toJson(resultBean);
-            }else {
+            } else {
                 resultBean.setCode(0);
                 return gson.toJson(resultBean);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             return ParamUtils.errorParam("出现异常");
         }
     }
