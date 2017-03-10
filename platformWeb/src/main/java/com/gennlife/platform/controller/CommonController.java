@@ -11,6 +11,7 @@ import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -101,21 +102,30 @@ public class CommonController  {
         String oparam = ParamUtils.getParam(paramRe);
         JsonObject json = (JsonObject)jsonParser.parse(oparam);
         String file = FilePath;
-        String name;
-        String crfId = json.get("crf_id").getAsString();
-        if (crfId == "liver_cancer") {
-            name = "映射模型字段说明-肝癌-V1.0.xlsx";
-            file += name;
-        } else if (crfId == "lung_cancer") {
-            name = "映射模型字段说明-肺癌-V1.0.xlsx";
-            file += name;
-        } else {
-            name = "映射模型字段说明-肾癌-V1.0.xlsx";
-            file += name;
+        String liver_cancer = "映射模型字段说明-肝癌-V1.0.xlsx";
+        String lung_cancer = "映射模型字段说明-肺癌-V1.0.xlsx";
+        String kidney_cancer = "映射模型字段说明-肾癌-V1.0.xlsx";
+        String crfId = null;
+        try {
+            crfId = json.get("crf_id").getAsString().trim();
+            if (StringUtils.isEmpty(crfId)) {
+                return ;
+            }
+        } catch (Exception e) {
+            return ;
         }
-        logger.info("DownloadFileForExplainCRFImport: " + crfId + " : " + file);
-//        String file = FilePath+ "映射模型字段说明-V1.0.xlsx";
-        processor.downLoadFile(file, response, name);
+        String fileName = null;
+        if (crfId.equals("liver_cancer")) {
+            file += liver_cancer;
+            fileName = liver_cancer;
+        } else if (crfId.equals("lung_cancer")) {
+            file += lung_cancer;
+            fileName = lung_cancer;
+        } else {
+            file += kidney_cancer;
+            fileName = kidney_cancer;
+        }
+        logger.info("DownloadFileForExplainCRFImport: " + crfId + " : " + fileName);
+        processor.downLoadFile(file, response, fileName);
     }
-
 }
