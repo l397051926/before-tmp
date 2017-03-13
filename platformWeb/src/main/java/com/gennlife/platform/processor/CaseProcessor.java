@@ -327,7 +327,9 @@ public class CaseProcessor {
         group.setHas_search("有");
         group.setHas_searchExport("有");
         List<User> userList = new LinkedList<>();
-        userList.add(user);
+        User newUser=new User();
+        newUser.setUnumber(user.getUnumber());
+        userList.add(newUser);
         group.setMembers(userList);
         groups.add(gson.toJsonTree(group));
         paramObj.add("groups",groups);
