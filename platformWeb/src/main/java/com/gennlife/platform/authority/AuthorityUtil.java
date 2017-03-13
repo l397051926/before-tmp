@@ -38,6 +38,30 @@ public class AuthorityUtil {
                 JsonObject paramObj = paramElement.getAsJsonObject();
                 //paramObj.add("roles", gson.toJsonTree(roles));
                 //从groups数组扩展权限
+                paramObj.add("groups",gson.toJsonTree(groups));
+                paramObj.add("power",gson.toJsonTree(power));
+                return CaseProcessor.transformSid(paramObj,user);
+            } else {
+                return paramElement.isJsonArray()?gson.toJson(paramElement):null;
+            }
+        }
+    }
+    public static String addSearchCaseAuthority(HttpServletRequest paramRe){
+        String param = ParamUtils.getParam(paramRe);
+        JsonElement paramElement = jsonParser.parse(param);
+        Object object = paramRe.getAttribute("currentUser");
+        if (object == null) {
+            logger.error("paramRe里面无currentUser");
+            return ParamUtils.errorSessionLosParam();
+        } else {
+            User user = (User)paramRe.getAttribute("currentUser");
+            List<Role> roles = user.getRoles();
+            List<Group> groups = user.getGroups();
+            Power power = user.getPower();
+            if(paramElement.isJsonObject()) {
+                JsonObject paramObj = paramElement.getAsJsonObject();
+                // paramObj.add("roles", gson.toJsonTree(roles));
+                // 从groups数组扩展权限
                 power.setHas_traceCRF(null);
                 power.setHas_searchExport(null);
                 power.setHas_addCRF(null);
