@@ -392,7 +392,7 @@ public class CaseProcessor {
         if(paramObj.has("code") && paramObj.get("code").getAsInt() == 0){
             return param;
         }
-        CaseSearchParser caseSearchParser = new CaseSearchParser(param);
+         CaseSearchParser caseSearchParser = new CaseSearchParser(param);
         try {
             String searchResultStr = caseSearchParser.parser();
             if(StringUtils.isEmpty(searchResultStr)){

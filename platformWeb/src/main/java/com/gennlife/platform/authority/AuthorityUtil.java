@@ -38,6 +38,13 @@ public class AuthorityUtil {
                 JsonObject paramObj = paramElement.getAsJsonObject();
                 //paramObj.add("roles", gson.toJsonTree(roles));
                 //从groups数组扩展权限
+                power.setHas_traceCRF(null);
+                power.setHas_searchExport(null);
+                power.setHas_addCRF(null);
+                power.setHas_editCRF(null);
+                power.setHas_deleteCRF(null);
+                power.setHas_browseDetail(null);
+                power.setHas_addBatchCRF(null);
                 paramObj.add("groups",gson.toJsonTree(groups));
                 paramObj.add("power",gson.toJsonTree(power));
                 return CaseProcessor.transformSid(paramObj,user);
