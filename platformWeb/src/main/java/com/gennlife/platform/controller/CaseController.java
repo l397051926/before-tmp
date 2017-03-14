@@ -263,5 +263,15 @@ public class CaseController {
         logger.info("样本集导出到项目空间 post 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
     }
+    /**
+     * 我的zens
+     * */
+    @RequestMapping(value="/myclinicSearchCase",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String myclinicSearchCase(HttpServletRequest paramRe){
+        return this.postSearchCase(paramRe);
+    }
+
+
 
 }

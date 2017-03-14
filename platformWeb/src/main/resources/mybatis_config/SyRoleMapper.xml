@@ -161,4 +161,14 @@
         FROM
         gennlife_lab_map
     </select>
+    <select id="getSlabNameMappingByLabName" resultType="java.lang.String">
+        SELECT
+        depart_name
+        FROM
+        gennlife_lab_map where lab_id=
+        (
+        select lab_id from gennlife_lab where  lab_name=#{lab_name} and orgID=#{orgID}
+        )
+
+    </select>
 </mapper>

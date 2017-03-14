@@ -2,9 +2,8 @@ package com.gennlife.platform.controller;
 
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.bean.ResultBean;
-import com.gennlife.platform.model.Group;
-import com.gennlife.platform.model.User;
-import com.gennlife.platform.model.XRealIp;
+import com.gennlife.platform.dao.AllDao;
+import com.gennlife.platform.model.*;
 import com.gennlife.platform.processor.UserProcessor;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
@@ -28,6 +27,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by chensong on 2015/12/5.
@@ -345,4 +346,56 @@ public class UserController{
         }
         return gson.toJson(resultBean);
     }
+    /**
+     *
+     * 科室权限校验
+     * */
+    @RequestMapping(value="/checkUserRole",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String checkUserRole(HttpServletRequest paramRe) {
+        try {
+            JsonObject paramJson = jsonParser.parse(ParamUtils.getParam(paramRe)).getAsJsonObject();
+            String  dept= paramJson.get("dept").getAsString();
+            if(StringUtils.isEmpty(dept)) return  ParamUtils.errorParam("空科室");
+            HttpSession session = paramRe.getSession(true);
+            String sessionID = session.getId();
+            String uid=RedisUtil.getValue(sessionID);
+            logger.info("get userInfo sessionID = " + sessionID + " uid = " + uid);
+            User user = UserProcessor.getUserByUidFromRedis(uid);
+            Power power=user.getPower();
+            List<Resource> list=power.getHas_search();
+            if(list==null||list.size()==0)return ParamUtils.errorParam("无权限");
+            boolean find =false;
+            String orgID=user.getOrgID();
+            for(Resource resource:list)
+            {
+                if(dept.equals(resource.getSlab_name())&&"有".equals(resource.getHas_search()))
+                {
+                    find=true;
+                    break;
+                }
+            }
+            if(find==false) return ParamUtils.errorParam("无权限");
+            List<String> depts=new LinkedList<>();
+            depts.add(dept);
+            try {
+                List<String> mapping = AllDao.getInstance().getSyRoleDao().getSlabNameMappingByLabName(dept, orgID);
+                if(mapping!=null&&mapping.size()>0) depts.addAll(mapping);
+            }
+            catch (Exception e)
+            {
+
+            }
+            ResultBean resultBean=new ResultBean();
+            JsonObject json=new JsonObject();
+            json.addProperty("check",true);
+            json.add("depts",gson.toJsonTree(depts));
+            resultBean.setData(json);
+            return gson.toJson(resultBean);
+        }
+        catch (Exception e)
+        {
+            return ParamUtils.errorParam("异常error");
+        }
+    }
+
 }
