@@ -286,32 +286,32 @@ public class CaseProcessor {
 
     }
     public static String transformSid(JsonObject paramObj,User user){
-        if(paramObj.has("sid") && paramObj.has("power")){
+        if (paramObj.has("sid") && paramObj.has("power")) {
             String sid = paramObj.get("sid").getAsString();
-            paramObj.remove("groups");//选择科室后，工号权限小时
+            paramObj.remove("groups"); // 选择科室后，工号权限小时
             paramObj.remove("sid");
             JsonObject power = paramObj.getAsJsonObject("power");
             JsonArray has_searchArray  = power.getAsJsonArray("has_search");
             JsonArray newHas_searchArray = new JsonArray();
-            for(JsonElement item:has_searchArray){
+            for (JsonElement item:has_searchArray) {
                 JsonObject has_searchObj = item.getAsJsonObject();
                 String tmpSid = has_searchObj.get("sid").getAsString();
-                if(tmpSid.equals(sid)){
+                if (tmpSid.equals(sid)) {
                     newHas_searchArray.add(has_searchObj);
                 }
             }
-            if(newHas_searchArray.size() == 0){
+            if (newHas_searchArray.size() == 0) {
                 return ParamUtils.errorParam("无搜索权限");
-            }else {
+            } else {
                 power.add("has_search",newHas_searchArray);
             }
             paramObj.add("power",power);
             logger.info("通过sid转化后，搜索请求参数="+gson.toJson(paramObj));
             return gson.toJson(paramObj);
-        }else if(paramObj.has("power")){//角色,完成小组扩展
+        } else if (paramObj.has("power")) {//角色,完成小组扩展
             buildGroup(paramObj, user);
             return gson.toJson(paramObj);
-        }else{
+        } else {
             return gson.toJson(paramObj);
         }
 
@@ -319,16 +319,20 @@ public class CaseProcessor {
 
     private static void buildGroup(JsonObject paramObj, User user) {
         JsonArray groups = paramObj.getAsJsonArray("groups");
-        if(groups==null) groups=new JsonArray();
-        else if(groups.size()>0) return;
+        if (groups==null) {
+            groups=new JsonArray();
+        } else if(groups.size()>0) {
+            return ;
+        }
         //构建虚拟小组，确保工号权限生效
         Group group = new Group();
         group.setGroupDesc("无小组信息时，补充个人工号");
         group.setHas_search("有");
         group.setHas_searchExport("有");
         List<User> userList = new LinkedList<>();
-        User newUser=new User();
+        User newUser = new User();
         newUser.setUnumber(user.getUnumber());
+        newUser.setFrontEndPower(null);
         userList.add(newUser);
         group.setMembers(userList);
         groups.add(gson.toJsonTree(group));

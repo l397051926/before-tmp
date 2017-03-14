@@ -51,37 +51,37 @@ public class SampleController {
 
     @RequestMapping(value="/ImportCheck",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String ImportCheck(HttpServletRequest paramRe){
+    String ImportCheck(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             User user = (User)paramRe.getAttribute("currentUser");
-            logger.info("ImportCheck param="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            logger.info("接口: /sample/ImportCheck 处理后的请求： param = " + param);
+            JsonObject paramObj = (JsonObject)jsonParser.parse(param);
             resultStr =  processor.importSampleCheck(paramObj,user);
-        }catch (Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("样本导入校验 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("样本导入校验 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/SetDetail",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/SetDetail", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postSetDetail(HttpServletRequest paramRe){
+    String postSetDetail(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = ParamUtils.getParam(paramRe);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            JsonObject paramObj = (JsonObject)jsonParser.parse(param);
             resultStr =  processor.sampleDetail(paramObj);
-        }catch (Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("样本集合数据详情查看 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("样本集合数据详情查看 耗时" + (System.currentTimeMillis()-start) + "ms");
         return resultStr;
     }
     @RequestMapping(value="/SetDetail",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")

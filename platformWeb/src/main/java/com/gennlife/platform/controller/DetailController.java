@@ -27,7 +27,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("详情页患者基础信息接口 get方式 参数="+param);
             resultStr =  processor.patientBasicInfo(param);
         }catch (Exception e){
@@ -41,11 +41,11 @@ public class DetailController {
 
     @RequestMapping(value="/GeneticDisease",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String getGeneticDisease(HttpServletRequest paramRe){
+    String getGeneticDisease(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("遗传性疾病 get方式 参数="+param);
             resultStr =  processor.geneticDisease(param);
         }catch (Exception e){
@@ -63,7 +63,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("药物反应 get方式 参数="+param);
             resultStr =  processor.drugReaction(param);
         }catch (Exception e){
@@ -83,7 +83,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("基本统计图形&筛选条件 get方式 参数="+param);
             resultStr =  processor.patientBasicFigure(param);
         }catch (Exception e){
@@ -100,7 +100,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("详情页时间轴信息接口 get方式 参数="+param);
             resultStr =  processor.patientBasicTimeAxis(param);
         }catch (Exception e){
@@ -118,7 +118,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("查看指标变化,可选列表 get方式 参数="+param);
             resultStr =  processor.choicesList(param);
         }catch (Exception e){
@@ -136,7 +136,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("查看指标变化,具体指标 get方式 参数="+param);
             resultStr =  processor.specificChoice(param);
         }catch (Exception e){
@@ -153,7 +153,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("详情页总接口：唐乾斌提供 post方式 参数="+param);
             resultStr =  processor.visitDetail(param);
         }catch (Exception e){
@@ -170,7 +170,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("详情页体检接口:唐乾斌提供  post方式 参数="+param);
             resultStr =  processor.labResultItem(param);
         }catch (Exception e){
@@ -188,7 +188,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("检验项列表 get方式 参数="+param);
             resultStr =  processor.labResultItemList(param);
         }catch (Exception e){
@@ -205,7 +205,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("分类信息接口及目录 get方式 参数="+param);
             resultStr =  processor.categoryCatalog(param);
         }catch (Exception e){
@@ -222,7 +222,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("分子检测 get方式 参数="+param);
             resultStr =  processor.molecularDetection(param);
         }catch (Exception e){
@@ -240,7 +240,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("生物标本 get方式 参数="+param);
             resultStr =  processor.biologicalSpecimen(param);
         }catch (Exception e){
@@ -257,7 +257,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("检查 get方式 参数="+param);
             resultStr =  processor.examResult(param);
         }catch (Exception e){
@@ -274,7 +274,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("病理检测  get方式 参数="+param);
             resultStr =  processor.pathologicalExamination(param);
         }catch (Exception e){
@@ -291,7 +291,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param =  AuthorityUtil.addAuthority(paramRe);
+            String param =  AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("单次就诊专用:诊断报告  get方式 参数="+param);
             resultStr =  processor.visitDiagnose(param);
         }catch (Exception e){
@@ -308,7 +308,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param =  AuthorityUtil.addAuthority(paramRe);
+            String param =  AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("病程 诊断报告:主诉  get方式 参数="+param);
             resultStr =  processor.admissionRecords(param);
         }catch (Exception e){
@@ -325,7 +325,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("病案首页  get方式 参数="+param);
             resultStr =  processor.medicalRecord(param);
         }catch (Exception e){
@@ -342,7 +342,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("手术信息  get方式 参数="+param);
             resultStr =  processor.operationRecords(param);
         }catch (Exception e){
@@ -360,7 +360,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("用药医嘱  get方式 参数="+param);
             resultStr =  processor.pharmacy(param);
         }catch (Exception e){
@@ -377,7 +377,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("出院记录  get方式 参数="+param);
             resultStr =  processor.dischargeRecords(param);
         }catch (Exception e){
@@ -395,7 +395,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("病程记录  get方式 参数="+param);
             resultStr =  processor.courseRecords(param);
         }catch (Exception e){
@@ -413,7 +413,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("病例文书  get方式 参数="+param);
             resultStr =  processor.medicalCourse(param);
         }catch (Exception e){
@@ -430,7 +430,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("病史信息接口  get方式 参数="+param);
             resultStr =  processor.visitClassifySection(param);
         }catch (Exception e){
@@ -448,7 +448,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("图片获取接口  post方式 参数="+param);
             resultStr =  processor.visitClassifyImage(param);
         }catch (Exception e){
@@ -465,7 +465,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("单次就诊DC治疗   post方式 参数="+param);
             resultStr =  processor.VisitDcOrder(param);
         }catch (Exception e){
@@ -482,7 +482,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("分类详情DC治疗  post方式 参数="+param);
             resultStr =  processor.PatientDcOrder(param);
         }catch (Exception e){
@@ -499,7 +499,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("分类详情放疗  post方式 参数="+param);
             resultStr =  processor.PatientRadiotherapy(param);
         }catch (Exception e){
@@ -516,7 +516,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("单次就诊放疗  post方式 参数="+param);
             resultStr =  processor.VisitRadiotherapy(param);
         }catch (Exception e){
@@ -533,7 +533,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("分类详情化疗  post方式 参数="+param);
             resultStr =  processor.PatientChemotherapyInfo(param);
         }catch (Exception e){
@@ -555,7 +555,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             resultStr =  processor.similarServiceGetSimilars(param);
         }catch (Exception e){
             logger.error("",e);
@@ -570,7 +570,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             resultStr =  processor.patientDetailVitaboardParam(param);
         }catch (Exception e){
             logger.error("",e);
@@ -586,7 +586,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             resultStr =  processor.similarServiceSimilarParam(param);
         }catch (Exception e){
             logger.error("",e);
@@ -602,7 +602,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             resultStr = processor.similarServiceSimilarQuery(param);
         } catch (Exception e) {
             logger.error("", e);
@@ -617,7 +617,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             resultStr = processor.similarServiceSimilarBasicDetail(param);
         } catch (Exception e) {
             logger.error("", e);
@@ -633,7 +633,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             resultStr = processor.similarServiceSimilarPatientInfo(param);
         } catch (Exception e) {
             logger.error("", e);
@@ -649,7 +649,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             resultStr = processor.similarServiceSimilarPatientExtraInfo(param);
         } catch (Exception e) {
             logger.error("", e);
@@ -667,7 +667,7 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-            String param = AuthorityUtil.addAuthority(paramRe);
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             resultStr = processor.PatientBatchDataConsultingRoom(param);
         } catch (Exception e) {
             logger.error("", e);
