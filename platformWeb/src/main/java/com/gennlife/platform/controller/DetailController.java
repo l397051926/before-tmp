@@ -199,72 +199,72 @@ public class DetailController {
         return resultStr;
     }
 
-    @RequestMapping(value="/CategoryCatalog",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/CategoryCatalog", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String getCategoryCatalog(HttpServletRequest paramRe){
+    String getCategoryCatalog(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = AuthorityUtil.addTreatedAuthority(paramRe);
-            logger.info("分类信息接口及目录 get方式 参数="+param);
+            logger.info("分类信息接口及目录 get方式 参数=" + param);
             resultStr =  processor.categoryCatalog(param);
-        }catch (Exception e){
-            logger.error("分类信息接口及目录",e);
+        } catch (Exception e) {
+            logger.error("分类信息接口及目录", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("分类信息接口及目录 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("分类信息接口及目录 get 耗时" + (System.currentTimeMillis()-start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/MolecularDetection",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/MolecularDetection", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String getMolecularDetection(HttpServletRequest paramRe){
+    String getMolecularDetection(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = AuthorityUtil.addTreatedAuthority(paramRe);
-            logger.info("分子检测 get方式 参数="+param);
+            logger.info("分子检测 get方式 参数=" + param);
             resultStr =  processor.molecularDetection(param);
-        }catch (Exception e){
-            logger.error("分子检测",e);
+        } catch (Exception e) {
+            logger.error("分子检测", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("分子检测 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("分子检测 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
 
-    @RequestMapping(value="/BiologicalSpecimen",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/BiologicalSpecimen", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String getBiologicalSpecimen(HttpServletRequest paramRe){
+    String getBiologicalSpecimen(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = AuthorityUtil.addTreatedAuthority(paramRe);
-            logger.info("生物标本 get方式 参数="+param);
+            logger.info("生物标本 get方式 参数=" + param);
             resultStr =  processor.biologicalSpecimen(param);
-        }catch (Exception e){
-            logger.error("生物标本",e);
+        } catch (Exception e) {
+            logger.error("生物标本", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("生物标本 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("生物标本 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/ExamResult",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/ExamResult", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String getExamResult(HttpServletRequest paramRe){
+    String getExamResult(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = AuthorityUtil.addTreatedAuthority(paramRe);
-            logger.info("检查 get方式 参数="+param);
+            logger.info("检查 get方式 参数=" + param);
             resultStr =  processor.examResult(param);
-        }catch (Exception e){
-            logger.error("检查",e);
+        } catch (Exception e) {
+            logger.error("检查", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("检查 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("检查 get 耗时" + (System.currentTimeMillis()-start) + "ms");
         return resultStr;
     }
 
@@ -273,189 +273,189 @@ public class DetailController {
     String getPathologicalExamination(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = AuthorityUtil.addTreatedAuthority(paramRe);
-            logger.info("病理检测  get方式 参数="+param);
+            logger.info("病理检测  get方式 参数=" + param);
             resultStr =  processor.pathologicalExamination(param);
-        }catch (Exception e){
-            logger.error("病理检测",e);
+        } catch (Exception e) {
+            logger.error("病理检测", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("病理检测 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("病理检测 get 耗时" + (System.currentTimeMillis()-start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/VisitDiagnose",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/VisitDiagnose", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String getVisitDiagnose(HttpServletRequest paramRe){
+    String getVisitDiagnose(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param =  AuthorityUtil.addTreatedAuthority(paramRe);
-            logger.info("单次就诊专用:诊断报告  get方式 参数="+param);
+            logger.info("单次就诊专用:诊断报告  get方式 参数=" + param);
             resultStr =  processor.visitDiagnose(param);
-        }catch (Exception e){
-            logger.error("诊断报告",e);
+        } catch (Exception e) {
+            logger.error("诊断报告", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("单次就诊专用:诊断报告 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("单次就诊专用:诊断报告 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
     @RequestMapping(value="/AdmissionRecords",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String getAdmissionRecords(HttpServletRequest paramRe){
+    String getAdmissionRecords(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param =  AuthorityUtil.addTreatedAuthority(paramRe);
-            logger.info("病程 诊断报告:主诉  get方式 参数="+param);
+            logger.info("病程 诊断报告:主诉  get方式 参数=" + param);
             resultStr =  processor.admissionRecords(param);
-        }catch (Exception e){
-            logger.error("病程 诊断报告:主诉",e);
+        } catch (Exception e) {
+            logger.error("病程 诊断报告:主诉", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("病程 诊断报告:主诉 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("病程 诊断报告:主诉 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/MedicalRecord",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/MedicalRecord", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String getMedicalRecord(HttpServletRequest paramRe){
+    String getMedicalRecord(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = AuthorityUtil.addTreatedAuthority(paramRe);
-            logger.info("病案首页  get方式 参数="+param);
+            logger.info("病案首页  get方式 参数=" + param);
             resultStr =  processor.medicalRecord(param);
-        }catch (Exception e){
-            logger.error("病案首页",e);
+        } catch (Exception e) {
+            logger.error("病案首页", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("病案首页 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("病案首页 get 耗时" + (System.currentTimeMillis()-start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/OperationRecords",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/OperationRecords", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public @ResponseBody
     String getOperationRecords(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = AuthorityUtil.addTreatedAuthority(paramRe);
-            logger.info("手术信息  get方式 参数="+param);
+            logger.info("手术信息  get方式 参数=" + param);
             resultStr =  processor.operationRecords(param);
-        }catch (Exception e){
-            logger.error("手术信息",e);
+        } catch (Exception e) {
+            logger.error("手术信息", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("手术信息 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("手术信息 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
 
-    @RequestMapping(value="/Pharmacy",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/Pharmacy", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String getPharmacy(HttpServletRequest paramRe){
+    String getPharmacy(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = AuthorityUtil.addTreatedAuthority(paramRe);
-            logger.info("用药医嘱  get方式 参数="+param);
+            logger.info("用药医嘱  get方式 参数=" + param);
             resultStr =  processor.pharmacy(param);
-        }catch (Exception e){
-            logger.error("用药医嘱",e);
+        } catch (Exception e) {
+            logger.error("用药医嘱", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("用药医嘱 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("用药医嘱 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/DischargeRecords",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/DischargeRecords", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public @ResponseBody
     String getDischargeRecords(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = AuthorityUtil.addTreatedAuthority(paramRe);
-            logger.info("出院记录  get方式 参数="+param);
+            logger.info("出院记录  get方式 参数=" + param);
             resultStr =  processor.dischargeRecords(param);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("出院记录",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("出院记录 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("出院记录 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
 
-    @RequestMapping(value="/CourseRecords",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/CourseRecords", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String getCourseRecords(HttpServletRequest paramRe){
+    String getCourseRecords(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = AuthorityUtil.addTreatedAuthority(paramRe);
-            logger.info("病程记录  get方式 参数="+param);
+            logger.info("病程记录  get方式 参数=" + param);
             resultStr =  processor.courseRecords(param);
-        }catch (Exception e){
-            logger.error("病程记录",e);
+        } catch (Exception e) {
+            logger.error("病程记录", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("病程记录 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("病程记录 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
 
-    @RequestMapping(value="/MedicalCourse",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/MedicalCourse", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String getMedicalCourse(HttpServletRequest paramRe){
+    String getMedicalCourse(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = AuthorityUtil.addTreatedAuthority(paramRe);
             logger.info("病例文书  get方式 参数="+param);
             resultStr =  processor.medicalCourse(param);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("病例文书",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("病例文书 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("病例文书 get 耗时" + (System.currentTimeMillis()-start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/VisitClassifySection",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/VisitClassifySection", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String VisitClassifySection(HttpServletRequest paramRe){
+    String VisitClassifySection(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = AuthorityUtil.addTreatedAuthority(paramRe);
-            logger.info("病史信息接口  get方式 参数="+param);
+            logger.info("病史信息接口  get方式 参数=" + param);
             resultStr =  processor.visitClassifySection(param);
-        }catch (Exception e){
-            logger.error("病史信息接口",e);
+        } catch (Exception e) {
+            logger.error("病史信息接口", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("病史信息接口 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("病史信息接口 get 耗时" + (System.currentTimeMillis()-start) + "ms");
         return resultStr;
     }
 
 
-    @RequestMapping(value="/VisitClassifyImage",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/VisitClassifyImage", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String VisitClassifyImage(HttpServletRequest paramRe){
+    String VisitClassifyImage(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = AuthorityUtil.addTreatedAuthority(paramRe);
-            logger.info("图片获取接口  post方式 参数="+param);
+            logger.info("图片获取接口  post方式 参数=" + param);
             resultStr =  processor.visitClassifyImage(param);
-        }catch (Exception e){
-            logger.error("图片获取接口",e);
+        } catch (Exception e) {
+            logger.error("图片获取接口", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("图片获取接口 post方式 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("图片获取接口 post方式 耗时" + (System.currentTimeMillis()-start) + "ms");
         return resultStr;
     }
 
