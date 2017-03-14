@@ -193,4 +193,15 @@ public class User {
     public void setPower(Power power) {
         this.power = power;
     }
+    public User CopyRoles()
+    {
+        User newuser=new User();
+        newuser.setUid(uid);
+        newuser.setPower(power);
+        newuser.setGroups(getGroups());
+        newuser.setFrontEndPower(frontEndPower);
+        newuser.setUnumber(unumber);
+        newuser.setRoles(roles);
+        return newuser;
+    }
 }

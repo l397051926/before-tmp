@@ -163,13 +163,16 @@ public class UserProcessor {
             Long start5 = System.currentTimeMillis();
             Map<String,Object> map = new HashMap<>();
             map.put("orgID",user.getOrgID());
+            Set<String> hasAddUser=new TreeSet<>();
             for(Group group:list){
                 String gid = group.getGid();
                 map.put("gid",gid);
                 List<User> userList = AllDao.getInstance().getGroupDao().getUsersByGroupID(map);
                 List<User> newUserList = new LinkedList<>();
                 for(User member:userList){//补充成员的角色信息
-                    User newMember = getUserByUser(member);
+                    if(hasAddUser.contains(member.getUid())) continue;
+                    hasAddUser.add(member.getUid());
+                    User newMember = getUserByUser(member).CopyRoles();
                     newUserList.add(newMember);
                     List<Role> roleList = newMember.getRoles();
                     if(roleList != null){
@@ -242,7 +245,7 @@ public class UserProcessor {
             List<String> departName = departNames.get(sid);
             if (departName != null && departName.size() > 0) {
                 for (String department : departName) {
-                    JsonObject jsonCopy = deepCopy(jsonobj);
+                    JsonObject jsonCopy = powerSearchCopy(jsonobj);
                     jsonCopy.addProperty("slab_name", department);
                     insert.add(jsonCopy);
                 }
@@ -254,11 +257,11 @@ public class UserProcessor {
             role.setResources(insert);
         }
     }
-    public static JsonObject deepCopy(JsonObject json) {
+    public static JsonObject powerSearchCopy(JsonObject json) {
         JsonObject copy = new JsonObject();
-        for (Map.Entry<String, JsonElement> item : json.entrySet()) {
-            copy.add(item.getKey(), item.getValue());
-        }
+        copy.add("slab_name",json.get("slab_name"));
+        copy.add("has_search",json.get("has_search"));
+        copy.add("has_searchExport",json.get("has_searchExport"));
         return copy;
     }
 
@@ -277,7 +280,7 @@ public class UserProcessor {
                 List<String> departName = departNames.get(sid);
                 if (departName != null && departName.size() > 0) {
                     for (String department : departName) {
-                        JsonObject jsonCopy = deepCopy(jsonobj);
+                        JsonObject jsonCopy = powerSearchCopy(jsonobj);
                         jsonCopy.addProperty("slab_name", department);
                         insert.add(jsonCopy);
                     }
