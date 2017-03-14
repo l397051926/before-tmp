@@ -19,11 +19,11 @@ public class AuthorityUtil {
     private static Logger logger = LoggerFactory.getLogger(AuthorityUtil.class);
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
-    public static String addAuthority(HttpServletRequest paramRe){
+    public static String addAuthority(HttpServletRequest paramRe) {
         String param = ParamUtils.getParam(paramRe);
         JsonElement paramElement = jsonParser.parse(param);
         Object object = paramRe.getAttribute("currentUser");
-        if(object == null){
+        if (object == null) {
             logger.error("paramRe里面无currentUser");
             return ParamUtils.errorSessionLosParam();
         }else {
@@ -31,15 +31,15 @@ public class AuthorityUtil {
             List<Role> roles = user.getRoles();
             List<Group> groups = user.getGroups();
             Power power = user.getPower();
-            if(paramElement.isJsonObject()) {
+            if (paramElement.isJsonObject()) {
                 JsonObject paramObj = paramElement.getAsJsonObject();
                 //paramObj.add("roles", gson.toJsonTree(roles));
                 //从groups数组扩展权限
-                paramObj.add("groups",gson.toJsonTree(groups));
-                paramObj.add("power",gson.toJsonTree(power));
-                return CaseProcessor.transformSid(paramObj,user);
+                paramObj.add("groups", gson.toJsonTree(groups));
+                paramObj.add("power", gson.toJsonTree(power));
+                return CaseProcessor.transformSid(paramObj, user);
             } else {
-                return paramElement.isJsonArray()?gson.toJson(paramElement):null;
+                return paramElement.isJsonArray()? gson.toJson(paramElement): null;
             }
         }
     }
@@ -108,7 +108,7 @@ public class AuthorityUtil {
             }
         }
     }
-    public static String addSearchCaseAuthority(HttpServletRequest paramRe){
+    public static String addSearchCaseAuthority(HttpServletRequest paramRe) {
         String param = ParamUtils.getParam(paramRe);
         JsonElement paramElement = jsonParser.parse(param);
         Object object = paramRe.getAttribute("currentUser");
@@ -120,7 +120,7 @@ public class AuthorityUtil {
             List<Role> roles = user.getRoles();
             List<Group> groups = user.getGroups();
             Power power = user.getPower();
-            if(paramElement.isJsonObject()) {
+            if (paramElement.isJsonObject()) {
                 JsonObject paramObj = paramElement.getAsJsonObject();
                 // paramObj.add("roles", gson.toJsonTree(roles));
                 // 从groups数组扩展权限
@@ -139,9 +139,9 @@ public class AuthorityUtil {
             }
         }
     }
-    public static boolean isAdmin(User user){
+    public static boolean isAdmin(User user) {
         List<Admin> admins = user.getAdministrators();
-        if(admins == null){
+        if (admins == null) {
             return false;
         }
         boolean isAdmin = false;
