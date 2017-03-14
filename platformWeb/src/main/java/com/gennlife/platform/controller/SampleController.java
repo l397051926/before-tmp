@@ -32,20 +32,20 @@ public class SampleController {
     private static Gson gson = GsonUtil.getGson();
     @RequestMapping(value="/Import",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String postImport(HttpServletRequest paramRe){
+    String postImport(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
-            String param = AuthorityUtil.addAuthority(paramRe);
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
             User user = (User)paramRe.getAttribute("currentUser");
-            logger.info("Import param="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.importSample(paramObj,user);
-        }catch (Exception e){
-            logger.error("",e);
+            logger.info("Import param = " + param);
+            JsonObject paramObj = (JsonObject)jsonParser.parse(param);
+            resultStr =  processor.importSample(paramObj, user);
+        } catch (Exception e) {
+            logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("样本导入 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("样本导入 耗时"+(System.currentTimeMillis()-start) + "ms");
         return resultStr;
     }
 
