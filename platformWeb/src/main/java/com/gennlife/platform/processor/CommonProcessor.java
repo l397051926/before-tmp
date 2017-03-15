@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URLEncoder;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,11 +25,12 @@ public class CommonProcessor {
 
     public void downLoadFile(String pathfile ,HttpServletResponse response,String fileName){
         try {
+            // fileName = URLEncoder.encode(fileName, "utf-8"); // 可以解决下载后文件名中文乱码问题
             fileName = new String(fileName.getBytes("GBK"), "iso-8859-1");
             response.reset();
             response.setContentType("application/msexcel");
             response.setCharacterEncoding("utf-8");
-            response.setHeader("Content-disposition", "attachment; filename=" + fileName);
+            response.setHeader("Content-disposition", "attachment; filename=" + fileName); // Content-disposition 告诉浏览器以下载的形式打开
             BufferedInputStream bis = new BufferedInputStream(new FileInputStream(pathfile));
             BufferedOutputStream os = new BufferedOutputStream(response.getOutputStream());
             byte[] buff = new byte[2048];
