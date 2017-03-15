@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 @RequestMapping("/common")
-public class CommonController  {
+public class CommonController {
     private static Logger logger = LoggerFactory.getLogger(CommonController.class);
     private static String labImportsuffix = "导入科室历史.csv";
     private static String staffImportsuffix = "导入人员历史.csv";
@@ -97,7 +97,7 @@ public class CommonController  {
 
 
     @RequestMapping(value="/DownloadFileForExplainCRFImport",method= RequestMethod.GET)
-    public void DownloadFileForExplainCRFImport(HttpServletRequest paramRe,HttpServletResponse response){
+    public void DownloadFileForExplainCRFImport(HttpServletRequest paramRe, HttpServletResponse response){
 
         String oparam = ParamUtils.getParam(paramRe);
         JsonObject json = (JsonObject)jsonParser.parse(oparam);
