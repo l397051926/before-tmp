@@ -167,7 +167,7 @@
         FROM
         gennlife_lab_map where lab_id=
         (
-        select lab_id from gennlife_lab where  lab_name=#{lab_name} and orgID=#{orgID}
+        select labID  from gennlife_lab where  lab_name=#{lab_name} and orgID=#{orgID}
         )
 
     </select>
