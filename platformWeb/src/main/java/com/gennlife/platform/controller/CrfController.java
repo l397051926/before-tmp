@@ -399,7 +399,7 @@ public class CrfController {
                 logger.error("CsvImportDetail写文件异常",e);
                 return;
             }
-            processor.downLoadFile(path, response, filename);
+            processor.downLoadFile(tmpFilePath, response, filename);
 
             if (f.exists()) f.delete();
         }
