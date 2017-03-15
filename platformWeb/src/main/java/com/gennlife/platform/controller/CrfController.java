@@ -388,7 +388,9 @@ public class CrfController {
             String data = result.get("data").getAsString();
             String filename = "crf_csv_import_" + importId + ".csv";
             String tmpFilePath = path + filename;
+            File f = new File(tmpFilePath);
             try {
+                if(!f.exists()) f.createNewFile();
                 BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(tmpFilePath), "GBK"));
                 bw.append(data);
                 bw.flush();
@@ -398,7 +400,7 @@ public class CrfController {
                 return;
             }
             processor.downLoadFile(path, response, filename);
-            File f = new File(tmpFilePath);
+
             if (f.exists()) f.delete();
         }
         catch (Exception e)
