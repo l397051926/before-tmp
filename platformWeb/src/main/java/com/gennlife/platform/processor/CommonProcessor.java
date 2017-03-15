@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.net.URLEncoder;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,7 +21,12 @@ import java.util.List;
 public class CommonProcessor {
     private static Logger logger = LoggerFactory.getLogger(CommonProcessor.class);
     private static View view = new View();
-
+    public static CommonProcessor commonProcessor=new CommonProcessor();
+    private CommonProcessor(){}
+    public static CommonProcessor getCommonProcessor()
+    {
+        return commonProcessor;
+    }
     public void downLoadFile(String pathfile ,HttpServletResponse response,String fileName){
         try {
             // fileName = URLEncoder.encode(fileName, "utf-8"); // 可以解决下载后文件名中文乱码问题

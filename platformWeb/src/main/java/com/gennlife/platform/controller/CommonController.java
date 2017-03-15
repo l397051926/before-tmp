@@ -12,7 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +32,7 @@ public class CommonController  {
     private static String labImportsuffix = "导入科室历史.csv";
     private static String staffImportsuffix = "导入人员历史.csv";
     private static JsonParser jsonParser = new JsonParser();
-    private static CommonProcessor processor = new CommonProcessor();
+    private static CommonProcessor processor =CommonProcessor.getCommonProcessor();
     private static Gson gson = GsonUtil.getGson();
     //存放文件的位置
     private static String FilePath = "/home/tomcat_demo2_web/update/";//默认位置
@@ -128,4 +131,5 @@ public class CommonController  {
         logger.info("DownloadFileForExplainCRFImport: " + crfId + " : " + fileName);
         processor.downLoadFile(file, response, fileName);
     }
+
 }

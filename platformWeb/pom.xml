@@ -326,12 +326,6 @@
             </activation>
         </profile>
         <profile>
-            <id>prod</id>
-            <properties>
-                <package.environment>profiles/prod</package.environment>
-            </properties>
-        </profile>
-        <profile>
             <id>dev</id>
             <properties>
                 <package.environment>profiles/dev</package.environment>
