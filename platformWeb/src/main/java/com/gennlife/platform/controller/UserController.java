@@ -79,6 +79,7 @@ public class UserController {
                     logger.info("获取到客户端的Cookie" + cookies);
                     for (Cookie cookieitem: cookies) {
                         if (cookieitem.getName().equals("JSESSIONID")) {
+                            logger.info("获取客户端JSESSIONID：" + cookieitem.getValue());
                             logger.info("设置客户端JSESSIONID：" + sessionID);
                             cookieitem.setValue(sessionID);
                             cookieitem.setPath("/");
