@@ -261,6 +261,7 @@ public class UserProcessor {
         JsonObject copy = new JsonObject();
         copy.add("slab_name",json.get("slab_name"));
         copy.add("has_search",json.get("has_search"));
+        copy.add("sid",json.get("sid"));
         copy.add("has_searchExport",json.get("has_searchExport"));
         return copy;
     }
