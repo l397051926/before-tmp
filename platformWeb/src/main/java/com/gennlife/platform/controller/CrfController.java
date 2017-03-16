@@ -2,9 +2,11 @@ package com.gennlife.platform.controller;
 
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.model.User;
+import com.gennlife.platform.processor.CommonProcessor;
 import com.gennlife.platform.processor.CrfProcessor;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
+import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -21,7 +23,8 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.io.*;
+
 
 /**
  * Created by chen-song on 16/6/3.
@@ -367,5 +370,45 @@ public class CrfController {
         }
         logger.info("病人编号是否存在 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
+    }
+    @RequestMapping(value="/CsvImportDetail",method=RequestMethod.GET)
+    public void CsvImportDetail(HttpServletRequest paramRe,HttpServletResponse response){
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            if (StringUtils.isEmpty(param)) return;
+            String resultstr = HttpRequestUtils.httpPost(ConfigurationService.getUrlBean().getCrfCsvImportDetail(),param);
+            if(StringUtils.isEmpty(resultstr))
+            {
+                logger.error("crf返回空");
+                return;
+            }
+            JsonObject result = jsonParser.parse(resultstr).getAsJsonObject();
+            CommonProcessor processor = CommonProcessor.getCommonProcessor();
+            String path = ConfigurationService.getFileBean().getCRFFileLocation();
+            String importId = result.get("importId").getAsString();
+            String data = result.get("data").getAsString();
+            String filename = "crf_csv_import_" + importId + ".csv";
+            String tmpFilePath = path + filename;
+            File f = new File(tmpFilePath);
+            try {
+                if(!f.exists()) f.createNewFile();
+                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(tmpFilePath), "GBK"));
+                bw.append(data);
+                bw.flush();
+                bw.close();
+            } catch (Exception e) {
+                logger.error("CsvImportDetail写文件异常",e);
+                return;
+            }
+            processor.downLoadFile(tmpFilePath, response, filename);
+
+            if (f.exists()) f.delete();
+        }
+        catch (Exception e)
+        {
+            logger.error("CsvImportDetail 出现异常",e);
+        }
+
+
     }
 }

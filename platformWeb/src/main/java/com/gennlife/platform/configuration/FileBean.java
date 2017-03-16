@@ -40,16 +40,13 @@ public class FileBean {
     private static void mkdir(String path)
     {
         File dir= new File(path);
-        if(dir.isDirectory())
+        if(!dir.exists())
         {
-            if(!dir.exists())
+            if(dir.mkdirs())
             {
-                if(dir.mkdirs())
-                {
-                    logger.info("创建目录"+path+"成功");
-                }
-                else logger.error("创建目录"+path+"失败");
+                logger.info("创建目录"+path+"成功");
             }
+            else logger.error("创建目录"+path+"失败");
         }
     }
 }

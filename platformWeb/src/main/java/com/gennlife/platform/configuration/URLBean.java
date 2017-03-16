@@ -9,6 +9,7 @@ public class URLBean {
      * 非隐私信息接口
      * */
     private String casePatientBatchDataConsultingRoom;
+    private String CrfCsvImportDetail;
 
     public String getCaseAdmission_records() {
         return caseAdmission_records;
@@ -1120,5 +1121,13 @@ public class URLBean {
 
     public String getCasePatientBatchDataConsultingRoom() {
         return casePatientBatchDataConsultingRoom;
+    }
+
+    public void setCrfCsvImportDetail(String CrfCsvImportDetail) {
+        this.CrfCsvImportDetail = CrfCsvImportDetail;
+    }
+
+    public String getCrfCsvImportDetail() {
+        return this.CrfCsvImportDetail;
     }
 }
