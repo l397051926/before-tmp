@@ -568,15 +568,26 @@ public class DetailProcessor {
             return ParamUtils.errorParam("请求出错");
         }
     }
-    public String PatientBatchDataConsultingRoom(String param) {
+    public String PatientBatchData(String param) {
             try{
-                String url = ConfigurationService.getUrlBean().getCasePatientBatchDataConsultingRoom();
-                logger.info("PatientBatchDataConsultingRoom url="+url);
+                String url = ConfigurationService.getUrlBean().getCasePatientBatchData();
+                logger.info("PatientBatchData url="+url);
                 String result = HttpRequestUtils.httpPost(url,param);
                 return result;
             }catch (Exception e){
                 return ParamUtils.errorParam("请求出错");
             }
 
+    }
+
+    public String ConsultingRoomData(String param) {
+        try{
+            String url = ConfigurationService.getUrlBean().getConsultingRoomData();
+            logger.info("ConsultingRoomData url="+url);
+            String result = HttpRequestUtils.httpPost(url,param);
+            return result;
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
     }
 }

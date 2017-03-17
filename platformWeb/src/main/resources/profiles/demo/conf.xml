@@ -18,8 +18,8 @@
         <property name="caseSuggestURL" value="http://10.0.0.17:8989/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
         <property name="caseGeneErrorURL" value="http://10.0.0.17:8989/search-server/verify"/>
         <!-- 非隐私信息接口-->
-        <property name="casePatientBatchDataConsultingRoom" value="http://10.0.0.12:8111/FileService/PatientBatchData/ConsultingRoom"/>
-
+        <property name="casePatientBatchData" value="http://10.0.0.12:8111/FileService/PatientBatchData/BatchData"/>
+        <property name="ConsultingRoomData" value="http://10.0.0.12:8111/FileService/PatientBatchData/ConsultingRoom"/>
         <!--FS 详情页 -->
         <property name="caseDetailPatientBasicInfoURL" value="http://10.0.0.12:8111/FileService/PatientDetail/patient_basic_info"/>
         <property name="caseDetailPatientBasicFigureURL" value="http://10.0.0.12:8111/FileService/PatientDetail/PatientBasicFigure"/>

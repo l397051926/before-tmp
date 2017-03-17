@@ -661,14 +661,32 @@ public class DetailController {
     /**
      * 非隐私数据查询
      * */
-    @RequestMapping(value="/PatientBatchDataConsultingRoom",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/PatientBatchData",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody
     String PatientBatchDataConsultingRoom(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
             String param = AuthorityUtil.addTreatedAuthority(paramRe);
-            resultStr = processor.PatientBatchDataConsultingRoom(param);
+            resultStr = processor.PatientBatchData(param);
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取非隐私数据 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+    /**
+     * 我的诊室数据查询
+     * */
+    @RequestMapping(value="/ConsultingRoomData",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String ConsultingRoomData(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            resultStr = processor.ConsultingRoomData(param);
         } catch (Exception e) {
             logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");

@@ -8,8 +8,9 @@ public class URLBean {
     /**
      * 非隐私信息接口
      * */
-    private String casePatientBatchDataConsultingRoom;
+    private String casePatientBatchData;
     private String CrfCsvImportDetail;
+    private String consultingRoomData;
 
     public String getCaseAdmission_records() {
         return caseAdmission_records;
@@ -1115,12 +1116,12 @@ public class URLBean {
         this.caseSimilarServiceSimilarPatientExtraInfo = caseSimilarServiceSimilarPatientExtraInfo;
     }
 
-    public void setCasePatientBatchDataConsultingRoom(String casePatientBatchDataConsultingRoom) {
-        this.casePatientBatchDataConsultingRoom = casePatientBatchDataConsultingRoom;
+    public void setCasePatientBatchData(String casePatientBatchData) {
+        this.casePatientBatchData = casePatientBatchData;
     }
 
-    public String getCasePatientBatchDataConsultingRoom() {
-        return casePatientBatchDataConsultingRoom;
+    public String getCasePatientBatchData() {
+        return casePatientBatchData;
     }
 
     public void setCrfCsvImportDetail(String CrfCsvImportDetail) {
@@ -1129,5 +1130,13 @@ public class URLBean {
 
     public String getCrfCsvImportDetail() {
         return this.CrfCsvImportDetail;
+    }
+
+    public void setConsultingRoomData(String ConsultingRoomData) {
+        consultingRoomData = ConsultingRoomData;
+    }
+
+    public String getConsultingRoomData() {
+        return consultingRoomData;
     }
 }
