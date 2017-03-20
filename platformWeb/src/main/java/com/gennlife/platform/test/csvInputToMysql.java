@@ -74,7 +74,7 @@ public class csvInputToMysql {
 
         Statement stmt = null;
         ResultSet rs = null;
-        Connection conn;
+        Connection conn = null;
         JsonObject json = new JsonObject();
         Map<String, ArrayList<String>> mapFromCsv;
         Map<String, String> map = new HashMap<String, String>();
@@ -103,8 +103,8 @@ public class csvInputToMysql {
                 Iterator it = mapFromCsv.entrySet().iterator();
                 while (it.hasNext()) {
                     Map.Entry entry = (Map.Entry) it.next();
-//                    String sq = "INSERT INTO gennlife_lab_map (lab_id, depart_name) VALUES('" + map.get(entry.getKey()) + "','" + entry.getValue() + "')";
-//                    stmt.executeUpdate(sq);
+                    // String sq = "INSERT INTO gennlife_lab_map (lab_id, depart_name) VALUES('" + map.get(entry.getKey()) + "','" + entry.getValue() + "')";
+                    // stmt.executeUpdate(sq);
                     ArrayList<String> arr = (ArrayList<String>) entry.getValue();
                     for (String str : arr) {
                         String sq = "INSERT INTO gennlife_lab_map (lab_id, depart_name) VALUES('" + map.get(entry.getKey()) + "','" + str + "')";
@@ -112,12 +112,12 @@ public class csvInputToMysql {
                     }
                 }
 
-//                writeJsonToFile("/Users/luoxupan/json_txt", json.toString());
+                // writeJsonToFile("/Users/luoxupan/json_txt", json.toString());
             }
 
-//            if (stmt.execute(sql)) {
-//                rs = stmt.getResultSet();
-//            }
+            // if (stmt.execute(sql)) {
+            //      rs = stmt.getResultSet();
+            // }
         } catch (SQLException e) {
             System.out.println("MySQL操作错误: " + e);
             e.printStackTrace();
@@ -131,7 +131,13 @@ public class csvInputToMysql {
                     e.printStackTrace();
                 }
             }
-
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
             if (stmt != null) {
                 try {
                     stmt.close();
@@ -140,6 +146,5 @@ public class csvInputToMysql {
                 }
             }
         }
-
     }
 }
