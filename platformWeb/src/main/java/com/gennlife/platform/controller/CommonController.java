@@ -106,7 +106,7 @@ public class CommonController {
         JsonObject json = (JsonObject)jsonParser.parse(oparam);
         String file = FilePath;
         String liver_cancer = "映射模型字段说明-肝癌-V1.0.xlsx";
-        String lung_cancer = "映射模型字段说明-肺癌-V1.0.xlsx";
+        String lung_cancer = "映射模型字段说明-肺癌-V1.1.xlsx";
         String kidney_cancer = "映射模型字段说明-肾癌-V1.0.xlsx";
         String crfId = null;
         try {
