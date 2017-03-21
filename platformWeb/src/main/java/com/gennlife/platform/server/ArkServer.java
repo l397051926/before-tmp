@@ -44,11 +44,7 @@ public class ArkServer {
         SERVER_STATUS = SERVER_STATUS_STOPPING;
         logger.info("ArkServer 启动销毁中 .......");
         arkService.destroy();
-        try {
-            DriverManager.deregisterDriver(DriverManager.getDrivers().nextElement());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        
         logger.info("ArkServer 销毁耗时："+ (System.currentTimeMillis() - serverStop) +"");
         SERVER_STATUS = SERVER_STATUS_PENDING;
     }
