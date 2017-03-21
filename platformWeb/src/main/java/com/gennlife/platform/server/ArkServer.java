@@ -6,8 +6,6 @@ import com.gennlife.platform.util.MongoManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 /**
  * Created by chensong on 2015/12/10.
@@ -44,7 +42,7 @@ public class ArkServer {
         SERVER_STATUS = SERVER_STATUS_STOPPING;
         logger.info("ArkServer 启动销毁中 .......");
         arkService.destroy();
-        
+
         logger.info("ArkServer 销毁耗时："+ (System.currentTimeMillis() - serverStop) +"");
         SERVER_STATUS = SERVER_STATUS_PENDING;
     }
