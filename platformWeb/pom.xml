@@ -404,25 +404,37 @@
     </build>
 
     <repositories>
+        <!--<repository>-->
+            <!--<id>CN</id>-->
+            <!--<name>OSChina Central</name>-->
+            <!--<layout>default</layout>-->
+            <!--<url>http://maven.oschina.net/content/groups/public/</url>-->
+            <!--<snapshots>-->
+                <!--<enabled>false</enabled>-->
+            <!--</snapshots>-->
+        <!--</repository>-->
+        <!--<repository>-->
+            <!--<id>alibaba-opensource</id>-->
+            <!--<name>alibaba-opensource</name>-->
+            <!--<url>http://code.alibabatech.com/mvn/releases/</url>-->
+            <!--<layout>default</layout>-->
+        <!--</repository>-->
+        <!--<repository>-->
+            <!--<id>alibaba-opensource-snapshot</id>-->
+            <!--<name>alibaba-opensource-snapshot</name>-->
+            <!--<url>http://code.alibabatech.com/mvn/snapshots/</url>-->
+            <!--<layout>default</layout>-->
+        <!--</repository>-->
         <repository>
-            <id>CN</id>
-            <name>OSChina Central</name>
+            <id>releases</id>
+            <name>Release-gennlife</name>
+            <url>http://10.0.0.106:8081/repository/maven-releases/</url>
             <layout>default</layout>
-            <url>http://maven.oschina.net/content/groups/public/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
         </repository>
         <repository>
-            <id>alibaba-opensource</id>
-            <name>alibaba-opensource</name>
-            <url>http://code.alibabatech.com/mvn/releases/</url>
-            <layout>default</layout>
-        </repository>
-        <repository>
-            <id>alibaba-opensource-snapshot</id>
-            <name>alibaba-opensource-snapshot</name>
-            <url>http://code.alibabatech.com/mvn/snapshots/</url>
+            <id>snapshots</id>
+            <name>Snapshot-gennlife</name>
+            <url>http://10.0.0.106:8081/repository/maven-snapshots/</url>
             <layout>default</layout>
         </repository>
     </repositories>
