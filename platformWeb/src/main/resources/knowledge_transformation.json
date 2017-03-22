@@ -176,7 +176,7 @@
 		},
 		"drug": {
 			"data_type": "single_array",
-			"path_one": "$.FdaReference.drugName",
+			"path_one": "$.drugName",
 			"name_one": "name",
 			"path_two": "$.FdaReference.drugUrl",
 			"name_two": "url"
