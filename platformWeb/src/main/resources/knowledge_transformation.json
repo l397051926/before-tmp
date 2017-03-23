@@ -124,7 +124,7 @@
 			"data_type": "single_array",
 			"path_one": "$.drugName",
 			"name_one": "name",
-			"path_two": "",
+			"path_two": "$.FdaReference.drugUrl",
 			"name_two": "url"
 		},
 		"disease": {
@@ -440,7 +440,7 @@
 			"data_type": "single_array",
 			"path_one": "$.drugName",
 			"name_one": "name",
-			"path_two": "",
+			"path_two": "$.NccnReference.drugUrl",
 			"name_two": "url"
 		},
 		"brand_name": {
