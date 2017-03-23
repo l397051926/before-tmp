@@ -83,13 +83,13 @@
 
 
         <!--知识库服务 接口 -->
-        <property name="knowledgeURL" value="http://localhost:9883/knowledge/graph"/>
-        <property name="knowledgeDiseaseSearchGenesURL" value="http://localhost:9883/knowledge/DiseaseSearchGenes"/>
-        <property name="knowledgeGeneInfoURL" value="http://localhost:9883/knowledge/GeneInfo"/>
-        <property name="knowledgeVariationInfoURL" value="http://localhost:9883/knowledge/VariationInfo"/>
-        <property name="knowledgeDetailVariationSearchDiseaseURL" value="http://localhost:9883/knowledge/VariationInfo"/>
-        <property name="knowledgeDetailVariationSearchDrugURL" value="http://localhost:9883/knowledge/VariationInfo"/>
-        <property name="knowledgePharmGKBSearchDrugURL" value="http://localhost:9883/knowledge/PharmGKBSearchDrug"/>
+        <property name="knowledgeURL" value="http://10.0.0.152:9883/knowledge/graph"/>
+        <property name="knowledgeDiseaseSearchGenesURL" value="http://10.0.0.152:9883/knowledge/DiseaseSearchGenes"/>
+        <property name="knowledgeGeneInfoURL" value="http://10.0.0.152:9883/knowledge/GeneInfo"/>
+        <property name="knowledgeVariationInfoURL" value="http://10.0.0.152:9883/knowledge/VariationInfo"/>
+        <property name="knowledgeDetailVariationSearchDiseaseURL" value="http://10.0.0.152:9883/knowledge/VariationInfo"/>
+        <property name="knowledgeDetailVariationSearchDrugURL" value="http://10.0.0.152:9883/knowledge/VariationInfo"/>
+        <property name="knowledgePharmGKBSearchDrugURL" value="http://10.0.0.152:9883/knowledge/PharmGKBSearchDrug"/>
         <!--CRF 服务接口 -->
         <property name="CRFProjectCRFListURL" value="http://10.0.0.152:9885/auto/ProjectCrfList"/>
         <property name="CRFAutoMapURL" value="http://10.0.0.152:9885/auto/AutoMap"/>
