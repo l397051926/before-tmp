@@ -45,7 +45,8 @@ public class SessionFilter implements Filter {
             String sessionID = session.getId();
             String uid = RedisUtil.getValue(sessionID);
             if(uid == null) {
-                logger.error("RedisUtil.getValue取不到数据:"+sessionID);
+                String cookie=((HttpServletRequest) servletRequest).getHeader("Cookie");
+                logger.error("RedisUtil.getValue取不到数据:"+sessionID+" "+cookie);
                 logger.error("uri="+uri);
                 view.viewString(ParamUtils.errorSessionLosParam(), response);
             } else {
