@@ -25,6 +25,7 @@ public class UserProcessor {
 
     public User login(String email,String pwd) throws IOException {
         try {
+            Long start = System.currentTimeMillis();
             LogUtils.BussnissLog("用户：" + email + " >>> 进行登陆");
             Map<String,Object> confMap = new HashMap<String,Object>();
             confMap.put("email", email);
@@ -32,6 +33,7 @@ public class UserProcessor {
             User user = null;
             try {
                 user = AllDao.getInstance().getSyUserDao().getUser(confMap);
+                logger.info("登录时数据库查询User耗时: " + (System.currentTimeMillis() - start) + "ms");
             //  System.out.println(user);
             } catch (Exception e) {
                 logger.error("", e);

@@ -21,7 +21,7 @@ def sortItem(itemArray,allSortIndexName):
     return newArray
 
 def process():
-    data = xlrd.open_workbook('/Users/luoxupan/Downloads/病人维度临床数据字段配置_V2.1.58_4.xls')
+    data = xlrd.open_workbook('/Users/luoxupan/Downloads/病人维度临床数据字段配置_V2.1.60_1.xls')
     allItemList = OrderedDict()
     allItemListCopy = OrderedDict()
     sheet = data.sheets()[0]
@@ -188,8 +188,8 @@ def process():
     # 心血管
     angiocardiopathy = OrderedDict()
 
-    # mergeResult['liver_cancer'] = liver
-    # mergeResult['lung_cancer'] = lung
+    mergeResult['liver_cancer'] = liver
+    mergeResult['lung_cancer'] = lung
     mergeResult['kidney_cancer'] = kidney
     # ///////////////////////////////////////////////////////////////////////////////////////////////////
     # mergeResult["Angiocardiopathy"] = angiocardiopathy
