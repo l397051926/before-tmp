@@ -826,7 +826,9 @@ public class LaboratoryProcessor {
                 Long start2 = System.currentTimeMillis();
                 //System.out.println("role1="+(start2-start1)+"ms");
                 if (role1 != null) {//
-                    List<String> uidList = (List<String>) role.getStaff();
+                    Set<String> uidList = new TreeSet<>();
+                    uidList.addAll((List<String>) role.getStaff());
+
                     Integer[] roleids = new Integer[]{role.getRoleid()};
                     AllDao.getInstance().getSyRoleDao().deleteRelationsByRoleids(roleids);//删除原有的关联关系
                     Long start3 = System.currentTimeMillis();
