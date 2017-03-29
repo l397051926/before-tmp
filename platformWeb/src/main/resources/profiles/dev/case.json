@@ -15328,16 +15328,10 @@
                     ]
                 },
                 {
-                    "UIFieldName": "从确诊到第一次系统治疗的时间（天）",
-                    "IndexFieldName": "patient_info.TIME_FROM_CONFIRMED_TO_FIRST_TIME_TREATMENT",
-                    "srchFieldName": "患者基本信息.从确诊到第一次系统治疗的时间（天）",
-                    "dataType": "double"
-                },
-                {
-                    "UIFieldName": "从确诊到第一次手术治疗时间（天）",
-                    "IndexFieldName": "patient_info.TIME_FRON_CONFIRMED_TO_FIRST_OPERATION",
-                    "srchFieldName": "患者基本信息.从确诊到第一次手术治疗时间（天）",
-                    "dataType": "double"
+                    "UIFieldName": "患者类型",
+                    "IndexFieldName": "patient_info.PATIENT_TYPE",
+                    "srchFieldName": "患者基本信息.患者类型",
+                    "dataType": "string"
                 }
             ],
             "肝癌.首次术前检验指标": [
@@ -35984,16 +35978,10 @@
                     ]
                 },
                 {
-                    "UIFieldName": "从确诊到第一次系统治疗的时间（天）",
-                    "IndexFieldName": "patient_info.TIME_FROM_CONFIRMED_TO_FIRST_TIME_TREATMENT",
-                    "srchFieldName": "患者基本信息.从确诊到第一次系统治疗的时间（天）",
-                    "dataType": "double"
-                },
-                {
-                    "UIFieldName": "从确诊到第一次手术治疗时间（天）",
-                    "IndexFieldName": "patient_info.TIME_FRON_CONFIRMED_TO_FIRST_OPERATION",
-                    "srchFieldName": "患者基本信息.从确诊到第一次手术治疗时间（天）",
-                    "dataType": "double"
+                    "UIFieldName": "患者类型",
+                    "IndexFieldName": "patient_info.PATIENT_TYPE",
+                    "srchFieldName": "患者基本信息.患者类型",
+                    "dataType": "string"
                 }
             ],
             "肺癌.吸烟史": [
@@ -57226,16 +57214,10 @@
                     ]
                 },
                 {
-                    "UIFieldName": "从确诊到第一次系统治疗的时间（天）",
-                    "IndexFieldName": "patient_info.TIME_FROM_CONFIRMED_TO_FIRST_TIME_TREATMENT",
-                    "srchFieldName": "患者基本信息.从确诊到第一次系统治疗的时间（天）",
-                    "dataType": "double"
-                },
-                {
-                    "UIFieldName": "从确诊到第一次手术治疗时间（天）",
-                    "IndexFieldName": "patient_info.TIME_FRON_CONFIRMED_TO_FIRST_OPERATION",
-                    "srchFieldName": "患者基本信息.从确诊到第一次手术治疗时间（天）",
-                    "dataType": "double"
+                    "UIFieldName": "患者类型",
+                    "IndexFieldName": "patient_info.PATIENT_TYPE",
+                    "srchFieldName": "患者基本信息.患者类型",
+                    "dataType": "string"
                 }
             ],
             "就诊.就诊基本信息": [
