@@ -16121,85 +16121,6 @@
                     "dataType": "string"
                 }
             ],
-            "就诊.手术.术后病程记录": [
-                {
-                    "UIFieldName": "手术内部序列号",
-                    "IndexFieldName": "visits.operation.post_course_record.PROCEDURE_SN",
-                    "srchFieldName": "就诊.手术.术后病程记录.手术内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "第几次住院",
-                    "IndexFieldName": "visits.operation.post_course_record.VISIT_TIMES",
-                    "srchFieldName": "就诊.手术.术后病程记录.第几次住院",
-                    "dataType": "long"
-                },
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.operation.post_course_record.VISIT_SN",
-                    "srchFieldName": "就诊.手术.术后病程记录.就诊编号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "住院号",
-                    "IndexFieldName": "visits.operation.post_course_record.INPATIENT_SN",
-                    "srchFieldName": "就诊.手术.术后病程记录.住院号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "性别",
-                    "IndexFieldName": "visits.operation.post_course_record.GENDER",
-                    "srchFieldName": "就诊.手术.术后病程记录.性别",
-                    "dataType": "string",
-                    "dataMap": [
-                        "男",
-                        "女"
-                    ]
-                },
-                {
-                    "UIFieldName": "年龄",
-                    "IndexFieldName": "visits.operation.post_course_record.AGE",
-                    "srchFieldName": "就诊.手术.术后病程记录.年龄",
-                    "dataType": "long"
-                },
-                {
-                    "UIFieldName": "记录时间",
-                    "IndexFieldName": "visits.operation.post_course_record.RECORD_DATE",
-                    "srchFieldName": "就诊.手术.术后病程记录.记录时间",
-                    "dataType": "date",
-                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
-                },
-                {
-                    "UIFieldName": "手术描述",
-                    "IndexFieldName": "visits.operation.post_course_record.OPERATION_DESCRIPTION",
-                    "srchFieldName": "就诊.手术.术后病程记录.手术描述",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "查房记录",
-                    "IndexFieldName": "visits.operation.post_course_record.CHECKING_RECORD",
-                    "srchFieldName": "就诊.手术.术后病程记录.查房记录",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "出院小结",
-                    "IndexFieldName": "visits.operation.post_course_record.DISCHARGE_SUMMARY",
-                    "srchFieldName": "就诊.手术.术后病程记录.出院小结",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "医师签名",
-                    "IndexFieldName": "visits.operation.post_course_record.PHYSICIAN_SIGNATURE",
-                    "srchFieldName": "就诊.手术.术后病程记录.医师签名",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "科室",
-                    "IndexFieldName": "visits.operation.post_course_record.DEPARTMENT",
-                    "srchFieldName": "就诊.手术.术后病程记录.科室",
-                    "dataType": "string"
-                }
-            ],
             "就诊.病理检查报告": [
                 {
                     "UIFieldName": "病理号",
@@ -16627,6 +16548,148 @@
                     "IndexFieldName": "visits.imaging_exam_diagnosis_reports.IMAGE_INDEX_NUM",
                     "srchFieldName": "就诊.影像学检查诊断报告.图像索引号",
                     "dataType": "string"
+                }
+            ],
+            "就诊.镜检报告": [
+                {
+                    "UIFieldName": "就诊编号",
+                    "IndexFieldName": "visits.microscopic_exam_reports.VISIT_SN",
+                    "srchFieldName": "就诊.镜检报告.就诊编号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "病人号",
+                    "IndexFieldName": "visits.microscopic_exam_reports.PATIENT_SN",
+                    "srchFieldName": "就诊.镜检报告.病人号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "住院号",
+                    "IndexFieldName": "visits.microscopic_exam_reports.INPATIENT_SN",
+                    "srchFieldName": "就诊.镜检报告.住院号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "年龄",
+                    "IndexFieldName": "visits.microscopic_exam_reports.AGE",
+                    "srchFieldName": "就诊.镜检报告.年龄",
+                    "dataType": "long"
+                },
+                {
+                    "UIFieldName": "检查号",
+                    "IndexFieldName": "visits.microscopic_exam_reports.EXAMINATION_SN",
+                    "srchFieldName": "就诊.镜检报告.检查号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "检查日期",
+                    "IndexFieldName": "visits.microscopic_exam_reports.EXAMINATION_DATE",
+                    "srchFieldName": "就诊.镜检报告.检查日期",
+                    "dataType": "date",
+                    "dateFormat": "yyyy-MM-dd"
+                },
+                {
+                    "UIFieldName": "检查类别",
+                    "IndexFieldName": "visits.microscopic_exam_reports.EXAMINATION_TYPE",
+                    "srchFieldName": "就诊.镜检报告.检查类别",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "仪器型号",
+                    "IndexFieldName": "visits.microscopic_exam_reports.INSTRUMENT",
+                    "srchFieldName": "就诊.镜检报告.仪器型号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "科室",
+                    "IndexFieldName": "visits.microscopic_exam_reports.DEPARTMENT",
+                    "srchFieldName": "就诊.镜检报告.科室",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "检查者",
+                    "IndexFieldName": "visits.microscopic_exam_reports.INVESTIGATOR",
+                    "srchFieldName": "就诊.镜检报告.检查者",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "助手",
+                    "IndexFieldName": "visits.microscopic_exam_reports.ASSISTANT",
+                    "srchFieldName": "就诊.镜检报告.助手",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "主诉",
+                    "IndexFieldName": "visits.microscopic_exam_reports.CHIEF_COMPLAINT",
+                    "srchFieldName": "就诊.镜检报告.主诉",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "体征",
+                    "IndexFieldName": "visits.microscopic_exam_reports.SIGNS",
+                    "srchFieldName": "就诊.镜检报告.体征",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "HP",
+                    "IndexFieldName": "visits.microscopic_exam_reports.HP",
+                    "srchFieldName": "就诊.镜检报告.HP",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "临床诊断",
+                    "IndexFieldName": "visits.microscopic_exam_reports.CLINICAL_DIAGNOSIS",
+                    "srchFieldName": "就诊.镜检报告.临床诊断",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "麻醉方法",
+                    "IndexFieldName": "visits.microscopic_exam_reports.ANAESTHESIA_METHOD",
+                    "srchFieldName": "就诊.镜检报告.麻醉方法",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "插管方法",
+                    "IndexFieldName": "visits.microscopic_exam_reports.INTUBATION METHOD",
+                    "srchFieldName": "就诊.镜检报告.插管方法",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "检查所见",
+                    "IndexFieldName": "visits.microscopic_exam_reports.VISIBLE_PATHOLOGY",
+                    "srchFieldName": "就诊.镜检报告.检查所见",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "镜下诊断",
+                    "IndexFieldName": "visits.microscopic_exam_reports.UNDER_MICROSCOPE",
+                    "srchFieldName": "就诊.镜检报告.镜下诊断",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "活检部位",
+                    "IndexFieldName": "visits.microscopic_exam_reports.BIOPSY_PARTS",
+                    "srchFieldName": "就诊.镜检报告.活检部位",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "建议",
+                    "IndexFieldName": "visits.microscopic_exam_reports.SUGGESTION",
+                    "srchFieldName": "就诊.镜检报告.建议",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "检查医师",
+                    "IndexFieldName": "visits.microscopic_exam_reports.EXAMINATION_PHYSICIAN",
+                    "srchFieldName": "就诊.镜检报告.检查医师",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "报告日期",
+                    "IndexFieldName": "visits.microscopic_exam_reports.REPORT_DATE",
+                    "srchFieldName": "就诊.镜检报告.报告日期",
+                    "dataType": "date",
+                    "dateFormat": "yyyy-MM-dd"
                 }
             ],
             "就诊.检验报告": [
@@ -35749,85 +35812,6 @@
                     "dataType": "string"
                 }
             ],
-            "就诊.手术.术后病程记录": [
-                {
-                    "UIFieldName": "手术内部序列号",
-                    "IndexFieldName": "visits.operation.post_course_record.PROCEDURE_SN",
-                    "srchFieldName": "就诊.手术.术后病程记录.手术内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "第几次住院",
-                    "IndexFieldName": "visits.operation.post_course_record.VISIT_TIMES",
-                    "srchFieldName": "就诊.手术.术后病程记录.第几次住院",
-                    "dataType": "long"
-                },
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.operation.post_course_record.VISIT_SN",
-                    "srchFieldName": "就诊.手术.术后病程记录.就诊编号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "住院号",
-                    "IndexFieldName": "visits.operation.post_course_record.INPATIENT_SN",
-                    "srchFieldName": "就诊.手术.术后病程记录.住院号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "性别",
-                    "IndexFieldName": "visits.operation.post_course_record.GENDER",
-                    "srchFieldName": "就诊.手术.术后病程记录.性别",
-                    "dataType": "string",
-                    "dataMap": [
-                        "男",
-                        "女"
-                    ]
-                },
-                {
-                    "UIFieldName": "年龄",
-                    "IndexFieldName": "visits.operation.post_course_record.AGE",
-                    "srchFieldName": "就诊.手术.术后病程记录.年龄",
-                    "dataType": "long"
-                },
-                {
-                    "UIFieldName": "记录时间",
-                    "IndexFieldName": "visits.operation.post_course_record.RECORD_DATE",
-                    "srchFieldName": "就诊.手术.术后病程记录.记录时间",
-                    "dataType": "date",
-                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
-                },
-                {
-                    "UIFieldName": "手术描述",
-                    "IndexFieldName": "visits.operation.post_course_record.OPERATION_DESCRIPTION",
-                    "srchFieldName": "就诊.手术.术后病程记录.手术描述",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "查房记录",
-                    "IndexFieldName": "visits.operation.post_course_record.CHECKING_RECORD",
-                    "srchFieldName": "就诊.手术.术后病程记录.查房记录",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "出院小结",
-                    "IndexFieldName": "visits.operation.post_course_record.DISCHARGE_SUMMARY",
-                    "srchFieldName": "就诊.手术.术后病程记录.出院小结",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "医师签名",
-                    "IndexFieldName": "visits.operation.post_course_record.PHYSICIAN_SIGNATURE",
-                    "srchFieldName": "就诊.手术.术后病程记录.医师签名",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "科室",
-                    "IndexFieldName": "visits.operation.post_course_record.DEPARTMENT",
-                    "srchFieldName": "就诊.手术.术后病程记录.科室",
-                    "dataType": "string"
-                }
-            ],
             "就诊.病理检查报告": [
                 {
                     "UIFieldName": "病理号",
@@ -36255,6 +36239,148 @@
                     "IndexFieldName": "visits.imaging_exam_diagnosis_reports.IMAGE_INDEX_NUM",
                     "srchFieldName": "就诊.影像学检查诊断报告.图像索引号",
                     "dataType": "string"
+                }
+            ],
+            "就诊.镜检报告": [
+                {
+                    "UIFieldName": "就诊编号",
+                    "IndexFieldName": "visits.microscopic_exam_reports.VISIT_SN",
+                    "srchFieldName": "就诊.镜检报告.就诊编号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "病人号",
+                    "IndexFieldName": "visits.microscopic_exam_reports.PATIENT_SN",
+                    "srchFieldName": "就诊.镜检报告.病人号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "住院号",
+                    "IndexFieldName": "visits.microscopic_exam_reports.INPATIENT_SN",
+                    "srchFieldName": "就诊.镜检报告.住院号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "年龄",
+                    "IndexFieldName": "visits.microscopic_exam_reports.AGE",
+                    "srchFieldName": "就诊.镜检报告.年龄",
+                    "dataType": "long"
+                },
+                {
+                    "UIFieldName": "检查号",
+                    "IndexFieldName": "visits.microscopic_exam_reports.EXAMINATION_SN",
+                    "srchFieldName": "就诊.镜检报告.检查号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "检查日期",
+                    "IndexFieldName": "visits.microscopic_exam_reports.EXAMINATION_DATE",
+                    "srchFieldName": "就诊.镜检报告.检查日期",
+                    "dataType": "date",
+                    "dateFormat": "yyyy-MM-dd"
+                },
+                {
+                    "UIFieldName": "检查类别",
+                    "IndexFieldName": "visits.microscopic_exam_reports.EXAMINATION_TYPE",
+                    "srchFieldName": "就诊.镜检报告.检查类别",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "仪器型号",
+                    "IndexFieldName": "visits.microscopic_exam_reports.INSTRUMENT",
+                    "srchFieldName": "就诊.镜检报告.仪器型号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "科室",
+                    "IndexFieldName": "visits.microscopic_exam_reports.DEPARTMENT",
+                    "srchFieldName": "就诊.镜检报告.科室",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "检查者",
+                    "IndexFieldName": "visits.microscopic_exam_reports.INVESTIGATOR",
+                    "srchFieldName": "就诊.镜检报告.检查者",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "助手",
+                    "IndexFieldName": "visits.microscopic_exam_reports.ASSISTANT",
+                    "srchFieldName": "就诊.镜检报告.助手",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "主诉",
+                    "IndexFieldName": "visits.microscopic_exam_reports.CHIEF_COMPLAINT",
+                    "srchFieldName": "就诊.镜检报告.主诉",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "体征",
+                    "IndexFieldName": "visits.microscopic_exam_reports.SIGNS",
+                    "srchFieldName": "就诊.镜检报告.体征",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "HP",
+                    "IndexFieldName": "visits.microscopic_exam_reports.HP",
+                    "srchFieldName": "就诊.镜检报告.HP",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "临床诊断",
+                    "IndexFieldName": "visits.microscopic_exam_reports.CLINICAL_DIAGNOSIS",
+                    "srchFieldName": "就诊.镜检报告.临床诊断",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "麻醉方法",
+                    "IndexFieldName": "visits.microscopic_exam_reports.ANAESTHESIA_METHOD",
+                    "srchFieldName": "就诊.镜检报告.麻醉方法",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "插管方法",
+                    "IndexFieldName": "visits.microscopic_exam_reports.INTUBATION METHOD",
+                    "srchFieldName": "就诊.镜检报告.插管方法",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "检查所见",
+                    "IndexFieldName": "visits.microscopic_exam_reports.VISIBLE_PATHOLOGY",
+                    "srchFieldName": "就诊.镜检报告.检查所见",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "镜下诊断",
+                    "IndexFieldName": "visits.microscopic_exam_reports.UNDER_MICROSCOPE",
+                    "srchFieldName": "就诊.镜检报告.镜下诊断",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "活检部位",
+                    "IndexFieldName": "visits.microscopic_exam_reports.BIOPSY_PARTS",
+                    "srchFieldName": "就诊.镜检报告.活检部位",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "建议",
+                    "IndexFieldName": "visits.microscopic_exam_reports.SUGGESTION",
+                    "srchFieldName": "就诊.镜检报告.建议",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "检查医师",
+                    "IndexFieldName": "visits.microscopic_exam_reports.EXAMINATION_PHYSICIAN",
+                    "srchFieldName": "就诊.镜检报告.检查医师",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "报告日期",
+                    "IndexFieldName": "visits.microscopic_exam_reports.REPORT_DATE",
+                    "srchFieldName": "就诊.镜检报告.报告日期",
+                    "dataType": "date",
+                    "dateFormat": "yyyy-MM-dd"
                 }
             ],
             "就诊.检验报告": [
@@ -56437,85 +56563,6 @@
                     "dataType": "string"
                 }
             ],
-            "就诊.手术.术后病程记录": [
-                {
-                    "UIFieldName": "手术内部序列号",
-                    "IndexFieldName": "visits.operation.post_course_record.PROCEDURE_SN",
-                    "srchFieldName": "就诊.手术.术后病程记录.手术内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "第几次住院",
-                    "IndexFieldName": "visits.operation.post_course_record.VISIT_TIMES",
-                    "srchFieldName": "就诊.手术.术后病程记录.第几次住院",
-                    "dataType": "long"
-                },
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.operation.post_course_record.VISIT_SN",
-                    "srchFieldName": "就诊.手术.术后病程记录.就诊编号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "住院号",
-                    "IndexFieldName": "visits.operation.post_course_record.INPATIENT_SN",
-                    "srchFieldName": "就诊.手术.术后病程记录.住院号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "性别",
-                    "IndexFieldName": "visits.operation.post_course_record.GENDER",
-                    "srchFieldName": "就诊.手术.术后病程记录.性别",
-                    "dataType": "string",
-                    "dataMap": [
-                        "男",
-                        "女"
-                    ]
-                },
-                {
-                    "UIFieldName": "年龄",
-                    "IndexFieldName": "visits.operation.post_course_record.AGE",
-                    "srchFieldName": "就诊.手术.术后病程记录.年龄",
-                    "dataType": "long"
-                },
-                {
-                    "UIFieldName": "记录时间",
-                    "IndexFieldName": "visits.operation.post_course_record.RECORD_DATE",
-                    "srchFieldName": "就诊.手术.术后病程记录.记录时间",
-                    "dataType": "date",
-                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
-                },
-                {
-                    "UIFieldName": "手术描述",
-                    "IndexFieldName": "visits.operation.post_course_record.OPERATION_DESCRIPTION",
-                    "srchFieldName": "就诊.手术.术后病程记录.手术描述",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "查房记录",
-                    "IndexFieldName": "visits.operation.post_course_record.CHECKING_RECORD",
-                    "srchFieldName": "就诊.手术.术后病程记录.查房记录",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "出院小结",
-                    "IndexFieldName": "visits.operation.post_course_record.DISCHARGE_SUMMARY",
-                    "srchFieldName": "就诊.手术.术后病程记录.出院小结",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "医师签名",
-                    "IndexFieldName": "visits.operation.post_course_record.PHYSICIAN_SIGNATURE",
-                    "srchFieldName": "就诊.手术.术后病程记录.医师签名",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "科室",
-                    "IndexFieldName": "visits.operation.post_course_record.DEPARTMENT",
-                    "srchFieldName": "就诊.手术.术后病程记录.科室",
-                    "dataType": "string"
-                }
-            ],
             "就诊.病理检查报告": [
                 {
                     "UIFieldName": "病理号",
@@ -56943,6 +56990,148 @@
                     "IndexFieldName": "visits.imaging_exam_diagnosis_reports.IMAGE_INDEX_NUM",
                     "srchFieldName": "就诊.影像学检查诊断报告.图像索引号",
                     "dataType": "string"
+                }
+            ],
+            "就诊.镜检报告": [
+                {
+                    "UIFieldName": "就诊编号",
+                    "IndexFieldName": "visits.microscopic_exam_reports.VISIT_SN",
+                    "srchFieldName": "就诊.镜检报告.就诊编号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "病人号",
+                    "IndexFieldName": "visits.microscopic_exam_reports.PATIENT_SN",
+                    "srchFieldName": "就诊.镜检报告.病人号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "住院号",
+                    "IndexFieldName": "visits.microscopic_exam_reports.INPATIENT_SN",
+                    "srchFieldName": "就诊.镜检报告.住院号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "年龄",
+                    "IndexFieldName": "visits.microscopic_exam_reports.AGE",
+                    "srchFieldName": "就诊.镜检报告.年龄",
+                    "dataType": "long"
+                },
+                {
+                    "UIFieldName": "检查号",
+                    "IndexFieldName": "visits.microscopic_exam_reports.EXAMINATION_SN",
+                    "srchFieldName": "就诊.镜检报告.检查号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "检查日期",
+                    "IndexFieldName": "visits.microscopic_exam_reports.EXAMINATION_DATE",
+                    "srchFieldName": "就诊.镜检报告.检查日期",
+                    "dataType": "date",
+                    "dateFormat": "yyyy-MM-dd"
+                },
+                {
+                    "UIFieldName": "检查类别",
+                    "IndexFieldName": "visits.microscopic_exam_reports.EXAMINATION_TYPE",
+                    "srchFieldName": "就诊.镜检报告.检查类别",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "仪器型号",
+                    "IndexFieldName": "visits.microscopic_exam_reports.INSTRUMENT",
+                    "srchFieldName": "就诊.镜检报告.仪器型号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "科室",
+                    "IndexFieldName": "visits.microscopic_exam_reports.DEPARTMENT",
+                    "srchFieldName": "就诊.镜检报告.科室",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "检查者",
+                    "IndexFieldName": "visits.microscopic_exam_reports.INVESTIGATOR",
+                    "srchFieldName": "就诊.镜检报告.检查者",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "助手",
+                    "IndexFieldName": "visits.microscopic_exam_reports.ASSISTANT",
+                    "srchFieldName": "就诊.镜检报告.助手",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "主诉",
+                    "IndexFieldName": "visits.microscopic_exam_reports.CHIEF_COMPLAINT",
+                    "srchFieldName": "就诊.镜检报告.主诉",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "体征",
+                    "IndexFieldName": "visits.microscopic_exam_reports.SIGNS",
+                    "srchFieldName": "就诊.镜检报告.体征",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "HP",
+                    "IndexFieldName": "visits.microscopic_exam_reports.HP",
+                    "srchFieldName": "就诊.镜检报告.HP",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "临床诊断",
+                    "IndexFieldName": "visits.microscopic_exam_reports.CLINICAL_DIAGNOSIS",
+                    "srchFieldName": "就诊.镜检报告.临床诊断",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "麻醉方法",
+                    "IndexFieldName": "visits.microscopic_exam_reports.ANAESTHESIA_METHOD",
+                    "srchFieldName": "就诊.镜检报告.麻醉方法",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "插管方法",
+                    "IndexFieldName": "visits.microscopic_exam_reports.INTUBATION METHOD",
+                    "srchFieldName": "就诊.镜检报告.插管方法",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "检查所见",
+                    "IndexFieldName": "visits.microscopic_exam_reports.VISIBLE_PATHOLOGY",
+                    "srchFieldName": "就诊.镜检报告.检查所见",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "镜下诊断",
+                    "IndexFieldName": "visits.microscopic_exam_reports.UNDER_MICROSCOPE",
+                    "srchFieldName": "就诊.镜检报告.镜下诊断",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "活检部位",
+                    "IndexFieldName": "visits.microscopic_exam_reports.BIOPSY_PARTS",
+                    "srchFieldName": "就诊.镜检报告.活检部位",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "建议",
+                    "IndexFieldName": "visits.microscopic_exam_reports.SUGGESTION",
+                    "srchFieldName": "就诊.镜检报告.建议",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "检查医师",
+                    "IndexFieldName": "visits.microscopic_exam_reports.EXAMINATION_PHYSICIAN",
+                    "srchFieldName": "就诊.镜检报告.检查医师",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "报告日期",
+                    "IndexFieldName": "visits.microscopic_exam_reports.REPORT_DATE",
+                    "srchFieldName": "就诊.镜检报告.报告日期",
+                    "dataType": "date",
+                    "dateFormat": "yyyy-MM-dd"
                 }
             ],
             "就诊.检验报告": [
