@@ -60,7 +60,7 @@ public class View {
         writeResult(str, response);
     }
     public void viewString(String str,HttpServletResponse response){
-        logger.info("结果:" + str);
+        if(str==null||str.length()<1024*10)logger.info("结果:" + str);// 10k以下数据显示
         setHttpServletResponse(response);
         writeResult(str, response);
     }
