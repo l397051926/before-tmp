@@ -27,7 +27,11 @@ public class RedisUtil {
         jedisCluster = (JedisCluster) SpringContextUtil.getBean("jedisClusterFactory");
     }
     public static void setValue(String key,String value){
-        jedisCluster.set(key,value);
+        String result=jedisCluster.set(key,value);
+        if(!result.equalsIgnoreCase("ok"))
+        {
+            logger.error("redis 写入失败 "+key);
+        }
     }
 
 
