@@ -30,7 +30,7 @@ public class RedisUtil {
         String result=jedisCluster.set(key,value);
         if(!result.equalsIgnoreCase("ok"))
         {
-            logger.error("redis 写入失败 "+key);
+            logger.error("redis 写入失败 "+key+" return result "+result);
         }
     }
 
