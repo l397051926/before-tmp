@@ -74,27 +74,31 @@ public class UserController {
                 resultBean.setCode(1);
                 resultBean.setData(user);
                 boolean isSet = false;
-                Cookie[] cookies = paramRe.getCookies();
-                if (cookies != null) {
-                    logger.info("获取到客户端的Cookie" + cookies);
-                    for (Cookie cookieitem: cookies) {
-                        if (cookieitem.getName().equals("JSESSIONID")) {
-                            logger.info("获取客户端JSESSIONID：" + cookieitem.getValue());
-                            logger.info("设置客户端JSESSIONID：" + sessionID);
-                            cookieitem.setValue(sessionID);
-                            cookieitem.setPath("/");
-                            cookieitem.setHttpOnly(true);
-                            isSet = true;
-                        }
-                    }
-                }
-                if (!isSet) {
-                    logger.info("获取客户端Cookie为空，从新设置Cookie， JSESSIONID：" + sessionID);
-                    Cookie cookie = new Cookie("JSESSIONID", sessionID);
-                    cookie.setPath("/");
-                    cookie.setHttpOnly(true);
-                    response.addCookie(cookie);
-                }
+//                Cookie[] cookies = paramRe.getCookies();
+//                if (cookies != null) {
+//                    logger.info("获取到客户端的Cookie" + cookies);
+//                    for (Cookie cookieitem: cookies) {
+//                        if (cookieitem.getName().equals("JSESSIONID")) {
+//                            logger.info("获取客户端JSESSIONID：" + cookieitem.getValue());
+//                            logger.info("设置客户端JSESSIONID：" + sessionID);
+//                            cookieitem.setValue(sessionID);
+//                            cookieitem.setPath("/");
+//                            cookieitem.setHttpOnly(true);
+//                            isSet = true;
+//                        }
+//                    }
+//                }
+//                if (!isSet) {
+//                    logger.info("获取客户端Cookie为空，从新设置Cookie， JSESSIONID：" + sessionID);
+//                    Cookie cookie = new Cookie("JSESSIONID", sessionID);
+//                    cookie.setPath("/");
+//                    cookie.setHttpOnly(true);
+//                    response.addCookie(cookie);
+//                }
+                Cookie cookie = new Cookie("JSESSIONID", sessionID);
+                cookie.setPath("/");
+                cookie.setHttpOnly(true);
+                response.addCookie(cookie);
             } else {
                 view.viewString(ParamUtils.errorParam("登陆失败"), response);
             }
