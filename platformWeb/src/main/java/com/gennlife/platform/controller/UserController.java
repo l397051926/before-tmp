@@ -70,10 +70,10 @@ public class UserController {
                 if (!StringUtils.isEmpty(loginSession)) {
                     logger.warn("用户 " + email + " 已经登陆在其他session,进行重新登陆");
                 }
-                RedisUtil.exit(user.getUid(),loginSession);
                 if(!RedisUtil.setUserOnLine(user, sessionID)){
                     logger.error("登陆失败 redis 写错误 ");
                     view.viewString(ParamUtils.errorParam("登陆失败"), response);
+                    return;
                 }
                 resultBean.setCode(1);
                 resultBean.setData(user);

@@ -373,7 +373,7 @@ public class UserProcessor {
             power.setHas_search(addDepartmentPower(power.getHas_search(), mapDep));
             power.setHas_searchExport(addDepartmentPower(power.getHas_searchExport(), mapDep));
         } catch (Exception e) {
-            logger.error("科室映射失败：", e);
+            logger.error("科室映射失败："+e.getMessage());
         }
         return power;
     }
