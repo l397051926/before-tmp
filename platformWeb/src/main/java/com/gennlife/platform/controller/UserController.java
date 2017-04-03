@@ -95,6 +95,7 @@ public class UserController {
 //                    cookie.setHttpOnly(true);
 //                    response.addCookie(cookie);
 //                }
+                logger.info("设置Cookie， JSESSIONID：" + sessionID);
                 Cookie cookie = new Cookie("JSESSIONID", sessionID);
                 cookie.setPath("/");
                 cookie.setHttpOnly(true);
@@ -116,7 +117,7 @@ public class UserController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-            HttpSession session = paramRe.getSession(true);
+            HttpSession session = paramRe.getSession();
             String sessionID = session.getId();
             String uid=RedisUtil.getValue(sessionID);
             logger.info("get userInfo sessionID = " + sessionID + " uid = " + uid);
