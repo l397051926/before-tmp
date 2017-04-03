@@ -26,12 +26,14 @@ public class RedisUtil {
     public static void init(){
         jedisCluster = (JedisCluster) SpringContextUtil.getBean("jedisClusterFactory");
     }
-    public static void setValue(String key,String value){
+    public static boolean setValue(String key,String value){
         String result=jedisCluster.set(key,value);
         if(!result.equalsIgnoreCase("ok"))
         {
             logger.error("redis 写入失败 "+key+" return result "+result);
+            return false;
         }
+        return true;
     }
 
 
@@ -42,7 +44,7 @@ public class RedisUtil {
         return null;
     }
     public static void deleteKey(String key){
-        if(jedisCluster.exists(key)){
+        if(key!=null&&jedisCluster.exists(key)){
             jedisCluster.del(key);
         }
     }
@@ -66,26 +68,27 @@ public class RedisUtil {
         }
     }
 
-    public static void setUser(User user){
+    public static boolean setUser(User user){
         String key = user.getUid()+suffix;
         String value = gson.toJson(user);
         if(flag){
-            jedisCluster.set(key,value);
+            return setValue(key,value);
         }
-
+        return false;
     }
 
-    public static void setUserOnLine(User user,String sessionID){
+    public static boolean setUserOnLine(User user,String sessionID){
         String exSessionID = getValue(user.getUid());
-        if(exSessionID != null){
-            deleteKey(exSessionID);
-            deleteKey(user.getUid());
-            deleteUser(user.getUid());
+        exit(user.getUid(),exSessionID);
+        if(setValue(user.getUid(),sessionID)&&
+        setValue(sessionID,user.getUid())&&setUser(user)) {
+            logger.info("登录设置:" + sessionID + "=" + user.getUid() + "成功");
+            return true;
         }
-        setValue(user.getUid(),sessionID);
-        setValue(sessionID,user.getUid());
-        logger.info("登录设置:"+sessionID+"="+user.getUid()+"成功");
-        setUser(user);
+        else {
+            exit(user.getUid(),sessionID);
+            return false;
+        }
     }
     public static void userLogout(String sessionID){
         if(StringUtils.isEmpty(sessionID))return;
@@ -104,20 +107,10 @@ public class RedisUtil {
 
     }
 
-    private static void exit(String uid, String sessionID) {
-        if(StringUtils.isEmpty(uid)&&StringUtils.isEmpty(sessionID))return;
-        if(StringUtils.isEmpty(uid)){
-            uid=getValue(sessionID);
-            if(StringUtils.isEmpty(uid))return;
-        }
-        if(StringUtils.isEmpty(sessionID)){
-            sessionID=getValue(uid);
-            if(StringUtils.isEmpty(sessionID))return;
-        }
+    public static void exit(String uid, String sessionID) {
         deleteKey(sessionID);
         deleteKey(uid);
         deleteUser(uid);
-        logger.info("退出设置:"+sessionID+"="+uid+"成功");
     }
 
     public static void updateUserOnLine(String uid){

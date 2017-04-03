@@ -66,11 +66,15 @@ public class UserController {
             ResultBean resultBean = new ResultBean();
             if (user != null) {
                 logger.info("User不为空 开始操作Cookie!");
-                boolean hasLogin = UserProcessor.getUserByUidFromRedis(user.getUid()) != null;
-                if (hasLogin) {
+                String loginSession= RedisUtil.getValue(user.getUid());
+                if (!StringUtils.isEmpty(loginSession)) {
                     logger.warn("用户 " + email + " 已经登陆在其他session,进行重新登陆");
                 }
-                RedisUtil.setUserOnLine(user, sessionID);
+                RedisUtil.exit(user.getUid(),loginSession);
+                if(!RedisUtil.setUserOnLine(user, sessionID)){
+                    logger.error("登陆失败 redis 写错误 ");
+                    view.viewString(ParamUtils.errorParam("登陆失败"), response);
+                }
                 resultBean.setCode(1);
                 resultBean.setData(user);
                 boolean isSet = false;
