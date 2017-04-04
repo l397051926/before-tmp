@@ -31,6 +31,30 @@ public class Resource implements Comparable<Resource>{
     private String has_addBatchCRF;
     private String stype_role;
 
+    public Resource(Integer roleid, String sid, String sname, String sdesc, String stype, String slab_type, String slab_name, String sorgID, String has_search, String has_searchExport, String has_traceCRF, String has_addCRF, String has_editCRF, String has_deleteCRF, String has_browseDetail, String has_addBatchCRF, String stype_role) {
+        this.roleid = roleid;
+        this.sid = sid;
+        this.sname = sname;
+        this.sdesc = sdesc;
+        this.stype = stype;
+        this.slab_type = slab_type;
+        this.slab_name = slab_name;
+        this.sorgID = sorgID;
+        this.has_search = has_search;
+        this.has_searchExport = has_searchExport;
+        this.has_traceCRF = has_traceCRF;
+        this.has_addCRF = has_addCRF;
+        this.has_editCRF = has_editCRF;
+        this.has_deleteCRF = has_deleteCRF;
+        this.has_browseDetail = has_browseDetail;
+        this.has_addBatchCRF = has_addBatchCRF;
+        this.stype_role = stype_role;
+    }
+
+    public Resource() {
+
+    }
+
     public Integer getRoleid() {
         return roleid;
     }
@@ -194,10 +218,24 @@ public class Resource implements Comparable<Resource>{
 
 
     public Resource ResourcePowerleftOne(String key) {
-        emptyUnCare();
         if(key!=null)key=key.toUpperCase();
         else return this;
-        if(!"HAS_SEARCH".equals(key))has_search=null;
+        Integer roleid=null;
+        String sdesc=null;
+        String sorgID=null;
+        String stype_role=null;
+        String slab_type=null;
+        String stype=null;
+        String sname=null;
+        String has_search=this.has_search;
+        String has_searchExport=this.has_searchExport;
+        String has_traceCRF=this.has_traceCRF;
+        String has_addCRF=this.has_addCRF;
+        String has_editCRF=this.has_editCRF;
+        String has_deleteCRF=this.has_deleteCRF;
+        String has_browseDetail=this.has_browseDetail;
+        String has_addBatchCRF=this.has_addBatchCRF;
+        if(!"HAS_SEARCH".equals(key)) has_search=null;
         if(!"HAS_SEARCHEXPORT".equals(key))has_searchExport=null;
 
         if(!"HAS_TRACECRF".equals(key))has_traceCRF=null;
@@ -206,17 +244,8 @@ public class Resource implements Comparable<Resource>{
         if(!"HAS_DELETECRF".equals(key))has_deleteCRF=null;
         if(!"HAS_BROWSEDETAIL".equals(key))has_browseDetail=null;
         if(!"HAS_ADDBATCHCRF".equals(key))has_addBatchCRF=null;
-        return this;
-    }
+        return new Resource(roleid,  sid, sname, sdesc,stype, slab_type, slab_name, sorgID,  has_search, has_searchExport, has_traceCRF,  has_addCRF,  has_editCRF, has_deleteCRF,  has_browseDetail, has_addBatchCRF, stype_role) ;
+        }
 
-    private void emptyUnCare()
-    {
-        roleid=null;
-        sdesc=null;
-        sorgID=null;
-        stype_role=null;
-        slab_type=null;
-        stype=null;
-        sname=null;
-    }
+
 }
