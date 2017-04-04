@@ -191,4 +191,32 @@ public class Resource implements Comparable<Resource>{
         sb.append('}');
         return sb.toString();
     }
+
+
+    public Resource ResourcePowerleftOne(String key) {
+        emptyUnCare();
+        if(key!=null)key=key.toUpperCase();
+        else return this;
+        if(!"HAS_SEARCH".equals(key))has_search=null;
+        if(!"HAS_SEARCHEXPORT".equals(key))has_searchExport=null;
+
+        if(!"HAS_TRACECRF".equals(key))has_traceCRF=null;
+        if(!"HAS_ADDCRF".equals(key))has_addCRF=null;
+        if(!"HAS_EDITCRF".equals(key)) has_editCRF=null;
+        if(!"HAS_DELETECRF".equals(key))has_deleteCRF=null;
+        if(!"HAS_BROWSEDETAIL".equals(key))has_browseDetail=null;
+        if(!"HAS_ADDBATCHCRF".equals(key))has_addBatchCRF=null;
+        return this;
+    }
+
+    private void emptyUnCare()
+    {
+        roleid=null;
+        sdesc=null;
+        sorgID=null;
+        stype_role=null;
+        slab_type=null;
+        stype=null;
+        sname=null;
+    }
 }

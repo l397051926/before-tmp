@@ -1,5 +1,7 @@
 package com.gennlife.platform.model;
 
+import com.google.gson.JsonObject;
+
 import java.util.List;
 
 /**
@@ -193,15 +195,13 @@ public class User {
     public void setPower(Power power) {
         this.power = power;
     }
-    public User CopyRoles()
-    {
-        User newuser=new User();
-        newuser.setUid(uid);
-        newuser.setPower(power);
-        newuser.setGroups(getGroups());
-        newuser.setFrontEndPower(frontEndPower);
-        newuser.setUnumber(unumber);
-        newuser.setRoles(roles);
-        return newuser;
+
+
+    public JsonObject CopyMemberInfo() {
+        JsonObject json=new JsonObject();
+        json.addProperty("uid",uid);
+        json.addProperty("uname",uname);
+        json.addProperty("unumber",unumber);
+        return json;
     }
 }

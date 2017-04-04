@@ -166,39 +166,55 @@ public class UserProcessor {
             Map<String,Object> map = new HashMap<>();
             map.put("orgID",user.getOrgID());
             Set<String> hasAddUser=new TreeSet<>();
-            for(Group group:list){
+            Group resultGroup=new Group();
+            List<JsonObject> newUserList = new LinkedList<>();
+            hasAddUser.add(user.getUid());
+            newUserList.add(user.CopyMemberInfo());
+            for(Group group:list) {
                 String gid = group.getGid();
-                map.put("gid",gid);
+                map.put("gid", gid);
                 List<User> userList = AllDao.getInstance().getGroupDao().getUsersByGroupID(map);
-                List<User> newUserList = new LinkedList<>();
-                for(User member:userList){//补充成员的角色信息
-                    if(hasAddUser.contains(member.getUid())) continue;
+                for (User member : userList) {//补充成员的角色信息
+                    if (hasAddUser.contains(member.getUid())) continue;
                     hasAddUser.add(member.getUid());
-                    User newMember = getUserByUser(member).CopyRoles();
-                    newUserList.add(newMember);
+                    User newMember = getUserByUser(member);
+                    newUserList.add(newMember.CopyMemberInfo());
                     List<Role> roleList = newMember.getRoles();
-                    if(roleList != null){
-                        for(Role role:roleList){
-                            if(role.getResources() != null){
+                    if (roleList != null) {
+                        for (Role role : roleList) {
+                            if (role.getResources() != null) {
                                 List<Object> resourceList = (List<Object>) role.getResources();
-                                for(Object r:resourceList){
-                                    Resource resource = gson.fromJson(gson.toJson(r),Resource.class);
-                                    addResourceInGroupToPower(power,resource,group);
+                                for (Object r : resourceList) {
+                                    Resource resource = gson.fromJson(gson.toJson(r), Resource.class);
+                                    addResourceInGroupToPower(power, resource, group);
                                 }
                             }
-
                         }
                     }
                     newMember.setFrontEndPower(null);
                     newMember.setRoles(null);
-                    if(!newMember.getUid().equals(uid))
+                    newMember.setPower(null);
+                    newMember.setGroups(null);
+                    if (!newMember.getUid().equals(uid))
                         newMember.setAdministrators(null);
                 }
-                group.setMembers(newUserList);
+
             }
+            resultGroup.setMembers(newUserList);
             Long start6 = System.currentTimeMillis();
             //System.out.println("设置组成员="+(start6-start5)+"ms");
             //
+            Power frontEndPower=power.deepCopy();
+            user.setFrontEndPower(frontEndPower);
+            try {
+                Map<String, List<String>> mapDep = getDepartmentFromMysql(AllDao.getInstance().getSyRoleDao().getSlabNames());
+                power.setHas_search(addDepartmentPower(power.getHas_search(), mapDep));
+                power.setHas_searchExport(addDepartmentPower(power.getHas_searchExport(), mapDep));
+            } catch (Exception e) {
+                logger.error("科室映射失败："+e.getMessage());
+            }
+            list.clear();
+            list.add(resultGroup);
             user.setGroups(list);
             user.setRoles(new ArrayList<Role>(0));
         }catch (Exception e){
@@ -225,8 +241,7 @@ public class UserProcessor {
                 confMap.put("uid",user.getUid());
                 List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(confMap);
                 //转化本科室信息
-                Power power = transformRole(user,rolesList);
-                user.setPower(power);
+                user.setRoles(rolesList);
                 return user;
             }
         }
@@ -270,13 +285,10 @@ public class UserProcessor {
 
 
 
-    public static Set<Resource> addDepartmentPower(Set<Resource> list, Map<String, List<String>> departNames) {
-
+    public static Set<Resource> addDepartmentPower(Collection<Resource> list, Map<String, List<String>> departNames) {
         JsonArray resource = gson.toJsonTree(list).getAsJsonArray();
         JsonArray insert = new JsonArray();
-
         for (JsonElement json : resource) {
-
             JsonObject jsonobj = json.getAsJsonObject();
             if (!jsonobj.get("has_search").isJsonNull() && jsonobj.get("has_search").getAsString().equals("有")) {
                 String sid = jsonobj.get("sid").getAsString();
@@ -295,7 +307,7 @@ public class UserProcessor {
             }
         }
 
-        return gson.fromJson(insert, new TypeToken<List<Resource>>(){}.getType());
+        return gson.fromJson(insert, new TypeToken<TreeSet<Resource>>(){}.getType());
     }
 
     public static Map<String, List<String>> getDepartmentFromMysql(List<DepartmentMap> departName) {
@@ -367,56 +379,48 @@ public class UserProcessor {
                 role.setResources(reList);
             }
         }
-        user.setFrontEndPower((Power)gson.fromJson(gson.toJsonTree(power).getAsJsonObject(), new TypeToken<Power>(){}.getType()));
-        try {
-            Map<String, List<String>> mapDep = getDepartmentFromMysql(AllDao.getInstance().getSyRoleDao().getSlabNames());
-            power.setHas_search(addDepartmentPower(power.getHas_search(), mapDep));
-            power.setHas_searchExport(addDepartmentPower(power.getHas_searchExport(), mapDep));
-        } catch (Exception e) {
-            logger.error("科室映射失败："+e.getMessage());
-        }
         return power;
     }
 
     public static Power addResourceToPower(Power power,Resource resource){
         if("有".equals(resource.getHas_search())){
             if(!isExistResource(power.getHas_search(),resource)){
-                power.getHas_search().add(resource);
+                power.addInHasSearch(resource);
             }
         }
         if("有".equals(resource.getHas_searchExport())){
             if(!isExistResource(power.getHas_searchExport(),resource)){
-                power.getHas_searchExport().add(resource);
+                power.addInHasSearchExport(resource);
             }
         }
         if("有".equals(resource.getHas_traceCRF())){
             if(!isExistResource(power.getHas_traceCRF(),resource)){
-                power.getHas_traceCRF().add(resource);
+                power.addInHasTraceCRF(resource);
             }
         }
         if("有".equals(resource.getHas_addCRF())){
             if(!isExistResource(power.getHas_addCRF(),resource)){
-                power.getHas_addCRF().add(resource);
+                power.addInHasAddCRF(resource);
             }
         }
         if("有".equals(resource.getHas_addBatchCRF())){
             if(!isExistResource(power.getHas_addBatchCRF(),resource)){
-                power.getHas_addBatchCRF().add(resource);
+                power.addInHasAddBatchCRF(resource);
             }
         }
         if("有".equals(resource.getHas_editCRF())){
             if(!isExistResource(power.getHas_editCRF(),resource)){
-                power.getHas_editCRF().add(resource);
+                power.addInHasEditCRF(resource);
             }
         }
         if("有".equals(resource.getHas_deleteCRF())){
             if(!isExistResource(power.getHas_deleteCRF(),resource)){
-                power.getHas_deleteCRF().add(resource);
+                power.addInHasDeleteCRF(resource);
             }
         }
         if("有".equals(resource.getHas_browseDetail())){
             if(!isExistResource(power.getHas_browseDetail(),resource)){
-                power.getHas_browseDetail().add(resource);
+                power.addInHasBrowseDetail(resource);
             }
         }
         return power;
