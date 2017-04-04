@@ -15,13 +15,13 @@ public class SessionListen implements HttpSessionListener {
     private static final Logger logger= LoggerFactory.getLogger(SessionListen.class);
     @Override
     public void sessionCreated(HttpSessionEvent se) {
-        String sessionid=se.getSession(false).getId();
+        String sessionid=se.getSession().getId();
         logger.info("sessionid " +sessionid+" create");
     }
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
-        String sessionid=se.getSession(false).getId();
+        String sessionid=se.getSession().getId();
         logger.info("sessionid " +sessionid+" time out");
         RedisUtil.userLogout(sessionid);
         AllDao.getInstance().getSessionDao().deleteBySessionID(sessionid);
