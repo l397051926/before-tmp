@@ -3,7 +3,7 @@ package com.gennlife.platform.model;
 /**
  * Created by chen-song on 16/9/9.
  */
-public class Resource {
+public class Resource implements Comparable<Resource>{
     /**
      * `sid` varchar(50) DEFAULT NULL COMMENT '资源id',
      `sname` varchar(50) DEFAULT NULL COMMENT '资源名称',
@@ -165,5 +165,30 @@ public class Resource {
 
     public void setStype_role(String stype_role) {
         this.stype_role = stype_role;
+    }
+
+    @Override
+    public int compareTo(Resource o) {
+        return this.toString().compareTo(o.toString());
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Resource{");
+        sb.append("slab_name='").append(slab_name).append('\'');
+        sb.append(",has_search='").append(has_search).append('\'');
+        sb.append(", has_searchExport='").append(has_searchExport).append('\'');
+        sb.append(", has_traceCRF='").append(has_traceCRF).append('\'');
+        sb.append(", has_addCRF='").append(has_addCRF).append('\'');
+        sb.append(", has_editCRF='").append(has_editCRF).append('\'');
+        sb.append(", has_deleteCRF='").append(has_deleteCRF).append('\'');
+        sb.append(", has_browseDetail='").append(has_browseDetail).append('\'');
+        sb.append(", has_addBatchCRF='").append(has_addBatchCRF).append('\'');
+        sb.append(", slab_name='").append(slab_name).append('\'');
+        sb.append(", stype_role='").append(stype_role).append('\'');
+        sb.append(", sorgID='").append(sorgID).append('\'');
+        sb.append(", slab_type='").append(slab_type).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

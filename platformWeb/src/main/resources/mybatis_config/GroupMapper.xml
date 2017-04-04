@@ -100,7 +100,18 @@
         FROM gennlife_user JOIN gennlife_user_group ON gennlife_user.uid = gennlife_user_group.uid
         WHERE gennlife_user_group.gid = #{gid} AND gennlife_user_group.orgID = #{orgID}
     </select>
+    <select id="getUsersByGroupIDS" parameterType="map" resultMap="com.gennlife.platform.model.User">
+        SELECT
+        <include refid="GroupMemberColumn"/>
+        FROM gennlife_user JOIN gennlife_user_group ON gennlife_user.uid = gennlife_user_group.uid
+        WHERE gennlife_user_group.gid
+        IN
+        <foreach collection="gids" item="item" index="index" open="(" separator="," close=")">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
 
+        AND gennlife_user_group.orgID = #{orgID}
+    </select>
 
 
 

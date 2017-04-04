@@ -270,7 +270,7 @@ public class UserProcessor {
 
 
 
-    public static List<Resource> addDepartmentPower(List<Resource> list, Map<String, List<String>> departNames) {
+    public static Set<Resource> addDepartmentPower(Set<Resource> list, Map<String, List<String>> departNames) {
 
         JsonArray resource = gson.toJsonTree(list).getAsJsonArray();
         JsonArray insert = new JsonArray();
@@ -472,7 +472,7 @@ public class UserProcessor {
         return power;
     }
 
-    public static boolean isExistResource(List<Resource> list,Resource resource){
+    public static boolean isExistResource(Set<Resource> list,Resource resource){
         if(resource == null || resource.getSid() == null){
             return false;
         }
@@ -564,7 +564,7 @@ public class UserProcessor {
         Power power = user.getPower();
         List<String> labIDSet = new LinkedList<>();
         Map<String,String> map = new HashMap<>();
-        List<Resource> addlist = power.getHas_addCRF();
+        Set<Resource> addlist = power.getHas_addCRF();
         for(Resource resource:addlist)
         {
             String sid=resource.getSid();
