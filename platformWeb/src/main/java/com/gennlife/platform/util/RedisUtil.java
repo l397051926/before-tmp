@@ -1,5 +1,7 @@
 package com.gennlife.platform.util;
 
+import com.gennlife.platform.dao.AllDao;
+import com.gennlife.platform.dao.SessionMapper;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.UserProcessor;
 import com.google.gson.Gson;
@@ -7,10 +9,16 @@ import com.google.gson.stream.JsonReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
+import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
+import redis.clients.jedis.JedisPool;
 
 import java.io.StringReader;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
+import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -83,12 +91,23 @@ public class RedisUtil {
         if(setValue(user.getUid(),sessionID)&&
         setValue(sessionID,user.getUid())&&setUser(user)) {
             logger.info("登录设置:" + sessionID + "=" + user.getUid() + "成功");
-            return true;
         }
         else {
             exit(user.getUid(),sessionID);
+            logger.error("redis 写入失败");
+        }
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            SessionMapper dao = AllDao.getInstance().getSessionDao();
+            dao.deleteByUid(user.getUid());
+            dao.insertData(user.getUid(), sessionID, simpleDateFormat.format(new Date()));
+        }
+        catch (Exception e)
+        {
+            logger.error("session_uid error",e);
             return false;
         }
+        return true;
     }
     public static void userLogout(String sessionID){
         if(StringUtils.isEmpty(sessionID))return;
@@ -111,6 +130,13 @@ public class RedisUtil {
         deleteKey(sessionID);
         deleteKey(uid);
         deleteUser(uid);
+        try {
+            AllDao.getInstance().getSessionDao().deleteByUid(uid);
+        }
+        catch (Exception e)
+        {
+            logger.error("delete sesion_uid  ",e);
+        }
     }
 
     public static void updateUserOnLine(String uid){
@@ -135,5 +161,42 @@ public class RedisUtil {
         if(uidList==null || uidList.size()==0) return;
         for(String uid:uidList)
             updateUserOnLine(uid);
+    }
+
+    public static void clearAll() {
+        try {
+            Map<String, JedisPool> map = jedisCluster.getClusterNodes();
+            for (Map.Entry<String, JedisPool> item : map.entrySet()) {
+                Jedis jedis = null;
+                try {
+                    jedis = item.getValue().getResource();
+                    jedis.connect();
+                    Set<String> keys=jedis.keys("*");
+                    for(String key:keys)
+                        jedis.del(key);
+                }
+                catch (Exception e)
+                {
+                    logger.error("jedis error ",e);
+
+                }
+                finally {
+                    if(jedis!=null)
+                    {
+                        try {
+                            jedis.close();
+                        }
+                        catch (Exception e1)
+                        {
+
+                        }
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            logger.error("clear all error ",e);
+        }
     }
 }

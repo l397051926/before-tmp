@@ -2,6 +2,8 @@ package com.gennlife.platform.filter;
 
 
 import com.gennlife.platform.authority.AuthorityUtil;
+import com.gennlife.platform.dao.AllDao;
+import com.gennlife.platform.dao.SessionMapper;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.UserProcessor;
 import com.gennlife.platform.util.ParamUtils;
@@ -9,6 +11,7 @@ import com.gennlife.platform.util.RedisUtil;
 import com.gennlife.platform.view.View;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -42,25 +45,48 @@ public class SessionFilter implements Filter {
             filterChain.doFilter(request, response);
         } else {
             HttpSession session = request.getSession();
+            if(session==null)
+            {
+                logger.error("sesion 空:");
+                view.viewString(ParamUtils.errorSessionLosParam(), response);
+                return;
+            }
             String sessionID = session.getId();
             String uid = RedisUtil.getValue(sessionID);
+            SessionMapper dao = AllDao.getInstance().getSessionDao();
             if(uid == null) {
-                String cookie=((HttpServletRequest) servletRequest).getHeader("Cookie");
-                logger.error("RedisUtil.getValue取不到数据:"+sessionID+" cookie "+cookie);
-                logger.error("uri="+uri);
-                view.viewString(ParamUtils.errorSessionLosParam(), response);
+                uid=dao.getUid(sessionID);
+                if(!StringUtils.isEmpty(uid))
+                {
+                    logger.warn("redis can't get value");
+                }
+                else
+                {
+                    String cookie=((HttpServletRequest) servletRequest).getHeader("Cookie");
+                    logger.error("RedisUtil.getValue取不到数据:"+sessionID+" cookie "+cookie+" uri="+uri);
+
+                    view.viewString(ParamUtils.errorSessionLosParam(), response);
+                    return;
+                }
+
             } else {
-                User user = RedisUtil.getUser(uid);
-                if(user == null) {
-                    user = UserProcessor.getUserByUidFromRedis(uid);
+                User user = UserProcessor.getUserByUidFromRedis(uid);
                     if(user == null){
                         logger.error("RedisUtil.getUser取不到数据:"+uid);
-                        view.viewString(ParamUtils.errorSessionLosParam(), response);
+                        user = UserProcessor.getUserByUids(uid);
+                        if(user==null)
+                        {
+                            logger.error("错误user id");
+                            view.viewString(ParamUtils.errorSessionLosParam(), response);
+                            return;
+                        }
+
                     }
-                }
+
                 servletRequest.setAttribute("currentUser", user);
                 if(adminSet.contains(uri) && !AuthorityUtil.isAdmin(user)) {
                     view.viewString(ParamUtils.errorAuthorityParam(), response);
+                    return;
                 }
                 filterChain.doFilter(request, response);
             }

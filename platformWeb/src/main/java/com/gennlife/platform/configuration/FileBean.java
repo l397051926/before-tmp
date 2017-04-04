@@ -18,6 +18,7 @@ public class FileBean {
      * CRF 文件导入的缓存位置
      */
     private String CRFFileLocation = null;
+    private String sessionLocation;
 
 
     public String getManageFileLocation() {
@@ -25,8 +26,8 @@ public class FileBean {
     }
 
     public void setManageFileLocation(String manageFileLocation) {
-        this.manageFileLocation = manageFileLocation;
-        mkdir(manageFileLocation);
+        this.manageFileLocation = manageFileLocation.trim();
+        mkdir(this.manageFileLocation);
     }
 
     public String getCRFFileLocation() {
@@ -34,8 +35,8 @@ public class FileBean {
     }
 
     public void setCRFFileLocation(String CRFFileLocation) {
-        this.CRFFileLocation = CRFFileLocation;
-        mkdir(CRFFileLocation);
+        this.CRFFileLocation = CRFFileLocation.trim();
+        mkdir(this.CRFFileLocation);
     }
     private static void mkdir(String path)
     {
@@ -49,4 +50,5 @@ public class FileBean {
             else logger.error("创建目录"+path+"失败");
         }
     }
+
 }

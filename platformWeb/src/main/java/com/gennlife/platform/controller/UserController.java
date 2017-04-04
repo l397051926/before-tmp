@@ -69,16 +69,15 @@ public class UserController {
                 logger.info("User不为空 开始操作Cookie!");
                 String loginSession= RedisUtil.getValue(user.getUid());
                 if (!StringUtils.isEmpty(loginSession)) {
-                    logger.warn("用户 " + email + " 已经登陆在其他session,进行重新登陆");
+                    logger.warn("用户 " + email + " 已经登陆在其他session,进行重新登陆 "+loginSession);
                 }
                 if(!RedisUtil.setUserOnLine(user, sessionID)){
-                    logger.error("登陆失败 redis 写错误 ");
                     view.viewString(ParamUtils.errorParam("登陆失败"), response);
                     return;
                 }
+
                 resultBean.setCode(1);
                 resultBean.setData(user);
-                boolean isSet = false;
 //                Cookie[] cookies = paramRe.getCookies();
 //                if (cookies != null) {
 //                    logger.info("获取到客户端的Cookie" + cookies);
@@ -359,10 +358,15 @@ public class UserController {
             JsonObject paramJson = jsonParser.parse(ParamUtils.getParam(paramRe)).getAsJsonObject();
             String  dept= paramJson.get("dept").getAsString();
             if(StringUtils.isEmpty(dept)) return  ParamUtils.errorParam("空科室");
-            HttpSession session = paramRe.getSession(true);
+            HttpSession session = paramRe.getSession();
+            if(session==null)
+            {
+                logger.error("session is empty ");
+                return ParamUtils.errorSessionLosParam();
+            }
             String sessionID = session.getId();
             String uid=RedisUtil.getValue(sessionID);
-            logger.info("get userInfo sessionID = " + sessionID + " uid = " + uid);
+            logger.info("checkUserRole sessionID = " + sessionID + " uid = " + uid);
             User user = UserProcessor.getUserByUidFromRedis(uid);
             Power power = user.getPower();
             Set<Resource> list = power.getHas_search();
@@ -402,10 +406,15 @@ public class UserController {
     }
     @RequestMapping(value="/getUser",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String getUser(HttpServletRequest paramRe) {
-        HttpSession session = paramRe.getSession(true);
+        HttpSession session = paramRe.getSession();
+        if(session==null)
+        {
+            logger.error("session is empty ");
+            return ParamUtils.errorSessionLosParam();
+        }
         String sessionID = session.getId();
         String uid=RedisUtil.getValue(sessionID);
-        logger.info("get userInfo sessionID = " + sessionID + " uid = " + uid);
+        logger.info("getUser sessionID = " + sessionID + " uid = " + uid);
         User user = UserProcessor.getUserByUidFromRedis(uid);
         ResultBean bean=new ResultBean();
         bean.setData(user);
