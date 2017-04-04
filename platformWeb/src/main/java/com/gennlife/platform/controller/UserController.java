@@ -29,6 +29,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by chensong on 2015/12/5.
@@ -316,6 +317,7 @@ public class UserController {
             return ParamUtils.errorParam("出现异常");
         }
     }
+
     @RequestMapping(value="/IsInnerNet",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String IsInnerNet(HttpServletRequest paramRe){
         Object xRealIpobj=null;
@@ -363,7 +365,7 @@ public class UserController {
             logger.info("get userInfo sessionID = " + sessionID + " uid = " + uid);
             User user = UserProcessor.getUserByUidFromRedis(uid);
             Power power = user.getPower();
-            List<Resource> list = power.getHas_search();
+            Set<Resource> list = power.getHas_search();
             if (list == null || list.size() == 0) {
                 return ParamUtils.errorParam("无权限");
             }
@@ -397,5 +399,16 @@ public class UserController {
         } catch (Exception e) {
             return ParamUtils.errorParam("异常error");
         }
+    }
+    @RequestMapping(value="/getUser",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String getUser(HttpServletRequest paramRe) {
+        HttpSession session = paramRe.getSession(true);
+        String sessionID = session.getId();
+        String uid=RedisUtil.getValue(sessionID);
+        logger.info("get userInfo sessionID = " + sessionID + " uid = " + uid);
+        User user = UserProcessor.getUserByUidFromRedis(uid);
+        ResultBean bean=new ResultBean();
+        bean.setData(user);
+        return gson.toJson(bean);
     }
 }
