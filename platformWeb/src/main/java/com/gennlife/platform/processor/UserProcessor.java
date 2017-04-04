@@ -713,6 +713,8 @@ public class UserProcessor {
     public static void currentUpdate(String uid, String sessionID) {
         if (StringUtils.isEmpty(sessionID)) return;
         String lastuid = RedisUtil.getValue(sessionID);
+        if(StringUtils.isEmpty(lastuid))
+            lastuid=AllDao.getInstance().getSessionDao().getUid(sessionID);
         if (StringUtils.isEmpty(lastuid)) {
             User user = UserProcessor.getUserByUids(uid);
             RedisUtil.setUserOnLine(user, sessionID);

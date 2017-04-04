@@ -121,11 +121,7 @@ public class UserController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid=RedisUtil.getValue(sessionID);
-            logger.info("get userInfo sessionID = " + sessionID + " uid = " + uid);
-            User user = UserProcessor.getUserByUidFromRedis(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             user.setPower(null);
             user.setGroups(new ArrayList<Group>(0));
             ResultBean resultBean = new ResultBean();
@@ -358,16 +354,7 @@ public class UserController {
             JsonObject paramJson = jsonParser.parse(ParamUtils.getParam(paramRe)).getAsJsonObject();
             String  dept= paramJson.get("dept").getAsString();
             if(StringUtils.isEmpty(dept)) return  ParamUtils.errorParam("空科室");
-            HttpSession session = paramRe.getSession();
-            if(session==null)
-            {
-                logger.error("session is empty ");
-                return ParamUtils.errorSessionLosParam();
-            }
-            String sessionID = session.getId();
-            String uid=RedisUtil.getValue(sessionID);
-            logger.info("checkUserRole sessionID = " + sessionID + " uid = " + uid);
-            User user = UserProcessor.getUserByUidFromRedis(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             Power power = user.getPower();
             Set<Resource> list = power.getHas_search();
             if (list == null || list.size() == 0) {
@@ -407,11 +394,6 @@ public class UserController {
     @RequestMapping(value="/getUser",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String getUser(HttpServletRequest paramRe) {
         HttpSession session = paramRe.getSession();
-        if(session==null)
-        {
-            logger.error("session is empty ");
-            return ParamUtils.errorSessionLosParam();
-        }
         String sessionID = session.getId();
         String uid=RedisUtil.getValue(sessionID);
         logger.info("getUser sessionID = " + sessionID + " uid = " + uid);

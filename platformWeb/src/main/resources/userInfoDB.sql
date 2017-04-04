@@ -459,3 +459,15 @@ CREATE TABLE `searchConditionHistory` (
 -- ----------------------------
 -- Records of searchConditionHistory
 -- ----------------------------
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `session_uid`
+-- ----------------------------
+DROP TABLE IF EXISTS `session_uid`;
+CREATE TABLE `session_uid` (
+  `uid` varchar(255) NOT NULL,
+  `sessionID` varchar(255) NOT NULL,
+  `cTime` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`uid`,`sessionID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
