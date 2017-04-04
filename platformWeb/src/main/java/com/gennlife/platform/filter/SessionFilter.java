@@ -44,7 +44,7 @@ public class SessionFilter implements Filter {
         if(okSet.contains(uri)) {
             filterChain.doFilter(request, response);
         } else {
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(false);
             if(session==null)
             {
                 logger.error("sesion 空:");

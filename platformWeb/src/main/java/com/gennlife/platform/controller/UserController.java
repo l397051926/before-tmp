@@ -157,7 +157,7 @@ public class UserController {
                 return ParamUtils.errorParam("缺少uid");
             }
             ResultBean resultBean =  processor.update(param);
-            UserProcessor.currentUpdate(user.getUid(), paramRe.getSession().getId());
+            UserProcessor.currentUpdate(user.getUid(), paramRe.getSession(false).getId());
             resultStr = gson.toJson(resultBean);
         } catch (Exception e) {
             logger.error("",e);
@@ -302,7 +302,7 @@ public class UserController {
     @RequestMapping(value="/logout",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String logout(HttpServletRequest paramRe) {
         try {
-            String sessionId = paramRe.getSession().getId();
+            String sessionId = paramRe.getSession(false).getId();
             RedisUtil.userLogout(sessionId);
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
@@ -393,7 +393,7 @@ public class UserController {
     }
     @RequestMapping(value="/getUser",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String getUser(HttpServletRequest paramRe) {
-        HttpSession session = paramRe.getSession();
+        HttpSession session = paramRe.getSession(false);
         String sessionID = session.getId();
         String uid=RedisUtil.getValue(sessionID);
         logger.info("getUser sessionID = " + sessionID + " uid = " + uid);

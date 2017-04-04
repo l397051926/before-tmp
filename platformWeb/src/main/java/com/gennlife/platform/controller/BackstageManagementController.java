@@ -79,7 +79,7 @@ public class BackstageManagementController {
             logger.info("删除科室 get方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.deleteOrg(paramObj,user);
-            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession().getId());
+            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession(false).getId());
         }catch (Exception e){
             logger.error("删除科室",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -97,7 +97,7 @@ public class BackstageManagementController {
             User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.updateOrg(paramObj,user);
-            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession().getId());
+            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession(false).getId());
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -234,7 +234,7 @@ public class BackstageManagementController {
             User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.addRole(paramObj,user);
-            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession().getId());
+            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession(false).getId());
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -251,7 +251,7 @@ public class BackstageManagementController {
             User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.editRole(paramObj,user);
-            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession().getId());
+            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession(false).getId());
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -373,7 +373,7 @@ public class BackstageManagementController {
             String param = ParamUtils.getParam(paramRe);
             User user = (User)paramRe.getAttribute("currentUser");
             resultStr =  processor.addGroup(param,user);
-            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession().getId());
+            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession(false).getId());
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -390,7 +390,7 @@ public class BackstageManagementController {
             String param = ParamUtils.getParam(paramRe);
             User user = (User)paramRe.getAttribute("currentUser");
             resultStr =  processor.editGroup(param,user);
-            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession().getId());
+            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession(false).getId());
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -424,7 +424,7 @@ public class BackstageManagementController {
             String param = ParamUtils.getParam(paramRe);
             User user = (User)paramRe.getAttribute("currentUser");
             resultStr =  processor.deleteGroup(param,user);
-            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession().getId());
+            UserProcessor.currentUpdate(user.getUid(),paramRe.getSession(false).getId());
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
