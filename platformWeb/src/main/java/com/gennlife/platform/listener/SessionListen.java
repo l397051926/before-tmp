@@ -1,6 +1,7 @@
 package com.gennlife.platform.listener;
 
 import com.gennlife.platform.dao.AllDao;
+import com.gennlife.platform.util.LogUtils;
 import com.gennlife.platform.util.RedisUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,13 +17,13 @@ public class SessionListen implements HttpSessionListener {
     @Override
     public void sessionCreated(HttpSessionEvent se) {
         String sessionid=se.getSession().getId();
-        logger.info("sessionid " +sessionid+" create");
+        LogUtils.BussnissLog("sessionid " +sessionid+" create");
     }
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
         String sessionid=se.getSession().getId();
-        logger.info("sessionid " +sessionid+" time out");
+        LogUtils.BussnissLog("sessionid " +sessionid+" time out");
         RedisUtil.userLogout(sessionid);
         AllDao.getInstance().getSessionDao().deleteBySessionID(sessionid);
     }
