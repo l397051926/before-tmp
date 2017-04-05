@@ -26,6 +26,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.net.URLDecoder;
 import java.util.*;
 
 /**
@@ -90,7 +91,7 @@ public class UserController {
                 cookie.setPath("/");
                 cookie.setHttpOnly(true);
                 response.addCookie(cookie);
-                Cookie uname = new Cookie("uname", user.getUname()+new Date().toString());
+                Cookie uname = new Cookie("uname", URLDecoder.decode(user.getUname()+new Date().toString(),"utf-8"));
                 cookie.setPath("/");
                 cookie.setHttpOnly(true);
                 response.addCookie(uname);
