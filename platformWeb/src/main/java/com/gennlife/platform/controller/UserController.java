@@ -26,7 +26,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by chensong on 2015/12/5.
@@ -76,12 +79,9 @@ public class UserController {
                 {
                     logger.error("login error",e);
                 }
-                if(StringUtils.isEmpty(uid))
-                {
-                    if(!RedisUtil.setUserOnLine(user, sessionID)){
-                        view.viewString(ParamUtils.errorParam("登陆失败"), response);
-                        return;
-                    }
+                if(!RedisUtil.setUserOnLine(user, sessionID)){
+                    view.viewString(ParamUtils.errorParam("登陆失败"), response);
+                    return;
                 }
                 resultBean.setCode(1);
                 resultBean.setData(user);
@@ -90,10 +90,12 @@ public class UserController {
                 cookie.setPath("/");
                 cookie.setHttpOnly(true);
                 response.addCookie(cookie);
-           /*     Cookie uname = new Cookie("uname", user.getUname()+new Date().toString());
+             /*   Cookie uname = new Cookie("uname", URLDecoder.decode(user.getUemail()+" "+new Date().toString(),"utf-8"));
                 cookie.setPath("/");
                 cookie.setHttpOnly(true);
                 response.addCookie(uname);*/
+
+
             } else {
                 view.viewString(ParamUtils.errorParam("登陆失败"), response);
             }
