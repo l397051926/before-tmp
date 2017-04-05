@@ -68,10 +68,20 @@ public class UserController {
                 if (!StringUtils.isEmpty(loginSession)&&!loginSession.equals(sessionID)) {
                     logger.warn("用户 " + email + " 已经登陆在其他session,进行重新登陆 "+loginSession);
                 }
-
-                if(!RedisUtil.setUserOnLine(user, sessionID)){
-                    view.viewString(ParamUtils.errorParam("登陆失败"), response);
-                    return;
+                String uid=null;
+                try {
+                    uid = AllDao.getInstance().getSessionDao().getUid(sessionID);
+                }
+                catch (Exception e)
+                {
+                    logger.error("login error",e);
+                }
+                if(!StringUtils.isEmpty(uid) && !uid.equals(user.getUid()))
+                {
+                    if(!RedisUtil.setUserOnLine(user, sessionID)){
+                        view.viewString(ParamUtils.errorParam("登陆失败"), response);
+                        return;
+                    }
                 }
                 resultBean.setCode(1);
                 resultBean.setData(user);
