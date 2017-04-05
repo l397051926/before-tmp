@@ -1,5 +1,7 @@
 package com.gennlife.platform.util;
 
+import com.gennlife.platform.dao.AllDao;
+import com.gennlife.platform.dao.SessionMapper;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.UserProcessor;
 import com.google.gson.Gson;
@@ -7,10 +9,16 @@ import com.google.gson.stream.JsonReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
+import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
+import redis.clients.jedis.JedisPool;
 
 import java.io.StringReader;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
+import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -26,12 +34,14 @@ public class RedisUtil {
     public static void init(){
         jedisCluster = (JedisCluster) SpringContextUtil.getBean("jedisClusterFactory");
     }
-    public static void setValue(String key,String value){
+    public static boolean setValue(String key,String value){
         String result=jedisCluster.set(key,value);
         if(!result.equalsIgnoreCase("ok"))
         {
-            logger.error("redis 写入失败 "+key);
+            logger.error("redis 写入失败 "+key+" return result "+result);
+            return false;
         }
+        return true;
     }
 
 
@@ -42,7 +52,7 @@ public class RedisUtil {
         return null;
     }
     public static void deleteKey(String key){
-        if(jedisCluster.exists(key)){
+        if(key!=null&&jedisCluster.exists(key)){
             jedisCluster.del(key);
         }
     }
@@ -66,26 +76,38 @@ public class RedisUtil {
         }
     }
 
-    public static void setUser(User user){
+    public static boolean setUser(User user){
         String key = user.getUid()+suffix;
         String value = gson.toJson(user);
         if(flag){
-            jedisCluster.set(key,value);
+            return setValue(key,value);
         }
-
+        return false;
     }
 
-    public static void setUserOnLine(User user,String sessionID){
+    public static boolean setUserOnLine(User user,String sessionID){
         String exSessionID = getValue(user.getUid());
-        if(exSessionID != null){
-            deleteKey(exSessionID);
-            deleteKey(user.getUid());
-            deleteUser(user.getUid());
+        exit(user.getUid(),exSessionID);
+        if(setValue(user.getUid(),sessionID)&&
+        setValue(sessionID,user.getUid())&&setUser(user)) {
+            logger.info("登录设置:" + sessionID + "=" + user.getUid() + "成功");
         }
-        setValue(user.getUid(),sessionID);
-        setValue(sessionID,user.getUid());
-        logger.info("登录设置:"+sessionID+"="+user.getUid()+"成功");
-        setUser(user);
+        else {
+            exit(user.getUid(),sessionID);
+            logger.error("redis 写入失败");
+        }
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            SessionMapper dao = AllDao.getInstance().getSessionDao();
+            dao.deleteByUid(user.getUid());
+            dao.insertData(user.getUid(), sessionID, simpleDateFormat.format(new Date()));
+        }
+        catch (Exception e)
+        {
+            logger.error("session_uid error",e);
+            return false;
+        }
+        return true;
     }
     public static void userLogout(String sessionID){
         if(StringUtils.isEmpty(sessionID))return;
@@ -104,20 +126,17 @@ public class RedisUtil {
 
     }
 
-    private static void exit(String uid, String sessionID) {
-        if(StringUtils.isEmpty(uid)&&StringUtils.isEmpty(sessionID))return;
-        if(StringUtils.isEmpty(uid)){
-            uid=getValue(sessionID);
-            if(StringUtils.isEmpty(uid))return;
-        }
-        if(StringUtils.isEmpty(sessionID)){
-            sessionID=getValue(uid);
-            if(StringUtils.isEmpty(sessionID))return;
-        }
+    public static void exit(String uid, String sessionID) {
         deleteKey(sessionID);
         deleteKey(uid);
         deleteUser(uid);
-        logger.info("退出设置:"+sessionID+"="+uid+"成功");
+        try {
+            AllDao.getInstance().getSessionDao().deleteByUid(uid);
+        }
+        catch (Exception e)
+        {
+            logger.error("delete sesion_uid  ",e);
+        }
     }
 
     public static void updateUserOnLine(String uid){
@@ -142,5 +161,42 @@ public class RedisUtil {
         if(uidList==null || uidList.size()==0) return;
         for(String uid:uidList)
             updateUserOnLine(uid);
+    }
+
+    public static void clearAll() {
+        try {
+            Map<String, JedisPool> map = jedisCluster.getClusterNodes();
+            for (Map.Entry<String, JedisPool> item : map.entrySet()) {
+                Jedis jedis = null;
+                try {
+                    jedis = item.getValue().getResource();
+                    jedis.connect();
+                    Set<String> keys=jedis.keys("*");
+                    for(String key:keys)
+                        jedis.del(key);
+                }
+                catch (Exception e)
+                {
+                    logger.error("jedis error ",e);
+
+                }
+                finally {
+                    if(jedis!=null)
+                    {
+                        try {
+                            jedis.close();
+                        }
+                        catch (Exception e1)
+                        {
+
+                        }
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            logger.error("clear all error ",e);
+        }
     }
 }

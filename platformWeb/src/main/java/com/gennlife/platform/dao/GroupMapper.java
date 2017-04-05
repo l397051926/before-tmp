@@ -27,7 +27,7 @@ public interface GroupMapper {
      * @return
      */
     List<User> getUsersByGroupID(Map<String, Object> map);
-
+    List<User> getUsersByGroupIDS(Map<String, Object> map);
 
 
     int insertOneGroup(Group group);

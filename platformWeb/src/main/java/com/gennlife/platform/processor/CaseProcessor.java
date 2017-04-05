@@ -307,14 +307,14 @@ public class CaseProcessor {
             logger.info("通过sid转化后，搜索请求参数 = " + gson.toJson(paramObj));
             return gson.toJson(paramObj);
         } else if (paramObj.has("power")) { // 角色,完成小组扩展
-            buildGroup(paramObj, user);
+            ///buildGroup(paramObj, user);
             return gson.toJson(paramObj);
         } else {
             return gson.toJson(paramObj);
         }
 
     }
-
+    @Deprecated
     private static void buildGroup(JsonObject paramObj, User user) {
         JsonArray groups = paramObj.getAsJsonArray("groups");
         if (groups == null) {
@@ -373,7 +373,7 @@ public class CaseProcessor {
             logger.info("通过sid转化后，搜索请求参数 = " + gson.toJson(paramObj));
             return gson.toJson(paramObj);
         } else if (paramObj.has("power")) { // 角色,完成小组扩展
-            buildGroup(paramObj, user);
+            //buildGroup(paramObj, user);
             return gson.toJson(paramObj);
         } else {
             return param;

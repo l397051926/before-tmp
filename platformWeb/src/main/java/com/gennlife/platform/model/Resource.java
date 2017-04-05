@@ -3,7 +3,7 @@ package com.gennlife.platform.model;
 /**
  * Created by chen-song on 16/9/9.
  */
-public class Resource {
+public class Resource implements Comparable<Resource>{
     /**
      * `sid` varchar(50) DEFAULT NULL COMMENT '资源id',
      `sname` varchar(50) DEFAULT NULL COMMENT '资源名称',
@@ -30,6 +30,30 @@ public class Resource {
     private String has_browseDetail;
     private String has_addBatchCRF;
     private String stype_role;
+
+    public Resource(Integer roleid, String sid, String sname, String sdesc, String stype, String slab_type, String slab_name, String sorgID, String has_search, String has_searchExport, String has_traceCRF, String has_addCRF, String has_editCRF, String has_deleteCRF, String has_browseDetail, String has_addBatchCRF, String stype_role) {
+        this.roleid = roleid;
+        this.sid = sid;
+        this.sname = sname;
+        this.sdesc = sdesc;
+        this.stype = stype;
+        this.slab_type = slab_type;
+        this.slab_name = slab_name;
+        this.sorgID = sorgID;
+        this.has_search = has_search;
+        this.has_searchExport = has_searchExport;
+        this.has_traceCRF = has_traceCRF;
+        this.has_addCRF = has_addCRF;
+        this.has_editCRF = has_editCRF;
+        this.has_deleteCRF = has_deleteCRF;
+        this.has_browseDetail = has_browseDetail;
+        this.has_addBatchCRF = has_addBatchCRF;
+        this.stype_role = stype_role;
+    }
+
+    public Resource() {
+
+    }
 
     public Integer getRoleid() {
         return roleid;
@@ -166,4 +190,62 @@ public class Resource {
     public void setStype_role(String stype_role) {
         this.stype_role = stype_role;
     }
+
+    @Override
+    public int compareTo(Resource o) {
+        return this.toString().compareTo(o.toString());
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Resource{");
+        sb.append("slab_name='").append(slab_name).append('\'');
+        sb.append(",has_search='").append(has_search).append('\'');
+        sb.append(", has_searchExport='").append(has_searchExport).append('\'');
+        sb.append(", has_traceCRF='").append(has_traceCRF).append('\'');
+        sb.append(", has_addCRF='").append(has_addCRF).append('\'');
+        sb.append(", has_editCRF='").append(has_editCRF).append('\'');
+        sb.append(", has_deleteCRF='").append(has_deleteCRF).append('\'');
+        sb.append(", has_browseDetail='").append(has_browseDetail).append('\'');
+        sb.append(", has_addBatchCRF='").append(has_addBatchCRF).append('\'');
+        sb.append(", slab_name='").append(slab_name).append('\'');
+        sb.append(", stype_role='").append(stype_role).append('\'');
+        sb.append(", sorgID='").append(sorgID).append('\'');
+        sb.append(", slab_type='").append(slab_type).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
+
+
+    public Resource ResourcePowerleftOne(String key) {
+        if(key!=null)key=key.toUpperCase();
+        else return this;
+        Integer roleid=null;
+        String sdesc=null;
+        String sorgID=null;
+        String stype_role=null;
+        String slab_type=null;
+        String stype=null;
+        String sname=null;
+        String has_search=this.has_search;
+        String has_searchExport=this.has_searchExport;
+        String has_traceCRF=this.has_traceCRF;
+        String has_addCRF=this.has_addCRF;
+        String has_editCRF=this.has_editCRF;
+        String has_deleteCRF=this.has_deleteCRF;
+        String has_browseDetail=this.has_browseDetail;
+        String has_addBatchCRF=this.has_addBatchCRF;
+        if(!"HAS_SEARCH".equals(key)) has_search=null;
+        if(!"HAS_SEARCHEXPORT".equals(key))has_searchExport=null;
+
+        if(!"HAS_TRACECRF".equals(key))has_traceCRF=null;
+        if(!"HAS_ADDCRF".equals(key))has_addCRF=null;
+        if(!"HAS_EDITCRF".equals(key)) has_editCRF=null;
+        if(!"HAS_DELETECRF".equals(key))has_deleteCRF=null;
+        if(!"HAS_BROWSEDETAIL".equals(key))has_browseDetail=null;
+        if(!"HAS_ADDBATCHCRF".equals(key))has_addBatchCRF=null;
+        return new Resource(roleid,  sid, sname, sdesc,stype, slab_type, slab_name, sorgID,  has_search, has_searchExport, has_traceCRF,  has_addCRF,  has_editCRF, has_deleteCRF,  has_browseDetail, has_addBatchCRF, stype_role) ;
+        }
+
+
 }

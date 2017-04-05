@@ -70,7 +70,7 @@ public class ConfigurationService {
 
     public static void loadConfigurationInfo() throws IOException {
         String caseStr = FilesUtils.readFile("/case.json");
-        logger.info("case.json = "+caseStr);
+        //logger.info("case.json = "+caseStr);
         JsonObject allDiseasesObj = (JsonObject) jsonParser.parse(caseStr);
         for(Map.Entry<String, JsonElement> item:allDiseasesObj.entrySet()){
             String crf_id = item.getKey();

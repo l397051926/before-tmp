@@ -29,6 +29,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by chensong on 2015/12/5.
@@ -66,40 +67,35 @@ public class UserController {
             ResultBean resultBean = new ResultBean();
             if (user != null) {
                 logger.info("User不为空 开始操作Cookie!");
-                boolean hasLogin = UserProcessor.getUserByUidFromRedis(user.getUid()) != null;
-                if (hasLogin) {
-                    logger.warn("用户 " + email + " 已经登陆在其他session,进行重新登陆");
+                String loginSession= RedisUtil.getValue(user.getUid());
+                if (!StringUtils.isEmpty(loginSession)&&!loginSession.equals(sessionID)) {
+                    logger.warn("用户 " + email + " 已经登陆在其他session,进行重新登陆 "+loginSession);
                 }
-                RedisUtil.setUserOnLine(user, sessionID);
+                String uid=null;
+                try {
+                    uid = AllDao.getInstance().getSessionDao().getUid(sessionID);
+                }
+                catch (Exception e)
+                {
+                    logger.error("login error",e);
+                }
+                if(!RedisUtil.setUserOnLine(user, sessionID)){
+                    view.viewString(ParamUtils.errorParam("登陆失败"), response);
+                    return;
+                }
                 resultBean.setCode(1);
                 resultBean.setData(user);
-                boolean isSet = false;
-//                Cookie[] cookies = paramRe.getCookies();
-//                if (cookies != null) {
-//                    logger.info("获取到客户端的Cookie" + cookies);
-//                    for (Cookie cookieitem: cookies) {
-//                        if (cookieitem.getName().equals("JSESSIONID")) {
-//                            logger.info("获取客户端JSESSIONID：" + cookieitem.getValue());
-//                            logger.info("设置客户端JSESSIONID：" + sessionID);
-//                            cookieitem.setValue(sessionID);
-//                            cookieitem.setPath("/");
-//                            cookieitem.setHttpOnly(true);
-//                            isSet = true;
-//                        }
-//                    }
-//                }
-//                if (!isSet) {
-//                    logger.info("获取客户端Cookie为空，从新设置Cookie， JSESSIONID：" + sessionID);
-//                    Cookie cookie = new Cookie("JSESSIONID", sessionID);
-//                    cookie.setPath("/");
-//                    cookie.setHttpOnly(true);
-//                    response.addCookie(cookie);
-//                }
                 logger.info("设置Cookie， JSESSIONID：" + sessionID);
                 Cookie cookie = new Cookie("JSESSIONID", sessionID);
                 cookie.setPath("/");
                 cookie.setHttpOnly(true);
                 response.addCookie(cookie);
+             /*   Cookie uname = new Cookie("uname", URLDecoder.decode(user.getUemail()+" "+new Date().toString(),"utf-8"));
+                cookie.setPath("/");
+                cookie.setHttpOnly(true);
+                response.addCookie(uname);*/
+
+
             } else {
                 view.viewString(ParamUtils.errorParam("登陆失败"), response);
             }
@@ -117,11 +113,7 @@ public class UserController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-            HttpSession session = paramRe.getSession();
-            String sessionID = session.getId();
-            String uid=RedisUtil.getValue(sessionID);
-            logger.info("get userInfo sessionID = " + sessionID + " uid = " + uid);
-            User user = UserProcessor.getUserByUidFromRedis(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             user.setPower(null);
             user.setGroups(new ArrayList<Group>(0));
             ResultBean resultBean = new ResultBean();
@@ -157,7 +149,7 @@ public class UserController {
                 return ParamUtils.errorParam("缺少uid");
             }
             ResultBean resultBean =  processor.update(param);
-            UserProcessor.currentUpdate(user.getUid(), paramRe.getSession().getId());
+            UserProcessor.currentUpdate(user.getUid(), paramRe.getSession(false).getId());
             resultStr = gson.toJson(resultBean);
         } catch (Exception e) {
             logger.error("",e);
@@ -302,7 +294,7 @@ public class UserController {
     @RequestMapping(value="/logout",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String logout(HttpServletRequest paramRe) {
         try {
-            String sessionId = paramRe.getSession().getId();
+            String sessionId = paramRe.getSession(false).getId();
             RedisUtil.userLogout(sessionId);
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
@@ -312,6 +304,7 @@ public class UserController {
             return ParamUtils.errorParam("出现异常");
         }
     }
+
     @RequestMapping(value="/IsInnerNet",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String IsInnerNet(HttpServletRequest paramRe){
         Object xRealIpobj=null;
@@ -353,13 +346,9 @@ public class UserController {
             JsonObject paramJson = jsonParser.parse(ParamUtils.getParam(paramRe)).getAsJsonObject();
             String  dept= paramJson.get("dept").getAsString();
             if(StringUtils.isEmpty(dept)) return  ParamUtils.errorParam("空科室");
-            HttpSession session = paramRe.getSession(true);
-            String sessionID = session.getId();
-            String uid=RedisUtil.getValue(sessionID);
-            logger.info("get userInfo sessionID = " + sessionID + " uid = " + uid);
-            User user = UserProcessor.getUserByUidFromRedis(uid);
+            User user = (User)paramRe.getAttribute("currentUser");
             Power power = user.getPower();
-            List<Resource> list = power.getHas_search();
+            Set<Resource> list = power.getHas_search();
             if (list == null || list.size() == 0) {
                 return ParamUtils.errorParam("无权限");
             }
@@ -393,5 +382,16 @@ public class UserController {
         } catch (Exception e) {
             return ParamUtils.errorParam("异常error");
         }
+    }
+    @RequestMapping(value="/getUser",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public @ResponseBody String getUser(HttpServletRequest paramRe) {
+        HttpSession session = paramRe.getSession(false);
+        String sessionID = session.getId();
+        String uid=RedisUtil.getValue(sessionID);
+        logger.info("getUser sessionID = " + sessionID + " uid = " + uid);
+        User user = UserProcessor.getUserByUidFromRedis(uid);
+        ResultBean bean=new ResultBean();
+        bean.setData(user);
+        return gson.toJson(bean);
     }
 }
