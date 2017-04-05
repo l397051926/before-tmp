@@ -14,7 +14,7 @@ public class LogUtils {
     private static SimpleDateFormat time_=new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
     private static Logger logger = LoggerFactory.getLogger("businesslog");
     public static void BussnissLog(String log){
-        logger.info(log);
+        logger.info(getStringTime()+log);
     }
     public static String getStringTime(){
         return time.format(new Date());
