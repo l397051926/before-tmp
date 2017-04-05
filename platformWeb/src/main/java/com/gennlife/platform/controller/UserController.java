@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -83,11 +82,6 @@ public class UserController {
                 }
                 resultBean.setCode(1);
                 resultBean.setData(user);
-                LogUtils.BussnissLog("设置Cookie， JSESSIONID：" + sessionID);
-                Cookie cookie = new Cookie("JSESSIONID", sessionID);
-                cookie.setPath("/");
-                cookie.setHttpOnly(true);
-                response.addCookie(cookie);
             } else {
                 view.viewString(ParamUtils.errorParam("登陆失败"), response);
             }

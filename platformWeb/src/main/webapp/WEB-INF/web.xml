@@ -57,6 +57,11 @@
     </servlet-mapping>
     <session-config>
         <session-timeout>120</session-timeout>
+        <cookie-config>
+            <name>UISSESSSION</name>
+            <path>/</path>
+            <http-only>true</http-only>
+        </cookie-config>
     </session-config>
   <display-name>Archetype Created Web Application</display-name>
 </web-app>
