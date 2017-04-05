@@ -26,10 +26,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by chensong on 2015/12/5.
@@ -68,42 +65,37 @@ public class UserController {
             if (user != null) {
                 logger.info("User不为空 开始操作Cookie!");
                 String loginSession= RedisUtil.getValue(user.getUid());
-                if (!StringUtils.isEmpty(loginSession)) {
+                if (!StringUtils.isEmpty(loginSession)&&!loginSession.equals(sessionID)) {
                     logger.warn("用户 " + email + " 已经登陆在其他session,进行重新登陆 "+loginSession);
                 }
-                if(!RedisUtil.setUserOnLine(user, sessionID)){
-                    view.viewString(ParamUtils.errorParam("登陆失败"), response);
-                    return;
+                String uid=null;
+                try {
+                    uid = AllDao.getInstance().getSessionDao().getUid(sessionID);
                 }
-
+                catch (Exception e)
+                {
+                    logger.error("login error",e);
+                }
+                if(StringUtils.isEmpty(uid))
+                {
+                    if(!RedisUtil.setUserOnLine(user, sessionID)){
+                        view.viewString(ParamUtils.errorParam("登陆失败"), response);
+                        return;
+                    }
+                }
                 resultBean.setCode(1);
                 resultBean.setData(user);
-//                Cookie[] cookies = paramRe.getCookies();
-//                if (cookies != null) {
-//                    logger.info("获取到客户端的Cookie" + cookies);
-//                    for (Cookie cookieitem: cookies) {
-//                        if (cookieitem.getName().equals("JSESSIONID")) {
-//                            logger.info("获取客户端JSESSIONID：" + cookieitem.getValue());
-//                            logger.info("设置客户端JSESSIONID：" + sessionID);
-//                            cookieitem.setValue(sessionID);
-//                            cookieitem.setPath("/");
-//                            cookieitem.setHttpOnly(true);
-//                            isSet = true;
-//                        }
-//                    }
-//                }
-//                if (!isSet) {
-//                    logger.info("获取客户端Cookie为空，从新设置Cookie， JSESSIONID：" + sessionID);
-//                    Cookie cookie = new Cookie("JSESSIONID", sessionID);
-//                    cookie.setPath("/");
-//                    cookie.setHttpOnly(true);
-//                    response.addCookie(cookie);
-//                }
                 logger.info("设置Cookie， JSESSIONID：" + sessionID);
                 Cookie cookie = new Cookie("JSESSIONID", sessionID);
                 cookie.setPath("/");
                 cookie.setHttpOnly(true);
                 response.addCookie(cookie);
+                Cookie uname = new Cookie("uname", user.getUname()+new Date().toString());
+                cookie.setPath("/");
+                cookie.setHttpOnly(true);
+                response.addCookie(uname);
+
+
             } else {
                 view.viewString(ParamUtils.errorParam("登陆失败"), response);
             }
