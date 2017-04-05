@@ -26,8 +26,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.net.URLDecoder;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by chensong on 2015/12/5.
@@ -91,10 +93,10 @@ public class UserController {
                 cookie.setPath("/");
                 cookie.setHttpOnly(true);
                 response.addCookie(cookie);
-                Cookie uname = new Cookie("uname", URLDecoder.decode(user.getUname()+new Date().toString(),"utf-8"));
+             /*   Cookie uname = new Cookie("uname", URLDecoder.decode(user.getUemail()+" "+new Date().toString(),"utf-8"));
                 cookie.setPath("/");
                 cookie.setHttpOnly(true);
-                response.addCookie(uname);
+                response.addCookie(uname);*/
 
 
             } else {
