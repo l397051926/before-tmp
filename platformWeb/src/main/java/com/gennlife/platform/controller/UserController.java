@@ -48,10 +48,7 @@ public class UserController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-            HttpSession session = paramRe.getSession(true);
-            String sessionID = session.getId();
             String param = ParamUtils.getParam(paramRe);
-            logger.info("Login sessionID=" + sessionID);
             logger.info("Login param=" + param);
             String email = null;
             String pwd = null;
@@ -66,7 +63,8 @@ public class UserController {
             User user = processor.login(email, pwd);
             ResultBean resultBean = new ResultBean();
             if (user != null) {
-                logger.info("User不为空 开始操作Cookie!");
+                HttpSession session = paramRe.getSession(true);
+                String sessionID = session.getId();
                 String loginSession= RedisUtil.getValue(user.getUid());
                 if (!StringUtils.isEmpty(loginSession)&&!loginSession.equals(sessionID)) {
                     logger.warn("用户 " + email + " 已经登陆在其他session,进行重新登陆 "+loginSession);
@@ -79,9 +77,12 @@ public class UserController {
                 {
                     logger.error("login error",e);
                 }
-                if(!RedisUtil.setUserOnLine(user, sessionID)){
-                    view.viewString(ParamUtils.errorParam("登陆失败"), response);
-                    return;
+                if(!user.getUid().equals(uid))
+                {
+                    if(!RedisUtil.setUserOnLine(user, sessionID)){
+                        view.viewString(ParamUtils.errorParam("登陆失败"), response);
+                        return;
+                    }
                 }
                 resultBean.setCode(1);
                 resultBean.setData(user);
@@ -90,12 +91,6 @@ public class UserController {
                 cookie.setPath("/");
                 cookie.setHttpOnly(true);
                 response.addCookie(cookie);
-             /*   Cookie uname = new Cookie("uname", URLDecoder.decode(user.getUemail()+" "+new Date().toString(),"utf-8"));
-                cookie.setPath("/");
-                cookie.setHttpOnly(true);
-                response.addCookie(uname);*/
-
-
             } else {
                 view.viewString(ParamUtils.errorParam("登陆失败"), response);
             }
