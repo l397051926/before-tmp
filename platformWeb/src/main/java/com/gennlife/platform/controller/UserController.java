@@ -76,7 +76,7 @@ public class UserController {
                 {
                     logger.error("login error",e);
                 }
-                if(StringUtils.isEmpty(uid))
+                if(StringUtils.isEmpty(uid)&&!uid.equals(user.getUid()))
                 {
                     if(!RedisUtil.setUserOnLine(user, sessionID)){
                         view.viewString(ParamUtils.errorParam("登陆失败"), response);
