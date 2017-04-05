@@ -61,14 +61,14 @@ public class AuthorityUtil {
             return ParamUtils.errorSessionLosParam();
         } else {
             User user = (User)paramRe.getAttribute("currentUser");
-            List<Role> roles = user.getRoles();
+            //List<Role> roles = user.getRoles();
             List<Group> groups = user.getGroups();
             Power power = user.getPower();
             if (paramElement.isJsonObject()) {
                 JsonObject paramObj = paramElement.getAsJsonObject();
                 //paramObj.add("roles", gson.toJsonTree(roles));
                 //从groups数组扩展权限
-                for (Group group: groups) {
+                /*for (Group group: groups) {
                     // List<User> members = group.getMembers();
                     JsonArray members = gson.toJsonTree(group.getMembers()).getAsJsonArray();
                     for (JsonElement member: members) {
@@ -90,7 +90,7 @@ public class AuthorityUtil {
                         }
                     }
                     group.setMembers(members);
-                }
+                }*/
                 if (isUrlArrayHasStr(urlArray, "detail")) {
                     power.setHas_searchExport(null);
                 }
