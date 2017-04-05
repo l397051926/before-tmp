@@ -6,6 +6,7 @@ import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.dao.SessionMapper;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.UserProcessor;
+import com.gennlife.platform.util.LogUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.util.RedisUtil;
 import com.gennlife.platform.view.View;
@@ -47,7 +48,8 @@ public class SessionFilter implements Filter {
             HttpSession session = request.getSession(false);
             if(session==null)
             {
-                logger.error("sesion 空:");
+                String cookie=((HttpServletRequest) servletRequest).getHeader("Cookie");
+                LogUtils.BussnissLogError("session 空: "+uri+" cookie "+cookie);
                 view.viewString(ParamUtils.errorSessionLosParam(), response);
                 return;
             }
@@ -58,13 +60,12 @@ public class SessionFilter implements Filter {
                 uid=dao.getUid(sessionID);
                 if(!StringUtils.isEmpty(uid))
                 {
-                    logger.warn("redis can't get value");
+                    LogUtils.BussnissLogError("redis can't get value");
                 }
                 else
                 {
                     String cookie=((HttpServletRequest) servletRequest).getHeader("Cookie");
-                    logger.error("RedisUtil.getValue取不到数据:"+sessionID+" cookie "+cookie+" uri="+uri);
-
+                    LogUtils.BussnissLogError("RedisUtil.getValue取不到数据:"+sessionID+" cookie "+cookie+" uri="+uri);
                     view.viewString(ParamUtils.errorSessionLosParam(), response);
                     return;
                 }
@@ -72,11 +73,11 @@ public class SessionFilter implements Filter {
             } else {
                 User user = UserProcessor.getUserByUidFromRedis(uid);
                     if(user == null){
-                        logger.error("RedisUtil.getUser取不到数据:"+uid);
+                        LogUtils.BussnissLogError("RedisUtil.getUser取不到数据:"+uid);
                         user = UserProcessor.getUserByUids(uid);
                         if(user==null)
                         {
-                            logger.error("错误user id");
+                            LogUtils.BussnissLogError("错误user id");
                             view.viewString(ParamUtils.errorSessionLosParam(), response);
                             return;
                         }

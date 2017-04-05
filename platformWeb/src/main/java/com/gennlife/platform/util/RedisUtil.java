@@ -90,11 +90,11 @@ public class RedisUtil {
         exit(user.getUid(),exSessionID);
         if(setValue(user.getUid(),sessionID)&&
         setValue(sessionID,user.getUid())&&setUser(user)) {
-            logger.info("登录设置:" + sessionID + "=" + user.getUid() + "成功");
+            LogUtils.BussnissLog("登录设置:" + sessionID + "=" + user.getUid() + "成功");
         }
         else {
             exit(user.getUid(),sessionID);
-            logger.error("redis 写入失败");
+            LogUtils.BussnissLogError("redis 写入失败");
         }
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
@@ -104,7 +104,7 @@ public class RedisUtil {
         }
         catch (Exception e)
         {
-            logger.error("session_uid error",e);
+            LogUtils.BussnissLogError("session_uid error",e);
             return false;
         }
         return true;

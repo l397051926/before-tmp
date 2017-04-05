@@ -16,7 +16,7 @@
 	<appender name="BusinessLog" class="ch.qos.logback.core.ConsoleAppender">
 		<file>${logBase}/kylin.log</file>
 		<encoder>
-			<pattern>%msg%n</pattern>
+			<pattern>%d %-4level [%logger{40}] - %msg%n</pattern>
 			<charset>UTF-8</charset>
 		</encoder>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
