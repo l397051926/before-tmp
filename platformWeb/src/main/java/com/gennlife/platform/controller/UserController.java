@@ -90,12 +90,10 @@ public class UserController {
                 cookie.setPath("/");
                 cookie.setHttpOnly(true);
                 response.addCookie(cookie);
-                Cookie uname = new Cookie("uname", user.getUname()+new Date().toString());
+           /*     Cookie uname = new Cookie("uname", user.getUname()+new Date().toString());
                 cookie.setPath("/");
                 cookie.setHttpOnly(true);
-                response.addCookie(uname);
-
-
+                response.addCookie(uname);*/
             } else {
                 view.viewString(ParamUtils.errorParam("登陆失败"), response);
             }
