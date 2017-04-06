@@ -5,10 +5,7 @@ import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.*;
 import com.gennlife.platform.processor.UserProcessor;
-import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.ParamUtils;
-import com.gennlife.platform.util.RedisUtil;
-import com.gennlife.platform.util.SpringContextUtil;
+import com.gennlife.platform.util.*;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -22,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -48,11 +44,8 @@ public class UserController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-            HttpSession session = paramRe.getSession(true);
-            String sessionID = session.getId();
             String param = ParamUtils.getParam(paramRe);
-            logger.info("Login sessionID=" + sessionID);
-            logger.info("Login param=" + param);
+            LogUtils.BussnissLog("Login param=" + param);
             String email = null;
             String pwd = null;
             try {
@@ -66,10 +59,11 @@ public class UserController {
             User user = processor.login(email, pwd);
             ResultBean resultBean = new ResultBean();
             if (user != null) {
-                logger.info("User不为空 开始操作Cookie!");
+                HttpSession session = paramRe.getSession(true);
+                String sessionID = session.getId();
                 String loginSession= RedisUtil.getValue(user.getUid());
                 if (!StringUtils.isEmpty(loginSession)&&!loginSession.equals(sessionID)) {
-                    logger.warn("用户 " + email + " 已经登陆在其他session,进行重新登陆 "+loginSession);
+                    LogUtils.BussnissLog("用户 " + email + " 已经登陆在其他session,进行重新登陆 "+loginSession);
                 }
                 String uid=null;
                 try {
@@ -77,34 +71,26 @@ public class UserController {
                 }
                 catch (Exception e)
                 {
-                    logger.error("login error",e);
+                    LogUtils.BussnissLogError("login error",e);
                 }
-                if(!RedisUtil.setUserOnLine(user, sessionID)){
-                    view.viewString(ParamUtils.errorParam("登陆失败"), response);
-                    return;
+                if(!user.getUid().equals(uid))
+                {
+                    if(!RedisUtil.setUserOnLine(user, sessionID)){
+                        view.viewString(ParamUtils.errorParam("登陆失败"), response);
+                        return;
+                    }
                 }
                 resultBean.setCode(1);
                 resultBean.setData(user);
-                logger.info("设置Cookie， JSESSIONID：" + sessionID);
-                Cookie cookie = new Cookie("JSESSIONID", sessionID);
-                cookie.setPath("/");
-                cookie.setHttpOnly(true);
-                response.addCookie(cookie);
-             /*   Cookie uname = new Cookie("uname", URLDecoder.decode(user.getUemail()+" "+new Date().toString(),"utf-8"));
-                cookie.setPath("/");
-                cookie.setHttpOnly(true);
-                response.addCookie(uname);*/
-
-
             } else {
                 view.viewString(ParamUtils.errorParam("登陆失败"), response);
             }
             resultStr = gson.toJson(resultBean);
         } catch (Exception e) {
-            logger.error("", e);
+            LogUtils.BussnissLogError("出现异常", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("登录get 耗时" + (System.currentTimeMillis()-start) + "ms");
+        LogUtils.BussnissLog("登录get 耗时" + (System.currentTimeMillis()-start) + "ms");
         view.viewString(resultStr, response);
     }
 

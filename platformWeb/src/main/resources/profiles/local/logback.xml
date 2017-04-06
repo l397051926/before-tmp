@@ -16,11 +16,11 @@
 	<appender name="BusinessLog" class="ch.qos.logback.core.ConsoleAppender">
 		<file>${logBase}/kylin.log</file>
 		<encoder>
-			<pattern>%msg%n</pattern>
+			<pattern>%d %-4level [%logger{40}] - %msg%n</pattern>
 			<charset>UTF-8</charset>
 		</encoder>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${logBase}/kylin.log.%d{yyyy-MM-dd-HH}</fileNamePattern>
+			<fileNamePattern>${logBase}/kylin.log.%d{yyyy-MM-dd}</fileNamePattern>
 		</rollingPolicy>
 	</appender>
     <!--为具体logger指定appender-->

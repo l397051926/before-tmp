@@ -16,6 +16,12 @@ public class LogUtils {
     public static void BussnissLog(String log){
         logger.info(log);
     }
+    public static void BussnissLogError(String log){
+        logger.error(log);
+    }
+    public static void BussnissLogError(String log,Exception e){
+        logger.error(log,e);
+    }
     public static String getStringTime(){
         return time.format(new Date());
     }
