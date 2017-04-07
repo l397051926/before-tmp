@@ -1,6 +1,7 @@
 package com.gennlife.platform.processor;
 
 import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.*;
 import com.gennlife.platform.service.ConfigurationService;
@@ -147,6 +148,7 @@ public class UserProcessor {
         try {
             Long start = System.currentTimeMillis();
             user = AllDao.getInstance().getSyUserDao().getUserByUid(uid);
+            String platformEnvrionment = ((SystemDefault)SpringContextUtil.getBean("systemDefault")).getNeedGroup();
             if (user == null) return null;
             Long start1 = System.currentTimeMillis();
             logger.info("查user=" + (start1 - start) + "ms");
@@ -214,7 +216,11 @@ public class UserProcessor {
             }
             list.clear();
             list.add(resultGroup);
-            user.setGroups(list);
+            if (platformEnvrionment.equals("false")) { // Group清空
+                user.setGroups(null);
+            } else {
+                user.setGroups(list);
+            }
             user.setRoles(new ArrayList<Role>(0));
         } catch (Exception e) {
             logger.error("", e);
