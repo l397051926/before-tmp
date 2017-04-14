@@ -1,6 +1,7 @@
 package com.gennlife.platform.processor;
 
 import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.*;
 import com.gennlife.platform.service.ConfigurationService;
@@ -147,6 +148,7 @@ public class UserProcessor {
         try {
             Long start = System.currentTimeMillis();
             user = AllDao.getInstance().getSyUserDao().getUserByUid(uid);
+            String platformEnvrionment = ((SystemDefault)SpringContextUtil.getBean("systemDefault")).getNeedGroup();
             if (user == null) return null;
             Long start1 = System.currentTimeMillis();
             logger.info("查user=" + (start1 - start) + "ms");
@@ -214,7 +216,11 @@ public class UserProcessor {
             }
             list.clear();
             list.add(resultGroup);
-            user.setGroups(list);
+            if (platformEnvrionment!=null&&platformEnvrionment.equals("false")) { // Group清空
+                user.setGroups(null);
+            } else {
+                user.setGroups(list);
+            }
             user.setRoles(new ArrayList<Role>(0));
         } catch (Exception e) {
             logger.error("", e);
@@ -240,6 +246,7 @@ public class UserProcessor {
                 confMap.put("uid", user.getUid());
                 List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(confMap);
                 //转化本科室信息
+                transformRole(user,rolesList);
                 user.setRoles(rolesList);
                 return user;
             }
@@ -428,48 +435,48 @@ public class UserProcessor {
     public static Power addResourceInGroupToPower(Power power, Resource resource, Group group) {
         if ("有".equals(resource.getHas_search()) && "有".equals(group.getHas_search())) {
             if (!isExistResource(power.getHas_search(), resource)) {
-                power.getHas_search().add(resource);
+                power.addInHasSearch(resource);
             }
 
         }
         if ("有".equals(resource.getHas_searchExport()) && "有".equals(group.getHas_searchExport())) {
             if (!isExistResource(power.getHas_searchExport(), resource)) {
-                power.getHas_searchExport().add(resource);
+                power.addInHasSearchExport(resource);
             }
 
         }
         if ("有".equals(resource.getHas_traceCRF()) && "有".equals(group.getHas_traceCRF())) {
             if (!isExistResource(power.getHas_traceCRF(), resource)) {
-                power.getHas_traceCRF().add(resource);
+                power.addInHasTraceCRF(resource);
             }
 
         }
         if ("有".equals(resource.getHas_addCRF()) && "有".equals(group.getHas_addCRF())) {
             if (!isExistResource(power.getHas_addCRF(), resource)) {
-                power.getHas_addCRF().add(resource);
+                power.addInHasAddCRF(resource);
             }
         }
         if ("有".equals(resource.getHas_addBatchCRF()) && "有".equals(group.getHas_addBatchCRF())) {
             if (!isExistResource(power.getHas_addBatchCRF(), resource)) {
-                power.getHas_addBatchCRF().add(resource);
+                power.addInHasAddBatchCRF(resource);
             }
 
         }
         if ("有".equals(resource.getHas_editCRF()) && "有".equals(group.getHas_editCRF())) {
             if (!isExistResource(power.getHas_editCRF(), resource)) {
-                power.getHas_editCRF().add(resource);
+                power.addInHasEditCRF(resource);
             }
 
         }
         if ("有".equals(resource.getHas_deleteCRF()) && "有".equals(group.getHas_deleteCRF())) {
             if (!isExistResource(power.getHas_deleteCRF(), resource)) {
-                power.getHas_deleteCRF().add(resource);
+                power.addInHasDeleteCRF(resource);
             }
 
         }
         if ("有".equals(resource.getHas_browseDetail()) && "有".equals(group.getHas_browseDetail())) {
             if (!isExistResource(power.getHas_browseDetail(), resource)) {
-                power.getHas_browseDetail().add(resource);
+                power.addInHasBrowseDetail(resource);
             }
 
         }

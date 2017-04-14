@@ -32,7 +32,7 @@ public class SampleProcessor {
      *
      * @param jsonObject
      */
-    public String importSample(JsonObject jsonObject,User user) {
+    public String importSample(JsonObject jsonObject, User user) {
         try {
             String projectID = jsonObject.get("projectID").getAsString();
             String sampleName = null;
@@ -46,25 +46,25 @@ public class SampleProcessor {
             }
             JsonObject query = jsonObject.get("query").getAsJsonObject();
             JsonElement power = jsonObject.get("power");
-            query.add("power",power);
+            query.add("power", power);
             JsonArray groups = jsonObject.get("groups").getAsJsonArray();
-            query.add("groups",groups);
+            query.add("groups", groups);
 
-            logger.info("原始搜索条件="+gson.toJson(query));
-            String withSid = CaseProcessor.transformSidForImport(gson.toJson(query),user);
+            logger.info("原始搜索条件=" + gson.toJson(query));
+            String withSid = CaseProcessor.transformSidForImport(gson.toJson(query), user);
             JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
-            logger.info("sid 处理后搜索条件="+gson.toJson(queryNew));
+            logger.info("sid 处理后搜索条件=" + gson.toJson(queryNew));
             JsonArray source = query.getAsJsonArray("source");
             String url = ConfigurationService.getUrlBean().getSampleImportIURL();
             JsonObject param = new JsonObject();
-            param.add("query",queryNew);
-            if(queryNew.has("code") && queryNew.get("code").getAsInt() ==0){
+            param.add("query", queryNew);
+            if (queryNew.has("code") && queryNew.get("code").getAsInt() == 0) {
                 return gson.toJson(queryNew);
             }
-            String data = HttpRequestUtils.httpPostForSampleImport(url,gson.toJson(param), 180000);
+            String data = HttpRequestUtils.httpPostForSampleImport(url, gson.toJson(param), 180000);
             Long startTime = System.currentTimeMillis();
             logger.info("data = " + data);
-            if(data == null || "".equals(data)){
+            if (data == null || "".equals(data)) {
                 return ParamUtils.errorParam("FS 返回空");
             }
             JsonObject resultMap = jsonParser.parse(data).getAsJsonObject();
@@ -103,15 +103,15 @@ public class SampleProcessor {
                 ProLog proLog = new ProLog();
                 proLog.setAction(LogActionEnum.ImportSamples.getName());
                 proLog.setLogTime(new Date());
-                proLog.setLogText(user.getUname()+LogActionEnum.ImportSamples.getName()+"<" + sampleName + ">");
+                proLog.setLogText(user.getUname() + LogActionEnum.ImportSamples.getName() + "<" + sampleName + ">");
                 proLog.setSampleURI(uri);
                 proLog.setProjectID(projectID);
                 proLog.setUid(uid);
                 proLog.setSampleName(sampleName);
                 counter = AllDao.getInstance().getProjectDao().insertProLog(proLog);
                 resultBean.setCode(1);
-                Map<String,Object> info = new HashMap<>();
-                info.put("counter",total);
+                Map<String, Object> info = new HashMap<>();
+                info.put("counter", total);
                 resultBean.setInfo(info);
             } else {
                 resultBean.setCode(0);
@@ -126,51 +126,51 @@ public class SampleProcessor {
     }
 
     public String sampleDetail(JsonObject jsonObject) {
-        try{
-            String sampleURI =  jsonObject.get("sampleURI").getAsString();
+        try {
+            String sampleURI = jsonObject.get("sampleURI").getAsString();
             jsonObject.remove("sampleURI");
-            jsonObject.addProperty("data_id",sampleURI);
+            jsonObject.addProperty("data_id", sampleURI);
             String url = ConfigurationService.getUrlBean().getSampleDetailURL();
-            String dataStr = HttpRequestUtils.httpPost(url,gson.toJson(jsonObject));
+            String dataStr = HttpRequestUtils.httpPost(url, gson.toJson(jsonObject));
             JsonObject json = (JsonObject) jsonParser.parse(dataStr);
             boolean succeed = json.get("success").getAsBoolean();
             if (succeed) {
                 JsonArray schemaJson = json.getAsJsonArray("SCHEMA");
                 JsonObject schema = new JsonObject();
                 List<String> list = new LinkedList<>();
-                for(JsonElement schemaElement:schemaJson){
+                for (JsonElement schemaElement : schemaJson) {
                     String index = schemaElement.getAsString();
                     String uiName = ConfigurationService.getUIFieldName(index);
-                    schema.addProperty(index,uiName);
+                    schema.addProperty(index, uiName);
                     list.add(index);
                 }
                 JsonArray data = new JsonArray();
                 JsonArray DATAArray = json.getAsJsonArray("DATA");
-                for(JsonElement dataItemArray:DATAArray){
+                for (JsonElement dataItemArray : DATAArray) {
                     JsonArray oneDataArray = dataItemArray.getAsJsonArray();
                     JsonObject entity = new JsonObject();
-                    for(int i=0;i<list.size();i++){
+                    for (int i = 0; i < list.size(); i++) {
                         String index = list.get(i);
                         JsonPrimitive dataValue = oneDataArray.get(i).getAsJsonPrimitive();
-                        entity.add(index,dataValue);
+                        entity.add(index, dataValue);
                     }
                     data.add(entity);
                 }
                 JsonObject result = new JsonObject();
                 JsonObject info = new JsonObject();
                 JsonElement counter = json.get("TOTAL");
-                info.add("schema",schema);
-                info.add("counter",counter);
-                result.addProperty("code",1);
-                result.add("info",info);
-                result.add("data",data);
+                info.add("schema", schema);
+                info.add("counter", counter);
+                result.addProperty("code", 1);
+                result.add("info", info);
+                result.add("data", data);
                 return gson.toJson(result);
-            }else{
+            } else {
                 return ParamUtils.errorParam("FS出现异常");
             }
 
-        }catch (Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             return ParamUtils.errorParam("出现异常");
         }
 
@@ -181,7 +181,7 @@ public class SampleProcessor {
      *
      * @param paramObj
      */
-    public String editSet(JsonObject paramObj,User syUser) {
+    public String editSet(JsonObject paramObj, User syUser) {
         String uid = null;
         String projectID = null;
         String sampleName = null;
@@ -191,8 +191,7 @@ public class SampleProcessor {
             projectID = paramObj.get("projectID").getAsString();
             String sampleURI = paramObj.get("sampleURI").getAsString();
             int count = AllDao.getInstance().getProjectDao().isExistSample(sampleURI);
-            if(count<=0)
-            {
+            if (count <= 0) {
                 return SampleIsNotExists();
             }
             sampleName = paramObj.get("sampleName").getAsString();
@@ -229,15 +228,14 @@ public class SampleProcessor {
         String crf_id = "kidney_cancer";
         try {
             crf_id = paramObj.get("crf_id").getAsString();
-        }catch (Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             return ParamUtils.errorParam("参数错误");
         }
         return gson.toJson(ConfigurationService.getImportTree(crf_id));
     }
 
     /**
-     *
      * @param param
      * @return
      */
@@ -245,22 +243,22 @@ public class SampleProcessor {
         String sampleURI = null;
         String key = null;
         String crf_id = "kidney_cancer";
-        try{
+        try {
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             sampleURI = paramObj.get("sampleURI").getAsString();
             key = paramObj.get("keywords").getAsString();
-            if(paramObj.has("crf_id")){
+            if (paramObj.has("crf_id")) {
                 crf_id = paramObj.get("crf_id").getAsString();
             }
-        }catch (Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             return ParamUtils.errorParam("参数错误");
         }
         ProSample proSample = AllDao.getInstance().getProjectDao().getSampleDataBySampleURI(sampleURI);
         String itemsStr = proSample.getItems();
         JsonArray itemArray = (JsonArray) jsonParser.parse(itemsStr);
         Set<String> set = new HashSet<>();
-        for (JsonElement jsonElement:itemArray){
+        for (JsonElement jsonElement : itemArray) {
             set.add(jsonElement.getAsString());
         }
         ResultBean resultBean = new ResultBean();
@@ -277,7 +275,7 @@ public class SampleProcessor {
                 String IndexFieldName = item.get("IndexFieldName").getAsString();
                 String UIFieldName = item.get("UIFieldName").getAsString();
                 if (set.contains(IndexFieldName)) {
-                    if(key == null ||"".equals(key) || UIFieldName.contains(key)){
+                    if (key == null || "".equals(key) || UIFieldName.contains(key)) {
                         newGroup.add(item);
                     }
                 }
@@ -293,40 +291,40 @@ public class SampleProcessor {
     }
 
     public String sampleSetSearch(String param) {
-        String sampleURI=jsonParser.parse(param).getAsJsonObject().get("sampleURI").getAsString();
+        String sampleURI = jsonParser.parse(param).getAsJsonObject().get("sampleURI").getAsString();
         int count = AllDao.getInstance().getProjectDao().isExistSample(sampleURI);
         if (count <= 0) {
             return SampleIsNotExists();
         }
         String url = ConfigurationService.getUrlBean().getSampleDetailSearchURL();
-        logger.info("sampleSetSearch url="+url);
+        logger.info("sampleSetSearch url=" + url);
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
         sampleURI = paramObj.get("sampleURI").getAsString();
         String limitStr = paramObj.get("limit").getAsString();
         int[] ls = ParamUtils.parseLimit(limitStr);
-        paramObj.addProperty("page",ls[0]);
-        paramObj.addProperty("size",ls[1]);
+        paramObj.addProperty("page", ls[0]);
+        paramObj.addProperty("size", ls[1]);
         paramObj.remove("sampleURI");
         paramObj.remove("limit");
-        paramObj.addProperty("data_id",sampleURI);
+        paramObj.addProperty("data_id", sampleURI);
         String paramNew = gson.toJson(paramObj);
-        logger.info("转化后的请求参数="+paramNew);
-        String reStr = HttpRequestUtils.httpPost(url ,paramNew);
-        logger.info("sampleSetSearch result="+reStr);
-        if(reStr == null || "".equals(reStr)){
+        logger.info("转化后的请求参数=" + paramNew);
+        String reStr = HttpRequestUtils.httpPost(url, paramNew);
+        logger.info("sampleSetSearch result=" + reStr);
+        if (reStr == null || "".equals(reStr)) {
             return ParamUtils.errorParam("FS 返回空");
         }
-        try{
+        try {
             JsonObject json = (JsonObject) jsonParser.parse(reStr);
             boolean succeed = json.get("success").getAsBoolean();
             if (succeed) {
                 JsonArray Use = json.getAsJsonArray("USE");
-                Map<String,String> useMap = new HashMap<>();
-                for(JsonElement jsonElement:Use){
+                Map<String, String> useMap = new HashMap<>();
+                for (JsonElement jsonElement : Use) {
                     JsonObject obj = jsonElement.getAsJsonObject();
                     String __SAMPLE_ID = obj.get("__SAMPLE_ID").getAsString();
                     String use = obj.get("use").getAsString();
-                    useMap.put(__SAMPLE_ID,use);
+                    useMap.put(__SAMPLE_ID, use);
                 }
 
                 JsonArray PROPERTY = json.getAsJsonArray("PROPERTY");
@@ -334,31 +332,31 @@ public class SampleProcessor {
                 JsonArray schemaJson = json.getAsJsonArray("SCHEMA");
                 JsonObject schema = new JsonObject();
                 List<String> list = new LinkedList<>();
-                for(JsonElement schemaElement:schemaJson){
+                for (JsonElement schemaElement : schemaJson) {
                     String index = schemaElement.getAsString();
-                    if("__SAMPLE_ID".equals(index)){
-                        schema.addProperty(index,"样本id");
-                    }else{
+                    if ("__SAMPLE_ID".equals(index)) {
+                        schema.addProperty(index, "样本id");
+                    } else {
                         String uiName = ConfigurationService.getUIFieldName(index);
-                        schema.addProperty(index,uiName);
+                        schema.addProperty(index, uiName);
                     }
                     list.add(index);
                 }
-                schema.addProperty("__use","是否使用");
+                schema.addProperty("__use", "是否使用");
                 JsonArray data = new JsonArray();
                 JsonArray DATAArray = json.getAsJsonArray("DATA");
 
-                for(JsonElement dataItemArray:DATAArray){
+                for (JsonElement dataItemArray : DATAArray) {
                     JsonArray oneDataArray = dataItemArray.getAsJsonArray();
                     JsonObject entity = new JsonObject();
-                    for(int i=0;i<list.size();i++){
+                    for (int i = 0; i < list.size(); i++) {
                         String index = list.get(i);
                         JsonPrimitive dataValue = oneDataArray.get(i).getAsJsonPrimitive();
-                        entity.add(index,dataValue);
+                        entity.add(index, dataValue);
                     }
                     String __SAMPLE_ID = entity.get("__SAMPLE_ID").getAsString();
                     String use = useMap.get(__SAMPLE_ID);
-                    entity.addProperty("__use",use);
+                    entity.addProperty("__use", use);
                     data.add(entity);
 
                 }
@@ -367,15 +365,15 @@ public class SampleProcessor {
                 JsonElement TOTAL = json.get("TOTAL");
                 JsonElement SEARCH_TOTAL = json.get("SEARCH_TOTAL");
                 JsonElement USE_TOTAL = json.get("USE_TOTAL");
-                info.add("schema",schema);
-                info.add("TOTAL",TOTAL);
-                info.add("SEARCH_TOTAL",SEARCH_TOTAL);
-                info.add("USE_TOTAL",USE_TOTAL);
-                info.add("property",PROPERTY);
-                info.add("RANGE",RANGE);
-                result.addProperty("code",1);
-                result.add("info",info);
-                result.add("data",data);
+                info.add("schema", schema);
+                info.add("TOTAL", TOTAL);
+                info.add("SEARCH_TOTAL", SEARCH_TOTAL);
+                info.add("USE_TOTAL", USE_TOTAL);
+                info.add("property", PROPERTY);
+                info.add("RANGE", RANGE);
+                result.addProperty("code", 1);
+                result.add("info", info);
+                result.add("data", data);
                 return gson.toJson(result);
             } else {
                 return ParamUtils.errorParam("FS出现异常");
@@ -387,10 +385,10 @@ public class SampleProcessor {
     }
 
     private String SampleIsNotExists() {
-        JsonObject json=new JsonObject();
-        json.addProperty("code",0);
-        json.addProperty("success",false);
-        json.addProperty("info","not exist");
+        JsonObject json = new JsonObject();
+        json.addProperty("code", 0);
+        json.addProperty("success", false);
+        json.addProperty("info", "not exist");
         return gson.toJson(json);
     }
 
@@ -404,22 +402,23 @@ public class SampleProcessor {
 
     public String uploadAdaptTag(String param) {
         String url = ConfigurationService.getUrlBean().getSampleUploadAdaptTagURL();
-        logger.info("uploadAdaptTag url="+url);
+        logger.info("uploadAdaptTag url=" + url);
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
         String sampleURI = paramObj.get("sampleURI").getAsString();
         int count = AllDao.getInstance().getProjectDao().isExistSample(sampleURI);
-        if (count<=0) {
+        if (count <= 0) {
             return SampleIsNotExists();
         }
-        paramObj.addProperty("data_id",sampleURI);
+        paramObj.addProperty("data_id", sampleURI);
         paramObj.remove("sampleURI");
         String paramNew = gson.toJson(paramObj);
-        logger.info("转化后的请求参数="+paramNew);
-        String reStr = HttpRequestUtils.httpPost(url ,paramNew);
-        logger.info("uploadAdaptTag result="+reStr);
+        logger.info("转化后的请求参数=" + paramNew);
+        String reStr = HttpRequestUtils.httpPost(url, paramNew);
+        logger.info("uploadAdaptTag result=" + reStr);
         if (reStr == null || "".equals(reStr)) {
             return ParamUtils.errorParam("FS 返回空");
-        } try {
+        }
+        try {
             JsonObject json = (JsonObject) jsonParser.parse(reStr);
             boolean succeed = json.get("success").getAsBoolean();
             ResultBean resultBean = new ResultBean();
@@ -440,31 +439,31 @@ public class SampleProcessor {
             JsonObject query = jsonObject.get("query").getAsJsonObject();
             JsonArray groups = jsonObject.get("groups").getAsJsonArray();
             JsonObject power = jsonObject.getAsJsonObject("power");
-            query.add("groups",groups);
-            query.add("power",power);
-            logger.info("原始搜索条件="+gson.toJson(query));
+            query.add("groups", groups);
+            query.add("power", power);
+            logger.info("原始搜索条件=" + gson.toJson(query));
 
-            String withSid = CaseProcessor.transformSidForImport(gson.toJson(query),user);
+            String withSid = CaseProcessor.transformSidForImport(gson.toJson(query), user);
             JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
-            if(queryNew.has("code") && queryNew.get("code").getAsInt() ==0){
+            if (queryNew.has("code") && queryNew.get("code").getAsInt() == 0) {
                 return gson.toJson(queryNew);
             }
-            logger.info("sid 处理后导出条件="+gson.toJson(queryNew));
+            logger.info("sid 处理后导出条件=" + gson.toJson(queryNew));
             String url = ConfigurationService.getUrlBean().getSampleImportChecKIURL();
-            String data = HttpRequestUtils.httpPostForSampleImport(url,gson.toJson(queryNew), 30000);
-            if(data == null || "".equals(data)){
+            String data = HttpRequestUtils.httpPostForSampleImport(url, gson.toJson(queryNew), 30000);
+            if (data == null || "".equals(data)) {
                 return ParamUtils.errorParam("FS 返回为空");
-            }else {
+            } else {
                 JsonObject resultBean = new JsonObject();
-                logger.info("FS 返回="+data);
+                logger.info("FS 返回=" + data);
                 JsonObject dataObj = (JsonObject) jsonParser.parse(data);
                 boolean success = dataObj.get("success").getAsBoolean();
-                if(success){
-                    resultBean.addProperty("code",1);
-                }else {
-                    resultBean.addProperty("code",0);
+                if (success) {
+                    resultBean.addProperty("code", 1);
+                } else {
+                    resultBean.addProperty("code", 0);
                 }
-                resultBean.add("data",dataObj);
+                resultBean.add("data", dataObj);
                 return gson.toJson(resultBean);
             }
         } catch (Exception e) {
