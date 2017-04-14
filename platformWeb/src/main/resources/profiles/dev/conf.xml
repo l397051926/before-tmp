@@ -4,14 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
-    <bean id="com.gennlife.platform.util.MongoConf" class="com.gennlife.platform.util.MongoConf">
-        <property name="host" value="10.0.0.166"/>
-        <property name="port" value="27017"/>
-        <property name="poolSize" value="10"/>
-        <property name="blockSize" value="10"/>
-    </bean>
-
-
     <bean id="com.gennlife.platform.configuration.URLBean" class="com.gennlife.platform.configuration.URLBean">
         <!-- 搜索服务 -->
         <property name="caseSearchURL" value="http://10.0.0.66:8989/search-server/search"/>

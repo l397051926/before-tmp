@@ -1,6 +1,8 @@
 package com.gennlife.platform.service;
 
-import com.gennlife.platform.util.*;
+import com.gennlife.platform.util.FilesUtils;
+import com.gennlife.platform.util.GsonUtil;
+import com.gennlife.platform.util.SpringContextUtil;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -11,7 +13,6 @@ import org.springframework.context.ApplicationContext;
 import org.w3c.dom.Element;
 
 import java.io.IOException;
-import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,10 +21,7 @@ import java.util.Map;
  */
 public class ArkService {
     private static final Logger logger = LoggerFactory.getLogger(ArkService.class);
-    private static MongoConf mongoConf = null;
     private static Gson gson = GsonUtil.getGson();
-
-
     private static JsonParser jsonParser = new JsonParser();
 
     public void init(String s, Element element) {
@@ -32,15 +30,6 @@ public class ArkService {
         parseChain();
         //项目疾病下拉菜单接口
         parseProjectDisease();
-        logger.info("开始初始化mongoDB相关配置,,,,");
-        mongoConf = (MongoConf) context.getBean("com.gennlife.platform.util.MongoConf");
-        try {
-            MongoManager.init(mongoConf);
-            MongoManager.initCollection();
-        } catch (UnknownHostException e) {
-            logger.error("",e);
-            throw new RuntimeException();
-        }
 
         try{
             ConfigurationService.init();
@@ -52,7 +41,7 @@ public class ArkService {
     }
 
     public void destroy() {
-        MongoManager.destory();
+
     }
 
 
