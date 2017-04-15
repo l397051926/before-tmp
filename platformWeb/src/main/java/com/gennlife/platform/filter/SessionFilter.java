@@ -39,58 +39,52 @@ public class SessionFilter implements Filter {
     }
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest request = (HttpServletRequest)servletRequest;
-        HttpServletResponse response = (HttpServletResponse)servletResponse;
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
         String uri = request.getRequestURI();
-        if(okSet.contains(uri)) {
+        if (okSet.contains(uri)) {
             filterChain.doFilter(request, response);
         } else {
             HttpSession session = request.getSession(false);
-            if(session==null)
-            {
-                String cookie=((HttpServletRequest) servletRequest).getHeader("Cookie");
-                LogUtils.BussnissLogError("session 空: "+uri+" cookie "+cookie);
+            if (session == null) {
+                String cookie = ((HttpServletRequest) servletRequest).getHeader("Cookie");
+                LogUtils.BussnissLogError("session 空: " + uri + " cookie " + cookie);
                 view.viewString(ParamUtils.errorSessionLosParam(), response);
                 return;
             }
             String sessionID = session.getId();
             String uid = RedisUtil.getValue(sessionID);
             SessionMapper dao = AllDao.getInstance().getSessionDao();
-            if(uid == null) {
-                uid=dao.getUid(sessionID);
-                if(!StringUtils.isEmpty(uid))
-                {
+            if (uid == null) {
+                uid = dao.getUid(sessionID);
+                if (!StringUtils.isEmpty(uid)) {
                     LogUtils.BussnissLogError("redis can't get value");
-                }
-                else
-                {
-                    String cookie=((HttpServletRequest) servletRequest).getHeader("Cookie");
-                    LogUtils.BussnissLogError("RedisUtil.getValue取不到数据:"+sessionID+" cookie "+cookie+" uri="+uri);
+                } else {
+                    String cookie = ((HttpServletRequest) servletRequest).getHeader("Cookie");
+                    LogUtils.BussnissLogError("RedisUtil.getValue取不到数据:" + sessionID + " cookie " + cookie + " uri=" + uri);
                     view.viewString(ParamUtils.errorSessionLosParam(), response);
                     return;
                 }
 
-            } else {
-                User user = UserProcessor.getUserByUidFromRedis(uid);
-                    if(user == null){
-                        LogUtils.BussnissLogError("RedisUtil.getUser取不到数据:"+uid);
-                        user = UserProcessor.getUserByUids(uid);
-                        if(user==null)
-                        {
-                            LogUtils.BussnissLogError("错误user id");
-                            view.viewString(ParamUtils.errorSessionLosParam(), response);
-                            return;
-                        }
-
-                    }
-
-                servletRequest.setAttribute("currentUser", user);
-                if(adminSet.contains(uri) && !AuthorityUtil.isAdmin(user)) {
-                    view.viewString(ParamUtils.errorAuthorityParam(), response);
+            }
+            User user = UserProcessor.getUserByUidFromRedis(uid);
+            if (user == null) {
+                LogUtils.BussnissLogError("RedisUtil.getUser取不到数据:" + uid);
+                user = UserProcessor.getUserByUids(uid);
+                if (user == null) {
+                    LogUtils.BussnissLogError("错误user id");
+                    view.viewString(ParamUtils.errorSessionLosParam(), response);
                     return;
                 }
-                filterChain.doFilter(request, response);
+
             }
+
+            servletRequest.setAttribute("currentUser", user);
+            if (adminSet.contains(uri) && !AuthorityUtil.isAdmin(user)) {
+                view.viewString(ParamUtils.errorAuthorityParam(), response);
+                return;
+            }
+            filterChain.doFilter(request, response);
         }
 
     }
