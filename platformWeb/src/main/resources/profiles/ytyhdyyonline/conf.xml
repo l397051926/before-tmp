@@ -155,7 +155,12 @@
         <property name="genericObjectPoolConfig" ref="genericObjectPoolConfig" />
         <property name="jedisClusterNodes">
             <set>
-                <value>redis.ytyhdyy.yt.gennlife.cn:6379</value>
+                <value>redis.ytyhdyy.yt.gennlife.cn:7001</value>
+                <value>redis.ytyhdyy.yt.gennlife.cn:7002</value>
+                <value>redis.ytyhdyy.yt.gennlife.cn:7003</value>
+                <value>redis.ytyhdyy.yt.gennlife.cn:7004</value>
+                <value>redis.ytyhdyy.yt.gennlife.cn:7005</value>
+                <value>redis.ytyhdyy.yt.gennlife.cn:7006</value>
             </set>
         </property>
     </bean>
