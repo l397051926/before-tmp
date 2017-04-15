@@ -173,7 +173,9 @@ public class RedisUtil {
                     jedis.connect();
                     Set<String> keys=jedis.keys("*");
                     for(String key:keys)
-                        jedis.del(key);
+                    {
+                        jedisCluster.del(key);
+                    }
                 }
                 catch (Exception e)
                 {
