@@ -4,14 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
-    <bean id="com.gennlife.platform.util.MongoConf" class="com.gennlife.platform.util.MongoConf">
-        <property name="host" value="bi1.ytyhdyy.yt.gennlife.cn"/>
-        <property name="port" value="27017"/>
-        <property name="poolSize" value="10"/>
-        <property name="blockSize" value="10"/>
-    </bean>
-
-
     <bean id="com.gennlife.platform.configuration.URLBean" class="com.gennlife.platform.configuration.URLBean">
         <!-- 搜索服务 -->
         <property name="caseSearchURL" value="http://ss.ytyhdyy.yt.gennlife.cn:8989/search-server/search"/>
@@ -163,7 +155,12 @@
         <property name="genericObjectPoolConfig" ref="genericObjectPoolConfig" />
         <property name="jedisClusterNodes">
             <set>
-                <value>redis.ytyhdyy.yt.gennlife.cn:6379</value>
+                <value>redis.ytyhdyy.yt.gennlife.cn:7001</value>
+                <value>redis.ytyhdyy.yt.gennlife.cn:7002</value>
+                <value>redis.ytyhdyy.yt.gennlife.cn:7003</value>
+                <value>redis.ytyhdyy.yt.gennlife.cn:7004</value>
+                <value>redis.ytyhdyy.yt.gennlife.cn:7005</value>
+                <value>redis.ytyhdyy.yt.gennlife.cn:7006</value>
             </set>
         </property>
     </bean>
