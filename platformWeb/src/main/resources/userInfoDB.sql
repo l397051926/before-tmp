@@ -84,8 +84,8 @@ CREATE TABLE `gennlife_lab_crf` (
 DROP TABLE IF EXISTS `gennlife_lab_map`;
 CREATE TABLE `gennlife_lab_map` (
   `lab_id` varchar(100) NOT NULL,
-  `depart_name` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`lab_id`)
+  `depart_name` varchar(30) NOT NULL,
+  PRIMARY KEY (`lab_id`,`depart_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
