@@ -464,7 +464,9 @@ public class LaboratoryProcessor {
                             resultBean.addProperty("info", "插入失败");
                             return resultBean;
                         } else {
-                            counter = AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role.getRoleid(), adduser.getUid());
+                            if(role!=null) {
+                                counter = AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role.getRoleid(), adduser.getUid());
+                            }
                             resultBean.addProperty("code", 1);
                             resultBean.addProperty("info", "插入成功");
                             return resultBean;
