@@ -81,30 +81,30 @@
         <property name="knowledgeDetailVariationSearchDrugURL" value="http://knowledge.ytyhdyy.yt.gennlife.cn:8081/knowledge/VariationInfo"/>
         <property name="knowledgePharmGKBSearchDrugURL" value="http://knowledge.ytyhdyy.yt.gennlife.cn:8081/knowledge/PharmGKBSearchDrug"/>
         <!--CRF 服务接口 -->
-        <property name="CRFProjectCRFListURL" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/auto/ProjectCrfList"/>
-        <property name="CRFAutoMapURL" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/auto/AutoMap"/>
-        <property name="CRFGetAttrID" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/crf/GetAttrID"/>
-        <property name="CRFGetGroupID" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/crf/GetGroupID"/>
-        <property name="CRFModelByProjectID" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/crf/ModelByProjectID"/>
-        <property name="CRFModelByCRFID" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/crf/ModelByCRFID"/>
-        <property name="CRFModelForTraceByCRFID" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/crf/ModelForTraceByCRFID"/>
-        <property name="CRFEditModel" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/crf/EditModel"/>
-        <property name="CRFSaveModel" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/crf/SaveModel"/>
-        <property name="CRFGetData" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/crf/GetData"/>
-        <property name="CRFSaveData" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/crf/SaveData"/>
-        <property name="CRFSampleCaseList" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/crf/SampleCaseList"/>
-        <property name="CRFDeleteSample" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/crf/DeleteSample"/>
-        <property name="CRFUpLoadData" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/crf/UpLoadData"/>
-        <property name="CRFSearchSampleList" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/crf/SearchSampleList"/>
-		<property name="CRFGetPatientInfo" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/auto/PatientInfo"/>
-        <property name="CRFPatientVisitDetail" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/auto/PatientVisitDetail"/>
-        <property name="CRFPatientAllVisitsDetail" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/auto/PatientAllVisitsDetail"/>
-        <property name="CRFUpLoadDataForCheck" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/crf/UpLoadDataForCheck"></property>
-        <property name="CRFImportFile" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/auto/CsvAddQueue"></property>
-        <property name="CRFImportMap" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/auto/CsvImport"></property>
-        <property name="CRFImportResult" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/auto/CsvImportResult"></property>
-        <property name="CRFIsExistPatient" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/crf/IsExistPatient"></property>
-        <property name="CrfCsvImportDetail" value="http://knowledge.ytyhdyy.yt.gennlife.cn:6060/crf/CsvImportDetail"/>
+        <property name="CRFProjectCRFListURL" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/auto/ProjectCrfList"/>
+        <property name="CRFAutoMapURL" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/auto/AutoMap"/>
+        <property name="CRFGetAttrID" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/crf/GetAttrID"/>
+        <property name="CRFGetGroupID" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/crf/GetGroupID"/>
+        <property name="CRFModelByProjectID" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/crf/ModelByProjectID"/>
+        <property name="CRFModelByCRFID" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/crf/ModelByCRFID"/>
+        <property name="CRFModelForTraceByCRFID" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/crf/ModelForTraceByCRFID"/>
+        <property name="CRFEditModel" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/crf/EditModel"/>
+        <property name="CRFSaveModel" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/crf/SaveModel"/>
+        <property name="CRFGetData" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/crf/GetData"/>
+        <property name="CRFSaveData" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/crf/SaveData"/>
+        <property name="CRFSampleCaseList" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/crf/SampleCaseList"/>
+        <property name="CRFDeleteSample" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/crf/DeleteSample"/>
+        <property name="CRFUpLoadData" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/crf/UpLoadData"/>
+        <property name="CRFSearchSampleList" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/crf/SearchSampleList"/>
+		<property name="CRFGetPatientInfo" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/auto/PatientInfo"/>
+        <property name="CRFPatientVisitDetail" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/auto/PatientVisitDetail"/>
+        <property name="CRFPatientAllVisitsDetail" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/auto/PatientAllVisitsDetail"/>
+        <property name="CRFUpLoadDataForCheck" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/crf/UpLoadDataForCheck"></property>
+        <property name="CRFImportFile" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/auto/CsvAddQueue"></property>
+        <property name="CRFImportMap" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/auto/CsvImport"></property>
+        <property name="CRFImportResult" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/auto/CsvImportResult"></property>
+        <property name="CRFIsExistPatient" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/crf/IsExistPatient"></property>
+        <property name="CrfCsvImportDetail" value="http://crf-service.ytyhdyy.yt.gennlife.cn:6060/crf/CsvImportDetail"/>
 
         <!--R 服务接口-->
         <property name="RRun" value="http://r-service.ytyhdyy.yt.gennlife.cn:1235/r_run"/>
