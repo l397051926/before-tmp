@@ -7,6 +7,7 @@ public class SystemDefault {
 
     private String searchItemSetDefault;
     private String needGroup;
+    private String passwdOperator;
 
     public String getNeedGroup() {
         return needGroup;
@@ -22,5 +23,13 @@ public class SystemDefault {
 
     public String getSearchItemSetDefault() {
         return searchItemSetDefault;
+    }
+
+    public void setPasswdOperator(String passwdOperator) {
+        this.passwdOperator = passwdOperator;
+    }
+
+    public String getPasswdOperator() {
+        return passwdOperator;
     }
 }

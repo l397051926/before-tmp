@@ -30,7 +30,7 @@ public class UserProcessor {
             LogUtils.BussnissLog("用户：" + email + " >>> 进行登陆");
             Map<String, Object> confMap = new HashMap<String, Object>();
             confMap.put("email", email);
-            confMap.put("pwd", GStringUtils.getMD5(pwd));
+            confMap.put("pwd", GStringUtils.str2Password(pwd));
             User user = null;
             try {
                 user = AllDao.getInstance().getSyUserDao().getUser(confMap);

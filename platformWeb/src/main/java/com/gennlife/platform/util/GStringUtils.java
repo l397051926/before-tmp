@@ -1,5 +1,7 @@
 package com.gennlife.platform.util;
 
+import com.gennlife.platform.bean.conf.SystemDefault;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
@@ -10,6 +12,7 @@ public class GStringUtils {
     /**
      * 字符串转16进制
      * */
+    private static SystemDefault systemDefault= (SystemDefault) SpringContextUtil.getBean("systemDefault");
     public static String toHexString(String s)
     {
         String str="";
@@ -23,7 +26,9 @@ public class GStringUtils {
     }
     public static String str2Password(String str)
     {
+        if(systemDefault!=null&&"v2".equalsIgnoreCase(systemDefault.getPasswdOperator()))
         return getMD5(toHexString(str));
+        else return str;
     }
     public static String getMD5(String str) {
         try {
@@ -36,7 +41,12 @@ public class GStringUtils {
     }
     public static String getDefaultPasswd()
     {
-        return GStringUtils.str2Password("ls123456");
+        String password="ls123456";
+        if(systemDefault!=null&&"v2".equalsIgnoreCase(systemDefault.getPasswdOperator()))
+            return GStringUtils.str2Password(password);
+        else
+            return password;
+
     }
     public static void main(String[] args)
     {
