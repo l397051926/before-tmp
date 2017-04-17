@@ -474,6 +474,7 @@ public class LaboratoryProcessor {
                         resultBean.addProperty("info", "插入失败,填入的字符数超过20");
                         return resultBean;
                     } catch (Exception e) {
+                        logger.error("error ",e);
                         resultBean.addProperty("code", 0);
                         resultBean.addProperty("info", "插入失败");
                         return resultBean;
