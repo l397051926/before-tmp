@@ -179,7 +179,7 @@ public class FileUploadUtil {
                     addUser.setLab_name(lab_name);
                 }
                 addUser.setUnumber(number);
-                addUser.setPwd("ls123456");
+                addUser.setPwd(GStringUtils.getDefaultPasswd());
                 UUID uuid = UUID.randomUUID();
                 addUser.setUid(uuid.toString());
                 addUser.setUptime(LogUtils.getStringTime());

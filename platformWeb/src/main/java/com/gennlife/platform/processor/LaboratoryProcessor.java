@@ -397,7 +397,7 @@ public class LaboratoryProcessor {
         adduser.setOrgID(user.getOrgID());
         adduser.setCtime(LogUtils.getStringTime());
         adduser.setUptime(LogUtils.getStringTime());
-        adduser.setPwd("ls123456");
+        adduser.setPwd(GStringUtils.getDefaultPasswd());
         adduser.setOrg_name(user.getOrg_name());
         JsonObject re = insertUser(adduser);
         // MemCachedUtil.setUserWithTime(adduser.getUid(),adduser, UserController.sessionTimeOut);
