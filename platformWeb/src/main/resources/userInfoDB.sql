@@ -489,7 +489,7 @@ INSERT INTO `gennlife_manage` VALUES ('admin@ytyhdyy.com', 'admin', 'admin', 'ya
 INSERT INTO `gennlife_user` VALUES (1, 'admin@ytyhdyy.com', 'ls123456',"d8b8f198d882909be0a58778875953e8", '管理员', 'admin@ytyhdyy.com', '', '', 'yantai_1', '烟台毓璜顶医院', 'yantai_1', '烟台毓璜顶医院', '', 0, 0, NULL, '2016-09-30 15:16:48', '', '58a5cd0352cdbb26e00114554723e9b0');
 INSERT INTO `gennlife_org` VALUES (3, 'yantai_1', '烟台毓璜顶医院', 'XXX', '芝罘区毓东路20号');*/
 /*
-INSERT INTO `gennlife_role` VALUES ('1', '科室成员', 'tianjin_city_1', '科室成员全部资源', '1', null, null, null);
-INSERT INTO `gennlife_role_resource` VALUES ('1', 'tianjin_city_1-benkeshi', 'tianjin_city_1', '有', '有', '有', '有', '有', '有', null, '有');
+INSERT INTO `gennlife_role` VALUES ('1', '科室成员', 'yantai_1', '科室成员全部资源', '1', null, null, null);
+INSERT INTO `gennlife_role_resource` VALUES ('1', 'yantai_1-benkeshi', 'tianjin_city_1', '有', '有', '有', '有', '有', '有', null, '有');
 */
 /*1	科室成员	tianjin_city_1	科室成员全部资源	1			*/
