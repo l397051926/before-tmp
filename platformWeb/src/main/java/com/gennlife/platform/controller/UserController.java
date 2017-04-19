@@ -78,7 +78,6 @@ public class UserController {
                         return;
                     }
                 }
-                paramRe.setAttribute("currentUser", user);
                 resultBean.setCode(1);
                 resultBean.setData(user);
             } else {
