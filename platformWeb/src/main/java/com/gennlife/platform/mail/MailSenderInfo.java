@@ -1,5 +1,7 @@
 package com.gennlife.platform.mail;
 
+import com.gennlife.platform.util.SpringContextUtil;
+
 import java.util.Properties;
 
 /**
@@ -7,7 +9,7 @@ import java.util.Properties;
  */
 public class MailSenderInfo {
     // 发送邮件的服务器的IP(或主机地址)
-    private String mailServerHost;
+    private String mailServerHost="smtp.mxhichina.com";
     // 发送邮件的服务器的端口
     private String mailServerPort = "25";
     // 发件人邮箱地址
@@ -26,10 +28,14 @@ public class MailSenderInfo {
     private String content;
     // 邮件附件的文件名
     private String[] attachFileNames;
+    public static MailSenderInfo buildMailSenderInfo()
+    {
+        return (MailSenderInfo) SpringContextUtil.getBean("mailSenderInfo");
+    }
     public Properties getProperties() {
         Properties p = new Properties();
-        p.put("mail.smtp.host", "smtp.mxhichina.com");
-        p.put("mail.smtp.port", "25");
+        p.put("mail.smtp.host", mailServerHost);
+        p.put("mail.smtp.port", mailServerPort);
         p.put("mail.smtp.auth", validate ? "true" : "false");
         return p;
     }
@@ -93,4 +99,6 @@ public class MailSenderInfo {
     public void setContent(String textContent) {
         this.content = textContent;
     }
+
+
 }
