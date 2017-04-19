@@ -164,7 +164,8 @@ public class RedisUtil {
         deleteUser(uid);
         try {
             AllDao.getInstance().getSessionDao().deleteByUid(uid);
-        }
+            AllDao.getInstance().getSessionDao().deleteBySessionID(sessionID);
+    }
         catch (Exception e)
         {
             logger.error("delete sesion_uid  ",e);
