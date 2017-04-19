@@ -56,6 +56,7 @@ public class SessionFilter implements Filter {
             String uid = RedisUtil.getValue(sessionID);
             SessionMapper dao = AllDao.getInstance().getSessionDao();
             if (uid == null) {
+                logger.info("RedisUtil.getValue()-> uid is null");
                 uid = dao.getUid(sessionID);
                 if (!StringUtils.isEmpty(uid)) {
                     LogUtils.BussnissLogError("redis can't get value");
