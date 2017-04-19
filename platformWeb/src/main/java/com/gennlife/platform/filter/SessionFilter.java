@@ -79,7 +79,7 @@ public class SessionFilter implements Filter {
 
             }
 
-            servletRequest.setAttribute("currentUser", user);
+//            servletRequest.setAttribute("currentUser", user);
             if (adminSet.contains(uri) && !AuthorityUtil.isAdmin(user)) {
                 view.viewString(ParamUtils.errorAuthorityParam(), response);
                 return;
