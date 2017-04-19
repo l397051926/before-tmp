@@ -397,7 +397,7 @@ public class LaboratoryProcessor {
         adduser.setOrgID(user.getOrgID());
         adduser.setCtime(LogUtils.getStringTime());
         adduser.setUptime(LogUtils.getStringTime());
-        adduser.setPwd("ls123456");
+        adduser.setPwd(GStringUtils.getDefaultPasswd());
         adduser.setOrg_name(user.getOrg_name());
         JsonObject re = insertUser(adduser);
         // MemCachedUtil.setUserWithTime(adduser.getUid(),adduser, UserController.sessionTimeOut);
@@ -464,7 +464,9 @@ public class LaboratoryProcessor {
                             resultBean.addProperty("info", "插入失败");
                             return resultBean;
                         } else {
-                            counter = AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role.getRoleid(), adduser.getUid());
+                            if(role!=null) {
+                                counter = AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role.getRoleid(), adduser.getUid());
+                            }
                             resultBean.addProperty("code", 1);
                             resultBean.addProperty("info", "插入成功");
                             return resultBean;
@@ -474,6 +476,7 @@ public class LaboratoryProcessor {
                         resultBean.addProperty("info", "插入失败,填入的字符数超过20");
                         return resultBean;
                     } catch (Exception e) {
+                        logger.error("error ",e);
                         resultBean.addProperty("code", 0);
                         resultBean.addProperty("info", "插入失败");
                         return resultBean;

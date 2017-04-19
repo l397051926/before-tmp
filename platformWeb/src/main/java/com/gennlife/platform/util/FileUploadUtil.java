@@ -69,7 +69,7 @@ public class FileUploadUtil {
         fw.flush();
         fw.close();
         Map<String,Integer> map = new HashMap<>();
-        map.put("update",update);
+        map.put("profiles/ytyhdyyonline/update",update);
         map.put("insert",insert);
         map.put("fail",fail);
         ResultBean resultBean = new ResultBean();
@@ -179,7 +179,7 @@ public class FileUploadUtil {
                     addUser.setLab_name(lab_name);
                 }
                 addUser.setUnumber(number);
-                addUser.setPwd("ls123456");
+                addUser.setPwd(GStringUtils.getDefaultPasswd());
                 UUID uuid = UUID.randomUUID();
                 addUser.setUid(uuid.toString());
                 addUser.setUptime(LogUtils.getStringTime());

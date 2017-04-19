@@ -30,7 +30,7 @@ public class UserProcessor {
             LogUtils.BussnissLog("用户：" + email + " >>> 进行登陆");
             Map<String, Object> confMap = new HashMap<String, Object>();
             confMap.put("email", email);
-            confMap.put("pwd", pwd);
+            confMap.put("pwd", GStringUtils.str2Password(pwd));
             User user = null;
             try {
                 user = AllDao.getInstance().getSyUserDao().getUser(confMap);
@@ -518,7 +518,7 @@ public class UserProcessor {
         }
         Map<String, Object> map = new HashMap<>();
         map.put("email", email);
-        map.put("pwd", pwd);
+        map.put("pwd", GStringUtils.str2Password(pwd));
         map.put("md5", md5);
         int counter = AllDao.getInstance().getSyUserDao().updatePWD(map);
         if (counter == 0) {
@@ -718,14 +718,7 @@ public class UserProcessor {
 
     //更新当前用户
     public static void currentUpdate(String uid, String sessionID) {
-        if (StringUtils.isEmpty(sessionID)) return;
-        String lastuid = RedisUtil.getValue(sessionID);
-        if(StringUtils.isEmpty(lastuid))
-            lastuid=AllDao.getInstance().getSessionDao().getUid(sessionID);
-        if (StringUtils.isEmpty(lastuid)) {
-            User user = UserProcessor.getUserByUids(uid);
-            RedisUtil.setUserOnLine(user, sessionID);
-        }
-
+        User user = UserProcessor.getUserByUids(uid);
+        if(user!=null)RedisUtil.setUserOnLine(user, sessionID);
     }
 }

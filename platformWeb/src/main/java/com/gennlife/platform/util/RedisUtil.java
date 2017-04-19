@@ -35,44 +35,76 @@ public class RedisUtil {
         jedisCluster = (JedisCluster) SpringContextUtil.getBean("jedisClusterFactory");
     }
     public static boolean setValue(String key,String value){
-        String result=jedisCluster.set(key,value);
-        if(!result.equalsIgnoreCase("ok"))
+        try {
+            String result = jedisCluster.set(key, value);
+            if (!result.equalsIgnoreCase("ok")) {
+                logger.error("redis 写入失败 " + key + " return result " + result);
+                return false;
+            }
+            return true;
+        }
+        catch (Exception e)
         {
-            logger.error("redis 写入失败 "+key+" return result "+result);
+            logger.error("redis 出错"+e.getMessage());
             return false;
         }
-        return true;
     }
 
 
     public static String getValue(String key){
-        if(jedisCluster.exists(key)){
-            return jedisCluster.get(key);
+        try {
+            if (jedisCluster.exists(key)) {
+                return jedisCluster.get(key);
+            }
+            return null;
         }
-        return null;
+        catch (Exception e)
+        {
+            logger.error("redis 出错"+e.getMessage());
+            return null;
+        }
     }
     public static void deleteKey(String key){
-        if(key!=null&&jedisCluster.exists(key)){
-            jedisCluster.del(key);
+        try {
+            if (key != null && jedisCluster.exists(key)) {
+                jedisCluster.del(key);
+            }
+        }
+        catch (Exception e)
+        {
+            logger.error("redis 出错"+e.getMessage());
         }
     }
 
     public static User getUser(String uid){
-        String key = uid + suffix;
-        if(jedisCluster.exists(key) && flag){
-            String userStr = jedisCluster.get(key);
-            JsonReader jsonReader = new JsonReader(new StringReader(userStr));
-            jsonReader.setLenient(true);
-            User user = gson.fromJson(jsonReader, User.class);
-            return user;
-        }else {
+        try {
+            String key = uid + suffix;
+            if (jedisCluster.exists(key) && flag) {
+                String userStr = jedisCluster.get(key);
+                JsonReader jsonReader = new JsonReader(new StringReader(userStr));
+                jsonReader.setLenient(true);
+                User user = gson.fromJson(jsonReader, User.class);
+                return user;
+            } else {
+                return null;
+            }
+        }
+        catch (Exception e)
+        {
+            logger.error("redis 出错"+e.getMessage());
             return null;
         }
     }
     public static void deleteUser(String uid){
-        String key = uid + suffix;
-        if(jedisCluster.exists(key) && flag){
-            jedisCluster.del(key);
+        try {
+            String key = uid + suffix;
+            if (jedisCluster.exists(key) && flag) {
+                jedisCluster.del(key);
+            }
+        }
+        catch (Exception e)
+        {
+            logger.error("redis 出错"+e.getMessage());
         }
     }
 
@@ -132,7 +164,8 @@ public class RedisUtil {
         deleteUser(uid);
         try {
             AllDao.getInstance().getSessionDao().deleteByUid(uid);
-        }
+            if(sessionID!=null)AllDao.getInstance().getSessionDao().deleteBySessionID(sessionID);
+    }
         catch (Exception e)
         {
             logger.error("delete sesion_uid  ",e);
@@ -173,7 +206,9 @@ public class RedisUtil {
                     jedis.connect();
                     Set<String> keys=jedis.keys("*");
                     for(String key:keys)
-                        jedis.del(key);
+                    {
+                        jedisCluster.del(key);
+                    }
                 }
                 catch (Exception e)
                 {
