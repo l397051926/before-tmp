@@ -72,6 +72,7 @@ public class UserController {
                     LogUtils.BussnissLogError("login error", e);
                 }
                 if (!user.getUid().equals(uid)) {
+                    logger.info("user.getUid() != uid");
                     if (!RedisUtil.setUserOnLine(user, sessionID)) {
                         view.viewString(ParamUtils.errorParam("登陆失败"), response);
                         return;
@@ -82,6 +83,7 @@ public class UserController {
                 if (RedisUtil.setUserOnLine(user, uid)) {
                     logger.info("登陆成功");
                 } else {
+                    logger.error("setUserOnLine error");
                     view.viewString(ParamUtils.errorParam("登陆失败"), response);
                 }
                 resultBean.setCode(1);
