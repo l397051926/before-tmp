@@ -11,9 +11,9 @@ import org.slf4j.LoggerFactory;
  */
 public class Mailer {
     private static Logger logger = LoggerFactory.getLogger(Mailer.class);
-    private static MailSenderInfo mailInfo = new MailSenderInfo();
 
     public static void sendHTMLMail(String email,String url,User user){
+        MailSenderInfo mailInfo = MailSenderInfo.buildMailSenderInfo();
         StringBuffer demo = new StringBuffer();
         String aurl="<a href=\""+url+"\">"+url+"</a>";
         demo.append("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">")
