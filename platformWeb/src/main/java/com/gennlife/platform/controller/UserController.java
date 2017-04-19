@@ -76,6 +76,13 @@ public class UserController {
                         view.viewString(ParamUtils.errorParam("登陆失败"), response);
                         return;
                     }
+                } else {
+                    RedisUtil.setValue(sessionID, user.getUid());
+                }
+                if (RedisUtil.setUserOnLine(user, uid)) {
+                    logger.info("登陆成功");
+                } else {
+                    view.viewString(ParamUtils.errorParam("登陆失败"), response);
                 }
                 resultBean.setCode(1);
                 resultBean.setData(user);
