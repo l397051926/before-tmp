@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+    <bean name="mailSenderInfo" class="com.gennlife.platform.mail.MailSenderInfo">
+        <property name="mailServerHost" value="smtp.mxhichina.com"/>
+        <property name="validate" value="true"/>
+        <property name="mailServerPort" value="25"/>
+        <property name="fromAddress" value="changepwd@gennlife.com"/>
+        <property name="userName" value="changepwd@gennlife.com"/>
+        <property name="password" value="Genn@2015"/>
+    </bean>
+</beans>
