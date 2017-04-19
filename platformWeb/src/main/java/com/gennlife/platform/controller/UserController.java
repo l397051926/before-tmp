@@ -78,13 +78,13 @@ public class UserController {
                         return;
                     }
                 }
-                logger.info("user is: " + gson.toJson(user).toString());
                 resultBean.setCode(1);
                 resultBean.setData(user);
             } else {
                 view.viewString(ParamUtils.errorParam("登陆失败"), response);
             }
             resultStr = gson.toJson(resultBean);
+            logger.info("user is: " + resultStr);
         } catch (Exception e) {
             LogUtils.BussnissLogError("出现异常", e);
             resultStr = ParamUtils.errorParam("出现异常");
