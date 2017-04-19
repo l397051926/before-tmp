@@ -78,7 +78,7 @@ public class UserController {
                         return;
                     }
                 }
-                logger.info("user is: " + user.toString());
+                logger.info("user is: " + gson.toJson(user).toString());
                 resultBean.setCode(1);
                 resultBean.setData(user);
             } else {
