@@ -398,6 +398,11 @@ public class URLBean {
      */
     private String CSSmg = null;
 
+    /**
+     * CRF录入智能提示
+     */
+    private String InputSmartPrompt = null;
+
 
     public String getCRFImportMap() {
         return CRFImportMap;
@@ -1138,5 +1143,13 @@ public class URLBean {
 
     public String getConsultingRoomData() {
         return consultingRoomData;
+    }
+
+    public String getInputSmartPrompt() {
+        return InputSmartPrompt;
+    }
+
+    public void setInputSmartPrompt(String InputSmartPrompt) {
+        this.InputSmartPrompt = InputSmartPrompt;
     }
 }
