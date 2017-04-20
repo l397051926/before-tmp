@@ -2158,7 +2158,6 @@
                         "确诊",
                         "手术",
                         "第1次手术",
-                        "第1次手术",
                         "第2次手术",
                         "第3次手术",
                         "术后复发",
@@ -2200,7 +2199,11 @@
                     "UIFieldName": "就诊类别",
                     "IndexFieldName": "visits.visit_info.VISIT_TYPE",
                     "srchFieldName": "就诊.就诊基本信息.就诊类别",
-                    "dataType": "string"
+                    "dataType": "string",
+                    "dataMap": [
+                        "住院",
+                        "门诊"
+                    ]
                 },
                 {
                     "UIFieldName": "就诊次数",
@@ -15345,7 +15348,6 @@
                         "确诊",
                         "手术",
                         "第1次手术",
-                        "第1次手术",
                         "第2次手术",
                         "第3次手术",
                         "术后复发",
@@ -15387,7 +15389,11 @@
                     "UIFieldName": "就诊类别",
                     "IndexFieldName": "visits.visit_info.VISIT_TYPE",
                     "srchFieldName": "就诊.就诊基本信息.就诊类别",
-                    "dataType": "string"
+                    "dataType": "string",
+                    "dataMap": [
+                        "住院",
+                        "门诊"
+                    ]
                 },
                 {
                     "UIFieldName": "就诊次数",
@@ -15545,18 +15551,6 @@
             ],
             "就诊.诊断": [
                 {
-                    "UIFieldName": "诊断内部序列号",
-                    "IndexFieldName": "visits.diagnose.DIAGNOSIS_SN",
-                    "srchFieldName": "就诊.诊断.诊断内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.diagnose.VISIT_SN",
-                    "srchFieldName": "就诊.诊断.就诊编号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "诊断科室ID",
                     "IndexFieldName": "visits.diagnose.DIAGNOSTIC_DEPT_ID",
                     "srchFieldName": "就诊.诊断.诊断科室ID",
@@ -15662,30 +15656,6 @@
             ],
             "就诊.手术.手术记录": [
                 {
-                    "UIFieldName": "手术内部序列号",
-                    "IndexFieldName": "visits.operation.records.PROCEDURE_SN",
-                    "srchFieldName": "就诊.手术.手术记录.手术内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.operation.records.VISIT_SN",
-                    "srchFieldName": "就诊.手术.手术记录.就诊编号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "医嘱内部序列号",
-                    "IndexFieldName": "visits.operation.records.ORDER_SN",
-                    "srchFieldName": "就诊.手术.手术记录.医嘱内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "麻醉内部序列号",
-                    "IndexFieldName": "visits.operation.records.ANESTHESIA_SN",
-                    "srchFieldName": "就诊.手术.手术记录.麻醉内部序列号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "医疗机构编码",
                     "IndexFieldName": "visits.operation.records.ORG_CODE",
                     "srchFieldName": "就诊.手术.手术记录.医疗机构编码",
@@ -15707,12 +15677,6 @@
                     "UIFieldName": "手术名称",
                     "IndexFieldName": "visits.operation.records.OPERATION",
                     "srchFieldName": "就诊.手术.手术记录.手术名称",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "手术名称_回填",
-                    "IndexFieldName": "visits.operation.records.OPERATION_SOURCE",
-                    "srchFieldName": "就诊.手术.手术记录.手术名称_回填",
                     "dataType": "string"
                 },
                 {
@@ -15851,12 +15815,6 @@
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
                 },
                 {
-                    "UIFieldName": "手术日期_回填",
-                    "IndexFieldName": "visits.operation.records.OPERATION_DATE_SOURCE",
-                    "srchFieldName": "就诊.手术.手术记录.手术日期_回填",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "术前治疗",
                     "IndexFieldName": "visits.operation.records.PREOPERATIVE_THERAPY",
                     "srchFieldName": "就诊.手术.手术记录.术前治疗",
@@ -15943,24 +15901,6 @@
             ],
             "就诊.手术.麻醉": [
                 {
-                    "UIFieldName": "麻醉内部序列号",
-                    "IndexFieldName": "visits.operation.anesthesia.ANESTHESIA_SN",
-                    "srchFieldName": "就诊.手术.麻醉.麻醉内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "手术内部序列号",
-                    "IndexFieldName": "visits.operation.anesthesia.PROCEDURE_SN",
-                    "srchFieldName": "就诊.手术.麻醉.手术内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.operation.anesthesia.VISIT_SN",
-                    "srchFieldName": "就诊.手术.麻醉.就诊编号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "域代码",
                     "IndexFieldName": "visits.operation.anesthesia.PATIENT_DOMAIN",
                     "srchFieldName": "就诊.手术.麻醉.域代码",
@@ -16008,22 +15948,10 @@
             ],
             "就诊.手术.术前小结": [
                 {
-                    "UIFieldName": "手术内部序列号",
-                    "IndexFieldName": "visits.operation.pre_summary.PROCEDURE_SN",
-                    "srchFieldName": "就诊.手术.术前小结.手术内部序列号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "第几次住院",
                     "IndexFieldName": "visits.operation.pre_summary.VISIT_TIMES",
                     "srchFieldName": "就诊.手术.术前小结.第几次住院",
                     "dataType": "long"
-                },
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.operation.pre_summary.VISIT_SN",
-                    "srchFieldName": "就诊.手术.术前小结.就诊编号",
-                    "dataType": "string"
                 },
                 {
                     "UIFieldName": "性别",
@@ -16129,12 +16057,6 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.pathology_reports.VISIT_SN",
-                    "srchFieldName": "就诊.病理检查报告.就诊编号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "年龄",
                     "IndexFieldName": "visits.pathology_reports.AGE",
                     "srchFieldName": "就诊.病理检查报告.年龄",
@@ -16214,12 +16136,6 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "病理诊断_回填",
-                    "IndexFieldName": "visits.pathology_reports.PATHOLOGY_DIAGNOSIS_SOURCE",
-                    "srchFieldName": "就诊.病理检查报告.病理诊断_回填",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "免疫组化",
                     "IndexFieldName": "visits.pathology_reports.IHC",
                     "srchFieldName": "就诊.病理检查报告.免疫组化",
@@ -16252,12 +16168,6 @@
                 }
             ],
             "就诊.超声诊断报告": [
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.ultrasonic_diagnosis_reports.VISIT_SN",
-                    "srchFieldName": "就诊.超声诊断报告.就诊编号",
-                    "dataType": "string"
-                },
                 {
                     "UIFieldName": "年龄",
                     "IndexFieldName": "visits.ultrasonic_diagnosis_reports.AGE",
@@ -16295,21 +16205,9 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "诊断内容_回填",
-                    "IndexFieldName": "visits.ultrasonic_diagnosis_reports.DIAGNOSIS_CONTENTS_SOURCE",
-                    "srchFieldName": "就诊.超声诊断报告.诊断内容_回填",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "诊断结果",
                     "IndexFieldName": "visits.ultrasonic_diagnosis_reports.DIAGNOSIS_RESULT",
                     "srchFieldName": "就诊.超声诊断报告.诊断结果",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "诊断结果_回填",
-                    "IndexFieldName": "visits.ultrasonic_diagnosis_reports.DIAGNOSIS_RESULT_SOURCE",
-                    "srchFieldName": "就诊.超声诊断报告.诊断结果_回填",
                     "dataType": "string"
                 },
                 {
@@ -16334,12 +16232,6 @@
                 }
             ],
             "就诊.影像学检查诊断报告": [
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.imaging_exam_diagnosis_reports.VISIT_SN",
-                    "srchFieldName": "就诊.影像学检查诊断报告.就诊编号",
-                    "dataType": "string"
-                },
                 {
                     "UIFieldName": "年龄",
                     "IndexFieldName": "visits.imaging_exam_diagnosis_reports.AGE",
@@ -16390,21 +16282,9 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "检查项目_回填",
-                    "IndexFieldName": "visits.imaging_exam_diagnosis_reports.CHECK_ITEM_SOURCE",
-                    "srchFieldName": "就诊.影像学检查诊断报告.检查项目_回填",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "影像表现",
                     "IndexFieldName": "visits.imaging_exam_diagnosis_reports.IMAGE_FEATURE",
                     "srchFieldName": "就诊.影像学检查诊断报告.影像表现",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "影像表现_回填",
-                    "IndexFieldName": "visits.imaging_exam_diagnosis_reports.IMAGE_FEATURE_SOURCE",
-                    "srchFieldName": "就诊.影像学检查诊断报告.影像表现_回填",
                     "dataType": "string"
                 },
                 {
@@ -16431,12 +16311,6 @@
                     "srchFieldName": "就诊.影像学检查诊断报告.报告日期",
                     "dataType": "date",
                     "dateFormat": "yyyy-MM-dd"
-                },
-                {
-                    "UIFieldName": "文档内部序列号",
-                    "IndexFieldName": "visits.imaging_exam_diagnosis_reports.DOCUMENT_SN",
-                    "srchFieldName": "就诊.影像学检查诊断报告.文档内部序列号",
-                    "dataType": "string"
                 },
                 {
                     "UIFieldName": "域代码",
@@ -16551,18 +16425,6 @@
                 }
             ],
             "就诊.镜检报告": [
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.microscopic_exam_reports.VISIT_SN",
-                    "srchFieldName": "就诊.镜检报告.就诊编号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "病人号",
-                    "IndexFieldName": "visits.microscopic_exam_reports.PATIENT_SN",
-                    "srchFieldName": "就诊.镜检报告.病人号",
-                    "dataType": "string"
-                },
                 {
                     "UIFieldName": "住院号",
                     "IndexFieldName": "visits.microscopic_exam_reports.INPATIENT_SN",
@@ -16693,12 +16555,6 @@
                 }
             ],
             "就诊.检验报告": [
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.inspection_reports.VISIT_SN",
-                    "srchFieldName": "就诊.检验报告.就诊编号",
-                    "dataType": "string"
-                },
                 {
                     "UIFieldName": "送检科室",
                     "IndexFieldName": "visits.inspection_reports.SUBMITTING_DEPARTMENT",
@@ -16843,12 +16699,6 @@
                     "dataType": "long"
                 },
                 {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.admissions_records.VISIT_SN",
-                    "srchFieldName": "就诊.入院记录.就诊编号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "住院号",
                     "IndexFieldName": "visits.admissions_records.INPATIENT_SN",
                     "srchFieldName": "就诊.入院记录.住院号",
@@ -16988,12 +16838,6 @@
                     "UIFieldName": "主诉",
                     "IndexFieldName": "visits.admissions_records.CHIEF_COMPLAINT",
                     "srchFieldName": "就诊.入院记录.主诉",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "主诉_回填",
-                    "IndexFieldName": "visits.admissions_records.CHIEF_COMPLAINT_SOURCE",
-                    "srchFieldName": "就诊.入院记录.主诉_回填",
                     "dataType": "string"
                 },
                 {
@@ -17173,12 +17017,6 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.discharge_records.VISIT_SN",
-                    "srchFieldName": "就诊.出院记录.就诊编号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "性别",
                     "IndexFieldName": "visits.discharge_records.GENDER",
                     "srchFieldName": "就诊.出院记录.性别",
@@ -17264,12 +17102,6 @@
                 }
             ],
             "就诊.首次病程记录": [
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.first_course_record.VISIT_SN",
-                    "srchFieldName": "就诊.首次病程记录.就诊编号",
-                    "dataType": "string"
-                },
                 {
                     "UIFieldName": "第几次住院",
                     "IndexFieldName": "visits.first_course_record.VISIT_TIMES",
@@ -17370,12 +17202,6 @@
             ],
             "就诊.病程记录": [
                 {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.course_record.VISIT_SN",
-                    "srchFieldName": "就诊.病程记录.就诊编号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "第几次住院",
                     "IndexFieldName": "visits.course_record.VISIT_TIMES",
                     "srchFieldName": "就诊.病程记录.第几次住院",
@@ -17427,30 +17253,6 @@
             ],
             "就诊.用药.用药医嘱": [
                 {
-                    "UIFieldName": "医嘱内部序列号",
-                    "IndexFieldName": "visits.pharmacy.orders.ORDER_SN",
-                    "srchFieldName": "就诊.用药.用药医嘱.医嘱内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.pharmacy.orders.VISIT_SN",
-                    "srchFieldName": "就诊.用药.用药医嘱.就诊编号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "处方内部序列号",
-                    "IndexFieldName": "visits.pharmacy.orders.PRESCRIPTION_SN",
-                    "srchFieldName": "就诊.用药.用药医嘱.处方内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "文档内部序列号",
-                    "IndexFieldName": "visits.pharmacy.orders.DOCUMENT_SN",
-                    "srchFieldName": "就诊.用药.用药医嘱.文档内部序列号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "域代码",
                     "IndexFieldName": "visits.pharmacy.orders.REGION_CODE",
                     "srchFieldName": "就诊.用药.用药医嘱.域代码",
@@ -17478,12 +17280,6 @@
                     "UIFieldName": "药物编码",
                     "IndexFieldName": "visits.pharmacy.orders.MEDICINE_CODE",
                     "srchFieldName": "就诊.用药.用药医嘱.药物编码",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "药物包装序列号",
-                    "IndexFieldName": "visits.pharmacy.orders.MEDICINE_SERIAL_NUM",
-                    "srchFieldName": "就诊.用药.用药医嘱.药物包装序列号",
                     "dataType": "string"
                 },
                 {
@@ -17909,12 +17705,6 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "互斥医嘱号内部序列号",
-                    "IndexFieldName": "visits.pharmacy.orders.CONFLICT_ORDER_SN",
-                    "srchFieldName": "就诊.用药.用药医嘱.互斥医嘱号内部序列号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "是否皮试",
                     "IndexFieldName": "visits.pharmacy.orders.SKIN_TEST_FLAG",
                     "srchFieldName": "就诊.用药.用药医嘱.是否皮试",
@@ -17968,12 +17758,6 @@
                 }
             ],
             "就诊.病案首页": [
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.medical_record_home_page.VISIT_SN",
-                    "srchFieldName": "就诊.病案首页.就诊编号",
-                    "dataType": "string"
-                },
                 {
                     "UIFieldName": "第几次住院",
                     "IndexFieldName": "visits.medical_record_home_page.VISIT_TIMES",
@@ -21849,7 +21633,6 @@
                         "确诊",
                         "手术",
                         "第1次手术",
-                        "第1次手术",
                         "第2次手术",
                         "第3次手术",
                         "术后复发",
@@ -21891,7 +21674,11 @@
                     "UIFieldName": "就诊类别",
                     "IndexFieldName": "visits.visit_info.VISIT_TYPE",
                     "srchFieldName": "就诊.就诊基本信息.就诊类别",
-                    "dataType": "string"
+                    "dataType": "string",
+                    "dataMap": [
+                        "住院",
+                        "门诊"
+                    ]
                 },
                 {
                     "UIFieldName": "就诊次数",
@@ -35036,7 +34823,6 @@
                         "确诊",
                         "手术",
                         "第1次手术",
-                        "第1次手术",
                         "第2次手术",
                         "第3次手术",
                         "术后复发",
@@ -35078,7 +34864,11 @@
                     "UIFieldName": "就诊类别",
                     "IndexFieldName": "visits.visit_info.VISIT_TYPE",
                     "srchFieldName": "就诊.就诊基本信息.就诊类别",
-                    "dataType": "string"
+                    "dataType": "string",
+                    "dataMap": [
+                        "住院",
+                        "门诊"
+                    ]
                 },
                 {
                     "UIFieldName": "就诊次数",
@@ -35236,18 +35026,6 @@
             ],
             "就诊.诊断": [
                 {
-                    "UIFieldName": "诊断内部序列号",
-                    "IndexFieldName": "visits.diagnose.DIAGNOSIS_SN",
-                    "srchFieldName": "就诊.诊断.诊断内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.diagnose.VISIT_SN",
-                    "srchFieldName": "就诊.诊断.就诊编号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "诊断科室ID",
                     "IndexFieldName": "visits.diagnose.DIAGNOSTIC_DEPT_ID",
                     "srchFieldName": "就诊.诊断.诊断科室ID",
@@ -35353,30 +35131,6 @@
             ],
             "就诊.手术.手术记录": [
                 {
-                    "UIFieldName": "手术内部序列号",
-                    "IndexFieldName": "visits.operation.records.PROCEDURE_SN",
-                    "srchFieldName": "就诊.手术.手术记录.手术内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.operation.records.VISIT_SN",
-                    "srchFieldName": "就诊.手术.手术记录.就诊编号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "医嘱内部序列号",
-                    "IndexFieldName": "visits.operation.records.ORDER_SN",
-                    "srchFieldName": "就诊.手术.手术记录.医嘱内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "麻醉内部序列号",
-                    "IndexFieldName": "visits.operation.records.ANESTHESIA_SN",
-                    "srchFieldName": "就诊.手术.手术记录.麻醉内部序列号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "医疗机构编码",
                     "IndexFieldName": "visits.operation.records.ORG_CODE",
                     "srchFieldName": "就诊.手术.手术记录.医疗机构编码",
@@ -35398,12 +35152,6 @@
                     "UIFieldName": "手术名称",
                     "IndexFieldName": "visits.operation.records.OPERATION",
                     "srchFieldName": "就诊.手术.手术记录.手术名称",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "手术名称_回填",
-                    "IndexFieldName": "visits.operation.records.OPERATION_SOURCE",
-                    "srchFieldName": "就诊.手术.手术记录.手术名称_回填",
                     "dataType": "string"
                 },
                 {
@@ -35542,12 +35290,6 @@
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
                 },
                 {
-                    "UIFieldName": "手术日期_回填",
-                    "IndexFieldName": "visits.operation.records.OPERATION_DATE_SOURCE",
-                    "srchFieldName": "就诊.手术.手术记录.手术日期_回填",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "术前治疗",
                     "IndexFieldName": "visits.operation.records.PREOPERATIVE_THERAPY",
                     "srchFieldName": "就诊.手术.手术记录.术前治疗",
@@ -35634,24 +35376,6 @@
             ],
             "就诊.手术.麻醉": [
                 {
-                    "UIFieldName": "麻醉内部序列号",
-                    "IndexFieldName": "visits.operation.anesthesia.ANESTHESIA_SN",
-                    "srchFieldName": "就诊.手术.麻醉.麻醉内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "手术内部序列号",
-                    "IndexFieldName": "visits.operation.anesthesia.PROCEDURE_SN",
-                    "srchFieldName": "就诊.手术.麻醉.手术内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.operation.anesthesia.VISIT_SN",
-                    "srchFieldName": "就诊.手术.麻醉.就诊编号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "域代码",
                     "IndexFieldName": "visits.operation.anesthesia.PATIENT_DOMAIN",
                     "srchFieldName": "就诊.手术.麻醉.域代码",
@@ -35699,22 +35423,10 @@
             ],
             "就诊.手术.术前小结": [
                 {
-                    "UIFieldName": "手术内部序列号",
-                    "IndexFieldName": "visits.operation.pre_summary.PROCEDURE_SN",
-                    "srchFieldName": "就诊.手术.术前小结.手术内部序列号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "第几次住院",
                     "IndexFieldName": "visits.operation.pre_summary.VISIT_TIMES",
                     "srchFieldName": "就诊.手术.术前小结.第几次住院",
                     "dataType": "long"
-                },
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.operation.pre_summary.VISIT_SN",
-                    "srchFieldName": "就诊.手术.术前小结.就诊编号",
-                    "dataType": "string"
                 },
                 {
                     "UIFieldName": "性别",
@@ -35820,12 +35532,6 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.pathology_reports.VISIT_SN",
-                    "srchFieldName": "就诊.病理检查报告.就诊编号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "年龄",
                     "IndexFieldName": "visits.pathology_reports.AGE",
                     "srchFieldName": "就诊.病理检查报告.年龄",
@@ -35905,12 +35611,6 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "病理诊断_回填",
-                    "IndexFieldName": "visits.pathology_reports.PATHOLOGY_DIAGNOSIS_SOURCE",
-                    "srchFieldName": "就诊.病理检查报告.病理诊断_回填",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "免疫组化",
                     "IndexFieldName": "visits.pathology_reports.IHC",
                     "srchFieldName": "就诊.病理检查报告.免疫组化",
@@ -35943,12 +35643,6 @@
                 }
             ],
             "就诊.超声诊断报告": [
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.ultrasonic_diagnosis_reports.VISIT_SN",
-                    "srchFieldName": "就诊.超声诊断报告.就诊编号",
-                    "dataType": "string"
-                },
                 {
                     "UIFieldName": "年龄",
                     "IndexFieldName": "visits.ultrasonic_diagnosis_reports.AGE",
@@ -35986,21 +35680,9 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "诊断内容_回填",
-                    "IndexFieldName": "visits.ultrasonic_diagnosis_reports.DIAGNOSIS_CONTENTS_SOURCE",
-                    "srchFieldName": "就诊.超声诊断报告.诊断内容_回填",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "诊断结果",
                     "IndexFieldName": "visits.ultrasonic_diagnosis_reports.DIAGNOSIS_RESULT",
                     "srchFieldName": "就诊.超声诊断报告.诊断结果",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "诊断结果_回填",
-                    "IndexFieldName": "visits.ultrasonic_diagnosis_reports.DIAGNOSIS_RESULT_SOURCE",
-                    "srchFieldName": "就诊.超声诊断报告.诊断结果_回填",
                     "dataType": "string"
                 },
                 {
@@ -36025,12 +35707,6 @@
                 }
             ],
             "就诊.影像学检查诊断报告": [
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.imaging_exam_diagnosis_reports.VISIT_SN",
-                    "srchFieldName": "就诊.影像学检查诊断报告.就诊编号",
-                    "dataType": "string"
-                },
                 {
                     "UIFieldName": "年龄",
                     "IndexFieldName": "visits.imaging_exam_diagnosis_reports.AGE",
@@ -36081,21 +35757,9 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "检查项目_回填",
-                    "IndexFieldName": "visits.imaging_exam_diagnosis_reports.CHECK_ITEM_SOURCE",
-                    "srchFieldName": "就诊.影像学检查诊断报告.检查项目_回填",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "影像表现",
                     "IndexFieldName": "visits.imaging_exam_diagnosis_reports.IMAGE_FEATURE",
                     "srchFieldName": "就诊.影像学检查诊断报告.影像表现",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "影像表现_回填",
-                    "IndexFieldName": "visits.imaging_exam_diagnosis_reports.IMAGE_FEATURE_SOURCE",
-                    "srchFieldName": "就诊.影像学检查诊断报告.影像表现_回填",
                     "dataType": "string"
                 },
                 {
@@ -36122,12 +35786,6 @@
                     "srchFieldName": "就诊.影像学检查诊断报告.报告日期",
                     "dataType": "date",
                     "dateFormat": "yyyy-MM-dd"
-                },
-                {
-                    "UIFieldName": "文档内部序列号",
-                    "IndexFieldName": "visits.imaging_exam_diagnosis_reports.DOCUMENT_SN",
-                    "srchFieldName": "就诊.影像学检查诊断报告.文档内部序列号",
-                    "dataType": "string"
                 },
                 {
                     "UIFieldName": "域代码",
@@ -36242,18 +35900,6 @@
                 }
             ],
             "就诊.镜检报告": [
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.microscopic_exam_reports.VISIT_SN",
-                    "srchFieldName": "就诊.镜检报告.就诊编号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "病人号",
-                    "IndexFieldName": "visits.microscopic_exam_reports.PATIENT_SN",
-                    "srchFieldName": "就诊.镜检报告.病人号",
-                    "dataType": "string"
-                },
                 {
                     "UIFieldName": "住院号",
                     "IndexFieldName": "visits.microscopic_exam_reports.INPATIENT_SN",
@@ -36384,12 +36030,6 @@
                 }
             ],
             "就诊.检验报告": [
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.inspection_reports.VISIT_SN",
-                    "srchFieldName": "就诊.检验报告.就诊编号",
-                    "dataType": "string"
-                },
                 {
                     "UIFieldName": "送检科室",
                     "IndexFieldName": "visits.inspection_reports.SUBMITTING_DEPARTMENT",
@@ -36534,12 +36174,6 @@
                     "dataType": "long"
                 },
                 {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.admissions_records.VISIT_SN",
-                    "srchFieldName": "就诊.入院记录.就诊编号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "住院号",
                     "IndexFieldName": "visits.admissions_records.INPATIENT_SN",
                     "srchFieldName": "就诊.入院记录.住院号",
@@ -36679,12 +36313,6 @@
                     "UIFieldName": "主诉",
                     "IndexFieldName": "visits.admissions_records.CHIEF_COMPLAINT",
                     "srchFieldName": "就诊.入院记录.主诉",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "主诉_回填",
-                    "IndexFieldName": "visits.admissions_records.CHIEF_COMPLAINT_SOURCE",
-                    "srchFieldName": "就诊.入院记录.主诉_回填",
                     "dataType": "string"
                 },
                 {
@@ -36864,12 +36492,6 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.discharge_records.VISIT_SN",
-                    "srchFieldName": "就诊.出院记录.就诊编号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "性别",
                     "IndexFieldName": "visits.discharge_records.GENDER",
                     "srchFieldName": "就诊.出院记录.性别",
@@ -36955,12 +36577,6 @@
                 }
             ],
             "就诊.首次病程记录": [
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.first_course_record.VISIT_SN",
-                    "srchFieldName": "就诊.首次病程记录.就诊编号",
-                    "dataType": "string"
-                },
                 {
                     "UIFieldName": "第几次住院",
                     "IndexFieldName": "visits.first_course_record.VISIT_TIMES",
@@ -37061,12 +36677,6 @@
             ],
             "就诊.病程记录": [
                 {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.course_record.VISIT_SN",
-                    "srchFieldName": "就诊.病程记录.就诊编号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "第几次住院",
                     "IndexFieldName": "visits.course_record.VISIT_TIMES",
                     "srchFieldName": "就诊.病程记录.第几次住院",
@@ -37118,30 +36728,6 @@
             ],
             "就诊.用药.用药医嘱": [
                 {
-                    "UIFieldName": "医嘱内部序列号",
-                    "IndexFieldName": "visits.pharmacy.orders.ORDER_SN",
-                    "srchFieldName": "就诊.用药.用药医嘱.医嘱内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.pharmacy.orders.VISIT_SN",
-                    "srchFieldName": "就诊.用药.用药医嘱.就诊编号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "处方内部序列号",
-                    "IndexFieldName": "visits.pharmacy.orders.PRESCRIPTION_SN",
-                    "srchFieldName": "就诊.用药.用药医嘱.处方内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "文档内部序列号",
-                    "IndexFieldName": "visits.pharmacy.orders.DOCUMENT_SN",
-                    "srchFieldName": "就诊.用药.用药医嘱.文档内部序列号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "域代码",
                     "IndexFieldName": "visits.pharmacy.orders.REGION_CODE",
                     "srchFieldName": "就诊.用药.用药医嘱.域代码",
@@ -37169,12 +36755,6 @@
                     "UIFieldName": "药物编码",
                     "IndexFieldName": "visits.pharmacy.orders.MEDICINE_CODE",
                     "srchFieldName": "就诊.用药.用药医嘱.药物编码",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "药物包装序列号",
-                    "IndexFieldName": "visits.pharmacy.orders.MEDICINE_SERIAL_NUM",
-                    "srchFieldName": "就诊.用药.用药医嘱.药物包装序列号",
                     "dataType": "string"
                 },
                 {
@@ -37600,12 +37180,6 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "互斥医嘱号内部序列号",
-                    "IndexFieldName": "visits.pharmacy.orders.CONFLICT_ORDER_SN",
-                    "srchFieldName": "就诊.用药.用药医嘱.互斥医嘱号内部序列号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "是否皮试",
                     "IndexFieldName": "visits.pharmacy.orders.SKIN_TEST_FLAG",
                     "srchFieldName": "就诊.用药.用药医嘱.是否皮试",
@@ -37659,12 +37233,6 @@
                 }
             ],
             "就诊.病案首页": [
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.medical_record_home_page.VISIT_SN",
-                    "srchFieldName": "就诊.病案首页.就诊编号",
-                    "dataType": "string"
-                },
                 {
                     "UIFieldName": "第几次住院",
                     "IndexFieldName": "visits.medical_record_home_page.VISIT_TIMES",
@@ -41757,7 +41325,6 @@
                         "确诊",
                         "手术",
                         "第1次手术",
-                        "第1次手术",
                         "第2次手术",
                         "第3次手术",
                         "术后复发",
@@ -41799,7 +41366,11 @@
                     "UIFieldName": "就诊类别",
                     "IndexFieldName": "visits.visit_info.VISIT_TYPE",
                     "srchFieldName": "就诊.就诊基本信息.就诊类别",
-                    "dataType": "string"
+                    "dataType": "string",
+                    "dataMap": [
+                        "住院",
+                        "门诊"
+                    ]
                 },
                 {
                     "UIFieldName": "就诊次数",
@@ -55787,7 +55358,6 @@
                         "确诊",
                         "手术",
                         "第1次手术",
-                        "第1次手术",
                         "第2次手术",
                         "第3次手术",
                         "术后复发",
@@ -55829,7 +55399,11 @@
                     "UIFieldName": "就诊类别",
                     "IndexFieldName": "visits.visit_info.VISIT_TYPE",
                     "srchFieldName": "就诊.就诊基本信息.就诊类别",
-                    "dataType": "string"
+                    "dataType": "string",
+                    "dataMap": [
+                        "住院",
+                        "门诊"
+                    ]
                 },
                 {
                     "UIFieldName": "就诊次数",
@@ -55987,18 +55561,6 @@
             ],
             "就诊.诊断": [
                 {
-                    "UIFieldName": "诊断内部序列号",
-                    "IndexFieldName": "visits.diagnose.DIAGNOSIS_SN",
-                    "srchFieldName": "就诊.诊断.诊断内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.diagnose.VISIT_SN",
-                    "srchFieldName": "就诊.诊断.就诊编号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "诊断科室ID",
                     "IndexFieldName": "visits.diagnose.DIAGNOSTIC_DEPT_ID",
                     "srchFieldName": "就诊.诊断.诊断科室ID",
@@ -56104,30 +55666,6 @@
             ],
             "就诊.手术.手术记录": [
                 {
-                    "UIFieldName": "手术内部序列号",
-                    "IndexFieldName": "visits.operation.records.PROCEDURE_SN",
-                    "srchFieldName": "就诊.手术.手术记录.手术内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.operation.records.VISIT_SN",
-                    "srchFieldName": "就诊.手术.手术记录.就诊编号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "医嘱内部序列号",
-                    "IndexFieldName": "visits.operation.records.ORDER_SN",
-                    "srchFieldName": "就诊.手术.手术记录.医嘱内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "麻醉内部序列号",
-                    "IndexFieldName": "visits.operation.records.ANESTHESIA_SN",
-                    "srchFieldName": "就诊.手术.手术记录.麻醉内部序列号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "医疗机构编码",
                     "IndexFieldName": "visits.operation.records.ORG_CODE",
                     "srchFieldName": "就诊.手术.手术记录.医疗机构编码",
@@ -56149,12 +55687,6 @@
                     "UIFieldName": "手术名称",
                     "IndexFieldName": "visits.operation.records.OPERATION",
                     "srchFieldName": "就诊.手术.手术记录.手术名称",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "手术名称_回填",
-                    "IndexFieldName": "visits.operation.records.OPERATION_SOURCE",
-                    "srchFieldName": "就诊.手术.手术记录.手术名称_回填",
                     "dataType": "string"
                 },
                 {
@@ -56293,12 +55825,6 @@
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
                 },
                 {
-                    "UIFieldName": "手术日期_回填",
-                    "IndexFieldName": "visits.operation.records.OPERATION_DATE_SOURCE",
-                    "srchFieldName": "就诊.手术.手术记录.手术日期_回填",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "术前治疗",
                     "IndexFieldName": "visits.operation.records.PREOPERATIVE_THERAPY",
                     "srchFieldName": "就诊.手术.手术记录.术前治疗",
@@ -56385,24 +55911,6 @@
             ],
             "就诊.手术.麻醉": [
                 {
-                    "UIFieldName": "麻醉内部序列号",
-                    "IndexFieldName": "visits.operation.anesthesia.ANESTHESIA_SN",
-                    "srchFieldName": "就诊.手术.麻醉.麻醉内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "手术内部序列号",
-                    "IndexFieldName": "visits.operation.anesthesia.PROCEDURE_SN",
-                    "srchFieldName": "就诊.手术.麻醉.手术内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.operation.anesthesia.VISIT_SN",
-                    "srchFieldName": "就诊.手术.麻醉.就诊编号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "域代码",
                     "IndexFieldName": "visits.operation.anesthesia.PATIENT_DOMAIN",
                     "srchFieldName": "就诊.手术.麻醉.域代码",
@@ -56450,22 +55958,10 @@
             ],
             "就诊.手术.术前小结": [
                 {
-                    "UIFieldName": "手术内部序列号",
-                    "IndexFieldName": "visits.operation.pre_summary.PROCEDURE_SN",
-                    "srchFieldName": "就诊.手术.术前小结.手术内部序列号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "第几次住院",
                     "IndexFieldName": "visits.operation.pre_summary.VISIT_TIMES",
                     "srchFieldName": "就诊.手术.术前小结.第几次住院",
                     "dataType": "long"
-                },
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.operation.pre_summary.VISIT_SN",
-                    "srchFieldName": "就诊.手术.术前小结.就诊编号",
-                    "dataType": "string"
                 },
                 {
                     "UIFieldName": "性别",
@@ -56571,12 +56067,6 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.pathology_reports.VISIT_SN",
-                    "srchFieldName": "就诊.病理检查报告.就诊编号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "年龄",
                     "IndexFieldName": "visits.pathology_reports.AGE",
                     "srchFieldName": "就诊.病理检查报告.年龄",
@@ -56656,12 +56146,6 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "病理诊断_回填",
-                    "IndexFieldName": "visits.pathology_reports.PATHOLOGY_DIAGNOSIS_SOURCE",
-                    "srchFieldName": "就诊.病理检查报告.病理诊断_回填",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "免疫组化",
                     "IndexFieldName": "visits.pathology_reports.IHC",
                     "srchFieldName": "就诊.病理检查报告.免疫组化",
@@ -56694,12 +56178,6 @@
                 }
             ],
             "就诊.超声诊断报告": [
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.ultrasonic_diagnosis_reports.VISIT_SN",
-                    "srchFieldName": "就诊.超声诊断报告.就诊编号",
-                    "dataType": "string"
-                },
                 {
                     "UIFieldName": "年龄",
                     "IndexFieldName": "visits.ultrasonic_diagnosis_reports.AGE",
@@ -56737,21 +56215,9 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "诊断内容_回填",
-                    "IndexFieldName": "visits.ultrasonic_diagnosis_reports.DIAGNOSIS_CONTENTS_SOURCE",
-                    "srchFieldName": "就诊.超声诊断报告.诊断内容_回填",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "诊断结果",
                     "IndexFieldName": "visits.ultrasonic_diagnosis_reports.DIAGNOSIS_RESULT",
                     "srchFieldName": "就诊.超声诊断报告.诊断结果",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "诊断结果_回填",
-                    "IndexFieldName": "visits.ultrasonic_diagnosis_reports.DIAGNOSIS_RESULT_SOURCE",
-                    "srchFieldName": "就诊.超声诊断报告.诊断结果_回填",
                     "dataType": "string"
                 },
                 {
@@ -56776,12 +56242,6 @@
                 }
             ],
             "就诊.影像学检查诊断报告": [
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.imaging_exam_diagnosis_reports.VISIT_SN",
-                    "srchFieldName": "就诊.影像学检查诊断报告.就诊编号",
-                    "dataType": "string"
-                },
                 {
                     "UIFieldName": "年龄",
                     "IndexFieldName": "visits.imaging_exam_diagnosis_reports.AGE",
@@ -56832,21 +56292,9 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "检查项目_回填",
-                    "IndexFieldName": "visits.imaging_exam_diagnosis_reports.CHECK_ITEM_SOURCE",
-                    "srchFieldName": "就诊.影像学检查诊断报告.检查项目_回填",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "影像表现",
                     "IndexFieldName": "visits.imaging_exam_diagnosis_reports.IMAGE_FEATURE",
                     "srchFieldName": "就诊.影像学检查诊断报告.影像表现",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "影像表现_回填",
-                    "IndexFieldName": "visits.imaging_exam_diagnosis_reports.IMAGE_FEATURE_SOURCE",
-                    "srchFieldName": "就诊.影像学检查诊断报告.影像表现_回填",
                     "dataType": "string"
                 },
                 {
@@ -56873,12 +56321,6 @@
                     "srchFieldName": "就诊.影像学检查诊断报告.报告日期",
                     "dataType": "date",
                     "dateFormat": "yyyy-MM-dd"
-                },
-                {
-                    "UIFieldName": "文档内部序列号",
-                    "IndexFieldName": "visits.imaging_exam_diagnosis_reports.DOCUMENT_SN",
-                    "srchFieldName": "就诊.影像学检查诊断报告.文档内部序列号",
-                    "dataType": "string"
                 },
                 {
                     "UIFieldName": "域代码",
@@ -56993,18 +56435,6 @@
                 }
             ],
             "就诊.镜检报告": [
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.microscopic_exam_reports.VISIT_SN",
-                    "srchFieldName": "就诊.镜检报告.就诊编号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "病人号",
-                    "IndexFieldName": "visits.microscopic_exam_reports.PATIENT_SN",
-                    "srchFieldName": "就诊.镜检报告.病人号",
-                    "dataType": "string"
-                },
                 {
                     "UIFieldName": "住院号",
                     "IndexFieldName": "visits.microscopic_exam_reports.INPATIENT_SN",
@@ -57135,12 +56565,6 @@
                 }
             ],
             "就诊.检验报告": [
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.inspection_reports.VISIT_SN",
-                    "srchFieldName": "就诊.检验报告.就诊编号",
-                    "dataType": "string"
-                },
                 {
                     "UIFieldName": "送检科室",
                     "IndexFieldName": "visits.inspection_reports.SUBMITTING_DEPARTMENT",
@@ -57285,12 +56709,6 @@
                     "dataType": "long"
                 },
                 {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.admissions_records.VISIT_SN",
-                    "srchFieldName": "就诊.入院记录.就诊编号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "住院号",
                     "IndexFieldName": "visits.admissions_records.INPATIENT_SN",
                     "srchFieldName": "就诊.入院记录.住院号",
@@ -57430,12 +56848,6 @@
                     "UIFieldName": "主诉",
                     "IndexFieldName": "visits.admissions_records.CHIEF_COMPLAINT",
                     "srchFieldName": "就诊.入院记录.主诉",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "主诉_回填",
-                    "IndexFieldName": "visits.admissions_records.CHIEF_COMPLAINT_SOURCE",
-                    "srchFieldName": "就诊.入院记录.主诉_回填",
                     "dataType": "string"
                 },
                 {
@@ -57615,12 +57027,6 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.discharge_records.VISIT_SN",
-                    "srchFieldName": "就诊.出院记录.就诊编号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "性别",
                     "IndexFieldName": "visits.discharge_records.GENDER",
                     "srchFieldName": "就诊.出院记录.性别",
@@ -57706,12 +57112,6 @@
                 }
             ],
             "就诊.首次病程记录": [
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.first_course_record.VISIT_SN",
-                    "srchFieldName": "就诊.首次病程记录.就诊编号",
-                    "dataType": "string"
-                },
                 {
                     "UIFieldName": "第几次住院",
                     "IndexFieldName": "visits.first_course_record.VISIT_TIMES",
@@ -57812,12 +57212,6 @@
             ],
             "就诊.病程记录": [
                 {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.course_record.VISIT_SN",
-                    "srchFieldName": "就诊.病程记录.就诊编号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "第几次住院",
                     "IndexFieldName": "visits.course_record.VISIT_TIMES",
                     "srchFieldName": "就诊.病程记录.第几次住院",
@@ -57869,30 +57263,6 @@
             ],
             "就诊.用药.用药医嘱": [
                 {
-                    "UIFieldName": "医嘱内部序列号",
-                    "IndexFieldName": "visits.pharmacy.orders.ORDER_SN",
-                    "srchFieldName": "就诊.用药.用药医嘱.医嘱内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.pharmacy.orders.VISIT_SN",
-                    "srchFieldName": "就诊.用药.用药医嘱.就诊编号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "处方内部序列号",
-                    "IndexFieldName": "visits.pharmacy.orders.PRESCRIPTION_SN",
-                    "srchFieldName": "就诊.用药.用药医嘱.处方内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "文档内部序列号",
-                    "IndexFieldName": "visits.pharmacy.orders.DOCUMENT_SN",
-                    "srchFieldName": "就诊.用药.用药医嘱.文档内部序列号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "域代码",
                     "IndexFieldName": "visits.pharmacy.orders.REGION_CODE",
                     "srchFieldName": "就诊.用药.用药医嘱.域代码",
@@ -57920,12 +57290,6 @@
                     "UIFieldName": "药物编码",
                     "IndexFieldName": "visits.pharmacy.orders.MEDICINE_CODE",
                     "srchFieldName": "就诊.用药.用药医嘱.药物编码",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "药物包装序列号",
-                    "IndexFieldName": "visits.pharmacy.orders.MEDICINE_SERIAL_NUM",
-                    "srchFieldName": "就诊.用药.用药医嘱.药物包装序列号",
                     "dataType": "string"
                 },
                 {
@@ -58351,12 +57715,6 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "互斥医嘱号内部序列号",
-                    "IndexFieldName": "visits.pharmacy.orders.CONFLICT_ORDER_SN",
-                    "srchFieldName": "就诊.用药.用药医嘱.互斥医嘱号内部序列号",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "是否皮试",
                     "IndexFieldName": "visits.pharmacy.orders.SKIN_TEST_FLAG",
                     "srchFieldName": "就诊.用药.用药医嘱.是否皮试",
@@ -58410,12 +57768,6 @@
                 }
             ],
             "就诊.病案首页": [
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.medical_record_home_page.VISIT_SN",
-                    "srchFieldName": "就诊.病案首页.就诊编号",
-                    "dataType": "string"
-                },
                 {
                     "UIFieldName": "第几次住院",
                     "IndexFieldName": "visits.medical_record_home_page.VISIT_TIMES",
