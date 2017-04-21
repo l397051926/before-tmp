@@ -184,41 +184,70 @@ public class LaboratoryProcessor {
         String orgID = user.getOrgID();
         String orgName = user.getOrg_name();
         Organization organization = null;
-        Set<String> uids = new TreeSet<>();
         OrgMapper orgdao = AllDao.getInstance().getOrgDao();
         SyUserMapper userdao = AllDao.getInstance().getSyUserDao();
+        Set<String> alllab=new TreeSet<>();
         for (String labID: labIDs) {
-            Lab parent = orgdao.getLabPInfo(labID,orgID);
-            if (parent == null) {
-                parent = new Lab();
-                parent.setLabID(orgID);
-                parent.setLab_name(orgName);
-            }
-            // 下级科室处理
-            List<String> subLabs = orgdao.getSubLabs(labID,orgID);
-            if (subLabs != null && subLabs.size() > 0) {
-                orgdao.updateSubLabPid(subLabs.toArray(new String[subLabs.size()]),orgID,parent.getLabID());
-            }
-            // 用户处理
-            List<String> uidList=userdao.getUserIDByLabID(labID,orgID);
-            if (uidList != null && uidList.size() > 0) {
-                uids.addAll(uidList);
-                userdao.updateUseInfoWhenDelLab(parent.getLabID(), parent.getLab_name(), labID, orgID);
-            }
+            if(alllab.contains(labID))continue;
+            alllab.addAll(getLabs(orgdao,labID,orgID, orgName, userdao));
         }
+        labIDs=alllab.toArray(new String[alllab.size()]);
         int counter = AllDao.getInstance().getOrgDao().deleteLabs(labIDs);
         // 同步删除资源
         AllDao.getInstance().getSyResourceDao().deleteLabsReource(labIDs);
-        int fail = labIDsList.size() - counter;
+        int fail = alllab.size() - counter;
         // 更新用户信息
         logger.info("成功删除" + counter + "个科室信息,失败" + fail + "个");
-        RedisUtil.updateUserOnLine(uids);
         organization = getOrganization(orgID);
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(1);
         resultBean.setData(organization);
 
         return gson.toJson(resultBean);
+    }
+
+    public Set<String> getLabs(OrgMapper orgdao, String labID, String orgID, String orgName, SyUserMapper userdao)
+    {
+        Lab parent = orgdao.getLabPInfo(labID,orgID);
+        if (parent == null) {
+            parent = new Lab();
+            parent.setLabID(orgID);
+            parent.setLab_name(orgName);
+        }
+        Set<String> allsubs=getAllSubLab(orgdao,labID,orgID);
+        allsubs.add(labID);
+        String[] labs=allsubs.toArray(new String[allsubs.size()]);
+        List<String> uids = userdao.getUserIDsByLabID(labs, orgID);
+        RedisUtil.updateUserOnLine(uids);
+        if(allsubs!=null&&allsubs.size()>0)
+            userdao.updateUsersWhenDelLab(parent.getLabID(),parent.getLab_name(),labs,orgID);
+
+        return allsubs;
+    }
+    public Set<String> getAllSubLab(OrgMapper orgdao,String labID,String orgID)
+    {
+        Set<String> allsubs=new TreeSet<>();
+        List<String> subLabs = orgdao.getSubLabs(labID,orgID);
+        LinkedList<String> todo=new LinkedList<>();
+        todo.addAll(subLabs);
+        if (subLabs != null && subLabs.size() > 0) {
+            allsubs.addAll(subLabs);
+        }
+        String first=todo.removeFirst();
+        while(first!=null)
+        {
+            if(!allsubs.contains(first))
+            {
+                subLabs = orgdao.getSubLabs(labID,orgID);
+                if(subLabs!=null&&subLabs.size()>0)
+                {
+                    allsubs.addAll(subLabs);
+                    todo.addAll(subLabs);
+                }
+            }
+            first=todo.removeFirst();
+        }
+        return allsubs;
     }
 
     /**

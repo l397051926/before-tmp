@@ -132,6 +132,7 @@ public class RedisUtil {
         try {
             SessionMapper dao = AllDao.getInstance().getSessionDao();
             dao.deleteByUid(user.getUid());
+            if(sessionID!=null)dao.deleteBySessionID(sessionID);
             dao.insertData(user.getUid(), sessionID, simpleDateFormat.format(new Date()));
         }
         catch (Exception e)
@@ -173,14 +174,26 @@ public class RedisUtil {
     }
 
     public static void updateUserOnLine(String uid){
-        if(true)exit(uid,null);
+       /* if(true) {
+            exit(uid,null);
+            return;
+        }*/
         //除了当前用户，其余全部下线
         String sessionID=getValue(uid);
-        if(StringUtils.isEmpty(sessionID)) return;
+        if(StringUtils.isEmpty(sessionID)) {
+            try {
+                sessionID = AllDao.getInstance().getSessionDao().getSessionID(uid);
+            }
+            catch (Exception e)
+            {
+                logger.error("sql error ",e);
+            }
+            if(StringUtils.isEmpty(sessionID)) return;
+        }
         User user=UserProcessor.getUserByUids(uid);
         if(user==null) return;
+        RedisUtil.setUserOnLine(user,sessionID);
         logger.info("更新设置:"+sessionID+"="+user.getUid()+"成功");
-        setUser(user);
     }
     public static void setFlag(boolean v){
         flag = v;
