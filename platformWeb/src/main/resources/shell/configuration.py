@@ -237,12 +237,12 @@ def process():
             all_angiocardiopathy[key] = allGroup[key]
 
 
-    for key in allGroup:
-        if key.startswith('就诊') or key.startswith('门诊') or key.startswith('临床相关基因变异'):
-            all_liver[key] = allGroup[key]
-            all_lung[key] = allGroup[key]
-            all_kidney[key] = allGroup[key]
-            all_angiocardiopathy[key] = allGroup[key]
+    # for key in allGroup:
+    #     if key.startswith('就诊') or key.startswith('门诊') or key.startswith('临床相关基因变异'):
+    #         all_liver[key] = allGroup[key]
+    #         all_lung[key] = allGroup[key]
+    #         all_kidney[key] = allGroup[key]
+    #         all_angiocardiopathy[key] = allGroup[key]
     liver['all'] = all_liver
     lung['all'] = all_lung
     kidney['all'] = all_kidney
