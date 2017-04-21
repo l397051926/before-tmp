@@ -233,7 +233,8 @@ public class LaboratoryProcessor {
         if (subLabs != null && subLabs.size() > 0) {
             allsubs.addAll(subLabs);
         }
-        String first=todo.removeFirst();
+        String first=null;
+        if(todo!=null&&todo.size()>0)first = todo.removeFirst();
         while(first!=null)
         {
             if(!allsubs.contains(first))
@@ -245,7 +246,7 @@ public class LaboratoryProcessor {
                     todo.addAll(subLabs);
                 }
             }
-            first=todo.removeFirst();
+            if(todo.size()>0)first=todo.removeFirst();
         }
         return allsubs;
     }
