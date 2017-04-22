@@ -19,9 +19,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 
 /**
@@ -33,10 +30,10 @@ public class RedisUtil {
     private static Gson gson = GsonUtil.getGson();
     private static String suffix = "_info";
     private static boolean flag = true;
-    private static ExecutorService executorService;
+
     public static void init() {
         jedisCluster = (JedisCluster) SpringContextUtil.getBean("jedisClusterFactory");
-        executorService=Executors.newFixedThreadPool(5);
+
     }
 
     public static boolean setValue(String key, String value) {
@@ -198,14 +195,15 @@ public class RedisUtil {
 
     public static void updateUserOnLine(Collection<String> uidList) {
         if (uidList == null || uidList.size() == 0) return;
-        executorService.submit(new Callable<Boolean>() {
+        uidList.forEach(uid->deleteUser(uid));//延迟更新
+        /*executorService.submit(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
                 uidList.parallelStream().forEach(uid -> updateUserOnLine(uid));
                 return true;
             }
         });
-
+*/
 
     }
 
@@ -237,6 +235,5 @@ public class RedisUtil {
         } catch (Exception e) {
             logger.error("clear all error ", e);
         }
-        executorService.shutdown();
     }
 }
