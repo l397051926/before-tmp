@@ -69,7 +69,7 @@ public class FileUploadUtil {
         fw.flush();
         fw.close();
         Map<String,Integer> map = new HashMap<>();
-        map.put("profiles/ytyhdyyonline/update",update);
+        map.put("update",update);
         map.put("insert",insert);
         map.put("fail",fail);
         ResultBean resultBean = new ResultBean();

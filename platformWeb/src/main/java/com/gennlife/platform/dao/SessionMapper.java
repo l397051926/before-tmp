@@ -15,4 +15,6 @@ public interface SessionMapper {
     public String getUid(@Param("sessionID") String sessionID);
 
     public int  deleteByUid(@Param("uid")String uid);
+
+    public String getSessionID(@Param("uid") String uid);
 }

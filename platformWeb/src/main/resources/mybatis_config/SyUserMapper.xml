@@ -501,9 +501,33 @@
 		gennlife_user
 		WHERE  orgID=#{orgID} and labID=#{labID}
 	</select>
+	<select id="getUserIDsByLabID" resultType="java.lang.String">
+		SELECT
+		uid
+		FROM
+		gennlife_user
+		WHERE  orgID=#{orgID} and labID in
+		<foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
+			#{item,jdbcType=VARCHAR}
+		</foreach>
+	</select>
+
+
 	<update id="updateUseInfoWhenDelLab" >
 		update   gennlife_user set
 		labID=#{labPID},lab_name=#{lab_pname},uposition="",uprofession=""
 		where  orgID=#{orgID} and labID=#{labID}
 	</update>
+
+
+
+	<update id="updateUsersWhenDelLab" >
+		update   gennlife_user set
+		labID=#{labPID},lab_name=#{lab_pname},uposition="",uprofession=""
+		where  orgID=#{orgID} and labID in
+		<foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
+			#{item,jdbcType=VARCHAR}
+		</foreach>
+	</update>
+
 </mapper>

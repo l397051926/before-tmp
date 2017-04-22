@@ -28,4 +28,8 @@
     <select id="getUid" resultType="java.lang.String">
         select uid from session_uid where sessionID=#{sessionID} limit 1
     </select>
+    <select id="getSessionID" resultType="java.lang.String">
+        select sessionID from session_uid where uid=#{uid} limit 1
+    </select>
+
 </mapper>

@@ -31,10 +31,12 @@ public class RedisUtil {
     private static String suffix = "_info";
     private static boolean flag = true;
 
-    public static void init(){
+    public static void init() {
         jedisCluster = (JedisCluster) SpringContextUtil.getBean("jedisClusterFactory");
+
     }
-    public static boolean setValue(String key,String value){
+
+    public static boolean setValue(String key, String value) {
         try {
             String result = jedisCluster.set(key, value);
             if (!result.equalsIgnoreCase("ok")) {
@@ -42,41 +44,36 @@ public class RedisUtil {
                 return false;
             }
             return true;
-        }
-        catch (Exception e)
-        {
-            logger.error("redis 出错"+e.getMessage());
+        } catch (Exception e) {
+            logger.error("redis 出错" + e.getMessage());
             return false;
         }
     }
 
 
-    public static String getValue(String key){
+    public static String getValue(String key) {
         try {
             if (jedisCluster.exists(key)) {
                 return jedisCluster.get(key);
             }
             return null;
-        }
-        catch (Exception e)
-        {
-            logger.error("redis 出错"+e.getMessage());
+        } catch (Exception e) {
+            logger.error("redis 出错" + e.getMessage());
             return null;
         }
     }
-    public static void deleteKey(String key){
+
+    public static void deleteKey(String key) {
         try {
             if (key != null && jedisCluster.exists(key)) {
                 jedisCluster.del(key);
             }
-        }
-        catch (Exception e)
-        {
-            logger.error("redis 出错"+e.getMessage());
+        } catch (Exception e) {
+            logger.error("redis 出错" + e.getMessage());
         }
     }
 
-    public static User getUser(String uid){
+    public static User getUser(String uid) {
         try {
             String key = uid + suffix;
             if (jedisCluster.exists(key) && flag) {
@@ -88,71 +85,68 @@ public class RedisUtil {
             } else {
                 return null;
             }
-        }
-        catch (Exception e)
-        {
-            logger.error("redis 出错"+e.getMessage());
+        } catch (Exception e) {
+            logger.error("redis 出错" + e.getMessage());
             return null;
         }
     }
-    public static void deleteUser(String uid){
+
+    public static void deleteUser(String uid) {
         try {
             String key = uid + suffix;
             if (jedisCluster.exists(key) && flag) {
                 jedisCluster.del(key);
             }
-        }
-        catch (Exception e)
-        {
-            logger.error("redis 出错"+e.getMessage());
+        } catch (Exception e) {
+            logger.error("redis 出错" + e.getMessage());
         }
     }
 
-    public static boolean setUser(User user){
-        String key = user.getUid()+suffix;
+    public static boolean setUser(User user) {
+        String key = user.getUid() + suffix;
         String value = gson.toJson(user);
-        if(flag){
-            return setValue(key,value);
+        if (flag) {
+            return setValue(key, value);
         }
         return false;
     }
 
-    public static boolean setUserOnLine(User user,String sessionID){
+    public static boolean setUserOnLine(User user, String sessionID) {
         String exSessionID = getValue(user.getUid());
-        exit(user.getUid(),exSessionID);
-        if(setValue(user.getUid(),sessionID)&&
-        setValue(sessionID,user.getUid())&&setUser(user)) {
+        exit(user.getUid(), exSessionID);
+        if (setValue(user.getUid(), sessionID) &&
+                setValue(sessionID, user.getUid()) && setUser(user)) {
             LogUtils.BussnissLog("登录设置:" + sessionID + "=" + user.getUid() + "成功");
-        }
-        else {
-            exit(user.getUid(),sessionID);
+        } else {
+            exit(user.getUid(), sessionID);
             LogUtils.BussnissLogError("redis 写入失败");
         }
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             SessionMapper dao = AllDao.getInstance().getSessionDao();
             dao.deleteByUid(user.getUid());
+            if (sessionID != null) dao.deleteBySessionID(sessionID);
             dao.insertData(user.getUid(), sessionID, simpleDateFormat.format(new Date()));
-        }
-        catch (Exception e)
-        {
-            LogUtils.BussnissLogError("session_uid error",e);
+        } catch (Exception e) {
+            LogUtils.BussnissLogError("session_uid error", e);
             return false;
         }
         return true;
     }
-    public static void userLogout(String sessionID){
-        if(StringUtils.isEmpty(sessionID))return;
+
+    public static void userLogout(String sessionID) {
+        if (StringUtils.isEmpty(sessionID)) return;
         String uid = getValue(sessionID);
-        if(!StringUtils.isEmpty(uid)){
+        if (!StringUtils.isEmpty(uid)) {
             exit(uid, sessionID);
         }
 
     }
-    public static void userLogoutByUid(String uid){
-        if(StringUtils.isEmpty(uid))return;
+
+    public static void userLogoutByUid(String uid) {
+        if (StringUtils.isEmpty(uid)) return;
         String sessionID = getValue(uid);
-        if(!StringUtils.isEmpty(sessionID)){
+        if (!StringUtils.isEmpty(sessionID)) {
             exit(uid, sessionID);
         }
 
@@ -164,36 +158,53 @@ public class RedisUtil {
         deleteUser(uid);
         try {
             AllDao.getInstance().getSessionDao().deleteByUid(uid);
-            if(sessionID!=null)AllDao.getInstance().getSessionDao().deleteBySessionID(sessionID);
-    }
-        catch (Exception e)
-        {
-            logger.error("delete sesion_uid  ",e);
+            if (sessionID != null) AllDao.getInstance().getSessionDao().deleteBySessionID(sessionID);
+        } catch (Exception e) {
+            logger.error("delete sesion_uid  ", e);
         }
     }
 
-    public static void updateUserOnLine(String uid){
-        if(true)exit(uid,null);
+    public static void updateUserOnLine(String uid) {
+       /* if(true) {
+            exit(uid,null);
+            return;
+        }*/
         //除了当前用户，其余全部下线
-        String sessionID=getValue(uid);
-        if(StringUtils.isEmpty(sessionID)) return;
-        User user=UserProcessor.getUserByUids(uid);
-        if(user==null) return;
-        logger.info("更新设置:"+sessionID+"="+user.getUid()+"成功");
-        setUser(user);
+        String sessionID = getValue(uid);
+        if (StringUtils.isEmpty(sessionID)) {
+            try {
+                sessionID = AllDao.getInstance().getSessionDao().getSessionID(uid);
+            } catch (Exception e) {
+                logger.error("sql error ", e);
+            }
+            if (StringUtils.isEmpty(sessionID)) return;
+        }
+        User user = UserProcessor.getUserByUids(uid);
+        if (user == null) return;
+        RedisUtil.setUserOnLine(user, sessionID);
+        logger.info("更新设置:" + sessionID + "=" + user.getUid() + "成功");
     }
-    public static void setFlag(boolean v){
+
+    public static void setFlag(boolean v) {
         flag = v;
-        if(!v){//false,关闭redis，清空redis 用户信息
-            String key = "*"+ suffix;
+        if (!v) {//false,关闭redis，清空redis 用户信息
+            String key = "*" + suffix;
             jedisCluster.del(key);
         }
     }
 
     public static void updateUserOnLine(Collection<String> uidList) {
-        if(uidList==null || uidList.size()==0) return;
-        for(String uid:uidList)
-            updateUserOnLine(uid);
+        if (uidList == null || uidList.size() == 0) return;
+        uidList.forEach(uid->deleteUser(uid));//延迟更新
+        /*executorService.submit(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                uidList.parallelStream().forEach(uid -> updateUserOnLine(uid));
+                return true;
+            }
+        });
+*/
+
     }
 
     public static void clearAll() {
@@ -204,34 +215,25 @@ public class RedisUtil {
                 try {
                     jedis = item.getValue().getResource();
                     jedis.connect();
-                    Set<String> keys=jedis.keys("*");
-                    for(String key:keys)
-                    {
+                    Set<String> keys = jedis.keys("*");
+                    for (String key : keys) {
                         jedisCluster.del(key);
                     }
-                }
-                catch (Exception e)
-                {
-                    logger.error("jedis error ",e);
+                } catch (Exception e) {
+                    logger.error("jedis error ", e);
 
-                }
-                finally {
-                    if(jedis!=null)
-                    {
+                } finally {
+                    if (jedis != null) {
                         try {
                             jedis.close();
-                        }
-                        catch (Exception e1)
-                        {
+                        } catch (Exception e1) {
 
                         }
                     }
                 }
             }
-        }
-        catch (Exception e)
-        {
-            logger.error("clear all error ",e);
+        } catch (Exception e) {
+            logger.error("clear all error ", e);
         }
     }
 }
