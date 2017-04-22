@@ -235,6 +235,7 @@ public class LaboratoryProcessor {
         }
         String first=null;
         if(todo!=null&&todo.size()>0)first = todo.removeFirst();
+        else  first=null;
         while(first!=null)
         {
             if(!allsubs.contains(first))
@@ -247,6 +248,7 @@ public class LaboratoryProcessor {
                 }
             }
             if(todo.size()>0)first=todo.removeFirst();
+            else first=null;
         }
         return allsubs;
     }
