@@ -230,9 +230,6 @@ public class LaboratoryProcessor {
         List<String> subLabs = orgdao.getSubLabs(labID,orgID);
         LinkedList<String> todo=new LinkedList<>();
         todo.addAll(subLabs);
-        if (subLabs != null && subLabs.size() > 0) {
-            allsubs.addAll(subLabs);
-        }
         String first=null;
         if(todo!=null&&todo.size()>0)first = todo.removeFirst();
         else  first=null;
@@ -240,10 +237,10 @@ public class LaboratoryProcessor {
         {
             if(!allsubs.contains(first))
             {
-                subLabs = orgdao.getSubLabs(labID,orgID);
+                subLabs = orgdao.getSubLabs(first,orgID);
+                allsubs.add(first);
                 if(subLabs!=null&&subLabs.size()>0)
                 {
-                    allsubs.addAll(subLabs);
                     todo.addAll(subLabs);
                 }
             }
