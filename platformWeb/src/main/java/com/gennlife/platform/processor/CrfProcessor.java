@@ -34,19 +34,19 @@ public class CrfProcessor {
     public String getData(JsonObject paramObj, String orgID, User user) {
         try {
             String crf_id = paramObj.get("crf_id").getAsString();
-            String caseID = paramObj.has("caseID")?paramObj.get("caseID").getAsString():"";
+            String caseID = paramObj.has("caseID") ? paramObj.get("caseID").getAsString() : "";
             Power power = user.getPower();
             boolean flag = true;
-            if("".equals(caseID)){
-                flag = getCRFFlag(power,orgID,crf_id,"has_addCRF");
-            }else {
-                flag = getCRFFlag(power,orgID,crf_id,"has_editCRF");
+            if ("".equals(caseID)) {
+                flag = getCRFFlag(power, orgID, crf_id, "has_addCRF");
+            } else {
+                flag = getCRFFlag(power, orgID, crf_id, "has_editCRF");
             }
-            if(flag){
+            if (flag) {
                 String url = ConfigurationService.getUrlBean().getCRFGetData();
                 String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
                 return result;
-            }else {
+            } else {
                 return ParamUtils.errorAuthorityParam();
             }
 
@@ -61,25 +61,25 @@ public class CrfProcessor {
      * 如果caseID 为null，以key作为权限控制判断依据
      * 如果caseID 为"",判断录入的
      * 如果caseID 不为null,不为""，判断编辑
+     *
      * @param orgID
      * @param crf_id
      * @return
      */
-    public static boolean getCRFFlag(Power power,String orgID,String crf_id,String key){
+    public static boolean getCRFFlag(Power power, String orgID, String crf_id, String key) {
         boolean flag = false;
         Set<String> validLabID = new HashSet<>();
         JsonObject powerObj = (JsonObject) jsonParser.parse(gson.toJson(power));
         JsonArray array = powerObj.getAsJsonArray(key);
-        for(JsonElement item:array){
+        for (JsonElement item : array) {
             JsonObject itemObj = item.getAsJsonObject();
             String sid = itemObj.get("sid").getAsString();
             validLabID.add(sid);
         }
-        for(String labID:validLabID){
-            int count = AllDao.getInstance().getSyResourceDao().isExistsCrfID(labID,orgID,crf_id);
-            if(count>0)
-            {
-                flag=true;
+        for (String labID : validLabID) {
+            int count = AllDao.getInstance().getSyResourceDao().isExistsCrfID(labID, orgID, crf_id);
+            if (count > 0) {
+                flag = true;
                 break;
             }
         }
@@ -116,17 +116,16 @@ public class CrfProcessor {
     }
 
 
-
-    public String deleteSample(JsonObject paramObj,String orgID,User user) {
+    public String deleteSample(JsonObject paramObj, String orgID, User user) {
         try {
             Power power = user.getPower();
             String crf_id = paramObj.get("crf_id").getAsString();
-            boolean flag = getCRFFlag(power,orgID,crf_id,"has_deleteCRF");
-            if(flag){
+            boolean flag = getCRFFlag(power, orgID, crf_id, "has_deleteCRF");
+            if (flag) {
                 String url = ConfigurationService.getUrlBean().getCRFDeleteSample();
                 String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
                 return result;
-            }else {
+            } else {
                 return ParamUtils.errorAuthorityParam();
             }
 
@@ -136,21 +135,21 @@ public class CrfProcessor {
         }
     }
 
-    public String searchSampleList(JsonObject paramObj,User user) {
+    public String searchSampleList(JsonObject paramObj, User user) {
         try {
             String crf_id = paramObj.get("crf_id").getAsString();
             Power power = user.getPower();
-            boolean flag1 = getCRFFlag(power,user.getOrgID(),crf_id,"has_deleteCRF");
-            boolean flag2 = getCRFFlag(power,user.getOrgID(),crf_id,"has_traceCRF");
-            boolean flag3 = getCRFFlag(power,user.getOrgID(),crf_id,"has_addCRF");
-            boolean flag4 = getCRFFlag(power,user.getOrgID(),crf_id,"has_editCRF");
-            boolean flag5 = getCRFFlag(power,user.getOrgID(),crf_id,"has_addBatchCRF");
+            boolean flag1 = getCRFFlag(power, user.getOrgID(), crf_id, "has_deleteCRF");
+            boolean flag2 = getCRFFlag(power, user.getOrgID(), crf_id, "has_traceCRF");
+            boolean flag3 = getCRFFlag(power, user.getOrgID(), crf_id, "has_addCRF");
+            boolean flag4 = getCRFFlag(power, user.getOrgID(), crf_id, "has_editCRF");
+            boolean flag5 = getCRFFlag(power, user.getOrgID(), crf_id, "has_addBatchCRF");
             boolean flag = flag1 || flag2 || flag3 || flag4 || flag5;
-            if(flag){
+            if (flag) {
                 String url = ConfigurationService.getUrlBean().getCRFSearchSampleList();
                 String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
                 return result;
-            }else {
+            } else {
                 return ParamUtils.errorAuthorityParam();
             }
 
@@ -212,8 +211,6 @@ public class CrfProcessor {
         }
 
     }
-
-
 
 
     /**
@@ -292,18 +289,18 @@ public class CrfProcessor {
     }
 
 
-    public String modelForTraceByCRFID(String param,String orgID,User user) {
+    public String modelForTraceByCRFID(String param, String orgID, User user) {
         try {
             Power power = user.getPower();
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             String crf_id = paramObj.get("crf_id").getAsString();
-            boolean flag = getCRFFlag(power,orgID,crf_id,"has_traceCRF");
-            if(flag){//有权限请求
+            boolean flag = getCRFFlag(power, orgID, crf_id, "has_traceCRF");
+            if (flag) {//有权限请求
                 String url = ConfigurationService.getUrlBean().getCRFModelForTraceByCRFID();
                 logger.info("request url:" + url);
                 String result = HttpRequestUtils.httpPost(url, param);
                 return result;
-            }else {
+            } else {
                 return ParamUtils.errorAuthorityParam();
             }
 
@@ -327,117 +324,125 @@ public class CrfProcessor {
     }
 
 
-    public String uploadFileForImportCRF(MultipartFile file, String crf_id,String orgID,User user) {
+    public String uploadFileForImportCRF(MultipartFile file, String crf_id, String orgID, User user) {
         Power power = user.getPower();
-        logger.info("crf_id:"+crf_id);
-        boolean flag = getCRFFlag(power,orgID,crf_id,"has_addBatchCRF");
-        if(flag){
+        logger.info("crf_id:" + crf_id);
+        boolean flag = getCRFFlag(power, orgID, crf_id, "has_addBatchCRF");
+        if (flag) {
             String url = ConfigurationService.getUrlBean().getFileStoreForCRFImport();
             if (!file.isEmpty()) {
                 try {
                     String fileName = file.getOriginalFilename();
                     byte[] bytes = file.getBytes();
                     String path = ConfigurationService.getFileBean().getCRFFileLocation();
-                    File f = new File(path + LogUtils.getString_Time()+"-"+fileName);
-                    if(!f.exists()){
-                        logger.info("文件路径 "+f.getAbsolutePath());
+                    File f = new File(path + LogUtils.getString_Time() + "-" + fileName);
+                    if (!f.exists()) {
+                        logger.info("文件路径 " + f.getAbsolutePath());
                         f.createNewFile();
 
                     }
                     FileWriter fileWritter = new FileWriter(f);
                     BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
-                    bufferWritter.write(new String(bytes,"gbk"));
+                    bufferWritter.write(new String(bytes, "gbk"));
                     bufferWritter.flush();
                     bufferWritter.close();
                     fileWritter.close();
-                    String str =  HttpRequestUtils.httpPost(url,f,fileName);
-                    if(StringUtils.isEmpty(str )){
+                    String str = HttpRequestUtils.httpPost(url, f, fileName);
+                    if (StringUtils.isEmpty(str)) {
                         return ParamUtils.errorParam("导入文件失败");
                     }
                     JsonObject filebackObj = (JsonObject) jsonParser.parse(str);
                     f.delete();
-                    if(filebackObj.get("success").getAsBoolean()){
+                    if (filebackObj.get("success").getAsBoolean()) {
                         String file_id = filebackObj.get("file_id").getAsString();
                         String schema = filebackObj.get("schema").getAsString();
                         JsonObject paramObj = new JsonObject();
-                        paramObj.addProperty("schema",schema);
-                        paramObj.addProperty("fid",file_id);
-                        paramObj.addProperty("crf_id",crf_id);
+                        paramObj.addProperty("schema", schema);
+                        paramObj.addProperty("fid", file_id);
+                        paramObj.addProperty("crf_id", crf_id);
                         String param = gson.toJson(paramObj);
                         url = ConfigurationService.getUrlBean().getCRFImportFile();
-                        String reStr =  HttpRequestUtils.httpPost(url,param);
-                        if(reStr == null || "".equals(reStr)){
+                        String reStr = HttpRequestUtils.httpPost(url, param);
+                        if (reStr == null || "".equals(reStr)) {
                             return ParamUtils.errorParam("CRF 服务异常");
-                        }else {
+                        } else {
                             JsonObject object = (JsonObject) jsonParser.parse(reStr);
-                            if(object.has("code") && object.get("code").getAsInt() == 1){
+                            if (object.has("code") && object.get("code").getAsInt() == 1) {
                                 JsonArray csv_schema = object.getAsJsonArray("csv_schema");
                                 JsonObject crf_schema = object.getAsJsonObject("crf_schema");
                                 JsonObject result = new JsonObject();
-                                result.addProperty("code",1);
+                                result.addProperty("code", 1);
                                 JsonObject data = new JsonObject();
-                                data.add("csv_schema",csv_schema);
-                                data.add("crf_schema",crf_schema);
-                                data.addProperty("fid",file_id);
-                                result.add("data",data);
+                                data.add("csv_schema", csv_schema);
+                                data.add("crf_schema", crf_schema);
+                                data.addProperty("fid", file_id);
+                                result.add("data", data);
                                 return gson.toJson(result);
-                            }else {
+                            } else {
                                 return ParamUtils.errorParam("crf 返回为空");
                             }
                         }
-                    }else{
+                    } else {
                         return ParamUtils.errorParam("文件存储失败");
                     }
                 } catch (Exception e) {
-                    logger.error("",e);
+                    logger.error("", e);
                     return ParamUtils.errorParam("出现异常");
                 }
             } else {
                 return ParamUtils.errorParam("文件为空");
             }
-        }else {
+        } else {
             return ParamUtils.errorAuthorityParam();
         }
-
-
-
 
 
     }
 
     public String importCRFMap(JsonObject param) {
-        try{
+        try {
             String url = ConfigurationService.getUrlBean().getCRFImportMap();
-            logger.info("CRFImportMap url="+url+" param "+param);
-            String result = HttpRequestUtils.httpPost(url,gson.toJson(param));
-            logger.info("CRFImportMap result="+result);
+            logger.info("CRFImportMap url=" + url + " param " + param);
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(param));
+            logger.info("CRFImportMap result=" + result);
             return result;
-        }catch (Exception e){
+        } catch (Exception e) {
             return ParamUtils.errorParam("请求出错");
         }
     }
 
     public String csvImportResult(String param) {
-        try{
+        try {
             String url = ConfigurationService.getUrlBean().getCRFImportResult();
-            logger.info("CRFImportResult url="+url);
-            String result = HttpRequestUtils.httpPost(url,param);
-            logger.info("CRFImportResult result="+result);
+            logger.info("CRFImportResult url=" + url);
+            String result = HttpRequestUtils.httpPost(url, param);
+            logger.info("CRFImportResult result=" + result);
             return result;
-        }catch (Exception e){
+        } catch (Exception e) {
             return ParamUtils.errorParam("请求出错");
         }
     }
 
     public String isExistPatient(String param) {
-        try{
+        try {
             String url = ConfigurationService.getUrlBean().getCRFIsExistPatient();
-            logger.info("isExistPatient url="+url);
-            String result = HttpRequestUtils.httpPost(url,param);
-            logger.info("isExistPatient result="+result);
+            logger.info("isExistPatient url=" + url);
+            String result = HttpRequestUtils.httpPost(url, param);
+            logger.info("isExistPatient result=" + result);
             return result;
-        }catch (Exception e){
+        } catch (Exception e) {
             return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String inputSmartPrompt(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getInputSmartPrompt();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("请求发生异常", e);
+            return ParamUtils.errorParam("请求发生异常");
         }
     }
 }
