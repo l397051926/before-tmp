@@ -282,7 +282,7 @@
     <update id="updateProPlan" parameterType="com.gennlife.platform.bean.projectBean.ProjectPlan">
         UPDATE userInfoDB.p_plan
         <set>planStatus = #{planStatus},modifier = #{modifier},planName=#{planName},modifTime=#{modifTime},planDesc=#{planDesc},modifTime=#{modifTime,jdbcType=TIMESTAMP,javaType=java.util.Date}, </set>
-        <where> projectID=#{projectID} and id = #{id}</where>
+        <where> projectID=#{projectID} and id = #{id}  and plandelete!=1 </where>
     </update>
     <insert id="insertProPlan" parameterType="com.gennlife.platform.bean.projectBean.ProjectPlan" >
         insert into p_plan
@@ -523,7 +523,7 @@
                 unit=#{unit},
             </if>
         </set>
-        <where> projectID=#{projectID} </where>
+        <where> projectID=#{projectID} and isdelete!=1</where>
     </update>
 
     <select id="getProjectDisease" resultType="java.lang.String" parameterType="map">
@@ -620,7 +620,7 @@
         select
         <include refid="MyProjectListSelect" />
         from userInfoDB.p_project p JOIN userInfoDB.pro_user u on u.projectID = p.projectID
-        <where>u.uid=#{uid} and isdelete!=1 order by createTime  desc</where>
+        <where>u.uid=#{uid} and isdelete!=1 and puisdelete!=1 order by createTime  desc</where>
     </select>
 
     <select id="getMyProjectList" resultMap="com.gennlife.platform.bean.projectBean.MyProjectList"
@@ -628,7 +628,7 @@
         select
         <include refid="MyProjectListSelect" />
         from userInfoDB.p_project p JOIN userInfoDB.pro_user u on u.projectID = p.projectID
-        <where>u.uid=#{loginname} and p.projectName like '%${key}%' and isdelete!=1 order by createTime  desc limit #{startIndex},#{maxNum}</where>
+        <where>u.uid=#{loginname} and p.projectName like '%${key}%' and isdelete!=1 and puisdelete!=1 order by createTime  desc limit #{startIndex},#{maxNum}</where>
     </select>
 
 
@@ -636,7 +636,7 @@
         select
         count(*)
         from userInfoDB.p_project p JOIN userInfoDB.pro_user u on u.projectID = p.projectID
-        <where>u.uid=#{loginname} and p.projectName like '%${key}%' and isdelete!=1</where>
+        <where>u.uid=#{loginname} and p.projectName like '%${key}%' and isdelete!=1 and puisdelete!=1</where>
     </select>
 
     <resultMap id="projectUser" type="com.gennlife.platform.model.User">
