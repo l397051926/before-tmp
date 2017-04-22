@@ -859,147 +859,163 @@
                     ]
                 }
             ],
-            "就诊.手术.手术信息": [
+            "就诊.手术.手术记录": [
                 {
                     "UIFieldName": "医疗机构编码",
-                    "IndexFieldName": "visits.operation.info.ORG_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.医疗机构编码",
+                    "IndexFieldName": "visits.operation.records.ORG_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.医疗机构编码",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "医疗机构名称",
-                    "IndexFieldName": "visits.operation.info.ORG_NAME",
-                    "srchFieldName": "就诊.手术.手术信息.医疗机构名称",
+                    "IndexFieldName": "visits.operation.records.ORG_NAME",
+                    "srchFieldName": "就诊.手术.手术记录.医疗机构名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术代码",
-                    "IndexFieldName": "visits.operation.info.OPERATION_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.手术代码",
+                    "IndexFieldName": "visits.operation.records.OPERATION_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.手术代码",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术名称",
-                    "IndexFieldName": "visits.operation.info.OPERATION",
-                    "srchFieldName": "就诊.手术.手术信息.手术名称",
+                    "IndexFieldName": "visits.operation.records.OPERATION",
+                    "srchFieldName": "就诊.手术.手术记录.手术名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术等级代码",
-                    "IndexFieldName": "visits.operation.info.OPERATION_LEVEL_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.手术等级代码",
+                    "IndexFieldName": "visits.operation.records.OPERATION_LEVEL_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.手术等级代码",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术等级名称",
-                    "IndexFieldName": "visits.operation.info.OPERATION_LEVEL",
-                    "srchFieldName": "就诊.手术.手术信息.手术等级名称",
+                    "IndexFieldName": "visits.operation.records.OPERATION_LEVEL",
+                    "srchFieldName": "就诊.手术.手术记录.手术等级名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术医师",
-                    "IndexFieldName": "visits.operation.info.OPERATION_PHYSICIAN",
-                    "srchFieldName": "就诊.手术.手术信息.手术医师",
+                    "IndexFieldName": "visits.operation.records.OPERATION_PHYSICIAN",
+                    "srchFieldName": "就诊.手术.手术记录.手术医师",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "麻醉医师",
+                    "IndexFieldName": "visits.operation.records.ANESTHESIA_PHYSICIAN",
+                    "srchFieldName": "就诊.手术.手术记录.麻醉医师",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "助手",
-                    "IndexFieldName": "visits.operation.info.ASSISTANT",
-                    "srchFieldName": "就诊.手术.手术信息.助手",
+                    "IndexFieldName": "visits.operation.records.ASSISTANT",
+                    "srchFieldName": "就诊.手术.手术记录.助手",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "护士",
-                    "IndexFieldName": "visits.operation.info.NURSE",
-                    "srchFieldName": "就诊.手术.手术信息.护士",
+                    "IndexFieldName": "visits.operation.records.NURSE",
+                    "srchFieldName": "就诊.手术.手术记录.护士",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "麻醉方法",
+                    "IndexFieldName": "visits.operation.records.ANAESTHESIA_METHOD",
+                    "srchFieldName": "就诊.手术.手术记录.麻醉方法",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术切口愈合等级代码",
-                    "IndexFieldName": "visits.operation.info.HEALING_GRADE",
-                    "srchFieldName": "就诊.手术.手术信息.手术切口愈合等级代码",
+                    "IndexFieldName": "visits.operation.records.HEALING_GRADE",
+                    "srchFieldName": "就诊.手术.手术记录.手术切口愈合等级代码",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术切口愈合等级名称",
-                    "IndexFieldName": "visits.operation.info.HEALING_GRADE_NAME",
-                    "srchFieldName": "就诊.手术.手术信息.手术切口愈合等级名称",
+                    "IndexFieldName": "visits.operation.records.HEALING_GRADE_NAME",
+                    "srchFieldName": "就诊.手术.手术记录.手术切口愈合等级名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术部位代码",
-                    "IndexFieldName": "visits.operation.info.SURGERY_SITE_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.手术部位代码",
+                    "IndexFieldName": "visits.operation.records.SURGERY_SITE_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.手术部位代码",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术部位名称",
-                    "IndexFieldName": "visits.operation.info.SURGERY_SITE",
-                    "srchFieldName": "就诊.手术.手术信息.手术部位名称",
+                    "IndexFieldName": "visits.operation.records.SURGERY_SITE",
+                    "srchFieldName": "就诊.手术.手术记录.手术部位名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "操作方法代码",
-                    "IndexFieldName": "visits.operation.info.OPERATION_METHOD_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.操作方法代码",
+                    "IndexFieldName": "visits.operation.records.OPERATION_METHOD_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.操作方法代码",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "操作方法名称",
-                    "IndexFieldName": "visits.operation.info.OPERATION_METHOD",
-                    "srchFieldName": "就诊.手术.手术信息.操作方法名称",
+                    "IndexFieldName": "visits.operation.records.OPERATION_METHOD",
+                    "srchFieldName": "就诊.手术.手术记录.操作方法名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "操作次数",
-                    "IndexFieldName": "visits.operation.info.OPERATION_TIMES",
-                    "srchFieldName": "就诊.手术.手术信息.操作次数",
+                    "IndexFieldName": "visits.operation.records.OPERATION_TIMES",
+                    "srchFieldName": "就诊.手术.手术记录.操作次数",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "介入物名称",
-                    "IndexFieldName": "visits.operation.info.INTERVENOR",
-                    "srchFieldName": "就诊.手术.手术信息.介入物名称",
+                    "IndexFieldName": "visits.operation.records.INTERVENOR",
+                    "srchFieldName": "就诊.手术.手术记录.介入物名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "操作步骤",
-                    "IndexFieldName": "visits.operation.info.OPERATING_PROCEDURE",
-                    "srchFieldName": "就诊.手术.手术信息.操作步骤",
+                    "IndexFieldName": "visits.operation.records.OPERATING_PROCEDURE",
+                    "srchFieldName": "就诊.手术.手术记录.操作步骤",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "术前诊断",
+                    "IndexFieldName": "visits.operation.records.DIAGNOSIS_BEFORE",
+                    "srchFieldName": "就诊.手术.手术记录.术前诊断",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "术后诊断",
+                    "IndexFieldName": "visits.operation.records.DIAGNOSIS_AFTER",
+                    "srchFieldName": "就诊.手术.手术记录.术后诊断",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术持续时间（分钟）",
-                    "IndexFieldName": "visits.operation.info.DURATION",
-                    "srchFieldName": "就诊.手术.手术信息.手术持续时间（分钟）",
+                    "IndexFieldName": "visits.operation.records.DURATION",
+                    "srchFieldName": "就诊.手术.手术记录.手术持续时间（分钟）",
                     "dataType": "long"
                 },
                 {
                     "UIFieldName": "手术开始时间",
-                    "IndexFieldName": "visits.operation.info.START_TIME",
-                    "srchFieldName": "就诊.手术.手术信息.手术开始时间",
+                    "IndexFieldName": "visits.operation.records.START_TIME",
+                    "srchFieldName": "就诊.手术.手术记录.手术开始时间",
                     "dataType": "date",
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
                 },
                 {
                     "UIFieldName": "手术结束时间",
-                    "IndexFieldName": "visits.operation.info.END_TIME",
-                    "srchFieldName": "就诊.手术.手术信息.手术结束时间",
+                    "IndexFieldName": "visits.operation.records.END_TIME",
+                    "srchFieldName": "就诊.手术.手术记录.手术结束时间",
                     "dataType": "date",
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
                 },
                 {
                     "UIFieldName": "ASA分级",
-                    "IndexFieldName": "visits.operation.info.ASA_LEVEL",
-                    "srchFieldName": "就诊.手术.手术信息.ASA分级",
-                    "dataType": "string"
-                }
-            ],
-            "就诊.手术.手术记录": [
-                {
-                    "UIFieldName": "住院号",
-                    "IndexFieldName": "visits.operation.records.INPATIENT_SN",
-                    "srchFieldName": "就诊.手术.手术记录.住院号",
+                    "IndexFieldName": "visits.operation.records.ASA_LEVEL",
+                    "srchFieldName": "就诊.手术.手术记录.ASA分级",
                     "dataType": "string"
                 },
                 {
@@ -1016,27 +1032,9 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "术前诊断",
-                    "IndexFieldName": "visits.operation.records.PREOPERATION_DIAGNOSIS",
-                    "srchFieldName": "就诊.手术.手术记录.术前诊断",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "术中诊断",
                     "IndexFieldName": "visits.operation.records.INTRAOPERATIVE_DIAGNOSIS",
                     "srchFieldName": "就诊.手术.手术记录.术中诊断",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "术后诊断",
-                    "IndexFieldName": "visits.operation.records.AFTEROPERATION_DIAGNOSIS",
-                    "srchFieldName": "就诊.手术.手术记录.术后诊断",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "麻醉方法",
-                    "IndexFieldName": "visits.operation.records.ANAESTHESIA_METHOD",
-                    "srchFieldName": "就诊.手术.手术记录.麻醉方法",
                     "dataType": "string"
                 },
                 {
@@ -1106,18 +1104,10 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "记录日期",
-                    "IndexFieldName": "visits.operation.records.FRECORD_DATE",
-                    "srchFieldName": "就诊.手术.手术记录.记录日期",
-                    "dataType": "date",
-                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
-                },
-                {
-                    "UIFieldName": "出院日期",
-                    "IndexFieldName": "visits.operation.records.DIS_DATE",
-                    "srchFieldName": "就诊.手术.手术记录.出院日期",
-                    "dataType": "date",
-                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
+                    "UIFieldName": "住院号",
+                    "IndexFieldName": "visits.operation.records.INPATIENT_SN",
+                    "srchFieldName": "就诊.手术.手术记录.住院号",
+                    "dataType": "string"
                 }
             ],
             "就诊.手术.麻醉": [
@@ -3443,41 +3433,25 @@
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
                 }
             ],
-            "就诊.手术.手术信息": [
+            "就诊.手术.手术记录": [
                 {
                     "UIFieldName": "手术开始时间",
-                    "IndexFieldName": "visits.operation.info.START_TIME",
-                    "srchFieldName": "就诊.手术.手术信息.手术开始时间",
+                    "IndexFieldName": "visits.operation.records.START_TIME",
+                    "srchFieldName": "就诊.手术.手术记录.手术开始时间",
                     "dataType": "date",
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
                 },
                 {
                     "UIFieldName": "手术结束时间",
-                    "IndexFieldName": "visits.operation.info.END_TIME",
-                    "srchFieldName": "就诊.手术.手术信息.手术结束时间",
+                    "IndexFieldName": "visits.operation.records.END_TIME",
+                    "srchFieldName": "就诊.手术.手术记录.手术结束时间",
                     "dataType": "date",
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
-                }
-            ],
-            "就诊.手术.手术记录": [
+                },
                 {
                     "UIFieldName": "手术日期",
                     "IndexFieldName": "visits.operation.records.OPERATION_DATE",
                     "srchFieldName": "就诊.手术.手术记录.手术日期",
-                    "dataType": "date",
-                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
-                },
-                {
-                    "UIFieldName": "记录日期",
-                    "IndexFieldName": "visits.operation.records.FRECORD_DATE",
-                    "srchFieldName": "就诊.手术.手术记录.记录日期",
-                    "dataType": "date",
-                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
-                },
-                {
-                    "UIFieldName": "出院日期",
-                    "IndexFieldName": "visits.operation.records.DIS_DATE",
-                    "srchFieldName": "就诊.手术.手术记录.出院日期",
                     "dataType": "date",
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
                 }
@@ -5244,147 +5218,163 @@
                     ]
                 }
             ],
-            "就诊.手术.手术信息": [
+            "就诊.手术.手术记录": [
                 {
                     "UIFieldName": "医疗机构编码",
-                    "IndexFieldName": "visits.operation.info.ORG_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.医疗机构编码",
+                    "IndexFieldName": "visits.operation.records.ORG_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.医疗机构编码",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "医疗机构名称",
-                    "IndexFieldName": "visits.operation.info.ORG_NAME",
-                    "srchFieldName": "就诊.手术.手术信息.医疗机构名称",
+                    "IndexFieldName": "visits.operation.records.ORG_NAME",
+                    "srchFieldName": "就诊.手术.手术记录.医疗机构名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术代码",
-                    "IndexFieldName": "visits.operation.info.OPERATION_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.手术代码",
+                    "IndexFieldName": "visits.operation.records.OPERATION_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.手术代码",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术名称",
-                    "IndexFieldName": "visits.operation.info.OPERATION",
-                    "srchFieldName": "就诊.手术.手术信息.手术名称",
+                    "IndexFieldName": "visits.operation.records.OPERATION",
+                    "srchFieldName": "就诊.手术.手术记录.手术名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术等级代码",
-                    "IndexFieldName": "visits.operation.info.OPERATION_LEVEL_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.手术等级代码",
+                    "IndexFieldName": "visits.operation.records.OPERATION_LEVEL_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.手术等级代码",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术等级名称",
-                    "IndexFieldName": "visits.operation.info.OPERATION_LEVEL",
-                    "srchFieldName": "就诊.手术.手术信息.手术等级名称",
+                    "IndexFieldName": "visits.operation.records.OPERATION_LEVEL",
+                    "srchFieldName": "就诊.手术.手术记录.手术等级名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术医师",
-                    "IndexFieldName": "visits.operation.info.OPERATION_PHYSICIAN",
-                    "srchFieldName": "就诊.手术.手术信息.手术医师",
+                    "IndexFieldName": "visits.operation.records.OPERATION_PHYSICIAN",
+                    "srchFieldName": "就诊.手术.手术记录.手术医师",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "麻醉医师",
+                    "IndexFieldName": "visits.operation.records.ANESTHESIA_PHYSICIAN",
+                    "srchFieldName": "就诊.手术.手术记录.麻醉医师",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "助手",
-                    "IndexFieldName": "visits.operation.info.ASSISTANT",
-                    "srchFieldName": "就诊.手术.手术信息.助手",
+                    "IndexFieldName": "visits.operation.records.ASSISTANT",
+                    "srchFieldName": "就诊.手术.手术记录.助手",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "护士",
-                    "IndexFieldName": "visits.operation.info.NURSE",
-                    "srchFieldName": "就诊.手术.手术信息.护士",
+                    "IndexFieldName": "visits.operation.records.NURSE",
+                    "srchFieldName": "就诊.手术.手术记录.护士",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "麻醉方法",
+                    "IndexFieldName": "visits.operation.records.ANAESTHESIA_METHOD",
+                    "srchFieldName": "就诊.手术.手术记录.麻醉方法",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术切口愈合等级代码",
-                    "IndexFieldName": "visits.operation.info.HEALING_GRADE",
-                    "srchFieldName": "就诊.手术.手术信息.手术切口愈合等级代码",
+                    "IndexFieldName": "visits.operation.records.HEALING_GRADE",
+                    "srchFieldName": "就诊.手术.手术记录.手术切口愈合等级代码",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术切口愈合等级名称",
-                    "IndexFieldName": "visits.operation.info.HEALING_GRADE_NAME",
-                    "srchFieldName": "就诊.手术.手术信息.手术切口愈合等级名称",
+                    "IndexFieldName": "visits.operation.records.HEALING_GRADE_NAME",
+                    "srchFieldName": "就诊.手术.手术记录.手术切口愈合等级名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术部位代码",
-                    "IndexFieldName": "visits.operation.info.SURGERY_SITE_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.手术部位代码",
+                    "IndexFieldName": "visits.operation.records.SURGERY_SITE_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.手术部位代码",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术部位名称",
-                    "IndexFieldName": "visits.operation.info.SURGERY_SITE",
-                    "srchFieldName": "就诊.手术.手术信息.手术部位名称",
+                    "IndexFieldName": "visits.operation.records.SURGERY_SITE",
+                    "srchFieldName": "就诊.手术.手术记录.手术部位名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "操作方法代码",
-                    "IndexFieldName": "visits.operation.info.OPERATION_METHOD_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.操作方法代码",
+                    "IndexFieldName": "visits.operation.records.OPERATION_METHOD_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.操作方法代码",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "操作方法名称",
-                    "IndexFieldName": "visits.operation.info.OPERATION_METHOD",
-                    "srchFieldName": "就诊.手术.手术信息.操作方法名称",
+                    "IndexFieldName": "visits.operation.records.OPERATION_METHOD",
+                    "srchFieldName": "就诊.手术.手术记录.操作方法名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "操作次数",
-                    "IndexFieldName": "visits.operation.info.OPERATION_TIMES",
-                    "srchFieldName": "就诊.手术.手术信息.操作次数",
+                    "IndexFieldName": "visits.operation.records.OPERATION_TIMES",
+                    "srchFieldName": "就诊.手术.手术记录.操作次数",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "介入物名称",
-                    "IndexFieldName": "visits.operation.info.INTERVENOR",
-                    "srchFieldName": "就诊.手术.手术信息.介入物名称",
+                    "IndexFieldName": "visits.operation.records.INTERVENOR",
+                    "srchFieldName": "就诊.手术.手术记录.介入物名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "操作步骤",
-                    "IndexFieldName": "visits.operation.info.OPERATING_PROCEDURE",
-                    "srchFieldName": "就诊.手术.手术信息.操作步骤",
+                    "IndexFieldName": "visits.operation.records.OPERATING_PROCEDURE",
+                    "srchFieldName": "就诊.手术.手术记录.操作步骤",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "术前诊断",
+                    "IndexFieldName": "visits.operation.records.DIAGNOSIS_BEFORE",
+                    "srchFieldName": "就诊.手术.手术记录.术前诊断",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "术后诊断",
+                    "IndexFieldName": "visits.operation.records.DIAGNOSIS_AFTER",
+                    "srchFieldName": "就诊.手术.手术记录.术后诊断",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术持续时间（分钟）",
-                    "IndexFieldName": "visits.operation.info.DURATION",
-                    "srchFieldName": "就诊.手术.手术信息.手术持续时间（分钟）",
+                    "IndexFieldName": "visits.operation.records.DURATION",
+                    "srchFieldName": "就诊.手术.手术记录.手术持续时间（分钟）",
                     "dataType": "long"
                 },
                 {
                     "UIFieldName": "手术开始时间",
-                    "IndexFieldName": "visits.operation.info.START_TIME",
-                    "srchFieldName": "就诊.手术.手术信息.手术开始时间",
+                    "IndexFieldName": "visits.operation.records.START_TIME",
+                    "srchFieldName": "就诊.手术.手术记录.手术开始时间",
                     "dataType": "date",
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
                 },
                 {
                     "UIFieldName": "手术结束时间",
-                    "IndexFieldName": "visits.operation.info.END_TIME",
-                    "srchFieldName": "就诊.手术.手术信息.手术结束时间",
+                    "IndexFieldName": "visits.operation.records.END_TIME",
+                    "srchFieldName": "就诊.手术.手术记录.手术结束时间",
                     "dataType": "date",
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
                 },
                 {
                     "UIFieldName": "ASA分级",
-                    "IndexFieldName": "visits.operation.info.ASA_LEVEL",
-                    "srchFieldName": "就诊.手术.手术信息.ASA分级",
-                    "dataType": "string"
-                }
-            ],
-            "就诊.手术.手术记录": [
-                {
-                    "UIFieldName": "住院号",
-                    "IndexFieldName": "visits.operation.records.INPATIENT_SN",
-                    "srchFieldName": "就诊.手术.手术记录.住院号",
+                    "IndexFieldName": "visits.operation.records.ASA_LEVEL",
+                    "srchFieldName": "就诊.手术.手术记录.ASA分级",
                     "dataType": "string"
                 },
                 {
@@ -5401,27 +5391,9 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "术前诊断",
-                    "IndexFieldName": "visits.operation.records.PREOPERATION_DIAGNOSIS",
-                    "srchFieldName": "就诊.手术.手术记录.术前诊断",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "术中诊断",
                     "IndexFieldName": "visits.operation.records.INTRAOPERATIVE_DIAGNOSIS",
                     "srchFieldName": "就诊.手术.手术记录.术中诊断",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "术后诊断",
-                    "IndexFieldName": "visits.operation.records.AFTEROPERATION_DIAGNOSIS",
-                    "srchFieldName": "就诊.手术.手术记录.术后诊断",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "麻醉方法",
-                    "IndexFieldName": "visits.operation.records.ANAESTHESIA_METHOD",
-                    "srchFieldName": "就诊.手术.手术记录.麻醉方法",
                     "dataType": "string"
                 },
                 {
@@ -5491,18 +5463,10 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "记录日期",
-                    "IndexFieldName": "visits.operation.records.FRECORD_DATE",
-                    "srchFieldName": "就诊.手术.手术记录.记录日期",
-                    "dataType": "date",
-                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
-                },
-                {
-                    "UIFieldName": "出院日期",
-                    "IndexFieldName": "visits.operation.records.DIS_DATE",
-                    "srchFieldName": "就诊.手术.手术记录.出院日期",
-                    "dataType": "date",
-                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
+                    "UIFieldName": "住院号",
+                    "IndexFieldName": "visits.operation.records.INPATIENT_SN",
+                    "srchFieldName": "就诊.手术.手术记录.住院号",
+                    "dataType": "string"
                 }
             ],
             "就诊.手术.麻醉": [
@@ -7828,41 +7792,25 @@
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
                 }
             ],
-            "就诊.手术.手术信息": [
+            "就诊.手术.手术记录": [
                 {
                     "UIFieldName": "手术开始时间",
-                    "IndexFieldName": "visits.operation.info.START_TIME",
-                    "srchFieldName": "就诊.手术.手术信息.手术开始时间",
+                    "IndexFieldName": "visits.operation.records.START_TIME",
+                    "srchFieldName": "就诊.手术.手术记录.手术开始时间",
                     "dataType": "date",
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
                 },
                 {
                     "UIFieldName": "手术结束时间",
-                    "IndexFieldName": "visits.operation.info.END_TIME",
-                    "srchFieldName": "就诊.手术.手术信息.手术结束时间",
+                    "IndexFieldName": "visits.operation.records.END_TIME",
+                    "srchFieldName": "就诊.手术.手术记录.手术结束时间",
                     "dataType": "date",
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
-                }
-            ],
-            "就诊.手术.手术记录": [
+                },
                 {
                     "UIFieldName": "手术日期",
                     "IndexFieldName": "visits.operation.records.OPERATION_DATE",
                     "srchFieldName": "就诊.手术.手术记录.手术日期",
-                    "dataType": "date",
-                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
-                },
-                {
-                    "UIFieldName": "记录日期",
-                    "IndexFieldName": "visits.operation.records.FRECORD_DATE",
-                    "srchFieldName": "就诊.手术.手术记录.记录日期",
-                    "dataType": "date",
-                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
-                },
-                {
-                    "UIFieldName": "出院日期",
-                    "IndexFieldName": "visits.operation.records.DIS_DATE",
-                    "srchFieldName": "就诊.手术.手术记录.出院日期",
                     "dataType": "date",
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
                 }
@@ -9431,185 +9379,13 @@
                     ]
                 }
             ],
-            "就诊.手术.手术信息": [
+            "就诊.手术.手术记录": [
                 {
                     "UIFieldName": "手术内部序列号",
-                    "IndexFieldName": "visits.operation.info.PROCEDURE_SN",
-                    "srchFieldName": "就诊.手术.手术信息.手术内部序列号",
+                    "IndexFieldName": "visits.operation.records.PROCEDURE_SN",
+                    "srchFieldName": "就诊.手术.手术记录.手术内部序列号",
                     "dataType": "string"
                 },
-                {
-                    "UIFieldName": "就诊编号",
-                    "IndexFieldName": "visits.operation.info.VISIT_SN",
-                    "srchFieldName": "就诊.手术.手术信息.就诊编号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "医嘱内部序列号",
-                    "IndexFieldName": "visits.operation.info.ORDER_SN",
-                    "srchFieldName": "就诊.手术.手术信息.医嘱内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "麻醉内部序列号",
-                    "IndexFieldName": "visits.operation.info.ANESTHESIA_SN",
-                    "srchFieldName": "就诊.手术.手术信息.麻醉内部序列号",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "医疗机构编码",
-                    "IndexFieldName": "visits.operation.info.ORG_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.医疗机构编码",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "医疗机构名称",
-                    "IndexFieldName": "visits.operation.info.ORG_NAME",
-                    "srchFieldName": "就诊.手术.手术信息.医疗机构名称",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "手术代码",
-                    "IndexFieldName": "visits.operation.info.OPERATION_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.手术代码",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "手术名称",
-                    "IndexFieldName": "visits.operation.info.OPERATION",
-                    "srchFieldName": "就诊.手术.手术信息.手术名称",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "手术名称_回填",
-                    "IndexFieldName": "visits.operation.info.OPERATION_SOURCE",
-                    "srchFieldName": "就诊.手术.手术信息.手术名称_回填",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "手术等级代码",
-                    "IndexFieldName": "visits.operation.info.OPERATION_LEVEL_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.手术等级代码",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "手术等级名称",
-                    "IndexFieldName": "visits.operation.info.OPERATION_LEVEL",
-                    "srchFieldName": "就诊.手术.手术信息.手术等级名称",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "手术医师",
-                    "IndexFieldName": "visits.operation.info.OPERATION_PHYSICIAN",
-                    "srchFieldName": "就诊.手术.手术信息.手术医师",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "麻醉医师",
-                    "IndexFieldName": "visits.operation.info.ANESTHESIA_PHYSICIAN",
-                    "srchFieldName": "就诊.手术.手术信息.麻醉医师",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "助手",
-                    "IndexFieldName": "visits.operation.info.ASSISTANT",
-                    "srchFieldName": "就诊.手术.手术信息.助手",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "护士",
-                    "IndexFieldName": "visits.operation.info.NURSE",
-                    "srchFieldName": "就诊.手术.手术信息.护士",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "手术切口愈合等级代码",
-                    "IndexFieldName": "visits.operation.info.HEALING_GRADE",
-                    "srchFieldName": "就诊.手术.手术信息.手术切口愈合等级代码",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "手术切口愈合等级名称",
-                    "IndexFieldName": "visits.operation.info.HEALING_GRADE_NAME",
-                    "srchFieldName": "就诊.手术.手术信息.手术切口愈合等级名称",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "手术部位代码",
-                    "IndexFieldName": "visits.operation.info.SURGERY_SITE_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.手术部位代码",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "手术部位名称",
-                    "IndexFieldName": "visits.operation.info.SURGERY_SITE",
-                    "srchFieldName": "就诊.手术.手术信息.手术部位名称",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "操作方法代码",
-                    "IndexFieldName": "visits.operation.info.OPERATION_METHOD_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.操作方法代码",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "操作方法名称",
-                    "IndexFieldName": "visits.operation.info.OPERATION_METHOD",
-                    "srchFieldName": "就诊.手术.手术信息.操作方法名称",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "操作次数",
-                    "IndexFieldName": "visits.operation.info.OPERATION_TIMES",
-                    "srchFieldName": "就诊.手术.手术信息.操作次数",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "介入物名称",
-                    "IndexFieldName": "visits.operation.info.INTERVENOR",
-                    "srchFieldName": "就诊.手术.手术信息.介入物名称",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "操作步骤",
-                    "IndexFieldName": "visits.operation.info.OPERATING_PROCEDURE",
-                    "srchFieldName": "就诊.手术.手术信息.操作步骤",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "手术持续时间（分钟）",
-                    "IndexFieldName": "visits.operation.info.DURATION",
-                    "srchFieldName": "就诊.手术.手术信息.手术持续时间（分钟）",
-                    "dataType": "long"
-                },
-                {
-                    "UIFieldName": "手术开始时间",
-                    "IndexFieldName": "visits.operation.info.START_TIME",
-                    "srchFieldName": "就诊.手术.手术信息.手术开始时间",
-                    "dataType": "date",
-                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
-                },
-                {
-                    "UIFieldName": "手术结束时间",
-                    "IndexFieldName": "visits.operation.info.END_TIME",
-                    "srchFieldName": "就诊.手术.手术信息.手术结束时间",
-                    "dataType": "date",
-                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
-                },
-                {
-                    "UIFieldName": "ASA分级",
-                    "IndexFieldName": "visits.operation.info.ASA_LEVEL",
-                    "srchFieldName": "就诊.手术.手术信息.ASA分级",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "系数",
-                    "IndexFieldName": "visits.operation.info.COEFFICIENCE",
-                    "srchFieldName": "就诊.手术.手术信息.系数",
-                    "dataType": "long"
-                }
-            ],
-            "就诊.手术.手术记录": [
                 {
                     "UIFieldName": "就诊编号",
                     "IndexFieldName": "visits.operation.records.VISIT_SN",
@@ -9617,15 +9393,179 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "患者编号",
-                    "IndexFieldName": "visits.operation.records.PATIENT_SN",
-                    "srchFieldName": "就诊.手术.手术记录.患者编号",
+                    "UIFieldName": "医嘱内部序列号",
+                    "IndexFieldName": "visits.operation.records.ORDER_SN",
+                    "srchFieldName": "就诊.手术.手术记录.医嘱内部序列号",
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "住院号",
-                    "IndexFieldName": "visits.operation.records.INPATIENT_SN",
-                    "srchFieldName": "就诊.手术.手术记录.住院号",
+                    "UIFieldName": "麻醉内部序列号",
+                    "IndexFieldName": "visits.operation.records.ANESTHESIA_SN",
+                    "srchFieldName": "就诊.手术.手术记录.麻醉内部序列号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "医疗机构编码",
+                    "IndexFieldName": "visits.operation.records.ORG_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.医疗机构编码",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "医疗机构名称",
+                    "IndexFieldName": "visits.operation.records.ORG_NAME",
+                    "srchFieldName": "就诊.手术.手术记录.医疗机构名称",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "手术代码",
+                    "IndexFieldName": "visits.operation.records.OPERATION_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.手术代码",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "手术名称",
+                    "IndexFieldName": "visits.operation.records.OPERATION",
+                    "srchFieldName": "就诊.手术.手术记录.手术名称",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "手术名称_回填",
+                    "IndexFieldName": "visits.operation.records.OPERATION_SOURCE",
+                    "srchFieldName": "就诊.手术.手术记录.手术名称_回填",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "手术等级代码",
+                    "IndexFieldName": "visits.operation.records.OPERATION_LEVEL_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.手术等级代码",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "手术等级名称",
+                    "IndexFieldName": "visits.operation.records.OPERATION_LEVEL",
+                    "srchFieldName": "就诊.手术.手术记录.手术等级名称",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "手术医师",
+                    "IndexFieldName": "visits.operation.records.OPERATION_PHYSICIAN",
+                    "srchFieldName": "就诊.手术.手术记录.手术医师",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "麻醉医师",
+                    "IndexFieldName": "visits.operation.records.ANESTHESIA_PHYSICIAN",
+                    "srchFieldName": "就诊.手术.手术记录.麻醉医师",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "助手",
+                    "IndexFieldName": "visits.operation.records.ASSISTANT",
+                    "srchFieldName": "就诊.手术.手术记录.助手",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "护士",
+                    "IndexFieldName": "visits.operation.records.NURSE",
+                    "srchFieldName": "就诊.手术.手术记录.护士",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "麻醉方法",
+                    "IndexFieldName": "visits.operation.records.ANAESTHESIA_METHOD",
+                    "srchFieldName": "就诊.手术.手术记录.麻醉方法",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "手术切口愈合等级代码",
+                    "IndexFieldName": "visits.operation.records.HEALING_GRADE",
+                    "srchFieldName": "就诊.手术.手术记录.手术切口愈合等级代码",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "手术切口愈合等级名称",
+                    "IndexFieldName": "visits.operation.records.HEALING_GRADE_NAME",
+                    "srchFieldName": "就诊.手术.手术记录.手术切口愈合等级名称",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "手术部位代码",
+                    "IndexFieldName": "visits.operation.records.SURGERY_SITE_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.手术部位代码",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "手术部位名称",
+                    "IndexFieldName": "visits.operation.records.SURGERY_SITE",
+                    "srchFieldName": "就诊.手术.手术记录.手术部位名称",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "操作方法代码",
+                    "IndexFieldName": "visits.operation.records.OPERATION_METHOD_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.操作方法代码",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "操作方法名称",
+                    "IndexFieldName": "visits.operation.records.OPERATION_METHOD",
+                    "srchFieldName": "就诊.手术.手术记录.操作方法名称",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "操作次数",
+                    "IndexFieldName": "visits.operation.records.OPERATION_TIMES",
+                    "srchFieldName": "就诊.手术.手术记录.操作次数",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "介入物名称",
+                    "IndexFieldName": "visits.operation.records.INTERVENOR",
+                    "srchFieldName": "就诊.手术.手术记录.介入物名称",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "操作步骤",
+                    "IndexFieldName": "visits.operation.records.OPERATING_PROCEDURE",
+                    "srchFieldName": "就诊.手术.手术记录.操作步骤",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "术前诊断",
+                    "IndexFieldName": "visits.operation.records.DIAGNOSIS_BEFORE",
+                    "srchFieldName": "就诊.手术.手术记录.术前诊断",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "术后诊断",
+                    "IndexFieldName": "visits.operation.records.DIAGNOSIS_AFTER",
+                    "srchFieldName": "就诊.手术.手术记录.术后诊断",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "手术持续时间（分钟）",
+                    "IndexFieldName": "visits.operation.records.DURATION",
+                    "srchFieldName": "就诊.手术.手术记录.手术持续时间（分钟）",
+                    "dataType": "long"
+                },
+                {
+                    "UIFieldName": "手术开始时间",
+                    "IndexFieldName": "visits.operation.records.START_TIME",
+                    "srchFieldName": "就诊.手术.手术记录.手术开始时间",
+                    "dataType": "date",
+                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
+                },
+                {
+                    "UIFieldName": "手术结束时间",
+                    "IndexFieldName": "visits.operation.records.END_TIME",
+                    "srchFieldName": "就诊.手术.手术记录.手术结束时间",
+                    "dataType": "date",
+                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
+                },
+                {
+                    "UIFieldName": "ASA分级",
+                    "IndexFieldName": "visits.operation.records.ASA_LEVEL",
+                    "srchFieldName": "就诊.手术.手术记录.ASA分级",
                     "dataType": "string"
                 },
                 {
@@ -9648,27 +9588,9 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "术前诊断",
-                    "IndexFieldName": "visits.operation.records.PREOPERATION_DIAGNOSIS",
-                    "srchFieldName": "就诊.手术.手术记录.术前诊断",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "术中诊断",
                     "IndexFieldName": "visits.operation.records.INTRAOPERATIVE_DIAGNOSIS",
                     "srchFieldName": "就诊.手术.手术记录.术中诊断",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "术后诊断",
-                    "IndexFieldName": "visits.operation.records.AFTEROPERATION_DIAGNOSIS",
-                    "srchFieldName": "就诊.手术.手术记录.术后诊断",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "麻醉方法",
-                    "IndexFieldName": "visits.operation.records.ANAESTHESIA_METHOD",
-                    "srchFieldName": "就诊.手术.手术记录.麻醉方法",
                     "dataType": "string"
                 },
                 {
@@ -9738,36 +9660,16 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "记录日期",
-                    "IndexFieldName": "visits.operation.records.FRECORD_DATE",
-                    "srchFieldName": "就诊.手术.手术记录.记录日期",
-                    "dataType": "date",
-                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
-                },
-                {
-                    "UIFieldName": "手术经过",
-                    "IndexFieldName": "visits.operation.records.OPERATION_STEPS",
-                    "srchFieldName": "就诊.手术.手术记录.手术经过",
+                    "UIFieldName": "患者编号",
+                    "IndexFieldName": "visits.operation.records.PATIENT_SN",
+                    "srchFieldName": "就诊.手术.手术记录.患者编号",
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "病历标题",
-                    "IndexFieldName": "visits.operation.records.ROUND_TYPE_NAME",
-                    "srchFieldName": "就诊.手术.手术记录.病历标题",
+                    "UIFieldName": "住院号",
+                    "IndexFieldName": "visits.operation.records.INPATIENT_SN",
+                    "srchFieldName": "就诊.手术.手术记录.住院号",
                     "dataType": "string"
-                },
-                {
-                    "UIFieldName": "病历内容",
-                    "IndexFieldName": "visits.operation.records.FEMR_CONTENT",
-                    "srchFieldName": "就诊.手术.手术记录.病历内容",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "出院日期",
-                    "IndexFieldName": "visits.operation.records.DIS_DATE",
-                    "srchFieldName": "就诊.手术.手术记录.出院日期",
-                    "dataType": "date",
-                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
                 }
             ],
             "就诊.手术.麻醉": [
@@ -19996,147 +19898,163 @@
                     ]
                 }
             ],
-            "就诊.手术.手术信息": [
+            "就诊.手术.手术记录": [
                 {
                     "UIFieldName": "医疗机构编码",
-                    "IndexFieldName": "visits.operation.info.ORG_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.医疗机构编码",
+                    "IndexFieldName": "visits.operation.records.ORG_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.医疗机构编码",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "医疗机构名称",
-                    "IndexFieldName": "visits.operation.info.ORG_NAME",
-                    "srchFieldName": "就诊.手术.手术信息.医疗机构名称",
+                    "IndexFieldName": "visits.operation.records.ORG_NAME",
+                    "srchFieldName": "就诊.手术.手术记录.医疗机构名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术代码",
-                    "IndexFieldName": "visits.operation.info.OPERATION_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.手术代码",
+                    "IndexFieldName": "visits.operation.records.OPERATION_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.手术代码",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术名称",
-                    "IndexFieldName": "visits.operation.info.OPERATION",
-                    "srchFieldName": "就诊.手术.手术信息.手术名称",
+                    "IndexFieldName": "visits.operation.records.OPERATION",
+                    "srchFieldName": "就诊.手术.手术记录.手术名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术等级代码",
-                    "IndexFieldName": "visits.operation.info.OPERATION_LEVEL_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.手术等级代码",
+                    "IndexFieldName": "visits.operation.records.OPERATION_LEVEL_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.手术等级代码",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术等级名称",
-                    "IndexFieldName": "visits.operation.info.OPERATION_LEVEL",
-                    "srchFieldName": "就诊.手术.手术信息.手术等级名称",
+                    "IndexFieldName": "visits.operation.records.OPERATION_LEVEL",
+                    "srchFieldName": "就诊.手术.手术记录.手术等级名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术医师",
-                    "IndexFieldName": "visits.operation.info.OPERATION_PHYSICIAN",
-                    "srchFieldName": "就诊.手术.手术信息.手术医师",
+                    "IndexFieldName": "visits.operation.records.OPERATION_PHYSICIAN",
+                    "srchFieldName": "就诊.手术.手术记录.手术医师",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "麻醉医师",
+                    "IndexFieldName": "visits.operation.records.ANESTHESIA_PHYSICIAN",
+                    "srchFieldName": "就诊.手术.手术记录.麻醉医师",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "助手",
-                    "IndexFieldName": "visits.operation.info.ASSISTANT",
-                    "srchFieldName": "就诊.手术.手术信息.助手",
+                    "IndexFieldName": "visits.operation.records.ASSISTANT",
+                    "srchFieldName": "就诊.手术.手术记录.助手",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "护士",
-                    "IndexFieldName": "visits.operation.info.NURSE",
-                    "srchFieldName": "就诊.手术.手术信息.护士",
+                    "IndexFieldName": "visits.operation.records.NURSE",
+                    "srchFieldName": "就诊.手术.手术记录.护士",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "麻醉方法",
+                    "IndexFieldName": "visits.operation.records.ANAESTHESIA_METHOD",
+                    "srchFieldName": "就诊.手术.手术记录.麻醉方法",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术切口愈合等级代码",
-                    "IndexFieldName": "visits.operation.info.HEALING_GRADE",
-                    "srchFieldName": "就诊.手术.手术信息.手术切口愈合等级代码",
+                    "IndexFieldName": "visits.operation.records.HEALING_GRADE",
+                    "srchFieldName": "就诊.手术.手术记录.手术切口愈合等级代码",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术切口愈合等级名称",
-                    "IndexFieldName": "visits.operation.info.HEALING_GRADE_NAME",
-                    "srchFieldName": "就诊.手术.手术信息.手术切口愈合等级名称",
+                    "IndexFieldName": "visits.operation.records.HEALING_GRADE_NAME",
+                    "srchFieldName": "就诊.手术.手术记录.手术切口愈合等级名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术部位代码",
-                    "IndexFieldName": "visits.operation.info.SURGERY_SITE_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.手术部位代码",
+                    "IndexFieldName": "visits.operation.records.SURGERY_SITE_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.手术部位代码",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术部位名称",
-                    "IndexFieldName": "visits.operation.info.SURGERY_SITE",
-                    "srchFieldName": "就诊.手术.手术信息.手术部位名称",
+                    "IndexFieldName": "visits.operation.records.SURGERY_SITE",
+                    "srchFieldName": "就诊.手术.手术记录.手术部位名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "操作方法代码",
-                    "IndexFieldName": "visits.operation.info.OPERATION_METHOD_CODE",
-                    "srchFieldName": "就诊.手术.手术信息.操作方法代码",
+                    "IndexFieldName": "visits.operation.records.OPERATION_METHOD_CODE",
+                    "srchFieldName": "就诊.手术.手术记录.操作方法代码",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "操作方法名称",
-                    "IndexFieldName": "visits.operation.info.OPERATION_METHOD",
-                    "srchFieldName": "就诊.手术.手术信息.操作方法名称",
+                    "IndexFieldName": "visits.operation.records.OPERATION_METHOD",
+                    "srchFieldName": "就诊.手术.手术记录.操作方法名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "操作次数",
-                    "IndexFieldName": "visits.operation.info.OPERATION_TIMES",
-                    "srchFieldName": "就诊.手术.手术信息.操作次数",
+                    "IndexFieldName": "visits.operation.records.OPERATION_TIMES",
+                    "srchFieldName": "就诊.手术.手术记录.操作次数",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "介入物名称",
-                    "IndexFieldName": "visits.operation.info.INTERVENOR",
-                    "srchFieldName": "就诊.手术.手术信息.介入物名称",
+                    "IndexFieldName": "visits.operation.records.INTERVENOR",
+                    "srchFieldName": "就诊.手术.手术记录.介入物名称",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "操作步骤",
-                    "IndexFieldName": "visits.operation.info.OPERATING_PROCEDURE",
-                    "srchFieldName": "就诊.手术.手术信息.操作步骤",
+                    "IndexFieldName": "visits.operation.records.OPERATING_PROCEDURE",
+                    "srchFieldName": "就诊.手术.手术记录.操作步骤",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "术前诊断",
+                    "IndexFieldName": "visits.operation.records.DIAGNOSIS_BEFORE",
+                    "srchFieldName": "就诊.手术.手术记录.术前诊断",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "术后诊断",
+                    "IndexFieldName": "visits.operation.records.DIAGNOSIS_AFTER",
+                    "srchFieldName": "就诊.手术.手术记录.术后诊断",
                     "dataType": "string"
                 },
                 {
                     "UIFieldName": "手术持续时间（分钟）",
-                    "IndexFieldName": "visits.operation.info.DURATION",
-                    "srchFieldName": "就诊.手术.手术信息.手术持续时间（分钟）",
+                    "IndexFieldName": "visits.operation.records.DURATION",
+                    "srchFieldName": "就诊.手术.手术记录.手术持续时间（分钟）",
                     "dataType": "long"
                 },
                 {
                     "UIFieldName": "手术开始时间",
-                    "IndexFieldName": "visits.operation.info.START_TIME",
-                    "srchFieldName": "就诊.手术.手术信息.手术开始时间",
+                    "IndexFieldName": "visits.operation.records.START_TIME",
+                    "srchFieldName": "就诊.手术.手术记录.手术开始时间",
                     "dataType": "date",
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
                 },
                 {
                     "UIFieldName": "手术结束时间",
-                    "IndexFieldName": "visits.operation.info.END_TIME",
-                    "srchFieldName": "就诊.手术.手术信息.手术结束时间",
+                    "IndexFieldName": "visits.operation.records.END_TIME",
+                    "srchFieldName": "就诊.手术.手术记录.手术结束时间",
                     "dataType": "date",
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
                 },
                 {
                     "UIFieldName": "ASA分级",
-                    "IndexFieldName": "visits.operation.info.ASA_LEVEL",
-                    "srchFieldName": "就诊.手术.手术信息.ASA分级",
-                    "dataType": "string"
-                }
-            ],
-            "就诊.手术.手术记录": [
-                {
-                    "UIFieldName": "住院号",
-                    "IndexFieldName": "visits.operation.records.INPATIENT_SN",
-                    "srchFieldName": "就诊.手术.手术记录.住院号",
+                    "IndexFieldName": "visits.operation.records.ASA_LEVEL",
+                    "srchFieldName": "就诊.手术.手术记录.ASA分级",
                     "dataType": "string"
                 },
                 {
@@ -20153,27 +20071,9 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "术前诊断",
-                    "IndexFieldName": "visits.operation.records.PREOPERATION_DIAGNOSIS",
-                    "srchFieldName": "就诊.手术.手术记录.术前诊断",
-                    "dataType": "string"
-                },
-                {
                     "UIFieldName": "术中诊断",
                     "IndexFieldName": "visits.operation.records.INTRAOPERATIVE_DIAGNOSIS",
                     "srchFieldName": "就诊.手术.手术记录.术中诊断",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "术后诊断",
-                    "IndexFieldName": "visits.operation.records.AFTEROPERATION_DIAGNOSIS",
-                    "srchFieldName": "就诊.手术.手术记录.术后诊断",
-                    "dataType": "string"
-                },
-                {
-                    "UIFieldName": "麻醉方法",
-                    "IndexFieldName": "visits.operation.records.ANAESTHESIA_METHOD",
-                    "srchFieldName": "就诊.手术.手术记录.麻醉方法",
                     "dataType": "string"
                 },
                 {
@@ -20243,18 +20143,10 @@
                     "dataType": "string"
                 },
                 {
-                    "UIFieldName": "记录日期",
-                    "IndexFieldName": "visits.operation.records.FRECORD_DATE",
-                    "srchFieldName": "就诊.手术.手术记录.记录日期",
-                    "dataType": "date",
-                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
-                },
-                {
-                    "UIFieldName": "出院日期",
-                    "IndexFieldName": "visits.operation.records.DIS_DATE",
-                    "srchFieldName": "就诊.手术.手术记录.出院日期",
-                    "dataType": "date",
-                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
+                    "UIFieldName": "住院号",
+                    "IndexFieldName": "visits.operation.records.INPATIENT_SN",
+                    "srchFieldName": "就诊.手术.手术记录.住院号",
+                    "dataType": "string"
                 }
             ],
             "就诊.手术.麻醉": [
@@ -22580,41 +22472,25 @@
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
                 }
             ],
-            "就诊.手术.手术信息": [
+            "就诊.手术.手术记录": [
                 {
                     "UIFieldName": "手术开始时间",
-                    "IndexFieldName": "visits.operation.info.START_TIME",
-                    "srchFieldName": "就诊.手术.手术信息.手术开始时间",
+                    "IndexFieldName": "visits.operation.records.START_TIME",
+                    "srchFieldName": "就诊.手术.手术记录.手术开始时间",
                     "dataType": "date",
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
                 },
                 {
                     "UIFieldName": "手术结束时间",
-                    "IndexFieldName": "visits.operation.info.END_TIME",
-                    "srchFieldName": "就诊.手术.手术信息.手术结束时间",
+                    "IndexFieldName": "visits.operation.records.END_TIME",
+                    "srchFieldName": "就诊.手术.手术记录.手术结束时间",
                     "dataType": "date",
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
-                }
-            ],
-            "就诊.手术.手术记录": [
+                },
                 {
                     "UIFieldName": "手术日期",
                     "IndexFieldName": "visits.operation.records.OPERATION_DATE",
                     "srchFieldName": "就诊.手术.手术记录.手术日期",
-                    "dataType": "date",
-                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
-                },
-                {
-                    "UIFieldName": "记录日期",
-                    "IndexFieldName": "visits.operation.records.FRECORD_DATE",
-                    "srchFieldName": "就诊.手术.手术记录.记录日期",
-                    "dataType": "date",
-                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
-                },
-                {
-                    "UIFieldName": "出院日期",
-                    "IndexFieldName": "visits.operation.records.DIS_DATE",
-                    "srchFieldName": "就诊.手术.手术记录.出院日期",
                     "dataType": "date",
                     "dateFormat": "yyyy-MM-dd HH:mm:ss"
                 }
