@@ -207,6 +207,7 @@ public interface SyUserMapper {
     List<User> getUserByLabID(@Param("labID") String labID, @Param("orgID") String orgID);
 
     List<String> getUserIDByLabID(@Param("labID") String labID, @Param("orgID") String orgID);
+    List<String> getUserIDsByLabID(@Param("labIDs") String[] labIDs, @Param("orgID") String orgID);
     /**
      * 获取组织内管理员
      * @param orgID
@@ -274,5 +275,8 @@ public interface SyUserMapper {
 
     int updateUseInfoWhenDelLab(@Param("labPID") String labPID,@Param("lab_pname") String lab_pname,
                                 @Param("labID") String labID,@Param("orgID") String orgID);
+    int updateUsersWhenDelLab(@Param("labPID") String labPID,@Param("lab_pname") String lab_pname,
+                              @Param("labIDs") String[] labIDs,@Param("orgID") String orgID);
+
 
 }
