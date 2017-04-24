@@ -354,10 +354,9 @@ public class UserController {
     @ResponseBody
     String checkUserRole(HttpServletRequest paramRe) {
         try {
-            JsonObject paramJson = jsonParser.parse(ParamUtils.getParam(paramRe)).getAsJsonObject();
-            String dept = paramJson.get("dept").getAsString();
-            if (StringUtils.isEmpty(dept)) return ParamUtils.errorParam("空科室");
             User user = (User) paramRe.getAttribute("currentUser");
+            String dept=user.getLab_name();
+            if (StringUtils.isEmpty(dept)) return ParamUtils.errorParam("空科室");
             Power power = user.getPower();
             Set<Resource> list = power.getHas_search();
             if (list == null || list.size() == 0) {
