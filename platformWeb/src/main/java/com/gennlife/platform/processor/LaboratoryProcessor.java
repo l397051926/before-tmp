@@ -871,7 +871,7 @@ public class LaboratoryProcessor {
                     ResultBean resultBean = new ResultBean();
                     resultBean.setCode(1);
                     resultBean.setInfo("系统角色 更新完成");
-                    RedisUtil.updateUserOnLine(updateUids);
+                    RedisUtil.updateUserOnLine(new TreeSet<String>(updateUids));
                     return gson.toJson(resultBean);
                 } else {
                     return ParamUtils.errorParam("该角色id对应角色不存在");
@@ -915,7 +915,7 @@ public class LaboratoryProcessor {
                 //System.out.println("end="+(start6-start5)+"ms");
                 ResultBean resultBean = new ResultBean();
                 resultBean.setCode(1);
-                RedisUtil.updateUserOnLine(updateUids);
+                RedisUtil.updateUserOnLine(new TreeSet<String>(updateUids));
                 return gson.toJson(resultBean);
             }
         }
@@ -1088,7 +1088,7 @@ public class LaboratoryProcessor {
                 AllDao.getInstance().getGroupDao().insertOneGroupRelationUid(map);
             }
             uids.addAll(list);
-            RedisUtil.updateUserOnLine(uids);
+            RedisUtil.updateUserOnLine(new TreeSet<String>(uids));
             re.setCode(1);
         }else {
             re.setCode(0);

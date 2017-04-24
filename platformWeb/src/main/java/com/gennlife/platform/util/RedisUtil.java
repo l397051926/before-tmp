@@ -193,7 +193,7 @@ public class RedisUtil {
     public static void updateUserOnLine(Collection<String> uidList) {
         if (uidList == null || uidList.size() == 0) return;
         logger.info("update users "+gson.toJsonTree(uidList));
-        new TreeSet<String>(uidList).forEach(uid->deleteUser(uid));//延迟更新
+        uidList.forEach(uid->deleteUser(uid));//延迟更新
         /*executorService.submit(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
