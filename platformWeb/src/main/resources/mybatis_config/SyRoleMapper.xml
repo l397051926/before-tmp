@@ -171,4 +171,12 @@
         )
 
     </select>
+    <select id="getUserIdByRole" resultType="java.lang.String">
+        SELECT
+        uid
+        FROM
+        gennlife_user_role where roleid=#{roleid}
+
+    </select>
+
 </mapper>

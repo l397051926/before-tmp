@@ -845,15 +845,12 @@ public class LaboratoryProcessor {
         if (role.getRoleid() == null) {
             return ParamUtils.errorParam("无角色id");
         }
-        Long start = System.currentTimeMillis();
         Role exRole = AllDao.getInstance().getSyRoleDao().getRoleByroleid(role.getRoleid());
-        Long start1 = System.currentTimeMillis();
         List<String> uids = (List<String>) role.getStaff();
-        //System.out.println("exRole="+(start1-start)+"ms");
         if (exRole == null) {
             return ParamUtils.errorParam("该角色id对应角色不存在");
         } else {
-            List<String> updateUids=(List<String>) exRole.getStaff();
+            List<String> updateUids=AllDao.getInstance().getSyRoleDao().getUserIdByRole(role.getRoleid());
             if(updateUids==null) updateUids=new LinkedList<>();
             updateUids.addAll(uids);
             String roleName = role.getRole();
@@ -874,7 +871,7 @@ public class LaboratoryProcessor {
                     ResultBean resultBean = new ResultBean();
                     resultBean.setCode(1);
                     resultBean.setInfo("系统角色 更新完成");
-                    RedisUtil.updateUserOnLine(updateUids);
+                    RedisUtil.updateUserOnLine(new TreeSet<String>(updateUids));
                     return gson.toJson(resultBean);
                 } else {
                     return ParamUtils.errorParam("该角色id对应角色不存在");
@@ -918,7 +915,7 @@ public class LaboratoryProcessor {
                 //System.out.println("end="+(start6-start5)+"ms");
                 ResultBean resultBean = new ResultBean();
                 resultBean.setCode(1);
-                RedisUtil.updateUserOnLine(updateUids);
+                RedisUtil.updateUserOnLine(new TreeSet<String>(updateUids));
                 return gson.toJson(resultBean);
             }
         }
@@ -1091,7 +1088,7 @@ public class LaboratoryProcessor {
                 AllDao.getInstance().getGroupDao().insertOneGroupRelationUid(map);
             }
             uids.addAll(list);
-            RedisUtil.updateUserOnLine(uids);
+            RedisUtil.updateUserOnLine(new TreeSet<String>(uids));
             re.setCode(1);
         }else {
             re.setCode(0);
