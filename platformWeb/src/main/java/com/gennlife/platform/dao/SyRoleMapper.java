@@ -121,4 +121,5 @@ public interface SyRoleMapper {
     List<DepartmentMap> getSlabNames();
     List<String> getSlabNameMappingByLabName(@Param("lab_name") String lab_name,@Param("orgID") String orgID);
 
+    List<String> getUserIdByRole(@Param("roleid")int roleid);
 }
