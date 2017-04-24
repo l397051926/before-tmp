@@ -47,4 +47,5 @@ public interface GroupMapper {
     List<Group> getGroupsByUid(Map<String, Object> confMap);
 
     int deleteGroupByGID(@Param("gid")String gid);
+    List<String> getGroupRelationUid(@Param("gid")String gid);
 }
