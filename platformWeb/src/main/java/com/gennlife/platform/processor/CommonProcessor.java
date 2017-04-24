@@ -68,6 +68,7 @@ public class CommonProcessor {
             }
             return FileUploadUtil.handleStaff(list,user);
         }catch (Exception e){
+            logger.error("",e);
             return ParamUtils.errorParam("出现异常");
         }
     }
