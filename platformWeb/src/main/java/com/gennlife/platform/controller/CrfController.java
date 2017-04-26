@@ -443,6 +443,7 @@ public class CrfController {
             JsonObject paramObj = jsonParser.parse(param).getAsJsonObject();
             logger.info("CRF录入通过关键字获取智能提示 请求参数 = " + param);
             resultStr = processor.inputSmartPrompt(paramObj);
+            logger.info("CRF录入通过关键字获取智能提示 返回结果: " + resultStr);
         } catch (Exception e) {
             logger.error("CRF录入通过关键字获取智能提示" + e);
             resultStr = ParamUtils.errorParam("出现异常");
