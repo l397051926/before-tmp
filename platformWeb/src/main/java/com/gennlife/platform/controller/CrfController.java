@@ -432,7 +432,7 @@ public class CrfController {
             logger.error("CsvImportDetail 出现异常", e);
         }
     }
-    @RequestMapping(value = "/InputSmartPrompt", method = RequestMethod.GET)
+    @RequestMapping(value = "/InputSmartPrompt", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String InputSmartPrompt(HttpServletRequest paramRe) {
