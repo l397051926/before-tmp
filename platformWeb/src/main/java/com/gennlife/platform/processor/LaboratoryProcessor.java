@@ -845,35 +845,33 @@ public class LaboratoryProcessor {
         if (role.getRoleid() == null) {
             return ParamUtils.errorParam("无角色id");
         }
-        Long start = System.currentTimeMillis();
         Role exRole = AllDao.getInstance().getSyRoleDao().getRoleByroleid(role.getRoleid());
-        Long start1 = System.currentTimeMillis();
-        //System.out.println("exRole="+(start1-start)+"ms");
+        List<String> uids = (List<String>) role.getStaff();
         if (exRole == null) {
             return ParamUtils.errorParam("该角色id对应角色不存在");
         } else {
+            List<String> updateUids=AllDao.getInstance().getSyRoleDao().getUserIdByRole(role.getRoleid());
+            if(updateUids==null) updateUids=new LinkedList<>();
+            updateUids.addAll(uids);
             String roleName = role.getRole();
             if ("1".equals(exRole.getRole_type())) {
                 Role role1 = AllDao.getInstance().getSyRoleDao().getRoleByroleid(role.getRoleid());
                 Long start2 = System.currentTimeMillis();
                 //System.out.println("role1="+(start2-start1)+"ms");
                 if (role1 != null) {//
-                    Set<String> uidList = new TreeSet<>();
-                    uidList.addAll((List<String>) role.getStaff());
-
                     Integer[] roleids = new Integer[]{role.getRoleid()};
                     AllDao.getInstance().getSyRoleDao().deleteRelationsByRoleids(roleids);//删除原有的关联关系
                     Long start3 = System.currentTimeMillis();
                     //System.out.println("deleteRelationsByRoleids="+(start3-start2)+"ms");
-                    for (String uid: uidList) {
+                    for (String uid: uids) {
                         AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(exRole.getRoleid(),uid);//插入新的
                     }
                     Long start4 = System.currentTimeMillis();
                     //System.out.println("insertUserRoleRelation="+(start4-start3)+"ms");
-                    RedisUtil.updateUserOnLine(uidList);
                     ResultBean resultBean = new ResultBean();
                     resultBean.setCode(1);
                     resultBean.setInfo("系统角色 更新完成");
+                    RedisUtil.updateUserOnLine(new TreeSet<String>(updateUids));
                     return gson.toJson(resultBean);
                 } else {
                     return ParamUtils.errorParam("该角色id对应角色不存在");
@@ -913,12 +911,11 @@ public class LaboratoryProcessor {
                     resourceObj.setRoleid(role.getRoleid());
                     AllDao.getInstance().getSyResourceDao().insertRoleResourceRelation(resourceObj);//插入新的
                 }
-                List<String> uids = (List<String>) role.getStaff();
-                RedisUtil.updateUserOnLine(uids);
                 Long start6 = System.currentTimeMillis();
                 //System.out.println("end="+(start6-start5)+"ms");
                 ResultBean resultBean = new ResultBean();
                 resultBean.setCode(1);
+                RedisUtil.updateUserOnLine(new TreeSet<String>(updateUids));
                 return gson.toJson(resultBean);
             }
         }
@@ -1077,6 +1074,8 @@ public class LaboratoryProcessor {
             return ParamUtils.errorParam("参数异常");
         }
         List<String> list = (List<String>) group.getMembers();
+        List<String> uids=AllDao.getInstance().getGroupDao().getGroupRelationUid(group.getGid());
+        if(uids==null)uids=new LinkedList<>();
         int count = AllDao.getInstance().getGroupDao().updateOneGroup(group);
         ResultBean re = new ResultBean();
         if(count == 1){
@@ -1088,7 +1087,8 @@ public class LaboratoryProcessor {
                 map.put("uid",uid);
                 AllDao.getInstance().getGroupDao().insertOneGroupRelationUid(map);
             }
-            RedisUtil.updateUserOnLine(list);
+            uids.addAll(list);
+            RedisUtil.updateUserOnLine(new TreeSet<String>(uids));
             re.setCode(1);
         }else {
             re.setCode(0);

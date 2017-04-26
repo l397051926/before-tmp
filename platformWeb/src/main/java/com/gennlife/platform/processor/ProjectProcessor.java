@@ -112,6 +112,7 @@ public class ProjectProcessor {
             counter = AllDao.getInstance().getProjectDao().insertProUserList(proUserList);
             counter = AllDao.getInstance().getProjectDao().insertProLog(proLog);
         } catch (ParseException e) {
+            logger.error("",e);
             return ParamUtils.errorParam("出现异常");
         }
         ResultBean resultBean = new ResultBean();
@@ -194,6 +195,7 @@ public class ProjectProcessor {
             }
 
         }catch (Exception e){
+            logger.error("",e);
             return ParamUtils.errorParam("出现异常");
         }
 
@@ -478,6 +480,7 @@ public class ProjectProcessor {
             userBean.setInfo(info);
             return gson.toJson(userBean);
         }catch (Exception e){
+            logger.error("",e);
             return ParamUtils.errorParam("出现异常");
         }
 
@@ -621,6 +624,7 @@ public class ProjectProcessor {
             projectPlan = JsonUtils.parseCreatePlan(param, true);
             projectPlan.setPlanStatus(2);//初建状态
         }catch (Exception e){
+            logger.error("",e);
             return ParamUtils.errorParam("出现异常");
         }
         int counter = AllDao.getInstance().getProjectDao().updateProPlan(projectPlan);

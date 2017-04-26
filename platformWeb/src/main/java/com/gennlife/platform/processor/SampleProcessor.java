@@ -430,6 +430,7 @@ public class SampleProcessor {
                 return gson.toJson(resultBean);
             }
         } catch (Exception e) {
+            logger.error("",e);
             return ParamUtils.errorParam("出现异常");
         }
     }

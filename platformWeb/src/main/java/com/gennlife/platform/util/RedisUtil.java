@@ -15,10 +15,7 @@ import redis.clients.jedis.JedisPool;
 
 import java.io.StringReader;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -195,6 +192,7 @@ public class RedisUtil {
 
     public static void updateUserOnLine(Collection<String> uidList) {
         if (uidList == null || uidList.size() == 0) return;
+        logger.info("update users "+gson.toJsonTree(uidList));
         uidList.forEach(uid->deleteUser(uid));//延迟更新
         /*executorService.submit(new Callable<Boolean>() {
             @Override

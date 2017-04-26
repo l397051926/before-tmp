@@ -251,6 +251,10 @@
         DELETE from gennlife_user_group
         WHERE gid=#{gid}
     </delete>
+    <select id="getGroupRelationUid" resultType="java.lang.String">
+        select uid from gennlife_user_group
+        WHERE gid=#{gid}
+    </select>
     <select id="getUsersBySearchNameGroupID" parameterType="map" resultMap="com.gennlife.platform.model.User">
         SELECT
         <include refid="GroupMemberColumn"/>
