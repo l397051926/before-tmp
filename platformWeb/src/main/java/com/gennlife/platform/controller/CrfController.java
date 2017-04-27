@@ -1,6 +1,7 @@
 package com.gennlife.platform.controller;
 
 import com.gennlife.platform.authority.AuthorityUtil;
+import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.CommonProcessor;
 import com.gennlife.platform.processor.CrfProcessor;
@@ -8,6 +9,7 @@ import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
+import com.gennlife.platform.util.SpringContextUtil;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -96,7 +98,13 @@ public class CrfController {
             User user = (User) paramRe.getAttribute("currentUser");
             String indexName = ConfigurationService.getOrgIDIndexNamemap().get(user.getOrgID());
             if (indexName == null) {
-                return ParamUtils.errorParam("用户所在的组织无法建立索引");
+                String needToCreateIndex = ((SystemDefault)SpringContextUtil.getBean("systemDefault")).getNeedToCreateIndex();
+                if (needToCreateIndex.equals(true)) {
+                    return ParamUtils.errorParam("用户所在的组织无法建立索引");
+                } else {
+                    // 不需要建立索引
+                    logger.info("不需要建立索引");
+                }
             }
             logger.info("上传crf数据 post方式 参数=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
@@ -449,6 +457,22 @@ public class CrfController {
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("CRF录入通过关键字获取智能提示 耗时 " + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+    @RequestMapping(value = "/UploadImage", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String UploadImage(@RequestParam(value = "file") CommonsMultipartFile file, HttpServletRequest paramRe, HttpServletResponse response) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+//            logger.info("");
+            resultStr = processor.UploadImage(file);
+        } catch (Exception e) {
+            logger.error("上传图片错误" + e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("图片上传 耗时 " + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 }

@@ -445,4 +445,34 @@ public class CrfProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String UploadImage(MultipartFile file) {
+        try {
+            String url = ConfigurationService.getUrlBean().getImageUpload(); // fs图片上传后台接口
+            byte[] bytes = file.getBytes();
+            String fileName = file.getOriginalFilename();
+            String path = ConfigurationService.getFileBean().getCRFFileLocation();
+            File f = new File(path + LogUtils.getString_Time() + "-" + fileName);
+            if (!f.exists()) {
+                logger.info("文件路径 " + f.getAbsolutePath());
+                f.createNewFile();
+            }
+            FileWriter fileWriter = new FileWriter(f);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(new String(bytes, "gbk"));
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            // 将文件传给fs
+            String resultStr = HttpRequestUtils.httpPostImg(url, f);
+            f.delete();
+            if (StringUtils.isEmpty(resultStr)) {
+                return ParamUtils.errorParam("上传图片失败");
+            } else {
+                return resultStr;
+            }
+        } catch (Exception e) {
+            logger.error("", e);
+            return ParamUtils.errorParam("出现异常");
+        }
+    }
 }
