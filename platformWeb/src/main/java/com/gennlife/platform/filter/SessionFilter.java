@@ -72,6 +72,7 @@ public class SessionFilter implements Filter {
             if (user == null) {
                 //LogUtils.BussnissLogError("RedisUtil.getUser取不到数据:" + uid);
                 user = UserProcessor.getUserByUids(uid);
+                RedisUtil.setUser(user);
                 if (user == null) {
                     LogUtils.BussnissLogError("错误user id");
                     view.viewString(ParamUtils.errorSessionLosParam(), response);
