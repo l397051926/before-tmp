@@ -112,7 +112,7 @@ public class RedisUtil {
         String exSessionID = getValue(user.getUid());
         exit(user.getUid(), exSessionID);
         if (setValue(user.getUid(), sessionID) &&
-                setValue(sessionID, user.getUid()) && setUser(user)) {
+                setValue(sessionID, user.getUid()) && setUser(UserProcessor.getUserByUids(user.getUid()))) {
             LogUtils.BussnissLog("登录设置:" + sessionID + "=" + user.getUid() + "成功");
         } else {
             exit(user.getUid(), sessionID);
