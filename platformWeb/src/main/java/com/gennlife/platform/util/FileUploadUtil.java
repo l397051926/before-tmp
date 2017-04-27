@@ -157,6 +157,15 @@ public class FileUploadUtil {
                 String tel = "";
                 if(telIndex != null){
                     tel = terms[telIndex];
+                    if(!StringUtils.isEmpty(tel))
+                    {
+                        if(!StringUtils.isEmpty(tel.replaceAll("[\\d-]]","")))
+                        {
+                            srcList.add(line+",失败,电话号码格式错误");
+                            continue;
+                        }
+                    }
+
                 }
                 String uposition = "";
                 if(upositionIndex != null){
