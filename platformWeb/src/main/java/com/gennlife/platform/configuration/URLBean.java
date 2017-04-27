@@ -1,5 +1,7 @@
 package com.gennlife.platform.configuration;
 
+import javax.swing.*;
+
 /**
  * Created by chen-song on 16/5/13.
  */
@@ -402,6 +404,8 @@ public class URLBean {
      * CRF录入智能提示
      */
     private String InputSmartPrompt = null;
+
+    private String ImageUpload = null;
 
 
     public String getCRFImportMap() {
@@ -1151,5 +1155,13 @@ public class URLBean {
 
     public void setInputSmartPrompt(String InputSmartPrompt) {
         this.InputSmartPrompt = InputSmartPrompt;
+    }
+
+    public void setImageUpload(String ImageUpload) {
+        this.ImageUpload = ImageUpload;
+    }
+
+    public String getImageUpload() {
+        return this.ImageUpload;
     }
 }

@@ -8,6 +8,7 @@ public class SystemDefault {
     private String searchItemSetDefault;
     private String needGroup;
     private String passwdOperator;
+    private String needToCreateIndex;
 
     public String getNeedGroup() {
         return needGroup;
@@ -31,5 +32,13 @@ public class SystemDefault {
 
     public String getPasswdOperator() {
         return passwdOperator;
+    }
+
+    public String getNeedToCreateIndex() {
+        return needToCreateIndex;
+    }
+
+    public void setNeedToCreateIndex(String needToCreateIndex) {
+        this.needToCreateIndex = needToCreateIndex;
     }
 }

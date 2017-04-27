@@ -40,18 +40,18 @@
         <property name="casePatientChemotherapyInfo" value="http://192.168.0.206:8111/FileService/PatientDetail/chemotherapy_info"></property>
 
         <!--vitaBoard 服务-->
-        <property name="caseSimilarServiceVitaboardparam" value="http://10.0.0.95:8111/FileService/SimilarService/vitaboardparam"></property>
-        <property name="caseSimilarServiceSimilarParam" value="http://10.0.0.95:8111/FileService/SimilarService/SimilarParam"></property>
-        <property name="caseSimilarServiceGetSimilars" value="http://10.0.0.95:8111/FileService/SimilarService/vitaboard"></property>
-        <property name="caseSimilarServiceSimilarQuery" value="http://10.0.0.95:8111/FileService/SimilarService/SimilarQuery"></property>
-        <property name="caseSimilarServiceSimilarBasicDetail" value="http://10.0.0.95:8111/FileService/SimilarService/SimilarBasicDetail"></property>
-        <property name="caseSimilarServiceSimilarPatientInfo" value="http://10.0.0.95:8111/FileService/SimilarService/SimilarPatientInfo"></property>
-        <property name="caseSimilarServiceSimilarPatientExtraInfo" value="http://10.0.0.95:8111/FileService/SimilarService/SimilarPatientExtraInfo"></property>
+        <property name="caseSimilarServiceVitaboardparam" value="http://192.168.0.206:8111/FileService/SimilarService/vitaboardparam"></property>
+        <property name="caseSimilarServiceSimilarParam" value="http://192.168.0.206:8111/FileService/SimilarService/SimilarParam"></property>
+        <property name="caseSimilarServiceGetSimilars" value="http://192.168.0.206:8111/FileService/SimilarService/vitaboard"></property>
+        <property name="caseSimilarServiceSimilarQuery" value="http://192.168.0.206:8111/FileService/SimilarService/SimilarQuery"></property>
+        <property name="caseSimilarServiceSimilarBasicDetail" value="http://192.168.0.206:8111/FileService/SimilarService/SimilarBasicDetail"></property>
+        <property name="caseSimilarServiceSimilarPatientInfo" value="http://192.168.0.206:8111/FileService/SimilarService/SimilarPatientInfo"></property>
+        <property name="caseSimilarServiceSimilarPatientExtraInfo" value="http://192.168.0.206:8111/FileService/SimilarService/SimilarPatientExtraInfo"></property>
 
         <!--vitaGram 服务-->
-        <property name="vitaGramServerMedicalHistoryRecommendPath" value="http://10.0.0.165:9900/vitaGram-server/medical_history_recommend_path"></property>
-        <property name="vitaGramServerNccnRecommendPath" value="http://10.0.0.165:9900/vitaGram-server/nccn_recommend_path"></property>
-        <property name="vitaGramServerVitaGramData" value="http://10.0.0.165:9900/vitaGram-server/vitaGramData"></property>
+        <!--<property name="vitaGramServerMedicalHistoryRecommendPath" value="http://10.0.0.165:9900/vitaGram-server/medical_history_recommend_path"></property>-->
+        <!--<property name="vitaGramServerNccnRecommendPath" value="http://10.0.0.165:9900/vitaGram-server/nccn_recommend_path"></property>-->
+        <!--<property name="vitaGramServerVitaGramData" value="http://10.0.0.165:9900/vitaGram-server/vitaGramData"></property>-->
 
         <!--FS 样本操作 -->
         <property name="sampleImportIURL" value="http://192.168.0.206:8111/FileService/DataResultExport/data_export"/>
@@ -60,20 +60,20 @@
         <property name="sampleDetailSearchURL" value="http://192.168.0.206:8111/FileService/DataResultExport/SearchDataSet"/>
         <property name="sampleUploadAdaptTagURL" value="http://192.168.0.206:8111/FileService/DataResultExport/UploadAdaptTag"/>
         <property name="sampleImportChecKIURL" value="http://192.168.0.206:8111/FileService/DataResultExport/data_check"></property>
-
+        <property name="ImageUpload" value="http://192.168.0.206:8111/FileService/image/UploadImage"></property>
 
         <!--FS CRF导入文件 -->
         <property name="fileStoreForCRFImport" value="http://192.168.0.206:8111/FileService/PatientDetail/UploadCsvFile"></property>
 
 
         <!--知识库服务 接口 -->
-        <property name="knowledgeURL" value="http://192.168.0.110:8081/knowledge/graph"/>
-        <property name="knowledgeDiseaseSearchGenesURL" value="http://192.168.0.110:8081/knowledge/DiseaseSearchGenes"/>
-        <property name="knowledgeGeneInfoURL" value="http://192.168.0.110:8081/knowledge/GeneInfo"/>
-        <property name="knowledgeVariationInfoURL" value="http://192.168.0.110:8081/knowledge/VariationInfo"/>
-        <property name="knowledgeDetailVariationSearchDiseaseURL" value="http://192.168.0.110:8081/knowledge/VariationInfo"/>
-        <property name="knowledgeDetailVariationSearchDrugURL" value="http://192.168.0.110:8081/knowledge/VariationInfo"/>
-        <property name="knowledgePharmGKBSearchDrugURL" value="http://192.168.0.110:8081/knowledge/PharmGKBSearchDrug"/>
+        <!--<property name="knowledgeURL" value="http://192.168.0.110:8081/knowledge/graph"/>-->
+        <!--<property name="knowledgeDiseaseSearchGenesURL" value="http://192.168.0.110:8081/knowledge/DiseaseSearchGenes"/>-->
+        <!--<property name="knowledgeGeneInfoURL" value="http://192.168.0.110:8081/knowledge/GeneInfo"/>-->
+        <!--<property name="knowledgeVariationInfoURL" value="http://192.168.0.110:8081/knowledge/VariationInfo"/>-->
+        <!--<property name="knowledgeDetailVariationSearchDiseaseURL" value="http://192.168.0.110:8081/knowledge/VariationInfo"/>-->
+        <!--<property name="knowledgeDetailVariationSearchDrugURL" value="http://192.168.0.110:8081/knowledge/VariationInfo"/>-->
+        <!--<property name="knowledgePharmGKBSearchDrugURL" value="http://192.168.0.110:8081/knowledge/PharmGKBSearchDrug"/>-->
         <!--CRF 服务接口 -->
         <property name="CRFProjectCRFListURL" value="http://192.168.0.206:6060/auto/ProjectCrfList"/>
         <property name="CRFAutoMapURL" value="http://192.168.0.206:6060/auto/AutoMap"/>
@@ -101,40 +101,40 @@
         <property name="InputSmartPrompt" value="http://192.168.0.206:6060/crf/InputSmartPrompt"/>
 
         <!--R 服务接口-->
-        <property name="RRun" value="http://192.168.0.110:1235/r_run"/>
-        <property name="RStop" value="http://192.168.0.110:1235/r_stop"/>
-        <property name="RSave" value="http://192.168.0.110:1235/r_save"/>
-        <property name="RLoad" value="http://192.168.0.110:1235/r_load"/>
-        <property name="RList" value="http://192.168.0.110:1235/r_list"/>
+        <!--<property name="RRun" value="http://192.168.0.110:1235/r_run"/>-->
+        <!--<property name="RStop" value="http://192.168.0.110:1235/r_stop"/>-->
+        <!--<property name="RSave" value="http://192.168.0.110:1235/r_save"/>-->
+        <!--<property name="RLoad" value="http://192.168.0.110:1235/r_load"/>-->
+        <!--<property name="RList" value="http://192.168.0.110:1235/r_list"/>-->
         <!--工作区计算服务接口 -->
-        <property name="AtoolURL" value="http://192.168.0.110:81/get_statistic"/>
-        <property name="toolsURL" value="http://192.168.0.110:81/get_tools"/>
-        <property name="CSSmg" value="http://192.168.0.110:81/smg"/>
+        <!--<property name="AtoolURL" value="http://192.168.0.110:81/get_statistic"/>-->
+        <!--<property name="toolsURL" value="http://192.168.0.110:81/get_tools"/>-->
+        <!--<property name="CSSmg" value="http://192.168.0.110:81/smg"/>-->
 
         <property name="EmailSendURL" value="http://119.253.137.167/uranus/verify_email.html?token="></property>
-        <property name="CSBaseline" value="http://192.168.0.110:81/baseline"/>
+        <!--<property name="CSBaseline" value="http://192.168.0.110:81/baseline"/>-->
     </bean>
     <!--MemCached配置-->
-    <bean id="MemCachedConf" class="com.gennlife.platform.configuration.MemCachedConf">
-        <property name="servers">
-            <array value-type="java.lang.String">
-                <value>192.168.0.110:11211</value>
-            </array>
-        </property>
-        <property name="weights">
-            <array value-type="java.lang.Integer">
-                <value>2</value>
-            </array>
-        </property>
-        <property name="initConnections" value="5"/>
-        <property name="minConnections" value="5" />
-        <property name="maxConnections" value="250" />
-        <property name="maxIdle" value="21600000" />
-        <property name="maintSleep" value="30" />
-        <property name="setNagle" value="false" />
-        <property name="socketConnectTO" value="0" />
-        <property name="socketTO" value="3000" />
-    </bean>
+    <!--<bean id="MemCachedConf" class="com.gennlife.platform.configuration.MemCachedConf">-->
+        <!--<property name="servers">-->
+            <!--<array value-type="java.lang.String">-->
+                <!--<value>192.168.0.110:11211</value>-->
+            <!--</array>-->
+        <!--</property>-->
+        <!--<property name="weights">-->
+            <!--<array value-type="java.lang.Integer">-->
+                <!--<value>2</value>-->
+            <!--</array>-->
+        <!--</property>-->
+        <!--<property name="initConnections" value="5"/>-->
+        <!--<property name="minConnections" value="5" />-->
+        <!--<property name="maxConnections" value="250" />-->
+        <!--<property name="maxIdle" value="21600000" />-->
+        <!--<property name="maintSleep" value="30" />-->
+        <!--<property name="setNagle" value="false" />-->
+        <!--<property name="socketConnectTO" value="0" />-->
+        <!--<property name="socketTO" value="3000" />-->
+    <!--</bean>-->
     <!--redis 配置-->
     <bean name="genericObjectPoolConfig" class="org.apache.commons.pool2.impl.GenericObjectPoolConfig">
         <property name="maxWaitMillis" value="-1" />

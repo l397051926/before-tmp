@@ -191,6 +191,44 @@ public class HttpRequestUtils {
 		return null;
 	}
 
+	public static String httpPostImg(String url, File file) {
+		HttpClient httpClient = new DefaultHttpClient();
+		HttpParams ps = httpClient.getParams();
+		ps.setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET, Charset.forName("GB2312"));
+		// 实例化post提交方式
+		HttpPost post = new HttpPost(url);
+		try {
+			// 实例化参数对象
+			MultipartEntity params = new MultipartEntity();
+			// 设置上传文件
+			// 文件参数内容
+			FileBody fileBody = new FileBody(file);
+			// 添加文件参数
+			params.addPart("Image", fileBody);
+			post.setEntity(params);
+			// 执行post请求并得到返回对象 [ 到这一步我们的请求就开始了 ]
+			HttpResponse resp = httpClient.execute(post);
+			if (resp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				String str = null;
+				try {
+					str = EntityUtils.toString(resp.getEntity());
+					return str;
+				} catch (Exception e) {
+					logger.error("" + url, e);
+				}
+			}
+		} catch (UnsupportedEncodingException e) {
+			logger.error("",e);
+		} catch (ClientProtocolException e) {
+			logger.error("",e);
+		} catch (IOException e) {
+			logger.error("",e);
+		} catch (IllegalStateException e) {
+			logger.error("",e);
+		}
+		return null;
+	}
+
 	public static String httpPostNew(String url,File file,String fileName) {
 		// 实例化http客户端
 		HttpClient httpClient = new DefaultHttpClient();

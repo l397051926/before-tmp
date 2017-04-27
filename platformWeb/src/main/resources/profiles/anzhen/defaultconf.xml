@@ -6,5 +6,6 @@
 <bean id="systemDefault" class="com.gennlife.platform.bean.conf.SystemDefault" scope="singleton">
     <property name="searchItemSetDefault" value="Angiocardiopathy"/>
     <property name="needGroup" value="false"/>
+    <property name="needToCreateIndex" value="false"/>
 </bean>
 </beans>
