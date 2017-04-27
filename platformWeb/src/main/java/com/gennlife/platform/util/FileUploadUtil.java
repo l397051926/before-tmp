@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
 import java.io.*;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -159,12 +160,17 @@ public class FileUploadUtil {
                     tel = terms[telIndex];
                     if(!StringUtils.isEmpty(tel))
                     {
-                        if(!StringUtils.isEmpty(tel.replaceAll("[\\d-]]","")))
+                        try {
+                            BigDecimal db = new BigDecimal(tel.replaceAll("[\r\n\t ]",""));
+                            tel = db.toPlainString();
+                        }
+                        catch (Exception e)
                         {
-                            srcList.add(line+",失败,电话号码格式错误");
+                            srcList.add(line+",失败,号码错误");
                             continue;
                         }
                     }
+
 
                 }
                 String uposition = "";
