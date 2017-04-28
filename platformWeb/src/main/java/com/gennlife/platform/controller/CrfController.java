@@ -464,6 +464,7 @@ public class CrfController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
+            logger.info("图片上传 beginning");
             resultStr = processor.UploadImage(file);
         } catch (Exception e) {
             logger.error("上传图片错误" + e);
@@ -500,6 +501,7 @@ public class CrfController {
         String resultStr = null;
         try {
             // 透传到FS
+            logger.info("删除图片 id: " + image_id);
             resultStr = processor.deleteImg(image_id);
         } catch (Exception e) {
             logger.error("删除图片失败" + e);
