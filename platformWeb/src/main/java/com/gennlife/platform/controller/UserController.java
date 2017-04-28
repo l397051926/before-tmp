@@ -349,7 +349,7 @@ public class UserController {
     /**
      * 科室权限校验
      */
-    @RequestMapping(value = "/checkUserRole", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/checkUserRole", method = {RequestMethod.POST,RequestMethod.GET}, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String checkUserRole(HttpServletRequest paramRe) {
@@ -360,7 +360,7 @@ public class UserController {
             Power power = user.getPower();
             Set<Resource> list = power.getHas_search();
             if (list == null || list.size() == 0) {
-                return ParamUtils.errorParam("无权限");
+                return ParamUtils.errorParam("无权限,科室列表空");
             }
             boolean find = false;
             String orgID = user.getOrgID();
@@ -371,7 +371,7 @@ public class UserController {
                 }
             }
             if (find == false) {
-                return ParamUtils.errorParam("无权限");
+                return ParamUtils.errorParam("无权限 unfind dept "+dept);
             }
             List<String> depts = new LinkedList<>();
             depts.add(dept);

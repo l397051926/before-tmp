@@ -77,6 +77,7 @@ public class SessionFilter implements Filter {
                     view.viewString(ParamUtils.errorSessionLosParam(), response);
                     return;
                 }
+                RedisUtil.setUser(user);
 
             }
 
