@@ -479,7 +479,7 @@ public class CrfProcessor {
     public String deleteImg(String image_id) {
         try {
             String url = ConfigurationService.getUrlBean().getImageDel() + image_id;
-            String result = HttpRequestUtils.httpGet(url);
+            String result = HttpRequestUtils.httpDelte(url);
             return result;
         } catch (Exception e) {
             logger.error("", e);
