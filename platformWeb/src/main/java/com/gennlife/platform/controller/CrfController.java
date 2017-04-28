@@ -1,6 +1,7 @@
 package com.gennlife.platform.controller;
 
 import com.gennlife.platform.authority.AuthorityUtil;
+import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.CommonProcessor;
@@ -17,10 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -459,20 +457,55 @@ public class CrfController {
         logger.info("CRF录入通过关键字获取智能提示 耗时 " + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-    @RequestMapping(value = "/UploadImage", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/image", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String UploadImage(@RequestParam(value = "file") CommonsMultipartFile file, HttpServletRequest paramRe, HttpServletResponse response) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-//            logger.info("");
             resultStr = processor.UploadImage(file);
         } catch (Exception e) {
             logger.error("上传图片错误" + e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("图片上传 耗时 " + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+    @RequestMapping(value = "/image/{image_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getImageUrl(@PathVariable(value="image_id") String image_id) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            // 处理获取图片接口地址
+            String url = ConfigurationService.getUrlBean().getImageUrl();
+            resultStr = url + image_id;
+        } catch (Exception e) {
+            logger.error("获取图片URL地址失败" + e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取图片URL地址 耗时 " + (System.currentTimeMillis() - start) + "ms");
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(1);
+        resultBean.setData(resultStr);
+        return gson.toJson(resultBean);
+    }
+    @RequestMapping(value = "/image/{image_id}", method = RequestMethod.DELETE, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String deleteImg(@PathVariable(value="image_id") String image_id) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            // 透传到FS
+            resultStr = processor.deleteImg(image_id);
+        } catch (Exception e) {
+            logger.error("删除图片失败" + e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("删除图片 耗时 " + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 }

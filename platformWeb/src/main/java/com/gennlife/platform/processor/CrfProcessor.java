@@ -475,4 +475,15 @@ public class CrfProcessor {
             return ParamUtils.errorParam("出现异常");
         }
     }
+
+    public String deleteImg(String image_id) {
+        try {
+            String url = ConfigurationService.getUrlBean().getImageDel() + image_id;
+            String result = HttpRequestUtils.httpGet(url);
+            return result;
+        } catch (Exception e) {
+            logger.error("", e);
+            return ParamUtils.errorParam("出现异常");
+        }
+    }
 }

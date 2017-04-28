@@ -407,6 +407,10 @@ public class URLBean {
 
     private String ImageUpload = null;
 
+    private String ImageDel = null;
+
+    private String ImageUrl = null;
+
 
     public String getCRFImportMap() {
         return CRFImportMap;
@@ -1163,5 +1167,21 @@ public class URLBean {
 
     public String getImageUpload() {
         return this.ImageUpload;
+    }
+
+    public void setImageDel(String ImageDel) {
+        this.ImageDel = ImageDel;
+    }
+
+    public String getImageDel() {
+        return this.ImageDel;
+    }
+
+    public void setImageUrl(String ImageUrl) {
+        this.ImageUrl = ImageUrl;
+    }
+
+    public String getImageUrl() {
+        return this.ImageUrl;
     }
 }
