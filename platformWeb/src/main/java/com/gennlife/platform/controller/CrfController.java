@@ -19,11 +19,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.LinkedList;
+import java.util.List;
 
 
 /**
@@ -460,18 +463,50 @@ public class CrfController {
     @RequestMapping(value = "/image", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
-    String UploadImage(@RequestParam(value = "file") CommonsMultipartFile file, HttpServletRequest paramRe, HttpServletResponse response) {
+    String UploadImage(@RequestParam("file") MultipartFile[] files) {
         Long start = System.currentTimeMillis();
-        String resultStr = null;
+        String processorStr = null;
+        List<String> imgUrl = new LinkedList<String>();
+        ResultBean resultBean = new ResultBean();
+
+        for (int i = 0; i < files.length; ++i) {
+            MultipartFile file = files[i];
+            if (!file.isEmpty()) {
+                try {
+                    logger.info("图片 " + file.getOriginalFilename() + " 上传 beginning");
+                    processorStr = processor.UploadImage(file);
+                    JsonObject processorStrObj = jsonParser.parse(processorStr).getAsJsonObject();
+                    if (!processorStrObj.get("file_id").isJsonNull()) {
+                        imgUrl.add(processorStrObj.get("file_id").getAsString());
+                    }
+                } catch (Exception e) {
+                    logger.error("上传图片错误" + e);
+                    return ParamUtils.errorParam("出现异常");
+                }
+            } else {
+                logger.error("file 为空");
+            }
+        }
+
         try {
-            logger.info("图片上传 beginning");
-            resultStr = processor.UploadImage(file);
+            int failUploadImg = files.length - imgUrl.size();
+            if (files.length != 0 && imgUrl.size() == 0) {
+                logger.error("上传图片失败");
+                resultBean.setCode(0);
+                resultBean.setMsg("上传图片失败");
+            } else if (imgUrl.size() < files.length) {
+                resultBean.setCode(1);
+                resultBean.setInfo(failUploadImg);
+            } else {
+                resultBean.setCode(1);
+            }
+            resultBean.setData(imgUrl);
         } catch (Exception e) {
-            logger.error("上传图片错误" + e);
-            resultStr = ParamUtils.errorParam("出现异常");
+            logger.error("上传图片失败" + e);
+            return ParamUtils.errorParam("出现异常");
         }
         logger.info("图片上传 耗时 " + (System.currentTimeMillis() - start) + "ms");
-        return resultStr;
+        return gson.toJson(resultBean);
     }
     @RequestMapping(value = "/image/{image_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public

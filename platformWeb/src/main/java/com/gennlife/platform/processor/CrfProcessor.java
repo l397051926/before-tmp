@@ -452,6 +452,7 @@ public class CrfProcessor {
             byte[] bytes = file.getBytes();
             String fileName = file.getOriginalFilename();
             String path = ConfigurationService.getFileBean().getCRFFileLocation();
+            // String path = "/Users/luoxupan/demoTest/";
             File f = new File(path + LogUtils.getString_Time() + "-" + fileName);
             if (!f.exists()) {
                 logger.info("文件路径 " + f.getAbsolutePath());
