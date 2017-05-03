@@ -467,6 +467,7 @@ public class CrfController {
         Long start = System.currentTimeMillis();
         String processorStr = null;
         List<String> imgUrl = new LinkedList<String>();
+        List<String> failImgName = new LinkedList<String>();
         ResultBean resultBean = new ResultBean();
 
         for (int i = 0; i < files.length; ++i) {
@@ -478,6 +479,9 @@ public class CrfController {
                     JsonObject processorStrObj = jsonParser.parse(processorStr).getAsJsonObject();
                     if (!processorStrObj.get("file_id").isJsonNull()) {
                         imgUrl.add(processorStrObj.get("file_id").getAsString());
+                    } else {
+                        // 这张图片上传失败
+                        failImgName.add(file.getOriginalFilename());
                     }
                 } catch (Exception e) {
                     logger.error("上传图片错误" + e);
@@ -489,14 +493,13 @@ public class CrfController {
         }
 
         try {
-            int failUploadImg = files.length - imgUrl.size();
             if (files.length != 0 && imgUrl.size() == 0) {
                 logger.error("上传图片失败");
                 resultBean.setCode(0);
                 resultBean.setMsg("上传图片失败");
             } else if (imgUrl.size() < files.length) {
                 resultBean.setCode(1);
-                resultBean.setInfo(failUploadImg);
+                resultBean.setInfo(failImgName);
             } else {
                 resultBean.setCode(1);
             }
