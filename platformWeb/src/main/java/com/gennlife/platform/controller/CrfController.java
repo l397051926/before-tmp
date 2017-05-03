@@ -129,7 +129,8 @@ public class CrfController {
         try {
             User user = (User) paramRe.getAttribute("currentUser");
             String indexName = ConfigurationService.getOrgIDIndexNamemap().get(user.getOrgID());
-            if (indexName == null) {
+            String needToCreateIndex = ((SystemDefault)SpringContextUtil.getBean("systemDefault")).getNeedToCreateIndex();
+            if (needToCreateIndex.equals(true) && indexName == null) {
                 return ParamUtils.errorParam("用户所在的组织无法建立索引");
             }
             String param = ParamUtils.getParam(paramRe);
