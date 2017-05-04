@@ -411,6 +411,8 @@ public class URLBean {
 
     private String ImageUrl = null;
 
+    private String ICD_10_CodeUrl = null;
+
 
     public String getCRFImportMap() {
         return CRFImportMap;
@@ -1183,5 +1185,13 @@ public class URLBean {
 
     public String getImageUrl() {
         return this.ImageUrl;
+    }
+
+    public void setICD_10_CodeUrl(String code) {
+        this.ICD_10_CodeUrl = code;
+    }
+
+    public String getICD_10_CodeUrl() {
+        return ICD_10_CodeUrl;
     }
 }

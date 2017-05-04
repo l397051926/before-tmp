@@ -461,6 +461,27 @@ public class CrfController {
         logger.info("CRF录入通过关键字获取智能提示 耗时 " + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/ICD_10_Code", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String ICD_10_Code(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = jsonParser.parse(param).getAsJsonObject();
+            logger.info("获取ICD 10 编码 请求参数 = " + param);
+            resultStr = processor.ICD_10_Code(paramObj);
+            logger.info("获取ICD 10 编码 返回结果: " + resultStr);
+        } catch (Exception e) {
+            logger.error("获取ICD 10 编码: " + e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取ICD 10 编码 耗时 " + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
     @RequestMapping(value = "/image", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody

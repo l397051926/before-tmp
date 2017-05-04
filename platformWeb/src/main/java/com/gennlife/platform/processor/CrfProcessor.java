@@ -446,6 +446,17 @@ public class CrfProcessor {
         }
     }
 
+    public String ICD_10_Code(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getICD_10_CodeUrl();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("请求发生异常", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
     public String UploadImage(MultipartFile file) {
         try {
             String url = ConfigurationService.getUrlBean().getImageUpload(); // fs图片上传后台接口
