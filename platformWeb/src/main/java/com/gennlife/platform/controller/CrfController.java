@@ -7,10 +7,7 @@ import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.CommonProcessor;
 import com.gennlife.platform.processor.CrfProcessor;
 import com.gennlife.platform.service.ConfigurationService;
-import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.HttpRequestUtils;
-import com.gennlife.platform.util.ParamUtils;
-import com.gennlife.platform.util.SpringContextUtil;
+import com.gennlife.platform.util.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -568,6 +565,32 @@ public class CrfController {
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("删除图片 耗时 " + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+    @RequestMapping(value = "/ResearchNumber", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String ResearchNumber(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("获取研究序列号 请求参数" + param);
+            JsonObject paramObj = jsonParser.parse(param).getAsJsonObject();
+            String LabIdToNumber = FilesUtils.readFile("/LabIdToNumber.json");
+            JsonObject LabIdToNumberObj = jsonParser.parse(LabIdToNumber).getAsJsonObject();
+            if (LabIdToNumberObj.has(paramObj.get("labID").getAsString())) {
+                int number = LabIdToNumberObj.get(paramObj.get("labID").getAsString()).getAsInt();
+                paramObj.addProperty("labNumber", number);
+                resultStr = processor.ResearchNumber(paramObj);
+            } else {
+                resultStr = ParamUtils.errorParam("labID 没有对应的编号");
+            }
+        } catch (Exception e) {
+            logger.error("获取研究序列号失败失败" + e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取研究序列号 耗时 " + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 }
