@@ -1,6 +1,7 @@
 package com.gennlife.platform.controller;
 
 import com.gennlife.platform.authority.AuthorityUtil;
+import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.CommonProcessor;
@@ -17,15 +18,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.LinkedList;
+import java.util.List;
 
 
 /**
@@ -128,7 +129,8 @@ public class CrfController {
         try {
             User user = (User) paramRe.getAttribute("currentUser");
             String indexName = ConfigurationService.getOrgIDIndexNamemap().get(user.getOrgID());
-            if (indexName == null) {
+            String needToCreateIndex = ((SystemDefault)SpringContextUtil.getBean("systemDefault")).getNeedToCreateIndex();
+            if (needToCreateIndex.equals(true) && indexName == null) {
                 return ParamUtils.errorParam("用户所在的组织无法建立索引");
             }
             String param = ParamUtils.getParam(paramRe);
@@ -459,20 +461,113 @@ public class CrfController {
         logger.info("CRF录入通过关键字获取智能提示 耗时 " + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-    @RequestMapping(value = "/UploadImage", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+
+    @RequestMapping(value = "/ICD_10_Code", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
-    String UploadImage(@RequestParam(value = "file") CommonsMultipartFile file, HttpServletRequest paramRe, HttpServletResponse response) {
+    String ICD_10_Code(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-//            logger.info("");
-            resultStr = processor.UploadImage(file);
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = jsonParser.parse(param).getAsJsonObject();
+            logger.info("获取ICD 10 编码 请求参数 = " + param);
+            resultStr = processor.ICD_10_Code(paramObj);
+            logger.info("获取ICD 10 编码 返回结果: " + resultStr);
         } catch (Exception e) {
-            logger.error("上传图片错误" + e);
+            logger.error("获取ICD 10 编码: " + e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
+        logger.info("获取ICD 10 编码 耗时 " + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/image", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String UploadImage(@RequestParam("file") MultipartFile[] files) {
+        Long start = System.currentTimeMillis();
+        String processorStr = null;
+        List<String> imgUrl = new LinkedList<String>();
+        List<String> failImgName = new LinkedList<String>();
+        ResultBean resultBean = new ResultBean();
+
+        for (int i = 0; i < files.length; ++i) {
+            MultipartFile file = files[i];
+            if (!file.isEmpty()) {
+                try {
+                    logger.info("图片 " + file.getOriginalFilename() + " 上传 beginning");
+                    processorStr = processor.UploadImage(file);
+                    JsonObject processorStrObj = jsonParser.parse(processorStr).getAsJsonObject();
+                    if (!processorStrObj.get("file_id").isJsonNull()) {
+                        imgUrl.add(processorStrObj.get("file_id").getAsString());
+                    } else {
+                        // 这张图片上传失败
+                        failImgName.add(file.getOriginalFilename());
+                    }
+                } catch (Exception e) {
+                    logger.error("上传图片错误" + e);
+                    return ParamUtils.errorParam("出现异常");
+                }
+            } else {
+                logger.error("file 为空");
+            }
+        }
+
+        try {
+            if (files.length != 0 && imgUrl.size() == 0) {
+                logger.error("上传图片失败");
+                resultBean.setCode(0);
+                resultBean.setMsg("上传图片失败");
+            } else if (imgUrl.size() < files.length) {
+                resultBean.setCode(1);
+                resultBean.setInfo(failImgName);
+            } else {
+                resultBean.setCode(1);
+            }
+            resultBean.setData(imgUrl);
+        } catch (Exception e) {
+            logger.error("上传图片失败" + e);
+            return ParamUtils.errorParam("出现异常");
+        }
         logger.info("图片上传 耗时 " + (System.currentTimeMillis() - start) + "ms");
+        return gson.toJson(resultBean);
+    }
+    @RequestMapping(value = "/image/{image_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getImageUrl(@PathVariable(value="image_id") String image_id) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            // 处理获取图片接口地址
+            String url = ConfigurationService.getUrlBean().getImageUrl();
+            resultStr = url + image_id;
+        } catch (Exception e) {
+            logger.error("获取图片URL地址失败" + e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取图片URL地址 耗时 " + (System.currentTimeMillis() - start) + "ms");
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(1);
+        resultBean.setData(resultStr);
+        return gson.toJson(resultBean);
+    }
+    @RequestMapping(value = "/image/{image_id}", method = RequestMethod.DELETE, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String deleteImg(@PathVariable(value="image_id") String image_id) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            // 透传到FS
+            logger.info("删除图片 id: " + image_id);
+            resultStr = processor.deleteImg(image_id);
+        } catch (Exception e) {
+            logger.error("删除图片失败" + e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("删除图片 耗时 " + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 }

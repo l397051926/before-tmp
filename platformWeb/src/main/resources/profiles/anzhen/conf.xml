@@ -60,7 +60,9 @@
         <property name="sampleDetailSearchURL" value="http://192.168.0.206:8111/FileService/DataResultExport/SearchDataSet"/>
         <property name="sampleUploadAdaptTagURL" value="http://192.168.0.206:8111/FileService/DataResultExport/UploadAdaptTag"/>
         <property name="sampleImportChecKIURL" value="http://192.168.0.206:8111/FileService/DataResultExport/data_check"></property>
-        <property name="ImageUpload" value="http://192.168.0.206:8111/FileService/image/UploadImage"></property>
+        <property name="ImageUpload" value="http://192.168.0.206:8111/FileService/image"></property>
+        <property name="ImageDel" value="http://192.168.0.206:8111/FileService/image/"></property>
+        <property name="ImageUrl" value="http://10.0.0.165:9900/FileService/image/"></property>
 
         <!--FS CRF导入文件 -->
         <property name="fileStoreForCRFImport" value="http://192.168.0.206:8111/FileService/PatientDetail/UploadCsvFile"></property>
@@ -99,7 +101,7 @@
         <property name="CRFImportResult" value="http://192.168.0.206:6060/auto/CsvImportResult"></property>
         <property name="CRFIsExistPatient" value="http://192.168.0.206:6060/crf/IsExistPatient"></property>
         <property name="InputSmartPrompt" value="http://192.168.0.206:6060/crf/InputSmartPrompt"/>
-
+        <property name="ICD_10_CodeUrl" value="http://192.168.0.206:6060/crf/ICD_10_Code"/>
         <!--R 服务接口-->
         <!--<property name="RRun" value="http://192.168.0.110:1235/r_run"/>-->
         <!--<property name="RStop" value="http://192.168.0.110:1235/r_stop"/>-->

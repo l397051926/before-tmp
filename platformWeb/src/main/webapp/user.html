@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <title></title>
 </head>
-<body>
-<form action="LoginServlet" method="POST">
-用户名:<input type="text" name="username">
-密码:  <input type="password" name="password">
-<input type="submit" value="提交">
-</form>
-</body>
+    <body>
+        <form method="POST" action="crf/image" enctype="multipart/form-data">
+            File1 to upload: <input type="file" name="file">
+            <input type="submit" value="Upload"> Press here to upload the file!
+        </form>
+        <br/>
+        <form method="POST" action="crf/UploadFileForImportCRF" enctype="multipart/form-data">
+            File2 to upload: <input type="file" name="file">
+            <input type="submit" value="Upload"> Press here to upload the file!
+        </form>
+    </body>
 </html>

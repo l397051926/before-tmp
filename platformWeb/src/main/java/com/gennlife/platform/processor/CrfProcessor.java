@@ -446,12 +446,24 @@ public class CrfProcessor {
         }
     }
 
+    public String ICD_10_Code(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getICD_10_CodeUrl();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("请求发生异常", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
     public String UploadImage(MultipartFile file) {
         try {
             String url = ConfigurationService.getUrlBean().getImageUpload(); // fs图片上传后台接口
             byte[] bytes = file.getBytes();
             String fileName = file.getOriginalFilename();
             String path = ConfigurationService.getFileBean().getCRFFileLocation();
+            // String path = "/Users/luoxupan/demoTest/";
             File f = new File(path + LogUtils.getString_Time() + "-" + fileName);
             if (!f.exists()) {
                 logger.info("文件路径 " + f.getAbsolutePath());
@@ -470,6 +482,17 @@ public class CrfProcessor {
             } else {
                 return resultStr;
             }
+        } catch (Exception e) {
+            logger.error("", e);
+            return ParamUtils.errorParam("出现异常");
+        }
+    }
+
+    public String deleteImg(String image_id) {
+        try {
+            String url = ConfigurationService.getUrlBean().getImageDel() + image_id;
+            String result = HttpRequestUtils.httpDelte(url);
+            return result;
         } catch (Exception e) {
             logger.error("", e);
             return ParamUtils.errorParam("出现异常");

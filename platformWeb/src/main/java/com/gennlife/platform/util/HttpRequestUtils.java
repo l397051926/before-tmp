@@ -9,6 +9,7 @@ import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -267,6 +268,30 @@ public class HttpRequestUtils {
 			logger.error("",e);
 		} catch (IllegalStateException e) {
 			logger.error("",e);
+		}
+		return null;
+	}
+	public static String httpDelte(String url) {
+		HttpClient httpClient = HttpClients.createDefault();
+		HttpDelete method = new HttpDelete(url);
+		try {
+			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(30000).setConnectTimeout(10000).build();
+			method.setConfig(requestConfig);
+			HttpResponse result = httpClient.execute(method);
+			if (result.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				String str = null;
+				try {
+					str = EntityUtils.toString(result.getEntity(),"utf-8");
+					return str;
+				} catch (Exception e) {
+					logger.error("" + url, e);
+				}
+			}else
+			{
+				logger.error("error code "+result.getStatusLine().getStatusCode()+" url" + url);
+			}
+		} catch (IOException e) {
+			logger.error("" + url, e);
 		}
 		return null;
 	}
