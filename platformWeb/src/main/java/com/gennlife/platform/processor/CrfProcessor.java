@@ -498,4 +498,15 @@ public class CrfProcessor {
             return ParamUtils.errorParam("出现异常");
         }
     }
+
+    public String ResearchNumber(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getResearchNumberUrl();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("", e);
+            return ParamUtils.errorParam("出现异常");
+        }
+    }
 }
