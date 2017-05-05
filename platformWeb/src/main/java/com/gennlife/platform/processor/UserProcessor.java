@@ -267,14 +267,13 @@ public class UserProcessor {
             JsonObject jsonobj = json.getAsJsonObject();
             String sid = jsonobj.get("sid").getAsString();
             List<String> departName = departNames.get(sid);
+            insert.add(json);
             if (departName != null && departName.size() > 0) {
                 for (String department : departName) {
                     JsonObject jsonCopy = powerSearchCopy(jsonobj);
                     jsonCopy.addProperty("slab_name", department);
                     insert.add(jsonCopy);
                 }
-            } else {
-                insert.add(json);
             }
         }
         if (insert.size() > 0) {
@@ -299,14 +298,13 @@ public class UserProcessor {
             JsonObject jsonobj = json.getAsJsonObject();
             String sid = jsonobj.get("sid").getAsString();
             List<String> departName = departNames.get(sid);
+            insert.add(json);
             if (departName != null && departName.size() > 0) {
                 for (String department : departName) {
                     JsonObject jsonCopy = powerSearchCopy(jsonobj);
                     jsonCopy.addProperty("slab_name", department);
                     insert.add(jsonCopy);
                 }
-            } else {
-                insert.add(json);
             }
 
         }

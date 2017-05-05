@@ -7,9 +7,7 @@ import com.gennlife.platform.model.*;
 import com.gennlife.platform.processor.UserProcessor;
 import com.gennlife.platform.util.*;
 import com.gennlife.platform.view.View;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -22,10 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by chensong on 2015/12/5.
@@ -349,49 +344,90 @@ public class UserController {
     /**
      * 科室权限校验
      */
-    @RequestMapping(value = "/checkUserRole", method = {RequestMethod.POST,RequestMethod.GET}, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/checkUserRole", method = {RequestMethod.POST, RequestMethod.GET}, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String checkUserRole(HttpServletRequest paramRe) {
         try {
             User user = (User) paramRe.getAttribute("currentUser");
-            String dept=user.getLab_name();
-            if (StringUtils.isEmpty(dept)) return ParamUtils.errorParam("空科室");
-            Power power = user.getPower();
-            Set<Resource> list = power.getHas_search();
-            if (list == null || list.size() == 0) {
-                return ParamUtils.errorParam("无权限,科室列表空");
-            }
-            boolean find = false;
-            String orgID = user.getOrgID();
-            for (Resource resource : list) {
-                if (dept.equals(resource.getSlab_name()) && "有".equals(resource.getHas_search())) {
-                    find = true;
-                    break;
-                }
-            }
-            if (find == false) {
-                return ParamUtils.errorParam("无权限 unfind dept "+dept);
-            }
-            List<String> depts = new LinkedList<>();
-            depts.add(dept);
-            try {
-                List<String> mapping = AllDao.getInstance().getSyRoleDao().getSlabNameMappingByLabName(dept, orgID);
-                if (mapping != null && mapping.size() > 0) {
-                    depts.addAll(mapping);
-                }
-            } catch (Exception e) {
-
+            String dept = user.getLab_name();
+            Set<String> unumbers = null;
+            Set<String> depts = setDeot(user, dept);
+            unumbers = setUnumbers(user);
+            if((unumbers==null||unumbers.size()==0) &&(depts==null||depts.size()==0))
+            {
+                return ParamUtils.errorParam("没有权限");
             }
             ResultBean resultBean = new ResultBean();
             JsonObject json = new JsonObject();
             json.addProperty("check", true);
             json.add("depts", gson.toJsonTree(depts));
+            json.add("unumbers", gson.toJsonTree(unumbers));
             resultBean.setData(json);
             return gson.toJson(resultBean);
         } catch (Exception e) {
             return ParamUtils.errorParam("异常error");
         }
+    }
+
+    private Set<String> setUnumbers(User user) {
+        Set<String> unumbers = new TreeSet<>();
+        String unumber = user.getUnumber();
+        if (StringUtils.isEmpty(unumber)) unumbers.add(unumber);
+        List<Group> list = user.getGroups();
+        if (list != null) list.forEach(group ->
+        {
+            try {
+                JsonArray members = gson.toJsonTree(group.getMembers()).getAsJsonArray();
+                for (JsonElement element : members) {
+                    try {
+                        String tmp = element.getAsJsonObject().get("unumber").getAsString();
+                        if (!StringUtils.isEmpty(tmp)) unumbers.add(tmp);
+                    } catch (Exception e) {
+
+                    }
+                }
+            } catch (Exception e) {
+
+            }
+        });
+        return unumbers;
+    }
+
+    public Set<String> setDeot(User user, String dept) {
+        if (StringUtils.isEmpty(dept)) {
+            logger.warn("空科室");
+            return null;
+        }
+        Power power = user.getPower();
+        Set<Resource> list = power.getHas_search();
+        if (list == null || list.size() == 0) {
+            logger.warn("无权限,科室列表空");
+            return null;
+        }
+        Set<String> depts=new TreeSet<>();
+        boolean find = false;
+        String orgID = user.getOrgID();
+        for (Resource resource : list) {
+            if (dept.equals(resource.getSlab_name()) && "有".equals(resource.getHas_search())) {
+                find = true;
+                break;
+            }
+        }
+        if (find == false) {
+            logger.warn("无权限 unfind dept " + dept);
+            return null;
+        }
+        depts.add(dept);
+        try {
+            List<String> mapping = AllDao.getInstance().getSyRoleDao().getSlabNameMappingByLabName(dept, orgID);
+            if (mapping != null && mapping.size() > 0) {
+                depts.addAll(mapping);
+            }
+        } catch (Exception e) {
+
+        }
+        return depts;
     }
 
     @RequestMapping(value = "/getUser", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
