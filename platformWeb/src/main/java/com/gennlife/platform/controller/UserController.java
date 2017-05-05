@@ -353,7 +353,11 @@ public class UserController {
             String dept = user.getLab_name();
             Set<String> unumbers = null;
             Set<String> depts = setDeot(user, dept);
-            unumbers = setUnumbers(user);
+            if(dept==null||dept.length()==0)
+            {
+                unumbers = setUnumbers(user);
+                depts=getDepts(dept,depts,user.getOrgID());
+            }
             if((unumbers==null||unumbers.size()==0) &&(depts==null||depts.size()==0))
             {
                 return ParamUtils.errorParam("没有权限");
@@ -418,6 +422,10 @@ public class UserController {
             logger.warn("无权限 unfind dept " + dept);
             return null;
         }
+        return getDepts(dept, depts, orgID);
+    }
+
+    public Set<String> getDepts(String dept, Set<String> depts, String orgID) {
         depts.add(dept);
         try {
             List<String> mapping = AllDao.getInstance().getSyRoleDao().getSlabNameMappingByLabName(dept, orgID);
