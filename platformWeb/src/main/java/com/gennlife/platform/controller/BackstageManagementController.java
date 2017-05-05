@@ -12,6 +12,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,6 +39,8 @@ public class BackstageManagementController {
         try{
             User user = (User)paramRe.getAttribute("currentUser");
             resultStr =  processor.orgMapData(user);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("获取科室组织信息",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -60,6 +63,8 @@ public class BackstageManagementController {
         {
             resultStr = ParamUtils.errorParam("无法识别当前编码");
 
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -78,6 +83,8 @@ public class BackstageManagementController {
             logger.info("删除科室 get方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.deleteOrg(paramObj,user);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("删除科室",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -95,6 +102,8 @@ public class BackstageManagementController {
             User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.updateOrg(paramObj,user);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -112,6 +121,8 @@ public class BackstageManagementController {
             User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getStaffInfo(paramObj,user);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -129,6 +140,8 @@ public class BackstageManagementController {
             User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.addStaff(paramObj,user);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -145,6 +158,8 @@ public class BackstageManagementController {
             User user = (User)paramRe.getAttribute("currentUser");
             JsonArray paramObj = (JsonArray) jsonParser.parse(param);
             resultStr =  processor.deleteStaff(paramObj,user);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -161,6 +176,8 @@ public class BackstageManagementController {
             User user = (User)paramRe.getAttribute("currentUser");
             String orgID = user.getOrgID();
             resultStr =  processor.getProfessionList(orgID);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -178,6 +195,8 @@ public class BackstageManagementController {
             String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getGetRoleInfo(paramObj,user);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -196,6 +215,8 @@ public class BackstageManagementController {
             String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getStaffTree(paramObj,user);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -214,6 +235,8 @@ public class BackstageManagementController {
             User user = (User)paramRe.getAttribute("currentUser");
             JsonArray paramObj = (JsonArray) jsonParser.parse(param);
             resultStr =  processor.deleteRoles(paramObj,user);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -231,6 +254,8 @@ public class BackstageManagementController {
             User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.addRole(paramObj,user);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -247,6 +272,8 @@ public class BackstageManagementController {
             User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.editRole(paramObj,user);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -266,6 +293,8 @@ public class BackstageManagementController {
             resultBean.setCode(1);
             resultBean.setData(resourceTypeArray);
             resultStr = gson.toJson(resultBean);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -283,6 +312,8 @@ public class BackstageManagementController {
             User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getRoleStaff(paramObj,user);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -301,6 +332,8 @@ public class BackstageManagementController {
             User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getRoleResource(paramObj,user);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -317,6 +350,8 @@ public class BackstageManagementController {
             User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.getResourceTree(paramObj,user);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -334,6 +369,8 @@ public class BackstageManagementController {
             resultBean.setCode(1);
             resultBean.setData(user);
             return gson.toJson(resultBean);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -351,6 +388,8 @@ public class BackstageManagementController {
             User user = (User)paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.groupList(paramObj,user);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -368,7 +407,10 @@ public class BackstageManagementController {
             String param = ParamUtils.getParam(paramRe);
             User user = (User)paramRe.getAttribute("currentUser");
             resultStr =  processor.addGroup(param,user);
-        }catch (Exception e){
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
+        }
+        catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
@@ -384,6 +426,8 @@ public class BackstageManagementController {
             String param = ParamUtils.getParam(paramRe);
             User user = (User)paramRe.getAttribute("currentUser");
             resultStr =  processor.editGroup(param,user);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -401,6 +445,8 @@ public class BackstageManagementController {
             String param = ParamUtils.getParam(paramRe);
             User user = (User)paramRe.getAttribute("currentUser");
             resultStr =  processor.groupMembers(param,user);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -417,6 +463,8 @@ public class BackstageManagementController {
             String param = ParamUtils.getParam(paramRe);
             User user = (User)paramRe.getAttribute("currentUser");
             resultStr =  processor.deleteGroup(param,user);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -433,12 +481,18 @@ public class BackstageManagementController {
             String param = ParamUtils.getParam(paramRe);
             User user = (User)paramRe.getAttribute("currentUser");
             resultStr =  processor.isExistGroupName(param,user);
+        } catch (DataIntegrityViolationException e){
+            resultStr=DataIntegrityViolationExceptionMsg();
         }catch (Exception e){
             logger.error("",e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("判定组名称是否存在 get 耗时"+(System.currentTimeMillis()-start) +"ms");
         return resultStr;
+    }
+    private String DataIntegrityViolationExceptionMsg()
+    {
+        return ParamUtils.errorParam("填写内容太长,请尽量保持在20个以内");
     }
 
 }
