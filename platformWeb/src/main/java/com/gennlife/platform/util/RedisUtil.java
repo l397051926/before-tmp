@@ -234,4 +234,8 @@ public class RedisUtil {
             logger.error("clear all error ", e);
         }
     }
+
+    public static void exit(List<String> uids) {
+        if(uids!=null)uids.forEach(uid->exit(uid,null));
+    }
 }

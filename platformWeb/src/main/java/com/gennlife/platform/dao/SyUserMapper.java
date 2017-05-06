@@ -21,7 +21,7 @@ public interface SyUserMapper {
      * @return
      */
     public User getUser(Map<String, Object> likeCondition);
-
+    public  User loginByUnumber(@Param("unumber") String unumber,@Param("pwd") String pwd);
     /**
      * 通过email获取uid
      *
@@ -47,7 +47,7 @@ public interface SyUserMapper {
      * @return
      */
     public int updatePWD(Map<String, Object> map);
-
+    int updatePWDByUids(@Param("uids") String[] uid,@Param("pwd") String pwd,@Param("orgID") String orgID);
     /**
      * 发送邮件前,更新md5值
      * @param map

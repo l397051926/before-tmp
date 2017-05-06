@@ -36,7 +36,7 @@ public class CrfProcessor {
             String crf_id = paramObj.get("crf_id").getAsString();
             String caseID = paramObj.has("caseID") ? paramObj.get("caseID").getAsString() : "";
             Power power = user.getPower();
-            boolean flag = true;
+            boolean flag = false;
             boolean traceflag=getCRFFlag(power,orgID,crf_id,"has_traceCRF");
             if ("".equals(caseID)) {
                 flag = getCRFFlag(power, orgID, crf_id, "has_addCRF");
@@ -48,16 +48,19 @@ public class CrfProcessor {
                 String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
                 try {
                     JsonObject json = jsonParser.parse(result).getAsJsonObject();
-                    if(json.get("status").getAsString().contains("验证"))
+                    if(json!=null && json.has("status") &&json.get("status").getAsString().contains("验证"))
                     {
                         if(!traceflag)  return ParamUtils.errorAuthorityParam();// 没有溯源权限
+                        //logger.info("溯源权限");
                     }
                     else
                     {
                         if(!flag)  return ParamUtils.errorAuthorityParam();
+                        //logger.info("添加和编辑");
                     }
                 }
-                catch (Exception e){}
+                catch (Exception e){
+                }
 
                 return result;
             } else {

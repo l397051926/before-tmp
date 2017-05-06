@@ -153,7 +153,7 @@
               role_type = #{role_type,jdbcType=VARCHAR}
           </if>
         </set>
-		WHERE roleid = #{roleid,jdbcType=INTEGER}
+		WHERE roleid = #{roleid,jdbcType=INTEGER} and orgID=#{orgID}
     </update>
     <select id="getSlabNames" resultMap="com.gennlife.platform.model.DepartmentMap">
         SELECT

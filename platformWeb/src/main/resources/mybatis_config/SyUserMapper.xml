@@ -29,6 +29,12 @@
 		FROM gennlife_user
 		<where> gennlife_user.uemail = #{email} AND gennlife_user.pwd = #{pwd} </where>
 	</select>
+	<select id="loginByUnumber" resultMap="com.gennlife.platform.model.User" >
+		SELECT
+		<include refid="userProperty" />
+		FROM gennlife_user
+		<where> gennlife_user.unumber = #{unumber} AND gennlife_user.pwd = #{pwd} </where>
+	</select>
 	<select id="getUserByLabID" resultType="com.gennlife.platform.model.User">
 		SELECT
 		<include refid="userProperty" />
@@ -117,6 +123,7 @@
 		SET pwd = #{pwd,jdbcType=VARCHAR},md5=''
 		WHERE uemail = #{email,jdbcType=VARCHAR} AND md5 = #{md5,jdbcType=VARCHAR}
 	</update>
+
 
 	<update id="updateMd5" parameterType="map">
 		UPDATE
@@ -530,4 +537,14 @@
 		</foreach>
 	</update>
 
+
+	<update id="updatePWDByUids">
+		UPDATE
+		gennlife_user
+		SET pwd = #{pwd,jdbcType=VARCHAR},md5=''
+		WHERE uid in
+		<foreach collection="uids" item="item" index="index" open="(" separator="," close=")">
+			#{item,jdbcType=VARCHAR}
+		</foreach> AND orgID=#{orgID}
+	</update>
 </mapper>
