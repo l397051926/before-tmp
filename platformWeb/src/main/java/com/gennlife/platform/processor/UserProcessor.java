@@ -518,6 +518,7 @@ public class UserProcessor {
             email = paramObj.get("email").getAsString();
             pwd = paramObj.get("pwd").getAsString();
             md5 = paramObj.get("md5").getAsString();
+            if(StringUtils.isEmpty(md5)) md5="";
         } catch (Exception e) {
             logger.error("", e);
             return ParamUtils.errorParam("参数错误");
