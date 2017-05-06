@@ -517,7 +517,7 @@ public class UserProcessor {
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             email = paramObj.get("email").getAsString();
             pwd = paramObj.get("pwd").getAsString();
-            md5 = paramObj.get("md5").getAsString();
+            if(paramObj.has("md5"))md5 = paramObj.get("md5").getAsString();
             if(StringUtils.isEmpty(md5)) md5="";
         } catch (Exception e) {
             logger.error("", e);
