@@ -354,7 +354,7 @@ public class UserController {
             String dept = user.getLab_name();
             Set<String> unumbers = null;
             Set<String> depts = setDeot(user, dept);
-            if (dept == null || dept.length() == 0) {
+            if (depts == null || depts.size() == 0) {
                 unumbers = setUnumbers(user);
                 depts = getDepts(dept, depts, user.getOrgID());
             }
@@ -369,6 +369,7 @@ public class UserController {
             resultBean.setData(json);
             return gson.toJson(resultBean);
         } catch (Exception e) {
+            logger.error("",e);
             return ParamUtils.errorParam("异常error");
         }
     }
@@ -425,6 +426,7 @@ public class UserController {
     }
 
     public Set<String> getDepts(String dept, Set<String> depts, String orgID) {
+        if(depts==null) depts=new TreeSet<>();
         depts.add(dept);
         try {
             List<String> mapping = AllDao.getInstance().getSyRoleDao().getSlabNameMappingByLabName(dept, orgID);
