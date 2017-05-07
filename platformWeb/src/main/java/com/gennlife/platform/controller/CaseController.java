@@ -51,6 +51,7 @@ public class CaseController {
             logger.info("搜索结果列表展示的集合 get方式 参数="+param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr =  processor.searchItemSet(paramObj);
+            logger.info("搜索结果列表展示的集合: " + resultStr);
         }catch (Exception e){
             logger.error("搜索结果列表展示的集合",e);
             resultStr = ParamUtils.errorParam("出现异常");
