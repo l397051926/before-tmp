@@ -4,6 +4,8 @@ import com.gennlife.platform.bean.conf.SystemDefault;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Chenjinfeng on 2017/2/22.
@@ -48,8 +50,15 @@ public class GStringUtils {
             return password;
 
     }
+    private static Pattern  emailPattern=Pattern.compile("^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$");
+
+    public static boolean checkEmail(String  email)
+    {
+        Matcher match = emailPattern.matcher(email);
+        return match.find();
+    }
     public static void main(String[] args)
     {
-        System.out.println(getDefaultPasswd());
+        System.out.println(checkEmail("1@qq.com"));
     }
 }

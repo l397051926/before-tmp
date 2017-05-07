@@ -453,9 +453,9 @@ public class LaboratoryProcessor {
             resultBean.addProperty("code",0);
             resultBean.addProperty("info","工号"+unumber+"不合法");
             return resultBean;
-        } else if (email == null ||"".equals(email)) {
+        } else if (!StringUtils.isEmpty(email) && !GStringUtils.checkEmail(email)) {
             resultBean.addProperty("code",0);
-            resultBean.addProperty("info","email"+unumber+"不合法");
+            resultBean.addProperty("info","email"+email+"不合法");
             return resultBean;
         } else {
             Integer exEamil = AllDao.getInstance().getSyUserDao().existEmail(email);
