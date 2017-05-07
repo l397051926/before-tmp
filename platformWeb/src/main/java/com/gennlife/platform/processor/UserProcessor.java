@@ -34,7 +34,7 @@ public class UserProcessor {
             User user = null;
             try {
                 pwd = GStringUtils.str2Password(pwd);
-                if (email != null && !GStringUtils.checkEmail(email)) {
+                if (email != null && GStringUtils.checkEmail(email)) {
                     Map<String, Object> confMap = new HashMap<String, Object>();
                     confMap.put("email", email);
                     confMap.put("pwd", pwd);
