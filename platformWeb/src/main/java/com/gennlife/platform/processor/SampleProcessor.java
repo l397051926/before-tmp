@@ -68,6 +68,10 @@ public class SampleProcessor {
                 return ParamUtils.errorParam("FS 返回空");
             }
             JsonObject resultMap = jsonParser.parse(data).getAsJsonObject();
+            if(resultMap.has("RESPONSE_ERROR"))
+            {
+                return ParamUtils.errorParam(resultMap.get("RESPONSE_ERROR").getAsString());
+            }
             logger.info("时间======" + (System.currentTimeMillis() - startTime));
             Boolean succeed = resultMap.get("success").getAsBoolean();
             Map<String, Object> dataMap = new HashMap<String, Object>();
@@ -114,7 +118,7 @@ public class SampleProcessor {
                 info.put("counter", total);
                 resultBean.setInfo(info);
             } else {
-                resultBean.setCode(0);
+                return ParamUtils.errorParam("导出失败");
 
             }
             return gson.toJson(resultBean);

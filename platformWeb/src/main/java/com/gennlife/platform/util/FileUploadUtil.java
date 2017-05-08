@@ -149,10 +149,13 @@ public class FileUploadUtil {
                         srcList.add(line + ",失败,姓名为空");
                         continue;
                     }
-                    if (email == null || !email.contains("@")) {
-                        srcList.add(line + ",失败,邮箱失败");
-                        continue;
+                    if (!StringUtils.isEmpty(email)) {
+                        if (!GStringUtils.checkEmail(email)) {
+                            srcList.add(line + ",失败,邮箱格式不正确");
+                            continue;
+                        }
                     }
+
                     if (number == null || number.equals("")) {
                         srcList.add(line + ",失败,工号为空");
                         continue;
@@ -215,7 +218,7 @@ public class FileUploadUtil {
                 User exUser = AllDao.getInstance().getSyUserDao().getUserByUnumber(addUser.getUnumber(), addUser.getOrgID());
                 if (exUser != null) {//更新
                     addUser.setUid(null);//uid 不更新
-                    if (!addUser.getUemail().equals(exUser.getUemail())) {//邮箱不一样,需要检查
+                    if (!StringUtils.isEmpty(addUser.getUemail()) && !addUser.getUemail().equals(exUser.getUemail())) {//邮箱不一样,需要检查
                         int emailCounter = AllDao.getInstance().getSyUserDao().existEmail(addUser.getUemail());
                         if (emailCounter >= 1) {
                             srcList.add(line + ",失败,更新后的email是存在的");

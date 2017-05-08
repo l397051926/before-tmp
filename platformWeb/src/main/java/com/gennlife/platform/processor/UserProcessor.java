@@ -26,13 +26,15 @@ public class UserProcessor {
 
     public User login(String email, String pwd) throws IOException {
         try {
+            if(StringUtils.isEmpty(email)||StringUtils.isEmpty(pwd))
+                return null;
             Long start = System.currentTimeMillis();
             LogUtils.BussnissLog("用户：" + email + " >>> 进行登陆");
 
             User user = null;
             try {
                 pwd = GStringUtils.str2Password(pwd);
-                if (email != null && email.contains("@")) {
+                if (email != null && GStringUtils.checkEmail(email)) {
                     Map<String, Object> confMap = new HashMap<String, Object>();
                     confMap.put("email", email);
                     confMap.put("pwd", pwd);
