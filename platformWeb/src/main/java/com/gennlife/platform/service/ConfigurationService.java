@@ -45,6 +45,8 @@ public class ConfigurationService {
 
     private static JsonArray resourceTypeArray = null;
 
+    private static JsonObject LabIdToNumberObj = null;
+
     private static Gson gson = GsonUtil.getGson();
     public static void init() {
         try{
@@ -122,6 +124,9 @@ public class ConfigurationService {
             String indexName = entity.getValue().getAsString();
             orgIDIndexNamemap.put(orgID,indexName);
         }
+
+        String LabIdToNumber = FilesUtils.readFile("/LabIdToNumber.json");
+        LabIdToNumberObj = (JsonObject) jsonParser.parse(LabIdToNumber);
     }
 
     public static JsonObject getAllObj(String crf_id) {
@@ -229,5 +234,7 @@ public class ConfigurationService {
         return newTarget;
     }
 
-
+    public static JsonObject getLabIdToNumberObj() {
+        return LabIdToNumberObj;
+    }
 }

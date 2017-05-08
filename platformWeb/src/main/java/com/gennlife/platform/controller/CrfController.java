@@ -577,8 +577,7 @@ public class CrfController {
             String param = ParamUtils.getParam(paramRe);
             logger.info("获取研究序列号 请求参数" + param);
             JsonObject paramObj = jsonParser.parse(param).getAsJsonObject();
-            String LabIdToNumber = FilesUtils.readFile("/LabIdToNumber.json");
-            JsonObject LabIdToNumberObj = jsonParser.parse(LabIdToNumber).getAsJsonObject();
+            JsonObject LabIdToNumberObj = ConfigurationService.getLabIdToNumberObj();
             if (LabIdToNumberObj.has(paramObj.get("labID").getAsString())) {
                 int number = LabIdToNumberObj.get(paramObj.get("labID").getAsString()).getAsInt();
                 paramObj.addProperty("labNumber", number);
