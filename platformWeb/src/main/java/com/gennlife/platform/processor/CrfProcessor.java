@@ -494,11 +494,7 @@ public class CrfProcessor {
             // 将文件传给fs
             String resultStr = HttpRequestUtils.httpPostImg(url, f);
             f.delete();
-            if (StringUtils.isEmpty(resultStr)) {
-                return ParamUtils.errorParam("上传图片失败");
-            } else {
-                return resultStr;
-            }
+            return resultStr;
         } catch (Exception e) {
             logger.error("", e);
             return ParamUtils.errorParam("出现异常");
