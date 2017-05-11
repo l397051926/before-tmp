@@ -488,7 +488,7 @@ public class CrfController {
         List<String> imgUrl = new LinkedList<String>();
         List<String> failImgName = new LinkedList<String>();
         ResultBean resultBean = new ResultBean();
-
+        logger.info("图片个数: " + Integer.toString(files.length));
         for (int i = 0; i < files.length; ++i) {
             MultipartFile file = files[i];
             if (!file.isEmpty()) {
@@ -496,6 +496,7 @@ public class CrfController {
                     logger.info("图片 " + file.getOriginalFilename() + " 上传 beginning");
                     processorStr = processor.UploadImage(file);
                     JsonObject processorStrObj = jsonParser.parse(processorStr).getAsJsonObject();
+                    logger.info("上传图片FS返回：" + gson.toJson(processorStrObj));
                     if (processorStrObj.has("file_id")) {
                         imgUrl.add(processorStrObj.get("file_id").getAsString());
                     } else {
