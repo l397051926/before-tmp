@@ -496,7 +496,7 @@ public class CrfController {
                     logger.info("图片 " + file.getOriginalFilename() + " 上传 beginning");
                     processorStr = processor.UploadImage(file);
                     JsonObject processorStrObj = jsonParser.parse(processorStr).getAsJsonObject();
-                    if (!processorStrObj.get("file_id").isJsonNull()) {
+                    if (processorStrObj.has("file_id")) {
                         imgUrl.add(processorStrObj.get("file_id").getAsString());
                     } else {
                         // 这张图片上传失败
