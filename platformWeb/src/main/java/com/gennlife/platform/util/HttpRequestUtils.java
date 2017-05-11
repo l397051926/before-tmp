@@ -222,7 +222,6 @@ public class HttpRequestUtils {
             post.setEntity(params);
             // 执行post请求并得到返回对象 [ 到这一步我们的请求就开始了 ]
             HttpResponse resp = httpClient.execute(post);
-            logger.info("上传图片FS返回: " + gson.toJson(resp));
             if (resp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 String str = null;
                 try {
