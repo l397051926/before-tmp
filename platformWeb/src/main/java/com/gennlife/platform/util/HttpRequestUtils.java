@@ -29,6 +29,8 @@ import java.net.SocketTimeoutException;
 import java.net.URLDecoder;
 import java.nio.charset.Charset;
 
+import static com.gennlife.platform.util.FileUploadUtil.gson;
+
 public class HttpRequestUtils {
     private static Logger logger = LoggerFactory.getLogger(HttpRequestUtils.class);
 
@@ -220,6 +222,7 @@ public class HttpRequestUtils {
             post.setEntity(params);
             // 执行post请求并得到返回对象 [ 到这一步我们的请求就开始了 ]
             HttpResponse resp = httpClient.execute(post);
+            logger.info("上传图片FS返回: " + gson.toJson(resp));
             if (resp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 String str = null;
                 try {
