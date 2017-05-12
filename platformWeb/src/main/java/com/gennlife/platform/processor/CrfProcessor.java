@@ -15,9 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
 import java.net.URLEncoder;
 import java.util.*;
 
@@ -481,18 +479,17 @@ public class CrfProcessor {
             String fileName = file.getOriginalFilename();
             String path = ConfigurationService.getFileBean().getCRFFileLocation();
             // String path = "/Users/luoxupan/demoTest/";
-            File f = new File(path + LogUtils.getString_Time() + "-" + fileName);
+            File f = new File(path + LogUtils.getString_Time() + UUID.randomUUID() + "-" + fileName);
             if (!f.exists()) {
                 logger.info("文件路径 " + f.getAbsolutePath());
                 f.createNewFile();
             }
-            FileWriter fileWriter = new FileWriter(f);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write(new String(bytes, "gbk"));
-            bufferedWriter.flush();
-            bufferedWriter.close();
+            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(f));
+            out.write(bytes);
+            out.flush();
+            out.close();
             // 将文件传给fs
-            String resultStr = HttpRequestUtils.httpPostImg(url, f);
+            String resultStr = HttpRequestUtils.httpPostImg(url, f, file.getContentType());
             f.delete();
             logger.info("上传图片HTTP返回：" + resultStr);
             return resultStr;

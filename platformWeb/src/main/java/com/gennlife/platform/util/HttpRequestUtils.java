@@ -205,10 +205,10 @@ public class HttpRequestUtils {
         return null;
     }
 
-    public static String httpPostImg(String url, File file) {
+    public static String httpPostImg(String url, File file, String contentType) {
         HttpClient httpClient = new DefaultHttpClient();
         HttpParams ps = httpClient.getParams();
-        ps.setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET, Charset.forName("GB2312"));
+        // ps.setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET, Charset.forName("GB2312"));
         // 实例化post提交方式
         HttpPost post = new HttpPost(url);
         try {
@@ -216,7 +216,7 @@ public class HttpRequestUtils {
             MultipartEntity params = new MultipartEntity();
             // 设置上传文件
             // 文件参数内容
-            FileBody fileBody = new FileBody(file);
+            FileBody fileBody = new FileBody(file, contentType);
             // 添加文件参数
             params.addPart("Image", fileBody);
             post.setEntity(params);
