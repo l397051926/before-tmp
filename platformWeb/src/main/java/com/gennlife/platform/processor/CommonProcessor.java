@@ -56,7 +56,6 @@ public class CommonProcessor {
 
     public String uploadFileForImportStaff(MultipartFile file,User user) {
         try{
-            String fileName = file.getOriginalFilename();
             byte[] bytes = file.getBytes();
             String string = new String(bytes,"GBK");
             if(ChineseToEnglish.isMessyCode(string)) return ParamUtils.errorParam("文件里含有非GBK编码的字符");
@@ -76,11 +75,10 @@ public class CommonProcessor {
 
     public String uploadFileForImportLab(MultipartFile file,User user) {
         try {
-            String fileName = file.getOriginalFilename();
             byte[] bytes = file.getBytes();
             String string = new String(bytes, "GBK");
-            logger.info("GBK "+string);
-            logger.info("default "+new String(bytes));
+            //logger.info("GBK "+string);
+            //logger.info("default "+new String(bytes));
             if(ChineseToEnglish.isMessyCode(string))  {
                 return ParamUtils.errorParam("文件里含有非GBK编码的字符");
             }

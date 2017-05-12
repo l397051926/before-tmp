@@ -352,11 +352,14 @@ public class CrfProcessor {
                     String fileName = file.getOriginalFilename();
                     byte[] bytes = file.getBytes();
                     String path = ConfigurationService.getFileBean().getCRFFileLocation();
-                    File f = new File(path + LogUtils.getString_Time() + "-" + fileName);
+                    File f = new File(path +UUID.randomUUID().toString().replace("-","") + "-" + fileName);
                     if (!f.exists()) {
-                        logger.info("文件路径 " + f.getAbsolutePath());
+                       // logger.info("文件路径 " + f.getAbsolutePath());
                         f.createNewFile();
-
+                    }
+                    else
+                    {
+                        logger.warn("文件路径 " + f.getAbsolutePath()+" 不应该存在");
                     }
                     FileWriter fileWritter = new FileWriter(f);
                     BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
