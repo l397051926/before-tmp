@@ -67,7 +67,7 @@ public class UserController {
                     LogUtils.BussnissLogError("login error", e);
                 }
                 if (!user.getUid().equals(uid)) {
-                    logger.info("user.getUid() != uid");
+                   // logger.info("user.getUid() != uid");
                     if (!RedisUtil.setUserOnLine(user, sessionID)) {
                         view.viewString(ParamUtils.errorParam("登陆失败"), response);
                         return;
@@ -112,34 +112,35 @@ public class UserController {
     public
     @ResponseBody
     String postUpdate(HttpServletRequest paramRe) {
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try {
-            User user = (User) paramRe.getAttribute("currentUser");
-            if (user == null) {
-                logger.error("paramRe里面无currentUser");
-                return ParamUtils.errorSessionLosParam();
-            }
-            String param = ParamUtils.getParam(paramRe);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            String uid = null;
+            Long start = System.currentTimeMillis();
+            String resultStr = null;
             try {
-                uid = paramObj.get("uid").getAsString();
-                if (!user.getUid().equals(uid) && !AuthorityUtil.isAdmin(user)) { // 不是自己修改,不是管理员修改
-                    return ParamUtils.errorParam("无权限更新");
+                User user = (User) paramRe.getAttribute("currentUser");
+                if (user == null) {
+                    logger.error("paramRe里面无currentUser");
+                    return ParamUtils.errorSessionLosParam();
                 }
+                String param = ParamUtils.getParam(paramRe);
+                JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+                String uid = null;
+                try {
+                    uid = paramObj.get("uid").getAsString();
+                    if (!user.getUid().equals(uid) && !AuthorityUtil.isAdmin(user)) { // 不是自己修改,不是管理员修改
+                        return ParamUtils.errorParam("无权限更新");
+                    }
+                } catch (Exception e) {
+                    return ParamUtils.errorParam("缺少uid");
+                }
+                ResultBean resultBean = processor.update(param);
+                UserProcessor.currentUpdate(user.getUid(), paramRe.getSession(false).getId());
+                resultStr = gson.toJson(resultBean);
             } catch (Exception e) {
-                return ParamUtils.errorParam("缺少uid");
+                logger.error("", e);
+                resultStr = ParamUtils.errorParam("出现异常");
             }
-            ResultBean resultBean = processor.update(param);
-            UserProcessor.currentUpdate(user.getUid(), paramRe.getSession(false).getId());
-            resultStr = gson.toJson(resultBean);
-        } catch (Exception e) {
-            logger.error("", e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("用户更新个人信息 post 耗时" + (System.currentTimeMillis() - start) + "ms");
-        return resultStr;
+            logger.info("用户更新个人信息 post 耗时" + (System.currentTimeMillis() - start) + "ms");
+            return resultStr;
+
     }
 
 
@@ -353,13 +354,11 @@ public class UserController {
             String dept = user.getLab_name();
             Set<String> unumbers = null;
             Set<String> depts = setDeot(user, dept);
-            if(dept==null||dept.length()==0)
-            {
+            if (depts == null || depts.size() == 0) {
                 unumbers = setUnumbers(user);
-                depts=getDepts(dept,depts,user.getOrgID());
+                depts = getDepts(dept, depts, user.getOrgID());
             }
-            if((unumbers==null||unumbers.size()==0) &&(depts==null||depts.size()==0))
-            {
+            if ((unumbers == null || unumbers.size() == 0) && (depts == null || depts.size() == 0)) {
                 return ParamUtils.errorParam("没有权限");
             }
             ResultBean resultBean = new ResultBean();
@@ -370,6 +369,7 @@ public class UserController {
             resultBean.setData(json);
             return gson.toJson(resultBean);
         } catch (Exception e) {
+            logger.error("",e);
             return ParamUtils.errorParam("异常error");
         }
     }
@@ -409,7 +409,7 @@ public class UserController {
             logger.warn("无权限,科室列表空");
             return null;
         }
-        Set<String> depts=new TreeSet<>();
+        Set<String> depts = new TreeSet<>();
         boolean find = false;
         String orgID = user.getOrgID();
         for (Resource resource : list) {
@@ -426,6 +426,7 @@ public class UserController {
     }
 
     public Set<String> getDepts(String dept, Set<String> depts, String orgID) {
+        if(depts==null) depts=new TreeSet<>();
         depts.add(dept);
         try {
             List<String> mapping = AllDao.getInstance().getSyRoleDao().getSlabNameMappingByLabName(dept, orgID);

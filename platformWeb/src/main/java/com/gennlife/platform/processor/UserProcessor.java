@@ -26,14 +26,22 @@ public class UserProcessor {
 
     public User login(String email, String pwd) throws IOException {
         try {
+            if(StringUtils.isEmpty(email)||StringUtils.isEmpty(pwd))
+                return null;
             Long start = System.currentTimeMillis();
             LogUtils.BussnissLog("用户：" + email + " >>> 进行登陆");
-            Map<String, Object> confMap = new HashMap<String, Object>();
-            confMap.put("email", email);
-            confMap.put("pwd", GStringUtils.str2Password(pwd));
+
             User user = null;
             try {
-                user = AllDao.getInstance().getSyUserDao().getUser(confMap);
+                pwd = GStringUtils.str2Password(pwd);
+                if (email != null && GStringUtils.checkEmail(email)) {
+                    Map<String, Object> confMap = new HashMap<String, Object>();
+                    confMap.put("email", email);
+                    confMap.put("pwd", pwd);
+                    user = AllDao.getInstance().getSyUserDao().getUser(confMap);
+                } else {
+                    user = AllDao.getInstance().getSyUserDao().loginByUnumber(email, pwd);
+                }
                 logger.info("登录时数据库查询User耗时: " + (System.currentTimeMillis() - start) + "ms");
                 //  System.out.println(user);
             } catch (Exception e) {
@@ -54,55 +62,57 @@ public class UserProcessor {
 
 
     public ResultBean update(String param) throws IOException {
-        boolean flag = true;
-        User user = null;
-        ResultBean userBean = new ResultBean();
-        try {
-            user = gson.fromJson(param, User.class);
-            Map<String, Object> map = new HashMap<>();
-            map.put("email", user.getUemail());
-            String uidEx = AllDao.getInstance().getSyUserDao().getUidByEmail(map);
-            if (!StringUtils.isEmpty(uidEx) && !user.getUid().equals(uidEx)) {//更新的email不合法,已经存在
-                return ParamUtils.errorParamResultBean("更新的email不合法,已经存在");
-            }
-            user.setCtime(null);//创建时间不可更新
-            user.setUptime(LogUtils.getStringTime());//更新时间
-            user.setOrg_name(null);//医院名称不能修改
-            user.setOrgID(null);
-            user.setRoles(null);//角色不可修改
-            user.setPwd(null);//密码不可修改
+        synchronized (FileUploadUtil.Lock) {
+            boolean flag = true;
+            User user = null;
+            ResultBean userBean = new ResultBean();
             try {
-                int count = AllDao.getInstance().getSyUserDao().checkUnumber(user.getUnumber(), user.getUid());
-                if (count > 0) return ParamUtils.errorParamResultBean("更新的工号已经存在");
-                int counter = AllDao.getInstance().getSyUserDao().updateByUid(user);
-                if (counter == 0) {
-                    flag = false;
-                } else
-                    RedisUtil.updateUserOnLine(user.getUid());
-            } catch (DataIntegrityViolationException e) {
-                return ParamUtils.errorParamResultBean("填入内容的长度超过20,更新失败");
-            } catch (Exception e) {
-                logger.error("更新失败", e);
-                return ParamUtils.errorParamResultBean("更新失败");
-            }
-            if (!flag) {
-                userBean.setCode(0);
-                userBean.setData("更新失败");
-            } else {
-                user = getUserByUids(user.getUid());
-                if (user == null) {
+                user = gson.fromJson(param, User.class);
+                Map<String, Object> map = new HashMap<>();
+                map.put("email", user.getUemail());
+                String uidEx = AllDao.getInstance().getSyUserDao().getUidByEmail(map);
+                if (!StringUtils.isEmpty(uidEx) && !user.getUid().equals(uidEx)) {//更新的email不合法,已经存在
+                    return ParamUtils.errorParamResultBean("更新的email不合法,已经存在");
+                }
+                user.setCtime(null);//创建时间不可更新
+                user.setUptime(LogUtils.getStringTime());//更新时间
+                user.setOrg_name(null);//医院名称不能修改
+                user.setOrgID(null);
+                user.setRoles(null);//角色不可修改
+                user.setPwd(null);//密码不可修改
+                try {
+                    int count = AllDao.getInstance().getSyUserDao().checkUnumber(user.getUnumber(), user.getUid());
+                    if (count > 0) return ParamUtils.errorParamResultBean("更新的工号已经存在");
+                    int counter = AllDao.getInstance().getSyUserDao().updateByUid(user);
+                    if (counter == 0) {
+                        flag = false;
+                    } else
+                        RedisUtil.updateUserOnLine(user.getUid());
+                } catch (DataIntegrityViolationException e) {
+                    return ParamUtils.errorParamResultBean("填入内容的长度超过20,更新失败");
+                } catch (Exception e) {
+                    logger.error("更新失败", e);
+                    return ParamUtils.errorParamResultBean("更新失败");
+                }
+                if (!flag) {
                     userBean.setCode(0);
                     userBean.setData("更新失败");
                 } else {
-                    userBean.setCode(1);
-                    userBean.setData(user);
+                    user = getUserByUids(user.getUid());
+                    if (user == null) {
+                        userBean.setCode(0);
+                        userBean.setData("更新失败");
+                    } else {
+                        userBean.setCode(1);
+                        userBean.setData(user);
+                    }
                 }
+            } catch (Exception e) {
+                logger.error("", e);
+                return ParamUtils.errorParamResultBean("更新失败");
             }
-        } catch (Exception e) {
-            logger.error("", e);
-            return ParamUtils.errorParamResultBean("更新失败");
+            return userBean;
         }
-        return userBean;
     }
 
     public String changePwdSender(JsonObject jsonObject) throws IOException {
@@ -148,7 +158,7 @@ public class UserProcessor {
         try {
             Long start = System.currentTimeMillis();
             user = AllDao.getInstance().getSyUserDao().getUserByUid(uid);
-            String platformEnvrionment = ((SystemDefault)SpringContextUtil.getBean("systemDefault")).getNeedGroup();
+            String platformEnvrionment = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getNeedGroup();
             if (user == null) return null;
             Long start1 = System.currentTimeMillis();
             logger.info("查user=" + (start1 - start) + "ms");
@@ -216,7 +226,7 @@ public class UserProcessor {
             }
             list.clear();
             list.add(resultGroup);
-            if (platformEnvrionment!=null&&platformEnvrionment.equals("false")) { // Group清空
+            if (platformEnvrionment != null && platformEnvrionment.equals("false")) { // Group清空
                 user.setGroups(null);
             } else {
                 user.setGroups(list);
@@ -246,7 +256,7 @@ public class UserProcessor {
                 confMap.put("uid", user.getUid());
                 List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(confMap);
                 //转化本科室信息
-                transformRole(user,rolesList);
+                transformRole(user, rolesList);
                 user.setRoles(rolesList);
                 return user;
             }
@@ -509,7 +519,8 @@ public class UserProcessor {
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             email = paramObj.get("email").getAsString();
             pwd = paramObj.get("pwd").getAsString();
-            md5 = paramObj.get("md5").getAsString();
+            if(paramObj.has("md5"))md5 = paramObj.get("md5").getAsString();
+            if(StringUtils.isEmpty(md5)) md5="";
         } catch (Exception e) {
             logger.error("", e);
             return ParamUtils.errorParam("参数错误");
@@ -717,6 +728,6 @@ public class UserProcessor {
     //更新当前用户
     public static void currentUpdate(String uid, String sessionID) {
         User user = UserProcessor.getUserByUids(uid);
-        if(user!=null)RedisUtil.setUserOnLine(user, sessionID);
+        if (user != null) RedisUtil.setUserOnLine(user, sessionID);
     }
 }

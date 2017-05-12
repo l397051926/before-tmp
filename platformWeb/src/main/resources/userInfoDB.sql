@@ -258,7 +258,7 @@ CREATE TABLE `gennlife_user_group` (
 -- ----------------------------
 DROP TABLE IF EXISTS `gennlife_user_role`;
 CREATE TABLE `gennlife_user_role` (
-  `uid` varchar(50) NOT NULL COMMENT '用户email',
+  `uid` varchar(50) NOT NULL COMMENT '用户id',
   `roleid` int(20) NOT NULL COMMENT '角色id',
   PRIMARY KEY (`uid`,`roleid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

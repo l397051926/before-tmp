@@ -413,6 +413,7 @@ public class URLBean {
 
     private String ICD_10_CodeUrl = null;
 
+    private String ResearchNumberUrl = null;
 
     public String getCRFImportMap() {
         return CRFImportMap;
@@ -1193,5 +1194,13 @@ public class URLBean {
 
     public String getICD_10_CodeUrl() {
         return ICD_10_CodeUrl;
+    }
+
+    public void setResearchNumberUrl(String ResearchNumberUrl) {
+        this.ResearchNumberUrl = ResearchNumberUrl;
+    }
+
+    public String getResearchNumberUrl() {
+        return ResearchNumberUrl;
     }
 }

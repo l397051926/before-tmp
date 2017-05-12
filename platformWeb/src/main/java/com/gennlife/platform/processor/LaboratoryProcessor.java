@@ -8,6 +8,7 @@ import com.gennlife.platform.dao.SyUserMapper;
 import com.gennlife.platform.model.*;
 import com.gennlife.platform.util.*;
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -452,9 +453,9 @@ public class LaboratoryProcessor {
             resultBean.addProperty("code",0);
             resultBean.addProperty("info","工号"+unumber+"不合法");
             return resultBean;
-        } else if (email == null ||"".equals(email)) {
+        } else if (!StringUtils.isEmpty(email) && !GStringUtils.checkEmail(email)) {
             resultBean.addProperty("code",0);
-            resultBean.addProperty("info","email"+unumber+"不合法");
+            resultBean.addProperty("info","email"+email+"不合法");
             return resultBean;
         } else {
             Integer exEamil = AllDao.getInstance().getSyUserDao().existEmail(email);
@@ -1041,6 +1042,7 @@ public class LaboratoryProcessor {
             logger.error("参数异常 ",e);
             return ParamUtils.errorParam("参数异常");
         }
+        if (checkGroupName(user, group)) return ParamUtils.errorParam("小组名称已存在");
         UUID uuid = UUID.randomUUID();
         group.setOrgID(user.getOrgID());
         group.setGid(uuid.toString()+Long.toHexString(System.currentTimeMillis()));
@@ -1066,6 +1068,17 @@ public class LaboratoryProcessor {
         return gson.toJson(re);
     }
 
+    public boolean checkGroupName(User user, Group group) {
+        Map<String,Object> fmap = new HashMap<>();
+        fmap.put("groupName",group.getGroupName());
+        fmap.put("orgID",user.getOrgID());
+        if(AllDao.getInstance().getGroupDao().getGroupsByName(fmap).size()>0)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public String editGroup(String param, User user) {
         Group group = null;
         try{
@@ -1073,6 +1086,7 @@ public class LaboratoryProcessor {
         }catch (Exception e){
             return ParamUtils.errorParam("参数异常");
         }
+        if (checkGroupName(user, group)) return ParamUtils.errorParam("小组名称已存在");
         List<String> list = (List<String>) group.getMembers();
         List<String> uids=AllDao.getInstance().getGroupDao().getGroupRelationUid(group.getGid());
         if(uids==null)uids=new LinkedList<>();
@@ -1128,6 +1142,28 @@ public class LaboratoryProcessor {
         return gson.toJson(re);
     }
 
+    public String resetPassword(String param, User user) {
+        List<String> uids = null;
+        try{
+            JsonObject jsonObj = (JsonObject) jsonParser.parse(param);
+            uids = gson.fromJson(jsonObj.get("uid").getAsJsonArray(),new TypeToken<LinkedList<String>>(){}.getType());
+            if(uids==null||uids.size()==0)  return ParamUtils.errorParam("参数错误");
+        }catch (Exception e){
+            return ParamUtils.errorParam("参数错误");
+        }
+       String pwd=GStringUtils.getDefaultPasswd();
+        int count= AllDao.getInstance().getSyUserDao().updatePWDByUids(uids.toArray(new String[uids.size()]),pwd,user.getOrgID());
+        if(count>0) {
+            RedisUtil.exit(uids);
+            ResultBean resultBean=new ResultBean();
+            resultBean.setCode(1);
+            return gson.toJson(resultBean);
+        }
+        else
+        {
+            return ParamUtils.errorParam("操作失败");
+        }
+    }
     public String isExistGroupName(String param, User user) {
         String groupName = null;
         try{
@@ -1151,7 +1187,6 @@ public class LaboratoryProcessor {
         re.setInfo(info);
         return gson.toJson(re);
     }
-
     public String deleteGroup(String param, User user) {
         Set<String> set = new HashSet<>();
         try{
