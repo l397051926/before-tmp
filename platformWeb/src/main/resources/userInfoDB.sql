@@ -484,12 +484,17 @@ CREATE TABLE `session_uid` (
 -- ----------------------------
 -- Records of session_uid
 -- ----------------------------
-/*
-INSERT INTO `gennlife_manage` VALUES ('admin@ytyhdyy.com', 'admin', 'admin', 'yantai_1');
-INSERT INTO `gennlife_user` VALUES (1, 'admin@ytyhdyy.com', 'ls123456',"d8b8f198d882909be0a58778875953e8", '管理员', 'admin@ytyhdyy.com', '', '', 'yantai_1', '烟台毓璜顶医院', 'yantai_1', '烟台毓璜顶医院', '', 0, 0, NULL, '2016-09-30 15:16:48', '', '58a5cd0352cdbb26e00114554723e9b0');
-INSERT INTO `gennlife_org` VALUES (3, 'yantai_1', '烟台毓璜顶医院', 'XXX', '芝罘区毓东路20号');*/
-/*
-INSERT INTO `gennlife_role` VALUES ('1', '科室成员', 'yantai_1', '科室成员全部资源', '1', null, null, null);
-INSERT INTO `gennlife_role_resource` VALUES ('1', 'yantai_1-benkeshi', 'tianjin_city_1', '有', '有', '有', '有', '有', '有', null, '有');
-*/
+/*管理员*/
+
+INSERT INTO `gennlife_manage` VALUES ('admin@gennlife.com', 'admin', 'admin', 'hospital');
+/*明文是ls123456,密文是 d8b8f198d882909be0a58778875953e8*/
+INSERT INTO `gennlife_user` VALUES (1, 'admin@gennlife.com', 'd8b8f198d882909be0a58778875953e8', '管理员', 'admin@gennlife.com', '', '', 'hospital', '', 'hospital', '', '', 0, 0, NULL, '2016-09-30 15:16:48', '', '');
+INSERT INTO `gennlife_org` VALUES (3, 'hospital', '', 'XXX', '');
+
 /*1	科室成员	tianjin_city_1	科室成员全部资源	1			*/
+
+INSERT INTO `gennlife_role` VALUES ('1', '科室成员', 'hospital', '科室成员全部资源', '1', null, null, null);
+INSERT INTO `gennlife_role_resource` VALUES ('1', 'hospital-benkeshi', 'hospital', '有', '有', '有', '有', '有', '有', null, '有');
+Insert into `gennlife_resource` values('hospital-benkeshi',	'本科室资源',	'本科室数据资源',	'病例数据',	null,	'本科室	','hospital',null,		'1');
+)
+
