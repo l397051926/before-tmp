@@ -9,6 +9,7 @@ import com.gennlife.platform.processor.CrfProcessor;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.*;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
@@ -24,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -108,6 +110,8 @@ public class CrfController {
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             paramObj.addProperty("indexName", indexName);
             resultStr = processor.upLoadData(paramObj);
+            // 删除图片ID缓存
+            RedisUtil.delImageId(paramRe.getSession(false).getId());
         } catch (Exception e) {
             logger.error("上传crf数据", e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -482,7 +486,7 @@ public class CrfController {
     @RequestMapping(value = "/image", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
-    String UploadImage(@RequestParam("file") MultipartFile[] files) {
+    String UploadImage(@RequestParam("file") MultipartFile[] files, HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String processorStr = null;
         List<String> imgUrl = new LinkedList<String>();
@@ -522,7 +526,11 @@ public class CrfController {
             } else {
                 resultBean.setCode(1);
             }
-            resultBean.setData(imgUrl);
+            if (imgUrl.size() > 0) {
+                resultBean.setData(imgUrl);
+                String sessionID = paramRe.getSession(false).getId();
+                RedisUtil.setImageId(sessionID, imgUrl);
+            }
         } catch (Exception e) {
             logger.error("上传图片失败" + e);
             return ParamUtils.errorParam("出现异常");
@@ -550,16 +558,21 @@ public class CrfController {
         resultBean.setData(resultStr);
         return gson.toJson(resultBean);
     }
-    @RequestMapping(value = "/image/{image_id}", method = RequestMethod.DELETE, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/image", method = RequestMethod.DELETE, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
-    String deleteImg(@PathVariable(value="image_id") String image_id) {
+    String deleteImg(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-            // 透传到FS
-            logger.info("删除图片 id: " + image_id);
-            resultStr = processor.deleteImg(image_id);
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = jsonParser.parse(param).getAsJsonObject();
+            for (JsonElement id : paramObj.get("imageId").getAsJsonArray()) {
+                // 透传到FS
+                String image_id = id.getAsString();
+                logger.info("删除图片 id: " + image_id);
+                resultStr = processor.deleteImg(image_id);
+            }
         } catch (Exception e) {
             logger.error("删除图片失败" + e);
             resultStr = ParamUtils.errorParam("出现异常");
