@@ -35,8 +35,8 @@ public class RedisUtil {
     private static final String imageSaveToRedisId = UUID.fromString("imageSaveToRedisId").toString();
 
     public static void init() {
+        logger.info("Redis init");
         jedisCluster = (JedisCluster) SpringContextUtil.getBean("jedisClusterFactory");
-
     }
 
     public static boolean setImageId(String sessionID, List<String> imgUrl) {
