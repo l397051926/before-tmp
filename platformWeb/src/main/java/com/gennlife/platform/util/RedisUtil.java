@@ -39,61 +39,61 @@ public class RedisUtil {
         jedisCluster = (JedisCluster) SpringContextUtil.getBean("jedisClusterFactory");
     }
 
-    public static boolean setImageId(String sessionID, List<String> imgUrl) {
-        try {
-            sessionID += imageSaveToRedisId;
-            String oldImageId = getValue(sessionID);
-            JsonObject oldImageIdObj = null;
-            if (oldImageId != null) {
-                oldImageIdObj = jsonParser.parse(oldImageId).getAsJsonObject();
-            } else {
-                oldImageIdObj = new JsonObject();
-            }
-            for (String url : imgUrl) {
-                oldImageIdObj.addProperty(url, url);
-            }
-            String result = jedisCluster.set(sessionID, gson.toJson(oldImageIdObj));
-            if (!result.equalsIgnoreCase("ok")) {
-                logger.error("redis 写入setImageId失败 " + sessionID + " return result " + result);
-                return false;
-            }
-            logger.info("redis 写入setImageId成功 " + result);
-            return true;
-        } catch (Exception e) {
-            logger.error("redis 出错" + e.getMessage());
-            return false;
-        }
-    }
-
-    public static void delImageIdFromFs(String sessionID) {
-        try {
-            sessionID += imageSaveToRedisId;
-            String url = getValue(sessionID);
-            if (url != null) {
-                CrfProcessor processor = new CrfProcessor();
-                JsonObject urlObj = jsonParser.parse(url).getAsJsonObject();
-                for (Map.Entry<String, JsonElement> entry : urlObj.entrySet()) {
-                    String imageId = entry.getValue().getAsString();
-                    processor.deleteImg(imageId);
-                }
-            }
-            logger.info("redis 删除ImageId: " + url);
-        } catch (Exception e) {
-            logger.error("redis 出错" + e.getMessage());
-        }
-    }
-
-    public static void delImageId(String sessionID) {
-        try {
-            sessionID += imageSaveToRedisId;
-            if (jedisCluster.exists(sessionID)) {
-                logger.info("保存 del ImageId: " + sessionID);
-                jedisCluster.del(sessionID);
-            }
-        } catch (Exception e) {
-            logger.error("redis 出错" + e.getMessage());
-        }
-    }
+//    public static boolean setImageId(String sessionID, List<String> imgUrl) {
+//        try {
+//            sessionID += imageSaveToRedisId;
+//            String oldImageId = getValue(sessionID);
+//            JsonObject oldImageIdObj = null;
+//            if (oldImageId != null) {
+//                oldImageIdObj = jsonParser.parse(oldImageId).getAsJsonObject();
+//            } else {
+//                oldImageIdObj = new JsonObject();
+//            }
+//            for (String url : imgUrl) {
+//                oldImageIdObj.addProperty(url, url);
+//            }
+//            String result = jedisCluster.set(sessionID, gson.toJson(oldImageIdObj));
+//            if (!result.equalsIgnoreCase("ok")) {
+//                logger.error("redis 写入setImageId失败 " + sessionID + " return result " + result);
+//                return false;
+//            }
+//            logger.info("redis 写入setImageId成功 " + result);
+//            return true;
+//        } catch (Exception e) {
+//            logger.error("redis 出错" + e.getMessage());
+//            return false;
+//        }
+//    }
+//
+//    public static void delImageIdFromFs(String sessionID) {
+//        try {
+//            sessionID += imageSaveToRedisId;
+//            String url = getValue(sessionID);
+//            if (url != null) {
+//                CrfProcessor processor = new CrfProcessor();
+//                JsonObject urlObj = jsonParser.parse(url).getAsJsonObject();
+//                for (Map.Entry<String, JsonElement> entry : urlObj.entrySet()) {
+//                    String imageId = entry.getValue().getAsString();
+//                    processor.deleteImg(imageId);
+//                }
+//            }
+//            logger.info("redis 删除ImageId: " + url);
+//        } catch (Exception e) {
+//            logger.error("redis 出错" + e.getMessage());
+//        }
+//    }
+//
+//    public static void delImageId(String sessionID) {
+//        try {
+//            sessionID += imageSaveToRedisId;
+//            if (jedisCluster.exists(sessionID)) {
+//                logger.info("保存 del ImageId: " + sessionID);
+//                jedisCluster.del(sessionID);
+//            }
+//        } catch (Exception e) {
+//            logger.error("redis 出错" + e.getMessage());
+//        }
+//    }
 
     public static boolean setValue(String key, String value) {
         try {
