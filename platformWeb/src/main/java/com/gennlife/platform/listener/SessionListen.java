@@ -26,6 +26,6 @@ public class SessionListen implements HttpSessionListener {
         LogUtils.BussnissLog("sessionid " +sessionid+" time out");
         RedisUtil.userLogout(sessionid);
         AllDao.getInstance().getSessionDao().deleteBySessionID(sessionid);
-        // RedisUtil.delImageIdFromFs(sessionid);
+        RedisUtil.delImageIdFromFs(sessionid);
     }
 }

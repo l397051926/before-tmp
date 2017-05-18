@@ -111,7 +111,7 @@ public class CrfController {
             paramObj.addProperty("indexName", indexName);
             resultStr = processor.upLoadData(paramObj);
             // 删除图片ID缓存
-            // RedisUtil.delImageId(paramRe.getSession(false).getId());
+            RedisUtil.delImageId(paramRe.getSession(false).getId());
         } catch (Exception e) {
             logger.error("上传crf数据", e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -529,7 +529,7 @@ public class CrfController {
             if (imgUrl.size() > 0) {
                 resultBean.setData(imgUrl);
                 String sessionID = paramRe.getSession(false).getId();
-                // RedisUtil.setImageId(sessionID, imgUrl);
+                RedisUtil.setImageId(sessionID, imgUrl);
             }
         } catch (Exception e) {
             logger.error("上传图片失败" + e);
