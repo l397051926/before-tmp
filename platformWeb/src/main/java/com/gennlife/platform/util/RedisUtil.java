@@ -32,7 +32,7 @@ public class RedisUtil {
     private static JsonParser jsonParser = new JsonParser();
     private static String suffix = "_info";
     private static boolean flag = true;
-    private static String imageSaveToRedisId = UUID.fromString("imageSaveToRedisId").toString();
+    private static String imageSaveToRedisId = "imageSaveToRedisId";
 
     public static void init() {
         logger.info("Redis init");
