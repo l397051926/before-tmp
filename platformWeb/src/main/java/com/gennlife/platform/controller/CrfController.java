@@ -558,28 +558,28 @@ public class CrfController {
         resultBean.setData(resultStr);
         return gson.toJson(resultBean);
     }
-    @RequestMapping(value = "/image", method = RequestMethod.DELETE, produces = "application/json;charset=UTF-8")
-    public
-    @ResponseBody
-    String deleteImg(HttpServletRequest paramRe) {
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try {
-            String param = ParamUtils.getParam(paramRe);
-            JsonObject paramObj = jsonParser.parse(param).getAsJsonObject();
-            for (JsonElement id : paramObj.get("imageId").getAsJsonArray()) {
-                // 透传到FS
-                String image_id = id.getAsString();
-                logger.info("删除图片 id: " + image_id);
-                resultStr = processor.deleteImg(image_id);
-            }
-        } catch (Exception e) {
-            logger.error("删除图片失败" + e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("删除图片 耗时 " + (System.currentTimeMillis() - start) + "ms");
-        return resultStr;
-    }
+//    @RequestMapping(value = "/image", method = RequestMethod.DELETE, produces = "application/json;charset=UTF-8")
+//    public
+//    @ResponseBody
+//    String deleteImg(HttpServletRequest paramRe) {
+//        Long start = System.currentTimeMillis();
+//        String resultStr = null;
+//        try {
+//            String param = ParamUtils.getParam(paramRe);
+//            JsonObject paramObj = jsonParser.parse(param).getAsJsonObject();
+//            for (JsonElement id : paramObj.get("imageId").getAsJsonArray()) {
+//                // 透传到FS
+//                String image_id = id.getAsString();
+//                logger.info("删除图片 id: " + image_id);
+//                resultStr = processor.deleteImg(image_id);
+//            }
+//        } catch (Exception e) {
+//            logger.error("删除图片失败" + e);
+//            resultStr = ParamUtils.errorParam("出现异常");
+//        }
+//        logger.info("删除图片 耗时 " + (System.currentTimeMillis() - start) + "ms");
+//        return resultStr;
+//    }
     @RequestMapping(value = "/ResearchNumber", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
