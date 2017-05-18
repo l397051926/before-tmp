@@ -62,7 +62,7 @@
         <property name="sampleImportChecKIURL" value="http://192.168.0.206:8111/FileService/DataResultExport/data_check"></property>
         <property name="ImageUpload" value="http://192.168.0.206:8111/FileService/image/"></property>
         <property name="ImageDel" value="http://192.168.0.206:8111/FileService/image/"></property>
-        <property name="ImageUrl" value="http://192.168.0.206:8111/FileService/image/"></property>
+        <property name="ImageUrl" value="/FileService/image/"></property>
 
         <!--FS CRF导入文件 -->
         <property name="fileStoreForCRFImport" value="http://192.168.0.206:8111/FileService/PatientDetail/UploadCsvFile"></property>
