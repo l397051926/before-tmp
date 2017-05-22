@@ -577,6 +577,13 @@ public class CrfController {
             logger.error("删除图片失败" + e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
+        JsonObject resultStrObj = jsonParser.parse(resultStr).getAsJsonObject();
+        if (resultStrObj.has("success") && resultStrObj.get("success").getAsBoolean() == true) {
+            ResultBean resultBean = new ResultBean();
+            resultBean.setCode(1);
+            resultBean.setInfo("success");
+            resultStr = gson.toJson(resultStr);
+        }
         logger.info("删除图片 耗时 " + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
