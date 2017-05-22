@@ -25,17 +25,20 @@ public class ArkService {
     private static JsonParser jsonParser = new JsonParser();
 
     public void init(String s, Element element) {
+        logger.info("ApplicationContext ");
         ApplicationContext context = SpringContextUtil.getApplicationContext();
         //crf 属性关联配置文件
+        logger.info("crf 属性关联配置文件 ");
         parseChain();
         //项目疾病下拉菜单接口
+        logger.info("项目疾病下拉菜单接口 ");
         parseProjectDisease();
-
-        try{
+        try {
+            logger.info("ConfigurationService.init启动");
             ConfigurationService.init();
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("ConfigurationService 启动失败");
-            logger.error("",e);
+            logger.error("", e);
             throw new RuntimeException();
         }
     }
@@ -45,47 +48,48 @@ public class ArkService {
     }
 
 
-
-
     private static JsonObject chainJson = null;
 
-    public static void parseChain(){
+    public static void parseChain() {
         try {
             String data = FilesUtils.readFile("/chainConf.json");
             chainJson = (JsonObject) jsonParser.parse(data);
         } catch (IOException e) {
-            logger.error("",e);
+            logger.error("", e);
             throw new RuntimeException();
         }
     }
+
     private static JsonObject projectDisease = null;
 
-    private static Map<String,String> diseaseMap = new HashMap<String, String>();
-    public static String getDiseaseName(String key){
+    private static Map<String, String> diseaseMap = new HashMap<String, String>();
+
+    public static String getDiseaseName(String key) {
         return diseaseMap.get(key);
     }
+
     public static JsonObject getProjectDisease() {
         return projectDisease;
     }
 
-    public static void parseProjectDisease(){
+    public static void parseProjectDisease() {
         try {
             String data = FilesUtils.readFile("/projectDisease.json");
             JsonObject object = (JsonObject) jsonParser.parse(data);
             projectDisease = object.getAsJsonObject("disease");
-            for(Map.Entry<String, JsonElement> jsonElement:projectDisease.entrySet()){
+            for (Map.Entry<String, JsonElement> jsonElement : projectDisease.entrySet()) {
                 String key = jsonElement.getKey();
                 String value = projectDisease.get(key).getAsString();
-                diseaseMap.put(value,key);
+                diseaseMap.put(value, key);
             }
         } catch (IOException e) {
-            logger.error("",e);
+            logger.error("", e);
             throw new RuntimeException();
         }
     }
 
 
-    public static final JsonObject getChainJson(){
+    public static final JsonObject getChainJson() {
         return chainJson;
     }
 

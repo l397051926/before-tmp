@@ -3,8 +3,12 @@ package com.gennlife.platform.util;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.dao.SessionMapper;
 import com.gennlife.platform.model.User;
+import com.gennlife.platform.processor.CrfProcessor;
 import com.gennlife.platform.processor.UserProcessor;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,12 +29,70 @@ public class RedisUtil {
     private static Logger logger = LoggerFactory.getLogger(RedisUtil.class);
     private static JedisCluster jedisCluster = null;
     private static Gson gson = GsonUtil.getGson();
+    private static JsonParser jsonParser = new JsonParser();
     private static String suffix = "_info";
     private static boolean flag = true;
+    private static String imageSaveToRedisId = "imageSaveToRedisId";
 
     public static void init() {
+        logger.info("Redis init");
         jedisCluster = (JedisCluster) SpringContextUtil.getBean("jedisClusterFactory");
+    }
 
+    public static boolean setImageId(String sessionID, List<String> imgUrl) {
+        try {
+            sessionID += imageSaveToRedisId;
+            String oldImageId = getValue(sessionID);
+            JsonObject oldImageIdObj = null;
+            if (oldImageId != null) {
+                oldImageIdObj = jsonParser.parse(oldImageId).getAsJsonObject();
+            } else {
+                oldImageIdObj = new JsonObject();
+            }
+            for (String url : imgUrl) {
+                oldImageIdObj.addProperty(url, url);
+            }
+            String result = jedisCluster.set(sessionID, gson.toJson(oldImageIdObj));
+            if (!result.equalsIgnoreCase("ok")) {
+                logger.error("redis 写入setImageId失败 " + sessionID + " return result " + result);
+                return false;
+            }
+            logger.info("redis 写入setImageId成功 " + result);
+            return true;
+        } catch (Exception e) {
+            logger.error("redis 出错" + e.getMessage());
+            return false;
+        }
+    }
+
+    public static void delImageIdFromFs(String sessionID) {
+        try {
+            sessionID += imageSaveToRedisId;
+            String url = getValue(sessionID);
+            if (url != null) {
+                CrfProcessor processor = new CrfProcessor();
+                JsonObject urlObj = jsonParser.parse(url).getAsJsonObject();
+                for (Map.Entry<String, JsonElement> entry : urlObj.entrySet()) {
+                    String imageId = entry.getValue().getAsString();
+                    processor.deleteImg(imageId);
+                }
+            }
+            logger.info("redis 删除ImageId: " + url);
+        } catch (Exception e) {
+            logger.error("redis 出错" + e.getMessage());
+        }
+    }
+
+    public static void delImageId(String sessionID) {
+        try {
+            sessionID += imageSaveToRedisId;
+            if (jedisCluster.exists(sessionID)) {
+                logger.info("保存 del ImageId: " + sessionID);
+                jedisCluster.del(sessionID);
+            }
+        } catch (Exception e) {
+            logger.error("redis 出错" + e.getMessage());
+        }
     }
 
     public static boolean setValue(String key, String value) {

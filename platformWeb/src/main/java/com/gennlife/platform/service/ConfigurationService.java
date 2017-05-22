@@ -50,9 +50,13 @@ public class ConfigurationService {
     private static Gson gson = GsonUtil.getGson();
     public static void init() {
         try{
+            logger.info("init ApplicationContext");
             ApplicationContext context = SpringContextUtil.getApplicationContext();
+            logger.info("init urlBean");
             urlBean = (URLBean) context.getBean("com.gennlife.platform.configuration.URLBean");
+            logger.info("init fileBean");
             fileBean = (FileBean) context.getBean("FileLocation");
+            logger.info("init RedisUtil");
             RedisUtil.init();
         }catch (Exception e){
             logger.error("",e);
