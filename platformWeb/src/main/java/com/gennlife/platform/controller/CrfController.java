@@ -580,7 +580,7 @@ public class CrfController {
                 resultBean = new ResultBean();
                 resultBean.setCode(1);
                 resultBean.setInfo("success");
-                resultStr = gson.toJson(resultStr);
+                resultStr = gson.toJson(resultBean);
                 logger.info("success: " + gson.toJson(resultStr));
                 logger.info("success: " + resultStr);
             }
