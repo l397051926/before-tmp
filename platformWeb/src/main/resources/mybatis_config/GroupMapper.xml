@@ -54,6 +54,10 @@
         gennlife_group.orgID = #{orgID}
         AND
         gennlife_group.groupName = #{groupName}
+        <if test="gid != null" >
+        And  gennlife_group.gid != #{gid}
+        </if>
+
     </select>
 
     <select id="getGroupsByUid" parameterType="map" resultMap="Group">

@@ -1071,6 +1071,7 @@ public class LaboratoryProcessor {
     public boolean checkGroupName(User user, Group group) {
         Map<String,Object> fmap = new HashMap<>();
         fmap.put("groupName",group.getGroupName());
+        if(!StringUtils.isEmpty(group.getGid())) fmap.put("gid",group.getGid());
         fmap.put("orgID",user.getOrgID());
         if(AllDao.getInstance().getGroupDao().getGroupsByName(fmap).size()>0)
         {
