@@ -90,6 +90,7 @@ public class CommonController {
     @RequestMapping(value="/DownloadFileForStaffModel",method= RequestMethod.GET)
     public void DownloadFileForStaffModel(HttpServletRequest paramRe,HttpServletResponse response){
         String file = FilePath+"人员导入模版"+ suffix;
+        logger.info(file);
         processor.downLoadFile(file,response,"人员导入模版.csv");
     }
     @RequestMapping(value="/DownloadFileForLabModel",method= RequestMethod.GET)
