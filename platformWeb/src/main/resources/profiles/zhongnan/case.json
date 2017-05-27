@@ -8412,13 +8412,13 @@
             ],
             "术前心电图": [
                 {
-                    "UIFieldName": "有无心电图",
+                    "UIFieldName": "心电图是否正常",
                     "IndexFieldName": "preoperation_ecg.ECG_YES_NO",
-                    "srchFieldName": "术前心电图.有无心电图",
+                    "srchFieldName": "术前心电图.心电图是否正常",
                     "dataType": "string",
                     "dataMap": [
-                        "有",
-                        "无"
+                        "正常",
+                        "异常"
                     ]
                 }
             ],
@@ -15218,13 +15218,13 @@
             ],
             "术前心电图": [
                 {
-                    "UIFieldName": "有无心电图",
+                    "UIFieldName": "心电图是否正常",
                     "IndexFieldName": "preoperation_ecg.ECG_YES_NO",
-                    "srchFieldName": "术前心电图.有无心电图",
+                    "srchFieldName": "术前心电图.心电图是否正常",
                     "dataType": "string",
                     "dataMap": [
-                        "有",
-                        "无"
+                        "正常",
+                        "异常"
                     ]
                 }
             ],
@@ -18613,13 +18613,13 @@
             ],
             "术前心电图": [
                 {
-                    "srchFieldName": "术前心电图.有无心电图",
+                    "srchFieldName": "术前心电图.心电图是否正常",
                     "dataType": "string",
-                    "UIFieldName": "有无心电图",
+                    "UIFieldName": "心电图是否正常",
                     "IndexFieldName": "preoperation_ecg.ECG_YES_NO",
                     "dataMap": [
-                        "有",
-                        "无"
+                        "正常",
+                        "异常"
                     ]
                 }
             ],
