@@ -13,6 +13,8 @@ File Encoding         : 65001
 Date: 2017-04-17 15:39:08
 */
 
+use userInfoDB
+
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
