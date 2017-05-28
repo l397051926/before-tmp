@@ -303,15 +303,11 @@ def process():
             advancedSearch_angiocardiopathy[key] = advancedGroup[key]
 
     # 针对中南
-    # for key in advancedGroup:
-    #     # 针对中南
-    #     if key != '患者基本信息' and not key.startswith('就诊'):
-    #         # 遍历数组 插入到 advancedSearch_liver['患者基本信息']
-    #         advancedSearch_liver[key] = advancedGroup[key]
-    #         #for obj in advancedGroup[key]:
-    #
-    # # for obj in advancedSearch_liver['患者基本信息']:
-    # #     print obj
+    for key in advancedGroup:
+        # 针对中南
+        if key != '患者基本信息' and not key.startswith('就诊'):
+            # 遍历数组 插入到 advancedSearch_liver['患者基本信息']
+            advancedSearch_liver[key] = advancedGroup[key]
 
 
 

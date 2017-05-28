@@ -1,5 +1,5 @@
 {
-    "lung_cancer": {
+    "liver_cancer": {
         "all": {
             "患者基本信息": [
                 {
@@ -540,7 +540,9 @@
                     "IndexFieldName": "patient_info.PATIENT_TYPE",
                     "srchFieldName": "患者基本信息.患者类型",
                     "dataType": "string"
-                },
+                }
+            ],
+            "既往史": [
                 {
                     "UIFieldName": "有无高血压病史",
                     "IndexFieldName": "disease_history.HBP_YES_NO",
@@ -708,7 +710,9 @@
                         "有",
                         "无"
                     ]
-                },
+                }
+            ],
+            "家族病史": [
                 {
                     "UIFieldName": "有无高血压家族史",
                     "IndexFieldName": "family_inheritance_history.HBP_FAMILY",
@@ -718,7 +722,9 @@
                         "有",
                         "无"
                     ]
-                },
+                }
+            ],
+            "术前心电图": [
                 {
                     "UIFieldName": "心电图是否正常",
                     "IndexFieldName": "preoperation_ecg.ECG_YES_NO",
@@ -728,7 +734,9 @@
                         "正常",
                         "异常"
                     ]
-                },
+                }
+            ],
+            "术前CT检查": [
                 {
                     "UIFieldName": "肿块位置",
                     "IndexFieldName": "preoperation_ct.LUMP_LOCATION",
@@ -744,7 +752,9 @@
                     "IndexFieldName": "preoperation_ct.LUMP_SIZE",
                     "srchFieldName": "术前CT检查.肿块直径（mm）",
                     "dataType": "double"
-                },
+                }
+            ],
+            "术前MRI检查": [
                 {
                     "UIFieldName": "有无结节",
                     "IndexFieldName": "preoperation_mri.NODULE_YES_NO",
@@ -754,7 +764,9 @@
                         "有",
                         "无"
                     ]
-                },
+                }
+            ],
+            "术前指标": [
                 {
                     "UIFieldName": "术前谷丙转氨酶（ALT）",
                     "IndexFieldName": "preoperation_indicators.ALT",
@@ -844,7 +856,9 @@
                     "IndexFieldName": "preoperation_indicators.PREOPERATION_DIASTOLIC",
                     "srchFieldName": "术前指标.术前舒张压（mmHg）",
                     "dataType": "double"
-                },
+                }
+            ],
+            "术前治疗": [
                 {
                     "UIFieldName": "术前Alpha-adrenergicblocker治疗",
                     "IndexFieldName": "preoperation_treatment.AAB_TREATMENT",
@@ -904,7 +918,9 @@
                     "IndexFieldName": "preoperation_treatment.SPIROLACTONE_DOSAGE",
                     "srchFieldName": "术前治疗.螺内酯每日剂量（mg/d）",
                     "dataType": "double"
-                },
+                }
+            ],
+            "病理结果": [
                 {
                     "UIFieldName": "部位",
                     "IndexFieldName": "pathology_result.TUMOR_LOCATION",
@@ -936,7 +952,9 @@
                         "是",
                         "否"
                     ]
-                },
+                }
+            ],
+            "诊断结果": [
                 {
                     "UIFieldName": "是否嗜铬细胞瘤",
                     "IndexFieldName": "diagnosis_result.PHEOCHROMOCYTOMA_YES_NO",
@@ -977,7 +995,9 @@
                         "Ⅱ",
                         "Ⅲ"
                     ]
-                },
+                }
+            ],
+            "手术情况": [
                 {
                     "UIFieldName": "是否肾上腺切除治疗",
                     "IndexFieldName": "operation_info.ADRENAL_GLAND_EXCISION",
@@ -997,7 +1017,9 @@
                         "全切",
                         "部分切除"
                     ]
-                },
+                }
+            ],
+            "术后情况": [
                 {
                     "UIFieldName": "术后收缩压（mmHg）",
                     "IndexFieldName": "postoperation_info.POSTOPERATION_SYSTOLIC",
