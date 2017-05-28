@@ -9,6 +9,15 @@ public class SystemDefault {
     private String needGroup;
     private String passwdOperator;
     private String needToCreateIndex;
+    private boolean DefaultCrfId;
+
+    public boolean getDefaultCrfId() {
+        return DefaultCrfId;
+    }
+
+    public void setDefaultCrfId(boolean defaultCrfId) {
+        DefaultCrfId = defaultCrfId;
+    }
 
     public String getNeedGroup() {
         return needGroup;

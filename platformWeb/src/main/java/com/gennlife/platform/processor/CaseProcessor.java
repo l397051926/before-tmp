@@ -55,8 +55,10 @@ public class CaseProcessor {
             for (JsonElement json : arrange) {
                 set.add(json.getAsString());
             }
-            if (paramObj.has("crf_id")) {
-                crf_id = paramObj.get("crf_id").getAsString();
+            if (!(((SystemDefault)SpringContextUtil.getBean("systemDefault")).getDefaultCrfId())) {
+                if (paramObj.has("crf_id")) {
+                    crf_id = paramObj.get("crf_id").getAsString();
+                }
             }
         } catch (Exception e) {
             logger.error("", e);
