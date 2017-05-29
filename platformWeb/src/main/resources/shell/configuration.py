@@ -329,12 +329,13 @@ def process():
     angiocardiopathy['advancedSearch'] = advancedSearch_angiocardiopathy
 
     for key in importedGroup:
-        if key == '患者基本信息':
-            import_liver[key] = importedGroup[key]
-            import_lung[key] = importedGroup[key]
-            import_kidney[key] = importedGroup[key]
-            # ////
-            import_angiocardiopathy[key] = importedGroup[key]
+        import_liver[key] = importedGroup[key]
+        # if key == '患者基本信息':
+        #     import_liver[key] = importedGroup[key]
+        #     import_lung[key] = importedGroup[key]
+        #     import_kidney[key] = importedGroup[key]
+        #     # ////
+        #     import_angiocardiopathy[key] = importedGroup[key]
         if key.startswith('肝癌'):
             import_liver[key] = importedGroup[key]
         elif key.startswith('肺癌'):
