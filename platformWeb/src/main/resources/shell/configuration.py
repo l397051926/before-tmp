@@ -189,8 +189,8 @@ def process():
     angiocardiopathy = OrderedDict()
 
     mergeResult['liver_cancer'] = liver
-    # mergeResult['lung_cancer'] = lung
-    # mergeResult['kidney_cancer'] = kidney
+    mergeResult['lung_cancer'] = lung
+    mergeResult['kidney_cancer'] = kidney
     # ///////////////////////////////////////////////////////////////////////////////////////////////////
     # mergeResult["Angiocardiopathy"] = angiocardiopathy
     # ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -257,6 +257,8 @@ def process():
     for key in defaultGroup:
         # 搜索结果默认展示字段
         default_liver[key] = defaultGroup[key]
+        default_lung[key] = defaultGroup[key]
+        default_kidney[key] = defaultGroup[key]
         # if key == '患者基本信息':
         #     default_liver[key] = defaultGroup[key]
         #     default_lung[key] = defaultGroup[key]
@@ -289,12 +291,16 @@ def process():
 
 
     for key in advancedGroup:
-        if key == '患者基本信息':
-            advancedSearch_liver[key] = advancedGroup[key]
-            advancedSearch_lung[key] = advancedGroup[key]
-            advancedSearch_kidney[key] = advancedGroup[key]
-            # ////
-            advancedSearch_angiocardiopathy[key] = advancedGroup[key]
+        # 针对中南
+        advancedSearch_liver[key] = advancedGroup[key]
+        advancedSearch_lung[key] = advancedGroup[key]
+        advancedSearch_kidney[key] = advancedGroup[key]
+        # if key == '患者基本信息':
+        #     advancedSearch_liver[key] = advancedGroup[key]
+        #     advancedSearch_lung[key] = advancedGroup[key]
+        #     advancedSearch_kidney[key] = advancedGroup[key]
+        #     # ////
+        #     advancedSearch_angiocardiopathy[key] = advancedGroup[key]
         if key.startswith('肝癌'):
             advancedSearch_liver[key] = advancedGroup[key]
         elif key.startswith('肺癌'):
@@ -305,11 +311,11 @@ def process():
             advancedSearch_angiocardiopathy[key] = advancedGroup[key]
 
     # 针对中南
-    for key in advancedGroup:
-        # 针对中南
-        if key != '患者基本信息' and not key.startswith('就诊'):
-            # 遍历数组 插入到 advancedSearch_liver['患者基本信息']
-            advancedSearch_liver[key] = advancedGroup[key]
+    # for key in advancedGroup:
+    #     # 针对中南
+    #     if key != '患者基本信息' and not key.startswith('就诊'):
+    #         # 遍历数组 插入到 advancedSearch_liver['患者基本信息']
+    #         advancedSearch_liver[key] = advancedGroup[key]
 
 
 
@@ -331,6 +337,8 @@ def process():
     for key in importedGroup:
         # 针对中南
         import_liver[key] = importedGroup[key]
+        import_lung[key] = importedGroup[key]
+        import_kidney[key] = importedGroup[key]
         # if key == '患者基本信息':
         #     import_liver[key] = importedGroup[key]
         #     import_lung[key] = importedGroup[key]
