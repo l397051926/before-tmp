@@ -234,7 +234,9 @@ public class SampleProcessor {
         String crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
         try {
             if (!(((SystemDefault)SpringContextUtil.getBean("systemDefault")).getDefaultCrfId())) {
-                crf_id = paramObj.get("crf_id").getAsString();
+                if (paramObj.has("crf_id")) {
+                    crf_id = paramObj.get("crf_id").getAsString();
+                }
             }
         } catch (Exception e) {
             logger.error("", e);
@@ -250,13 +252,16 @@ public class SampleProcessor {
     public String sampleSetDirectoryList(String param) {
         String sampleURI = null;
         String key = null;
-        String crf_id = "kidney_cancer";
+        // String crf_id = "kidney_cancer";
+        String crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
         try {
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             sampleURI = paramObj.get("sampleURI").getAsString();
             key = paramObj.get("keywords").getAsString();
-            if (paramObj.has("crf_id")) {
-                crf_id = paramObj.get("crf_id").getAsString();
+            if (!(((SystemDefault)SpringContextUtil.getBean("systemDefault")).getDefaultCrfId())) {
+                if (paramObj.has("crf_id")) {
+                    crf_id = paramObj.get("crf_id").getAsString();
+                }
             }
         } catch (Exception e) {
             logger.error("", e);

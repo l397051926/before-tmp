@@ -329,6 +329,7 @@ def process():
     angiocardiopathy['advancedSearch'] = advancedSearch_angiocardiopathy
 
     for key in importedGroup:
+        # 针对中南
         import_liver[key] = importedGroup[key]
         # if key == '患者基本信息':
         #     import_liver[key] = importedGroup[key]
