@@ -238,11 +238,14 @@ public class CaseProcessor {
         String param = null;
         String keywords = null;
         ResultBean resultBean = new ResultBean();
-        String crf_id = "kidney_cancer";
+        // String crf_id = "kidney_cancer";
+        String crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
         try {
             keywords = paramObj.get("keywords").getAsString();
-            if (paramObj.has("crf_id")) {
-                crf_id = paramObj.get("crf_id").getAsString();
+            if (!(((SystemDefault)SpringContextUtil.getBean("systemDefault")).getDefaultCrfId())) {
+                if (paramObj.has("crf_id")) {
+                    crf_id = paramObj.get("crf_id").getAsString();
+                }
             }
         } catch (Exception e) {
             return ParamUtils.errorParam("请求参数出错");
