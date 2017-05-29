@@ -255,12 +255,14 @@ def process():
 
 
     for key in defaultGroup:
-        if key == '患者基本信息':
-            default_liver[key] = defaultGroup[key]
-            default_lung[key] = defaultGroup[key]
-            default_kidney[key] = defaultGroup[key]
-            # ////
-            default_angiocardiopathy[key] = defaultGroup[key]
+        # 搜索结果默认展示字段
+        default_liver[key] = defaultGroup[key]
+        # if key == '患者基本信息':
+        #     default_liver[key] = defaultGroup[key]
+        #     default_lung[key] = defaultGroup[key]
+        #     default_kidney[key] = defaultGroup[key]
+        #     # ////
+        #     default_angiocardiopathy[key] = defaultGroup[key]
 
         if key.startswith('肝癌'):
             default_liver[key] = defaultGroup[key]

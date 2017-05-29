@@ -1,5 +1,5 @@
 {
-    "lung_cancer": {
+    "liver_cancer": {
         "all": {
             "患者基本信息": [
                 {
@@ -360,6 +360,349 @@
                         "B",
                         "O",
                         "AB"
+                    ]
+                }
+            ],
+            "既往史": [
+                {
+                    "srchFieldName": "既往史.有无高血压病史",
+                    "dataType": "string",
+                    "UIFieldName": "有无高血压病史",
+                    "IndexFieldName": "disease_history.HBP_YES_NO",
+                    "displayMainValue": [
+                        "有"
+                    ],
+                    "dataMap": [
+                        "有",
+                        "无"
+                    ]
+                },
+                {
+                    "srchFieldName": "既往史.高血压持续时间（年）",
+                    "dataType": "double",
+                    "UIFieldName": "高血压持续时间（年）",
+                    "IndexFieldName": "disease_history.HBP_YEAR"
+                },
+                {
+                    "srchFieldName": "既往史.高血压药物数量",
+                    "dataType": "double",
+                    "UIFieldName": "高血压药物数量",
+                    "IndexFieldName": "disease_history.HBP_DRUG"
+                },
+                {
+                    "srchFieldName": "既往史.有无糖尿病史",
+                    "dataType": "string",
+                    "UIFieldName": "有无糖尿病史",
+                    "IndexFieldName": "disease_history.DIABETES_YES_NO",
+                    "displayMainValue": [
+                        "有"
+                    ],
+                    "dataMap": [
+                        "有",
+                        "无"
+                    ]
+                },
+                {
+                    "srchFieldName": "既往史.糖尿病持续时间（年）",
+                    "dataType": "double",
+                    "UIFieldName": "糖尿病持续时间（年）",
+                    "IndexFieldName": "disease_history.DIABETES_YEARS"
+                }
+            ],
+            "家族病史": [
+                {
+                    "srchFieldName": "家族病史.有无高血压家族史",
+                    "dataType": "string",
+                    "UIFieldName": "有无高血压家族史",
+                    "IndexFieldName": "family_inheritance_history.HBP_FAMILY",
+                    "dataMap": [
+                        "有",
+                        "无"
+                    ]
+                }
+            ],
+            "术前CT检查": [
+                {
+                    "srchFieldName": "术前CT检查.肿块位置",
+                    "dataType": "string",
+                    "UIFieldName": "肿块位置",
+                    "IndexFieldName": "preoperation_ct.LUMP_LOCATION",
+                    "dataMap": [
+                        "单侧",
+                        "双侧"
+                    ]
+                },
+                {
+                    "srchFieldName": "术前CT检查.肿块直径（mm）",
+                    "dataType": "double",
+                    "UIFieldName": "肿块直径（mm）",
+                    "IndexFieldName": "preoperation_ct.LUMP_SIZE"
+                }
+            ],
+            "术前MRI检查": [
+                {
+                    "srchFieldName": "术前MRI检查.有无结节",
+                    "dataType": "string",
+                    "UIFieldName": "有无结节",
+                    "IndexFieldName": "preoperation_mri.NODULE_YES_NO",
+                    "dataMap": [
+                        "有",
+                        "无"
+                    ]
+                }
+            ],
+            "术前指标": [
+                {
+                    "srchFieldName": "术前指标.术前谷丙转氨酶（ALT）",
+                    "dataType": "double",
+                    "UIFieldName": "术前谷丙转氨酶（ALT）",
+                    "IndexFieldName": "preoperation_indicators.ALT"
+                },
+                {
+                    "srchFieldName": "术前指标.术前谷草转氨酶（AST）",
+                    "dataType": "double",
+                    "UIFieldName": "术前谷草转氨酶（AST）",
+                    "IndexFieldName": "preoperation_indicators.AST"
+                },
+                {
+                    "srchFieldName": "术前指标.术前肌酐（CREA）",
+                    "dataType": "double",
+                    "UIFieldName": "术前肌酐（CREA）",
+                    "IndexFieldName": "preoperation_indicators.CREA"
+                },
+                {
+                    "srchFieldName": "术前指标.术前尿素氮（BUN）",
+                    "dataType": "double",
+                    "UIFieldName": "术前尿素氮（BUN）",
+                    "IndexFieldName": "preoperation_indicators.BUN"
+                },
+                {
+                    "srchFieldName": "术前指标.术前低密度脂蛋白（LDLC）",
+                    "dataType": "double",
+                    "UIFieldName": "术前低密度脂蛋白（LDLC）",
+                    "IndexFieldName": "preoperation_indicators.LDLC"
+                },
+                {
+                    "srchFieldName": "术前指标.术前高密度脂蛋白（HDLC）",
+                    "dataType": "double",
+                    "UIFieldName": "术前高密度脂蛋白（HDLC）",
+                    "IndexFieldName": "preoperation_indicators.HDLC"
+                },
+                {
+                    "srchFieldName": "术前指标.术前甘油三脂（TG）",
+                    "dataType": "double",
+                    "UIFieldName": "术前甘油三脂（TG）",
+                    "IndexFieldName": "preoperation_indicators.TG"
+                },
+                {
+                    "srchFieldName": "术前指标.术前总胆固醇（TC）",
+                    "dataType": "double",
+                    "UIFieldName": "术前总胆固醇（TC）",
+                    "IndexFieldName": "preoperation_indicators.TC"
+                },
+                {
+                    "srchFieldName": "术前指标.术前血管紧张素II（卧位）",
+                    "dataType": "double",
+                    "UIFieldName": "术前血管紧张素II（卧位）",
+                    "IndexFieldName": "preoperation_indicators.ANGIOTENSIN_CLINOSTATISM"
+                },
+                {
+                    "srchFieldName": "术前指标.术前血管紧张素II（立位）",
+                    "dataType": "double",
+                    "UIFieldName": "术前血管紧张素II（立位）",
+                    "IndexFieldName": "preoperation_indicators.ANGIOTENSIN_ERECT_POSITION"
+                },
+                {
+                    "srchFieldName": "术前指标.术前醛固酮（卧位）",
+                    "dataType": "double",
+                    "UIFieldName": "术前醛固酮（卧位）",
+                    "IndexFieldName": "preoperation_indicators.ALDOSTERONE_CLINOSTATISM"
+                },
+                {
+                    "srchFieldName": "术前指标.术前肾素（卧位）",
+                    "dataType": "double",
+                    "UIFieldName": "术前肾素（卧位）",
+                    "IndexFieldName": "preoperation_indicators.RENIN_CLINOSTATISM"
+                },
+                {
+                    "srchFieldName": "术前指标.术前ARR（卧位）",
+                    "dataType": "double",
+                    "UIFieldName": "术前ARR（卧位）",
+                    "IndexFieldName": "preoperation_indicators.ARR_CLINOSTATISM"
+                },
+                {
+                    "srchFieldName": "术前指标.术前收缩压（mmHg）",
+                    "dataType": "double",
+                    "UIFieldName": "术前收缩压（mmHg）",
+                    "IndexFieldName": "preoperation_indicators.PREOPERATION_SYSTOLIC"
+                },
+                {
+                    "srchFieldName": "术前指标.术前舒张压（mmHg）",
+                    "dataType": "double",
+                    "UIFieldName": "术前舒张压（mmHg）",
+                    "IndexFieldName": "preoperation_indicators.PREOPERATION_DIASTOLIC"
+                }
+            ],
+            "病理结果": [
+                {
+                    "srchFieldName": "病理结果.部位",
+                    "dataType": "string",
+                    "UIFieldName": "部位",
+                    "IndexFieldName": "pathology_result.TUMOR_LOCATION",
+                    "dataMap": [
+                        "皮质",
+                        "髓质",
+                        "皮质和髓质",
+                        "其他"
+                    ]
+                },
+                {
+                    "srchFieldName": "病理结果.是否增生",
+                    "dataType": "string",
+                    "UIFieldName": "是否增生",
+                    "IndexFieldName": "pathology_result.HYPERPLASIA_YES_NO",
+                    "dataMap": [
+                        "是",
+                        "否"
+                    ]
+                },
+                {
+                    "srchFieldName": "病理结果.是否腺瘤",
+                    "dataType": "string",
+                    "UIFieldName": "是否腺瘤",
+                    "IndexFieldName": "pathology_result.ADENOMA_YES_NO",
+                    "dataMap": [
+                        "是",
+                        "否"
+                    ]
+                }
+            ],
+            "诊断结果": [
+                {
+                    "srchFieldName": "诊断结果.是否嗜铬细胞瘤",
+                    "dataType": "string",
+                    "UIFieldName": "是否嗜铬细胞瘤",
+                    "IndexFieldName": "diagnosis_result.PHEOCHROMOCYTOMA_YES_NO",
+                    "dataMap": [
+                        "是",
+                        "否"
+                    ]
+                },
+                {
+                    "srchFieldName": "诊断结果.是否皮质醇增多症",
+                    "dataType": "string",
+                    "UIFieldName": "是否皮质醇增多症",
+                    "IndexFieldName": "diagnosis_result.CUSHING_SYNDROME_YES_NO",
+                    "dataMap": [
+                        "是",
+                        "否"
+                    ]
+                },
+                {
+                    "srchFieldName": "诊断结果.是否原发性醛固酮增多症",
+                    "dataType": "string",
+                    "UIFieldName": "是否原发性醛固酮增多症",
+                    "IndexFieldName": "diagnosis_result.PA_YES_NO",
+                    "dataMap": [
+                        "是",
+                        "否"
+                    ]
+                },
+                {
+                    "srchFieldName": "诊断结果.高血压等级",
+                    "dataType": "string",
+                    "UIFieldName": "高血压等级",
+                    "IndexFieldName": "diagnosis_result.HBP_LEVEL",
+                    "dataMap": [
+                        "Ⅰ",
+                        "Ⅱ",
+                        "Ⅲ"
+                    ]
+                }
+            ],
+            "手术情况": [
+                {
+                    "srchFieldName": "手术情况.是否肾上腺切除治疗",
+                    "dataType": "string",
+                    "UIFieldName": "是否肾上腺切除治疗",
+                    "IndexFieldName": "operation_info.ADRENAL_GLAND_EXCISION",
+                    "dataMap": [
+                        "是",
+                        "否"
+                    ]
+                },
+                {
+                    "srchFieldName": "手术情况.肾上腺切除程度",
+                    "dataType": "string",
+                    "UIFieldName": "肾上腺切除程度",
+                    "IndexFieldName": "operation_info.ADRENAL_GLAND_EXTENT",
+                    "dataMap": [
+                        "全切",
+                        "部分切除"
+                    ]
+                }
+            ],
+            "术后情况": [
+                {
+                    "srchFieldName": "术后情况.术后收缩压（mmHg）",
+                    "dataType": "double",
+                    "UIFieldName": "术后收缩压（mmHg）",
+                    "IndexFieldName": "postoperation_info.POSTOPERATION_SYSTOLIC"
+                },
+                {
+                    "srchFieldName": "术后情况.术后舒张压（mmHg）",
+                    "dataType": "double",
+                    "UIFieldName": "术后舒张压（mmHg）",
+                    "IndexFieldName": "postoperation_info.POSTOPERATION_DIASTOLIC"
+                },
+                {
+                    "srchFieldName": "术后情况.术后高血压治愈",
+                    "dataType": "string",
+                    "UIFieldName": "术后高血压治愈",
+                    "IndexFieldName": "postoperation_info.POSTOPERATION_HBP_CURE",
+                    "dataMap": [
+                        "是",
+                        "否"
+                    ]
+                },
+                {
+                    "srchFieldName": "术后情况.术后收缩压正常",
+                    "dataType": "string",
+                    "UIFieldName": "术后收缩压正常",
+                    "IndexFieldName": "postoperation_info.POSTOPERATION_SYSTOLIC_NORNAL",
+                    "dataMap": [
+                        "是",
+                        "否"
+                    ]
+                },
+                {
+                    "srchFieldName": "术后情况.术后高血压好转",
+                    "dataType": "string",
+                    "UIFieldName": "术后高血压好转",
+                    "IndexFieldName": "postoperation_info.POSTOPERATION_HBP_BETTER",
+                    "dataMap": [
+                        "是",
+                        "否"
+                    ]
+                },
+                {
+                    "srchFieldName": "术后情况.术后收缩压好转",
+                    "dataType": "string",
+                    "UIFieldName": "术后收缩压好转",
+                    "IndexFieldName": "postoperation_info.POSTOPERATION_SYSTOLIC_BETTER",
+                    "dataMap": [
+                        "是",
+                        "否"
+                    ]
+                },
+                {
+                    "srchFieldName": "术后情况.术后血钾正常",
+                    "dataType": "string",
+                    "UIFieldName": "术后血钾正常",
+                    "IndexFieldName": "postoperation_info.POSTOPERATION_K_NORMAL",
+                    "dataMap": [
+                        "是",
+                        "否"
                     ]
                 }
             ]
