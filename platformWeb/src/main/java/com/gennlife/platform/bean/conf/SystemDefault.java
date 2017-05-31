@@ -8,7 +8,7 @@ public class SystemDefault {
     private String searchItemSetDefault;
     private String needGroup;
     private String passwdOperator;
-    private String needToCreateIndex;
+    private String needToCreateIndex = "false";
     private boolean DefaultCrfId;
 
     public boolean getDefaultCrfId() {
