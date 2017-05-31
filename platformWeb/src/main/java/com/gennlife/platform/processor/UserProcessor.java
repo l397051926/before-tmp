@@ -246,10 +246,12 @@ public class UserProcessor {
         if (user == null) {
             return null;
         } else {
-            /*User exuser = RedisUtil.getUser(user.getUid());
+            User exuser = RedisUtil.getUser(user.getUid());
             if (exuser != null) {
+                List<Role> roles=exuser.getRoles();
+                exuser.setRoles(powerToRoles(exuser.getPower(),roles));
                 return exuser;
-            } else {*/
+            } else {
                 user = AllDao.getInstance().getSyUserDao().getUserByUid(user.getUid());
                 Map<String, Object> confMap = new HashMap<>();
                 confMap.put("orgID", user.getOrgID());
@@ -259,9 +261,28 @@ public class UserProcessor {
                 transformRole(user, rolesList);
                 user.setRoles(rolesList);
                 return user;
-            //}
+            }
         }
 
+    }
+
+    private static List<Role> powerToRoles(Power power, List<Role> roles) {
+        if(power==null)return roles;
+        LinkedList<Role> result = new LinkedList<>();
+        if(roles!=null)result.addAll(roles);
+        Role role=new Role();
+        LinkedList<Resource> list=new LinkedList<>();
+        list.addAll(power.getHas_search());
+        list.addAll(power.getHas_searchExport());;
+        list.addAll(power.getHas_addBatchCRF());
+        list.addAll(power.getHas_addCRF());
+        list.addAll(power.getHas_browseDetail());
+        list.addAll(power.getHas_traceCRF());
+        list.addAll(power.getHas_deleteCRF());
+        list.addAll(power.getHas_editCRF());
+        role.setResources(list);
+        result.add(role);
+        return result;
     }
 
     @Deprecated
