@@ -55,10 +55,8 @@ public class CaseProcessor {
             for (JsonElement json : arrange) {
                 set.add(json.getAsString());
             }
-            if (!(((SystemDefault)SpringContextUtil.getBean("systemDefault")).getDefaultCrfId())) {
-                if (paramObj.has("crf_id")) {
-                    crf_id = paramObj.get("crf_id").getAsString();
-                }
+            if (paramObj.has("crf_id")) {
+                crf_id = paramObj.get("crf_id").getAsString();
             }
         } catch (Exception e) {
             logger.error("", e);
@@ -242,10 +240,8 @@ public class CaseProcessor {
         String crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
         try {
             keywords = paramObj.get("keywords").getAsString();
-            if (!(((SystemDefault)SpringContextUtil.getBean("systemDefault")).getDefaultCrfId())) {
-                if (paramObj.has("crf_id")) {
-                    crf_id = paramObj.get("crf_id").getAsString();
-                }
+            if (paramObj.has("crf_id")) {
+                crf_id = paramObj.get("crf_id").getAsString();
             }
         } catch (Exception e) {
             return ParamUtils.errorParam("请求参数出错");

@@ -233,10 +233,8 @@ public class SampleProcessor {
     public String importTree(JsonObject paramObj) {
         String crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
         try {
-            if (!(((SystemDefault)SpringContextUtil.getBean("systemDefault")).getDefaultCrfId())) {
-                if (paramObj.has("crf_id")) {
-                    crf_id = paramObj.get("crf_id").getAsString();
-                }
+            if (paramObj.has("crf_id")) {
+                crf_id = paramObj.get("crf_id").getAsString();
             }
         } catch (Exception e) {
             logger.error("", e);
@@ -258,10 +256,8 @@ public class SampleProcessor {
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             sampleURI = paramObj.get("sampleURI").getAsString();
             key = paramObj.get("keywords").getAsString();
-            if (!(((SystemDefault)SpringContextUtil.getBean("systemDefault")).getDefaultCrfId())) {
-                if (paramObj.has("crf_id")) {
-                    crf_id = paramObj.get("crf_id").getAsString();
-                }
+            if (paramObj.has("crf_id")) {
+                crf_id = paramObj.get("crf_id").getAsString();
             }
         } catch (Exception e) {
             logger.error("", e);
