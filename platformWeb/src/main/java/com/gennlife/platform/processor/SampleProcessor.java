@@ -2,6 +2,7 @@ package com.gennlife.platform.processor;
 
 
 import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.bean.projectBean.ProLog;
 import com.gennlife.platform.bean.projectBean.ProSample;
 import com.gennlife.platform.dao.AllDao;
@@ -11,6 +12,7 @@ import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
+import com.gennlife.platform.util.SpringContextUtil;
 import com.gennlife.platform.view.View;
 import com.google.gson.*;
 import org.slf4j.Logger;
@@ -229,9 +231,11 @@ public class SampleProcessor {
     }
 
     public String importTree(JsonObject paramObj) {
-        String crf_id = "kidney_cancer";
+        String crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
         try {
-            crf_id = paramObj.get("crf_id").getAsString();
+            if (paramObj.has("crf_id")) {
+                crf_id = paramObj.get("crf_id").getAsString();
+            }
         } catch (Exception e) {
             logger.error("", e);
             return ParamUtils.errorParam("参数错误");
@@ -246,7 +250,8 @@ public class SampleProcessor {
     public String sampleSetDirectoryList(String param) {
         String sampleURI = null;
         String key = null;
-        String crf_id = "kidney_cancer";
+        // String crf_id = "kidney_cancer";
+        String crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
         try {
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             sampleURI = paramObj.get("sampleURI").getAsString();

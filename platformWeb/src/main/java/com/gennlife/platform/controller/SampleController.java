@@ -2,11 +2,13 @@ package com.gennlife.platform.controller;
 
 
 import com.gennlife.platform.authority.AuthorityUtil;
+import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.SampleProcessor;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
+import com.gennlife.platform.util.SpringContextUtil;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -130,8 +132,9 @@ public class SampleController {
         try{
             String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = new JsonObject();
+            String crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
             if(param == null || "".equals(param)){
-                paramObj.addProperty("crf_id","kidney_cancer");
+                paramObj.addProperty("crf_id",crf_id);
             }else {
                 paramObj = (JsonObject) jsonParser.parse(param);
             }

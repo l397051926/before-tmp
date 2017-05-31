@@ -4,8 +4,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 <bean id="systemDefault" class="com.gennlife.platform.bean.conf.SystemDefault" scope="singleton">
-    <property name="searchItemSetDefault" value="lung_cancer"/>
+    <property name="searchItemSetDefault" value="adrenal_gland_tumor"/>
     <property name="needGroup" value="true"/>
     <property name="passwdOperator" value="v2"/>
+    <property name="DefaultCrfId" value="true"/>
+    <property name="needToCreateIndex" value="false"/>
 </bean>
 </beans>

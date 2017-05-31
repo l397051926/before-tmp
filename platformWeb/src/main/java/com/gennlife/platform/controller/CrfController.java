@@ -99,7 +99,7 @@ public class CrfController {
             String indexName = ConfigurationService.getOrgIDIndexNamemap().get(user.getOrgID());
             if (indexName == null) {
                 String needToCreateIndex = ((SystemDefault)SpringContextUtil.getBean("systemDefault")).getNeedToCreateIndex();
-                if (needToCreateIndex.equals(true)) {
+                if (needToCreateIndex != null && needToCreateIndex.equals(true)) {
                     return ParamUtils.errorParam("用户所在的组织无法建立索引");
                 } else {
                     // 不需要建立索引
@@ -111,7 +111,7 @@ public class CrfController {
             paramObj.addProperty("indexName", indexName);
             resultStr = processor.upLoadData(paramObj);
             // 删除图片ID缓存
-            RedisUtil.delImageId(paramRe.getSession(false).getId());
+            // RedisUtil.delImageId(paramRe.getSession(false).getId());
         } catch (Exception e) {
             logger.error("上传crf数据", e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -131,7 +131,7 @@ public class CrfController {
             User user = (User) paramRe.getAttribute("currentUser");
             String indexName = ConfigurationService.getOrgIDIndexNamemap().get(user.getOrgID());
             String needToCreateIndex = ((SystemDefault)SpringContextUtil.getBean("systemDefault")).getNeedToCreateIndex();
-            if (needToCreateIndex.equals(true) && indexName == null) {
+            if (needToCreateIndex != null && needToCreateIndex.equals(true) && indexName == null) {
                 return ParamUtils.errorParam("用户所在的组织无法建立索引");
             }
             String param = ParamUtils.getParam(paramRe);
@@ -528,8 +528,8 @@ public class CrfController {
             }
             if (imgUrl.size() > 0) {
                 resultBean.setData(imgUrl);
-                String sessionID = paramRe.getSession(false).getId();
-                RedisUtil.setImageId(sessionID, imgUrl);
+                // String sessionID = paramRe.getSession(false).getId();
+                // RedisUtil.setImageId(sessionID, imgUrl);
             }
         } catch (Exception e) {
             logger.error("上传图片失败" + e);
