@@ -56,7 +56,6 @@ public class UserController {
             if (user != null) {
                 HttpSession session = paramRe.getSession(true);
                 String sessionID = session.getId();
-                RedisUtil.exit(user.getUid(),sessionID);
                 String loginSession = RedisUtil.getValue(user.getUid());
                 if (!StringUtils.isEmpty(loginSession) && !loginSession.equals(sessionID)) {
                     LogUtils.BussnissLog("用户 " + email + " 已经登陆在其他session,进行重新登陆 " + loginSession);
@@ -68,6 +67,7 @@ public class UserController {
                     LogUtils.BussnissLogError("login error", e);
                 }
                 if (!user.getUid().equals(uid)) {
+                    RedisUtil.exit(user.getUid(),sessionID);
                    // logger.info("user.getUid() != uid");
                     if (!RedisUtil.setUserOnLine(user, sessionID)) {
                         view.viewString(ParamUtils.errorParam("登陆失败"), response);
