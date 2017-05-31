@@ -26,7 +26,7 @@ public class UserProcessor {
 
     public User login(String email, String pwd) throws IOException {
         try {
-            if(StringUtils.isEmpty(email)||StringUtils.isEmpty(pwd))
+            if (StringUtils.isEmpty(email) || StringUtils.isEmpty(pwd))
                 return null;
             Long start = System.currentTimeMillis();
             LogUtils.BussnissLog("用户：" + email + " >>> 进行登陆");
@@ -246,20 +246,16 @@ public class UserProcessor {
         if (user == null) {
             return null;
         } else {
-            User exuser = RedisUtil.getUser(user.getUid());
-            if (exuser != null) {
-                return exuser;
-            } else {
-                user = AllDao.getInstance().getSyUserDao().getUserByUid(user.getUid());
-                Map<String, Object> confMap = new HashMap<>();
-                confMap.put("orgID", user.getOrgID());
-                confMap.put("uid", user.getUid());
-                List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(confMap);
-                //转化本科室信息
-                transformRole(user, rolesList);
-                user.setRoles(rolesList);
-                return user;
-            }
+            user = AllDao.getInstance().getSyUserDao().getUserByUid(user.getUid());
+            Map<String, Object> confMap = new HashMap<>();
+            confMap.put("orgID", user.getOrgID());
+            confMap.put("uid", user.getUid());
+            List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(confMap);
+            //转化本科室信息
+            transformRole(user, rolesList);
+            user.setRoles(rolesList);
+            return user;
+
         }
 
     }
@@ -519,8 +515,8 @@ public class UserProcessor {
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             email = paramObj.get("email").getAsString();
             pwd = paramObj.get("pwd").getAsString();
-            if(paramObj.has("md5"))md5 = paramObj.get("md5").getAsString();
-            if(StringUtils.isEmpty(md5)) md5="";
+            if (paramObj.has("md5")) md5 = paramObj.get("md5").getAsString();
+            if (StringUtils.isEmpty(md5)) md5 = "";
         } catch (Exception e) {
             logger.error("", e);
             return ParamUtils.errorParam("参数错误");
