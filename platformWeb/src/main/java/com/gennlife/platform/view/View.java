@@ -55,7 +55,7 @@ public class View {
         }
     }
     public void viewString(String str,HttpServletResponse response,HttpServletRequest request){
-        logger.info("结果:" + str);
+        //logger.info("结果:" + str);
         setHttpServletResponse(response);
         writeResult(str, response);
     }

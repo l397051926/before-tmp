@@ -67,6 +67,7 @@ public class UserController {
                     LogUtils.BussnissLogError("login error", e);
                 }
                 if (!user.getUid().equals(uid)) {
+                    RedisUtil.userLogout(sessionID);
                    // logger.info("user.getUid() != uid");
                     if (!RedisUtil.setUserOnLine(user, sessionID)) {
                         view.viewString(ParamUtils.errorParam("登陆失败"), response);
