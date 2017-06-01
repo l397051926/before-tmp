@@ -903,6 +903,12 @@
                     "dataType": "string"
                 },
                 {
+                    "UIFieldName": "麻醉医师",
+                    "IndexFieldName": "visits.operation.info.ANESTHESIA_PHYSICIAN",
+                    "srchFieldName": "就诊.手术.手术信息.麻醉医师",
+                    "dataType": "string"
+                },
+                {
                     "UIFieldName": "助手",
                     "IndexFieldName": "visits.operation.info.ASSISTANT",
                     "srchFieldName": "就诊.手术.手术信息.助手",
@@ -2975,6 +2981,154 @@
                     "UIFieldName": "药观名称",
                     "IndexFieldName": "visits.pharmacy.orders.MEDICINE_OBSERVATION",
                     "srchFieldName": "就诊.用药.用药医嘱.药观名称",
+                    "dataType": "string"
+                }
+            ],
+            "就诊.三测单": [
+                {
+                    "UIFieldName": "护理操作序列号",
+                    "IndexFieldName": "visits.triple_test_table.NURSING_OPERATION_SN",
+                    "srchFieldName": "就诊.三测单.护理操作序列号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "就诊内部序列号",
+                    "IndexFieldName": "visits.triple_test_table.VISIT_SN",
+                    "srchFieldName": "就诊.三测单.就诊内部序列号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "医嘱内部序列号",
+                    "IndexFieldName": "visits.triple_test_table.ORDER_SN",
+                    "srchFieldName": "就诊.三测单.医嘱内部序列号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "文档内部序列号",
+                    "IndexFieldName": "visits.triple_test_table.DOCUMENT_SN",
+                    "srchFieldName": "就诊.三测单.文档内部序列号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "医嘱类型名称",
+                    "IndexFieldName": "visits.triple_test_table.ORDER_TYPE",
+                    "srchFieldName": "就诊.三测单.医嘱类型名称",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "收缩压",
+                    "IndexFieldName": "visits.triple_test_table.SYSTOLIC",
+                    "srchFieldName": "就诊.三测单.收缩压",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "舒张压",
+                    "IndexFieldName": "visits.triple_test_table.DIASTOLIC",
+                    "srchFieldName": "就诊.三测单.舒张压",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "脉搏",
+                    "IndexFieldName": "visits.triple_test_table.PULSE",
+                    "srchFieldName": "就诊.三测单.脉搏",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "体温",
+                    "IndexFieldName": "visits.triple_test_table.TEMPERATURE",
+                    "srchFieldName": "就诊.三测单.体温",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "大便次数",
+                    "IndexFieldName": "visits.triple_test_table.STOOL_FREQ",
+                    "srchFieldName": "就诊.三测单.大便次数",
+                    "dataType": "long"
+                },
+                {
+                    "UIFieldName": "呼吸",
+                    "IndexFieldName": "visits.triple_test_table.BREATH",
+                    "srchFieldName": "就诊.三测单.呼吸",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "心率",
+                    "IndexFieldName": "visits.triple_test_table.HEART_RATE",
+                    "srchFieldName": "就诊.三测单.心率",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "出入量",
+                    "IndexFieldName": "visits.triple_test_table.EMICTION",
+                    "srchFieldName": "就诊.三测单.出入量",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "检测时间",
+                    "IndexFieldName": "visits.triple_test_table.EXAM_TIME",
+                    "srchFieldName": "就诊.三测单.检测时间",
+                    "dataType": "date",
+                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
+                },
+                {
+                    "UIFieldName": "记录时间",
+                    "IndexFieldName": "visits.triple_test_table.INPUT_DATE",
+                    "srchFieldName": "就诊.三测单.记录时间",
+                    "dataType": "date",
+                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
+                },
+                {
+                    "UIFieldName": "执行科室编码",
+                    "IndexFieldName": "visits.triple_test_table.EXECUTE_DEPT_CODE",
+                    "srchFieldName": "就诊.三测单.执行科室编码",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "执行科室",
+                    "IndexFieldName": "visits.triple_test_table.EXECUTE_DEPT",
+                    "srchFieldName": "就诊.三测单.执行科室",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "是否降痛",
+                    "IndexFieldName": "visits.triple_test_table.IS_REDUCTION_PAIN",
+                    "srchFieldName": "就诊.三测单.是否降痛",
+                    "dataType": "boolean"
+                },
+                {
+                    "UIFieldName": "是否物理降温",
+                    "IndexFieldName": "visits.triple_test_table.IS_PHYSICAL_COOLING",
+                    "srchFieldName": "就诊.三测单.是否物理降温",
+                    "dataType": "boolean"
+                },
+                {
+                    "UIFieldName": "物理降温温度",
+                    "IndexFieldName": "visits.triple_test_table.PHYSICAL_COOLING_TEMPERATURE",
+                    "srchFieldName": "就诊.三测单.物理降温温度",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "测量位置",
+                    "IndexFieldName": "visits.triple_test_table.MEASURE_POSITION",
+                    "srchFieldName": "就诊.三测单.测量位置",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "降痛目标",
+                    "IndexFieldName": "visits.triple_test_table.REDUCTION_PAIN_TARGET",
+                    "srchFieldName": "就诊.三测单.降痛目标",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "是否重复测量",
+                    "IndexFieldName": "visits.triple_test_table.IS_REPEATED_MEASURE",
+                    "srchFieldName": "就诊.三测单.是否重复测量",
+                    "dataType": "boolean"
+                },
+                {
+                    "UIFieldName": "病床号",
+                    "IndexFieldName": "visits.triple_test_table.BED_NO",
+                    "srchFieldName": "就诊.三测单.病床号",
                     "dataType": "string"
                 }
             ],
@@ -4910,6 +5064,12 @@
                     "dataType": "string"
                 },
                 {
+                    "UIFieldName": "麻醉医师",
+                    "IndexFieldName": "visits.operation.info.ANESTHESIA_PHYSICIAN",
+                    "srchFieldName": "就诊.手术.手术信息.麻醉医师",
+                    "dataType": "string"
+                },
+                {
                     "UIFieldName": "助手",
                     "IndexFieldName": "visits.operation.info.ASSISTANT",
                     "srchFieldName": "就诊.手术.手术信息.助手",
@@ -6982,6 +7142,154 @@
                     "UIFieldName": "药观名称",
                     "IndexFieldName": "visits.pharmacy.orders.MEDICINE_OBSERVATION",
                     "srchFieldName": "就诊.用药.用药医嘱.药观名称",
+                    "dataType": "string"
+                }
+            ],
+            "就诊.三测单": [
+                {
+                    "UIFieldName": "护理操作序列号",
+                    "IndexFieldName": "visits.triple_test_table.NURSING_OPERATION_SN",
+                    "srchFieldName": "就诊.三测单.护理操作序列号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "就诊内部序列号",
+                    "IndexFieldName": "visits.triple_test_table.VISIT_SN",
+                    "srchFieldName": "就诊.三测单.就诊内部序列号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "医嘱内部序列号",
+                    "IndexFieldName": "visits.triple_test_table.ORDER_SN",
+                    "srchFieldName": "就诊.三测单.医嘱内部序列号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "文档内部序列号",
+                    "IndexFieldName": "visits.triple_test_table.DOCUMENT_SN",
+                    "srchFieldName": "就诊.三测单.文档内部序列号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "医嘱类型名称",
+                    "IndexFieldName": "visits.triple_test_table.ORDER_TYPE",
+                    "srchFieldName": "就诊.三测单.医嘱类型名称",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "收缩压",
+                    "IndexFieldName": "visits.triple_test_table.SYSTOLIC",
+                    "srchFieldName": "就诊.三测单.收缩压",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "舒张压",
+                    "IndexFieldName": "visits.triple_test_table.DIASTOLIC",
+                    "srchFieldName": "就诊.三测单.舒张压",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "脉搏",
+                    "IndexFieldName": "visits.triple_test_table.PULSE",
+                    "srchFieldName": "就诊.三测单.脉搏",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "体温",
+                    "IndexFieldName": "visits.triple_test_table.TEMPERATURE",
+                    "srchFieldName": "就诊.三测单.体温",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "大便次数",
+                    "IndexFieldName": "visits.triple_test_table.STOOL_FREQ",
+                    "srchFieldName": "就诊.三测单.大便次数",
+                    "dataType": "long"
+                },
+                {
+                    "UIFieldName": "呼吸",
+                    "IndexFieldName": "visits.triple_test_table.BREATH",
+                    "srchFieldName": "就诊.三测单.呼吸",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "心率",
+                    "IndexFieldName": "visits.triple_test_table.HEART_RATE",
+                    "srchFieldName": "就诊.三测单.心率",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "出入量",
+                    "IndexFieldName": "visits.triple_test_table.EMICTION",
+                    "srchFieldName": "就诊.三测单.出入量",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "检测时间",
+                    "IndexFieldName": "visits.triple_test_table.EXAM_TIME",
+                    "srchFieldName": "就诊.三测单.检测时间",
+                    "dataType": "date",
+                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
+                },
+                {
+                    "UIFieldName": "记录时间",
+                    "IndexFieldName": "visits.triple_test_table.INPUT_DATE",
+                    "srchFieldName": "就诊.三测单.记录时间",
+                    "dataType": "date",
+                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
+                },
+                {
+                    "UIFieldName": "执行科室编码",
+                    "IndexFieldName": "visits.triple_test_table.EXECUTE_DEPT_CODE",
+                    "srchFieldName": "就诊.三测单.执行科室编码",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "执行科室",
+                    "IndexFieldName": "visits.triple_test_table.EXECUTE_DEPT",
+                    "srchFieldName": "就诊.三测单.执行科室",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "是否降痛",
+                    "IndexFieldName": "visits.triple_test_table.IS_REDUCTION_PAIN",
+                    "srchFieldName": "就诊.三测单.是否降痛",
+                    "dataType": "boolean"
+                },
+                {
+                    "UIFieldName": "是否物理降温",
+                    "IndexFieldName": "visits.triple_test_table.IS_PHYSICAL_COOLING",
+                    "srchFieldName": "就诊.三测单.是否物理降温",
+                    "dataType": "boolean"
+                },
+                {
+                    "UIFieldName": "物理降温温度",
+                    "IndexFieldName": "visits.triple_test_table.PHYSICAL_COOLING_TEMPERATURE",
+                    "srchFieldName": "就诊.三测单.物理降温温度",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "测量位置",
+                    "IndexFieldName": "visits.triple_test_table.MEASURE_POSITION",
+                    "srchFieldName": "就诊.三测单.测量位置",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "降痛目标",
+                    "IndexFieldName": "visits.triple_test_table.REDUCTION_PAIN_TARGET",
+                    "srchFieldName": "就诊.三测单.降痛目标",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "是否重复测量",
+                    "IndexFieldName": "visits.triple_test_table.IS_REPEATED_MEASURE",
+                    "srchFieldName": "就诊.三测单.是否重复测量",
+                    "dataType": "boolean"
+                },
+                {
+                    "UIFieldName": "病床号",
+                    "IndexFieldName": "visits.triple_test_table.BED_NO",
+                    "srchFieldName": "就诊.三测单.病床号",
                     "dataType": "string"
                 }
             ],
@@ -15936,6 +16244,12 @@
                     "dataType": "string"
                 },
                 {
+                    "UIFieldName": "麻醉医师",
+                    "IndexFieldName": "visits.operation.info.ANESTHESIA_PHYSICIAN",
+                    "srchFieldName": "就诊.手术.手术信息.麻醉医师",
+                    "dataType": "string"
+                },
+                {
                     "UIFieldName": "助手",
                     "IndexFieldName": "visits.operation.info.ASSISTANT",
                     "srchFieldName": "就诊.手术.手术信息.助手",
@@ -18008,6 +18322,154 @@
                     "UIFieldName": "药观名称",
                     "IndexFieldName": "visits.pharmacy.orders.MEDICINE_OBSERVATION",
                     "srchFieldName": "就诊.用药.用药医嘱.药观名称",
+                    "dataType": "string"
+                }
+            ],
+            "就诊.三测单": [
+                {
+                    "UIFieldName": "护理操作序列号",
+                    "IndexFieldName": "visits.triple_test_table.NURSING_OPERATION_SN",
+                    "srchFieldName": "就诊.三测单.护理操作序列号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "就诊内部序列号",
+                    "IndexFieldName": "visits.triple_test_table.VISIT_SN",
+                    "srchFieldName": "就诊.三测单.就诊内部序列号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "医嘱内部序列号",
+                    "IndexFieldName": "visits.triple_test_table.ORDER_SN",
+                    "srchFieldName": "就诊.三测单.医嘱内部序列号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "文档内部序列号",
+                    "IndexFieldName": "visits.triple_test_table.DOCUMENT_SN",
+                    "srchFieldName": "就诊.三测单.文档内部序列号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "医嘱类型名称",
+                    "IndexFieldName": "visits.triple_test_table.ORDER_TYPE",
+                    "srchFieldName": "就诊.三测单.医嘱类型名称",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "收缩压",
+                    "IndexFieldName": "visits.triple_test_table.SYSTOLIC",
+                    "srchFieldName": "就诊.三测单.收缩压",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "舒张压",
+                    "IndexFieldName": "visits.triple_test_table.DIASTOLIC",
+                    "srchFieldName": "就诊.三测单.舒张压",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "脉搏",
+                    "IndexFieldName": "visits.triple_test_table.PULSE",
+                    "srchFieldName": "就诊.三测单.脉搏",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "体温",
+                    "IndexFieldName": "visits.triple_test_table.TEMPERATURE",
+                    "srchFieldName": "就诊.三测单.体温",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "大便次数",
+                    "IndexFieldName": "visits.triple_test_table.STOOL_FREQ",
+                    "srchFieldName": "就诊.三测单.大便次数",
+                    "dataType": "long"
+                },
+                {
+                    "UIFieldName": "呼吸",
+                    "IndexFieldName": "visits.triple_test_table.BREATH",
+                    "srchFieldName": "就诊.三测单.呼吸",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "心率",
+                    "IndexFieldName": "visits.triple_test_table.HEART_RATE",
+                    "srchFieldName": "就诊.三测单.心率",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "出入量",
+                    "IndexFieldName": "visits.triple_test_table.EMICTION",
+                    "srchFieldName": "就诊.三测单.出入量",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "检测时间",
+                    "IndexFieldName": "visits.triple_test_table.EXAM_TIME",
+                    "srchFieldName": "就诊.三测单.检测时间",
+                    "dataType": "date",
+                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
+                },
+                {
+                    "UIFieldName": "记录时间",
+                    "IndexFieldName": "visits.triple_test_table.INPUT_DATE",
+                    "srchFieldName": "就诊.三测单.记录时间",
+                    "dataType": "date",
+                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
+                },
+                {
+                    "UIFieldName": "执行科室编码",
+                    "IndexFieldName": "visits.triple_test_table.EXECUTE_DEPT_CODE",
+                    "srchFieldName": "就诊.三测单.执行科室编码",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "执行科室",
+                    "IndexFieldName": "visits.triple_test_table.EXECUTE_DEPT",
+                    "srchFieldName": "就诊.三测单.执行科室",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "是否降痛",
+                    "IndexFieldName": "visits.triple_test_table.IS_REDUCTION_PAIN",
+                    "srchFieldName": "就诊.三测单.是否降痛",
+                    "dataType": "boolean"
+                },
+                {
+                    "UIFieldName": "是否物理降温",
+                    "IndexFieldName": "visits.triple_test_table.IS_PHYSICAL_COOLING",
+                    "srchFieldName": "就诊.三测单.是否物理降温",
+                    "dataType": "boolean"
+                },
+                {
+                    "UIFieldName": "物理降温温度",
+                    "IndexFieldName": "visits.triple_test_table.PHYSICAL_COOLING_TEMPERATURE",
+                    "srchFieldName": "就诊.三测单.物理降温温度",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "测量位置",
+                    "IndexFieldName": "visits.triple_test_table.MEASURE_POSITION",
+                    "srchFieldName": "就诊.三测单.测量位置",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "降痛目标",
+                    "IndexFieldName": "visits.triple_test_table.REDUCTION_PAIN_TARGET",
+                    "srchFieldName": "就诊.三测单.降痛目标",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "是否重复测量",
+                    "IndexFieldName": "visits.triple_test_table.IS_REPEATED_MEASURE",
+                    "srchFieldName": "就诊.三测单.是否重复测量",
+                    "dataType": "boolean"
+                },
+                {
+                    "UIFieldName": "病床号",
+                    "IndexFieldName": "visits.triple_test_table.BED_NO",
+                    "srchFieldName": "就诊.三测单.病床号",
                     "dataType": "string"
                 }
             ],
@@ -27499,6 +27961,12 @@
                     "dataType": "string"
                 },
                 {
+                    "UIFieldName": "麻醉医师",
+                    "IndexFieldName": "visits.operation.info.ANESTHESIA_PHYSICIAN",
+                    "srchFieldName": "就诊.手术.手术信息.麻醉医师",
+                    "dataType": "string"
+                },
+                {
                     "UIFieldName": "助手",
                     "IndexFieldName": "visits.operation.info.ASSISTANT",
                     "srchFieldName": "就诊.手术.手术信息.助手",
@@ -29571,6 +30039,154 @@
                     "UIFieldName": "药观名称",
                     "IndexFieldName": "visits.pharmacy.orders.MEDICINE_OBSERVATION",
                     "srchFieldName": "就诊.用药.用药医嘱.药观名称",
+                    "dataType": "string"
+                }
+            ],
+            "就诊.三测单": [
+                {
+                    "UIFieldName": "护理操作序列号",
+                    "IndexFieldName": "visits.triple_test_table.NURSING_OPERATION_SN",
+                    "srchFieldName": "就诊.三测单.护理操作序列号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "就诊内部序列号",
+                    "IndexFieldName": "visits.triple_test_table.VISIT_SN",
+                    "srchFieldName": "就诊.三测单.就诊内部序列号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "医嘱内部序列号",
+                    "IndexFieldName": "visits.triple_test_table.ORDER_SN",
+                    "srchFieldName": "就诊.三测单.医嘱内部序列号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "文档内部序列号",
+                    "IndexFieldName": "visits.triple_test_table.DOCUMENT_SN",
+                    "srchFieldName": "就诊.三测单.文档内部序列号",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "医嘱类型名称",
+                    "IndexFieldName": "visits.triple_test_table.ORDER_TYPE",
+                    "srchFieldName": "就诊.三测单.医嘱类型名称",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "收缩压",
+                    "IndexFieldName": "visits.triple_test_table.SYSTOLIC",
+                    "srchFieldName": "就诊.三测单.收缩压",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "舒张压",
+                    "IndexFieldName": "visits.triple_test_table.DIASTOLIC",
+                    "srchFieldName": "就诊.三测单.舒张压",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "脉搏",
+                    "IndexFieldName": "visits.triple_test_table.PULSE",
+                    "srchFieldName": "就诊.三测单.脉搏",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "体温",
+                    "IndexFieldName": "visits.triple_test_table.TEMPERATURE",
+                    "srchFieldName": "就诊.三测单.体温",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "大便次数",
+                    "IndexFieldName": "visits.triple_test_table.STOOL_FREQ",
+                    "srchFieldName": "就诊.三测单.大便次数",
+                    "dataType": "long"
+                },
+                {
+                    "UIFieldName": "呼吸",
+                    "IndexFieldName": "visits.triple_test_table.BREATH",
+                    "srchFieldName": "就诊.三测单.呼吸",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "心率",
+                    "IndexFieldName": "visits.triple_test_table.HEART_RATE",
+                    "srchFieldName": "就诊.三测单.心率",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "出入量",
+                    "IndexFieldName": "visits.triple_test_table.EMICTION",
+                    "srchFieldName": "就诊.三测单.出入量",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "检测时间",
+                    "IndexFieldName": "visits.triple_test_table.EXAM_TIME",
+                    "srchFieldName": "就诊.三测单.检测时间",
+                    "dataType": "date",
+                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
+                },
+                {
+                    "UIFieldName": "记录时间",
+                    "IndexFieldName": "visits.triple_test_table.INPUT_DATE",
+                    "srchFieldName": "就诊.三测单.记录时间",
+                    "dataType": "date",
+                    "dateFormat": "yyyy-MM-dd HH:mm:ss"
+                },
+                {
+                    "UIFieldName": "执行科室编码",
+                    "IndexFieldName": "visits.triple_test_table.EXECUTE_DEPT_CODE",
+                    "srchFieldName": "就诊.三测单.执行科室编码",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "执行科室",
+                    "IndexFieldName": "visits.triple_test_table.EXECUTE_DEPT",
+                    "srchFieldName": "就诊.三测单.执行科室",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "是否降痛",
+                    "IndexFieldName": "visits.triple_test_table.IS_REDUCTION_PAIN",
+                    "srchFieldName": "就诊.三测单.是否降痛",
+                    "dataType": "boolean"
+                },
+                {
+                    "UIFieldName": "是否物理降温",
+                    "IndexFieldName": "visits.triple_test_table.IS_PHYSICAL_COOLING",
+                    "srchFieldName": "就诊.三测单.是否物理降温",
+                    "dataType": "boolean"
+                },
+                {
+                    "UIFieldName": "物理降温温度",
+                    "IndexFieldName": "visits.triple_test_table.PHYSICAL_COOLING_TEMPERATURE",
+                    "srchFieldName": "就诊.三测单.物理降温温度",
+                    "dataType": "double"
+                },
+                {
+                    "UIFieldName": "测量位置",
+                    "IndexFieldName": "visits.triple_test_table.MEASURE_POSITION",
+                    "srchFieldName": "就诊.三测单.测量位置",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "降痛目标",
+                    "IndexFieldName": "visits.triple_test_table.REDUCTION_PAIN_TARGET",
+                    "srchFieldName": "就诊.三测单.降痛目标",
+                    "dataType": "string"
+                },
+                {
+                    "UIFieldName": "是否重复测量",
+                    "IndexFieldName": "visits.triple_test_table.IS_REPEATED_MEASURE",
+                    "srchFieldName": "就诊.三测单.是否重复测量",
+                    "dataType": "boolean"
+                },
+                {
+                    "UIFieldName": "病床号",
+                    "IndexFieldName": "visits.triple_test_table.BED_NO",
+                    "srchFieldName": "就诊.三测单.病床号",
                     "dataType": "string"
                 }
             ],
