@@ -246,12 +246,6 @@ public class UserProcessor {
         if (user == null) {
             return null;
         } else {
-            User exuser = RedisUtil.getUser(user.getUid());
-            if (exuser != null) {
-                List<Role> roles=exuser.getRoles();
-                exuser.setRoles(powerToRoles(exuser.getPower(),roles));
-                return exuser;
-            } else {
                 user = AllDao.getInstance().getSyUserDao().getUserByUid(user.getUid());
                 Map<String, Object> confMap = new HashMap<>();
                 confMap.put("orgID", user.getOrgID());
@@ -261,7 +255,6 @@ public class UserProcessor {
                 transformRole(user, rolesList);
                 user.setRoles(rolesList);
                 return user;
-            }
         }
 
     }
