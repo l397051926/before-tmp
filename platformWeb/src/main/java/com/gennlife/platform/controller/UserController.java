@@ -82,8 +82,8 @@ public class UserController {
             resultStr = gson.toJson(resultBean);
             logger.info("user is: " + resultStr);
         } catch (Exception e) {
-            LogUtils.BussnissLogError("出现异常", e);
-            resultStr = ParamUtils.errorParam("出现异常");
+            ;;logger.error("登陆异常",e);
+            resultStr = ParamUtils.errorParam("登陆异常");
         }
         LogUtils.BussnissLog("登录get 耗时" + (System.currentTimeMillis() - start) + "ms");
         view.viewString(resultStr, response);
