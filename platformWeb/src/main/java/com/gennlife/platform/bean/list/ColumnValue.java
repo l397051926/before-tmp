@@ -29,22 +29,22 @@ public class ColumnValue {
 
     @Override
     public boolean equals(Object obj) {
-        try{
+        try {
             ColumnValue columnValue = (ColumnValue) obj;
-            if(this.columnPropetity != null &&
+            if (this.columnPropetity != null &&
                     this.columnPropetity.getUIFieldName() != null &&
                     columnValue.columnPropetity != null &&
                     columnValue.columnPropetity.getUIFieldName() != null &&
-                    this.columnPropetity.getUIFieldName().equals(columnValue.getColumnPropetity().getUIFieldName())){
+                    this.columnPropetity.getUIFieldName().equals(columnValue.getColumnPropetity().getUIFieldName())) {
                 return true;
             }
             return false;
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         ColumnValue columnValue = new ColumnValue();
         ColumnPropetity columnPropetity = new ColumnPropetity();
         columnValue.setColumnPropetity(columnPropetity);

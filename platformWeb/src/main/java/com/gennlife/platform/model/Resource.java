@@ -3,15 +3,15 @@ package com.gennlife.platform.model;
 /**
  * Created by chen-song on 16/9/9.
  */
-public class Resource implements Comparable<Resource>{
+public class Resource implements Comparable<Resource> {
     /**
      * `sid` varchar(50) DEFAULT NULL COMMENT '资源id',
-     `sname` varchar(50) DEFAULT NULL COMMENT '资源名称',
-     `sdesc` varchar(100) DEFAULT NULL COMMENT '资源描述',
-     `stype` varchar(30) DEFAULT NULL COMMENT '资源类型',
-     `slab_type` varchar(30) DEFAULT NULL COMMENT '科室类型',
-     `slab_name` varchar(50) DEFAULT NULL COMMENT '科室名称',
-     `sorgID` varchar(30) DEFAULT NULL COMMENT '组织id'
+     * `sname` varchar(50) DEFAULT NULL COMMENT '资源名称',
+     * `sdesc` varchar(100) DEFAULT NULL COMMENT '资源描述',
+     * `stype` varchar(30) DEFAULT NULL COMMENT '资源类型',
+     * `slab_type` varchar(30) DEFAULT NULL COMMENT '科室类型',
+     * `slab_name` varchar(50) DEFAULT NULL COMMENT '科室名称',
+     * `sorgID` varchar(30) DEFAULT NULL COMMENT '组织id'
      */
     private Integer roleid;
     private String sid;
@@ -218,34 +218,34 @@ public class Resource implements Comparable<Resource>{
 
 
     public Resource ResourcePowerleftOne(String key) {
-        if(key!=null)key=key.toUpperCase();
+        if (key != null) key = key.toUpperCase();
         else return this;
-        Integer roleid=null;
-        String sdesc=null;
-        String sorgID=null;
-        String stype_role=null;
-        String slab_type=null;
-        String stype=null;
-        String sname=null;
-        String has_search=this.has_search;
-        String has_searchExport=this.has_searchExport;
-        String has_traceCRF=this.has_traceCRF;
-        String has_addCRF=this.has_addCRF;
-        String has_editCRF=this.has_editCRF;
-        String has_deleteCRF=this.has_deleteCRF;
-        String has_browseDetail=this.has_browseDetail;
-        String has_addBatchCRF=this.has_addBatchCRF;
-        if(!"HAS_SEARCH".equals(key)) has_search=null;
-        if(!"HAS_SEARCHEXPORT".equals(key))has_searchExport=null;
+        Integer roleid = null;
+        String sdesc = null;
+        String sorgID = null;
+        String stype_role = null;
+        String slab_type = null;
+        String stype = null;
+        String sname = null;
+        String has_search = this.has_search;
+        String has_searchExport = this.has_searchExport;
+        String has_traceCRF = this.has_traceCRF;
+        String has_addCRF = this.has_addCRF;
+        String has_editCRF = this.has_editCRF;
+        String has_deleteCRF = this.has_deleteCRF;
+        String has_browseDetail = this.has_browseDetail;
+        String has_addBatchCRF = this.has_addBatchCRF;
+        if (!"HAS_SEARCH".equals(key)) has_search = null;
+        if (!"HAS_SEARCHEXPORT".equals(key)) has_searchExport = null;
 
-        if(!"HAS_TRACECRF".equals(key))has_traceCRF=null;
-        if(!"HAS_ADDCRF".equals(key))has_addCRF=null;
-        if(!"HAS_EDITCRF".equals(key)) has_editCRF=null;
-        if(!"HAS_DELETECRF".equals(key))has_deleteCRF=null;
-        if(!"HAS_BROWSEDETAIL".equals(key))has_browseDetail=null;
-        if(!"HAS_ADDBATCHCRF".equals(key))has_addBatchCRF=null;
-        return new Resource(roleid,  sid, sname, sdesc,stype, slab_type, slab_name, sorgID,  has_search, has_searchExport, has_traceCRF,  has_addCRF,  has_editCRF, has_deleteCRF,  has_browseDetail, has_addBatchCRF, stype_role) ;
-        }
+        if (!"HAS_TRACECRF".equals(key)) has_traceCRF = null;
+        if (!"HAS_ADDCRF".equals(key)) has_addCRF = null;
+        if (!"HAS_EDITCRF".equals(key)) has_editCRF = null;
+        if (!"HAS_DELETECRF".equals(key)) has_deleteCRF = null;
+        if (!"HAS_BROWSEDETAIL".equals(key)) has_browseDetail = null;
+        if (!"HAS_ADDBATCHCRF".equals(key)) has_addBatchCRF = null;
+        return new Resource(roleid, sid, sname, sdesc, stype, slab_type, slab_name, sorgID, has_search, has_searchExport, has_traceCRF, has_addCRF, has_editCRF, has_deleteCRF, has_browseDetail, has_addBatchCRF, stype_role);
+    }
 
 
 }

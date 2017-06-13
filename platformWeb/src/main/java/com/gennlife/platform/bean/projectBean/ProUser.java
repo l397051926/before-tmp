@@ -9,7 +9,8 @@ public class ProUser implements Serializable {
     private String uid;
     private String projectID;
     private Integer role;
-    private int puisdelete=0;
+    private int puisdelete = 0;
+
     public String getUid() {
         return uid;
     }

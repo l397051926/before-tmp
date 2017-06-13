@@ -26,136 +26,152 @@ public class SearchController extends HttpServlet {
     private static SearchProcessor processor = new SearchProcessor();
     private static JsonParser jsonParser = new JsonParser();
 
-    @RequestMapping(value="/SearchMembers",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String postSearchMembers(@RequestBody String param){
+    @RequestMapping(value = "/SearchMembers", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String postSearchMembers(@RequestBody String param) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.searchMembers(paramObj);
-            logger.info("搜索用户列表 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }catch (Exception e){
-            logger.error("",e);
+            resultStr = processor.searchMembers(paramObj);
+            logger.info("搜索用户列表 耗时:" + (System.currentTimeMillis() - start) + "ms");
+        } catch (Exception e) {
+            logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("搜索用户列表 post 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
-    @RequestMapping(value="/SearchMembers",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getSearchMembers(@RequestParam("param")String param){
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.searchMembers(paramObj);
-            logger.info("搜索用户列表 get 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }catch (Exception e){
-            logger.error("",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("搜索用户列表 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("搜索用户列表 post 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/SearchSetList",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String postSearchSetList(@RequestBody String param){
+    @RequestMapping(value = "/SearchMembers", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getSearchMembers(@RequestParam("param") String param) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.searchSetList(paramObj);
-            logger.info("搜索用户列表 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }catch (Exception e){
-            logger.error("",e);
+            resultStr = processor.searchMembers(paramObj);
+            logger.info("搜索用户列表 get 耗时:" + (System.currentTimeMillis() - start) + "ms");
+        } catch (Exception e) {
+            logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("搜索用户列表 post 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
-    @RequestMapping(value="/SearchSetList",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getSearchSetList(@RequestParam("param")String param){
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.searchSetList(paramObj);
-            logger.info("搜索用户列表 get 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }catch (Exception e){
-            logger.error("",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("搜索用户列表 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("搜索用户列表 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/StoreSearchCondition",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getStoreSearchCondition(HttpServletRequest paramRe){
+    @RequestMapping(value = "/SearchSetList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String postSearchSetList(@RequestBody String param) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.searchSetList(paramObj);
+            logger.info("搜索用户列表 耗时:" + (System.currentTimeMillis() - start) + "ms");
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("搜索用户列表 post 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/SearchSetList", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getSearchSetList(@RequestParam("param") String param) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.searchSetList(paramObj);
+            logger.info("搜索用户列表 get 耗时:" + (System.currentTimeMillis() - start) + "ms");
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("搜索用户列表 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/StoreSearchCondition", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getStoreSearchCondition(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
             String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.storeSearchCondition(paramObj);
-            logger.info("搜索条件保存 post 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }catch (Exception e){
-            logger.error("",e);
+            resultStr = processor.storeSearchCondition(paramObj);
+            logger.info("搜索条件保存 post 耗时:" + (System.currentTimeMillis() - start) + "ms");
+        } catch (Exception e) {
+            logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("搜索条件保存 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("搜索条件保存 post 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
 
-    @RequestMapping(value="/UpdateSearchCondition",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String UpdateSearchCondition(HttpServletRequest paramRe){
+    @RequestMapping(value = "/UpdateSearchCondition", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String UpdateSearchCondition(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.updateSearchCondition(paramObj);
-            logger.info("搜索条件更新 post 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }catch (Exception e){
-            logger.error("",e);
+            resultStr = processor.updateSearchCondition(paramObj);
+            logger.info("搜索条件更新 post 耗时:" + (System.currentTimeMillis() - start) + "ms");
+        } catch (Exception e) {
+            logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("搜索条件更新 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("搜索条件更新 post 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/DeleteSearchCondition",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String DeleteSearchCondition(HttpServletRequest paramRe){
+    @RequestMapping(value = "/DeleteSearchCondition", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String DeleteSearchCondition(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = ParamUtils.getParam(paramRe);
             JsonArray paramObj = (JsonArray) jsonParser.parse(param);
-            resultStr =  processor.deleteSearchCondition(paramObj);
-            logger.info("搜索条件删除 post 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }catch (Exception e){
-            logger.error("",e);
+            resultStr = processor.deleteSearchCondition(paramObj);
+            logger.info("搜索条件删除 post 耗时:" + (System.currentTimeMillis() - start) + "ms");
+        } catch (Exception e) {
+            logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("搜索条件删除 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("搜索条件删除 post 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/SearchConditionList",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getSearchConditionList(HttpServletRequest paramRe){
+    @RequestMapping(value = "/SearchConditionList", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getSearchConditionList(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.searchConditionList(paramObj);
-            logger.info("搜索条件保存 post 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }catch (Exception e){
-            logger.error("",e);
+            resultStr = processor.searchConditionList(paramObj);
+            logger.info("搜索条件保存 post 耗时:" + (System.currentTimeMillis() - start) + "ms");
+        } catch (Exception e) {
+            logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("搜索条件保存 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("搜索条件保存 post 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 }

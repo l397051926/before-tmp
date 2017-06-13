@@ -13,52 +13,52 @@ import java.util.regex.Pattern;
 public class GStringUtils {
     /**
      * 字符串转16进制
-     * */
-    private static SystemDefault systemDefault= (SystemDefault) SpringContextUtil.getBean("systemDefault");
-    public static String toHexString(String s)
-    {
-        String str="";
-        for (int i=0;i<s.length();i++)
-        {
-            int ch = (int)s.charAt(i);
+     */
+    private static SystemDefault systemDefault = (SystemDefault) SpringContextUtil.getBean("systemDefault");
+
+    public static String toHexString(String s) {
+        String str = "";
+        for (int i = 0; i < s.length(); i++) {
+            int ch = (int) s.charAt(i);
             String s4 = Integer.toHexString(ch);
             str = str + s4;
         }
         return str;
     }
-    public static String str2Password(String str)
-    {
-        if(systemDefault!=null&&"v2".equalsIgnoreCase(systemDefault.getPasswdOperator()))
-        return getMD5(toHexString(str));
+
+    public static String str2Password(String str) {
+        if (systemDefault != null && "v2".equalsIgnoreCase(systemDefault.getPasswdOperator()))
+            return getMD5(toHexString(str));
         else return str;
     }
+
     public static String getMD5(String str) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(str.getBytes());
             return new BigInteger(1, md.digest()).toString(16);
         } catch (Exception e) {
-           return str;
+            return str;
         }
     }
-    public static String getDefaultPasswd()
-    {
-        String password="ls123456";
-        if(systemDefault!=null&&"v2".equalsIgnoreCase(systemDefault.getPasswdOperator()))
+
+    public static String getDefaultPasswd() {
+        String password = "ls123456";
+        if (systemDefault != null && "v2".equalsIgnoreCase(systemDefault.getPasswdOperator()))
             return GStringUtils.str2Password(password);
         else
             return password;
 
     }
-    private static Pattern  emailPattern=Pattern.compile("^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$");
 
-    public static boolean checkEmail(String  email)
-    {
+    private static Pattern emailPattern = Pattern.compile("^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$");
+
+    public static boolean checkEmail(String email) {
         Matcher match = emailPattern.matcher(email);
         return match.find();
     }
-    public static void main(String[] args)
-    {
+
+    public static void main(String[] args) {
         System.out.println(checkEmail("1@qq.com"));
     }
 }

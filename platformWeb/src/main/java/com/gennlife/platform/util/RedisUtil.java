@@ -1,7 +1,5 @@
 package com.gennlife.platform.util;
 
-import com.gennlife.platform.dao.AllDao;
-import com.gennlife.platform.dao.SessionMapper;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.CrfProcessor;
 import com.gennlife.platform.processor.UserProcessor;
@@ -18,7 +16,6 @@ import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPool;
 
 import java.io.StringReader;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -233,8 +230,8 @@ public class RedisUtil {
 
     public static void updateUserOnLine(Collection<String> uidList) {
         if (uidList == null || uidList.size() == 0) return;
-        logger.info("update users "+gson.toJsonTree(uidList));
-        uidList.forEach(uid->deleteUser(uid));//延迟更新
+        logger.info("update users " + gson.toJsonTree(uidList));
+        uidList.forEach(uid -> deleteUser(uid));//延迟更新
         /*executorService.submit(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
@@ -277,6 +274,6 @@ public class RedisUtil {
     }
 
     public static void exit(List<String> uids) {
-        if(uids!=null)uids.forEach(uid->exit(uid,null));
+        if (uids != null) uids.forEach(uid -> exit(uid, null));
     }
 }

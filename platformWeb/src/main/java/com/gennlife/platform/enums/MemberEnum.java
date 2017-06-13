@@ -4,16 +4,18 @@ package com.gennlife.platform.enums;
  * Created by chensong on 2015/12/12.
  */
 public enum MemberEnum {
-    Manager("负责人",0),
-    Creater("创建者",1),
-    Member("成员",2);
+    Manager("负责人", 0),
+    Creater("创建者", 1),
+    Member("成员", 2);
 
     private String name;
     private int index;
-    MemberEnum(String name, int index){
+
+    MemberEnum(String name, int index) {
         this.name = name;
         this.index = index;
     }
+
     public String getName() {
         return name;
     }

@@ -19,7 +19,7 @@ public class ProjectPlan {
     private String modifier;
     private String taskID;
     private String taskName;
-    private int plandelete=0;
+    private int plandelete = 0;
 
     public String getCreatorName() {
         return creatorName;

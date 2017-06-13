@@ -32,7 +32,7 @@ public class ChineseToEnglish {
                 if (java.lang.Character.toString(t1[i]).matches(
                         "[\\u4E00-\\u9FA5]+")) {
                     t2 = PinyinHelper.toHanyuPinyinStringArray(t1[i], t3);
-                    if(t2==null||t2.length==0) throw new UnsupportedCharsetException("未知编码");
+                    if (t2 == null || t2.length == 0) throw new UnsupportedCharsetException("未知编码");
                     t4 += t2[0];
                 } else
                     t4 += java.lang.Character.toString(t1[i]);
@@ -70,6 +70,7 @@ public class ChineseToEnglish {
         }
         return strBuf.toString();
     }
+
     public static boolean isMessyCode(String str) {
         for (int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
@@ -84,6 +85,7 @@ public class ChineseToEnglish {
         }
         return false;
     }
+
     public static void main(String[] args) {
         System.out.println(getPingYin("腾讯qq"));
     }

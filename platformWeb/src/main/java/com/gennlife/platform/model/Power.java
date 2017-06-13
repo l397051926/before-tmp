@@ -9,7 +9,7 @@ import java.util.TreeSet;
  * Created by chen-song on 2016/12/8.
  */
 public class Power {
-    private static Comparator<Resource> comparator=new Comparator<Resource>() {
+    private static Comparator<Resource> comparator = new Comparator<Resource>() {
         @Override
         public int compare(Resource o1, Resource o2) {
             return o1.getSlab_name().compareTo(o2.getSlab_name());
@@ -166,7 +166,7 @@ public class Power {
     }
 
     public Power deepCopy() {
-        Power power=new Power();
+        Power power = new Power();
         power.setHas_addBatchCRF(has_addBatchCRF);
         power.setHas_browseDetail(has_browseDetail);
         power.setHas_addCRF(has_addCRF);

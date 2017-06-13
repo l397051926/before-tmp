@@ -563,7 +563,8 @@ public class BackstageManagementController {
     private String DataIntegrityViolationExceptionMsg() {
         return ParamUtils.errorParam("填写内容太长,请尽量保持在20个以内");
     }
-    @RequestMapping(value = "/resetpwd", method = {RequestMethod.GET,RequestMethod.POST}, produces = "application/json;charset=UTF-8")
+
+    @RequestMapping(value = "/resetpwd", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String reSetPasswd(HttpServletRequest paramRe) {

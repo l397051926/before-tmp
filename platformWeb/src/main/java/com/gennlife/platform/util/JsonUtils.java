@@ -23,7 +23,7 @@ import java.util.UUID;
  */
 public class JsonUtils {
     private static Logger logger = LoggerFactory.getLogger(JsonUtils.class);
-    private static SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd");
+    private static SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd");
     private static JsonParser jsonParser = new JsonParser();
 
     public static CreateProjectQueryBean parseCreateProject(String param) throws ParseException {
@@ -33,16 +33,16 @@ public class JsonUtils {
         JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
         String projectID = UUID.randomUUID().toString();
         String projectName = jsonObject.get("projectName").getAsString();
-        String projectEngName = jsonObject.get("projectEngName") == null?"":jsonObject.get("projectEngName").getAsString();
+        String projectEngName = jsonObject.get("projectEngName") == null ? "" : jsonObject.get("projectEngName").getAsString();
         String creator = jsonObject.get("uid").getAsString();
-        String stime = jsonObject.get("startTime") == null?"":jsonObject.get("startTime").getAsString();
-        String etime = jsonObject.get("endTime")== null?"":jsonObject.get("endTime").getAsString();
-        String center = jsonObject.get("center") == null?"":jsonObject.get("center").getAsString();
-        String projectDesp = jsonObject.get("projectDesp") != null? jsonObject.get("projectDesp").getAsString():"";
-        String manager = jsonObject.get("manager")!=null?jsonObject.get("manager").getAsString():"";
-        String unit = jsonObject.get("unit")== null?"":jsonObject.get("unit").getAsString();
+        String stime = jsonObject.get("startTime") == null ? "" : jsonObject.get("startTime").getAsString();
+        String etime = jsonObject.get("endTime") == null ? "" : jsonObject.get("endTime").getAsString();
+        String center = jsonObject.get("center") == null ? "" : jsonObject.get("center").getAsString();
+        String projectDesp = jsonObject.get("projectDesp") != null ? jsonObject.get("projectDesp").getAsString() : "";
+        String manager = jsonObject.get("manager") != null ? jsonObject.get("manager").getAsString() : "";
+        String unit = jsonObject.get("unit") == null ? "" : jsonObject.get("unit").getAsString();
         String disease = jsonObject.get("disease").getAsString();
-        String registerNumber = jsonObject.get("registerNumber") == null?"":jsonObject.get("registerNumber").getAsString();
+        String registerNumber = jsonObject.get("registerNumber") == null ? "" : jsonObject.get("registerNumber").getAsString();
         String type = jsonObject.get("type").getAsString();
         createProject.setCreator(creator);
         ProUser proUser = new ProUser();
@@ -54,10 +54,10 @@ public class JsonUtils {
         Date endTime = null;
 
 
-        if(null != stime && !"".equals(stime)){
+        if (null != stime && !"".equals(stime)) {
             startTime = time.parse(stime);
         }
-        if(null !=etime &&  !"".equals(etime)){
+        if (null != etime && !"".equals(etime)) {
             endTime = time.parse(etime);
         }
         createProject.setProjectID(projectID);
@@ -92,7 +92,7 @@ public class JsonUtils {
         return createProjectQueryBean;
     }
 
-    public static ProjectPlan parseCreatePlan(String param ,boolean iSUpdate){
+    public static ProjectPlan parseCreatePlan(String param, boolean iSUpdate) {
         ProjectPlan projectPlan = new ProjectPlan();
         JsonObject jsonObject = jsonParser.parse(param).getAsJsonObject();
         String projectID = jsonObject.get("projectID").getAsString();
@@ -103,20 +103,20 @@ public class JsonUtils {
         projectPlan.setPlanDesc(desc);
         projectPlan.setPlanName(planName);
         projectPlan.setProjectID(projectID);
-        if(iSUpdate){
+        if (iSUpdate) {
             String id = jsonObject.get("id").getAsString();
             projectPlan.setModifier(creator);
             projectPlan.setModifTime(createTime);
             int idInt = Integer.parseInt(id);
             projectPlan.setId(idInt);
-        }else{
+        } else {
             projectPlan.setCreator(creator);
             projectPlan.setCreateTime(createTime);
         }
         return projectPlan;
     }
 
-    static public String GetString( JsonObject jobj, String key) {
+    static public String GetString(JsonObject jobj, String key) {
         String result = "";
         if (!jobj.has(key)) {
             return result;
@@ -125,30 +125,27 @@ public class JsonUtils {
         if (null == tmp_data) {
             return result;
         }
-        if(tmp_data instanceof String){
+        if (tmp_data instanceof String) {
             result = jobj.get(key).getAsString();
-        }else if(tmp_data instanceof Integer){
+        } else if (tmp_data instanceof Integer) {
             result = String.valueOf(jobj.get(key).getAsInt());
-        }else if(tmp_data instanceof Double){
+        } else if (tmp_data instanceof Double) {
             result = String.valueOf(jobj.get(key).getAsDouble());
-        }else if(tmp_data instanceof Long){
+        } else if (tmp_data instanceof Long) {
             result = String.valueOf(jobj.get(key).getAsLong());
-        }else if(tmp_data instanceof Boolean){
+        } else if (tmp_data instanceof Boolean) {
             result = String.valueOf(jobj.get(key).getAsBoolean());
         }
         return result;
     }
-    public  static JsonObject getJsonObject(String param)
-    {
+
+    public static JsonObject getJsonObject(String param) {
         try {
             return jsonParser.parse(param).getAsJsonObject();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             return null;
         }
     }
-
 
 
 }

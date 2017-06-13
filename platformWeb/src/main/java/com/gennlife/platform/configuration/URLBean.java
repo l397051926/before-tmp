@@ -9,7 +9,7 @@ public class URLBean {
 
     /**
      * 非隐私信息接口
-     * */
+     */
     private String casePatientBatchData;
     private String CrfCsvImportDetail;
     private String consultingRoomData;
@@ -41,7 +41,7 @@ public class URLBean {
     /**
      * 获取相似病人情况的基本信息
      */
-    private  String caseSimilarServiceSimilarBasicDetail;
+    private String caseSimilarServiceSimilarBasicDetail;
     /**
      * vitaboard画图数据获取接口
      */
@@ -55,7 +55,7 @@ public class URLBean {
      */
     private String caseSimilarServiceVitaboardparam = null;
     /**
-     *相似病人默认参数获取
+     * 相似病人默认参数获取
      */
     private String caseSimilarServiceSimilarParam = null;
 
@@ -76,11 +76,11 @@ public class URLBean {
     private String casePatientRadiotherapy = null;
 
     /**
-     *分类详情DC治疗
+     * 分类详情DC治疗
      */
     private String casePatientDcOrder = null;
     /**
-     *单次就诊DC治疗
+     * 单次就诊DC治疗
      */
     private String caseVisitDcOrder = null;
 
@@ -167,12 +167,12 @@ public class URLBean {
     /**
      * 病程 诊断报告:主诉
      */
-    private String caseAdmission_records=null;
+    private String caseAdmission_records = null;
 
     /**
      * 新的搜索后端接口
      */
-    private String caseSearchURL=null;
+    private String caseSearchURL = null;
     /**
      * 搜索关键词提示词
      */
@@ -181,17 +181,17 @@ public class URLBean {
      * 搜索:V1.0
      * 详情页患者基础信息接口
      */
-    private String caseDetailPatientBasicInfoURL=null;
+    private String caseDetailPatientBasicInfoURL = null;
     /**
-     *  搜索:V1.0
-     *  基本统计图形&筛选条件
+     * 搜索:V1.0
+     * 基本统计图形&筛选条件
      */
-    private String caseDetailPatientBasicFigureURL=null;
+    private String caseDetailPatientBasicFigureURL = null;
     /**
      * 搜索:V1.0
      * 详情页时间轴信息接口
      */
-    private String casePatientBasicTimeAxisURL=null;
+    private String casePatientBasicTimeAxisURL = null;
 
     /**
      * 查看指标变化: 具体指标
@@ -240,7 +240,7 @@ public class URLBean {
     private String knowledgeDetailVariationSearchDrugURL = null;
 
     /**
-     *单次就诊专用:诊断报告
+     * 单次就诊专用:诊断报告
      */
     private String caseDiagnose = null;
 
@@ -357,20 +357,20 @@ public class URLBean {
     /*
     *  病人基本信息查询
      */
-    private String CRFGetPatientInfo=null;
+    private String CRFGetPatientInfo = null;
 
     private String RRun = null;
 
     private String RStop = null;
 
     private String RSave = null;
- 
+
     private String RLoad = null;
 
     private String RList = null;
 
     /**
-     *.病案首页
+     * .病案首页
      */
     private String caseMedicalRecord = null;
     /**
@@ -396,7 +396,6 @@ public class URLBean {
 
     /**
      * 计算服务因子图
-     *
      */
     private String CSSmg = null;
 
@@ -444,7 +443,7 @@ public class URLBean {
     /*
         *溯源页病人详细信息
          */
-    private String CRFPatientVisitDetail=null;
+    private String CRFPatientVisitDetail = null;
 
     public String getCRFPatientAllVisitsDetail() {
         return CRFPatientAllVisitsDetail;
@@ -457,7 +456,7 @@ public class URLBean {
     /*
         *溯源查看全部病人详细信息
          */
-    private String CRFPatientAllVisitsDetail=null;
+    private String CRFPatientAllVisitsDetail = null;
 
     public String getSampleImportIURL() {
         return sampleImportIURL;

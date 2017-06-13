@@ -11,6 +11,7 @@ public class DataBean {
     private String patientNo = "0";
     private String patientName = null;
     private List<Object> children = null;
+
     public String getCrf_id() {
         return crf_id;
     }

@@ -8,5 +8,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface Viewer {
     void setHttpServletResponse(HttpServletResponse response);
-    void writeResult(String reuslt,HttpServletResponse response,HttpServletRequest request);
+
+    void writeResult(String reuslt, HttpServletResponse response, HttpServletRequest request);
 }

@@ -10,12 +10,15 @@ import javax.mail.PasswordAuthentication;
 public class GennAuthenticator extends Authenticator {
     String userName = null;
     String password = null;
+
     public GennAuthenticator() {
     }
+
     public GennAuthenticator(String username, String password) {
         this.userName = username;
         this.password = password;
     }
+
     protected PasswordAuthentication getPasswordAuthentication() {
         return new PasswordAuthentication(userName, password);
     }

@@ -37,7 +37,7 @@ public class CaseProcessor {
         String searchKey = null;
         String keywords = null;
         String status = null;
-        String crf_id = ((SystemDefault)SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
+        String crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
         Set<String> set = new HashSet<String>();
         ResultBean resultBean = new ResultBean();
         try {
@@ -111,7 +111,7 @@ public class CaseProcessor {
             }
             resultBean.setCode(1);
             resultBean.setData(allNew);
-        } else if("3".equals(status)) {//更改属性,所有属性,带有搜索功能
+        } else if ("3".equals(status)) {//更改属性,所有属性,带有搜索功能
             JsonObject all = ConfigurationService.getAllObj(crf_id);
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
@@ -136,7 +136,7 @@ public class CaseProcessor {
             }
             resultBean.setCode(1);
             resultBean.setData(allNew);
-        } else if("4".equals(status)) {//比较因子属性,所有属性,带有搜索功能
+        } else if ("4".equals(status)) {//比较因子属性,所有属性,带有搜索功能
             JsonObject all = ConfigurationService.getCompareObj(crf_id);
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
@@ -162,7 +162,7 @@ public class CaseProcessor {
             resultBean.setCode(1);
             resultBean.setData(allNew);
         }
-        return  gson.toJson(resultBean);
+        return gson.toJson(resultBean);
     }
 
     /**
@@ -276,23 +276,25 @@ public class CaseProcessor {
 
     /**
      * 搜索接口，sid 转化
+     *
      * @param param
      * @return
      */
-    public static String transformSid(String param,User user) {
+    public static String transformSid(String param, User user) {
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
         return transformSid(paramObj, user);
 
     }
-    public static String transformSid(JsonObject paramObj,User user) {
+
+    public static String transformSid(JsonObject paramObj, User user) {
         if (paramObj.has("sid") && paramObj.has("power")) {
             String sid = paramObj.get("sid").getAsString();
             paramObj.remove("groups"); // 选择科室后，工号权限小时
             paramObj.remove("sid");
             JsonObject power = paramObj.getAsJsonObject("power");
-            JsonArray has_searchArray  = power.getAsJsonArray("has_search");
+            JsonArray has_searchArray = power.getAsJsonArray("has_search");
             JsonArray newHas_searchArray = new JsonArray();
-            for (JsonElement item: has_searchArray) {
+            for (JsonElement item : has_searchArray) {
                 JsonObject has_searchObj = item.getAsJsonObject();
                 String tmpSid = has_searchObj.get("sid").getAsString();
                 if (tmpSid.equals(sid)) {
@@ -315,13 +317,14 @@ public class CaseProcessor {
         }
 
     }
+
     @Deprecated
     private static void buildGroup(JsonObject paramObj, User user) {
         JsonArray groups = paramObj.getAsJsonArray("groups");
         if (groups == null) {
             groups = new JsonArray();
         } else if (groups.size() > 0) {
-            return ;
+            return;
         }
         //构建虚拟小组，确保工号权限生效
         Group group = new Group();
@@ -340,28 +343,29 @@ public class CaseProcessor {
 
     /**
      * 导出接口，sid 转化
+     *
      * @param param
      * @return
      */
-    public static String transformSidForImport(String param,User user) {
+    public static String transformSidForImport(String param, User user) {
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
         if (paramObj.has("sid") && paramObj.has("power")) {
             String sid = paramObj.get("sid").getAsString();
             paramObj.remove("groups");//选择科室后，工号权限小时
             paramObj.remove("sid");
             JsonObject power = paramObj.getAsJsonObject("power");
-            JsonArray has_searchExportArray  = power.getAsJsonArray("has_searchExport");
+            JsonArray has_searchExportArray = power.getAsJsonArray("has_searchExport");
             JsonArray newhas_searchExportArray = new JsonArray();
-            JsonArray has_searchArray  = power.getAsJsonArray("has_search");
+            JsonArray has_searchArray = power.getAsJsonArray("has_search");
             JsonArray newHas_searchArray = new JsonArray();
-            for (JsonElement item: has_searchExportArray) {
+            for (JsonElement item : has_searchExportArray) {
                 JsonObject has_searchExportObj = item.getAsJsonObject();
                 String tmpSid = has_searchExportObj.get("sid").getAsString();
                 if (tmpSid.equals(sid)) {
                     newhas_searchExportArray.add(has_searchExportObj);
                 }
             }
-            for (JsonElement item: has_searchArray) {
+            for (JsonElement item : has_searchArray) {
                 JsonObject has_searchObj = item.getAsJsonObject();
                 String tmpSid = has_searchObj.get("sid").getAsString();
                 if (tmpSid.equals(sid)) {
@@ -380,17 +384,18 @@ public class CaseProcessor {
             return param;
         }
     }
+
     /**
      * 搜索病历
      *
      * @param newParam
      */
-    public String searchCase(String newParam,User user) {
+    public String searchCase(String newParam, User user) {
         if (newParam == null) {
             logger.error("searchCase缺失参数");
             return ParamUtils.errorSessionLosParam();
         }
-        String param = transformSid(newParam,user);
+        String param = transformSid(newParam, user);
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
         if (paramObj.has("code") && paramObj.get("code").getAsInt() == 0) {
             return param;
@@ -404,7 +409,7 @@ public class CaseProcessor {
             }
             JsonObject searchResult = (JsonObject) jsonParser.parse(searchResultStr);
             JsonObject result = new JsonObject();
-            result.addProperty("code",1);
+            result.addProperty("code", 1);
             result.add("data", searchResult);
             return gson.toJson(result);
         } catch (Exception e) {
@@ -415,6 +420,7 @@ public class CaseProcessor {
 
     /**
      * 返回该疾病相关基因
+     *
      * @param paramObj
      */
     public String diseaseSearchGenes(JsonObject paramObj) {
@@ -430,11 +436,12 @@ public class CaseProcessor {
             return ParamUtils.errorParam("请求参数出错");
         }
         String url = ConfigurationService.getUrlBean().getKnowledgeDiseaseSearchGenesURL();
-        return HttpRequestUtils.httpPost(url,paramStr);
+        return HttpRequestUtils.httpPost(url, paramStr);
     }
 
     /**
      * 导出样本集到项目空间
+     *
      * @param paramObj
      */
     public String sampleImport(JsonObject paramObj) {
@@ -443,6 +450,7 @@ public class CaseProcessor {
 
     /**
      * 通路查询时,校验基因数组正确性
+     *
      * @param paramObj
      * @return
      */

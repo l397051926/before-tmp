@@ -15,10 +15,13 @@ import java.util.Date;
  */
 public class MemCachedUtil {
     private static MemCachedClient mcc = new MemCachedClient();
-    private static MemCachedConf memCachedConf =  null;
+    private static MemCachedConf memCachedConf = null;
     private static Gson gson = GsonUtil.getGson();
 
-    private MemCachedUtil() {};
+    private MemCachedUtil() {
+    }
+
+    ;
 
     static {
         ApplicationContext context = SpringContextUtil.getApplicationContext();
@@ -60,10 +63,11 @@ public class MemCachedUtil {
         else
             return null;
     }
-    public static boolean delete(String key){
-        if (mcc.keyExists(key)){
+
+    public static boolean delete(String key) {
+        if (mcc.keyExists(key)) {
             return mcc.delete(key);
-        }else{
+        } else {
             return true;
         }
 
@@ -71,50 +75,52 @@ public class MemCachedUtil {
 
     /**
      * 过期时间：单位分钟
+     *
      * @param key
      * @param value
      * @param time
      * @return
      */
-    public static boolean setWithTime(String key,String value,int time){
-        return mcc.add(key,value,new Date(time * 60 * 1000));
+    public static boolean setWithTime(String key, String value, int time) {
+        return mcc.add(key, value, new Date(time * 60 * 1000));
     }
 
     /**
-     *
      * @param uid:uid
      * @param value
      * @param time
      * @return
      */
-    public static boolean setUserWithTime(String uid,User value,int time){
+    public static boolean setUserWithTime(String uid, User value, int time) {
         String str = gson.toJson(value);
-        return mcc.add(uid+"_info",str,new Date(time * 60 * 1000));
+        return mcc.add(uid + "_info", str, new Date(time * 60 * 1000));
     }
 
-    public static boolean setUser(String uid,User value){
+    public static boolean setUser(String uid, User value) {
         String str = gson.toJson(value);
-        return mcc.add(uid+"_info",str);
+        return mcc.add(uid + "_info", str);
     }
-    public static boolean daleteUser(String uid){
-        if(mcc.keyExists(uid+"_info")){
-            return mcc.delete(uid+"_info");
-        }else{
+
+    public static boolean daleteUser(String uid) {
+        if (mcc.keyExists(uid + "_info")) {
+            return mcc.delete(uid + "_info");
+        } else {
             return true;
         }
 
     }
-    public static User getUser(String uid){
-        if(mcc.keyExists(uid+"_info")){
-            String str = (String) mcc.get(uid+"_info");
-            User user = gson.fromJson(str,User.class);
+
+    public static User getUser(String uid) {
+        if (mcc.keyExists(uid + "_info")) {
+            String str = (String) mcc.get(uid + "_info");
+            User user = gson.fromJson(str, User.class);
             return user;
-        }else {
+        } else {
             return null;
         }
     }
 
-    public static boolean addUser(String email,User user){
+    public static boolean addUser(String email, User user) {
         return mcc.set(email, user);
     }
 }

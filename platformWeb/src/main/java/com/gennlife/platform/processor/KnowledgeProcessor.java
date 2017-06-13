@@ -22,9 +22,10 @@ public class KnowledgeProcessor {
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
     private static KnowledgeBuilder builder = new KnowledgeBuilder();
-    private static View viewer= new View();
+    private static View viewer = new View();
     private static Set<String> set = new HashSet<String>();
-    static{
+
+    static {
         set.add("phenotype");
         set.add("gene");
         set.add("disease");
@@ -54,216 +55,216 @@ public class KnowledgeProcessor {
         String tableName = null;
         JsonArray genes = null;
         String diseaseParam = null;
-        try{
+        try {
             from = paramObj.get("from").getAsString();
             to = paramObj.get("to").getAsString();
             limit = paramObj.get("limit").getAsString();
-            if("geneDisease".equals(from)
-            	||(("variationArray".equals(from)&&"disease".equals(to)))
-            	||("variationArray".equals(from)&&"drug".equals(to))
-                    ||("geneArray".equals(from) && "pathway".equals(to))
-              ){
-            	queryArry = paramObj.getAsJsonArray("query");
-            }else {
-            	query = paramObj.get("query").getAsString();
+            if ("geneDisease".equals(from)
+                    || (("variationArray".equals(from) && "disease".equals(to)))
+                    || ("variationArray".equals(from) && "drug".equals(to))
+                    || ("geneArray".equals(from) && "pathway".equals(to))
+                    ) {
+                queryArry = paramObj.getAsJsonArray("query");
+            } else {
+                query = paramObj.get("query").getAsString();
             }
 
-            if(StringUtils.isEmpty(query)&&(queryArry==null||queryArry.size()==0))
+            if (StringUtils.isEmpty(query) && (queryArry == null || queryArry.size() == 0))
                 return ParamUtils.errorParam("查询条件为空");
             int[] li = ParamUtils.parseLimit(limit);
             currentPage = li[0];
             pageSize = li[1];
-            if("drug".equals(to)&&!"geneDisease".equals(from)
-            		&&!"variationArray".equals(from) ){
+            if ("drug".equals(to) && !"geneDisease".equals(from)
+                    && !"variationArray".equals(from)) {
                 tableName = paramObj.get("currentTable").getAsString();
             }
-            if("clinicalTrial".equals(to)){//查询临床试验,有表名
+            if ("clinicalTrial".equals(to)) {//查询临床试验,有表名
                 tableName = paramObj.get("currentTable").getAsString();
             }
-            if("geneArray".equals(from) && "pathway".equals(to)){
+            if ("geneArray".equals(from) && "pathway".equals(to)) {
                 tableName = paramObj.get("currentTable").getAsString();
             }
             //额外参数 
-            if("diseaseGene".equals(from)&&"drug".equals(to)){
-            	genes = paramObj.getAsJsonArray("genes");
+            if ("diseaseGene".equals(from) && "drug".equals(to)) {
+                genes = paramObj.getAsJsonArray("genes");
             }
-            if("geneDisease".equals(from)&&"drug".equals(to)){
-            	diseaseParam = paramObj.get("disease").getAsString();
+            if ("geneDisease".equals(from) && "drug".equals(to)) {
+                diseaseParam = paramObj.get("disease").getAsString();
             }
-            
-        }catch (Exception e){
+
+        } catch (Exception e) {
             logger.error("请求参数出错", e);
             return ParamUtils.errorParam("请求参数出错");
         }
-        if(from.equals("case") || to.equals("case")){
+        if (from.equals("case") || to.equals("case")) {
             //涉及到病历搜索
             return "";
         }
-        if(!isCheckParam(from)){
+        if (!isCheckParam(from)) {
             return ParamUtils.errorParam("请求参数from非法");
         }
-        if(!isCheckParam(to)){
+        if (!isCheckParam(to)) {
             return ParamUtils.errorParam("请求参数to非法");
         }
-        JsonObject newJson = buildQueryJson(from,to,query,currentPage,pageSize,tableName);
+        JsonObject newJson = buildQueryJson(from, to, query, currentPage, pageSize, tableName);
 
-        if("pubmed".equals(from) && "pubmed".equals(to)){
+        if ("pubmed".equals(from) && "pubmed".equals(to)) {
             rawQueryArray = paramObj.getAsJsonArray("rawQueryArray");
-            if(paramObj.has("cntOnly")){
+            if (paramObj.has("cntOnly")) {
                 JsonElement cntOnly = paramObj.get("cntOnly");
-                newJson.add("cntOnly",cntOnly);
+                newJson.add("cntOnly", cntOnly);
             }
-            if(paramObj.has("sort")){
+            if (paramObj.has("sort")) {
                 JsonElement sort = paramObj.get("sort");
-                newJson.add("sort",sort);
+                newJson.add("sort", sort);
             }
-            if(paramObj.has("mindate") && paramObj.has("maxdate")){
+            if (paramObj.has("mindate") && paramObj.has("maxdate")) {
                 JsonElement mindate = paramObj.get("mindate");
-                newJson.add("mindate",mindate);
+                newJson.add("mindate", mindate);
                 JsonElement maxdate = paramObj.get("maxdate");
-                newJson.add("maxdate",maxdate);
+                newJson.add("maxdate", maxdate);
             }
-            if(paramObj.has("reldate")){
+            if (paramObj.has("reldate")) {
                 JsonElement reldate = paramObj.get("reldate");
-                newJson.add("reldate",reldate);
+                newJson.add("reldate", reldate);
             }
-            if(paramObj.has("highQuality")){
+            if (paramObj.has("highQuality")) {
                 JsonElement highQuality = paramObj.get("highQuality");
-                newJson.add("highQuality",highQuality);
+                newJson.add("highQuality", highQuality);
             }
-            if(paramObj.has("pubType")){
+            if (paramObj.has("pubType")) {
                 JsonElement pubType = paramObj.get("pubType");
-                newJson.add("pubType",pubType);
+                newJson.add("pubType", pubType);
             }
-            newJson.add("rawQueryArray",rawQueryArray);
+            newJson.add("rawQueryArray", rawQueryArray);
 
         }
         //额外参数 
-        if("diseaseGene".equals(from)&&"drug".equals(to)){
-        	newJson.add("genes", genes);
+        if ("diseaseGene".equals(from) && "drug".equals(to)) {
+            newJson.add("genes", genes);
         }
-        
-        if("geneDisease".equals(from)&&"drug".equals(to)){
-        	newJson.addProperty("disease", diseaseParam);
-        	newJson.add("query", queryArry);
+
+        if ("geneDisease".equals(from) && "drug".equals(to)) {
+            newJson.addProperty("disease", diseaseParam);
+            newJson.add("query", queryArry);
         }
-        if(("geneDisease".equals(from))
-                ||("variationArray".equals(from)&&"disease".equals(to))
-            	||("variationArray".equals(from)&&"drug".equals(to))
-                ||("geneArray".equals(from) && "pathway".equals(to))
-                )
-        {
-        	newJson.add("query", queryArry);
+        if (("geneDisease".equals(from))
+                || ("variationArray".equals(from) && "disease".equals(to))
+                || ("variationArray".equals(from) && "drug".equals(to))
+                || ("geneArray".equals(from) && "pathway".equals(to))
+                ) {
+            newJson.add("query", queryArry);
         }
-        
-        
+
+
         String newParam = gson.toJson(newJson);
         logger.info("knowledge req=" + newParam);
         String url = ConfigurationService.getUrlBean().getKnowledgeURL();
         logger.info("knowledge url=" + url);
-        if("pubmed".equals(from)){
-            String resultStr = HttpRequestUtils.httpPostPubMed(url,newParam);
+        if ("pubmed".equals(from)) {
+            String resultStr = HttpRequestUtils.httpPostPubMed(url, newParam);
             return resultStr;
         }
-        String resultStr = HttpRequestUtils.httpPost(url,newParam);
+        String resultStr = HttpRequestUtils.httpPost(url, newParam);
 
         logger.info("knowledge result=" + resultStr);
         JsonArray resultArray = null;
-        if(StringUtils.isEmpty(resultStr)){
-        	resultArray = builder.buildOnlyHead(newJson, new JsonObject());
-        	return gson.toJson(resultArray);
-        }else if ("variationArray_disease".equals(from+"_"+to)){
-        	//陈松定的。按陈松说的修改的。
-        	return  resultStr;
-        }else{
-        	JsonObject tmpResult = (JsonObject) jsonParser.parse(resultStr);
-        	resultArray = builder.build(newJson,tmpResult);
-        	return gson.toJson(resultArray);
+        if (StringUtils.isEmpty(resultStr)) {
+            resultArray = builder.buildOnlyHead(newJson, new JsonObject());
+            return gson.toJson(resultArray);
+        } else if ("variationArray_disease".equals(from + "_" + to)) {
+            //陈松定的。按陈松说的修改的。
+            return resultStr;
+        } else {
+            JsonObject tmpResult = (JsonObject) jsonParser.parse(resultStr);
+            resultArray = builder.build(newJson, tmpResult);
+            return gson.toJson(resultArray);
         }
-        
-        
+
+
     }
 
     private JsonObject buildQueryJson(String from, String to, String query, int currentPage, int pageSize, String tableName) {
         JsonObject queryObj = new JsonObject();
-        queryObj.addProperty("from",from);
-        queryObj.addProperty("to",to);
-        queryObj.addProperty("query",query);
-        if(!"geneDisease".equals(from)&&!"variationArray".equals(from)){
-        	 queryObj.addProperty("query",query);
+        queryObj.addProperty("from", from);
+        queryObj.addProperty("to", to);
+        queryObj.addProperty("query", query);
+        if (!"geneDisease".equals(from) && !"variationArray".equals(from)) {
+            queryObj.addProperty("query", query);
         }
-        
-        queryObj.addProperty("currentPage",currentPage);
-        queryObj.addProperty("pageSize",pageSize);
-        queryObj.addProperty("currentTable",tableName);
-        queryObj.addProperty("DEBUG",false);
+
+        queryObj.addProperty("currentPage", currentPage);
+        queryObj.addProperty("pageSize", pageSize);
+        queryObj.addProperty("currentTable", tableName);
+        queryObj.addProperty("DEBUG", false);
         return queryObj;
     }
 
-    private boolean isCheckParam(String from){
+    private boolean isCheckParam(String from) {
         return set.contains(from);
     }
 
     /**
      * 查询基因相关信息
+     *
      * @param paramObj
      */
     public String geneInfo(JsonObject paramObj) {
         JsonArray Gene = null;
-        try{
+        try {
             Gene = paramObj.getAsJsonArray("Gene");
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("请求参数出错", e);
             return ParamUtils.errorParam("请求参数出错");
 
         }
         JsonObject newParam = new JsonObject();
-        newParam.add("Gene",Gene);
+        newParam.add("Gene", Gene);
         String paramStr = gson.toJson(newParam);
         String url = ConfigurationService.getUrlBean().getKnowledgeGeneInfoURL();
-        String resultStr = HttpRequestUtils.httpPost(url,paramStr);
+        String resultStr = HttpRequestUtils.httpPost(url, paramStr);
         return resultStr;
     }
 
     public String variationInfo(JsonObject paramObj) {
         JsonArray Variation = null;
-        try{
+        try {
             Variation = paramObj.getAsJsonArray("Variation");
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("请求参数出错", e);
             return ParamUtils.errorParam("请求参数出错");
         }
         JsonObject newParam = new JsonObject();
-        newParam.add("Variation",Variation);
+        newParam.add("Variation", Variation);
         String paramStr = gson.toJson(newParam);
         String url = ConfigurationService.getUrlBean().getKnowledgeVariationInfoURL();
-        String resultStr = HttpRequestUtils.httpPost(url,paramStr);
+        String resultStr = HttpRequestUtils.httpPost(url, paramStr);
         return resultStr;
     }
 
     public String detailVariationSearchDisease(JsonObject paramObj) {
         JsonArray Variation = null;
-        try{
+        try {
             Variation = paramObj.getAsJsonArray("Variation");
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("请求参数出错", e);
             return ParamUtils.errorParam("请求参数出错");
         }
         JsonObject newParam = new JsonObject();
-        newParam.add("Variation",Variation);
+        newParam.add("Variation", Variation);
         String paramStr = gson.toJson(newParam);
         String url = ConfigurationService.getUrlBean().getKnowledgeDetailVariationSearchDiseaseURL();
-        String resultStr = HttpRequestUtils.httpPost(url,paramStr);
-        return  resultStr;
+        String resultStr = HttpRequestUtils.httpPost(url, paramStr);
+        return resultStr;
     }
 
     public String detailVariationSearchDrug(String param) {
-        try{
-            logger.info("DetailVariationSearchDrug param="+param);
+        try {
+            logger.info("DetailVariationSearchDrug param=" + param);
             String url = ConfigurationService.getUrlBean().getKnowledgePharmGKBSearchDrugURL();
-            String resultStr = HttpRequestUtils.httpPost(url,param);
+            String resultStr = HttpRequestUtils.httpPost(url, param);
             return resultStr;
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("请求参数出错", e);
             return ParamUtils.errorParam("请求参数出错");
         }
@@ -272,70 +273,70 @@ public class KnowledgeProcessor {
 
     /**
      * 详情页,知识库搜索
+     *
      * @param paramObj
      * @return
      */
     public String detailSearch(JsonObject paramObj) {
-        try{
+        try {
             JsonObject fsParam = paramObj.get("filter").getAsJsonObject();
             paramObj.remove("filter");
             String fsParamStr = gson.toJson(fsParam);
             String url = ConfigurationService.getUrlBean().getCaseMolecular_detection();
-            logger.info("请求fs参数:"+fsParamStr);
-            String reStr = HttpRequestUtils.httpPost(url,fsParamStr);
-            logger.info("请求fs结果:"+reStr);
-            if(reStr == null){
+            logger.info("请求fs参数:" + fsParamStr);
+            String reStr = HttpRequestUtils.httpPost(url, fsParamStr);
+            logger.info("请求fs结果:" + reStr);
+            if (reStr == null) {
                 return ParamUtils.errorParam("FS返回为空,发生异常");
-            }else{
+            } else {
                 JsonObject resultObj = (JsonObject) jsonParser.parse(reStr);
-                if(resultObj.has("success") && resultObj.get("success").getAsBoolean()){
+                if (resultObj.has("success") && resultObj.get("success").getAsBoolean()) {
                     JsonArray genes = new JsonArray();
                     JsonArray vars = new JsonArray();
                     String disease = null;
-                    try{
+                    try {
                         JsonArray detection_result = resultObj.getAsJsonArray("detection_result");
-                        for (JsonElement item:detection_result){
+                        for (JsonElement item : detection_result) {
                             JsonObject itemObj = item.getAsJsonObject();
                             String GENE_SYMBOL = itemObj.get("GENE_SYMBOL").getAsString();
                             genes.add(GENE_SYMBOL);
-                            String RS_ID =  itemObj.get("RS_ID").getAsString();
-                            if(!".".equals(RS_ID)){
+                            String RS_ID = itemObj.get("RS_ID").getAsString();
+                            if (!".".equals(RS_ID)) {
                                 vars.add(RS_ID);
                             }
 
                         }
                         disease = resultObj.get("disease").getAsString();
-                    }catch (Exception e){
-                        logger.error("",e);
+                    } catch (Exception e) {
+                        logger.error("", e);
                         return ParamUtils.errorParam("FS解析异常");
                     }
                     String from = paramObj.get("from").getAsString();
                     String to = paramObj.get("to").getAsString();
-                    if("diseaseGene".equals(from) && "drug".equals(to)){
-                        paramObj.addProperty("query",disease);
-                        paramObj.add("genes",genes);
-                    }else if("geneDisease".equals(from) && "drug".equals(to)){
-                        paramObj.add("query",genes);
-                        paramObj.addProperty("disease",disease);
-                    }else if("clinicalTrial".equals(from) && "clinicalTrial".equals(to)){
-                        paramObj.addProperty("query",disease);
-                    }else if("variationArray".equals(from) && "drug".equals(to)){
-                        paramObj.add("query",vars);
-                    }else {
+                    if ("diseaseGene".equals(from) && "drug".equals(to)) {
+                        paramObj.addProperty("query", disease);
+                        paramObj.add("genes", genes);
+                    } else if ("geneDisease".equals(from) && "drug".equals(to)) {
+                        paramObj.add("query", genes);
+                        paramObj.addProperty("disease", disease);
+                    } else if ("clinicalTrial".equals(from) && "clinicalTrial".equals(to)) {
+                        paramObj.addProperty("query", disease);
+                    } else if ("variationArray".equals(from) && "drug".equals(to)) {
+                        paramObj.add("query", vars);
+                    } else {
                         return ParamUtils.errorParam("请求参数异常");
                     }
-                    logger.info("通过FS数据 转化后请求参数:"+gson.toJson(paramObj));
+                    logger.info("通过FS数据 转化后请求参数:" + gson.toJson(paramObj));
                     return search(paramObj);
-                }else{
+                } else {
                     return ParamUtils.errorParam("FS返回数据异常");
                 }
 
             }
 
 
-
-        }catch (Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             return ParamUtils.errorParam("发生异常");
         }
     }

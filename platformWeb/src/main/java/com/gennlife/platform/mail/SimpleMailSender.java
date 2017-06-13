@@ -16,6 +16,7 @@ import java.util.Properties;
  */
 public class SimpleMailSender {
     Logger logger = LoggerFactory.getLogger(SimpleMailSender.class);
+
     public boolean sendTextMail(MailSenderInfo mailInfo) {
         // 判断是否需要身份认证
         GennAuthenticator authenticator = null;
@@ -48,15 +49,15 @@ public class SimpleMailSender {
             mailMessage.setContent(mainPart);
             Transport.send(mailMessage);//发送邮件
             /**
-            // 设置邮件消息的主要内容
-            String mailContent = mailInfo.getContent();
-            mailMessage.setText(mailContent);
-            // 发送邮件
-            Transport.send(mailMessage);
+             // 设置邮件消息的主要内容
+             String mailContent = mailInfo.getContent();
+             mailMessage.setText(mailContent);
+             // 发送邮件
+             Transport.send(mailMessage);
              */
             return true;
         } catch (MessagingException ex) {
-            logger.error("",ex);
+            logger.error("", ex);
         }
         return false;
     }

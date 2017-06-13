@@ -32,79 +32,88 @@ public class CommonController {
     private static String labImportsuffix = "导入科室历史.csv";
     private static String staffImportsuffix = "导入人员历史.csv";
     private static JsonParser jsonParser = new JsonParser();
-    private static CommonProcessor processor =CommonProcessor.getCommonProcessor();
+    private static CommonProcessor processor = CommonProcessor.getCommonProcessor();
     private static Gson gson = GsonUtil.getGson();
     //存放文件的位置
     private static String FilePath = "/home/tomcat_demo2_web/update/";//默认位置
-    static{
+
+    static {
         FilePath = ConfigurationService.getFileBean().getManageFileLocation();
     }
+
     //后缀
     private static String suffix = ".csv";
-    @RequestMapping(value="/UploadFileForImportLab",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postUploadFileForImportLab(@RequestParam("name") MultipartFile file,HttpServletRequest paramRe){
-        Long start = System.currentTimeMillis();
-        String resultStr = "";
-        try{
-            User user = (User)paramRe.getAttribute("currentUser");
-            resultStr = processor.uploadFileForImportLab(file,user);
-            logger.info("上传文件导入科室 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }catch (Exception e){
-            logger.error("",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("上传文件导入科室 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
-    @RequestMapping(value="/DownloadFileForImportLabHistory",method= RequestMethod.GET)
-    public void getDownloadFileForImportLabHistory(HttpServletRequest paramRe,HttpServletResponse response){
-        User user = (User)paramRe.getAttribute("currentUser");
-        String file = FilePath+user.getOrg_name() + labImportsuffix;
-        processor.downLoadFile(file,response,"最近组织导入结果.csv");
-    }
 
-    @RequestMapping(value="/UploadFileForImportStaff",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String postUploadFileForImportStaff(@RequestParam("name") MultipartFile file,HttpServletRequest paramRe){
+    @RequestMapping(value = "/UploadFileForImportLab", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String postUploadFileForImportLab(@RequestParam("name") MultipartFile file, HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = "";
-        try{
-            User user = (User)paramRe.getAttribute("currentUser");
-            resultStr = processor.uploadFileForImportStaff(file,user);
-            logger.info("上传文件导入人员 耗时:" + (System.currentTimeMillis()-start) +"ms");
-        }catch (Exception e){
-            logger.error("",e);
+        try {
+            User user = (User) paramRe.getAttribute("currentUser");
+            resultStr = processor.uploadFileForImportLab(file, user);
+            logger.info("上传文件导入科室 耗时:" + (System.currentTimeMillis() - start) + "ms");
+        } catch (Exception e) {
+            logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("上传文件导入人员 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("上传文件导入科室 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
-
-    @RequestMapping(value="/DownloadFileForStaffHistory",method= RequestMethod.GET)
-    public void getDownloadFileForStaffHistory(HttpServletRequest paramRe,HttpServletResponse response){
-        User user = (User)paramRe.getAttribute("currentUser");
-        String file = FilePath+user.getOrg_name() + staffImportsuffix;
-        processor.downLoadFile(file,response,"最近成员导入结果.csv");
+    @RequestMapping(value = "/DownloadFileForImportLabHistory", method = RequestMethod.GET)
+    public void getDownloadFileForImportLabHistory(HttpServletRequest paramRe, HttpServletResponse response) {
+        User user = (User) paramRe.getAttribute("currentUser");
+        String file = FilePath + user.getOrg_name() + labImportsuffix;
+        processor.downLoadFile(file, response, "最近组织导入结果.csv");
     }
 
-    @RequestMapping(value="/DownloadFileForStaffModel",method= RequestMethod.GET)
-    public void DownloadFileForStaffModel(HttpServletRequest paramRe,HttpServletResponse response){
-        String file = FilePath+"人员导入模版"+ suffix;
+    @RequestMapping(value = "/UploadFileForImportStaff", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String postUploadFileForImportStaff(@RequestParam("name") MultipartFile file, HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = "";
+        try {
+            User user = (User) paramRe.getAttribute("currentUser");
+            resultStr = processor.uploadFileForImportStaff(file, user);
+            logger.info("上传文件导入人员 耗时:" + (System.currentTimeMillis() - start) + "ms");
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("上传文件导入人员 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value = "/DownloadFileForStaffHistory", method = RequestMethod.GET)
+    public void getDownloadFileForStaffHistory(HttpServletRequest paramRe, HttpServletResponse response) {
+        User user = (User) paramRe.getAttribute("currentUser");
+        String file = FilePath + user.getOrg_name() + staffImportsuffix;
+        processor.downLoadFile(file, response, "最近成员导入结果.csv");
+    }
+
+    @RequestMapping(value = "/DownloadFileForStaffModel", method = RequestMethod.GET)
+    public void DownloadFileForStaffModel(HttpServletRequest paramRe, HttpServletResponse response) {
+        String file = FilePath + "人员导入模版" + suffix;
         logger.info(file);
-        processor.downLoadFile(file,response,"人员导入模版.csv");
+        processor.downLoadFile(file, response, "人员导入模版.csv");
     }
-    @RequestMapping(value="/DownloadFileForLabModel",method= RequestMethod.GET)
-    public void DownloadFileForLabModel(HttpServletRequest paramRe,HttpServletResponse response){
-        String file = FilePath+"组织导入模版"+ suffix;
-        processor.downLoadFile(file,response,"组织导入模版.csv");
+
+    @RequestMapping(value = "/DownloadFileForLabModel", method = RequestMethod.GET)
+    public void DownloadFileForLabModel(HttpServletRequest paramRe, HttpServletResponse response) {
+        String file = FilePath + "组织导入模版" + suffix;
+        processor.downLoadFile(file, response, "组织导入模版.csv");
     }
 
 
-    @RequestMapping(value="/DownloadFileForExplainCRFImport",method= RequestMethod.GET)
-    public void DownloadFileForExplainCRFImport(HttpServletRequest paramRe, HttpServletResponse response){
+    @RequestMapping(value = "/DownloadFileForExplainCRFImport", method = RequestMethod.GET)
+    public void DownloadFileForExplainCRFImport(HttpServletRequest paramRe, HttpServletResponse response) {
 
         String oparam = ParamUtils.getParam(paramRe);
-        JsonObject json = (JsonObject)jsonParser.parse(oparam);
+        JsonObject json = (JsonObject) jsonParser.parse(oparam);
         String file = FilePath;
         String liver_cancer = "映射模型字段说明-肝癌-V1.0.xlsx";
         String lung_cancer = "映射模型字段说明-肺癌-V1.1.xlsx";
@@ -113,10 +122,10 @@ public class CommonController {
         try {
             crfId = json.get("crf_id").getAsString().trim();
             if (StringUtils.isEmpty(crfId)) {
-                return ;
+                return;
             }
         } catch (Exception e) {
-            return ;
+            return;
         }
         String fileName = null;
         if (crfId.equals("liver_cancer")) {

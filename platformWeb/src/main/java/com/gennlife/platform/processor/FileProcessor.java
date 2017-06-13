@@ -23,76 +23,75 @@ public class FileProcessor {
     private static Logger logger = LoggerFactory.getLogger(FileProcessor.class);
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
-    private static View viewer= new View();
+    private static View viewer = new View();
+
     /**
      * 图片上传的
-     * @param request
-     * @param resps
-     */
-    public void pictureUp(HttpServletRequest request, HttpServletResponse resps){
-
-    }
-
-    /**
      *
      * @param request
      * @param resps
      */
-    public void projectInfo(HttpServletRequest request, HttpServletResponse resps){
+    public void pictureUp(HttpServletRequest request, HttpServletResponse resps) {
 
     }
 
-    public String fsRec(JsonObject jsonObject){
+    /**
+     * @param request
+     * @param resps
+     */
+    public void projectInfo(HttpServletRequest request, HttpServletResponse resps) {
+
+    }
+
+    public String fsRec(JsonObject jsonObject) {
         String host = "";
         StringBuffer newParam = new StringBuffer();
-        for(Map.Entry<String, JsonElement> entry:jsonObject.entrySet()){
+        for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
             String key = entry.getKey();
             String value = null;
-            if(entry.getValue().isJsonObject()){
+            if (entry.getValue().isJsonObject()) {
                 value = entry.getValue().getAsJsonObject().toString();
-            }else if(entry.getValue().isJsonArray()){
+            } else if (entry.getValue().isJsonArray()) {
                 value = entry.getValue().getAsJsonArray().toString();
-            }else if(entry.getValue().getAsBoolean()){
-                value = entry.getValue().getAsBoolean()+"";
-            }else {
+            } else if (entry.getValue().getAsBoolean()) {
+                value = entry.getValue().getAsBoolean() + "";
+            } else {
                 value = entry.getValue().getAsString();
             }
-            if("url".equals(key)){
+            if ("url".equals(key)) {
                 host = value;
-            }else {
+            } else {
                 newParam.append("&").append(key).append("=").append(ParamUtils.encodeURI(value));
             }
         }
         return HttpRequestUtils.httpGet(host + "?" + newParam.toString());
     }
 
-    public String systemInfo(){
+    public String systemInfo() {
         JsonObject jsonObject = new JsonObject();
         double msize = 1024.0 * 1024;
         double total = (Runtime.getRuntime().totalMemory()) / msize;
         double max = (Runtime.getRuntime().maxMemory()) / msize;
         double free = (Runtime.getRuntime().freeMemory()) / msize;
         int AvailableProcessors = Runtime.getRuntime().availableProcessors();
-        jsonObject.addProperty("total",total + "MB");
-        jsonObject.addProperty("max",max + "MB");
+        jsonObject.addProperty("total", total + "MB");
+        jsonObject.addProperty("max", max + "MB");
         jsonObject.addProperty("free", free + "MB");
         jsonObject.addProperty("accessible", (max - total + free) + "MB");
         jsonObject.addProperty("availableProcessors", AvailableProcessors + "个");
         return gson.toJson(jsonObject);
     }
-    
+
     public String reloadConfig() {
-        try{
-        	DataFormatConversion.reload();
+        try {
+            DataFormatConversion.reload();
             return "{\"code\":\"1\"}";
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("请求参数出错", e);
             return ParamUtils.errorParam("请求参数出错");
         }
 
     }
-
-
 
 
 }

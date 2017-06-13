@@ -7,13 +7,13 @@ import java.security.NoSuchAlgorithmException;
  * Created by chensong on 2015/12/2.
  */
 public class MD5Test {
-    public static void main(String[] args){
-        String pwd  = "abc123456";
+    public static void main(String[] args) {
+        String pwd = "abc123456";
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] result = md.digest(pwd.getBytes());
             StringBuffer sb = new StringBuffer();
-            for(int i = 0; i<result.length;i++){
+            for (int i = 0; i < result.length; i++) {
                 sb.append(result[i]);
             }
             System.out.println(sb.toString());
@@ -25,6 +25,7 @@ public class MD5Test {
         System.out.println(MD5("abc123456"));
         System.out.println(MD5("abc123456").length());
     }
+
     public static String MD5(String inStr) {
         MessageDigest md5 = null;
         try {
@@ -32,7 +33,7 @@ public class MD5Test {
         } catch (Exception e) {
             System.out.println(e.toString());
             e.printStackTrace();
-            return"";
+            return "";
         }
         char[] charArray = inStr.toCharArray();
         byte[] byteArray = new byte[charArray.length];

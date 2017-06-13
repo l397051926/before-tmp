@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
@@ -30,7 +31,7 @@ public class JedisClusterFactory implements FactoryBean<JedisCluster>, Initializ
     }
 
     public Class<?> getObjectType() {
-        return this.jedisCluster != null?this.jedisCluster.getClass():JedisCluster.class;
+        return this.jedisCluster != null ? this.jedisCluster.getClass() : JedisCluster.class;
     }
 
     public boolean isSingleton() {
@@ -38,14 +39,14 @@ public class JedisClusterFactory implements FactoryBean<JedisCluster>, Initializ
     }
 
     public void afterPropertiesSet() throws Exception {
-        if(this.jedisClusterNodes != null && this.jedisClusterNodes.size() != 0) {
+        if (this.jedisClusterNodes != null && this.jedisClusterNodes.size() != 0) {
             HashSet haps = new HashSet();
             Iterator i$ = this.jedisClusterNodes.iterator();
 
-            while(i$.hasNext()) {
-                String node = (String)i$.next();
+            while (i$.hasNext()) {
+                String node = (String) i$.next();
                 String[] arr = node.split(":");
-                if(arr.length != 2) {
+                if (arr.length != 2) {
                     throw new ParseException("node address error !", node.length() - 1);
                 }
 

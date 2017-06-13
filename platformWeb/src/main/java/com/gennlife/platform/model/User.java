@@ -33,9 +33,11 @@ public class User {
     public Power getFrontEndPower() {
         return frontEndPower;
     }
+
     public void setFrontEndPower(Power power) {
         this.frontEndPower = power;
     }
+
     public String getLab_name() {
         return lab_name;
     }
@@ -198,10 +200,10 @@ public class User {
 
 
     public JsonObject CopyMemberInfo() {
-        JsonObject json=new JsonObject();
-        json.addProperty("uid",uid);
-        json.addProperty("uname",uname);
-        json.addProperty("unumber",unumber);
+        JsonObject json = new JsonObject();
+        json.addProperty("uid", uid);
+        json.addProperty("uname", uname);
+        json.addProperty("unumber", unumber);
         return json;
     }
 }

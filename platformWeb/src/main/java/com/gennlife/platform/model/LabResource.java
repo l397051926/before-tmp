@@ -13,6 +13,7 @@ public class LabResource {
     private String sorgID;
     private String slab_parent;
     private String stype_role;
+
     public String getSid() {
         return sid;
     }

@@ -7,13 +7,16 @@ public class ColumnPropetity {
     private String IndexFieldName;
     private String dataType;
     private String UIFieldName;
-    public ColumnPropetity(){
+
+    public ColumnPropetity() {
     }
-    public ColumnPropetity(ColumnPropetity obj){
+
+    public ColumnPropetity(ColumnPropetity obj) {
         this.dataType = obj.getDataType();
         this.IndexFieldName = obj.getIndexFieldName();
         this.UIFieldName = obj.getUIFieldName();
     }
+
     public String getIndexFieldName() {
         return IndexFieldName;
     }

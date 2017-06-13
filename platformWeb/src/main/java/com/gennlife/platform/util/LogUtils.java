@@ -10,22 +10,27 @@ import java.util.Date;
  * Created by chensong on 2015/12/4.
  */
 public class LogUtils {
-    private static SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private static SimpleDateFormat time_=new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
+    private static SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static SimpleDateFormat time_ = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
     private static Logger logger = LoggerFactory.getLogger("businesslog");
-    public static void BussnissLog(String log){
+
+    public static void BussnissLog(String log) {
         logger.info(log);
     }
-    public static void BussnissLogError(String log){
+
+    public static void BussnissLogError(String log) {
         logger.error(log);
     }
-    public static void BussnissLogError(String log,Exception e){
-        logger.error(log,e);
+
+    public static void BussnissLogError(String log, Exception e) {
+        logger.error(log, e);
     }
-    public static String getStringTime(){
+
+    public static String getStringTime() {
         return time.format(new Date());
     }
-    public static String getString_Time(){
+
+    public static String getString_Time() {
         return time_.format(new Date());
     }
 }

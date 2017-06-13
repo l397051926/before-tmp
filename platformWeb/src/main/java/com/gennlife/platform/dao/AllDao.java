@@ -32,13 +32,15 @@ public class AllDao {
     }
 
     private static AllDao instance = null;
-    public static AllDao getInstance(){
-        if(instance == null){
+
+    public static AllDao getInstance() {
+        if (instance == null) {
             ApplicationContext context = SpringContextUtil.getApplicationContext();
             instance = (AllDao) context.getBean("allDao");
         }
         return instance;
     }
+
     public SyUserMapper getSyUserDao() {
         return syUserDao;
     }

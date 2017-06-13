@@ -10,15 +10,16 @@ import java.io.*;
  */
 public class FilesUtils {
     private Logger logger = LoggerFactory.getLogger(FilesUtils.class);
+
     public static final String readString(InputStream in, String charset) throws IOException {
-        return readString(new InputStreamReader(in,charset));
+        return readString(new InputStreamReader(in, charset));
     }
 
-    public static final String readString(Reader reader) throws IOException{
+    public static final String readString(Reader reader) throws IOException {
         StringBuilder sb = new StringBuilder();
         try {
             char[] buf = new char[1024];
-            for (int i = 0; (i = reader.read(buf)) != -1;)
+            for (int i = 0; (i = reader.read(buf)) != -1; )
                 sb.append(buf, 0, i);
         } finally {
             Closer.close(reader);
@@ -27,7 +28,7 @@ public class FilesUtils {
     }
 
     public static String readFile(String fileName) throws IOException {
-        InputStream inputStream5 =  FilesUtils.class.getResourceAsStream(fileName);
+        InputStream inputStream5 = FilesUtils.class.getResourceAsStream(fileName);
         String data = FilesUtils.readString(inputStream5, "UTF-8");
         inputStream5.close();
         return data;
@@ -36,16 +37,16 @@ public class FilesUtils {
 
     public static void makeDirectory(String s) throws IOException {
         File file = new File(s);
-        if(s.endsWith(File.separator)){
+        if (s.endsWith(File.separator)) {
             file.mkdir();
         }
-        if(!file.exists()){
+        if (!file.exists()) {
             file.createNewFile();
         }
     }
 
     public static String getTypePart(String name) {
-        if (name == null){
+        if (name == null) {
             return null;
         }
         String[] data = name.split("\\.");
@@ -54,11 +55,12 @@ public class FilesUtils {
 
     /**
      * 判断文件的编码格式
+     *
      * @param fileName :file
      * @return 文件编码格式
      * @throws Exception
      */
-    public static String codeString(String fileName) throws Exception{
+    public static String codeString(String fileName) throws Exception {
         BufferedInputStream bin = new BufferedInputStream(new FileInputStream(fileName));
         int p = (bin.read() << 8) + bin.read();
         String code = null;

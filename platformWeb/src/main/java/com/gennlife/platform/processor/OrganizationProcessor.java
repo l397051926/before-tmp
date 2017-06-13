@@ -22,14 +22,14 @@ import java.util.List;
  */
 public class OrganizationProcessor {
     private static Logger logger = LoggerFactory.getLogger(OrganizationProcessor.class);
-    private static View viewer= new View();
+    private static View viewer = new View();
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
 
     /**
      * 返回组织机构的数据
      */
-    public String orgList(){
+    public String orgList() {
         List<OrgListBean> list = AllDao.getInstance().getOrgDao().getOrgList();
         ResultBean userBean = new ResultBean();
         userBean.setCode(1);
@@ -38,14 +38,15 @@ public class OrganizationProcessor {
         return jsonString;
     }
 
-    /** {"data":["beijing_city_1"]}
+    /**
+     * {"data":["beijing_city_1"]}
      * 返回某组织的成员列表
      */
-    public String orgMembers(JsonObject jsonObject){
-        try{
+    public String orgMembers(JsonObject jsonObject) {
+        try {
             JsonArray jsonArray = jsonObject.get("data").getAsJsonArray();
             List<OrgMemberBean> list = new LinkedList<OrgMemberBean>();
-            for(JsonElement jsonElement:jsonArray){
+            for (JsonElement jsonElement : jsonArray) {
                 String orgID = jsonElement.getAsString();
                 List<OrgMemberBean> tmp = AllDao.getInstance().getOrgDao().getOneOrgList(orgID);
                 list.addAll(tmp);
@@ -55,7 +56,7 @@ public class OrganizationProcessor {
             userBean.setData(list);
             String jsonString = gson.toJson(userBean);
             return jsonString;
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("请求参数出错", e);
             return ParamUtils.errorParam("请求参数出错");
         }

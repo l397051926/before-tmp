@@ -32,36 +32,39 @@ public class SampleController {
     private static SampleProcessor processor = new SampleProcessor();
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
-    @RequestMapping(value="/Import",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
+
+    @RequestMapping(value = "/Import", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
     String postImport(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
             String param = AuthorityUtil.addTreatedAuthority(paramRe);
-            User user = (User)paramRe.getAttribute("currentUser");
+            User user = (User) paramRe.getAttribute("currentUser");
             logger.info("Import param = " + param);
-            JsonObject paramObj = (JsonObject)jsonParser.parse(param);
-            resultStr =  processor.importSample(paramObj, user);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.importSample(paramObj, user);
         } catch (Exception e) {
             logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("样本导入 耗时"+(System.currentTimeMillis()-start) + "ms");
+        logger.info("样本导入 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/ImportCheck",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
+    @RequestMapping(value = "/ImportCheck", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
     String ImportCheck(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
             String param = AuthorityUtil.addTreatedAuthority(paramRe);
-            User user = (User)paramRe.getAttribute("currentUser");
+            User user = (User) paramRe.getAttribute("currentUser");
             logger.info("接口: /sample/ImportCheck 处理后的请求： param = " + param);
-            JsonObject paramObj = (JsonObject)jsonParser.parse(param);
-            resultStr =  processor.importSampleCheck(paramObj,user);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.importSampleCheck(paramObj, user);
         } catch (Exception e) {
             logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -71,131 +74,143 @@ public class SampleController {
     }
 
     @RequestMapping(value = "/SetDetail", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public @ResponseBody
+    public
+    @ResponseBody
     String postSetDetail(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
             String param = ParamUtils.getParam(paramRe);
-            JsonObject paramObj = (JsonObject)jsonParser.parse(param);
-            resultStr =  processor.sampleDetail(paramObj);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.sampleDetail(paramObj);
         } catch (Exception e) {
             logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("样本集合数据详情查看 耗时" + (System.currentTimeMillis()-start) + "ms");
+        logger.info("样本集合数据详情查看 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-    @RequestMapping(value="/SetDetail",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getSetDetail(@RequestParam("param")String param){
+
+    @RequestMapping(value = "/SetDetail", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getSetDetail(@RequestParam("param") String param) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.sampleDetail(paramObj);
-        }catch (Exception e){
-            logger.error("",e);
+            resultStr = processor.sampleDetail(paramObj);
+        } catch (Exception e) {
+            logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("样本集合数据详情查看 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("样本集合数据详情查看 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
 
-    @RequestMapping(value="/EditSet",method= {RequestMethod.POST,RequestMethod.GET},produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String postEditSet(HttpServletRequest paramRe){
+    @RequestMapping(value = "/EditSet", method = {RequestMethod.POST, RequestMethod.GET}, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String postEditSet(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = ParamUtils.getParam(paramRe);
-            JsonObject paramObj = (JsonObject)jsonParser.parse(param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             int count = AllDao.getInstance().getProjectDao().isSampleExistProjectID(paramObj.get("projectID").getAsString());
             if (count <= 0) {
                 return SampleProcessor.projectIDIsNotExists();
             } else {
-                User user = (User)paramRe.getAttribute("currentUser");
-                resultStr =  processor.editSet(paramObj,user);
+                User user = (User) paramRe.getAttribute("currentUser");
+                resultStr = processor.editSet(paramObj, user);
             }
-        }catch (Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("编辑样本集  耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("编辑样本集  耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/ImportTree",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String getImportTree(HttpServletRequest paramRe){
+    @RequestMapping(value = "/ImportTree", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getImportTree(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = new JsonObject();
             String crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
-            if(param == null || "".equals(param)){
-                paramObj.addProperty("crf_id",crf_id);
-            }else {
+            if (param == null || "".equals(param)) {
+                paramObj.addProperty("crf_id", crf_id);
+            } else {
                 paramObj = (JsonObject) jsonParser.parse(param);
             }
 
-            resultStr =  processor.importTree(paramObj);
-        }catch (Exception e){
-            logger.error("",e);
+            resultStr = processor.importTree(paramObj);
+        } catch (Exception e) {
+            logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("组织机构列表 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("组织机构列表 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/SampleSetDirectoryList",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String SampleDirectoryList(HttpServletRequest paramRe){
+    @RequestMapping(value = "/SampleSetDirectoryList", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String SampleDirectoryList(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = ParamUtils.getParam(paramRe);
-            logger.info("SampleSetDirectoryList param="+param);
-            resultStr =  processor.sampleSetDirectoryList(param);
-        }catch (Exception e){
-            logger.error("",e);
+            logger.info("SampleSetDirectoryList param=" + param);
+            resultStr = processor.sampleSetDirectoryList(param);
+        } catch (Exception e) {
+            logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("样本集目录请求 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
-
-
-    @RequestMapping(value="/SampleSetSearch",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String SampleSetSearch(HttpServletRequest paramRe){
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            String param = ParamUtils.getParam(paramRe);
-            logger.info("SampleSetSearch param="+param);
-            resultStr =  processor.sampleSetSearch(param);
-        }catch (Exception e){
-            logger.error("",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("样本搜索请求 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("样本集目录请求 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
 
-
-    @RequestMapping(value="/UploadAdaptTag",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody String UploadAdaptTag(HttpServletRequest paramRe){
+    @RequestMapping(value = "/SampleSetSearch", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String SampleSetSearch(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = ParamUtils.getParam(paramRe);
-            logger.info("UploadAdaptTag param="+param);
-            resultStr =  processor.uploadAdaptTag(param);
-        }catch (Exception e){
-            logger.error("",e);
+            logger.info("SampleSetSearch param=" + param);
+            resultStr = processor.sampleSetSearch(param);
+        } catch (Exception e) {
+            logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("上传采用/不采用标签 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("样本搜索请求 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value = "/UploadAdaptTag", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String UploadAdaptTag(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("UploadAdaptTag param=" + param);
+            resultStr = processor.uploadAdaptTag(param);
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("上传采用/不采用标签 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 }

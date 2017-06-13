@@ -13,17 +13,18 @@ import javax.servlet.http.HttpSessionListener;
  * Created by Chenjinfeng on 2017/2/23.
  */
 public class SessionListen implements HttpSessionListener {
-    private static final Logger logger= LoggerFactory.getLogger(SessionListen.class);
+    private static final Logger logger = LoggerFactory.getLogger(SessionListen.class);
+
     @Override
     public void sessionCreated(HttpSessionEvent se) {
-        String sessionid=se.getSession().getId();
-        LogUtils.BussnissLog("sessionid " +sessionid+" create");
+        String sessionid = se.getSession().getId();
+        LogUtils.BussnissLog("sessionid " + sessionid + " create");
     }
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
-        String sessionid=se.getSession().getId();
-        LogUtils.BussnissLog("sessionid " +sessionid+" time out");
+        String sessionid = se.getSession().getId();
+        LogUtils.BussnissLog("sessionid " + sessionid + " time out");
         RedisUtil.userLogout(sessionid);
         // RedisUtil.delImageIdFromFs(sessionid);
     }

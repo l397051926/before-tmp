@@ -26,7 +26,7 @@ public class UserProcessor {
 
     public User login(String email, String pwd) throws IOException {
         try {
-            if(StringUtils.isEmpty(email)||StringUtils.isEmpty(pwd))
+            if (StringUtils.isEmpty(email) || StringUtils.isEmpty(pwd))
                 return null;
             Long start = System.currentTimeMillis();
             LogUtils.BussnissLog("用户：" + email + " >>> 进行登陆");
@@ -246,27 +246,28 @@ public class UserProcessor {
         if (user == null) {
             return null;
         } else {
-                user = AllDao.getInstance().getSyUserDao().getUserByUid(user.getUid());
-                Map<String, Object> confMap = new HashMap<>();
-                confMap.put("orgID", user.getOrgID());
-                confMap.put("uid", user.getUid());
-                List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(confMap);
-                //转化本科室信息
-                transformRole(user, rolesList);
-                user.setRoles(rolesList);
-                return user;
+            user = AllDao.getInstance().getSyUserDao().getUserByUid(user.getUid());
+            Map<String, Object> confMap = new HashMap<>();
+            confMap.put("orgID", user.getOrgID());
+            confMap.put("uid", user.getUid());
+            List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(confMap);
+            //转化本科室信息
+            transformRole(user, rolesList);
+            user.setRoles(rolesList);
+            return user;
         }
 
     }
 
     private static List<Role> powerToRoles(Power power, List<Role> roles) {
-        if(power==null)return roles;
+        if (power == null) return roles;
         LinkedList<Role> result = new LinkedList<>();
-        if(roles!=null)result.addAll(roles);
-        Role role=new Role();
-        LinkedList<Resource> list=new LinkedList<>();
+        if (roles != null) result.addAll(roles);
+        Role role = new Role();
+        LinkedList<Resource> list = new LinkedList<>();
         list.addAll(power.getHas_search());
-        list.addAll(power.getHas_searchExport());;
+        list.addAll(power.getHas_searchExport());
+        ;
         list.addAll(power.getHas_addBatchCRF());
         list.addAll(power.getHas_addCRF());
         list.addAll(power.getHas_browseDetail());
@@ -533,8 +534,8 @@ public class UserProcessor {
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             email = paramObj.get("email").getAsString();
             pwd = paramObj.get("pwd").getAsString();
-            if(paramObj.has("md5"))md5 = paramObj.get("md5").getAsString();
-            if(StringUtils.isEmpty(md5)) md5="";
+            if (paramObj.has("md5")) md5 = paramObj.get("md5").getAsString();
+            if (StringUtils.isEmpty(md5)) md5 = "";
         } catch (Exception e) {
             logger.error("", e);
             return ParamUtils.errorParam("参数错误");

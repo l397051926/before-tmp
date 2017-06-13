@@ -11,23 +11,24 @@ import java.util.Set;
  */
 public class ModelTreeUtils {
 
-    public static JsonObject updateUIData(JsonObject model){
+    public static JsonObject updateUIData(JsonObject model) {
         JsonArray children = model.get("children").getAsJsonArray();
-        model = traversalUpdateUI(model,children);
+        model = traversalUpdateUI(model, children);
         return model;
     }
-    public static JsonObject traversalUpdateUI(JsonObject parant, JsonArray children){
-        for(JsonElement entity:children){
+
+    public static JsonObject traversalUpdateUI(JsonObject parant, JsonArray children) {
+        for (JsonElement entity : children) {
             JsonObject child = entity.getAsJsonObject();
-            if(child.get("attrID") != null){//是属性
-                parant.addProperty("hasAttr",true);
-            }else{//是组
+            if (child.get("attrID") != null) {//是属性
+                parant.addProperty("hasAttr", true);
+            } else {//是组
                 JsonArray subChildren = child.get("children").getAsJsonArray();
-                traversalUpdateUI(child,subChildren);
+                traversalUpdateUI(child, subChildren);
             }
         }
-        if(parant.get("hasAttr") == null){
-            parant.addProperty("hasAttr",false);
+        if (parant.get("hasAttr") == null) {
+            parant.addProperty("hasAttr", false);
         }
         return parant;
     }
@@ -73,38 +74,39 @@ public class ModelTreeUtils {
 
     /**
      * 删除属性组
+     *
      * @param parent
      * @param id
      * @param parentID
      */
-    public static void traversalDeleteGroup(JsonObject parent,String id,String parentID){
-        if(id.equals(parentID)){//删除的是最底层的组
+    public static void traversalDeleteGroup(JsonObject parent, String id, String parentID) {
+        if (id.equals(parentID)) {//删除的是最底层的组
             JsonArray children = parent.getAsJsonArray("children");
             JsonArray newchildren = new JsonArray();
-            for(JsonElement entity:children){
+            for (JsonElement entity : children) {
                 JsonObject obj = entity.getAsJsonObject();
-                if(obj.get("id") == null ||(obj.get("id") != null && !id.equals(obj.get("id").getAsString()))){
+                if (obj.get("id") == null || (obj.get("id") != null && !id.equals(obj.get("id").getAsString()))) {
                     newchildren.add(obj);
                 }
             }
-            parent.add("children",newchildren);
-        }else{//删除不是最底层的组
-            if(parent.get("children") != null){
-                String groupID = parent.get("id") == null ? "Root":parent.get("id").getAsString();
+            parent.add("children", newchildren);
+        } else {//删除不是最底层的组
+            if (parent.get("children") != null) {
+                String groupID = parent.get("id") == null ? "Root" : parent.get("id").getAsString();
                 JsonArray children = parent.getAsJsonArray("children");
-                if(groupID.equals(parentID)){
+                if (groupID.equals(parentID)) {
                     JsonArray newchildren = new JsonArray();
-                    for(JsonElement entity:children){
+                    for (JsonElement entity : children) {
                         JsonObject obj = entity.getAsJsonObject();
-                        if(obj.get("id") == null || (obj.get("id") != null && !id.equals(obj.get("id").getAsString()))){
+                        if (obj.get("id") == null || (obj.get("id") != null && !id.equals(obj.get("id").getAsString()))) {
                             newchildren.add(obj);
                         }
                     }
-                    parent.add("children",newchildren);
-                }else{
-                    for(JsonElement entity:children) {
+                    parent.add("children", newchildren);
+                } else {
+                    for (JsonElement entity : children) {
                         JsonObject obj = entity.getAsJsonObject();
-                        traversalDeleteGroup(obj,id,parentID);
+                        traversalDeleteGroup(obj, id, parentID);
                     }
                 }
             }
@@ -113,11 +115,10 @@ public class ModelTreeUtils {
     }
 
     /**
-     *
      * @param children
      * @return
      */
-    public static String getUpdateForName(JsonArray children){
+    public static String getUpdateForName(JsonArray children) {
         String name = null;
         for (JsonElement entity : children) {
             JsonObject obj = entity.getAsJsonObject();
@@ -144,47 +145,48 @@ public class ModelTreeUtils {
     }
 
 
-    public static void traversalUpdateGroupName(JsonObject parent,String id,String newName){
-        if(parent.get("children") != null){//是组
+    public static void traversalUpdateGroupName(JsonObject parent, String id, String newName) {
+        if (parent.get("children") != null) {//是组
             String groupID = null;
-            if(parent.get("id") != null){//有children,有id,是组
+            if (parent.get("id") != null) {//有children,有id,是组
                 groupID = parent.get("id").getAsString();
-                if(groupID.equals(id)){//找到组,重新命名
-                    parent.addProperty("name",newName);
-                    String newID = getNewGroupID(id,newName);
-                    parent.addProperty("id",newID);
-                }else{//当前不是要找组,遍历子节点
-                    if(groupID.startsWith(id)){//当前组是要找组的子组
-                        String newID = getNewGroupID(id,newName);
-                        groupID = groupID.replace(id,newID);
-                        parent.addProperty("id",groupID);
+                if (groupID.equals(id)) {//找到组,重新命名
+                    parent.addProperty("name", newName);
+                    String newID = getNewGroupID(id, newName);
+                    parent.addProperty("id", newID);
+                } else {//当前不是要找组,遍历子节点
+                    if (groupID.startsWith(id)) {//当前组是要找组的子组
+                        String newID = getNewGroupID(id, newName);
+                        groupID = groupID.replace(id, newID);
+                        parent.addProperty("id", groupID);
                     }
                     JsonArray children = parent.get("children").getAsJsonArray();
-                    for(JsonElement entity:children){
+                    for (JsonElement entity : children) {
                         JsonObject json = entity.getAsJsonObject();
-                        traversalUpdateGroupName(json,id,newName);
+                        traversalUpdateGroupName(json, id, newName);
                     }
                 }
-            }else {//有children 无id,是根节点
+            } else {//有children 无id,是根节点
                 JsonArray children = parent.get("children").getAsJsonArray();
-                for(JsonElement entity:children){
+                for (JsonElement entity : children) {
                     JsonObject json = entity.getAsJsonObject();
-                    traversalUpdateGroupName(json,id,newName);
+                    traversalUpdateGroupName(json, id, newName);
                 }
             }
 
         }
     }
-    private static String getNewGroupID(String oldID,String newName){
+
+    private static String getNewGroupID(String oldID, String newName) {
         String[] groups = oldID.split("_");
         String groupID = "";
-        if(groups.length == 1){
+        if (groups.length == 1) {
             groupID = newName;//新的组id
-        }else{
-            for(int i= 0;i <= groups.length -2;i++){
-                if(i == 0){
+        } else {
+            for (int i = 0; i <= groups.length - 2; i++) {
+                if (i == 0) {
                     groupID = groups[i];
-                }else{
+                } else {
                     groupID = groupID + "_" + groups[i];
                 }
             }
@@ -194,37 +196,37 @@ public class ModelTreeUtils {
     }
 
     /**
-     *深度优先遍历去除掉叶子节点
+     * 深度优先遍历去除掉叶子节点
+     *
      * @param parent
      * @return
      */
-    public static JsonObject traversalCutDownLeaves(JsonObject parent){
-        if(parent == null||parent.isJsonNull()){
+    public static JsonObject traversalCutDownLeaves(JsonObject parent) {
+        if (parent == null || parent.isJsonNull()) {
             return null;
         }
-        if(parent.get("attrID") != null || parent.get("children") == null || parent.get("children").isJsonNull()){
+        if (parent.get("attrID") != null || parent.get("children") == null || parent.get("children").isJsonNull()) {
             return null;
         }
         JsonArray children = parent.get("children").getAsJsonArray();
         JsonArray newChildren = new JsonArray();
-        for(JsonElement child:children){
+        for (JsonElement child : children) {
             JsonObject childObj = child.getAsJsonObject();
-            if(childObj.get("attrID") == null){//是组
+            if (childObj.get("attrID") == null) {//是组
                 JsonObject newchildObj = traversalCutDownLeaves(childObj);
-                if(newchildObj != null){
+                if (newchildObj != null) {
                     newChildren.add(newchildObj);
                 }
             }
         }
-        if(newChildren.size() == 0){
+        if (newChildren.size() == 0) {
             parent.remove("children");
-        }else{
-            parent.add("children",newChildren);
+        } else {
+            parent.add("children", newChildren);
         }
 
         return parent;
     }
-
 
 
     /**
@@ -284,7 +286,7 @@ public class ModelTreeUtils {
         return obj;
     }
 
-    public static void formatData(JsonObject source){
+    public static void formatData(JsonObject source) {
 
 
     }

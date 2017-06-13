@@ -35,7 +35,7 @@ public class CrfProcessor {
             String caseID = paramObj.has("caseID") ? paramObj.get("caseID").getAsString() : "";
             Power power = user.getPower();
             boolean flag = false;
-            boolean traceflag=getCRFFlag(power,orgID,crf_id,"has_traceCRF");
+            boolean traceflag = getCRFFlag(power, orgID, crf_id, "has_traceCRF");
             if ("".equals(caseID)) {
                 flag = getCRFFlag(power, orgID, crf_id, "has_addCRF");
             } else {
@@ -46,18 +46,14 @@ public class CrfProcessor {
                 String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
                 try {
                     JsonObject json = jsonParser.parse(result).getAsJsonObject();
-                    if(json!=null && json.has("status") &&json.get("status").getAsString().contains("验证"))
-                    {
-                        if(!traceflag)  return ParamUtils.errorAuthorityParam();// 没有溯源权限
+                    if (json != null && json.has("status") && json.get("status").getAsString().contains("验证")) {
+                        if (!traceflag) return ParamUtils.errorAuthorityParam();// 没有溯源权限
                         //logger.info("溯源权限");
-                    }
-                    else
-                    {
-                        if(!flag)  return ParamUtils.errorAuthorityParam();
+                    } else {
+                        if (!flag) return ParamUtils.errorAuthorityParam();
                         //logger.info("添加和编辑");
                     }
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                 }
 
                 return result;
@@ -350,14 +346,12 @@ public class CrfProcessor {
                     String fileName = file.getOriginalFilename();
                     byte[] bytes = file.getBytes();
                     String path = ConfigurationService.getFileBean().getCRFFileLocation();
-                    File f = new File(path +UUID.randomUUID().toString().replace("-","") + "-" + fileName);
+                    File f = new File(path + UUID.randomUUID().toString().replace("-", "") + "-" + fileName);
                     if (!f.exists()) {
-                       // logger.info("文件路径 " + f.getAbsolutePath());
+                        // logger.info("文件路径 " + f.getAbsolutePath());
                         f.createNewFile();
-                    }
-                    else
-                    {
-                        logger.warn("文件路径 " + f.getAbsolutePath()+" 不应该存在");
+                    } else {
+                        logger.warn("文件路径 " + f.getAbsolutePath() + " 不应该存在");
                     }
                     FileWriter fileWritter = new FileWriter(f);
                     BufferedWriter bufferWritter = new BufferedWriter(fileWritter);

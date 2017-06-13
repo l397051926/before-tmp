@@ -17,19 +17,22 @@ import java.util.Map;
 public interface OrgMapper {
     /**
      * 所有组织的信息
+     *
      * @return
      */
     public List<OrgListBean> getOrgList();
 
     /**
      * 返回某个组织的所有成员
+     *
      * @param orgID
      * @return
      */
-    public List<OrgMemberBean>  getOneOrgList(String orgID);
+    public List<OrgMemberBean> getOneOrgList(String orgID);
 
     /**
      * 返回某个医院的所有科室信息
+     *
      * @param orgID
      * @return
      */
@@ -37,6 +40,7 @@ public interface OrgMapper {
 
     /**
      * 获取组织信息
+     *
      * @param orgID
      * @return
      */
@@ -44,6 +48,7 @@ public interface OrgMapper {
 
     /**
      * 获取某个组织的最大深度
+     *
      * @param orgID
      * @return
      */
@@ -51,13 +56,15 @@ public interface OrgMapper {
 
     /**
      * 获取某个科室的level
+     *
      * @param map
      * @return
      */
-    public Integer getLabLevel(Map<String,Object> map);
+    public Integer getLabLevel(Map<String, Object> map);
 
     /**
      * 插入一个科室信息
+     *
      * @param lab
      * @return
      */
@@ -65,6 +72,7 @@ public interface OrgMapper {
 
     /**
      * 获取这个组织所有的名称
+     *
      * @param orgID
      * @return
      */
@@ -72,6 +80,7 @@ public interface OrgMapper {
 
     /**
      * 删除科室信息
+     *
      * @param labIDs
      * @return
      */
@@ -79,6 +88,7 @@ public interface OrgMapper {
 
     /**
      * 通过labID获取科室信息
+     *
      * @param labID
      * @return
      */
@@ -86,6 +96,7 @@ public interface OrgMapper {
 
     /**
      * 更新科室信息
+     *
      * @param map
      * @return
      */
@@ -94,22 +105,25 @@ public interface OrgMapper {
 
     /**
      * 通过labID获取科室信息
+     *
      * @param labName
      * @param orgID
      * @return
      */
-    public Lab getLabBylabName(@Param("lab_name") String labName,@Param("orgID") String orgID);
+    public Lab getLabBylabName(@Param("lab_name") String labName, @Param("orgID") String orgID);
 
     /**
      * 通过parentID获取科室信息
+     *
      * @param orgID
      * @param lab_parent
      * @return
      */
-    public List<Lab> getLabsByparentID(@Param("orgID") String orgID,@Param("lab_parent") String lab_parent);
+    public List<Lab> getLabsByparentID(@Param("orgID") String orgID, @Param("lab_parent") String lab_parent);
 
     /**
      * 以名称更新更新
+     *
      * @param lab
      * @return
      */
@@ -117,16 +131,18 @@ public interface OrgMapper {
 
     /**
      * 职称列表
+     *
      * @param orgID
      * @return
      */
-    List<String> getProfessionList(@Param("orgID")String orgID);
+    List<String> getProfessionList(@Param("orgID") String orgID);
 
     /**
-    * 获取科室的上级信息
-    * */
-    Lab getLabPInfo(@Param("labID") String labID,@Param("orgID") String orgID);
+     * 获取科室的上级信息
+     */
+    Lab getLabPInfo(@Param("labID") String labID, @Param("orgID") String orgID);
 
-    public List<String> getSubLabs(@Param("labID") String labID,@Param("orgID") String orgID);
-    int updateSubLabPid(@Param("labIDs") String[] labIDs,@Param("orgID") String orgID,@Param("pid") String pid);
-    }
+    public List<String> getSubLabs(@Param("labID") String labID, @Param("orgID") String orgID);
+
+    int updateSubLabPid(@Param("labIDs") String[] labIDs, @Param("orgID") String orgID, @Param("pid") String pid);
+}

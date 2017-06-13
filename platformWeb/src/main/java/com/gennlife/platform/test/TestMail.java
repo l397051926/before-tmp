@@ -7,7 +7,7 @@ import com.gennlife.platform.mail.SimpleMailSender;
  * Created by chensong on 2015/12/7.
  */
 public class TestMail {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         // 设置邮件服务器信息
         MailSenderInfo mailInfo = new MailSenderInfo();
         mailInfo.setMailServerHost("smtp.mxhichina.com");

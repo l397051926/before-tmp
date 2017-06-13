@@ -21,7 +21,7 @@ public class ArkServer {
     //在关闭
     private static final int SERVER_STATUS_STOPPING = 3;
     private static final ArkService arkService = new ArkService();
-    private static volatile int  SERVER_STATUS = SERVER_STATUS_PENDING;
+    private static volatile int SERVER_STATUS = SERVER_STATUS_PENDING;
 
     public synchronized static void SERVER_START() {
         if (SERVER_STATUS != SERVER_STATUS_PENDING) {
@@ -43,7 +43,7 @@ public class ArkServer {
         logger.info("ArkServer 启动销毁中 .......");
         arkService.destroy();
         RedisUtil.clearAll();
-        logger.info("ArkServer 销毁耗时："+ (System.currentTimeMillis() - serverStop) +"");
+        logger.info("ArkServer 销毁耗时：" + (System.currentTimeMillis() - serverStop) + "");
         SERVER_STATUS = SERVER_STATUS_PENDING;
     }
 }

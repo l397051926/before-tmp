@@ -132,9 +132,9 @@ public class HttpRequestUtils {
             } else {
                 logger.error("error code " + result.getStatusLine().getStatusCode() + " url" + url);
             }
-        } catch (SocketTimeoutException e){
-            logger.error(url+" 超时");
-        }catch (IOException e) {
+        } catch (SocketTimeoutException e) {
+            logger.error(url + " 超时");
+        } catch (IOException e) {
             logger.error("" + url, e);
         }
         return null;

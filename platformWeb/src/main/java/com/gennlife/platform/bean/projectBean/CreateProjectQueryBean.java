@@ -9,6 +9,7 @@ public class CreateProjectQueryBean {
     private CreateProject createProject;
     private List<ProUser> proUserList;
     private ProLog prolog;
+
     public CreateProject getCreateProject() {
         return createProject;
     }

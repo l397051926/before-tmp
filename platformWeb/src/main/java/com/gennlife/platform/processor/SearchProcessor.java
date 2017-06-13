@@ -32,67 +32,65 @@ public class SearchProcessor {
     private static SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 
-
-
     /**
      * 搜索项目中成员
+     *
      * @param jsonObject
      */
-    public String searchMembers(JsonObject jsonObject ){
-        try{
+    public String searchMembers(JsonObject jsonObject) {
+        try {
             String searchMemberkey = jsonObject.get("searchMemberkey").getAsString();
             String limit = jsonObject.get("limit").getAsString();
             String projectID = jsonObject.get("projectID").getAsString();
             logger.info("searchProjectMembers searchMemberkey=" + searchMemberkey + ",limit=" + limit);
             int[] ls = ParamUtils.parseLimit(limit);
-            Map<String,Object> confMap = new HashMap<String, Object>();
-            confMap.put("startIndex",(ls[0]-1) * ls[1]);
+            Map<String, Object> confMap = new HashMap<String, Object>();
+            confMap.put("startIndex", (ls[0] - 1) * ls[1]);
             confMap.put("maxNum", ls[1]);
-            confMap.put("searchMemberkey",searchMemberkey);
+            confMap.put("searchMemberkey", searchMemberkey);
             confMap.put("projectID", projectID);
             List<User> list = AllDao.getInstance().getProjectDao().searchMemberList(confMap);
-                    //getSyUserDao().searchMemberList(confMap);
+            //getSyUserDao().searchMemberList(confMap);
             int counter = AllDao.getInstance().getProjectDao().searchMemberCounter(confMap);
-                    //getSyUserDao().searchMemberCounter(confMap);
-            Map<String,Integer> info = new HashMap<String,Integer>();
-            info.put("counter",counter);
+            //getSyUserDao().searchMemberCounter(confMap);
+            Map<String, Integer> info = new HashMap<String, Integer>();
+            info.put("counter", counter);
             ResultBean userBean = new ResultBean();
             userBean.setCode(1);
             userBean.setData(list);
             userBean.setInfo(info);
             return gson.toJson(userBean);
-        }catch (Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             return ParamUtils.errorParam("搜索失败");
         }
 
     }
 
     /**
-     *
      * @param jsonObject
      */
-    public String searchSetList(JsonObject jsonObject ) {
-        Map<String,Object> map = new HashMap<String, Object>();
-        try{
+    public String searchSetList(JsonObject jsonObject) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
             String projectID = jsonObject.get("projectID").getAsString();
             String key = jsonObject.get("key").getAsString();
             String limit = jsonObject.get("limit").getAsString();
             int[] ls = ParamUtils.parseLimit(limit);
-            map.put("projectID",projectID);
-            map.put("key",key);
-            map.put("startIndex",(ls[0]-1) * ls[1]);
-            map.put("maxNum",ls[1]);
-        }catch (Exception e){
-            logger.error("",e);
+            map.put("projectID", projectID);
+            map.put("key", key);
+            map.put("startIndex", (ls[0] - 1) * ls[1]);
+            map.put("maxNum", ls[1]);
+        } catch (Exception e) {
+            logger.error("", e);
             return ParamUtils.errorParam("请求参数异常");
         }
-        List<ProSample> list= AllDao.getInstance().getProjectDao().searchSampleSetList(map);
+        List<ProSample> list = AllDao.getInstance().getProjectDao().searchSampleSetList(map);
         int count = AllDao.getInstance().getProjectDao().searchSampleSetListCounter(map);
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(1);
-        Map<String,Integer> info = new HashMap<String, Integer>();
-        info.put("count",count);
+        Map<String, Integer> info = new HashMap<String, Integer>();
+        info.put("count", count);
         resultBean.setData(list);
         resultBean.setInfo(info);
         return gson.toJson(resultBean);
@@ -100,6 +98,7 @@ public class SearchProcessor {
 
     /**
      * 保存用户搜索的条件
+     *
      * @param paramObj
      * @return
      */
@@ -107,31 +106,31 @@ public class SearchProcessor {
         String uid = null;
         String conditionStr = null;
         String conditionName = null;
-        try{
+        try {
             uid = paramObj.get("uid").getAsString();
             conditionStr = paramObj.get("conditionStr").getAsString();
             conditionName = paramObj.get("conditionName").getAsString();
-        }catch (Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             return ParamUtils.errorParam("请求参数异常");
         }
-        try{
+        try {
             SearchConditionBean searchConditionBean = new SearchConditionBean();
             searchConditionBean.setLogTime(df.format(new Date()));
             searchConditionBean.setUid(uid);
             searchConditionBean.setConditionStr(conditionStr);
             searchConditionBean.setConditionName(conditionName);
             int counter = AllDao.getInstance().getSyUserDao().insertSearchCondition(searchConditionBean);
-            if(counter == 1){
+            if (counter == 1) {
                 ResultBean resultBean = new ResultBean();
                 resultBean.setCode(1);
                 resultBean.setData("保存完成");
                 return gson.toJson(resultBean);
-            }else{
+            } else {
                 return ParamUtils.errorParam("插入失败");
             }
-        }catch (Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             return ParamUtils.errorParam("服务异常");
         }
 
@@ -139,25 +138,26 @@ public class SearchProcessor {
 
     /**
      * 搜索条件
+     *
      * @param paramObj
      * @return
      */
     public String searchConditionList(JsonObject paramObj) {
         String uid = null;
-        try{
+        try {
             uid = paramObj.get("uid").getAsString();
-        }catch (Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             return ParamUtils.errorParam("请求参数异常");
         }
-        try{
+        try {
             List<SearchConditionBean> list = AllDao.getInstance().getSyUserDao().searchConditionList(uid);
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
             resultBean.setData(list);
             return gson.toJson(resultBean);
-        }catch (Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             return ParamUtils.errorParam("服务异常");
         }
 
@@ -169,25 +169,25 @@ public class SearchProcessor {
         String conditionStr = null;
         String conditionName = null;
         Integer conditionID = null;
-        try{
+        try {
             uid = paramObj.get("uid").getAsString();
             conditionStr = paramObj.get("conditionStr").getAsString();
             conditionName = paramObj.get("conditionName").getAsString();
             conditionID = paramObj.get("conditionID").getAsInt();
-        }catch (Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             return ParamUtils.errorParam("请求参数异常");
         }
-        try{
+        try {
             List<SearchConditionBean> list = AllDao.getInstance().getSyUserDao().searchConditionList(uid);
             boolean flag = false;
-            for(SearchConditionBean searchConditionBean:list){
-                if(searchConditionBean.getConditionID() != conditionID
-                        && searchConditionBean.getConditionName().equals(conditionName)){
+            for (SearchConditionBean searchConditionBean : list) {
+                if (searchConditionBean.getConditionID() != conditionID
+                        && searchConditionBean.getConditionName().equals(conditionName)) {
                     flag = true;
                 }
             }
-            if(flag){
+            if (flag) {
                 return ParamUtils.errorParam("名称重复");
             }
             SearchConditionBean searchConditionBean = new SearchConditionBean();
@@ -197,36 +197,36 @@ public class SearchProcessor {
             searchConditionBean.setConditionName(conditionName);
             searchConditionBean.setConditionID(conditionID);
             int counter = AllDao.getInstance().getSyUserDao().updateSearchCondition(searchConditionBean);
-            if(counter == 1){
+            if (counter == 1) {
                 ResultBean resultBean = new ResultBean();
                 resultBean.setCode(1);
                 resultBean.setData("更新完成");
                 return gson.toJson(resultBean);
-            }else {
+            } else {
                 return ParamUtils.errorParam("更新失败");
             }
-        }catch (Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             return ParamUtils.errorParam("服务异常");
         }
 
     }
 
     public String deleteSearchCondition(JsonArray paramObj) {
-        Integer[]  conditionIDs= null;
-        try{
+        Integer[] conditionIDs = null;
+        try {
             conditionIDs = new Integer[paramObj.size()];
-            for(int index=0;index < paramObj.size();index ++){
+            for (int index = 0; index < paramObj.size(); index++) {
                 conditionIDs[index] = paramObj.get(index).getAsInt();
             }
-        }catch (Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             return ParamUtils.errorParam("参数错误");
         }
-        int counter =  AllDao.getInstance().getSyUserDao().deleteSearchCondition(conditionIDs);
-        Map<String,Object> map = new HashMap<>();
-        map.put("success",counter);
-        map.put("fail",paramObj.size() - counter);
+        int counter = AllDao.getInstance().getSyUserDao().deleteSearchCondition(conditionIDs);
+        Map<String, Object> map = new HashMap<>();
+        map.put("success", counter);
+        map.put("fail", paramObj.size() - counter);
         ResultBean re = new ResultBean();
         re.setCode(1);
         re.setData(map);

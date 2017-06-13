@@ -9,7 +9,7 @@ import java.io.File;
  * Created by chen-song on 16/10/1.
  */
 public class FileBean {
-    private static Logger logger= LoggerFactory.getLogger(FileBean.class);
+    private static Logger logger = LoggerFactory.getLogger(FileBean.class);
     /**
      * 科室,人员管理文件导入缓存位置
      */
@@ -38,16 +38,13 @@ public class FileBean {
         this.CRFFileLocation = CRFFileLocation.trim();
         mkdir(this.CRFFileLocation);
     }
-    private static void mkdir(String path)
-    {
-        File dir= new File(path);
-        if(!dir.exists())
-        {
-            if(dir.mkdirs())
-            {
-                logger.info("创建目录"+path+"成功");
-            }
-            else logger.error("创建目录"+path+"失败");
+
+    private static void mkdir(String path) {
+        File dir = new File(path);
+        if (!dir.exists()) {
+            if (dir.mkdirs()) {
+                logger.info("创建目录" + path + "成功");
+            } else logger.error("创建目录" + path + "失败");
         }
     }
 

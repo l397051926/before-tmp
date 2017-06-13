@@ -17,8 +17,8 @@ public class ProSample {
     private String operatTime;
     private int total;
     private String items;
-    private String sampleDesc="";
-    private int sampledelete=0;
+    private String sampleDesc = "";
+    private int sampledelete = 0;
 
     public String getSampleDesc() {
         return sampleDesc;

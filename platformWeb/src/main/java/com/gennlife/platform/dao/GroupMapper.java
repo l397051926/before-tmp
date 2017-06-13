@@ -15,18 +15,22 @@ import java.util.Map;
 public interface GroupMapper {
     /**
      * 搜索小组，带分页
+     *
      * @param conf
      * @return
      */
     List<Group> getGroupsBySearchName(Map<String, Object> conf);
 
     int getGroupsBySearchNameCounter(Map<String, Object> conf);
+
     /**
      * 通过组id 获取小组成员
+     *
      * @param map
      * @return
      */
     List<User> getUsersByGroupID(Map<String, Object> map);
+
     List<User> getUsersByGroupIDS(Map<String, Object> map);
 
 
@@ -46,6 +50,7 @@ public interface GroupMapper {
 
     List<Group> getGroupsByUid(Map<String, Object> confMap);
 
-    int deleteGroupByGID(@Param("gid")String gid);
-    List<String> getGroupRelationUid(@Param("gid")String gid);
+    int deleteGroupByGID(@Param("gid") String gid);
+
+    List<String> getGroupRelationUid(@Param("gid") String gid);
 }

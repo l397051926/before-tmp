@@ -27,13 +27,13 @@ public class ColumnBean {
 
     @Override
     public boolean equals(Object obj) {
-        try{
+        try {
             ColumnBean columnBean = (ColumnBean) obj;
-            if(this.parentTitle != null && this.parentTitle.equals(columnBean.getParentTitle())){
+            if (this.parentTitle != null && this.parentTitle.equals(columnBean.getParentTitle())) {
                 return true;
             }
             return false;
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }

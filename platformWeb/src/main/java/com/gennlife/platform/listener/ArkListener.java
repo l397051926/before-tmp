@@ -12,6 +12,7 @@ import javax.servlet.ServletContextListener;
  */
 public class ArkListener implements ServletContextListener {
     Logger logger = LoggerFactory.getLogger(ArkListener.class);
+
     public void contextInitialized(ServletContextEvent sce) {
         ArkServer.SERVER_START();
     }

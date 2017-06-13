@@ -11,6 +11,7 @@ public class MongoResultBean {
     private String status;
     private String crf_id;
     private List<Object> children;
+
     public String getCrf_id() {
         return crf_id;
     }

@@ -25,254 +25,275 @@ public class CaseController {
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
     private CaseProcessor processor = new CaseProcessor();
-    @RequestMapping(value="/SearchItemSet",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String postSearchItemSet(HttpServletRequest paramRe){
+
+    @RequestMapping(value = "/SearchItemSet", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String postSearchItemSet(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = ParamUtils.getParam(paramRe);
-            logger.info("搜索结果列表展示的集合 post方式 参数="+param);
+            logger.info("搜索结果列表展示的集合 post方式 参数=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.searchItemSet(paramObj);
-        }catch (Exception e){
-            logger.error("搜索结果列表展示的集合",e);
+            resultStr = processor.searchItemSet(paramObj);
+        } catch (Exception e) {
+            logger.error("搜索结果列表展示的集合", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("搜索结果列表展示的集合 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("搜索结果列表展示的集合 post 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-    @RequestMapping(value="/SearchItemSet",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String getSearchItemSet(@RequestParam("param") String param){
+
+    @RequestMapping(value = "/SearchItemSet", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getSearchItemSet(@RequestParam("param") String param) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
-            logger.info("搜索结果列表展示的集合 get方式 参数="+param);
+        try {
+            logger.info("搜索结果列表展示的集合 get方式 参数=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.searchItemSet(paramObj);
+            resultStr = processor.searchItemSet(paramObj);
             logger.info("搜索结果列表展示的集合: " + resultStr);
-        }catch (Exception e){
-            logger.error("搜索结果列表展示的集合",e);
+        } catch (Exception e) {
+            logger.error("搜索结果列表展示的集合", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("搜索结果列表展示的集合 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("搜索结果列表展示的集合 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/SearchTermSuggest",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String postSearchTermSuggest(@RequestBody String param){
+    @RequestMapping(value = "/SearchTermSuggest", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String postSearchTermSuggest(@RequestBody String param) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
-            logger.info("搜索关键词提示 post方式 参数="+param);
+        try {
+            logger.info("搜索关键词提示 post方式 参数=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.searchTermSuggest(paramObj);
-        }catch (Exception e){
-            logger.error("搜索关键词提示",e);
+            resultStr = processor.searchTermSuggest(paramObj);
+        } catch (Exception e) {
+            logger.error("搜索关键词提示", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("搜索关键词提示 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("搜索关键词提示 post 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/SearchTermSuggest",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String getSearchTermSuggest(@RequestParam("param") String param){
+    @RequestMapping(value = "/SearchTermSuggest", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getSearchTermSuggest(@RequestParam("param") String param) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
-            logger.info("搜索关键词提示 get方式 参数="+param);
+        try {
+            logger.info("搜索关键词提示 get方式 参数=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.searchTermSuggest(paramObj);
-        }catch (Exception e){
-            logger.error("搜索关键词提示",e);
+            resultStr = processor.searchTermSuggest(paramObj);
+        } catch (Exception e) {
+            logger.error("搜索关键词提示", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("搜索关键词提示 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("搜索关键词提示 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/AdvancedSearchTermSuggest",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String postAdvancedSearchTermSuggest(@RequestBody String param){
+    @RequestMapping(value = "/AdvancedSearchTermSuggest", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String postAdvancedSearchTermSuggest(@RequestBody String param) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
-            logger.info("高级搜索关键词提示 post方式 参数="+param);
+        try {
+            logger.info("高级搜索关键词提示 post方式 参数=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.advancedSearchTermSuggest(paramObj);
-        }catch (Exception e){
-            logger.error("高级搜索关键词提示",e);
+            resultStr = processor.advancedSearchTermSuggest(paramObj);
+        } catch (Exception e) {
+            logger.error("高级搜索关键词提示", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("高级搜索关键词提示 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("高级搜索关键词提示 post 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/AdvancedSearchTermSuggest",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String getAdvancedSearchTermSuggest(@RequestParam("param") String param){
+    @RequestMapping(value = "/AdvancedSearchTermSuggest", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getAdvancedSearchTermSuggest(@RequestParam("param") String param) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
-            logger.info("高级搜索关键词提示 get方式 参数="+param);
+        try {
+            logger.info("高级搜索关键词提示 get方式 参数=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.advancedSearchTermSuggest(paramObj);
-        }catch (Exception e){
-            logger.error("高级搜索关键词提示",e);
+            resultStr = processor.advancedSearchTermSuggest(paramObj);
+        } catch (Exception e) {
+            logger.error("高级搜索关键词提示", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("高级搜索关键词提示 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("高级搜索关键词提示 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-    @RequestMapping(value="/SearchKnowledgeFirst",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String postSearchKnowledgeFirst(@RequestBody String param){
+
+    @RequestMapping(value = "/SearchKnowledgeFirst", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String postSearchKnowledgeFirst(@RequestBody String param) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
-            logger.info("首页知识库搜索 post方式 参数="+param);
+        try {
+            logger.info("首页知识库搜索 post方式 参数=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.searchKnowledgeFirst(paramObj);
-        }catch (Exception e){
-            logger.error("首页知识库搜索",e);
+            resultStr = processor.searchKnowledgeFirst(paramObj);
+        } catch (Exception e) {
+            logger.error("首页知识库搜索", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("首页知识库搜索 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("首页知识库搜索 post 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
 
-    @RequestMapping(value="/SearchKnowledgeFirst",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String getSearchKnowledgeFirst(@RequestParam("param") String param){
+    @RequestMapping(value = "/SearchKnowledgeFirst", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getSearchKnowledgeFirst(@RequestParam("param") String param) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
-            logger.info("首页知识库搜索 get方式 参数="+param);
+        try {
+            logger.info("首页知识库搜索 get方式 参数=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.searchKnowledgeFirst(paramObj);
-        }catch (Exception e){
-            logger.error("首页知识库搜索",e);
+            resultStr = processor.searchKnowledgeFirst(paramObj);
+        } catch (Exception e) {
+            logger.error("首页知识库搜索", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("首页知识库搜索 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("首页知识库搜索 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-    @RequestMapping(value="/SearchCase",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String postSearchCase(HttpServletRequest paramRe){
+
+    @RequestMapping(value = "/SearchCase", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String postSearchCase(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String paramNew = AuthorityUtil.addSearchCaseAuthority(paramRe);
-            User user = (User)paramRe.getAttribute("currentUser");
-            logger.info("病历搜索 post方式 增加科室后参数="+paramNew);
-            resultStr =  processor.searchCase(paramNew,user);
-        }catch (Exception e) {
-            logger.error("病历搜索",e);
+            User user = (User) paramRe.getAttribute("currentUser");
+            logger.info("病历搜索 post方式 增加科室后参数=" + paramNew);
+            resultStr = processor.searchCase(paramNew, user);
+        } catch (Exception e) {
+            logger.error("病历搜索", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("病历搜索 post 耗时"+(System.currentTimeMillis()-start) +"ms");
-        logger.info("病历搜索 结果="+resultStr);
+        logger.info("病历搜索 post 耗时" + (System.currentTimeMillis() - start) + "ms");
+        logger.info("病历搜索 结果=" + resultStr);
         return resultStr;
     }
-    @RequestMapping(value="/GeneVerify",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String postGeneVerify(HttpServletRequest paramRe){
+
+    @RequestMapping(value = "/GeneVerify", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String postGeneVerify(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
+        try {
             String param = ParamUtils.getParam(paramRe);
-            logger.info("基因数组校验 post方式 参数="+param);
+            logger.info("基因数组校验 post方式 参数=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.geneVerify(paramObj);
-        }catch (Exception e){
-            logger.error("基因数组校验",e);
+            resultStr = processor.geneVerify(paramObj);
+        } catch (Exception e) {
+            logger.error("基因数组校验", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("基因数组校验 post 耗时"+(System.currentTimeMillis()-start) +"ms");
-        logger.info("基因数组校验 结果="+resultStr);
+        logger.info("基因数组校验 post 耗时" + (System.currentTimeMillis() - start) + "ms");
+        logger.info("基因数组校验 结果=" + resultStr);
         return resultStr;
     }
 
-    @RequestMapping(value="/DiseaseSearchGenes",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String postDiseaseSearchGenes(@RequestBody String param){
+    @RequestMapping(value = "/DiseaseSearchGenes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String postDiseaseSearchGenes(@RequestBody String param) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
-            logger.info("返回该疾病相关基因 post方式 参数="+param);
+        try {
+            logger.info("返回该疾病相关基因 post方式 参数=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.diseaseSearchGenes(paramObj);
-        }catch (Exception e){
-            logger.error("返回该疾病相关基因",e);
+            resultStr = processor.diseaseSearchGenes(paramObj);
+        } catch (Exception e) {
+            logger.error("返回该疾病相关基因", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("返回该疾病相关基因 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("返回该疾病相关基因 post 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/DiseaseSearchGenes",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String getDiseaseSearchGenes(@RequestParam("param") String param){
+    @RequestMapping(value = "/DiseaseSearchGenes", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getDiseaseSearchGenes(@RequestParam("param") String param) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
-            logger.info("返回该疾病相关基因 get方式 参数="+param);
+        try {
+            logger.info("返回该疾病相关基因 get方式 参数=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.diseaseSearchGenes(paramObj);
-        }catch (Exception e){
-            logger.error("返回该疾病相关基因",e);
+            resultStr = processor.diseaseSearchGenes(paramObj);
+        } catch (Exception e) {
+            logger.error("返回该疾病相关基因", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("返回该疾病相关基因 get 耗时"+(System.currentTimeMillis()-start) +"ms");
-        return resultStr;
-    }
-    @RequestMapping(value="/SampleImport",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String postSampleImport(@RequestBody String param){
-        Long start = System.currentTimeMillis();
-        String resultStr = null;
-        try{
-            logger.info("样本集导出到项目空间 get方式 参数="+param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.sampleImport(paramObj);
-        }catch (Exception e){
-            logger.error("样本集导出到项目空间",e);
-            resultStr = ParamUtils.errorParam("出现异常");
-        }
-        logger.info("样本集导出到项目空间 get 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("返回该疾病相关基因 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
-    @RequestMapping(value="/SampleImport",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String getSampleImport(@RequestParam("param") String param){
+    @RequestMapping(value = "/SampleImport", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String postSampleImport(@RequestBody String param) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        try{
-            logger.info("样本集导出到项目空间 post方式 参数="+param);
+        try {
+            logger.info("样本集导出到项目空间 get方式 参数=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr =  processor.sampleImport(paramObj);
-        }catch (Exception e){
-            logger.error("样本集导出到项目空间",e);
+            resultStr = processor.sampleImport(paramObj);
+        } catch (Exception e) {
+            logger.error("样本集导出到项目空间", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("样本集导出到项目空间 post 耗时"+(System.currentTimeMillis()-start) +"ms");
+        logger.info("样本集导出到项目空间 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/SampleImport", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getSampleImport(@RequestParam("param") String param) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            logger.info("样本集导出到项目空间 post方式 参数=" + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.sampleImport(paramObj);
+        } catch (Exception e) {
+            logger.error("样本集导出到项目空间", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("样本集导出到项目空间 post 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
     /**
      * 我的zens
-     * */
-    @RequestMapping(value="/myclinicSearchCase",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public @ResponseBody
-    String myclinicSearchCase(HttpServletRequest paramRe){
+     */
+    @RequestMapping(value = "/myclinicSearchCase", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String myclinicSearchCase(HttpServletRequest paramRe) {
         return this.postSearchCase(paramRe);
     }
-
 
 
 }

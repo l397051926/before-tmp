@@ -36,6 +36,7 @@ public class Lab {
     }
 
     public String remark;//导入备注
+
     public String getLab_parentName() {
         return lab_parentName;
     }
@@ -125,7 +126,7 @@ public class Lab {
     }
 
 
-    public String getSrcLog(){
+    public String getSrcLog() {
         StringBuffer sb = new StringBuffer();
         sb.append(this.getLab_name())
                 .append(",")

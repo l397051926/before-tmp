@@ -19,6 +19,7 @@ public class AuthorityUtil {
     private static Logger logger = LoggerFactory.getLogger(AuthorityUtil.class);
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
+
     public static String addAuthority(HttpServletRequest paramRe) {
         String param = ParamUtils.getParam(paramRe);
         JsonElement paramElement = jsonParser.parse(param);
@@ -26,8 +27,8 @@ public class AuthorityUtil {
         if (object == null) {
             logger.error("paramRe里面无currentUser");
             return ParamUtils.errorSessionLosParam();
-        }else {
-            User user = (User)paramRe.getAttribute("currentUser");
+        } else {
+            User user = (User) paramRe.getAttribute("currentUser");
             List<Role> roles = user.getRoles();
             List<Group> groups = user.getGroups();
             Power power = user.getPower();
@@ -39,18 +40,20 @@ public class AuthorityUtil {
                 paramObj.add("power", gson.toJsonTree(power));
                 return CaseProcessor.transformSid(paramObj, user);
             } else {
-                return paramElement.isJsonArray()? gson.toJson(paramElement): null;
+                return paramElement.isJsonArray() ? gson.toJson(paramElement) : null;
             }
         }
     }
+
     public static boolean isUrlArrayHasStr(String[] urlArray, String str) {
-        for (String s: urlArray) {
+        for (String s : urlArray) {
             if (s.equals(str)) {
                 return true;
             }
         }
         return false;
     }
+
     public static String addTreatedAuthority(HttpServletRequest paramRe) {
         String[] urlArray = paramRe.getRequestURI().split("/");
         String param = ParamUtils.getParam(paramRe);
@@ -60,7 +63,7 @@ public class AuthorityUtil {
             logger.error("paramRe里面无currentUser");
             return ParamUtils.errorSessionLosParam();
         } else {
-            User user = (User)paramRe.getAttribute("currentUser");
+            User user = (User) paramRe.getAttribute("currentUser");
             //List<Role> roles = user.getRoles();
             List<Group> groups = user.getGroups();
             Power power = user.getPower();
@@ -102,12 +105,13 @@ public class AuthorityUtil {
                 power.setHas_addBatchCRF(null);
                 paramObj.add("groups", gson.toJsonTree(groups));
                 paramObj.add("power", gson.toJsonTree(power));
-                return CaseProcessor.transformSid(paramObj,user);
+                return CaseProcessor.transformSid(paramObj, user);
             } else {
-                return paramElement.isJsonArray()? gson.toJson(paramElement): null;
+                return paramElement.isJsonArray() ? gson.toJson(paramElement) : null;
             }
         }
     }
+
     public static String addSearchCaseAuthority(HttpServletRequest paramRe) {
         String param = ParamUtils.getParam(paramRe);
         JsonElement paramElement = jsonParser.parse(param);
@@ -116,7 +120,7 @@ public class AuthorityUtil {
             logger.error("paramRe里面无currentUser");
             return ParamUtils.errorSessionLosParam();
         } else {
-            User user = (User)paramRe.getAttribute("currentUser");
+            User user = (User) paramRe.getAttribute("currentUser");
             List<Role> roles = user.getRoles();
             List<Group> groups = user.getGroups();
             Power power = user.getPower();
@@ -131,14 +135,15 @@ public class AuthorityUtil {
                 power.setHas_deleteCRF(null);
                 power.setHas_browseDetail(null);
                 power.setHas_addBatchCRF(null);
-                paramObj.add("groups",gson.toJsonTree(groups));
-                paramObj.add("power",gson.toJsonTree(power));
-                return CaseProcessor.transformSid(paramObj,user);
+                paramObj.add("groups", gson.toJsonTree(groups));
+                paramObj.add("power", gson.toJsonTree(power));
+                return CaseProcessor.transformSid(paramObj, user);
             } else {
-                return paramElement.isJsonArray()?gson.toJson(paramElement):null;
+                return paramElement.isJsonArray() ? gson.toJson(paramElement) : null;
             }
         }
     }
+
     public static boolean isAdmin(User user) {
         List<Admin> admins = user.getAdministrators();
         if (admins == null) {

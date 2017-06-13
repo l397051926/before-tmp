@@ -70,8 +70,7 @@ public class SampleProcessor {
                 return ParamUtils.errorParam("FS 返回空");
             }
             JsonObject resultMap = jsonParser.parse(data).getAsJsonObject();
-            if(resultMap.has("RESPONSE_ERROR"))
-            {
+            if (resultMap.has("RESPONSE_ERROR")) {
                 return ParamUtils.errorParam(resultMap.get("RESPONSE_ERROR").getAsString());
             }
             logger.info("时间======" + (System.currentTimeMillis() - startTime));
@@ -439,7 +438,7 @@ public class SampleProcessor {
                 return gson.toJson(resultBean);
             }
         } catch (Exception e) {
-            logger.error("",e);
+            logger.error("", e);
             return ParamUtils.errorParam("出现异常");
         }
     }

@@ -24,7 +24,7 @@ public class CreateProject {
     private int setCount;//样本集数量
     private String disease;
     private String registerNumber;
-    private int isdelete=0;
+    private int isdelete = 0;
 
     public String getRegisterNumber() {
         return registerNumber;

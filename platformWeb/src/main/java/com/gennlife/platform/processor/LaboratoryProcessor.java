@@ -42,7 +42,7 @@ public class LaboratoryProcessor {
 
     public static List<Lab> generateLabTree(List<Lab> labs, String key, int maxLevel) {
         List<Lab> result = new LinkedList<>();
-        for (Lab lab: labs) {
+        for (Lab lab : labs) {
             if (lab.getLab_parent().equals(key)) {
                 lab.setOrgID(null);
                 result.add(lab);
@@ -59,6 +59,7 @@ public class LaboratoryProcessor {
 
     /**
      * 添加科室
+     *
      * @param paramObj
      * @return
      */
@@ -81,7 +82,7 @@ public class LaboratoryProcessor {
         User user = UserProcessor.getUserByUids(uid);
         String orgID = user.getOrgID();
         Organization organization = null;
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         List<String> labNames = AllDao.getInstance().getOrgDao().getLabsName(orgID);
         if (labNames.contains(lab_name)) {
             return ParamUtils.errorParam(lab_name + "已经存在");
@@ -98,7 +99,7 @@ public class LaboratoryProcessor {
                 if (exLab != null) {
                     count++;
                 } else {
-                    break ;
+                    break;
                 }
             }
         }
@@ -107,13 +108,13 @@ public class LaboratoryProcessor {
         if (lab_parent.equals(orgID)) { // 一级科室
             lab.setLab_level(1);
         } else {
-            map.put("orgID",orgID);
-            map.put("labID",lab_parent);
+            map.put("orgID", orgID);
+            map.put("labID", lab_parent);
             Integer lab_level = AllDao.getInstance().getOrgDao().getLabLevel(map);
             if (lab_level == null) {
-                return ParamUtils.errorParam("无法获取"+lab_parent+"对应的科室信息");
+                return ParamUtils.errorParam("无法获取" + lab_parent + "对应的科室信息");
             } else {
-                lab.setLab_level(lab_level+1);
+                lab.setLab_level(lab_level + 1);
             }
         }
         lab.setLab_leader(lab_leader);
@@ -148,13 +149,14 @@ public class LaboratoryProcessor {
         labResource.setSlab_name(lab.getLab_name());
         labResource.setStype_role("0"); // 初始化的是普通科室
         AllDao.getInstance().getSyResourceDao().insertOneResource(labResource);
-        List<String> uids = AllDao.getInstance().getSyUserDao().getUserIDByLabID(lab.getLabID(),lab.getOrgID());
+        List<String> uids = AllDao.getInstance().getSyUserDao().getUserIDByLabID(lab.getLabID(), lab.getOrgID());
         RedisUtil.updateUserOnLine(uids);
     }
 
 
     /**
      * 获取某个医院的组织结构
+     *
      * @param orgID
      * @return
      */
@@ -162,20 +164,21 @@ public class LaboratoryProcessor {
         Organization organization = AllDao.getInstance().getOrgDao().getOrganization(orgID);
         List<Lab> labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
         Integer maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
-        List<Lab> treeLabs = generateLabTree(labs,orgID,maxLevel);
+        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel);
         organization.setLabs(treeLabs);
         return organization;
     }
 
     /**
      * 删除科室信息
+     *
      * @param paramObj
      * @return
      */
-    public String deleteOrg(JsonObject paramObj,User user) {
+    public String deleteOrg(JsonObject paramObj, User user) {
         List<String> labIDsList = null;
         try {
-            JsonArray labIDsArray= paramObj.get("labIDs").getAsJsonArray();
+            JsonArray labIDsArray = paramObj.get("labIDs").getAsJsonArray();
             labIDsList = gson.fromJson(labIDsArray, LinkedList.class);
         } catch (Exception e) {
             logger.error("", e);
@@ -187,12 +190,12 @@ public class LaboratoryProcessor {
         Organization organization = null;
         OrgMapper orgdao = AllDao.getInstance().getOrgDao();
         SyUserMapper userdao = AllDao.getInstance().getSyUserDao();
-        Set<String> alllab=new TreeSet<>();
-        for (String labID: labIDs) {
-            if(alllab.contains(labID))continue;
-            alllab.addAll(getLabs(orgdao,labID,orgID, orgName, userdao));
+        Set<String> alllab = new TreeSet<>();
+        for (String labID : labIDs) {
+            if (alllab.contains(labID)) continue;
+            alllab.addAll(getLabs(orgdao, labID, orgID, orgName, userdao));
         }
-        labIDs=alllab.toArray(new String[alllab.size()]);
+        labIDs = alllab.toArray(new String[alllab.size()]);
         int counter = AllDao.getInstance().getOrgDao().deleteLabs(labIDs);
         // 同步删除资源
         AllDao.getInstance().getSyResourceDao().deleteLabsReource(labIDs);
@@ -207,52 +210,49 @@ public class LaboratoryProcessor {
         return gson.toJson(resultBean);
     }
 
-    public Set<String> getLabs(OrgMapper orgdao, String labID, String orgID, String orgName, SyUserMapper userdao)
-    {
-        Lab parent = orgdao.getLabPInfo(labID,orgID);
+    public Set<String> getLabs(OrgMapper orgdao, String labID, String orgID, String orgName, SyUserMapper userdao) {
+        Lab parent = orgdao.getLabPInfo(labID, orgID);
         if (parent == null) {
             parent = new Lab();
             parent.setLabID(orgID);
             parent.setLab_name(orgName);
         }
-        Set<String> allsubs=getAllSubLab(orgdao,labID,orgID);
+        Set<String> allsubs = getAllSubLab(orgdao, labID, orgID);
         allsubs.add(labID);
-        String[] labs=allsubs.toArray(new String[allsubs.size()]);
+        String[] labs = allsubs.toArray(new String[allsubs.size()]);
         List<String> uids = userdao.getUserIDsByLabID(labs, orgID);
         RedisUtil.updateUserOnLine(uids);
-        if(allsubs!=null&&allsubs.size()>0)
-            userdao.updateUsersWhenDelLab(parent.getLabID(),parent.getLab_name(),labs,orgID);
+        if (allsubs != null && allsubs.size() > 0)
+            userdao.updateUsersWhenDelLab(parent.getLabID(), parent.getLab_name(), labs, orgID);
 
         return allsubs;
     }
-    public Set<String> getAllSubLab(OrgMapper orgdao,String labID,String orgID)
-    {
-        Set<String> allsubs=new TreeSet<>();
-        List<String> subLabs = orgdao.getSubLabs(labID,orgID);
-        LinkedList<String> todo=new LinkedList<>();
+
+    public Set<String> getAllSubLab(OrgMapper orgdao, String labID, String orgID) {
+        Set<String> allsubs = new TreeSet<>();
+        List<String> subLabs = orgdao.getSubLabs(labID, orgID);
+        LinkedList<String> todo = new LinkedList<>();
         todo.addAll(subLabs);
-        String first=null;
-        if(todo!=null&&todo.size()>0)first = todo.removeFirst();
-        else  first=null;
-        while(first!=null)
-        {
-            if(!allsubs.contains(first))
-            {
-                subLabs = orgdao.getSubLabs(first,orgID);
+        String first = null;
+        if (todo != null && todo.size() > 0) first = todo.removeFirst();
+        else first = null;
+        while (first != null) {
+            if (!allsubs.contains(first)) {
+                subLabs = orgdao.getSubLabs(first, orgID);
                 allsubs.add(first);
-                if(subLabs!=null&&subLabs.size()>0)
-                {
+                if (subLabs != null && subLabs.size() > 0) {
                     todo.addAll(subLabs);
                 }
             }
-            if(todo.size()>0)first=todo.removeFirst();
-            else first=null;
+            if (todo.size() > 0) first = todo.removeFirst();
+            else first = null;
         }
         return allsubs;
     }
 
     /**
      * 更新科室信息
+     *
      * @param paramObj
      * @return
      */
@@ -276,7 +276,7 @@ public class LaboratoryProcessor {
             return ParamUtils.errorParam("参数错误");
         }
         String orgID = user.getOrgID();
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         Lab lab = AllDao.getInstance().getOrgDao().getLabBylabID(labID);
         if (lab == null) {
             return ParamUtils.errorParam(labID + "无此科室");
@@ -284,24 +284,24 @@ public class LaboratoryProcessor {
         if (!lab.getLab_name().equals(lab_name)) { // 如果科室的名称修改啦,需要检查新的名称是否已经存在
             List<String> labNames = AllDao.getInstance().getOrgDao().getLabsName(orgID);
             if (labNames.contains(lab_name)) {
-                return ParamUtils.errorParam(lab_name+"已经存在");
+                return ParamUtils.errorParam(lab_name + "已经存在");
             }
             // 当前科室下面的用户科室名称
 
-            AllDao.getInstance().getSyUserDao().updateUserLabNameByLabName(lab_name,lab.getLab_name(),orgID);
+            AllDao.getInstance().getSyUserDao().updateUserLabNameByLabName(lab_name, lab.getLab_name(), orgID);
             LabResource labResource = new LabResource();
             labResource.setSorgID(lab.getOrgID());
-            labResource.setSdesc(lab_name+"病例数据资源");
+            labResource.setSdesc(lab_name + "病例数据资源");
             labResource.setSid(labID);
             labResource.setSlab_parent(lab_parent);
-            labResource.setSlab_type(lab.getLab_level()+"");
+            labResource.setSlab_type(lab.getLab_level() + "");
             labResource.setStype("病例数据");
-            labResource.setSname(lab_name+"资源");
+            labResource.setSname(lab_name + "资源");
             labResource.setSlab_name(lab_name);
             // logger.info("update "+gson.toJson(labResource));
             AllDao.getInstance().getSyResourceDao().updateResource(labResource);
 
-            List<String> userIds = AllDao.getInstance().getSyUserDao().getUserIDByLabID(labID,orgID);
+            List<String> userIds = AllDao.getInstance().getSyUserDao().getUserIDByLabID(labID, orgID);
             // 更新缓存
             RedisUtil.updateUserOnLine(userIds);
         }
@@ -314,18 +314,18 @@ public class LaboratoryProcessor {
         }
         Integer lab_level = 1;
         if (!lab_parent.equals(orgID)) {
-            map.put("orgID",orgID);
-            map.put("labID",lab_parent);
+            map.put("orgID", orgID);
+            map.put("labID", lab_parent);
             lab_level = AllDao.getInstance().getOrgDao().getLabLevel(map);
-            map.put("lab_level",lab_level+1);
+            map.put("lab_level", lab_level + 1);
         } else {
-            map.put("lab_level",lab_level);
+            map.put("lab_level", lab_level);
         }
-        map.put("labID",labID);
-        map.put("lab_name",lab_name);
-        map.put("lab_leader",lab_leader);
-        map.put("lab_leaderName",lab_leaderName);
-        map.put("lab_parent",lab_parent);
+        map.put("labID", labID);
+        map.put("lab_name", lab_name);
+        map.put("lab_leader", lab_leader);
+        map.put("lab_leaderName", lab_leaderName);
+        map.put("lab_parent", lab_parent);
         int counter = AllDao.getInstance().getOrgDao().updateLabInfo(map);
         if (counter == 0) {
             return ParamUtils.errorParam("更新失败");
@@ -346,10 +346,10 @@ public class LaboratoryProcessor {
         try {
             labID = paramObj.get("labID").getAsString();
             key = paramObj.get("key").getAsString();
-            if(paramObj.has("limit")){
+            if (paramObj.has("limit")) {
                 limitStr = paramObj.get("limit").getAsString();
                 int[] ls = ParamUtils.parseLimit(limitStr);
-                offset = (ls[0]-1) * ls[1];
+                offset = (ls[0] - 1) * ls[1];
                 limit = ls[1];
             }
         } catch (Exception e) {
@@ -360,14 +360,14 @@ public class LaboratoryProcessor {
         re.setCode(1);
         if ("".equals(labID)) {
             if (offset != null && limit != null) {
-                users = AllDao.getInstance().getSyUserDao().searchUsersByOrgID(key,offset,limit,user.getOrgID());
+                users = AllDao.getInstance().getSyUserDao().searchUsersByOrgID(key, offset, limit, user.getOrgID());
 
             } else {
-                users = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDNoLimit(key,user.getOrgID());
+                users = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDNoLimit(key, user.getOrgID());
             }
-            Long counter = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDCounter(key,user.getOrgID());
-            Map<String,Object> info = new HashMap<>();
-            info.put("count",counter);
+            Long counter = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDCounter(key, user.getOrgID());
+            Map<String, Object> info = new HashMap<>();
+            info.put("count", counter);
             re.setInfo(info);
         } else {
             List<Lab> labs = AllDao.getInstance().getOrgDao().getLabs(user.getOrgID());
@@ -377,42 +377,42 @@ public class LaboratoryProcessor {
             int counter = 1;
             do {
                 counter = list.size();
-                for (Lab lab: labs) {
+                for (Lab lab : labs) {
                     if (list.contains(lab.getLab_parent())) {
                         if (!list.contains(lab.getLabID())) {
                             list.add(lab.getLabID());
                         }
                     }
                 }
-            } while (counter !=list.size());
+            } while (counter != list.size());
             String[] labIDs = list.toArray(new String[list.size()]);
             if (offset != null && limit != null) {
-                users = AllDao.getInstance().getSyUserDao().searchUsersByLabIDs(key,offset,limit,labIDs);
+                users = AllDao.getInstance().getSyUserDao().searchUsersByLabIDs(key, offset, limit, labIDs);
             } else {
-                users = AllDao.getInstance().getSyUserDao().searchUsersByLabIDsNoLimit(key,labIDs);
+                users = AllDao.getInstance().getSyUserDao().searchUsersByLabIDsNoLimit(key, labIDs);
             }
 
-            Long count = AllDao.getInstance().getSyUserDao().searchUsersByLabIDsCounter(key,labIDs);
-            Map<String,Object> info = new HashMap<>();
+            Long count = AllDao.getInstance().getSyUserDao().searchUsersByLabIDsCounter(key, labIDs);
+            Map<String, Object> info = new HashMap<>();
             info.put("count", count);
             re.setInfo(info);
         }
-        for (User usr: users) {
-            Map<String,Object> map = new HashMap<>();
-            map.put("orgID",usr.getOrgID());
-            map.put("uid",usr.getUid());
+        for (User usr : users) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("orgID", usr.getOrgID());
+            map.put("uid", usr.getUid());
             List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(map);
             if (rolesList != null) {
-                for (Role role: rolesList) {
+                for (Role role : rolesList) {
                     StringBuffer stringBuffer = new StringBuffer();
-                    List<Resource> reList= AllDao.getInstance().getSyResourceDao().getResourceByRoleID(user.getOrgID(),role.getRoleid(),0,3000);
+                    List<Resource> reList = AllDao.getInstance().getSyResourceDao().getResourceByRoleID(user.getOrgID(), role.getRoleid(), 0, 3000);
                     if (reList != null) {
-                        for (Resource resource: reList) {
+                        for (Resource resource : reList) {
                             stringBuffer.append(resource.getSdesc()).append(",");
                         }
                     }
                     if (stringBuffer.toString().length() > 1) {
-                        role.setResourceDesc(stringBuffer.toString().substring(0,stringBuffer.toString().length()-1));
+                        role.setResourceDesc(stringBuffer.toString().substring(0, stringBuffer.toString().length() - 1));
                     }
                 }
             }
@@ -441,42 +441,42 @@ public class LaboratoryProcessor {
         String name = adduser.getUname();
         String unumber = adduser.getUnumber();
         String lab_name = adduser.getLab_name();
-        if (name == null ||"".equals(name)) {
-            resultBean.addProperty("code",0);
-            resultBean.addProperty("info","姓名不合法");
+        if (name == null || "".equals(name)) {
+            resultBean.addProperty("code", 0);
+            resultBean.addProperty("info", "姓名不合法");
             return resultBean;
-        } else if (lab_name == null ||"".equals(lab_name)) {
-            resultBean.addProperty("code",0);
-            resultBean.addProperty("info","科室名称"+lab_name+"不合法");
+        } else if (lab_name == null || "".equals(lab_name)) {
+            resultBean.addProperty("code", 0);
+            resultBean.addProperty("info", "科室名称" + lab_name + "不合法");
             return resultBean;
-        } else if (unumber == null ||"".equals(unumber)) {
-            resultBean.addProperty("code",0);
-            resultBean.addProperty("info","工号"+unumber+"不合法");
+        } else if (unumber == null || "".equals(unumber)) {
+            resultBean.addProperty("code", 0);
+            resultBean.addProperty("info", "工号" + unumber + "不合法");
             return resultBean;
         } else if (!StringUtils.isEmpty(email) && !GStringUtils.checkEmail(email)) {
-            resultBean.addProperty("code",0);
-            resultBean.addProperty("info","email"+email+"不合法");
+            resultBean.addProperty("code", 0);
+            resultBean.addProperty("info", "email" + email + "不合法");
             return resultBean;
         } else {
             Integer exEamil = AllDao.getInstance().getSyUserDao().existEmail(email);
             if (exEamil >= 1) {
-                resultBean.addProperty("code",0);
-                resultBean.addProperty("info","email"+email+"已经存在了");
+                resultBean.addProperty("code", 0);
+                resultBean.addProperty("info", "email" + email + "已经存在了");
                 return resultBean;
             } else {
-                User exUnumber = AllDao.getInstance().getSyUserDao().getUserByUnumber(unumber,adduser.getOrgID());
+                User exUnumber = AllDao.getInstance().getSyUserDao().getUserByUnumber(unumber, adduser.getOrgID());
                 if (exUnumber != null) {
-                    resultBean.addProperty("code",0);
-                    resultBean.addProperty("info","工号"+unumber+"已经存在了");
+                    resultBean.addProperty("code", 0);
+                    resultBean.addProperty("info", "工号" + unumber + "已经存在了");
                     return resultBean;
                 } else {
                     if (lab_name.equals(adduser.getOrg_name())) {
                         adduser.setLabID(adduser.getOrgID());
                     } else {
-                        Lab exLab = AllDao.getInstance().getOrgDao().getLabBylabName(lab_name,adduser.getOrgID());
+                        Lab exLab = AllDao.getInstance().getOrgDao().getLabBylabName(lab_name, adduser.getOrgID());
                         if (exLab == null) {
-                            resultBean.addProperty("code",0);
-                            resultBean.addProperty("info","科室"+lab_name+"不存在");
+                            resultBean.addProperty("code", 0);
+                            resultBean.addProperty("info", "科室" + lab_name + "不存在");
                             return resultBean;
                         } else {
                             adduser.setLabID(exLab.getLabID());
@@ -494,7 +494,7 @@ public class LaboratoryProcessor {
                             resultBean.addProperty("info", "插入失败");
                             return resultBean;
                         } else {
-                            if(role!=null) {
+                            if (role != null) {
                                 counter = AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role.getRoleid(), adduser.getUid());
                             }
                             resultBean.addProperty("code", 1);
@@ -506,7 +506,7 @@ public class LaboratoryProcessor {
                         resultBean.addProperty("info", "插入失败,填入的字符数超过20");
                         return resultBean;
                     } catch (Exception e) {
-                        logger.error("error ",e);
+                        logger.error("error ", e);
                         resultBean.addProperty("code", 0);
                         resultBean.addProperty("info", "插入失败");
                         return resultBean;
@@ -525,10 +525,10 @@ public class LaboratoryProcessor {
         }
         List<String> admins = AllDao.getInstance().getSyUserDao().getAdminsByOrgID(user.getOrgID());
         int count = 0;
-        for (String admin: admins) {
+        for (String admin : admins) {
             if (uidsList.contains(admin)) {
                 uidsList.remove(admin);
-                count ++;
+                count++;
             }
         }
         ResultBean re = new ResultBean();
@@ -543,9 +543,9 @@ public class LaboratoryProcessor {
             RedisUtil.updateUserOnLine(uidsList);
             if (counter > 0) {
                 re.setCode(1);
-                Map<String,Object> map = new HashMap<>();
-                map.put("succeed",counter);
-                map.put("fail",uids.length - counter + count);
+                Map<String, Object> map = new HashMap<>();
+                map.put("succeed", counter);
+                map.put("fail", uids.length - counter + count);
                 re.setData(map);
                 return gson.toJson(re);
             } else {
@@ -555,6 +555,7 @@ public class LaboratoryProcessor {
             }
         }
     }
+
     public String getProfessionList(String orgID) {
         try {
             List<String> professionList = AllDao.getInstance().getOrgDao().getProfessionList(orgID);
@@ -577,24 +578,24 @@ public class LaboratoryProcessor {
             key = paramObj.get("key").getAsString();
             String limitStr = paramObj.get("limit").getAsString();
             int[] ls = ParamUtils.parseLimit(limitStr);
-            offset = (ls[0]-1) * ls[1];
+            offset = (ls[0] - 1) * ls[1];
             limit = ls[1];
         } catch (Exception e) {
             logger.error("", e);
             return ParamUtils.errorParam("参数错误");
         }
         String orgID = user.getOrgID();
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("orgID", user.getOrgID());
-        List<Role> list = AllDao.getInstance().getSyRoleDao().searchRoles(key,offset,limit,orgID);
-        for (Role role: list) {
+        List<Role> list = AllDao.getInstance().getSyRoleDao().searchRoles(key, offset, limit, orgID);
+        for (Role role : list) {
             if ("1".equals(role.getRole_type())) {
                 role.setResourceDesc("本科室资源");
             } else {
-                map.put("roleid",role.getRoleid());
+                map.put("roleid", role.getRoleid());
                 List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResources(map);
                 StringBuffer sb = new StringBuffer("");
-                for (Resource r: resourcesList) {
+                for (Resource r : resourcesList) {
                     if ("".equals(sb.toString())) {
                         sb.append(r.getSname());
                     } else {
@@ -604,11 +605,11 @@ public class LaboratoryProcessor {
                 role.setResourceDesc(sb.toString());
             }
         }
-        int counter = AllDao.getInstance().getSyRoleDao().searchRolesCounter(key,orgID);
+        int counter = AllDao.getInstance().getSyRoleDao().searchRolesCounter(key, orgID);
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(1);
         resultBean.setData(list);
-        Map<String,Object> info = new HashMap<>();
+        Map<String, Object> info = new HashMap<>();
         info.put("count", counter);
         resultBean.setInfo(info);
         return gson.toJson(resultBean);
@@ -621,10 +622,10 @@ public class LaboratoryProcessor {
         } catch (Exception e) {
             return ParamUtils.errorParam("参数异常");
         }
-        List<User> users = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDNoLimit(key,user.getOrgID());
+        List<User> users = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDNoLimit(key, user.getOrgID());
         Organization organization = getOrganization(user.getOrgID());
         // 将搜索到的用户挂在organization对象中
-        organization = injectUsers(organization,users);
+        organization = injectUsers(organization, users);
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(1);
         resultBean.setData(organization);
@@ -632,7 +633,6 @@ public class LaboratoryProcessor {
     }
 
     /**
-     *
      * @param organization
      * @param users
      * @return
@@ -640,11 +640,11 @@ public class LaboratoryProcessor {
     private Organization injectUsers(Organization organization, List<User> users) {
         String orgID = organization.getOrgID();
         // 搜索用户
-        List<User> exList = searchUserByLabID(users,orgID);
+        List<User> exList = searchUserByLabID(users, orgID);
         organization.setStaff(exList);
-        List<Object> list = gson.fromJson(gson.toJson(organization.getLabs()),LinkedList.class);
+        List<Object> list = gson.fromJson(gson.toJson(organization.getLabs()), LinkedList.class);
         List<Lab> labList = new LinkedList<>();
-        for (Object obj: list) {
+        for (Object obj : list) {
             Lab lab = gson.fromJson(gson.toJson(obj), Lab.class);
             Lab exLab = injectUsersIntoLab(lab, users);
             labList.add(exLab);
@@ -655,12 +655,12 @@ public class LaboratoryProcessor {
 
     private Lab injectUsersIntoLab(Lab lab, List<User> users) {
         String labID = lab.getLabID();
-        List<User> exList = searchUserByLabID(users,labID);
+        List<User> exList = searchUserByLabID(users, labID);
         lab.setStaff(exList);
         if (lab.getSubLabs() != null) {
             List<Object> list = gson.fromJson(gson.toJson(lab.getSubLabs()), LinkedList.class);
             List<Lab> labList = new LinkedList<>();
-            for (Object obj: list) {
+            for (Object obj : list) {
                 Lab subLab = gson.fromJson(gson.toJson(obj), Lab.class);
                 Lab exLab = injectUsersIntoLab(subLab, users);
                 labList.add(exLab);
@@ -672,7 +672,7 @@ public class LaboratoryProcessor {
 
     private List<User> searchUserByLabID(List<User> users, String labID) {
         List<User> exList = new LinkedList<>();
-        for (User user: users) {
+        for (User user : users) {
             if (labID.equals(user.getLabID())) {
                 exList.add(user);
             }
@@ -681,7 +681,6 @@ public class LaboratoryProcessor {
     }
 
     /**
-     *
      * @param paramObj
      * @param user
      * @return
@@ -690,7 +689,7 @@ public class LaboratoryProcessor {
         Integer[] paraRoleids = null;
         try {
             paraRoleids = new Integer[paramObj.size()];
-            for (int index=0; index < paramObj.size(); index ++) {
+            for (int index = 0; index < paramObj.size(); index++) {
                 paraRoleids[index] = paramObj.get(index).getAsInt();
             }
         } catch (Exception e) {
@@ -698,24 +697,24 @@ public class LaboratoryProcessor {
             return ParamUtils.errorParam("参数错误");
         }
         List<Integer> checkedRoleids = new LinkedList<>();
-        for (Integer roleid: paraRoleids) {
+        for (Integer roleid : paraRoleids) {
             Role role = AllDao.getInstance().getSyRoleDao().getRoleByroleid(roleid);
             if (("0".equals(role.getRole_type()) || StringUtils.isEmpty(role.getRole_type())) && !checkedRoleids.contains(roleid)) {
                 checkedRoleids.add(roleid);
             }
         }
-        Map<String,Integer> map = new HashMap<>();
+        Map<String, Integer> map = new HashMap<>();
         if (checkedRoleids.size() > 0) {
             Integer[] roleids = checkedRoleids.toArray(new Integer[checkedRoleids.size()]);
             AllDao.getInstance().getSyRoleDao().deleteRelationsByRoleids(roleids);
             AllDao.getInstance().getSyRoleDao().deleteRelationsWithReourcesByRoleids(roleids);
             int counter = AllDao.getInstance().getSyRoleDao().deleteRolesByRoleids(roleids);
-            List<String> userIds=AllDao.getInstance().getSyUserDao().getAllUserIDByRoleID(roleids);
+            List<String> userIds = AllDao.getInstance().getSyUserDao().getAllUserIDByRoleID(roleids);
             RedisUtil.updateUserOnLine(userIds);
             map.put("succeed", counter);
             map.put("fail", paraRoleids.length - counter);
         } else {
-            map.put("succeed",0);
+            map.put("succeed", 0);
             map.put("fail", paraRoleids.length);
         }
         ResultBean resultBean = new ResultBean();
@@ -741,7 +740,7 @@ public class LaboratoryProcessor {
         if (role.getRole_type() == null) {
             role.setRole_type("0");
         }
-        Role exRole = AllDao.getInstance().getSyRoleDao().getRoleByRoleName(user.getOrgID(),role.getRole());
+        Role exRole = AllDao.getInstance().getSyRoleDao().getRoleByRoleName(user.getOrgID(), role.getRole());
         if (exRole != null) {
             return ParamUtils.errorParam("角色名称已经存在");
         } else {
@@ -749,13 +748,13 @@ public class LaboratoryProcessor {
             if (counter == 0) {
                 return ParamUtils.errorParam("插入失败");
             } else {
-                exRole = AllDao.getInstance().getSyRoleDao().getRoleByRoleName(user.getOrgID(),role.getRole());
+                exRole = AllDao.getInstance().getSyRoleDao().getRoleByRoleName(user.getOrgID(), role.getRole());
                 List<String> uidList = (List<String>) role.getStaff();
-                for (String uid: uidList) {
-                    AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(exRole.getRoleid(),uid);
+                for (String uid : uidList) {
+                    AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(exRole.getRoleid(), uid);
                 }
                 List<Object> resourceList = (List<Object>) role.getResources();
-                for (Object resource:resourceList) {
+                for (Object resource : resourceList) {
                     Resource resourceObj = gson.fromJson(gson.toJson(resource), Resource.class);
                     resourceObj.setSorgID(user.getOrgID());
                     resourceObj.setRoleid(exRole.getRoleid());
@@ -776,7 +775,7 @@ public class LaboratoryProcessor {
         try {
             String limitStr = paramObj.get("limit").getAsString();
             int[] ls = ParamUtils.parseLimit(limitStr);
-            offset = (ls[0]-1) * ls[1];
+            offset = (ls[0] - 1) * ls[1];
             limit = ls[1];
             roleid = paramObj.get("roleid").getAsInt();
         } catch (Exception e) {
@@ -786,9 +785,9 @@ public class LaboratoryProcessor {
         if (role == null) {
             return ParamUtils.errorParam("该角色不存在");
         } else {
-            List<User> list = AllDao.getInstance().getSyUserDao().getUserByRoleID(roleid,offset,limit);
+            List<User> list = AllDao.getInstance().getSyUserDao().getUserByRoleID(roleid, offset, limit);
             int counter = AllDao.getInstance().getSyUserDao().getUserByRoleIDCounter(roleid);
-            Map<String,Object> info = new HashMap<>();
+            Map<String, Object> info = new HashMap<>();
             info.put("count", counter);
             ResultBean result = new ResultBean();
             result.setCode(1);
@@ -805,7 +804,7 @@ public class LaboratoryProcessor {
         try {
             String limitStr = paramObj.get("limit").getAsString();
             int[] ls = ParamUtils.parseLimit(limitStr);
-            offset = (ls[0]-1) * ls[1];
+            offset = (ls[0] - 1) * ls[1];
             limit = ls[1];
             roleid = paramObj.get("roleid").getAsInt();
         } catch (Exception e) {
@@ -815,9 +814,9 @@ public class LaboratoryProcessor {
         if (role == null) {
             return ParamUtils.errorParam("该角色不存在");
         } else {
-            List<Resource> list = AllDao.getInstance().getSyResourceDao().getResourceByRoleID(user.getOrgID(),roleid,offset,limit);
-            int counter = AllDao.getInstance().getSyResourceDao().getResourceByRoleIDCounter(user.getOrgID(),roleid);
-            Map<String,Object> info = new HashMap<>();
+            List<Resource> list = AllDao.getInstance().getSyResourceDao().getResourceByRoleID(user.getOrgID(), roleid, offset, limit);
+            int counter = AllDao.getInstance().getSyResourceDao().getResourceByRoleIDCounter(user.getOrgID(), roleid);
+            Map<String, Object> info = new HashMap<>();
             info.put("count", counter);
             ResultBean result = new ResultBean();
             result.setCode(1);
@@ -851,8 +850,8 @@ public class LaboratoryProcessor {
         if (exRole == null) {
             return ParamUtils.errorParam("该角色id对应角色不存在");
         } else {
-            List<String> updateUids=AllDao.getInstance().getSyRoleDao().getUserIdByRole(role.getRoleid());
-            if(updateUids==null) updateUids=new LinkedList<>();
+            List<String> updateUids = AllDao.getInstance().getSyRoleDao().getUserIdByRole(role.getRoleid());
+            if (updateUids == null) updateUids = new LinkedList<>();
             updateUids.addAll(uids);
             String roleName = role.getRole();
             if ("1".equals(exRole.getRole_type())) {
@@ -864,8 +863,8 @@ public class LaboratoryProcessor {
                     AllDao.getInstance().getSyRoleDao().deleteRelationsByRoleids(roleids);//删除原有的关联关系
                     Long start3 = System.currentTimeMillis();
                     //System.out.println("deleteRelationsByRoleids="+(start3-start2)+"ms");
-                    for (String uid: uids) {
-                        AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(exRole.getRoleid(),uid);//插入新的
+                    for (String uid : uids) {
+                        AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(exRole.getRoleid(), uid);//插入新的
                     }
                     Long start4 = System.currentTimeMillis();
                     //System.out.println("insertUserRoleRelation="+(start4-start3)+"ms");
@@ -882,7 +881,7 @@ public class LaboratoryProcessor {
             if (!roleName.equals(exRole.getRole())) {
                 //如果更新后的名字已经存在
                 Long start2 = System.currentTimeMillis();
-                Role exRenameRole = AllDao.getInstance().getSyRoleDao().getRoleByRoleName(user.getOrgID(),roleName);
+                Role exRenameRole = AllDao.getInstance().getSyRoleDao().getRoleByRoleName(user.getOrgID(), roleName);
                 Long start3 = System.currentTimeMillis();
                 //System.out.println("exRenameRole="+(start3-start2)+"ms");
                 if (exRenameRole != null) {
@@ -901,13 +900,13 @@ public class LaboratoryProcessor {
                 List<String> uidList = (List<String>) role.getStaff();
                 Integer[] roleids = new Integer[]{role.getRoleid()};
                 AllDao.getInstance().getSyRoleDao().deleteRelationsByRoleids(roleids);//删除原有的关联关系
-                for (String uid: uidList) {
-                    AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(exRole.getRoleid(),uid);//插入新的
+                for (String uid : uidList) {
+                    AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(exRole.getRoleid(), uid);//插入新的
                 }
                 List<Object> resourceList = (List<Object>) role.getResources();
                 AllDao.getInstance().getSyRoleDao().deleteRelationsWithReourcesByRoleids(roleids);//删除原有关联关系
-                for (Object resource:resourceList) {
-                    Resource resourceObj = gson.fromJson(gson.toJson(resource),Resource.class);
+                for (Object resource : resourceList) {
+                    Resource resourceObj = gson.fromJson(gson.toJson(resource), Resource.class);
                     resourceObj.setSorgID(user.getOrgID());
                     resourceObj.setRoleid(role.getRoleid());
                     AllDao.getInstance().getSyResourceDao().insertRoleResourceRelation(resourceObj);//插入新的
@@ -926,14 +925,14 @@ public class LaboratoryProcessor {
         String type = null;
         try {
             type = paramObj.get("type").getAsString();
-        } catch (Exception e){
+        } catch (Exception e) {
             return ParamUtils.errorParam("参数错误");
         }
-        List<LabResource> list = AllDao.getInstance().getSyResourceDao().getLabResourcesByOrgID(user.getOrgID(),type);
+        List<LabResource> list = AllDao.getInstance().getSyResourceDao().getLabResourcesByOrgID(user.getOrgID(), type);
         if (list != null && list.size() > 0) {
             Organization organization = getOrganization(user.getOrgID());
-            organization.setLabs(injectResource(organization.getLabs(),list));
-            for (LabResource labResource: list) {
+            organization.setLabs(injectResource(organization.getLabs(), list));
+            for (LabResource labResource : list) {
                 if ("本科室资源".equals(labResource.getSname())) {
                     Lab lab = new Lab();
                     lab.setLab_name(labResource.getSlab_name());
@@ -947,24 +946,24 @@ public class LaboratoryProcessor {
             re.setCode(1);
             re.setData(organization);
             return gson.toJson(re);
-        }else{
+        } else {
             return ParamUtils.errorParam("该类型资源现在不支持");
         }
     }
 
     private Object injectResource(Object labs, List<LabResource> list) {
-        List<Object> objlist = gson.fromJson(gson.toJson(labs),LinkedList.class);
+        List<Object> objlist = gson.fromJson(gson.toJson(labs), LinkedList.class);
         List<Lab> labList = new LinkedList<>();
-        for(Object obj:objlist){
-            Lab lab = gson.fromJson(gson.toJson(obj),Lab.class);
+        for (Object obj : objlist) {
+            Lab lab = gson.fromJson(gson.toJson(obj), Lab.class);
             //判断科室对应的资源是否存在
-            boolean ex = resourceStillExist(list,lab.getLabID());
-            if(ex){
+            boolean ex = resourceStillExist(list, lab.getLabID());
+            if (ex) {
                 lab.setSid(lab.getLabID());
                 labList.add(lab);
             }
-            if(lab.getSubLabs()!= null){
-                Object subLab = injectResource(lab.getSubLabs(),list);
+            if (lab.getSubLabs() != null) {
+                Object subLab = injectResource(lab.getSubLabs(), list);
                 lab.setSubLabs(subLab);
             }
         }
@@ -972,8 +971,8 @@ public class LaboratoryProcessor {
     }
 
     private boolean resourceStillExist(List<LabResource> list, String labID) {
-        for(LabResource labResource:list){
-            if(labID.equals(labResource.getSid())){
+        for (LabResource labResource : list) {
+            if (labID.equals(labResource.getSid())) {
                 return true;
             }
         }
@@ -983,38 +982,38 @@ public class LaboratoryProcessor {
     public String groupList(JsonObject paramObj, User user) {
         String skey = null;
         String limit = null;
-        try{
+        try {
             skey = paramObj.get("key").getAsString();
             limit = paramObj.get("limit").getAsString();
-        }catch (Exception e){
+        } catch (Exception e) {
             return ParamUtils.errorParam("参数错误");
         }
         int[] result = ParamUtils.parseLimit(limit);
-        Map<String,Object> conf = new HashMap<String, Object>();
+        Map<String, Object> conf = new HashMap<String, Object>();
         int startIndex = result[0];
         int maxNum = result[1];
-        conf.put("orgID",user.getOrgID());
-        conf.put("startIndex",(startIndex - 1) * maxNum);
-        conf.put("maxNum",maxNum);
-        conf.put("skey",skey);
+        conf.put("orgID", user.getOrgID());
+        conf.put("startIndex", (startIndex - 1) * maxNum);
+        conf.put("maxNum", maxNum);
+        conf.put("skey", skey);
         List<Group> list = AllDao.getInstance().getGroupDao().getGroupsBySearchName(conf);
         Integer counter = AllDao.getInstance().getGroupDao().getGroupsBySearchNameCounter(conf);
-        Map<String,Object> map = new HashMap<>();
-        map.put("orgID",user.getOrgID());
-        for(Group group:list){
-            map.put("gid",group.getGid());
+        Map<String, Object> map = new HashMap<>();
+        map.put("orgID", user.getOrgID());
+        for (Group group : list) {
+            map.put("gid", group.getGid());
             List<User> userList = AllDao.getInstance().getGroupDao().getUsersByGroupID(map);
-            if(userList.size() > 5){
-                userList = userList.subList(0,5);
+            if (userList.size() > 5) {
+                userList = userList.subList(0, 5);
             }
             User creator = AllDao.getInstance().getSyUserDao().getUserByUid(group.getGroupCreator());
-            if(creator != null){
+            if (creator != null) {
                 group.setGroupCreatName(creator.getUname());
             }
             group.setMembers(userList);
         }
-        Map<String,Object> info = new HashMap<>();
-        info.put("count",counter);
+        Map<String, Object> info = new HashMap<>();
+        info.put("count", counter);
         ResultBean re = new ResultBean();
         re.setCode(1);
         re.setData(list);
@@ -1024,41 +1023,38 @@ public class LaboratoryProcessor {
 
     public String addGroup(String param, User user) {
         Group group = null;
-        try{
-            group = gson.fromJson(param,Group.class);
-            if(StringUtils.isEmpty(group.getGroupName()))
-            {
+        try {
+            group = gson.fromJson(param, Group.class);
+            if (StringUtils.isEmpty(group.getGroupName())) {
                 return ParamUtils.errorParam("插入失败,小组名称不能为空");
             }
-            if(group.getGroupName().length()>20)
-            {
+            if (group.getGroupName().length() > 20) {
                 return ParamUtils.errorParam("插入失败,小组名称必须小于20个字符");
             }
-            if(!StringUtils.isEmpty(group.getGroupDesc())&&group.getGroupDesc().length()>20)
-            {
+            if (!StringUtils.isEmpty(group.getGroupDesc()) && group.getGroupDesc().length() > 20) {
                 return ParamUtils.errorParam("插入失败,小组描述必须小于20个字符");
             }
-        }catch (Exception e){
-            logger.error("参数异常 ",e);
+        } catch (Exception e) {
+            logger.error("参数异常 ", e);
             return ParamUtils.errorParam("参数异常");
         }
         if (checkGroupName(user, group)) return ParamUtils.errorParam("小组名称已存在");
         UUID uuid = UUID.randomUUID();
         group.setOrgID(user.getOrgID());
-        group.setGid(uuid.toString()+Long.toHexString(System.currentTimeMillis()));
+        group.setGid(uuid.toString() + Long.toHexString(System.currentTimeMillis()));
         group.setGroupCreator(user.getUid());
         group.setGroupCreatName(LogUtils.getStringTime());
 
         int counter = AllDao.getInstance().getGroupDao().insertOneGroup(group);
-        if(counter != 1){
+        if (counter != 1) {
             return ParamUtils.errorParam("插入失败");
-        }else {
+        } else {
             List<String> list = (List<String>) group.getMembers();
-            Map<String,Object> map = new HashMap<>();
-            map.put("gid",group.getGid());
-            map.put("orgID",group.getOrgID());
-            for(String uid:list){
-                map.put("uid",uid);
+            Map<String, Object> map = new HashMap<>();
+            map.put("gid", group.getGid());
+            map.put("orgID", group.getOrgID());
+            for (String uid : list) {
+                map.put("uid", uid);
                 AllDao.getInstance().getGroupDao().insertOneGroupRelationUid(map);
             }
             RedisUtil.updateUserOnLine(list);
@@ -1069,12 +1065,11 @@ public class LaboratoryProcessor {
     }
 
     public boolean checkGroupName(User user, Group group) {
-        Map<String,Object> fmap = new HashMap<>();
-        fmap.put("groupName",group.getGroupName());
-        if(!StringUtils.isEmpty(group.getGid())) fmap.put("gid",group.getGid());
-        fmap.put("orgID",user.getOrgID());
-        if(AllDao.getInstance().getGroupDao().getGroupsByName(fmap).size()>0)
-        {
+        Map<String, Object> fmap = new HashMap<>();
+        fmap.put("groupName", group.getGroupName());
+        if (!StringUtils.isEmpty(group.getGid())) fmap.put("gid", group.getGid());
+        fmap.put("orgID", user.getOrgID());
+        if (AllDao.getInstance().getGroupDao().getGroupsByName(fmap).size() > 0) {
             return true;
         }
         return false;
@@ -1082,30 +1077,30 @@ public class LaboratoryProcessor {
 
     public String editGroup(String param, User user) {
         Group group = null;
-        try{
-            group = gson.fromJson(param,Group.class);
-        }catch (Exception e){
+        try {
+            group = gson.fromJson(param, Group.class);
+        } catch (Exception e) {
             return ParamUtils.errorParam("参数异常");
         }
         if (checkGroupName(user, group)) return ParamUtils.errorParam("小组名称已存在");
         List<String> list = (List<String>) group.getMembers();
-        List<String> uids=AllDao.getInstance().getGroupDao().getGroupRelationUid(group.getGid());
-        if(uids==null)uids=new LinkedList<>();
+        List<String> uids = AllDao.getInstance().getGroupDao().getGroupRelationUid(group.getGid());
+        if (uids == null) uids = new LinkedList<>();
         int count = AllDao.getInstance().getGroupDao().updateOneGroup(group);
         ResultBean re = new ResultBean();
-        if(count == 1){
+        if (count == 1) {
             AllDao.getInstance().getGroupDao().deleteGroupRelationUid(group.getGid());
-            Map<String,Object> map = new HashMap<>();
-            map.put("gid",group.getGid());
-            map.put("orgID",user.getOrgID());
-            for(String uid:list){
-                map.put("uid",uid);
+            Map<String, Object> map = new HashMap<>();
+            map.put("gid", group.getGid());
+            map.put("orgID", user.getOrgID());
+            for (String uid : list) {
+                map.put("uid", uid);
                 AllDao.getInstance().getGroupDao().insertOneGroupRelationUid(map);
             }
             uids.addAll(list);
             RedisUtil.updateUserOnLine(new TreeSet<String>(uids));
             re.setCode(1);
-        }else {
+        } else {
             re.setCode(0);
         }
         return gson.toJson(re);
@@ -1115,108 +1110,109 @@ public class LaboratoryProcessor {
         String skey = null;
         String limit = null;
         String groupID = null;
-        try{
+        try {
             JsonObject jsonObj = (JsonObject) jsonParser.parse(param);
             skey = jsonObj.get("key").getAsString();
             limit = jsonObj.get("limit").getAsString();
             groupID = jsonObj.get("groupID").getAsString();
-        }catch (Exception e){
+        } catch (Exception e) {
             return ParamUtils.errorParam("参数错误");
         }
         int[] result = ParamUtils.parseLimit(limit);
-        Map<String,Object> map = new HashMap<>();
-        map.put("orgID",user.getOrgID());
-        map.put("gid",groupID);
+        Map<String, Object> map = new HashMap<>();
+        map.put("orgID", user.getOrgID());
+        map.put("gid", groupID);
         int startIndex = result[0];
         int maxNum = result[1];
-        map.put("startIndex",(startIndex - 1) * maxNum);
-        map.put("maxNum",maxNum);
-        map.put("skey",skey);
+        map.put("startIndex", (startIndex - 1) * maxNum);
+        map.put("maxNum", maxNum);
+        map.put("skey", skey);
         List<User> userList = AllDao.getInstance().getGroupDao().getUsersBySearchNameGroupID(map);
         int counter = AllDao.getInstance().getGroupDao().getUsersBySearchNameGroupIDCounter(map);
         ResultBean re = new ResultBean();
         re.setCode(1);
         re.setData(userList);
-        Map<String,Object> info = new HashMap<>();
-        info.put("count",counter);
+        Map<String, Object> info = new HashMap<>();
+        info.put("count", counter);
         re.setInfo(info);
         return gson.toJson(re);
     }
 
     public String resetPassword(String param, User user) {
         List<String> uids = null;
-        try{
+        try {
             JsonObject jsonObj = (JsonObject) jsonParser.parse(param);
-            uids = gson.fromJson(jsonObj.get("uid").getAsJsonArray(),new TypeToken<LinkedList<String>>(){}.getType());
-            if(uids==null||uids.size()==0)  return ParamUtils.errorParam("参数错误");
-        }catch (Exception e){
+            uids = gson.fromJson(jsonObj.get("uid").getAsJsonArray(), new TypeToken<LinkedList<String>>() {
+            }.getType());
+            if (uids == null || uids.size() == 0) return ParamUtils.errorParam("参数错误");
+        } catch (Exception e) {
             return ParamUtils.errorParam("参数错误");
         }
-       String pwd=GStringUtils.getDefaultPasswd();
-        int count= AllDao.getInstance().getSyUserDao().updatePWDByUids(uids.toArray(new String[uids.size()]),pwd,user.getOrgID());
-        if(count>0) {
+        String pwd = GStringUtils.getDefaultPasswd();
+        int count = AllDao.getInstance().getSyUserDao().updatePWDByUids(uids.toArray(new String[uids.size()]), pwd, user.getOrgID());
+        if (count > 0) {
             RedisUtil.exit(uids);
-            ResultBean resultBean=new ResultBean();
+            ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
             return gson.toJson(resultBean);
-        }
-        else
-        {
+        } else {
             return ParamUtils.errorParam("操作失败");
         }
     }
+
     public String isExistGroupName(String param, User user) {
         String groupName = null;
-        try{
+        try {
             JsonObject jsonObj = (JsonObject) jsonParser.parse(param);
             groupName = jsonObj.get("groupName").getAsString();
-        }catch (Exception e){
+        } catch (Exception e) {
             return ParamUtils.errorParam("参数错误");
         }
-        Map<String,Object> map = new HashMap<>();
-        map.put("groupName",groupName);
-        map.put("orgID",user.getOrgID());
+        Map<String, Object> map = new HashMap<>();
+        map.put("groupName", groupName);
+        map.put("orgID", user.getOrgID());
         List<Group> list = AllDao.getInstance().getGroupDao().getGroupsByName(map);
-        Map<String,Object> info = new HashMap<>();
-        if(list == null || list.size() == 0){
-            info.put("count",0);
-        }else {
-            info.put("count",list.size());
+        Map<String, Object> info = new HashMap<>();
+        if (list == null || list.size() == 0) {
+            info.put("count", 0);
+        } else {
+            info.put("count", list.size());
         }
         ResultBean re = new ResultBean();
         re.setCode(1);
         re.setInfo(info);
         return gson.toJson(re);
     }
+
     public String deleteGroup(String param, User user) {
         Set<String> set = new HashSet<>();
-        try{
-            JsonArray gArray = (JsonArray)jsonParser.parse(param);
-            for(JsonElement item:gArray){
+        try {
+            JsonArray gArray = (JsonArray) jsonParser.parse(param);
+            for (JsonElement item : gArray) {
                 set.add(item.getAsString());
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             return ParamUtils.errorParam("参数异常");
         }
-        Map<String,Object> data = new HashMap<>();
+        Map<String, Object> data = new HashMap<>();
         int succeed = 0;
         int fail = 0;
-        for(String gid:set){
+        for (String gid : set) {
             int count = AllDao.getInstance().getGroupDao().deleteGroupByGID(gid);
-            if(count == 1){
-                data.put(gid,true);
-                List<String> uidList=AllDao.getInstance().getSyUserDao().getAllUserIDByGroupID(gid);
+            if (count == 1) {
+                data.put(gid, true);
+                List<String> uidList = AllDao.getInstance().getSyUserDao().getAllUserIDByGroupID(gid);
                 AllDao.getInstance().getGroupDao().deleteGroupRelationUid(gid);
                 RedisUtil.updateUserOnLine(uidList);
-                succeed ++;
-            }else {
-                data.put(gid,false);
-                fail ++;
+                succeed++;
+            } else {
+                data.put(gid, false);
+                fail++;
             }
         }
-        Map<String,Object> info = new HashMap<>();
-        info.put("succeed",succeed);
-        info.put("fail",fail);
+        Map<String, Object> info = new HashMap<>();
+        info.put("succeed", succeed);
+        info.put("fail", fail);
         ResultBean re = new ResultBean();
         re.setCode(1);
         re.setData(data);

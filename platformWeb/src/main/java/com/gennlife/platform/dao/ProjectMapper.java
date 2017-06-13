@@ -82,7 +82,8 @@ public interface ProjectMapper {
      */
     public List<String> getProjectSetNameList(Map<String, Object> likeCondition);
 
-    public String getProjectSampleName(@Param("projectID") String projectID,@Param("uri") String uri);
+    public String getProjectSampleName(@Param("projectID") String projectID, @Param("uri") String uri);
+
     /**
      * 删除样本集合
      *
@@ -137,13 +138,14 @@ public interface ProjectMapper {
     public int isExistPlan(Map<String, Object> map);
 
     public int isExistSet(Map<String, Object> map);
-    public int isExistSample(@Param("sampleURI") String  sampleURI);
 
-    public int isSampleExistProjectID(@Param("projectID") String  projectID);
+    public int isExistSample(@Param("sampleURI") String sampleURI);
 
-    public int isPplanExistId(@Param("id") String  id);
+    public int isSampleExistProjectID(@Param("projectID") String projectID);
 
-    public int isPprojectExistProjectID(@Param("projectID") String  projectID);
+    public int isPplanExistId(@Param("id") String id);
+
+    public int isPprojectExistProjectID(@Param("projectID") String projectID);
 
     /**
      * 搜索样本集
@@ -178,73 +180,71 @@ public interface ProjectMapper {
 
     /**
      * 获取某个uid所有项目,信息
+     *
      * @param map
      * @return
      */
     public List<MyProjectList> getProjectList(Map<String, Object> map);
 
     /**
-     *
      * @param likeCondition
      * @return
      */
-    public List<MyProjectList> getMyProjectList(Map<String,Object> likeCondition);
+    public List<MyProjectList> getMyProjectList(Map<String, Object> likeCondition);
 
     /**
-     *
      * @param likeCondition
      * @return
      */
-    public int getProjectCounter(Map<String,Object> likeCondition);
+    public int getProjectCounter(Map<String, Object> likeCondition);
 
 
     /**
      * 项目成员列表
-     * @param likeCondition
-     * @return
-     */
-    public List<User> getProjectMemberList(Map<String,Object> likeCondition);
-
-    /**
      *
      * @param likeCondition
      * @return
      */
-    public int getProjectMemberCounter(Map<String,Object> likeCondition);
+    public List<User> getProjectMemberList(Map<String, Object> likeCondition);
 
     /**
-     *
      * @param likeCondition
      * @return
      */
-    public List<User> searchMemberList(Map<String,Object> likeCondition);
+    public int getProjectMemberCounter(Map<String, Object> likeCondition);
 
     /**
-     *
      * @param likeCondition
      * @return
      */
-    public int searchMemberCounter(Map<String,Object> likeCondition);
+    public List<User> searchMemberList(Map<String, Object> likeCondition);
+
+    /**
+     * @param likeCondition
+     * @return
+     */
+    public int searchMemberCounter(Map<String, Object> likeCondition);
 
     /**
      * 通过sampleURI获取样本信息
+     *
      * @param sampleURI
      * @return
      */
-    ProSample getSampleDataBySampleURI(@Param("sampleURI")String sampleURI);
+    ProSample getSampleDataBySampleURI(@Param("sampleURI") String sampleURI);
 
     /**
      * 导入样本集之后，项目的setCount字段自增
+     *
      * @param projectID
      */
-    public int autoAddSetCountOne(@Param("projectID")String projectID);
+    public int autoAddSetCountOne(@Param("projectID") String projectID);
 
     /**
-     *
      * @param projectID
      * @return
      */
-    public int autoDeleteSetCountOne(@Param("projectID")String projectID);
+    public int autoDeleteSetCountOne(@Param("projectID") String projectID);
 
     int deleteSampleByProjectID(@Param("projectID") String projectID);
 

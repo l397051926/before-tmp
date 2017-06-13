@@ -21,38 +21,39 @@ public class ParamUtils {
     private static Logger logger = LoggerFactory.getLogger(ParamUtils.class);
     private static Gson gson = GsonUtil.getGson();
     private static View viewer = new View();
-    public static String getParam(HttpServletRequest request){
+
+    public static String getParam(HttpServletRequest request) {
         String param = null;
-        if("GET".equals(request.getMethod())){
+        if ("GET".equals(request.getMethod())) {
             param = request.getParameter("param");
-        }else{
+        } else {
             param = getPostParm(request);
         }
         return cleanXSS(param);
     }
-    private static String getPostParm(HttpServletRequest request){
+
+    private static String getPostParm(HttpServletRequest request) {
         StringBuffer jb = new StringBuffer();
         String line = null;
         BufferedReader reader = null;
         try {
             reader = request.getReader();
-            if(!reader.ready()) return jb.toString();
+            if (!reader.ready()) return jb.toString();
             while ((line = reader.readLine()) != null)
                 jb.append(line);
         } catch (Exception e) {
-            logger.error("读取请求参数出错",e);
-        }finally {
-            if(reader != null){
-                try{
+            logger.error("读取请求参数出错", e);
+        } finally {
+            if (reader != null) {
+                try {
                     reader.close();
-                }catch (Exception e){
-                    logger.error("",e);
+                } catch (Exception e) {
+                    logger.error("", e);
                 }
             }
         }
         return jb.toString();
     }
-
 
 
     public static String encodeURI(String uri) {
@@ -63,7 +64,7 @@ public class ParamUtils {
         }
     }
 
-    public static int[] parseLimit(String limit){
+    public static int[] parseLimit(String limit) {
         String[] strings = limit.split(",");
         int[] result = new int[2];
         result[0] = Integer.parseInt(strings[0]);
@@ -71,8 +72,8 @@ public class ParamUtils {
         return result;
     }
 
-    private static String cleanXSS(String value){
-        if(value == null){
+    private static String cleanXSS(String value) {
+        if (value == null) {
             return null;
         }
         value = value.replaceAll("eval", "");
@@ -80,11 +81,12 @@ public class ParamUtils {
         value = value.replaceAll("<javascript>", "");
         return value;
     }
-    public static void errorParam(HttpServletRequest request, HttpServletResponse resps){
+
+    public static void errorParam(HttpServletRequest request, HttpServletResponse resps) {
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(0);
         resultBean.setInfo("请求参数出错");
-        viewer.viewString(gson.toJson(resultBean),resps,request);
+        viewer.viewString(gson.toJson(resultBean), resps, request);
         return;
     }
 
@@ -96,13 +98,14 @@ public class ParamUtils {
         viewer.viewString(data, resp, req);
     }
 
-    public static String errorParam(String info){
+    public static String errorParam(String info) {
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(0);
         resultBean.setInfo(info);
         return gson.toJson(resultBean);
     }
-    public static String errorAuthorityParam(){
+
+    public static String errorAuthorityParam() {
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(-2);
         String info = "没有权限";
@@ -110,9 +113,9 @@ public class ParamUtils {
         return gson.toJson(resultBean);
     }
 
-    public static JsonArray indexNameTranformUIName(JsonArray array){
+    public static JsonArray indexNameTranformUIName(JsonArray array) {
         JsonArray jsonArray = new JsonArray();
-        for(JsonElement indexNameElement:array){
+        for (JsonElement indexNameElement : array) {
             String indexName = indexNameElement.getAsString();
             String uiName = ConfigurationService.getUIFieldName(indexName);
             jsonArray.add(uiName);
@@ -120,7 +123,7 @@ public class ParamUtils {
         return jsonArray;
     }
 
-    public static ResultBean errorParamResultBean(String info){
+    public static ResultBean errorParamResultBean(String info) {
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(0);
         resultBean.setInfo(info);

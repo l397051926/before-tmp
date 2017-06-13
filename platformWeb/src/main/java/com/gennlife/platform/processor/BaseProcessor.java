@@ -20,22 +20,24 @@ public class BaseProcessor {
     private Logger logger = LoggerFactory.getLogger(BaseProcessor.class);
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
+
     /**
      * 联动的数据接口
+     *
      * @param jsonObject
      */
-    public String chainItem(JsonObject jsonObject){
+    public String chainItem(JsonObject jsonObject) {
         String attrID = jsonObject.get("attrID").getAsString();
         String value = jsonObject.get("value").getAsString();
         JsonElement object = ArkService.getChainJson().get(attrID);
         ResultBean resultBean = new ResultBean();
-        if(object != null
+        if (object != null
                 && object.isJsonObject()
                 && object.getAsJsonObject().get(value) != null
-                && object.getAsJsonObject().get(value).isJsonObject()){
+                && object.getAsJsonObject().get(value).isJsonObject()) {
             resultBean.setCode(1);
             resultBean.setData(object.getAsJsonObject().get(value));
-        }else{
+        } else {
             resultBean.setCode(0);
             resultBean.setInfo("请求参数 有点不对哦");
         }
@@ -45,6 +47,7 @@ public class BaseProcessor {
 
     /**
      * 项目病种
+     *
      * @return
      */
     public String projectDisease() {
@@ -60,34 +63,34 @@ public class BaseProcessor {
     }
 
     public String vitaGramServerVitaGramData(String param) {
-        try{
+        try {
             String url = ConfigurationService.getUrlBean().getVitaGramServerVitaGramData();
-            logger.info("vitaGramServerVitaGramData url="+url);
-            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("vitaGramServerVitaGramData url=" + url);
+            String result = HttpRequestUtils.httpPost(url, param);
             return result;
-        }catch (Exception e){
+        } catch (Exception e) {
             return ParamUtils.errorParam("请求出错");
         }
     }
 
     public String vitaGramServerNccnRecommendPath(String param) {
-        try{
+        try {
             String url = ConfigurationService.getUrlBean().getVitaGramServerNccnRecommendPath();
-            logger.info("vitaGramServerNccnRecommendPath url="+url);
-            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("vitaGramServerNccnRecommendPath url=" + url);
+            String result = HttpRequestUtils.httpPost(url, param);
             return result;
-        }catch (Exception e){
+        } catch (Exception e) {
             return ParamUtils.errorParam("请求出错");
         }
     }
 
     public String VitaGramServerMedicalHistoryRecommendPath(String param) {
-        try{
+        try {
             String url = ConfigurationService.getUrlBean().getVitaGramServerMedicalHistoryRecommendPath();
-            logger.info("VitaGramServerMedicalHistoryRecommendPath url="+url);
-            String result = HttpRequestUtils.httpPost(url,param);
+            logger.info("VitaGramServerMedicalHistoryRecommendPath url=" + url);
+            String result = HttpRequestUtils.httpPost(url, param);
             return result;
-        }catch (Exception e){
+        } catch (Exception e) {
             return ParamUtils.errorParam("请求出错");
         }
     }

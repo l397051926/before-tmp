@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class SampleListBean {
     private String crf_id = null;
-    private String caseID=null;
+    private String caseID = null;
     private int patientNo = 0;
     private String createTime = null;
     private String patientName = null;

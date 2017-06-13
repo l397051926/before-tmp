@@ -87,7 +87,6 @@ public class SummaryBean {
     }
 
 
-
     public Set<String> getUsers() {
         return users;
     }

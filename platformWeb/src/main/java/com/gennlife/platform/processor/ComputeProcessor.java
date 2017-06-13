@@ -18,50 +18,53 @@ import java.util.Map;
 public class ComputeProcessor {
     private Logger logger = LoggerFactory.getLogger(ComputeProcessor.class);
     private static Gson gson = GsonUtil.getGson();
+
     /**
      * 计算服务因子图
+     *
      * @param paramObj
      * @return
      */
 
     public String smg(JsonObject paramObj) {
         String param = gson.toJson(paramObj);
-        String url = ConfigurationService.getUrlBean().getCSSmg()+"?param="+ParamUtils.encodeURI(param);
-        logger.info("smg url="+url);
-        try{
-            String result = HttpRequestUtils.httpGet(url,600000);
+        String url = ConfigurationService.getUrlBean().getCSSmg() + "?param=" + ParamUtils.encodeURI(param);
+        logger.info("smg url=" + url);
+        try {
+            String result = HttpRequestUtils.httpGet(url, 600000);
             return result;
-        }catch (Exception e){
+        } catch (Exception e) {
             return ParamUtils.errorParam("超时");
         }
     }
 
     /**
      * 基线统计
+     *
      * @param paramObj
      * @return
      */
     public String baseline(JsonObject paramObj) {
         StringBuffer sb = new StringBuffer();
-        for(Map.Entry<String, JsonElement> item:paramObj.entrySet()){
+        for (Map.Entry<String, JsonElement> item : paramObj.entrySet()) {
             String key = item.getKey();
             JsonElement jsonElement = item.getValue();
-            if(jsonElement.isJsonPrimitive()){
+            if (jsonElement.isJsonPrimitive()) {
                 String value = jsonElement.getAsString();
                 sb.append(key).append("=").append(ParamUtils.encodeURI(value)).append("&");
-            }else{
+            } else {
                 sb.append(key).append("=").append(ParamUtils.encodeURI(gson.toJson(jsonElement))).append("&");
             }
 
         }
-        String param = sb.toString().substring(0,sb.toString().length()-1);
-        String url = ConfigurationService.getUrlBean().getCSBaseline()+"?"+param;
-        logger.info("baseline url="+url);
-        String reStr = HttpRequestUtils.httpGet(url,600000);
-        logger.info("baseline result="+reStr);
-        if(reStr == null || "".equals(reStr)){
+        String param = sb.toString().substring(0, sb.toString().length() - 1);
+        String url = ConfigurationService.getUrlBean().getCSBaseline() + "?" + param;
+        logger.info("baseline url=" + url);
+        String reStr = HttpRequestUtils.httpGet(url, 600000);
+        logger.info("baseline result=" + reStr);
+        if (reStr == null || "".equals(reStr)) {
             return ParamUtils.errorParam("计算服务返回空");
-        }else{
+        } else {
             return reStr;
         }
     }

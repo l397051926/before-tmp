@@ -98,7 +98,7 @@ public class CrfController {
             User user = (User) paramRe.getAttribute("currentUser");
             String indexName = ConfigurationService.getOrgIDIndexNamemap().get(user.getOrgID());
             if (indexName == null) {
-                String needToCreateIndex = ((SystemDefault)SpringContextUtil.getBean("systemDefault")).getNeedToCreateIndex();
+                String needToCreateIndex = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getNeedToCreateIndex();
                 if (needToCreateIndex != null && needToCreateIndex.equals(true)) {
                     return ParamUtils.errorParam("用户所在的组织无法建立索引");
                 } else {
@@ -130,7 +130,7 @@ public class CrfController {
         try {
             User user = (User) paramRe.getAttribute("currentUser");
             String indexName = ConfigurationService.getOrgIDIndexNamemap().get(user.getOrgID());
-            String needToCreateIndex = ((SystemDefault)SpringContextUtil.getBean("systemDefault")).getNeedToCreateIndex();
+            String needToCreateIndex = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getNeedToCreateIndex();
             if (needToCreateIndex != null && needToCreateIndex.equals(true) && indexName == null) {
                 return ParamUtils.errorParam("用户所在的组织无法建立索引");
             }
@@ -443,6 +443,7 @@ public class CrfController {
             logger.error("CsvImportDetail 出现异常", e);
         }
     }
+
     @RequestMapping(value = "/InputSmartPrompt", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
@@ -538,10 +539,11 @@ public class CrfController {
         logger.info("图片上传 耗时 " + (System.currentTimeMillis() - start) + "ms");
         return gson.toJson(resultBean);
     }
+
     @RequestMapping(value = "/image/{image_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
-    String getImageUrl(@PathVariable(value="image_id") String image_id) {
+    String getImageUrl(@PathVariable(value = "image_id") String image_id) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
@@ -558,6 +560,7 @@ public class CrfController {
         resultBean.setData(resultStr);
         return gson.toJson(resultBean);
     }
+
     @RequestMapping(value = "/image", method = RequestMethod.DELETE, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
@@ -591,6 +594,7 @@ public class CrfController {
         logger.info("删除图片 耗时 " + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
     @RequestMapping(value = "/ResearchNumber", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody

@@ -10,8 +10,9 @@ import java.util.concurrent.Callable;
  * Created by chen-song on 16/5/13.
  */
 public class CaseSuggestParser implements Callable<String> {
-    private String url ;
-    public CaseSuggestParser(String indexName,String dicName,String keywords,String size,String page){
+    private String url;
+
+    public CaseSuggestParser(String indexName, String dicName, String keywords, String size, String page) {
         this.url = String.format(
                 ConfigurationService.getUrlBean().getCaseSuggestURL(),
                 ParamUtils.encodeURI(indexName),
@@ -26,6 +27,7 @@ public class CaseSuggestParser implements Callable<String> {
     public String call() throws Exception {
         return HttpRequestUtils.httpGet(url);
     }
+
     public String parser() throws Exception {
         return HttpRequestUtils.httpGet(url);
     }

@@ -26,12 +26,12 @@ public class RProcessor {
      * @param paramObj
      */
     public String r_run(JsonObject paramObj) {
-        try{
+        try {
             String url = ConfigurationService.getUrlBean().getRRun();
-            String result = HttpRequestUtils.httpPostForRRun(url,gson.toJson(paramObj));
-            logger.info("R执行 result="+result);
+            String result = HttpRequestUtils.httpPostForRRun(url, gson.toJson(paramObj));
+            logger.info("R执行 result=" + result);
             return result;
-        }catch (Exception e) {
+        } catch (Exception e) {
             logger.error("请求发生异常", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -40,29 +40,31 @@ public class RProcessor {
 
     /**
      * 停止R脚本之行
+     *
      * @param paramObj
      */
     public String r_stop(JsonObject paramObj) {
-        try{
+        try {
             String url = ConfigurationService.getUrlBean().getRStop();
-            String result = HttpRequestUtils.httpPost(url,gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
             return result;
-        }catch (Exception e) {
+        } catch (Exception e) {
             logger.error("请求发生异常", e);
             return ParamUtils.errorParam("请求发生异常");
         }
     }
 
     /**
-    * 保存R脚本到项目空间
-    *  @param paramObj
-    */
+     * 保存R脚本到项目空间
+     *
+     * @param paramObj
+     */
     public String r_save(JsonObject paramObj) {
-        try{
+        try {
             String url = ConfigurationService.getUrlBean().getRSave();
-            String result = HttpRequestUtils.httpPost(url,gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
             return result;
-        }catch (Exception e) {
+        } catch (Exception e) {
             logger.error("请求发生异常", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -70,15 +72,16 @@ public class RProcessor {
     }
 
     /**
-    *  从项目空间load脚本
-    *  @param paramObj
-    * */
+     * 从项目空间load脚本
+     *
+     * @param paramObj
+     */
     public String r_load(JsonObject paramObj) {
-        try{
+        try {
             String url = ConfigurationService.getUrlBean().getRLoad();
-            String result = HttpRequestUtils.httpPost(url,gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
             return result;
-        }catch (Exception e) {
+        } catch (Exception e) {
             logger.error("请求发生异常", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -86,15 +89,16 @@ public class RProcessor {
 
 
     /**
-     * 列举用户在某项目及方案下的所有R代码 
+     * 列举用户在某项目及方案下的所有R代码
+     *
      * @param paramObj
      */
     public String r_list(JsonObject paramObj) {
-        try{
+        try {
             String url = ConfigurationService.getUrlBean().getRList();
-            String result = HttpRequestUtils.httpPost(url,gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
             return result;
-        }catch (Exception e) {
+        } catch (Exception e) {
             logger.error("请求发生异常", e);
             return ParamUtils.errorParam("请求发生异常");
         }

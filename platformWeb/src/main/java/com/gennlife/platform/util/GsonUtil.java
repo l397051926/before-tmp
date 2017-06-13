@@ -11,11 +11,13 @@ import com.google.gson.GsonBuilder;
  */
 public class GsonUtil {
     private static Gson gson = null;
-    static{
+
+    static {
         ExclusionStrategy myExclusionStrategy = new ExclusionStrategy() {
             public boolean shouldSkipField(FieldAttributes fa) {
                 return fa.getName().startsWith("CGLIB");
             }
+
             public boolean shouldSkipClass(Class<?> clazz) {
                 return false;
             }
@@ -30,7 +32,7 @@ public class GsonUtil {
         return gson;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Role role = new Role();
         role.setCreatorID("aaa");
         System.out.println(getGson().toJson(role));

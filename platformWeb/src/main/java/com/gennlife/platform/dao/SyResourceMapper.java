@@ -18,35 +18,38 @@ import java.util.Map;
 public interface SyResourceMapper {
     /**
      * 获取资源
+     *
      * @return
      */
     public List<Resource> getResources(Map<String, Object> likeCondition);
 
 
-
-    public List<Resource> getResourcesBySid(@Param("orgID")String orgID,@Param("sid") String sid,@Param("roleid")Integer roleid);
+    public List<Resource> getResourcesBySid(@Param("orgID") String orgID, @Param("sid") String sid, @Param("roleid") Integer roleid);
 
     /**
      * 通过
+     *
      * @param roleid
      * @param offset
      * @param limit
      * @return
      */
-    List<Resource> getResourceByRoleID(@Param("orgID")String orgID,@Param("roleid")Integer roleid, @Param("offset")int offset, @Param("limit")int limit);
+    List<Resource> getResourceByRoleID(@Param("orgID") String orgID, @Param("roleid") Integer roleid, @Param("offset") int offset, @Param("limit") int limit);
 
     /**
      * 插入角色资源关联关系
+     *
      * @param resourceObj
      * @return
      */
     int insertRoleResourceRelation(Resource resourceObj);
 
-    int findRoleResourceRelationCounter(@Param("sid") String sid, @Param("roleid")Integer roleid);
+    int findRoleResourceRelationCounter(@Param("sid") String sid, @Param("roleid") Integer roleid);
 
 
     /**
      * 添加资源
+     *
      * @param labResource
      * @return
      */
@@ -54,6 +57,7 @@ public interface SyResourceMapper {
 
     /**
      * 删除资源
+     *
      * @param sids
      * @return
      */
@@ -61,27 +65,32 @@ public interface SyResourceMapper {
 
     /**
      * 获取科室资源
+     *
      * @param orgID
      * @return
      */
-    List<LabResource> getLabResourcesByOrgID(@Param("orgID")String orgID,@Param("stype")String type);
+    List<LabResource> getLabResourcesByOrgID(@Param("orgID") String orgID, @Param("stype") String type);
 
     /**
      * 获取科室资源计数
+     *
      * @param orgID
      * @param roleid
      * @return
      */
-    int getResourceByRoleIDCounter(@Param("orgID")String orgID,@Param("roleid")Integer roleid);
+    int getResourceByRoleIDCounter(@Param("orgID") String orgID, @Param("roleid") Integer roleid);
 
     /**
      * 获取科室对应的crf_id
+     *
      * @param labID
      * @return
      */
-    List<CRFLab> getCrfIDByLab(@Param("labID")String labID, @Param("orgID")String orgID);
-    int isExistsCrfID(@Param("labID")String labID, @Param("orgID")String orgID,@Param("crf_id")String crf_id);
+    List<CRFLab> getCrfIDByLab(@Param("labID") String labID, @Param("orgID") String orgID);
 
-    List<CRFLab> getCrfIDListByLab(@Param("labIDs") String[] labIDs, @Param("orgID")String orgID);
+    int isExistsCrfID(@Param("labID") String labID, @Param("orgID") String orgID, @Param("crf_id") String crf_id);
+
+    List<CRFLab> getCrfIDListByLab(@Param("labIDs") String[] labIDs, @Param("orgID") String orgID);
+
     int updateResource(LabResource labResource);
 }
