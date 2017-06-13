@@ -180,16 +180,6 @@ public class RedisUtil {
             exit(user.getUid(), sessionID);
             LogUtils.BussnissLogError("redis 写入失败");
         }
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try {
-            SessionMapper dao = AllDao.getInstance().getSessionDao();
-            dao.deleteByUid(user.getUid());
-            if (sessionID != null) dao.deleteBySessionID(sessionID);
-            dao.insertData(user.getUid(), sessionID, simpleDateFormat.format(new Date()));
-        } catch (Exception e) {
-            LogUtils.BussnissLogError("session_uid error", e);
-            return false;
-        }
         return true;
     }
 
@@ -215,12 +205,6 @@ public class RedisUtil {
         deleteKey(sessionID);
         deleteKey(uid);
         deleteUser(uid);
-        try {
-            AllDao.getInstance().getSessionDao().deleteByUid(uid);
-            if (sessionID != null) AllDao.getInstance().getSessionDao().deleteBySessionID(sessionID);
-        } catch (Exception e) {
-            logger.error("delete sesion_uid  ", e);
-        }
     }
 
     public static void updateUserOnLine(String uid) {
@@ -231,12 +215,7 @@ public class RedisUtil {
         //除了当前用户，其余全部下线
         String sessionID = getValue(uid);
         if (StringUtils.isEmpty(sessionID)) {
-            try {
-                sessionID = AllDao.getInstance().getSessionDao().getSessionID(uid);
-            } catch (Exception e) {
-                logger.error("sql error ", e);
-            }
-            if (StringUtils.isEmpty(sessionID)) return;
+            return;
         }
         User user = UserProcessor.getUserByUids(uid);
         if (user == null) return;

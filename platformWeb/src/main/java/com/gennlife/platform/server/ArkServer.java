@@ -43,7 +43,6 @@ public class ArkServer {
         logger.info("ArkServer 启动销毁中 .......");
         arkService.destroy();
         RedisUtil.clearAll();
-        AllDao.getInstance().getSessionDao().clear();
         logger.info("ArkServer 销毁耗时："+ (System.currentTimeMillis() - serverStop) +"");
         SERVER_STATUS = SERVER_STATUS_PENDING;
     }

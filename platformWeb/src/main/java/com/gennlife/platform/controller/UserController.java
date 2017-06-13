@@ -62,7 +62,7 @@ public class UserController {
                 }
                 String uid = null;
                 try {
-                    uid = AllDao.getInstance().getSessionDao().getUid(sessionID);
+                    uid = RedisUtil.getValue(sessionID);
                 } catch (Exception e) {
                     LogUtils.BussnissLogError("login error", e);
                 }

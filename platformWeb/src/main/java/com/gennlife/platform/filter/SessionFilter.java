@@ -54,19 +54,12 @@ public class SessionFilter implements Filter {
             }
             String sessionID = session.getId();
             String uid = RedisUtil.getValue(sessionID);
-            SessionMapper dao = AllDao.getInstance().getSessionDao();
             if (uid == null) {
                 logger.info("RedisUtil.getValue()-> uid is null");
-                uid = dao.getUid(sessionID);
-                if (!StringUtils.isEmpty(uid)) {
-                    LogUtils.BussnissLogError("redis can't get value");
-                } else {
-                    String cookie = ((HttpServletRequest) servletRequest).getHeader("Cookie");
-                    LogUtils.BussnissLogError("RedisUtil.getValue取不到数据:" + sessionID + " cookie " + cookie + " uri=" + uri);
-                    view.viewString(ParamUtils.errorSessionLosParam(), response);
-                    return;
-                }
-
+                String cookie = ((HttpServletRequest) servletRequest).getHeader("Cookie");
+                LogUtils.BussnissLogError("RedisUtil.getValue取不到数据:" + sessionID + " cookie " + cookie + " uri=" + uri);
+                view.viewString(ParamUtils.errorSessionLosParam(), response);
+                return;
             }
             User user = UserProcessor.getUserByUidFromRedis(uid);
             if (user == null) {

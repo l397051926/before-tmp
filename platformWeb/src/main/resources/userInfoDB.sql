@@ -472,20 +472,6 @@ CREATE TABLE `searchConditionHistory` (
 -- Records of searchConditionHistory
 -- ----------------------------
 
--- ----------------------------
--- Table structure for `session_uid`
--- ----------------------------
-DROP TABLE IF EXISTS `session_uid`;
-CREATE TABLE `session_uid` (
-  `uid` varchar(255) NOT NULL,
-  `sessionID` varchar(255) NOT NULL,
-  `cTime` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`uid`,`sessionID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of session_uid
--- ----------------------------
 /*管理员*/
 
 INSERT INTO `gennlife_manage` VALUES ('admin@gennlife.com', 'admin', 'admin', 'hospital');
