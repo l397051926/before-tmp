@@ -2,8 +2,6 @@ package com.gennlife.platform.filter;
 
 
 import com.gennlife.platform.authority.AuthorityUtil;
-import com.gennlife.platform.dao.AllDao;
-import com.gennlife.platform.dao.SessionMapper;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.UserProcessor;
 import com.gennlife.platform.util.LogUtils;
@@ -12,7 +10,6 @@ import com.gennlife.platform.util.RedisUtil;
 import com.gennlife.platform.view.View;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.StringUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

@@ -13,7 +13,6 @@ public class AllDao {
     private OrgMapper orgDao;
     private ProjectMapper projectDao;
     private GroupMapper groupDao;
-    private SessionMapper sessionDao;
 
     public ProjectMapper getProjectDao() {
         return projectDao;
@@ -71,13 +70,5 @@ public class AllDao {
 
     public void setGroupDao(GroupMapper groupDao) {
         this.groupDao = groupDao;
-    }
-
-    public SessionMapper getSessionDao() {
-        return sessionDao;
-    }
-
-    public void setSessionDao(SessionMapper sessionDao) {
-        this.sessionDao = sessionDao;
     }
 }
