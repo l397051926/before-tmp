@@ -584,4 +584,56 @@ public class BackstageManagementController {
         return resultStr;
     }
 
+    @RequestMapping(value = "/passwordCorrect", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String passwordCorrect(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            User user = (User) paramRe.getAttribute("currentUser");
+            resultStr = processor.passwordCorrect(user, param);
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("判断当前用户输入的密码是否正确 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/updatePwd", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String updatePwd(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            User user = (User) paramRe.getAttribute("currentUser");
+            resultStr = processor.updatePwdByUid(user, param);
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("用户设置新密码 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/adminResetPassword", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String adminResetPassword(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            resultStr = processor.adminResetPassword(param);
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("用户设置新密码 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }

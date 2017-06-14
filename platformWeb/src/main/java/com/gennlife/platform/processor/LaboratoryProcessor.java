@@ -1219,4 +1219,77 @@ public class LaboratoryProcessor {
         re.setInfo(info);
         return gson.toJson(re);
     }
+
+    public String passwordCorrect(User user, String param) {
+        ResultBean re = null;
+        try {
+            re = new ResultBean();
+            JsonObject paramObj = jsonParser.parse(param).getAsJsonObject();
+            String uid = user.getUid();
+            String pwd = paramObj.get("pwd").getAsString();
+            pwd = GStringUtils.str2Password(pwd);
+            // TODO 需要考虑密码转化为MD5值 时的处理
+            String pwdFromMysql = AllDao.getInstance().getSyUserDao().getPwdByUid(uid);
+            if (pwdFromMysql.equals(pwd)) {
+                re.setCode(1);
+                re.setData("correct");
+            } else {
+                re.setCode(0);
+                re.setData("wrong pwd");
+            }
+        } catch (Exception e) {
+            logger.error("", e);
+            return ParamUtils.errorParam("验证当前密码操作失败");
+        }
+        return gson.toJson(re);
+    }
+
+    public String updatePwdByUid(User user, String param) {
+        ResultBean re = null;
+        try {
+            re = new ResultBean();
+            JsonObject paramObj = jsonParser.parse(param).getAsJsonObject();
+            String pwd = GStringUtils.str2Password(paramObj.get("pwd").getAsString());
+            String uid = user.getUid();
+            HashMap<String, String> map = new HashMap<String, String>();
+            map.put("uid", uid);
+            map.put("pwd", pwd);
+            int ret = AllDao.getInstance().getSyUserDao().updatePwdByUid(map);
+            if (ret == 1) {
+                re.setCode(1);
+                re.setData("success");
+            } else {
+                re.setCode(0);
+                re.setData("error");
+            }
+        } catch (Exception e) {
+            logger.error("", e);
+            return ParamUtils.errorParam("设置新密码操作失败");
+        }
+        return gson.toJson(re);
+    }
+
+    public String adminResetPassword(String param) {
+        ResultBean re = null;
+        try {
+            re = new ResultBean();
+            JsonObject paramObj = jsonParser.parse(param).getAsJsonObject();
+            String uid = paramObj.get("uid").getAsString();
+            HashMap<String, String> map = new HashMap<String, String>();
+            map.put("uid", uid);
+            map.put("pwd", "ls123456");
+            int ret = AllDao.getInstance().getSyUserDao().adminResetPassword(map);
+            if (ret == 1) {
+                re.setCode(1);
+                re.setData("success");
+            } else {
+                re.setCode(0);
+                re.setData("wrong");
+            }
+        } catch (Exception e) {
+            logger.error("", e);
+            return ParamUtils.errorParam("管理员重置密码操作失败");
+        }
+        return gson.toJson(re);
+    }
 }

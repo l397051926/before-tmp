@@ -306,5 +306,18 @@ public interface SyUserMapper {
     int updateUsersWhenDelLab(@Param("labPID") String labPID, @Param("lab_pname") String lab_pname,
                               @Param("labIDs") String[] labIDs, @Param("orgID") String orgID);
 
+    /**
+     * 验证当前密码 判断当前密码输入是否正确
+     */
+    String getPwdByUid(@Param("uid") String uid);
 
+    /**
+     * 设置新密码
+     */
+    int updatePwdByUid(Map<String, String> map);
+
+    /**
+     *  管理员重置密码
+     */
+    int adminResetPassword(Map<String, String> map);
 }

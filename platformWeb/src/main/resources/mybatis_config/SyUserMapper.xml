@@ -124,6 +124,19 @@
 		WHERE uemail = #{email,jdbcType=VARCHAR} AND md5 = #{md5,jdbcType=VARCHAR}
 	</update>
 
+	<update id="updatePwdByUid" parameterType="map">
+		UPDATE
+			gennlife_user
+		SET pwd = #{pwd,jdbcType=VARCHAR}
+		WHERE uid = #{uid,jdbcType=VARCHAR}
+	</update>
+
+	<update id="adminResetPassword" parameterType="map">
+		UPDATE
+		gennlife_user
+		SET pwd = #{pwd,jdbcType=VARCHAR}
+		WHERE uid = #{uid,jdbcType=VARCHAR}
+	</update>
 
 	<update id="updateMd5" parameterType="map">
 		UPDATE
@@ -138,6 +151,14 @@
 		FROM gennlife_user
 		<where> gennlife_user.uemail=#{email} </where>
 	</select>
+
+	<select id="getPwdByUid" resultType="java.lang.String">
+		SELECT
+		gennlife_user.pwd
+		FROM gennlife_user
+		<where>gennlife_user.uid=#{uid}</where>
+	</select>
+
 	<select id="getAllUserIDByGroupID"  resultType="java.lang.String">
 		SELECT
 		uid
