@@ -45,7 +45,11 @@ public class UserController {
             String pwd = null;
             try {
                 JsonObject user = (JsonObject) jsonParser.parse(param);
-                email = user.get("email").getAsString();
+                if (user.has("email")) {
+                    email = user.get("email").getAsString();
+                } else {
+                    email = user.get("user").getAsString();
+                }
                 pwd = user.get("pwd").getAsString();
             } catch (Exception e) {
                 view.viewString(ParamUtils.errorParam("参数错误"), response);
@@ -82,8 +86,6 @@ public class UserController {
             resultStr = gson.toJson(resultBean);
             logger.info("user is: " + resultStr);
         } catch (Exception e) {
-            ;
-            ;
             logger.error("登陆异常", e);
             resultStr = ParamUtils.errorParam("登陆异常");
         }
