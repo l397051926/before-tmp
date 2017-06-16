@@ -312,6 +312,14 @@ public interface SyUserMapper {
     String getPwdByUid(@Param("uid") String uid);
 
     /**
+     *
+     */
+
+    int insertMd5ByUid(Map<String, String> map);
+
+    String getMd5ByUid(@Param("uid") String uid);
+
+    /**
      * 设置新密码
      */
     int updatePwdByUid(Map<String, String> map);

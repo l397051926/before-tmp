@@ -145,6 +145,13 @@
 		WHERE uemail = #{email,jdbcType=VARCHAR}
 	</update>
 
+	<update id="insertMd5ByUid" parameterType="map">
+		UPDATE
+		gennlife_user
+		SET md5 = #{md5,jdbcType=VARCHAR}
+		WHERE uid = #{uid,jdbcType=VARCHAR}
+	</update>
+
 	<select id="existEmail" resultType="java.lang.Integer">
 		SELECT
 		count(uid)
@@ -155,6 +162,13 @@
 	<select id="getPwdByUid" resultType="java.lang.String">
 		SELECT
 		gennlife_user.pwd
+		FROM gennlife_user
+		<where>gennlife_user.uid=#{uid}</where>
+	</select>
+
+	<select id="getMd5ByUid" resultType="java.lang.String">
+		SELECT
+		gennlife_user.md5
 		FROM gennlife_user
 		<where>gennlife_user.uid=#{uid}</where>
 	</select>

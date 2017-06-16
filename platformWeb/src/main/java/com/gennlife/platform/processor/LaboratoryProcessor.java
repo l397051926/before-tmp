@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.util.StringUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -24,6 +25,7 @@ public class LaboratoryProcessor {
     private static Logger logger = LoggerFactory.getLogger(LaboratoryProcessor.class);
     private static Gson gson = GsonUtil.getGson();
     private static JsonParser jsonParser = new JsonParser();
+    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     /**
      * 获取科室组织信息
@@ -1232,11 +1234,24 @@ public class LaboratoryProcessor {
             // TODO 需要考虑密码转化为MD5值 时的处理
             String pwdFromMysql = AllDao.getInstance().getSyUserDao().getPwdByUid(uid);
             if (pwdFromMysql.equals(pwd)) {
-                re.setCode(1);
-                re.setData("correct");
+                String time = simpleDateFormat.format(new Date());
+                String md5 = GStringUtils.getMD5(time);
+                // TODO md5 插入到数据库
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put("uid", uid);
+                map.put("md5", md5);
+                int counter = AllDao.getInstance().getSyUserDao().insertMd5ByUid(map);
+                if (counter == 0) {
+                    logger.error("更新md5失败");
+                    re.setCode(0);
+                    re.setData("更新md5失败");
+                } else {
+                    re.setCode(1);
+                    re.setData(time);
+                }
             } else {
-                re.setCode(0);
-                re.setData("wrong pwd");
+                re.setCode(1);
+                re.setData("wrong");
             }
         } catch (Exception e) {
             logger.error("", e);
@@ -1249,13 +1264,18 @@ public class LaboratoryProcessor {
         ResultBean re = null;
         try {
             re = new ResultBean();
+            int ret = 0;
             JsonObject paramObj = jsonParser.parse(param).getAsJsonObject();
             String pwd = GStringUtils.str2Password(paramObj.get("pwd").getAsString());
+            String md5 = GStringUtils.getMD5(paramObj.get("token").getAsString());
             String uid = user.getUid();
-            HashMap<String, String> map = new HashMap<String, String>();
-            map.put("uid", uid);
-            map.put("pwd", pwd);
-            int ret = AllDao.getInstance().getSyUserDao().updatePwdByUid(map);
+            String mysqlMd5 = AllDao.getInstance().getSyUserDao().getMd5ByUid(uid);
+            if (md5.equals(mysqlMd5)) {
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put("uid", uid);
+                map.put("pwd", pwd);
+                ret = AllDao.getInstance().getSyUserDao().updatePwdByUid(map);
+            }
             if (ret == 1) {
                 re.setCode(1);
                 re.setData("success");
