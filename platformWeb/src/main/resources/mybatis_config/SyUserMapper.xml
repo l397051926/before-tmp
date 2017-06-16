@@ -458,7 +458,6 @@
 		WHERE unumber = #{unumber,jdbcType=VARCHAR} AND orgID = #{orgID,jdbcType=VARCHAR}
 	</update>
 
-
 	<select id="getUserByRoleID" resultType="com.gennlife.platform.model.User">
 		SELECT
 		<include refid="userProperty" />
@@ -468,7 +467,6 @@
 		WHERE gennlife_user_role.roleid = #{roleid}
 		LIMIT #{offset},#{limit}
 	</select>
-
 
 	<select id="getAllUserIDByRoleID" resultType="java.lang.String">
 		SELECT
@@ -481,8 +479,6 @@
 		</foreach>
 
 	</select>
-
-
 
 	<select id="getUserByRoleIDCounter" resultType="INTEGER">
 		SELECT
@@ -502,8 +498,6 @@
 		orgID=#{orgID} and privilegeType='admin' AND privilegeValue = 'admin'
 	</select>
 
-
-
 	<delete id="deleteVitaCong">
 		DELETE FROM gennlife_user_vitaConfig
 		WHERE
@@ -521,7 +515,6 @@
 		WHERE uid = #{uid}
 	</select>
 
-
 	<select id="getUserIdByLabID" resultType="java.lang.String">
 		SELECT
 		uid
@@ -529,6 +522,15 @@
 		gennlife_user
 		WHERE  orgID=#{orgID} and labID=#{labID}
 	</select>
+
+	<select id="getPasswordByUid" resultType="java.lang.String">
+		SELECT
+		pwd
+		FROM
+		gennlife_user
+		WHERE  uid=#{uid}
+	</select>
+
 	<select id="getUserIDsByLabID" resultType="java.lang.String">
 		SELECT
 		uid
@@ -547,8 +549,6 @@
 		where  orgID=#{orgID} and labID=#{labID}
 	</update>
 
-
-
 	<update id="updateUsersWhenDelLab" >
 		update   gennlife_user set
 		labID=#{labPID},lab_name=#{lab_pname},uposition="",uprofession=""
@@ -557,7 +557,6 @@
 			#{item,jdbcType=VARCHAR}
 		</foreach>
 	</update>
-
 
 	<update id="updatePWDByUids">
 		UPDATE

@@ -320,4 +320,9 @@ public interface SyUserMapper {
      *  管理员重置密码
      */
     int adminResetPassword(Map<String, String> map);
+
+    /**
+     * 判断当前密码是否为默认密码
+     */
+    String getPasswordByUid(@Param("uid") String uid);
 }

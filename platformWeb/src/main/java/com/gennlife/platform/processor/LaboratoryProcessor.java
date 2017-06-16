@@ -1292,4 +1292,23 @@ public class LaboratoryProcessor {
         }
         return gson.toJson(re);
     }
+
+    public String isDefaultPassword(User user) {
+        ResultBean re = null;
+        try {
+            re = new ResultBean();
+            re.setCode(1);
+            String uid = user.getUid();
+            String pwd = AllDao.getInstance().getSyUserDao().getPasswordByUid(uid);
+            if ("ls123456".equals(pwd)) {
+                re.setInfo(true);
+            } else {
+                re.setInfo(false);
+            }
+        } catch (Exception e) {
+            logger.error("", e);
+            return ParamUtils.errorParam("判断当前密码是否为默认密码操作失败");
+        }
+        return gson.toJson(re);
+    }
 }

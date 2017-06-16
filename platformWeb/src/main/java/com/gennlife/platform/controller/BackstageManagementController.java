@@ -584,7 +584,7 @@ public class BackstageManagementController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/passwordCorrect", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/passwordCorrect", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String passwordCorrect(HttpServletRequest paramRe) {
@@ -602,7 +602,7 @@ public class BackstageManagementController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/updatePwd", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/updatePwd", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String updatePwd(HttpServletRequest paramRe) {
@@ -634,6 +634,23 @@ public class BackstageManagementController {
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("用户设置新密码 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/isDefaultPassword", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String isDefaultPassword(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            User user = (User) paramRe.getAttribute("currentUser");
+            resultStr = processor.isDefaultPassword(user);
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("判断当前密码是否为默认密码 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 }
