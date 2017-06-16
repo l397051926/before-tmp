@@ -2,6 +2,7 @@ package com.gennlife.platform.processor;
 
 
 import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.dao.OrgMapper;
 import com.gennlife.platform.dao.SyUserMapper;
@@ -1300,7 +1301,7 @@ public class LaboratoryProcessor {
             re.setCode(1);
             String uid = user.getUid();
             String pwd = AllDao.getInstance().getSyUserDao().getPasswordByUid(uid);
-            if ("ls123456".equals(pwd)) {
+            if ("ls123456".equals(pwd) || "d8b8f198d882909be0a58778875953e8".equals(pwd)) {
                 re.setInfo(true);
             } else {
                 re.setInfo(false);
