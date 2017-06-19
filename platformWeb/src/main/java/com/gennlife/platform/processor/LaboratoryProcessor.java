@@ -1278,10 +1278,10 @@ public class LaboratoryProcessor {
             }
             if (ret == 1) {
                 re.setCode(1);
-                re.setData("success");
+                re.setInfo("success");
             } else {
                 re.setCode(0);
-                re.setData("error");
+                re.setInfo("error");
             }
         } catch (Exception e) {
             logger.error("", e);
@@ -1302,10 +1302,10 @@ public class LaboratoryProcessor {
             int ret = AllDao.getInstance().getSyUserDao().adminResetPassword(map);
             if (ret == 1) {
                 re.setCode(1);
-                re.setData("success");
+                re.setInfo("success");
             } else {
                 re.setCode(0);
-                re.setData("wrong");
+                re.setInfo("wrong");
             }
         } catch (Exception e) {
             logger.error("", e);
