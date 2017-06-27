@@ -414,6 +414,16 @@ public class URLBean {
 
     private String ResearchNumberUrl = null;
 
+    private String TripleTestTableUrl = null;
+
+    public String getTripleTestTableUrl() {
+        return TripleTestTableUrl;
+    }
+
+    public void setTripleTestTableUrl(String tripleTestTableUrl) {
+        TripleTestTableUrl = tripleTestTableUrl;
+    }
+
     public String getCRFImportMap() {
         return CRFImportMap;
     }

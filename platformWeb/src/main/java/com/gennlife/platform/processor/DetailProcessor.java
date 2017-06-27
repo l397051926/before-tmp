@@ -613,4 +613,15 @@ public class DetailProcessor {
             return ParamUtils.errorParam("请求出错");
         }
     }
+
+    public String TripleTestTable(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getTripleTestTableUrl();
+            logger.info("TripleTestTable url=" + url);
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
 }

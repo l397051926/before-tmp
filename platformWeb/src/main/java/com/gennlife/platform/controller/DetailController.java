@@ -742,4 +742,21 @@ public class DetailController {
         logger.info("获取非隐私数据 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/TripleTestTable", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String TripleTestTable(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            resultStr = processor.TripleTestTable(param);
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("三测单 TripleTestTable 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }
