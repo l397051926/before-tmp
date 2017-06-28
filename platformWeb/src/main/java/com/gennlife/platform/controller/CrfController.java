@@ -109,6 +109,20 @@ public class CrfController {
             logger.info("上传crf数据 post方式 参数=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             paramObj.addProperty("indexName", indexName);
+
+            // 安贞环境 添加 科室 ID 用于获取研究序列号
+            if (paramObj.has("labID")) {
+                JsonObject LabIdToNumberObj = ConfigurationService.getLabIdToNumberObj();
+                if (LabIdToNumberObj.has(paramObj.get("labID").getAsString())) {
+                    int number = LabIdToNumberObj.get(paramObj.get("labID").getAsString()).getAsInt();
+                    paramObj.addProperty("labNumber", number);
+                } else {
+                    return ParamUtils.errorParam("labID 没有对应的编号");
+                }
+            }
+            // 添加当前人员 姓名  uname
+            paramObj.addProperty("uname", user.getUname());
+
             resultStr = processor.upLoadData(paramObj);
             // 删除图片ID缓存
             // RedisUtil.delImageId(paramRe.getSession(false).getId());
