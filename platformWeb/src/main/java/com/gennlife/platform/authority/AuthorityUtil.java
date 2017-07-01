@@ -1,14 +1,20 @@
 package com.gennlife.platform.authority;
 
+import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.*;
 import com.gennlife.platform.processor.CaseProcessor;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -157,5 +163,13 @@ public class AuthorityUtil {
             }
         }
         return isAdmin;
+    }
+
+    public static String getCurrentDeptQuery(User user) {
+        List<String> depts = AllDao.getInstance().getSyRoleDao().getSlabNameMappingByLabName(user.getLab_name(), user.getOrgID());
+        if (depts == null) depts = new LinkedList<>();
+        if(!StringUtils.isEmpty(user.getLab_name()))depts.add(user.getLab_name());
+        if(depts.size()==0)return null;
+        return "[患者基本信息.历次就诊科室] 包含 " + StringUtils.collectionToDelimitedString(depts, ",");
     }
 }
