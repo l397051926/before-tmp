@@ -168,7 +168,8 @@ public class AuthorityUtil {
     public static String getCurrentDeptQuery(User user) {
         List<String> depts = AllDao.getInstance().getSyRoleDao().getSlabNameMappingByLabName(user.getLab_name(), user.getOrgID());
         if (depts == null) depts = new LinkedList<>();
-        depts.add(user.getLab_name());
+        if(!StringUtils.isEmpty(user.getLab_name()))depts.add(user.getLab_name());
+        if(depts.size()==0)return null;
         return "[患者基本信息.历次就诊科室] 包含 " + StringUtils.collectionToDelimitedString(depts, ",");
     }
 }
