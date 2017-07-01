@@ -46,6 +46,7 @@ public class SessionFilter implements Filter {
             if (session == null) {
                 String cookie = ((HttpServletRequest) servletRequest).getHeader("Cookie");
                 LogUtils.BussnissLogError("session 空: " + uri + " cookie " + cookie);
+                logger.info("session 空: " + uri + " cookie " + cookie);
                 view.viewString(ParamUtils.errorSessionLosParam(), response);
                 return;
             }
