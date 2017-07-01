@@ -1,6 +1,7 @@
 package com.gennlife.platform.parse;
 
 import com.gennlife.platform.service.ConfigurationService;
+import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.JsonUtils;
 import com.gennlife.platform.util.ParamUtils;
@@ -10,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
-import java.util.List;
 import java.util.concurrent.Callable;
 
 /**
@@ -18,13 +18,27 @@ import java.util.concurrent.Callable;
  */
 public class CaseSearchParser implements Callable<String> {
     private static Logger logger = LoggerFactory.getLogger(CaseSearchParser.class);
-    private String queryStr;
     private boolean isOk = false;
-
+    JsonObject queryjson;
     public CaseSearchParser(String queryStr) {
         logger.info("搜索请求参数=" + queryStr);
-        this.queryStr = queryStr;
+        queryjson = JsonUtils.getJsonObject(queryStr);
+    }
+    public CaseSearchParser(String queryStr,String addquery) {
+        logger.info("搜索请求参数=" + queryStr);
+        queryjson = JsonUtils.getJsonObject(queryStr);
+        addQuery(addquery);
+    }
 
+    public void addQuery(String addquery) {
+        if(StringUtils.isEmpty(addquery))return;
+        if(queryjson.has("query"))
+        {
+           String query= queryjson.get("query").getAsString();
+            if(StringUtils.isEmpty(query)) queryjson.addProperty("query",addquery);
+            else queryjson.addProperty("query","( "+query+" )and "+addquery);
+        }
+        else queryjson.addProperty("query",addquery);
     }
 
     public String call() throws Exception {
@@ -34,7 +48,7 @@ public class CaseSearchParser implements Callable<String> {
     public String parser() throws Exception {
         isOk = false;
         String url = ConfigurationService.getUrlBean().getCaseSearchURL();
-        JsonObject queryjson = JsonUtils.getJsonObject(queryStr);
+
         if (queryjson == null) return ParamUtils.errorParam("非法json");
         JsonElement item = null;
         if (queryjson.has("query")) {
@@ -57,7 +71,7 @@ public class CaseSearchParser implements Callable<String> {
             } else return ParamUtils.errorParam("错误的查询条件");
         }
         isOk = true;
-        return HttpRequestUtils.httpPost(url, queryStr);
+        return HttpRequestUtils.httpPost(url, GsonUtil.getGson().toJson(queryjson));
     }
 
     public boolean isOk() {

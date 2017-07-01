@@ -189,7 +189,7 @@ public class CaseController {
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("病历搜索 post 耗时" + (System.currentTimeMillis() - start) + "ms");
-        logger.info("病历搜索 结果=" + resultStr);
+        //logger.info("病历搜索 结果=" + resultStr);
         return resultStr;
     }
 
@@ -292,7 +292,19 @@ public class CaseController {
     public
     @ResponseBody
     String myclinicSearchCase(HttpServletRequest paramRe) {
-        return this.postSearchCase(paramRe);
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String paramNew = AuthorityUtil.addSearchCaseAuthority(paramRe);
+            User user = (User) paramRe.getAttribute("currentUser");
+            logger.info("我的诊室 病历搜索 post方式 增加科室后参数=" + paramNew);
+            resultStr = processor.searchCaseByCurrentDept(paramNew, user);
+        } catch (Exception e) {
+            logger.error("我的诊室 病历搜索", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("我的诊室 病历搜索 post 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
     }
 
 

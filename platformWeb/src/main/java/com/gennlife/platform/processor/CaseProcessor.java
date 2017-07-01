@@ -1,5 +1,6 @@
 package com.gennlife.platform.processor;
 
+import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.model.Group;
@@ -7,10 +8,7 @@ import com.gennlife.platform.model.User;
 import com.gennlife.platform.parse.CaseSearchParser;
 import com.gennlife.platform.parse.CaseSuggestParser;
 import com.gennlife.platform.service.ConfigurationService;
-import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.HttpRequestUtils;
-import com.gennlife.platform.util.ParamUtils;
-import com.gennlife.platform.util.SpringContextUtil;
+import com.gennlife.platform.util.*;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -391,6 +389,9 @@ public class CaseProcessor {
      * @param newParam
      */
     public String searchCase(String newParam, User user) {
+        return searchCaseWithAddQuery(newParam, user,null);
+    }
+    public String searchCaseWithAddQuery(String newParam, User user,String addQuery) {
         if (newParam == null) {
             logger.error("searchCase缺失参数");
             return ParamUtils.errorSessionLosParam();
@@ -401,6 +402,10 @@ public class CaseProcessor {
             return param;
         }
         CaseSearchParser caseSearchParser = new CaseSearchParser(param);
+        if(!StringUtils.isEmpty(addQuery))
+        {
+            caseSearchParser.addQuery(addQuery);
+        }
         try {
             String searchResultStr = caseSearchParser.parser();
             if (StringUtils.isEmpty(searchResultStr)) {
@@ -417,7 +422,9 @@ public class CaseProcessor {
             return ParamUtils.errorParam("搜索失败");
         }
     }
-
+    public String searchCaseByCurrentDept(String newParam, User user) {
+       return searchCaseWithAddQuery(newParam,user,AuthorityUtil.getCurrentDeptQuery(user));
+    }
     /**
      * 返回该疾病相关基因
      *
