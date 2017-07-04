@@ -336,7 +336,7 @@ public class CrfController {
     }
 
 
-    @RequestMapping(value = "/UploadFileForImportCRF", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/UploadFileForImportCRF", method = RequestMethod.POST, produces = {"text/html;charset=UTF-8", "application/json;charset=UTF-8"})
     public
     @ResponseBody
     String UploadFileForImportCRF(@RequestParam(value = "file") CommonsMultipartFile file, HttpServletRequest paramRe, @RequestParam(value = "crf_id") String crf_id) {
