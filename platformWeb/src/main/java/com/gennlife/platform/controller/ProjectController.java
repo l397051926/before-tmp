@@ -35,6 +35,7 @@ public class ProjectController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
+            logger.info("MyProjectList 我的项目查询请求参数 = " + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr = processor.myProjectList(paramObj);
             logger.info("我的项目 中 项目列表get 耗时:" + (System.currentTimeMillis() - start) + "ms");

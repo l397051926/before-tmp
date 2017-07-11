@@ -56,7 +56,7 @@ public class SessionFilter implements Filter {
                 logger.info("RedisUtil.getValue()-> uid is null");
                 logger.info("request url is: " + uri);
                 String cookie = ((HttpServletRequest) servletRequest).getHeader("Cookie");
-                LogUtils.BussnissLogError("RedisUtil.getValue取不到数据:" + sessionID + " cookie " + cookie + " uri=" + uri);
+                logger.info("RedisUtil.getValue取不到数据 sessionID:" + sessionID + " cookie:" + cookie + " uri=" + uri);
                 view.viewString(ParamUtils.errorSessionLosParam(), response);
                 return;
             }
@@ -70,7 +70,6 @@ public class SessionFilter implements Filter {
                     return;
                 }
                 RedisUtil.setUser(user);
-
             }
 
             servletRequest.setAttribute("currentUser", user);
