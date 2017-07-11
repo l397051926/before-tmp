@@ -31,10 +31,11 @@ public class ProjectController {
     @RequestMapping(value = "/MyProjectList", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
-    String getMyProjectList(@RequestParam("param") String param) {
+    String getMyProjectList(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
+            String param = ParamUtils.getParam(paramRe);
             logger.info("MyProjectList 我的项目查询请求参数 = " + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr = processor.myProjectList(paramObj);
