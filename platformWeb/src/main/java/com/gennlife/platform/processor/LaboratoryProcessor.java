@@ -1301,6 +1301,8 @@ public class LaboratoryProcessor {
             map.put("pwd", "ls123456");
             int ret = AllDao.getInstance().getSyUserDao().adminResetPassword(map);
             if (ret == 1) {
+                // 如果用户已经登入则 将该用户 的Redis的数据清空
+                RedisUtil.userLogoutByUid(uid);
                 re.setCode(1);
                 re.setInfo("success");
             } else {
