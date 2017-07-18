@@ -2,7 +2,6 @@ package com.gennlife.platform.processor;
 
 
 import com.gennlife.platform.bean.ResultBean;
-import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.dao.OrgMapper;
 import com.gennlife.platform.dao.SyUserMapper;
@@ -1298,7 +1297,7 @@ public class LaboratoryProcessor {
             String uid = paramObj.get("uid").getAsString();
             HashMap<String, String> map = new HashMap<String, String>();
             map.put("uid", uid);
-            map.put("pwd", "ls123456");
+            map.put("pwd", GStringUtils.getDefaultPasswd());
             int ret = AllDao.getInstance().getSyUserDao().adminResetPassword(map);
             if (ret == 1) {
                 // 如果用户已经登入则 将该用户 的Redis的数据清空
