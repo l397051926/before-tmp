@@ -416,6 +416,19 @@ public class URLBean {
 
     private String TripleTestTableUrl = null;
 
+    /**
+     *  缩略图获取
+     */
+    private String PatientDetailThumbnail = null;
+
+    public String getPatientDetailThumbnail() {
+        return PatientDetailThumbnail;
+    }
+
+    public void setPatientDetailThumbnail(String patientDetailThumbnail) {
+        PatientDetailThumbnail = patientDetailThumbnail;
+    }
+
     public String getTripleTestTableUrl() {
         return TripleTestTableUrl;
     }
