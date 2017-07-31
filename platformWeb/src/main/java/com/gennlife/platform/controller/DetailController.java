@@ -8,9 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by chen-song on 16/5/13.
@@ -758,5 +760,22 @@ public class DetailController {
         }
         logger.info("三测单 TripleTestTable 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
+    }
+
+    /**
+     * 缩略图获取
+     * 对应FS接口   FileServcie/PatientDetail/thumbnail?url=
+     */
+    @RequestMapping(value = "/PatientDetailThumbnail", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    void PatientDetailThumbnail(@RequestParam("url") String url, HttpServletResponse response) {
+        Long start = System.currentTimeMillis();
+        try {
+            processor.PatientDetailThumbnail(url, response);
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+        logger.info("缩略图获取 耗时" + (System.currentTimeMillis() - start) + "ms");
     }
 }

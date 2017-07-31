@@ -6,6 +6,12 @@ import com.gennlife.platform.util.ParamUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 /**
  * Created by chen-song on 16/5/13.
  */
@@ -622,6 +628,32 @@ public class DetailProcessor {
             return result;
         } catch (Exception e) {
             return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public void PatientDetailThumbnail(String urlId, HttpServletResponse response) {
+        try {
+            String urlStr = ConfigurationService.getUrlBean().getPatientDetailThumbnail() + urlId;
+            URL url = new URL(urlStr);
+            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setConnectTimeout(20 * 1000);
+            InputStream inStream = conn.getInputStream(); // 通过输入流获取图片数据
+
+            ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+            byte[] buffer = new byte[2048];
+            int len = 0;
+            while ( (len = inStream.read(buffer)) != -1 ) {
+                outStream.write(buffer, 0, len);
+            }
+            response.setContentType("image/jpg"); // 设置返回的文件类型
+            response.getOutputStream().write(outStream.toByteArray());
+            inStream.close();
+            conn.disconnect();
+            outStream.close();
+            response.flushBuffer();
+        } catch (Exception e) {
+            logger.error("", e);
         }
     }
 }
