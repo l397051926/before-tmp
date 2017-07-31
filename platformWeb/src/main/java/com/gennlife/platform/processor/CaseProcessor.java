@@ -409,7 +409,7 @@ public class CaseProcessor {
         try {
             String searchResultStr = caseSearchParser.parser();
             if (StringUtils.isEmpty(searchResultStr)) {
-                logger.error("search empty");
+                logger.error("search empty "+caseSearchParser.getQuery());
                 return ParamUtils.errorParam("搜索无结果");
             }
             JsonObject searchResult = (JsonObject) jsonParser.parse(searchResultStr);

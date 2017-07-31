@@ -20,6 +20,7 @@ public class CaseSearchParser implements Callable<String> {
     private static Logger logger = LoggerFactory.getLogger(CaseSearchParser.class);
     private boolean isOk = false;
     JsonObject queryjson;
+
     public CaseSearchParser(String queryStr) {
         logger.info("搜索请求参数=" + queryStr);
         queryjson = JsonUtils.getJsonObject(queryStr);
@@ -77,5 +78,9 @@ public class CaseSearchParser implements Callable<String> {
 
     public boolean isOk() {
         return isOk;
+    }
+
+    public String getQuery() {
+        return GsonUtil.getGson().toJson(queryjson);
     }
 }
