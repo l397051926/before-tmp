@@ -39,6 +39,7 @@ public class CaseSearchParser implements Callable<String> {
             else queryjson.addProperty("query","( "+query+" )and "+addquery);
         }
         else queryjson.addProperty("query",addquery);
+        logger.info("query "+queryjson.get("query"));
     }
 
     public String call() throws Exception {
