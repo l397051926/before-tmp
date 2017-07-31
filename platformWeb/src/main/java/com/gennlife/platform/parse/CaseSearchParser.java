@@ -37,7 +37,9 @@ public class CaseSearchParser implements Callable<String> {
         {
            String query= queryjson.get("query").getAsString();
             if(StringUtils.isEmpty(query)) queryjson.addProperty("query",addquery);
-            else queryjson.addProperty("query","( "+query+" )and "+addquery);
+            else {
+                queryjson.addProperty("query","( "+query+" ) and "+addquery);
+            }
         }
         else queryjson.addProperty("query",addquery);
         logger.info("query "+queryjson.get("query"));
