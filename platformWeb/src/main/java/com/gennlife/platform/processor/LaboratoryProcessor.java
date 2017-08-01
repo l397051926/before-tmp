@@ -460,59 +460,60 @@ public class LaboratoryProcessor {
             resultBean.addProperty("info", "email" + email + "不合法");
             return resultBean;
         } else {
-            Integer exEamil = AllDao.getInstance().getSyUserDao().existEmail(email);
-            if (exEamil >= 1) {
+            if (!StringUtils.isEmpty(email)) {
+                Integer exEamil = AllDao.getInstance().getSyUserDao().existEmail(email);
+                if (exEamil >= 1) {
+                    resultBean.addProperty("code", 0);
+                    resultBean.addProperty("info", "email" + email + "已经存在了");
+                    return resultBean;
+                }
+            }
+            User exUnumber = AllDao.getInstance().getSyUserDao().getUserByUnumber(unumber, adduser.getOrgID());
+            if (exUnumber != null) {
                 resultBean.addProperty("code", 0);
-                resultBean.addProperty("info", "email" + email + "已经存在了");
+                resultBean.addProperty("info", "工号" + unumber + "已经存在了");
                 return resultBean;
             } else {
-                User exUnumber = AllDao.getInstance().getSyUserDao().getUserByUnumber(unumber, adduser.getOrgID());
-                if (exUnumber != null) {
-                    resultBean.addProperty("code", 0);
-                    resultBean.addProperty("info", "工号" + unumber + "已经存在了");
-                    return resultBean;
+                if (lab_name.equals(adduser.getOrg_name())) {
+                    adduser.setLabID(adduser.getOrgID());
                 } else {
-                    if (lab_name.equals(adduser.getOrg_name())) {
-                        adduser.setLabID(adduser.getOrgID());
-                    } else {
-                        Lab exLab = AllDao.getInstance().getOrgDao().getLabBylabName(lab_name, adduser.getOrgID());
-                        if (exLab == null) {
-                            resultBean.addProperty("code", 0);
-                            resultBean.addProperty("info", "科室" + lab_name + "不存在");
-                            return resultBean;
-                        } else {
-                            adduser.setLabID(exLab.getLabID());
-                            adduser.setLab_name(exLab.getLab_name());
-
-                        }
-                    }
-                    Role role = AllDao.getInstance().getSyRoleDao().getLabMember(adduser.getOrgID());
-                    UUID uuid = UUID.randomUUID();
-                    adduser.setUid(uuid.toString());
-                    try {
-                        Integer counter = AllDao.getInstance().getSyUserDao().insertOneUser(adduser);
-                        if (counter == null || counter <= 0) {
-                            resultBean.addProperty("code", 0);
-                            resultBean.addProperty("info", "插入失败");
-                            return resultBean;
-                        } else {
-                            if (role != null) {
-                                counter = AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role.getRoleid(), adduser.getUid());
-                            }
-                            resultBean.addProperty("code", 1);
-                            resultBean.addProperty("info", "插入成功");
-                            return resultBean;
-                        }
-                    } catch (DataIntegrityViolationException e) {
+                    Lab exLab = AllDao.getInstance().getOrgDao().getLabBylabName(lab_name, adduser.getOrgID());
+                    if (exLab == null) {
                         resultBean.addProperty("code", 0);
-                        resultBean.addProperty("info", "插入失败,填入的字符数超过20");
+                        resultBean.addProperty("info", "科室" + lab_name + "不存在");
                         return resultBean;
-                    } catch (Exception e) {
-                        logger.error("error ", e);
+                    } else {
+                        adduser.setLabID(exLab.getLabID());
+                        adduser.setLab_name(exLab.getLab_name());
+
+                    }
+                }
+                Role role = AllDao.getInstance().getSyRoleDao().getLabMember(adduser.getOrgID());
+                UUID uuid = UUID.randomUUID();
+                adduser.setUid(uuid.toString());
+                try {
+                    Integer counter = AllDao.getInstance().getSyUserDao().insertOneUser(adduser);
+                    if (counter == null || counter <= 0) {
                         resultBean.addProperty("code", 0);
                         resultBean.addProperty("info", "插入失败");
                         return resultBean;
+                    } else {
+                        if (role != null) {
+                            counter = AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role.getRoleid(), adduser.getUid());
+                        }
+                        resultBean.addProperty("code", 1);
+                        resultBean.addProperty("info", "插入成功");
+                        return resultBean;
                     }
+                } catch (DataIntegrityViolationException e) {
+                    resultBean.addProperty("code", 0);
+                    resultBean.addProperty("info", "插入失败,填入的字符数超过20");
+                    return resultBean;
+                } catch (Exception e) {
+                    logger.error("error ", e);
+                    resultBean.addProperty("code", 0);
+                    resultBean.addProperty("info", "插入失败");
+                    return resultBean;
                 }
             }
         }
