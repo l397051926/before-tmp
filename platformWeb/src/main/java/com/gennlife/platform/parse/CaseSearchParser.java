@@ -20,6 +20,7 @@ public class CaseSearchParser implements Callable<String> {
     private static Logger logger = LoggerFactory.getLogger(CaseSearchParser.class);
     private boolean isOk = false;
     JsonObject queryjson;
+
     public CaseSearchParser(String queryStr) {
         logger.info("搜索请求参数=" + queryStr);
         queryjson = JsonUtils.getJsonObject(queryStr);
@@ -36,9 +37,12 @@ public class CaseSearchParser implements Callable<String> {
         {
            String query= queryjson.get("query").getAsString();
             if(StringUtils.isEmpty(query)) queryjson.addProperty("query",addquery);
-            else queryjson.addProperty("query","( "+query+" )and "+addquery);
+            else {
+                queryjson.addProperty("query","( "+query+" ) and "+addquery);
+            }
         }
         else queryjson.addProperty("query",addquery);
+        logger.info("query "+queryjson.get("query"));
     }
 
     public String call() throws Exception {
@@ -76,5 +80,9 @@ public class CaseSearchParser implements Callable<String> {
 
     public boolean isOk() {
         return isOk;
+    }
+
+    public String getQuery() {
+        return GsonUtil.getGson().toJson(queryjson);
     }
 }
