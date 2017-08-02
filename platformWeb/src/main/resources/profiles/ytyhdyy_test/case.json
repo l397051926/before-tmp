@@ -8,8 +8,9 @@
                     "srchFieldName": "患者基本信息.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -554,8 +555,9 @@
                     "srchFieldName": "就诊.就诊基本信息.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -563,6 +565,17 @@
                     "IndexFieldName": "visits.visit_info.VISIT_TIMES",
                     "srchFieldName": "就诊.就诊基本信息.就诊次数",
                     "dataType": "long"
+                },
+                {
+                    "UIFieldName": "就诊类别名称",
+                    "IndexFieldName": "visits.visit_info.VISIT_TYPE_NAME",
+                    "srchFieldName": "就诊.就诊基本信息.就诊类别名称",
+                    "dataType": "string",
+                    "dataMap": [
+                        "门诊",
+                        "住院",
+                        "体检"
+                    ]
                 },
                 {
                     "UIFieldName": "入院（就诊）科室名称",
@@ -1637,12 +1650,12 @@
                     "srchFieldName": "就诊.手术信息.ASA分级",
                     "dataType": "string",
                     "dataMap": [
-                        "一级",
-                        "二级",
-                        "三级",
-                        "四级",
-                        "五级",
-                        "六级"
+                        "Ⅰ",
+                        "Ⅱ",
+                        "Ⅲ",
+                        "Ⅳ",
+                        "Ⅴ",
+                        "Ⅵ"
                     ]
                 },
                 {
@@ -1708,7 +1721,8 @@
                         "一级",
                         "二级",
                         "三级",
-                        "四级"
+                        "四级",
+                        ""
                     ]
                 },
                 {
@@ -9518,8 +9532,9 @@
                     "srchFieldName": "患者基本信息.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -10064,8 +10079,9 @@
                     "srchFieldName": "就诊.就诊基本信息.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -10073,6 +10089,17 @@
                     "IndexFieldName": "visits.visit_info.VISIT_TIMES",
                     "srchFieldName": "就诊.就诊基本信息.就诊次数",
                     "dataType": "long"
+                },
+                {
+                    "UIFieldName": "就诊类别名称",
+                    "IndexFieldName": "visits.visit_info.VISIT_TYPE_NAME",
+                    "srchFieldName": "就诊.就诊基本信息.就诊类别名称",
+                    "dataType": "string",
+                    "dataMap": [
+                        "门诊",
+                        "住院",
+                        "体检"
+                    ]
                 },
                 {
                     "UIFieldName": "入院（就诊）科室名称",
@@ -11147,12 +11174,12 @@
                     "srchFieldName": "就诊.手术信息.ASA分级",
                     "dataType": "string",
                     "dataMap": [
-                        "一级",
-                        "二级",
-                        "三级",
-                        "四级",
-                        "五级",
-                        "六级"
+                        "Ⅰ",
+                        "Ⅱ",
+                        "Ⅲ",
+                        "Ⅳ",
+                        "Ⅴ",
+                        "Ⅵ"
                     ]
                 },
                 {
@@ -11218,7 +11245,8 @@
                         "一级",
                         "二级",
                         "三级",
-                        "四级"
+                        "四级",
+                        ""
                     ]
                 },
                 {
@@ -19028,8 +19056,9 @@
                     "srchFieldName": "患者基本信息.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -19877,8 +19906,9 @@
                     "srchFieldName": "就诊.就诊基本信息.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -19898,6 +19928,17 @@
                     "IndexFieldName": "visits.visit_info.VISIT_TIMES",
                     "srchFieldName": "就诊.就诊基本信息.就诊次数",
                     "dataType": "long"
+                },
+                {
+                    "UIFieldName": "就诊类别名称",
+                    "IndexFieldName": "visits.visit_info.VISIT_TYPE_NAME",
+                    "srchFieldName": "就诊.就诊基本信息.就诊类别名称",
+                    "dataType": "string",
+                    "dataMap": [
+                        "门诊",
+                        "住院",
+                        "体检"
+                    ]
                 },
                 {
                     "UIFieldName": "入院（就诊）科室ID",
@@ -20203,8 +20244,9 @@
                     "srchFieldName": "就诊.诊断.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -20358,8 +20400,9 @@
                     "srchFieldName": "就诊.病案首页.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -21245,8 +21288,9 @@
                     "srchFieldName": "就诊.病案首页.手术.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -21336,8 +21380,9 @@
                     "srchFieldName": "就诊.病案首页.病理.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -21378,8 +21423,9 @@
                     "srchFieldName": "就诊.病案首页.外部原因.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -21420,8 +21466,9 @@
                     "srchFieldName": "就诊.病案首页.入院诊断.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -21462,8 +21509,9 @@
                     "srchFieldName": "就诊.病案首页.出院主要诊断.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -21510,8 +21558,9 @@
                     "srchFieldName": "就诊.病案首页.出院其他诊断.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -21558,8 +21607,9 @@
                     "srchFieldName": "就诊.病案首页.门诊诊断.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -21600,8 +21650,9 @@
                     "srchFieldName": "就诊.病案首页.药物过敏.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -21642,8 +21693,9 @@
                     "srchFieldName": "就诊.病案首页.重症监护.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -21698,8 +21750,9 @@
                     "srchFieldName": "就诊.手术信息.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -21750,12 +21803,12 @@
                     "srchFieldName": "就诊.手术信息.ASA分级",
                     "dataType": "string",
                     "dataMap": [
-                        "一级",
-                        "二级",
-                        "三级",
-                        "四级",
-                        "五级",
-                        "六级"
+                        "Ⅰ",
+                        "Ⅱ",
+                        "Ⅲ",
+                        "Ⅳ",
+                        "Ⅴ",
+                        "Ⅵ"
                     ]
                 },
                 {
@@ -21827,7 +21880,8 @@
                         "一级",
                         "二级",
                         "三级",
-                        "四级"
+                        "四级",
+                        ""
                     ]
                 },
                 {
@@ -22006,8 +22060,9 @@
                     "srchFieldName": "就诊.术前小结.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -22150,8 +22205,9 @@
                     "srchFieldName": "就诊.手术记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -22320,8 +22376,9 @@
                     "srchFieldName": "就诊.麻醉术前访视记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -22435,8 +22492,9 @@
                     "srchFieldName": "就诊.术前讨论记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -22567,8 +22625,9 @@
                     "srchFieldName": "就诊.麻醉术后访视记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -22675,8 +22734,9 @@
                     "srchFieldName": "就诊.术后病程记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -22770,8 +22830,9 @@
                     "srchFieldName": "就诊.药品医嘱.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -23275,8 +23336,9 @@
                     "srchFieldName": "就诊.检验报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -23501,8 +23563,9 @@
                     "srchFieldName": "就诊.CT检查报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -23708,8 +23771,9 @@
                     "srchFieldName": "就诊.ECT检查报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -23904,8 +23968,9 @@
                     "srchFieldName": "就诊.X线影像诊断报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -24066,8 +24131,9 @@
                     "srchFieldName": "就诊.MR检查报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -24249,8 +24315,9 @@
                     "srchFieldName": "就诊.镜检报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -24453,8 +24520,9 @@
                     "srchFieldName": "就诊.PET-CT检查报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -24645,8 +24713,9 @@
                     "srchFieldName": "就诊.PET-MR检查报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -24837,8 +24906,9 @@
                     "srchFieldName": "就诊.其他影像学检查诊断报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -25104,8 +25174,9 @@
                     "srchFieldName": "就诊.病理检查报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -25314,8 +25385,9 @@
                     "srchFieldName": "就诊.超声诊断报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -25464,8 +25536,9 @@
                     "srchFieldName": "就诊.肺功能检查报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -25622,8 +25695,9 @@
                     "srchFieldName": "就诊.心电图报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -25874,8 +25948,9 @@
                     "srchFieldName": "就诊.动态心电图报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -26294,8 +26369,9 @@
                     "srchFieldName": "就诊.脑电图报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -26696,8 +26772,9 @@
                     "srchFieldName": "就诊.免疫组化.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -26770,8 +26847,9 @@
                     "srchFieldName": "就诊.入院记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -27038,8 +27116,9 @@
                     "srchFieldName": "就诊.出院记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -27164,8 +27243,9 @@
                     "srchFieldName": "就诊.出院小结.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -27225,8 +27305,9 @@
                     "srchFieldName": "就诊.首次病程记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -27352,8 +27433,9 @@
                     "srchFieldName": "就诊.上级医师查房记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -27419,8 +27501,9 @@
                     "srchFieldName": "就诊.日常病程记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -27480,8 +27563,9 @@
                     "srchFieldName": "就诊.会诊意见记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -27547,8 +27631,9 @@
                     "srchFieldName": "就诊.死亡病例讨论记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -27704,8 +27789,9 @@
                     "srchFieldName": "就诊.死亡记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -27837,8 +27923,9 @@
                     "srchFieldName": "就诊.死亡小结.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -27898,8 +27985,9 @@
                     "srchFieldName": "就诊.疑难病例讨论记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -27996,8 +28084,9 @@
                     "srchFieldName": "就诊.交接班记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -28110,8 +28199,9 @@
                     "srchFieldName": "就诊.抢救记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -28171,8 +28261,9 @@
                     "srchFieldName": "就诊.阶段小结.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -28275,8 +28366,9 @@
                     "srchFieldName": "就诊.转入记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -28397,8 +28489,9 @@
                     "srchFieldName": "就诊.转出记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -28519,8 +28612,9 @@
                     "srchFieldName": "就诊.护理操作.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -28645,8 +28739,9 @@
                     "srchFieldName": "就诊.病重（病危）患者护理记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -28942,8 +29037,9 @@
                     "srchFieldName": "就诊.病理检查标本信息.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -29046,8 +29142,9 @@
                     "srchFieldName": "就诊.输血检验结果.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -29126,8 +29223,9 @@
                     "srchFieldName": "就诊.输血记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -29216,8 +29314,9 @@
                     "srchFieldName": "就诊.输血特殊要求.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -29264,8 +29363,9 @@
                     "srchFieldName": "就诊.三测单.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -29533,8 +29633,9 @@
                     "srchFieldName": "就诊.医嘱.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -30046,8 +30147,9 @@
                     "srchFieldName": "就诊.检查申请.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -30203,8 +30305,9 @@
                     "srchFieldName": "就诊.检验申请.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -30348,8 +30451,9 @@
                     "srchFieldName": "就诊.病理申请.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -30516,8 +30620,9 @@
                     "srchFieldName": "就诊.手术申请.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -30795,8 +30900,9 @@
                     "srchFieldName": "就诊.输血申请.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -31050,8 +31156,9 @@
                     "srchFieldName": "就诊.中药处方.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -31183,8 +31290,9 @@
                     "srchFieldName": "就诊.医嘱处理记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -31302,8 +31410,9 @@
                     "srchFieldName": "就诊.有创诊疗操作记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -31387,8 +31496,9 @@
                     "srchFieldName": "就诊.申请会诊记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -31454,8 +31564,9 @@
                     "srchFieldName": "就诊.病人费用.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -34165,8 +34276,9 @@
                     "srchFieldName": "就诊.就诊基本信息.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -34174,6 +34286,17 @@
                     "IndexFieldName": "visits.visit_info.VISIT_TIMES",
                     "srchFieldName": "就诊.就诊基本信息.就诊次数",
                     "dataType": "long"
+                },
+                {
+                    "UIFieldName": "就诊类别名称",
+                    "IndexFieldName": "visits.visit_info.VISIT_TYPE_NAME",
+                    "srchFieldName": "就诊.就诊基本信息.就诊类别名称",
+                    "dataType": "string",
+                    "dataMap": [
+                        "门诊",
+                        "住院",
+                        "体检"
+                    ]
                 },
                 {
                     "UIFieldName": "入院（就诊）科室名称",
@@ -35248,12 +35371,12 @@
                     "srchFieldName": "就诊.手术信息.ASA分级",
                     "dataType": "string",
                     "dataMap": [
-                        "一级",
-                        "二级",
-                        "三级",
-                        "四级",
-                        "五级",
-                        "六级"
+                        "Ⅰ",
+                        "Ⅱ",
+                        "Ⅲ",
+                        "Ⅳ",
+                        "Ⅴ",
+                        "Ⅵ"
                     ]
                 },
                 {
@@ -35319,7 +35442,8 @@
                         "一级",
                         "二级",
                         "三级",
-                        "四级"
+                        "四级",
+                        ""
                     ]
                 },
                 {
@@ -43776,8 +43900,9 @@
                     "srchFieldName": "患者基本信息.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -44625,8 +44750,9 @@
                     "srchFieldName": "就诊.就诊基本信息.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -44646,6 +44772,17 @@
                     "IndexFieldName": "visits.visit_info.VISIT_TIMES",
                     "srchFieldName": "就诊.就诊基本信息.就诊次数",
                     "dataType": "long"
+                },
+                {
+                    "UIFieldName": "就诊类别名称",
+                    "IndexFieldName": "visits.visit_info.VISIT_TYPE_NAME",
+                    "srchFieldName": "就诊.就诊基本信息.就诊类别名称",
+                    "dataType": "string",
+                    "dataMap": [
+                        "门诊",
+                        "住院",
+                        "体检"
+                    ]
                 },
                 {
                     "UIFieldName": "入院（就诊）科室ID",
@@ -44951,8 +45088,9 @@
                     "srchFieldName": "就诊.诊断.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -45106,8 +45244,9 @@
                     "srchFieldName": "就诊.病案首页.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -45993,8 +46132,9 @@
                     "srchFieldName": "就诊.病案首页.手术.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -46084,8 +46224,9 @@
                     "srchFieldName": "就诊.病案首页.病理.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -46126,8 +46267,9 @@
                     "srchFieldName": "就诊.病案首页.外部原因.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -46168,8 +46310,9 @@
                     "srchFieldName": "就诊.病案首页.入院诊断.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -46210,8 +46353,9 @@
                     "srchFieldName": "就诊.病案首页.出院主要诊断.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -46258,8 +46402,9 @@
                     "srchFieldName": "就诊.病案首页.出院其他诊断.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -46306,8 +46451,9 @@
                     "srchFieldName": "就诊.病案首页.门诊诊断.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -46348,8 +46494,9 @@
                     "srchFieldName": "就诊.病案首页.药物过敏.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -46390,8 +46537,9 @@
                     "srchFieldName": "就诊.病案首页.重症监护.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -46446,8 +46594,9 @@
                     "srchFieldName": "就诊.手术信息.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -46498,12 +46647,12 @@
                     "srchFieldName": "就诊.手术信息.ASA分级",
                     "dataType": "string",
                     "dataMap": [
-                        "一级",
-                        "二级",
-                        "三级",
-                        "四级",
-                        "五级",
-                        "六级"
+                        "Ⅰ",
+                        "Ⅱ",
+                        "Ⅲ",
+                        "Ⅳ",
+                        "Ⅴ",
+                        "Ⅵ"
                     ]
                 },
                 {
@@ -46575,7 +46724,8 @@
                         "一级",
                         "二级",
                         "三级",
-                        "四级"
+                        "四级",
+                        ""
                     ]
                 },
                 {
@@ -46754,8 +46904,9 @@
                     "srchFieldName": "就诊.术前小结.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -46898,8 +47049,9 @@
                     "srchFieldName": "就诊.手术记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -47068,8 +47220,9 @@
                     "srchFieldName": "就诊.麻醉术前访视记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -47183,8 +47336,9 @@
                     "srchFieldName": "就诊.术前讨论记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -47315,8 +47469,9 @@
                     "srchFieldName": "就诊.麻醉术后访视记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -47423,8 +47578,9 @@
                     "srchFieldName": "就诊.术后病程记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -47518,8 +47674,9 @@
                     "srchFieldName": "就诊.药品医嘱.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -48023,8 +48180,9 @@
                     "srchFieldName": "就诊.检验报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -48249,8 +48407,9 @@
                     "srchFieldName": "就诊.CT检查报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -48456,8 +48615,9 @@
                     "srchFieldName": "就诊.ECT检查报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -48652,8 +48812,9 @@
                     "srchFieldName": "就诊.X线影像诊断报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -48814,8 +48975,9 @@
                     "srchFieldName": "就诊.MR检查报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -48997,8 +49159,9 @@
                     "srchFieldName": "就诊.镜检报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -49201,8 +49364,9 @@
                     "srchFieldName": "就诊.PET-CT检查报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -49393,8 +49557,9 @@
                     "srchFieldName": "就诊.PET-MR检查报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -49585,8 +49750,9 @@
                     "srchFieldName": "就诊.其他影像学检查诊断报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -49852,8 +50018,9 @@
                     "srchFieldName": "就诊.病理检查报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -50062,8 +50229,9 @@
                     "srchFieldName": "就诊.超声诊断报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -50212,8 +50380,9 @@
                     "srchFieldName": "就诊.肺功能检查报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -50370,8 +50539,9 @@
                     "srchFieldName": "就诊.心电图报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -50622,8 +50792,9 @@
                     "srchFieldName": "就诊.动态心电图报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -51042,8 +51213,9 @@
                     "srchFieldName": "就诊.脑电图报告.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -51444,8 +51616,9 @@
                     "srchFieldName": "就诊.免疫组化.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -51518,8 +51691,9 @@
                     "srchFieldName": "就诊.入院记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -51786,8 +51960,9 @@
                     "srchFieldName": "就诊.出院记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -51912,8 +52087,9 @@
                     "srchFieldName": "就诊.出院小结.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -51973,8 +52149,9 @@
                     "srchFieldName": "就诊.首次病程记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -52100,8 +52277,9 @@
                     "srchFieldName": "就诊.上级医师查房记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -52167,8 +52345,9 @@
                     "srchFieldName": "就诊.日常病程记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -52228,8 +52407,9 @@
                     "srchFieldName": "就诊.会诊意见记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -52295,8 +52475,9 @@
                     "srchFieldName": "就诊.死亡病例讨论记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -52452,8 +52633,9 @@
                     "srchFieldName": "就诊.死亡记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -52585,8 +52767,9 @@
                     "srchFieldName": "就诊.死亡小结.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -52646,8 +52829,9 @@
                     "srchFieldName": "就诊.疑难病例讨论记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -52744,8 +52928,9 @@
                     "srchFieldName": "就诊.交接班记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -52858,8 +53043,9 @@
                     "srchFieldName": "就诊.抢救记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -52919,8 +53105,9 @@
                     "srchFieldName": "就诊.阶段小结.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -53023,8 +53210,9 @@
                     "srchFieldName": "就诊.转入记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -53145,8 +53333,9 @@
                     "srchFieldName": "就诊.转出记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -53267,8 +53456,9 @@
                     "srchFieldName": "就诊.护理操作.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -53393,8 +53583,9 @@
                     "srchFieldName": "就诊.病重（病危）患者护理记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -53690,8 +53881,9 @@
                     "srchFieldName": "就诊.病理检查标本信息.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -53794,8 +53986,9 @@
                     "srchFieldName": "就诊.输血检验结果.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -53874,8 +54067,9 @@
                     "srchFieldName": "就诊.输血记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -53964,8 +54158,9 @@
                     "srchFieldName": "就诊.输血特殊要求.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -54012,8 +54207,9 @@
                     "srchFieldName": "就诊.三测单.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -54281,8 +54477,9 @@
                     "srchFieldName": "就诊.医嘱.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -54794,8 +54991,9 @@
                     "srchFieldName": "就诊.检查申请.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -54951,8 +55149,9 @@
                     "srchFieldName": "就诊.检验申请.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -55096,8 +55295,9 @@
                     "srchFieldName": "就诊.病理申请.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -55264,8 +55464,9 @@
                     "srchFieldName": "就诊.手术申请.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -55543,8 +55744,9 @@
                     "srchFieldName": "就诊.输血申请.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -55798,8 +56000,9 @@
                     "srchFieldName": "就诊.中药处方.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -55931,8 +56134,9 @@
                     "srchFieldName": "就诊.医嘱处理记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -56050,8 +56254,9 @@
                     "srchFieldName": "就诊.有创诊疗操作记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -56135,8 +56340,9 @@
                     "srchFieldName": "就诊.申请会诊记录.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -56202,8 +56408,9 @@
                     "srchFieldName": "就诊.病人费用.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -58913,8 +59120,9 @@
                     "srchFieldName": "就诊.就诊基本信息.就诊类别",
                     "dataType": "string",
                     "dataMap": [
-                        "住院",
-                        "门诊"
+                        "0",
+                        "1",
+                        "2"
                     ]
                 },
                 {
@@ -58922,6 +59130,17 @@
                     "IndexFieldName": "visits.visit_info.VISIT_TIMES",
                     "srchFieldName": "就诊.就诊基本信息.就诊次数",
                     "dataType": "long"
+                },
+                {
+                    "UIFieldName": "就诊类别名称",
+                    "IndexFieldName": "visits.visit_info.VISIT_TYPE_NAME",
+                    "srchFieldName": "就诊.就诊基本信息.就诊类别名称",
+                    "dataType": "string",
+                    "dataMap": [
+                        "门诊",
+                        "住院",
+                        "体检"
+                    ]
                 },
                 {
                     "UIFieldName": "入院（就诊）科室名称",
@@ -59996,12 +60215,12 @@
                     "srchFieldName": "就诊.手术信息.ASA分级",
                     "dataType": "string",
                     "dataMap": [
-                        "一级",
-                        "二级",
-                        "三级",
-                        "四级",
-                        "五级",
-                        "六级"
+                        "Ⅰ",
+                        "Ⅱ",
+                        "Ⅲ",
+                        "Ⅳ",
+                        "Ⅴ",
+                        "Ⅵ"
                     ]
                 },
                 {
@@ -60067,7 +60286,8 @@
                         "一级",
                         "二级",
                         "三级",
-                        "四级"
+                        "四级",
+                        ""
                     ]
                 },
                 {
