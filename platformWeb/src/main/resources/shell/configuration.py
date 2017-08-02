@@ -21,7 +21,7 @@ def sortItem(itemArray,allSortIndexName):
     return newArray
 
 def process():
-    data = xlrd.open_workbook('/Users/luoxupan/Downloads/病人维度临床数据字段配置_for烟台毓璜顶医院版本V3.1.0.0.xlsx')
+    data = xlrd.open_workbook('/Users/luoxupan/Downloads/病人维度临床数据字段配置_for烟台毓璜顶医院版本V3.1.0.1.xlsx')
     allItemList = OrderedDict()
     allItemListCopy = OrderedDict()
     sheet = data.sheets()[0]
