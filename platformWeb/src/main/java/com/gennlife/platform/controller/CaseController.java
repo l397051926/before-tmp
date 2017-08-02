@@ -371,7 +371,7 @@ public class CaseController {
             test.addProperty("page", page);
             test.addProperty("size", size);
             test.addProperty("max", max);
-            return result;
+            return gson.toJson(test);
         } catch (Exception e) {
             return ParamUtils.errorParam(e.getMessage());
         }
