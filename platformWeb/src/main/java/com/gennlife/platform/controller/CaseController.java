@@ -307,5 +307,75 @@ public class CaseController {
         return resultStr;
     }
 
+    @RequestMapping(value = "/myclinicSearchCase", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String myclinicSearchCaseTest(HttpServletRequest paramRe) {
+
+        try {
+            String param=ParamUtils.getParam(paramRe);
+            int page=1;
+            int size=1;
+            JsonObject json=null;
+            try {
+               json = jsonParser.parse(param).getAsJsonObject();
+            }
+            catch (Exception e)
+            {
+
+            }
+            if(json!=null) {
+                page = json.get("page").getAsInt();
+                size = json.get("size").getAsInt();
+            }
+            int max = 1391;
+            if (Math.ceil(max * 1.0 / size) < page) {
+                return "{\n" +
+                        "  \"code\": 0,\n" +
+                        "  \"ERRORMSG\": \"no vitark data\",\n" +
+                        "  \"success\": false\n" +
+                        "}";
+            }
+            String result = "{\n" +
+                    "  \"code\": 1,\n" +
+                    "  \"size\": 1,\n" +
+                    "  \"data\": [\n" +
+                    "    {\n" +
+                    "      \"HSNS\": [\n" +
+                    "        \"000899445800\",\n" +
+                    "        \"000899447500\",\n" +
+                    "        \"001310919400\"\n" +
+                    "      ],\n" +
+                    "      \"patient_info\": {\n" +
+                    "        \"IDENTITY\": \"测试身份证\",\n" +
+                    "        \"IDENTITY_TYPE\": \"身份证\",\n" +
+                    "        \"GENDER\": \"女\",\n" +
+                    "        \"PATIENT_NAME\": \"测试姓名\",\n" +
+                    "        \"PATIENT_SN\": \"pat_2d86ca4bc6c14381a765f0393813c21c\"\n" +
+                    "      },\n" +
+                    "      \"visit_info\": {\n" +
+                    "        \"LAST_VISIT_TIME\": \"2017-07-04 00:00:00\",\n" +
+                    "        \"LAST_VISIT_DEPT\": \"神经内科门诊\",\n" +
+                    "        \"VISIT_TIMES\": 15,\n" +
+                    "        \"LAST_VISIT_TYPE\": \"0\",\n" +
+                    "\t\t\"LAST_VISIT_BED\":\"测试床号\"\n" +
+                    "      }\n" +
+                    "    }\n" +
+                    "  \n" +
+                    "  ],\n" +
+                    "  \"max\": 1391,\n" +
+                    "  \"success\": true,\n" +
+                    "  \"page\": 1\n" +
+                    "}";
+            JsonObject test = jsonParser.parse(result).getAsJsonObject();
+            test.addProperty("page", page);
+            test.addProperty("size", size);
+            test.addProperty("max", max);
+            return gson.toJson(test);
+        } catch (Exception e) {
+            return ParamUtils.errorParam(e.getMessage());
+        }
+    }
+
 
 }
