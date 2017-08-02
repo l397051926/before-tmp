@@ -269,8 +269,10 @@ public class FileUploadUtil {
      */
     private static boolean getUserByUnumber(User user, List<User> userList) {
         for (User exUnumber : userList) {
-            if (!exUnumber.equals(user) && user.getUemail().equals(exUnumber.getUemail())) {
-                return true;
+            if (!exUnumber.equals(user)) {
+                if (!StringUtils.isEmpty(user.getUemail()) && user.getUemail().equals(exUnumber.getUemail())) {
+                    return true;
+                }
             }
         }
         return false;
