@@ -21,7 +21,7 @@ def sortItem(itemArray,allSortIndexName):
     return newArray
 
 def process():
-    data = xlrd.open_workbook('/Users/luoxupan/Downloads/病人维度临床数据字段配置_for烟台毓璜顶医院版本V3.1.1.1.xlsx')
+    data = xlrd.open_workbook('/Users/luoxupan/Downloads/病人维度临床数据字段配置_for烟台毓璜顶医院版本V3.1.1.2.xlsx')
     allItemList = OrderedDict()
     allItemListCopy = OrderedDict()
     sheet = data.sheets()[0]
@@ -394,6 +394,7 @@ def process():
     angiocardiopathy['compare'] = compare_angiocardiopathy
     adrenal_gland_tumor['compare'] = compare_adrenal_gland_tumor
     output.write(json.dumps(mergeResult,ensure_ascii=False))
+    output.close()
 
     # 患者基本信息
     basic = OrderedDict()
