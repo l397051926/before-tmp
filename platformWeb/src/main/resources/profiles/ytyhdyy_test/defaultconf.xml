@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 <bean id="systemDefault" class="com.gennlife.platform.bean.conf.SystemDefault" scope="singleton">
-    <property name="searchItemSetDefault" value="liver_cancer"/>
+    <property name="searchItemSetDefault" value="kidney_cancer"/>
     <property name="needGroup" value="true"/>
     <property name="passwdOperator" value="v2"/>
     <property name="needToCreateIndex" value="false"/>
