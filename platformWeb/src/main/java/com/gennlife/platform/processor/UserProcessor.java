@@ -68,11 +68,14 @@ public class UserProcessor {
             ResultBean userBean = new ResultBean();
             try {
                 user = gson.fromJson(param, User.class);
-                Map<String, Object> map = new HashMap<>();
-                map.put("email", user.getUemail());
-                String uidEx = AllDao.getInstance().getSyUserDao().getUidByEmail(map);
-                if (!StringUtils.isEmpty(uidEx) && !user.getUid().equals(uidEx)) {//更新的email不合法,已经存在
-                    return ParamUtils.errorParamResultBean("更新的email不合法,已经存在");
+                String uemail = user.getUemail();
+                if (!StringUtils.isEmpty(uemail)) {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("email", uemail);
+                    String uidEx = AllDao.getInstance().getSyUserDao().getUidByEmail(map);
+                    if (!StringUtils.isEmpty(uidEx) && !user.getUid().equals(uidEx)) {//更新的email不合法,已经存在
+                        return ParamUtils.errorParamResultBean("更新的email不合法,已经存在");
+                    }
                 }
                 user.setCtime(null);//创建时间不可更新
                 user.setUptime(LogUtils.getStringTime());//更新时间
