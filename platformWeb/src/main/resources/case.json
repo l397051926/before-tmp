@@ -1501,6 +1501,12 @@
       ],
       "就诊.病案首页.病理": [
         {
+          "UIFieldName": "病理号",
+          "IndexFieldName": "visits.medical_record_home_page.pathology.PATHOLOGY_NO",
+          "srchFieldName": "就诊.病案首页.病理.病理号",
+          "dataType": "string"
+        },
+        {
           "UIFieldName": "病理诊断",
           "IndexFieldName": "visits.medical_record_home_page.pathology.PATHOLOGY_DIAG",
           "srchFieldName": "就诊.病案首页.病理.病理诊断",
@@ -2076,25 +2082,25 @@
           "UIFieldName": "术中失血",
           "IndexFieldName": "visits.operation_records.INTRAOPERATIVE_BLOOD_LOSS",
           "srchFieldName": "就诊.手术记录.术中失血",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "术中输血",
           "IndexFieldName": "visits.operation_records.INTRAOPERATIVE_BLOOD_TRANSFUSION",
           "srchFieldName": "就诊.手术记录.术中输血",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "术中输液",
           "IndexFieldName": "visits.operation_records.INTRAOPERATIVE_INFUSION",
           "srchFieldName": "就诊.手术记录.术中输液",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "自体输血",
           "IndexFieldName": "visits.operation_records.AUTOLOGOUS_BLOOD_TRANSFUSION",
           "srchFieldName": "就诊.手术记录.自体输血",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "记录日期",
@@ -4290,16 +4296,34 @@
           "dataType": "string"
         },
         {
-          "UIFieldName": "P-R周期",
+          "UIFieldName": "P-R间期",
           "IndexFieldName": "visits.electrocardiogram_reports.PR_PERIOD",
-          "srchFieldName": "就诊.心电图报告.P-R周期",
-          "dataType": "string"
+          "srchFieldName": "就诊.心电图报告.P-R间期",
+          "dataType": "long"
         },
         {
           "UIFieldName": "P波",
           "IndexFieldName": "visits.electrocardiogram_reports.P_WAVEFORM",
           "srchFieldName": "就诊.心电图报告.P波",
           "dataType": "string"
+        },
+        {
+          "UIFieldName": "P轴",
+          "IndexFieldName": "visits.electrocardiogram_reports.P_ELECTTRIC_AXIS",
+          "srchFieldName": "就诊.心电图报告.P轴",
+          "dataType": "long"
+        },
+        {
+          "UIFieldName": "QRS轴",
+          "IndexFieldName": "visits.electrocardiogram_reports.QRS_ELECTTRIC_AXIS",
+          "srchFieldName": "就诊.心电图报告.QRS轴",
+          "dataType": "long"
+        },
+        {
+          "UIFieldName": "T轴",
+          "IndexFieldName": "visits.electrocardiogram_reports.T_ELECTTRIC_AXIS",
+          "srchFieldName": "就诊.心电图报告.T轴",
+          "dataType": "long"
         },
         {
           "UIFieldName": "QRS波",
@@ -4311,13 +4335,19 @@
           "UIFieldName": "QRS时限",
           "IndexFieldName": "visits.electrocardiogram_reports.QRS_PEROID",
           "srchFieldName": "就诊.心电图报告.QRS时限",
-          "dataType": "string"
+          "dataType": "long"
         },
         {
           "UIFieldName": "Q-T间期",
           "IndexFieldName": "visits.electrocardiogram_reports.QT_PEROID",
           "srchFieldName": "就诊.心电图报告.Q-T间期",
-          "dataType": "string"
+          "dataType": "long"
+        },
+        {
+          "UIFieldName": "QTc",
+          "IndexFieldName": "visits.electrocardiogram_reports.QTc_PEROID",
+          "srchFieldName": "就诊.心电图报告.QTc",
+          "dataType": "long"
         },
         {
           "UIFieldName": "ST段",
@@ -4336,6 +4366,30 @@
           "IndexFieldName": "visits.electrocardiogram_reports.U_WAVEFORM",
           "srchFieldName": "就诊.心电图报告.U波",
           "dataType": "string"
+        },
+        {
+          "UIFieldName": "RV5",
+          "IndexFieldName": "visits.electrocardiogram_reports.RV5",
+          "srchFieldName": "就诊.心电图报告.RV5",
+          "dataType": "double"
+        },
+        {
+          "UIFieldName": "SV1",
+          "IndexFieldName": "visits.electrocardiogram_reports.SV1",
+          "srchFieldName": "就诊.心电图报告.SV1",
+          "dataType": "double"
+        },
+        {
+          "UIFieldName": "RV6",
+          "IndexFieldName": "visits.electrocardiogram_reports.RV6",
+          "srchFieldName": "就诊.心电图报告.RV6",
+          "dataType": "double"
+        },
+        {
+          "UIFieldName": "SV2",
+          "IndexFieldName": "visits.electrocardiogram_reports.SV2",
+          "srchFieldName": "就诊.心电图报告.SV2",
+          "dataType": "double"
         },
         {
           "UIFieldName": "电解质",
@@ -11013,6 +11067,12 @@
       ],
       "就诊.病案首页.病理": [
         {
+          "UIFieldName": "病理号",
+          "IndexFieldName": "visits.medical_record_home_page.pathology.PATHOLOGY_NO",
+          "srchFieldName": "就诊.病案首页.病理.病理号",
+          "dataType": "string"
+        },
+        {
           "UIFieldName": "病理诊断",
           "IndexFieldName": "visits.medical_record_home_page.pathology.PATHOLOGY_DIAG",
           "srchFieldName": "就诊.病案首页.病理.病理诊断",
@@ -11588,25 +11648,25 @@
           "UIFieldName": "术中失血",
           "IndexFieldName": "visits.operation_records.INTRAOPERATIVE_BLOOD_LOSS",
           "srchFieldName": "就诊.手术记录.术中失血",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "术中输血",
           "IndexFieldName": "visits.operation_records.INTRAOPERATIVE_BLOOD_TRANSFUSION",
           "srchFieldName": "就诊.手术记录.术中输血",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "术中输液",
           "IndexFieldName": "visits.operation_records.INTRAOPERATIVE_INFUSION",
           "srchFieldName": "就诊.手术记录.术中输液",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "自体输血",
           "IndexFieldName": "visits.operation_records.AUTOLOGOUS_BLOOD_TRANSFUSION",
           "srchFieldName": "就诊.手术记录.自体输血",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "记录日期",
@@ -13802,16 +13862,34 @@
           "dataType": "string"
         },
         {
-          "UIFieldName": "P-R周期",
+          "UIFieldName": "P-R间期",
           "IndexFieldName": "visits.electrocardiogram_reports.PR_PERIOD",
-          "srchFieldName": "就诊.心电图报告.P-R周期",
-          "dataType": "string"
+          "srchFieldName": "就诊.心电图报告.P-R间期",
+          "dataType": "long"
         },
         {
           "UIFieldName": "P波",
           "IndexFieldName": "visits.electrocardiogram_reports.P_WAVEFORM",
           "srchFieldName": "就诊.心电图报告.P波",
           "dataType": "string"
+        },
+        {
+          "UIFieldName": "P轴",
+          "IndexFieldName": "visits.electrocardiogram_reports.P_ELECTTRIC_AXIS",
+          "srchFieldName": "就诊.心电图报告.P轴",
+          "dataType": "long"
+        },
+        {
+          "UIFieldName": "QRS轴",
+          "IndexFieldName": "visits.electrocardiogram_reports.QRS_ELECTTRIC_AXIS",
+          "srchFieldName": "就诊.心电图报告.QRS轴",
+          "dataType": "long"
+        },
+        {
+          "UIFieldName": "T轴",
+          "IndexFieldName": "visits.electrocardiogram_reports.T_ELECTTRIC_AXIS",
+          "srchFieldName": "就诊.心电图报告.T轴",
+          "dataType": "long"
         },
         {
           "UIFieldName": "QRS波",
@@ -13823,13 +13901,19 @@
           "UIFieldName": "QRS时限",
           "IndexFieldName": "visits.electrocardiogram_reports.QRS_PEROID",
           "srchFieldName": "就诊.心电图报告.QRS时限",
-          "dataType": "string"
+          "dataType": "long"
         },
         {
           "UIFieldName": "Q-T间期",
           "IndexFieldName": "visits.electrocardiogram_reports.QT_PEROID",
           "srchFieldName": "就诊.心电图报告.Q-T间期",
-          "dataType": "string"
+          "dataType": "long"
+        },
+        {
+          "UIFieldName": "QTc",
+          "IndexFieldName": "visits.electrocardiogram_reports.QTc_PEROID",
+          "srchFieldName": "就诊.心电图报告.QTc",
+          "dataType": "long"
         },
         {
           "UIFieldName": "ST段",
@@ -13848,6 +13932,30 @@
           "IndexFieldName": "visits.electrocardiogram_reports.U_WAVEFORM",
           "srchFieldName": "就诊.心电图报告.U波",
           "dataType": "string"
+        },
+        {
+          "UIFieldName": "RV5",
+          "IndexFieldName": "visits.electrocardiogram_reports.RV5",
+          "srchFieldName": "就诊.心电图报告.RV5",
+          "dataType": "double"
+        },
+        {
+          "UIFieldName": "SV1",
+          "IndexFieldName": "visits.electrocardiogram_reports.SV1",
+          "srchFieldName": "就诊.心电图报告.SV1",
+          "dataType": "double"
+        },
+        {
+          "UIFieldName": "RV6",
+          "IndexFieldName": "visits.electrocardiogram_reports.RV6",
+          "srchFieldName": "就诊.心电图报告.RV6",
+          "dataType": "double"
+        },
+        {
+          "UIFieldName": "SV2",
+          "IndexFieldName": "visits.electrocardiogram_reports.SV2",
+          "srchFieldName": "就诊.心电图报告.SV2",
+          "dataType": "double"
         },
         {
           "UIFieldName": "电解质",
@@ -21380,6 +21488,12 @@
           "dataType": "long"
         },
         {
+          "UIFieldName": "病理号",
+          "IndexFieldName": "visits.medical_record_home_page.pathology.PATHOLOGY_NO",
+          "srchFieldName": "就诊.病案首页.病理.病理号",
+          "dataType": "string"
+        },
+        {
           "UIFieldName": "病理诊断",
           "IndexFieldName": "visits.medical_record_home_page.pathology.PATHOLOGY_DIAG",
           "srchFieldName": "就诊.病案首页.病理.病理诊断",
@@ -22305,25 +22419,25 @@
           "UIFieldName": "术中失血",
           "IndexFieldName": "visits.operation_records.INTRAOPERATIVE_BLOOD_LOSS",
           "srchFieldName": "就诊.手术记录.术中失血",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "术中输血",
           "IndexFieldName": "visits.operation_records.INTRAOPERATIVE_BLOOD_TRANSFUSION",
           "srchFieldName": "就诊.手术记录.术中输血",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "术中输液",
           "IndexFieldName": "visits.operation_records.INTRAOPERATIVE_INFUSION",
           "srchFieldName": "就诊.手术记录.术中输液",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "自体输血",
           "IndexFieldName": "visits.operation_records.AUTOLOGOUS_BLOOD_TRANSFUSION",
           "srchFieldName": "就诊.手术记录.自体输血",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "记录日期",
@@ -25725,16 +25839,34 @@
           "dataType": "string"
         },
         {
-          "UIFieldName": "P-R周期",
+          "UIFieldName": "P-R间期",
           "IndexFieldName": "visits.electrocardiogram_reports.PR_PERIOD",
-          "srchFieldName": "就诊.心电图报告.P-R周期",
-          "dataType": "string"
+          "srchFieldName": "就诊.心电图报告.P-R间期",
+          "dataType": "long"
         },
         {
           "UIFieldName": "P波",
           "IndexFieldName": "visits.electrocardiogram_reports.P_WAVEFORM",
           "srchFieldName": "就诊.心电图报告.P波",
           "dataType": "string"
+        },
+        {
+          "UIFieldName": "P轴",
+          "IndexFieldName": "visits.electrocardiogram_reports.P_ELECTTRIC_AXIS",
+          "srchFieldName": "就诊.心电图报告.P轴",
+          "dataType": "long"
+        },
+        {
+          "UIFieldName": "QRS轴",
+          "IndexFieldName": "visits.electrocardiogram_reports.QRS_ELECTTRIC_AXIS",
+          "srchFieldName": "就诊.心电图报告.QRS轴",
+          "dataType": "long"
+        },
+        {
+          "UIFieldName": "T轴",
+          "IndexFieldName": "visits.electrocardiogram_reports.T_ELECTTRIC_AXIS",
+          "srchFieldName": "就诊.心电图报告.T轴",
+          "dataType": "long"
         },
         {
           "UIFieldName": "QRS波",
@@ -25746,13 +25878,19 @@
           "UIFieldName": "QRS时限",
           "IndexFieldName": "visits.electrocardiogram_reports.QRS_PEROID",
           "srchFieldName": "就诊.心电图报告.QRS时限",
-          "dataType": "string"
+          "dataType": "long"
         },
         {
           "UIFieldName": "Q-T间期",
           "IndexFieldName": "visits.electrocardiogram_reports.QT_PEROID",
           "srchFieldName": "就诊.心电图报告.Q-T间期",
-          "dataType": "string"
+          "dataType": "long"
+        },
+        {
+          "UIFieldName": "QTc",
+          "IndexFieldName": "visits.electrocardiogram_reports.QTc_PEROID",
+          "srchFieldName": "就诊.心电图报告.QTc",
+          "dataType": "long"
         },
         {
           "UIFieldName": "ST段",
@@ -25771,6 +25909,30 @@
           "IndexFieldName": "visits.electrocardiogram_reports.U_WAVEFORM",
           "srchFieldName": "就诊.心电图报告.U波",
           "dataType": "string"
+        },
+        {
+          "UIFieldName": "RV5",
+          "IndexFieldName": "visits.electrocardiogram_reports.RV5",
+          "srchFieldName": "就诊.心电图报告.RV5",
+          "dataType": "double"
+        },
+        {
+          "UIFieldName": "SV1",
+          "IndexFieldName": "visits.electrocardiogram_reports.SV1",
+          "srchFieldName": "就诊.心电图报告.SV1",
+          "dataType": "double"
+        },
+        {
+          "UIFieldName": "RV6",
+          "IndexFieldName": "visits.electrocardiogram_reports.RV6",
+          "srchFieldName": "就诊.心电图报告.RV6",
+          "dataType": "double"
+        },
+        {
+          "UIFieldName": "SV2",
+          "IndexFieldName": "visits.electrocardiogram_reports.SV2",
+          "srchFieldName": "就诊.心电图报告.SV2",
+          "dataType": "double"
         },
         {
           "UIFieldName": "电解质",
@@ -35198,6 +35360,12 @@
       ],
       "就诊.病案首页.病理": [
         {
+          "UIFieldName": "病理号",
+          "IndexFieldName": "visits.medical_record_home_page.pathology.PATHOLOGY_NO",
+          "srchFieldName": "就诊.病案首页.病理.病理号",
+          "dataType": "string"
+        },
+        {
           "UIFieldName": "病理诊断",
           "IndexFieldName": "visits.medical_record_home_page.pathology.PATHOLOGY_DIAG",
           "srchFieldName": "就诊.病案首页.病理.病理诊断",
@@ -35773,25 +35941,25 @@
           "UIFieldName": "术中失血",
           "IndexFieldName": "visits.operation_records.INTRAOPERATIVE_BLOOD_LOSS",
           "srchFieldName": "就诊.手术记录.术中失血",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "术中输血",
           "IndexFieldName": "visits.operation_records.INTRAOPERATIVE_BLOOD_TRANSFUSION",
           "srchFieldName": "就诊.手术记录.术中输血",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "术中输液",
           "IndexFieldName": "visits.operation_records.INTRAOPERATIVE_INFUSION",
           "srchFieldName": "就诊.手术记录.术中输液",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "自体输血",
           "IndexFieldName": "visits.operation_records.AUTOLOGOUS_BLOOD_TRANSFUSION",
           "srchFieldName": "就诊.手术记录.自体输血",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "记录日期",
@@ -37987,16 +38155,34 @@
           "dataType": "string"
         },
         {
-          "UIFieldName": "P-R周期",
+          "UIFieldName": "P-R间期",
           "IndexFieldName": "visits.electrocardiogram_reports.PR_PERIOD",
-          "srchFieldName": "就诊.心电图报告.P-R周期",
-          "dataType": "string"
+          "srchFieldName": "就诊.心电图报告.P-R间期",
+          "dataType": "long"
         },
         {
           "UIFieldName": "P波",
           "IndexFieldName": "visits.electrocardiogram_reports.P_WAVEFORM",
           "srchFieldName": "就诊.心电图报告.P波",
           "dataType": "string"
+        },
+        {
+          "UIFieldName": "P轴",
+          "IndexFieldName": "visits.electrocardiogram_reports.P_ELECTTRIC_AXIS",
+          "srchFieldName": "就诊.心电图报告.P轴",
+          "dataType": "long"
+        },
+        {
+          "UIFieldName": "QRS轴",
+          "IndexFieldName": "visits.electrocardiogram_reports.QRS_ELECTTRIC_AXIS",
+          "srchFieldName": "就诊.心电图报告.QRS轴",
+          "dataType": "long"
+        },
+        {
+          "UIFieldName": "T轴",
+          "IndexFieldName": "visits.electrocardiogram_reports.T_ELECTTRIC_AXIS",
+          "srchFieldName": "就诊.心电图报告.T轴",
+          "dataType": "long"
         },
         {
           "UIFieldName": "QRS波",
@@ -38008,13 +38194,19 @@
           "UIFieldName": "QRS时限",
           "IndexFieldName": "visits.electrocardiogram_reports.QRS_PEROID",
           "srchFieldName": "就诊.心电图报告.QRS时限",
-          "dataType": "string"
+          "dataType": "long"
         },
         {
           "UIFieldName": "Q-T间期",
           "IndexFieldName": "visits.electrocardiogram_reports.QT_PEROID",
           "srchFieldName": "就诊.心电图报告.Q-T间期",
-          "dataType": "string"
+          "dataType": "long"
+        },
+        {
+          "UIFieldName": "QTc",
+          "IndexFieldName": "visits.electrocardiogram_reports.QTc_PEROID",
+          "srchFieldName": "就诊.心电图报告.QTc",
+          "dataType": "long"
         },
         {
           "UIFieldName": "ST段",
@@ -38033,6 +38225,30 @@
           "IndexFieldName": "visits.electrocardiogram_reports.U_WAVEFORM",
           "srchFieldName": "就诊.心电图报告.U波",
           "dataType": "string"
+        },
+        {
+          "UIFieldName": "RV5",
+          "IndexFieldName": "visits.electrocardiogram_reports.RV5",
+          "srchFieldName": "就诊.心电图报告.RV5",
+          "dataType": "double"
+        },
+        {
+          "UIFieldName": "SV1",
+          "IndexFieldName": "visits.electrocardiogram_reports.SV1",
+          "srchFieldName": "就诊.心电图报告.SV1",
+          "dataType": "double"
+        },
+        {
+          "UIFieldName": "RV6",
+          "IndexFieldName": "visits.electrocardiogram_reports.RV6",
+          "srchFieldName": "就诊.心电图报告.RV6",
+          "dataType": "double"
+        },
+        {
+          "UIFieldName": "SV2",
+          "IndexFieldName": "visits.electrocardiogram_reports.SV2",
+          "srchFieldName": "就诊.心电图报告.SV2",
+          "dataType": "double"
         },
         {
           "UIFieldName": "电解质",
@@ -46212,6 +46428,12 @@
           "dataType": "long"
         },
         {
+          "UIFieldName": "病理号",
+          "IndexFieldName": "visits.medical_record_home_page.pathology.PATHOLOGY_NO",
+          "srchFieldName": "就诊.病案首页.病理.病理号",
+          "dataType": "string"
+        },
+        {
           "UIFieldName": "病理诊断",
           "IndexFieldName": "visits.medical_record_home_page.pathology.PATHOLOGY_DIAG",
           "srchFieldName": "就诊.病案首页.病理.病理诊断",
@@ -47137,25 +47359,25 @@
           "UIFieldName": "术中失血",
           "IndexFieldName": "visits.operation_records.INTRAOPERATIVE_BLOOD_LOSS",
           "srchFieldName": "就诊.手术记录.术中失血",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "术中输血",
           "IndexFieldName": "visits.operation_records.INTRAOPERATIVE_BLOOD_TRANSFUSION",
           "srchFieldName": "就诊.手术记录.术中输血",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "术中输液",
           "IndexFieldName": "visits.operation_records.INTRAOPERATIVE_INFUSION",
           "srchFieldName": "就诊.手术记录.术中输液",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "自体输血",
           "IndexFieldName": "visits.operation_records.AUTOLOGOUS_BLOOD_TRANSFUSION",
           "srchFieldName": "就诊.手术记录.自体输血",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "记录日期",
@@ -50557,16 +50779,34 @@
           "dataType": "string"
         },
         {
-          "UIFieldName": "P-R周期",
+          "UIFieldName": "P-R间期",
           "IndexFieldName": "visits.electrocardiogram_reports.PR_PERIOD",
-          "srchFieldName": "就诊.心电图报告.P-R周期",
-          "dataType": "string"
+          "srchFieldName": "就诊.心电图报告.P-R间期",
+          "dataType": "long"
         },
         {
           "UIFieldName": "P波",
           "IndexFieldName": "visits.electrocardiogram_reports.P_WAVEFORM",
           "srchFieldName": "就诊.心电图报告.P波",
           "dataType": "string"
+        },
+        {
+          "UIFieldName": "P轴",
+          "IndexFieldName": "visits.electrocardiogram_reports.P_ELECTTRIC_AXIS",
+          "srchFieldName": "就诊.心电图报告.P轴",
+          "dataType": "long"
+        },
+        {
+          "UIFieldName": "QRS轴",
+          "IndexFieldName": "visits.electrocardiogram_reports.QRS_ELECTTRIC_AXIS",
+          "srchFieldName": "就诊.心电图报告.QRS轴",
+          "dataType": "long"
+        },
+        {
+          "UIFieldName": "T轴",
+          "IndexFieldName": "visits.electrocardiogram_reports.T_ELECTTRIC_AXIS",
+          "srchFieldName": "就诊.心电图报告.T轴",
+          "dataType": "long"
         },
         {
           "UIFieldName": "QRS波",
@@ -50578,13 +50818,19 @@
           "UIFieldName": "QRS时限",
           "IndexFieldName": "visits.electrocardiogram_reports.QRS_PEROID",
           "srchFieldName": "就诊.心电图报告.QRS时限",
-          "dataType": "string"
+          "dataType": "long"
         },
         {
           "UIFieldName": "Q-T间期",
           "IndexFieldName": "visits.electrocardiogram_reports.QT_PEROID",
           "srchFieldName": "就诊.心电图报告.Q-T间期",
-          "dataType": "string"
+          "dataType": "long"
+        },
+        {
+          "UIFieldName": "QTc",
+          "IndexFieldName": "visits.electrocardiogram_reports.QTc_PEROID",
+          "srchFieldName": "就诊.心电图报告.QTc",
+          "dataType": "long"
         },
         {
           "UIFieldName": "ST段",
@@ -50603,6 +50849,30 @@
           "IndexFieldName": "visits.electrocardiogram_reports.U_WAVEFORM",
           "srchFieldName": "就诊.心电图报告.U波",
           "dataType": "string"
+        },
+        {
+          "UIFieldName": "RV5",
+          "IndexFieldName": "visits.electrocardiogram_reports.RV5",
+          "srchFieldName": "就诊.心电图报告.RV5",
+          "dataType": "double"
+        },
+        {
+          "UIFieldName": "SV1",
+          "IndexFieldName": "visits.electrocardiogram_reports.SV1",
+          "srchFieldName": "就诊.心电图报告.SV1",
+          "dataType": "double"
+        },
+        {
+          "UIFieldName": "RV6",
+          "IndexFieldName": "visits.electrocardiogram_reports.RV6",
+          "srchFieldName": "就诊.心电图报告.RV6",
+          "dataType": "double"
+        },
+        {
+          "UIFieldName": "SV2",
+          "IndexFieldName": "visits.electrocardiogram_reports.SV2",
+          "srchFieldName": "就诊.心电图报告.SV2",
+          "dataType": "double"
         },
         {
           "UIFieldName": "电解质",
@@ -60030,6 +60300,12 @@
       ],
       "就诊.病案首页.病理": [
         {
+          "UIFieldName": "病理号",
+          "IndexFieldName": "visits.medical_record_home_page.pathology.PATHOLOGY_NO",
+          "srchFieldName": "就诊.病案首页.病理.病理号",
+          "dataType": "string"
+        },
+        {
           "UIFieldName": "病理诊断",
           "IndexFieldName": "visits.medical_record_home_page.pathology.PATHOLOGY_DIAG",
           "srchFieldName": "就诊.病案首页.病理.病理诊断",
@@ -60605,25 +60881,25 @@
           "UIFieldName": "术中失血",
           "IndexFieldName": "visits.operation_records.INTRAOPERATIVE_BLOOD_LOSS",
           "srchFieldName": "就诊.手术记录.术中失血",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "术中输血",
           "IndexFieldName": "visits.operation_records.INTRAOPERATIVE_BLOOD_TRANSFUSION",
           "srchFieldName": "就诊.手术记录.术中输血",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "术中输液",
           "IndexFieldName": "visits.operation_records.INTRAOPERATIVE_INFUSION",
           "srchFieldName": "就诊.手术记录.术中输液",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "自体输血",
           "IndexFieldName": "visits.operation_records.AUTOLOGOUS_BLOOD_TRANSFUSION",
           "srchFieldName": "就诊.手术记录.自体输血",
-          "dataType": "long"
+          "dataType": "string"
         },
         {
           "UIFieldName": "记录日期",
@@ -62819,16 +63095,34 @@
           "dataType": "string"
         },
         {
-          "UIFieldName": "P-R周期",
+          "UIFieldName": "P-R间期",
           "IndexFieldName": "visits.electrocardiogram_reports.PR_PERIOD",
-          "srchFieldName": "就诊.心电图报告.P-R周期",
-          "dataType": "string"
+          "srchFieldName": "就诊.心电图报告.P-R间期",
+          "dataType": "long"
         },
         {
           "UIFieldName": "P波",
           "IndexFieldName": "visits.electrocardiogram_reports.P_WAVEFORM",
           "srchFieldName": "就诊.心电图报告.P波",
           "dataType": "string"
+        },
+        {
+          "UIFieldName": "P轴",
+          "IndexFieldName": "visits.electrocardiogram_reports.P_ELECTTRIC_AXIS",
+          "srchFieldName": "就诊.心电图报告.P轴",
+          "dataType": "long"
+        },
+        {
+          "UIFieldName": "QRS轴",
+          "IndexFieldName": "visits.electrocardiogram_reports.QRS_ELECTTRIC_AXIS",
+          "srchFieldName": "就诊.心电图报告.QRS轴",
+          "dataType": "long"
+        },
+        {
+          "UIFieldName": "T轴",
+          "IndexFieldName": "visits.electrocardiogram_reports.T_ELECTTRIC_AXIS",
+          "srchFieldName": "就诊.心电图报告.T轴",
+          "dataType": "long"
         },
         {
           "UIFieldName": "QRS波",
@@ -62840,13 +63134,19 @@
           "UIFieldName": "QRS时限",
           "IndexFieldName": "visits.electrocardiogram_reports.QRS_PEROID",
           "srchFieldName": "就诊.心电图报告.QRS时限",
-          "dataType": "string"
+          "dataType": "long"
         },
         {
           "UIFieldName": "Q-T间期",
           "IndexFieldName": "visits.electrocardiogram_reports.QT_PEROID",
           "srchFieldName": "就诊.心电图报告.Q-T间期",
-          "dataType": "string"
+          "dataType": "long"
+        },
+        {
+          "UIFieldName": "QTc",
+          "IndexFieldName": "visits.electrocardiogram_reports.QTc_PEROID",
+          "srchFieldName": "就诊.心电图报告.QTc",
+          "dataType": "long"
         },
         {
           "UIFieldName": "ST段",
@@ -62865,6 +63165,30 @@
           "IndexFieldName": "visits.electrocardiogram_reports.U_WAVEFORM",
           "srchFieldName": "就诊.心电图报告.U波",
           "dataType": "string"
+        },
+        {
+          "UIFieldName": "RV5",
+          "IndexFieldName": "visits.electrocardiogram_reports.RV5",
+          "srchFieldName": "就诊.心电图报告.RV5",
+          "dataType": "double"
+        },
+        {
+          "UIFieldName": "SV1",
+          "IndexFieldName": "visits.electrocardiogram_reports.SV1",
+          "srchFieldName": "就诊.心电图报告.SV1",
+          "dataType": "double"
+        },
+        {
+          "UIFieldName": "RV6",
+          "IndexFieldName": "visits.electrocardiogram_reports.RV6",
+          "srchFieldName": "就诊.心电图报告.RV6",
+          "dataType": "double"
+        },
+        {
+          "UIFieldName": "SV2",
+          "IndexFieldName": "visits.electrocardiogram_reports.SV2",
+          "srchFieldName": "就诊.心电图报告.SV2",
+          "dataType": "double"
         },
         {
           "UIFieldName": "电解质",
