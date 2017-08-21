@@ -772,6 +772,7 @@ public class DetailController {
     void PatientDetailThumbnail(@RequestParam("url") String url, HttpServletResponse response) {
         Long start = System.currentTimeMillis();
         try {
+            logger.info("缩略图获取URL " + url);
             processor.PatientDetailThumbnail(url, response);
         } catch (Exception e) {
             logger.error("", e);

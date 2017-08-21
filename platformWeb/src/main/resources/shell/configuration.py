@@ -21,7 +21,7 @@ def sortItem(itemArray,allSortIndexName):
     return newArray
 
 def process():
-    data = xlrd.open_workbook('/Users/luoxupan/Downloads/病人维度临床数据字段配置_for烟台毓璜顶医院版本V3.1.3.2.xlsx')
+    data = xlrd.open_workbook('/Users/luoxupan/Downloads/病人维度临床数据字段配置_for烟台毓璜顶医院版本V3.1.4.0.xlsx')
     allItemList = OrderedDict()
     allItemListCopy = OrderedDict()
     sheet = data.sheets()[0]
@@ -189,11 +189,14 @@ def process():
     angiocardiopathy = OrderedDict()
     # 中南的病种
     adrenal_gland_tumor = OrderedDict()
+    # 烟台病种
+    CEVD = OrderedDict()
 
-    mergeResult['liver_cancer'] = liver
-    mergeResult['lung_cancer'] = lung
+    # mergeResult['liver_cancer'] = liver
+    # mergeResult['lung_cancer'] = lung
     mergeResult['kidney_cancer'] = kidney
-    mergeResult['adrenal_gland_tumor'] = adrenal_gland_tumor
+    mergeResult['CEVD'] = CEVD
+    #mergeResult['adrenal_gland_tumor'] = adrenal_gland_tumor
     # ///////////////////////////////////////////////////////////////////////////////////////////////////
     # mergeResult["Angiocardiopathy"] = angiocardiopathy
     # ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -215,6 +218,13 @@ def process():
     import_kidney = OrderedDict()
     compare_kidney = OrderedDict()
 
+    # 烟台病种
+    all_CEVD = OrderedDict()
+    default_CEVD = OrderedDict()
+    advancedSearch_CEVD = OrderedDict()
+    import_CEVD = OrderedDict()
+    compare_CEVD = OrderedDict()
+
     # 心血管
     all_angiocardiopathy = OrderedDict()
     default_angiocardiopathy = OrderedDict()
@@ -233,11 +243,12 @@ def process():
         all_angiocardiopathy[key] = allGroup[key]
         # 中南的病种
         all_adrenal_gland_tumor[key] = allGroup[key]
+        # 烟台病种
+        all_CEVD[key] = allGroup[key]
         if key == '患者基本信息':
             all_liver[key] = allGroup[key]
             all_lung[key] = allGroup[key]
             all_kidney[key] = allGroup[key]
-
 
         if key.startswith('肝癌'):
             all_liver[key] = allGroup[key]
@@ -256,6 +267,8 @@ def process():
     liver['all'] = all_liver
     lung['all'] = all_lung
     kidney['all'] = all_kidney
+    # 烟台病种
+    CEVD['all'] = all_CEVD
     # 心血管
     angiocardiopathy['all'] = all_angiocardiopathy
     # 中南的病种
@@ -272,6 +285,8 @@ def process():
         default_angiocardiopathy[key] = defaultGroup[key]
         # 中南的病种
         default_adrenal_gland_tumor[key] = defaultGroup[key]
+        # 烟台病种
+        default_CEVD[key] = defaultGroup[key]
         if key == '患者基本信息':
             default_liver[key] = defaultGroup[key]
             default_lung[key] = defaultGroup[key]
@@ -294,6 +309,8 @@ def process():
     liver['default'] = default_liver
     lung['default'] = default_lung
     kidney['default'] = default_kidney
+    # 烟台病种
+    CEVD['default'] = default_CEVD
     # 心血管
     angiocardiopathy['default'] = default_angiocardiopathy
     # 中南的病种
@@ -305,6 +322,9 @@ def process():
         advancedSearch_angiocardiopathy[key] = advancedGroup[key]
         # 中南的病种
         advancedSearch_adrenal_gland_tumor[key] = advancedGroup[key]
+        # 烟台病种
+        advancedSearch_CEVD[key] = advancedGroup[key]
+
         if key == '患者基本信息':
             advancedSearch_liver[key] = advancedGroup[key]
             advancedSearch_lung[key] = advancedGroup[key]
@@ -329,6 +349,8 @@ def process():
     liver['advancedSearch'] = advancedSearch_liver
     lung['advancedSearch'] = advancedSearch_lung
     kidney['advancedSearch'] = advancedSearch_kidney
+    # 烟台病种
+    CEVD['advancedSearch'] = advancedSearch_CEVD
     # 心血管
     angiocardiopathy['advancedSearch'] = advancedSearch_angiocardiopathy
     # 中南的病种
@@ -339,6 +361,8 @@ def process():
         import_angiocardiopathy[key] = importedGroup[key]
         # 中南的病种
         import_adrenal_gland_tumor[key] = importedGroup[key]
+        # 烟台病种
+        import_CEVD[key] = importedGroup[key]
         if key == '患者基本信息':
             import_liver[key] = importedGroup[key]
             import_lung[key] = importedGroup[key]
@@ -359,12 +383,16 @@ def process():
     liver['import'] = import_liver
     lung['import'] = import_lung
     kidney['import'] = import_kidney
+    # 烟台病种
+    CEVD['import'] = import_CEVD
     # 心血管
     angiocardiopathy['import'] = import_angiocardiopathy
     # 中南的病种
     adrenal_gland_tumor['import'] = import_adrenal_gland_tumor
 
     for key in compare:
+        # 烟台病种
+        compare_CEVD[key] = compare[key]
         # 心血管
         compare_angiocardiopathy[key] = compare[key]
         # 中南的病种
@@ -390,6 +418,8 @@ def process():
     liver['compare'] = compare_liver
     lung['compare'] = compare_lung
     kidney['compare'] = compare_kidney
+    # 烟台病种
+    CEVD['compare'] = compare_CEVD
     # 心血管
     angiocardiopathy['compare'] = compare_angiocardiopathy
     adrenal_gland_tumor['compare'] = compare_adrenal_gland_tumor

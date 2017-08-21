@@ -634,6 +634,7 @@ public class DetailProcessor {
     public void PatientDetailThumbnail(String urlId, HttpServletResponse response) {
         try {
             String urlStr = ConfigurationService.getUrlBean().getPatientDetailThumbnail() + urlId;
+            logger.info("到FS抽取缩略图地址URL " + urlStr);
             URL url = new URL(urlStr);
             HttpURLConnection conn = (HttpURLConnection)url.openConnection();
             conn.setRequestMethod("GET");
