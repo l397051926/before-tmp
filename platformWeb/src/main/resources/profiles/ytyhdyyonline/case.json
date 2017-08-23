@@ -1494,7 +1494,8 @@
             "已婚",
             "未婚",
             "离异",
-            "丧偶"
+            "丧偶",
+            "其他"
           ]
         },
         {
@@ -1634,13 +1635,25 @@
           "UIFieldName": "入院途径",
           "IndexFieldName": "visits.medical_record_home_page.ADMISS_PATH",
           "srchFieldName": "就诊.病案首页.入院途径",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "急诊",
+            "门诊",
+            "其他医疗机构转入",
+            "其他"
+          ]
         },
         {
           "UIFieldName": "入院与出院符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM5",
           "srchFieldName": "就诊.病案首页.入院与出院符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "入院状态代码",
@@ -1710,7 +1723,9 @@
           "dataType": "string",
           "dataMap": [
             "阴性",
-            "阳性"
+            "阳性",
+            "不详",
+            "未查"
           ]
         },
         {
@@ -1723,7 +1738,8 @@
             "B",
             "O",
             "AB",
-            "不详"
+            "不详",
+            "未查"
           ]
         },
         {
@@ -1766,7 +1782,11 @@
           "UIFieldName": "输血反应名称",
           "IndexFieldName": "visits.medical_record_home_page.LI_TRANS_REACTION_NAME",
           "srchFieldName": "就诊.病案首页.输血反应名称",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "有",
+            "无"
+          ]
         },
         {
           "UIFieldName": "输液反应代码",
@@ -1778,13 +1798,30 @@
           "UIFieldName": "输液反应名称",
           "IndexFieldName": "visits.medical_record_home_page.TRANS_REACTION_NAME",
           "srchFieldName": "就诊.病案首页.输液反应名称",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "有",
+            "无"
+          ]
         },
         {
           "UIFieldName": "医疗付费方式",
           "IndexFieldName": "visits.medical_record_home_page.PAYMENT_TYPE",
           "srchFieldName": "就诊.病案首页.医疗付费方式",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "城镇居民",
+            "城镇职工",
+            "工伤",
+            "离休",
+            "其他",
+            "社会基本医疗保险",
+            "生育",
+            "新农合",
+            "异地居民",
+            "异地职工",
+            "自费"
+          ]
         },
         {
           "UIFieldName": "肿瘤分期_M分期",
@@ -1814,7 +1851,14 @@
           "UIFieldName": "主要诊断归转情况",
           "IndexFieldName": "visits.medical_record_home_page.MAIN_DIAG_REGRESSION",
           "srchFieldName": "就诊.病案首页.主要诊断归转情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "治愈",
+            "好转",
+            "未查",
+            "死亡",
+            "其他"
+          ]
         },
         {
           "UIFieldName": "抢救方法",
@@ -1844,43 +1888,83 @@
           "UIFieldName": "恶性肿瘤手术前与手术后病理诊断",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM7",
           "srchFieldName": "就诊.病案首页.恶性肿瘤手术前与手术后病理诊断",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "术前与术后符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM3",
           "srchFieldName": "就诊.病案首页.术前与术后符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "放射与病理符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM4",
           "srchFieldName": "就诊.病案首页.放射与病理符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "临床与病理符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM2",
           "srchFieldName": "就诊.病案首页.临床与病理符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "门诊与出院符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM1",
           "srchFieldName": "就诊.病案首页.门诊与出院符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "手术冰冻与石蜡诊断符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM6",
           "srchFieldName": "就诊.病案首页.手术冰冻与石蜡诊断符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "是否有出院15天内再住院计划",
           "IndexFieldName": "visits.medical_record_home_page.READMISS_PLAN_15",
           "srchFieldName": "就诊.病案首页.是否有出院15天内再住院计划",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "15天再住院目的",
@@ -1898,25 +1982,41 @@
           "UIFieldName": "31天再住院目的",
           "IndexFieldName": "visits.medical_record_home_page.READMISS_PLAN_31_PURPOSE",
           "srchFieldName": "就诊.病案首页.31天再住院目的",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "非预期重返手术",
           "IndexFieldName": "visits.medical_record_home_page.SURGERY_UNEXPECTED",
           "srchFieldName": "就诊.病案首页.非预期重返手术",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "是否为手术后并发症",
           "IndexFieldName": "visits.medical_record_home_page.POSTOPERATIVE_COMPLICATION",
           "srchFieldName": "就诊.病案首页.是否为手术后并发症",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "死亡患者尸检",
           "IndexFieldName": "visits.medical_record_home_page.AUTOPSY",
           "srchFieldName": "就诊.病案首页.死亡患者尸检",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "特级护理天数",
@@ -1940,7 +2040,15 @@
           "UIFieldName": "离院方式",
           "IndexFieldName": "visits.medical_record_home_page.DISCHARGE_PASS",
           "srchFieldName": "就诊.病案首页.离院方式",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "医嘱离院",
+            "医嘱转院",
+            "医嘱转社区卫生服务机构/乡镇卫生院",
+            "非医嘱离院",
+            "死亡",
+            "其他"
+          ]
         },
         {
           "UIFieldName": "拟接收医疗机构名称",
@@ -2049,7 +2157,12 @@
           "UIFieldName": "病案质量",
           "IndexFieldName": "visits.medical_record_home_page.BA_QUALITY",
           "srchFieldName": "就诊.病案首页.病案质量",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "甲",
+            "乙",
+            "丙"
+          ]
         },
         {
           "UIFieldName": "组织机构代码",
@@ -2499,7 +2612,13 @@
           "UIFieldName": "入院病情",
           "IndexFieldName": "visits.medical_record_home_page.dis_main_diag.ADMISS_CONDITION",
           "srchFieldName": "就诊.病案首页.出院主要诊断.入院病情",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "有",
+            "临床不确定",
+            "情况不明",
+            "无"
+          ]
         },
         {
           "UIFieldName": "出院主要诊断编码",
@@ -2548,7 +2667,13 @@
           "UIFieldName": "入院病情",
           "IndexFieldName": "visits.medical_record_home_page.dis_other_diag.ADMISS_CONDITION",
           "srchFieldName": "就诊.病案首页.出院其他诊断.入院病情",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "有",
+            "临床不确定",
+            "情况不明",
+            "无"
+          ]
         },
         {
           "UIFieldName": "出院其他诊断编码",
@@ -2646,7 +2771,11 @@
           "UIFieldName": "有无药物过敏",
           "IndexFieldName": "visits.medical_record_home_page.drug_allergy.DRUG_ALLERGIC_FLAG",
           "srchFieldName": "就诊.病案首页.药物过敏.有无药物过敏",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "无",
+            "有"
+          ]
         }
       ],
       "就诊.病案首页.重症监护": [
@@ -10462,13 +10591,21 @@
           "UIFieldName": "是否降痛",
           "IndexFieldName": "visits.triple_test_table.IS_REDUCTION_PAIN",
           "srchFieldName": "就诊.三测单.是否降痛",
-          "dataType": "boolean"
+          "dataType": "boolean",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "是否物理降温",
           "IndexFieldName": "visits.triple_test_table.IS_PHYSICAL_COOLING",
           "srchFieldName": "就诊.三测单.是否物理降温",
-          "dataType": "boolean"
+          "dataType": "boolean",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "物理降温温度",
@@ -10564,7 +10701,11 @@
           "UIFieldName": "是否重复测量",
           "IndexFieldName": "visits.triple_test_table.IS_REPEATED_MEASURE",
           "srchFieldName": "就诊.三测单.是否重复测量",
-          "dataType": "boolean"
+          "dataType": "boolean",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "病床号",
@@ -15666,7 +15807,8 @@
             "已婚",
             "未婚",
             "离异",
-            "丧偶"
+            "丧偶",
+            "其他"
           ]
         },
         {
@@ -15794,13 +15936,25 @@
           "UIFieldName": "入院途径",
           "IndexFieldName": "visits.medical_record_home_page.ADMISS_PATH",
           "srchFieldName": "就诊.病案首页.入院途径",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "急诊",
+            "门诊",
+            "其他医疗机构转入",
+            "其他"
+          ]
         },
         {
           "UIFieldName": "入院与出院符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM5",
           "srchFieldName": "就诊.病案首页.入院与出院符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "入院状态名称",
@@ -15846,7 +16000,9 @@
           "dataType": "string",
           "dataMap": [
             "阴性",
-            "阳性"
+            "阳性",
+            "不详",
+            "未查"
           ]
         },
         {
@@ -15859,7 +16015,8 @@
             "B",
             "O",
             "AB",
-            "不详"
+            "不详",
+            "未查"
           ]
         },
         {
@@ -15902,7 +16059,11 @@
           "UIFieldName": "输血反应名称",
           "IndexFieldName": "visits.medical_record_home_page.LI_TRANS_REACTION_NAME",
           "srchFieldName": "就诊.病案首页.输血反应名称",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "有",
+            "无"
+          ]
         },
         {
           "UIFieldName": "输液反应代码",
@@ -15914,13 +16075,30 @@
           "UIFieldName": "输液反应名称",
           "IndexFieldName": "visits.medical_record_home_page.TRANS_REACTION_NAME",
           "srchFieldName": "就诊.病案首页.输液反应名称",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "有",
+            "无"
+          ]
         },
         {
           "UIFieldName": "医疗付费方式",
           "IndexFieldName": "visits.medical_record_home_page.PAYMENT_TYPE",
           "srchFieldName": "就诊.病案首页.医疗付费方式",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "城镇居民",
+            "城镇职工",
+            "工伤",
+            "离休",
+            "其他",
+            "社会基本医疗保险",
+            "生育",
+            "新农合",
+            "异地居民",
+            "异地职工",
+            "自费"
+          ]
         },
         {
           "UIFieldName": "肿瘤分期_M分期",
@@ -15950,7 +16128,14 @@
           "UIFieldName": "主要诊断归转情况",
           "IndexFieldName": "visits.medical_record_home_page.MAIN_DIAG_REGRESSION",
           "srchFieldName": "就诊.病案首页.主要诊断归转情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "治愈",
+            "好转",
+            "未查",
+            "死亡",
+            "其他"
+          ]
         },
         {
           "UIFieldName": "抢救方法名称",
@@ -15974,43 +16159,83 @@
           "UIFieldName": "恶性肿瘤手术前与手术后病理诊断",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM7",
           "srchFieldName": "就诊.病案首页.恶性肿瘤手术前与手术后病理诊断",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "术前与术后符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM3",
           "srchFieldName": "就诊.病案首页.术前与术后符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "放射与病理符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM4",
           "srchFieldName": "就诊.病案首页.放射与病理符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "临床与病理符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM2",
           "srchFieldName": "就诊.病案首页.临床与病理符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "门诊与出院符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM1",
           "srchFieldName": "就诊.病案首页.门诊与出院符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "手术冰冻与石蜡诊断符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM6",
           "srchFieldName": "就诊.病案首页.手术冰冻与石蜡诊断符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "是否有出院15天内再住院计划",
           "IndexFieldName": "visits.medical_record_home_page.READMISS_PLAN_15",
           "srchFieldName": "就诊.病案首页.是否有出院15天内再住院计划",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "15天再住院目的",
@@ -16028,25 +16253,41 @@
           "UIFieldName": "31天再住院目的",
           "IndexFieldName": "visits.medical_record_home_page.READMISS_PLAN_31_PURPOSE",
           "srchFieldName": "就诊.病案首页.31天再住院目的",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "非预期重返手术",
           "IndexFieldName": "visits.medical_record_home_page.SURGERY_UNEXPECTED",
           "srchFieldName": "就诊.病案首页.非预期重返手术",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "是否为手术后并发症",
           "IndexFieldName": "visits.medical_record_home_page.POSTOPERATIVE_COMPLICATION",
           "srchFieldName": "就诊.病案首页.是否为手术后并发症",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "死亡患者尸检",
           "IndexFieldName": "visits.medical_record_home_page.AUTOPSY",
           "srchFieldName": "就诊.病案首页.死亡患者尸检",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "特级护理天数",
@@ -16070,7 +16311,15 @@
           "UIFieldName": "离院方式",
           "IndexFieldName": "visits.medical_record_home_page.DISCHARGE_PASS",
           "srchFieldName": "就诊.病案首页.离院方式",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "医嘱离院",
+            "医嘱转院",
+            "医嘱转社区卫生服务机构/乡镇卫生院",
+            "非医嘱离院",
+            "死亡",
+            "其他"
+          ]
         },
         {
           "UIFieldName": "拟接收医疗机构名称",
@@ -16155,7 +16404,12 @@
           "UIFieldName": "病案质量",
           "IndexFieldName": "visits.medical_record_home_page.BA_QUALITY",
           "srchFieldName": "就诊.病案首页.病案质量",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "甲",
+            "乙",
+            "丙"
+          ]
         },
         {
           "UIFieldName": "凝血因子类制品费",
@@ -16292,7 +16546,13 @@
           "UIFieldName": "入院病情",
           "IndexFieldName": "visits.medical_record_home_page.dis_main_diag.ADMISS_CONDITION",
           "srchFieldName": "就诊.病案首页.出院主要诊断.入院病情",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "有",
+            "临床不确定",
+            "情况不明",
+            "无"
+          ]
         },
         {
           "UIFieldName": "出院主要诊断编码",
@@ -16312,7 +16572,13 @@
           "UIFieldName": "入院病情",
           "IndexFieldName": "visits.medical_record_home_page.dis_other_diag.ADMISS_CONDITION",
           "srchFieldName": "就诊.病案首页.出院其他诊断.入院病情",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "有",
+            "临床不确定",
+            "情况不明",
+            "无"
+          ]
         },
         {
           "UIFieldName": "出院其他诊断编码",
@@ -16352,7 +16618,11 @@
           "UIFieldName": "有无药物过敏",
           "IndexFieldName": "visits.medical_record_home_page.drug_allergy.DRUG_ALLERGIC_FLAG",
           "srchFieldName": "就诊.病案首页.药物过敏.有无药物过敏",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "无",
+            "有"
+          ]
         }
       ],
       "就诊.病案首页.重症监护": [
@@ -21378,13 +21648,21 @@
           "UIFieldName": "是否降痛",
           "IndexFieldName": "visits.triple_test_table.IS_REDUCTION_PAIN",
           "srchFieldName": "就诊.三测单.是否降痛",
-          "dataType": "boolean"
+          "dataType": "boolean",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "是否物理降温",
           "IndexFieldName": "visits.triple_test_table.IS_PHYSICAL_COOLING",
           "srchFieldName": "就诊.三测单.是否物理降温",
-          "dataType": "boolean"
+          "dataType": "boolean",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "物理降温温度",
@@ -21480,7 +21758,11 @@
           "UIFieldName": "是否重复测量",
           "IndexFieldName": "visits.triple_test_table.IS_REPEATED_MEASURE",
           "srchFieldName": "就诊.三测单.是否重复测量",
-          "dataType": "boolean"
+          "dataType": "boolean",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "病床号",
@@ -26124,7 +26406,8 @@
             "已婚",
             "未婚",
             "离异",
-            "丧偶"
+            "丧偶",
+            "其他"
           ]
         },
         {
@@ -26264,13 +26547,25 @@
           "UIFieldName": "入院途径",
           "IndexFieldName": "visits.medical_record_home_page.ADMISS_PATH",
           "srchFieldName": "就诊.病案首页.入院途径",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "急诊",
+            "门诊",
+            "其他医疗机构转入",
+            "其他"
+          ]
         },
         {
           "UIFieldName": "入院与出院符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM5",
           "srchFieldName": "就诊.病案首页.入院与出院符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "入院状态代码",
@@ -26340,7 +26635,9 @@
           "dataType": "string",
           "dataMap": [
             "阴性",
-            "阳性"
+            "阳性",
+            "不详",
+            "未查"
           ]
         },
         {
@@ -26353,7 +26650,8 @@
             "B",
             "O",
             "AB",
-            "不详"
+            "不详",
+            "未查"
           ]
         },
         {
@@ -26396,7 +26694,11 @@
           "UIFieldName": "输血反应名称",
           "IndexFieldName": "visits.medical_record_home_page.LI_TRANS_REACTION_NAME",
           "srchFieldName": "就诊.病案首页.输血反应名称",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "有",
+            "无"
+          ]
         },
         {
           "UIFieldName": "输液反应代码",
@@ -26408,13 +26710,30 @@
           "UIFieldName": "输液反应名称",
           "IndexFieldName": "visits.medical_record_home_page.TRANS_REACTION_NAME",
           "srchFieldName": "就诊.病案首页.输液反应名称",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "有",
+            "无"
+          ]
         },
         {
           "UIFieldName": "医疗付费方式",
           "IndexFieldName": "visits.medical_record_home_page.PAYMENT_TYPE",
           "srchFieldName": "就诊.病案首页.医疗付费方式",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "城镇居民",
+            "城镇职工",
+            "工伤",
+            "离休",
+            "其他",
+            "社会基本医疗保险",
+            "生育",
+            "新农合",
+            "异地居民",
+            "异地职工",
+            "自费"
+          ]
         },
         {
           "UIFieldName": "肿瘤分期_M分期",
@@ -26444,7 +26763,14 @@
           "UIFieldName": "主要诊断归转情况",
           "IndexFieldName": "visits.medical_record_home_page.MAIN_DIAG_REGRESSION",
           "srchFieldName": "就诊.病案首页.主要诊断归转情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "治愈",
+            "好转",
+            "未查",
+            "死亡",
+            "其他"
+          ]
         },
         {
           "UIFieldName": "抢救方法",
@@ -26474,43 +26800,83 @@
           "UIFieldName": "恶性肿瘤手术前与手术后病理诊断",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM7",
           "srchFieldName": "就诊.病案首页.恶性肿瘤手术前与手术后病理诊断",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "术前与术后符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM3",
           "srchFieldName": "就诊.病案首页.术前与术后符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "放射与病理符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM4",
           "srchFieldName": "就诊.病案首页.放射与病理符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "临床与病理符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM2",
           "srchFieldName": "就诊.病案首页.临床与病理符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "门诊与出院符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM1",
           "srchFieldName": "就诊.病案首页.门诊与出院符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "手术冰冻与石蜡诊断符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM6",
           "srchFieldName": "就诊.病案首页.手术冰冻与石蜡诊断符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "是否有出院15天内再住院计划",
           "IndexFieldName": "visits.medical_record_home_page.READMISS_PLAN_15",
           "srchFieldName": "就诊.病案首页.是否有出院15天内再住院计划",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "15天再住院目的",
@@ -26528,25 +26894,41 @@
           "UIFieldName": "31天再住院目的",
           "IndexFieldName": "visits.medical_record_home_page.READMISS_PLAN_31_PURPOSE",
           "srchFieldName": "就诊.病案首页.31天再住院目的",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "非预期重返手术",
           "IndexFieldName": "visits.medical_record_home_page.SURGERY_UNEXPECTED",
           "srchFieldName": "就诊.病案首页.非预期重返手术",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "是否为手术后并发症",
           "IndexFieldName": "visits.medical_record_home_page.POSTOPERATIVE_COMPLICATION",
           "srchFieldName": "就诊.病案首页.是否为手术后并发症",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "死亡患者尸检",
           "IndexFieldName": "visits.medical_record_home_page.AUTOPSY",
           "srchFieldName": "就诊.病案首页.死亡患者尸检",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "特级护理天数",
@@ -26570,7 +26952,15 @@
           "UIFieldName": "离院方式",
           "IndexFieldName": "visits.medical_record_home_page.DISCHARGE_PASS",
           "srchFieldName": "就诊.病案首页.离院方式",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "医嘱离院",
+            "医嘱转院",
+            "医嘱转社区卫生服务机构/乡镇卫生院",
+            "非医嘱离院",
+            "死亡",
+            "其他"
+          ]
         },
         {
           "UIFieldName": "拟接收医疗机构名称",
@@ -26679,7 +27069,12 @@
           "UIFieldName": "病案质量",
           "IndexFieldName": "visits.medical_record_home_page.BA_QUALITY",
           "srchFieldName": "就诊.病案首页.病案质量",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "甲",
+            "乙",
+            "丙"
+          ]
         },
         {
           "UIFieldName": "组织机构代码",
@@ -27129,7 +27524,13 @@
           "UIFieldName": "入院病情",
           "IndexFieldName": "visits.medical_record_home_page.dis_main_diag.ADMISS_CONDITION",
           "srchFieldName": "就诊.病案首页.出院主要诊断.入院病情",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "有",
+            "临床不确定",
+            "情况不明",
+            "无"
+          ]
         },
         {
           "UIFieldName": "出院主要诊断编码",
@@ -27178,7 +27579,13 @@
           "UIFieldName": "入院病情",
           "IndexFieldName": "visits.medical_record_home_page.dis_other_diag.ADMISS_CONDITION",
           "srchFieldName": "就诊.病案首页.出院其他诊断.入院病情",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "有",
+            "临床不确定",
+            "情况不明",
+            "无"
+          ]
         },
         {
           "UIFieldName": "出院其他诊断编码",
@@ -27276,7 +27683,11 @@
           "UIFieldName": "有无药物过敏",
           "IndexFieldName": "visits.medical_record_home_page.drug_allergy.DRUG_ALLERGIC_FLAG",
           "srchFieldName": "就诊.病案首页.药物过敏.有无药物过敏",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "无",
+            "有"
+          ]
         }
       ],
       "就诊.病案首页.重症监护": [
@@ -35092,13 +35503,21 @@
           "UIFieldName": "是否降痛",
           "IndexFieldName": "visits.triple_test_table.IS_REDUCTION_PAIN",
           "srchFieldName": "就诊.三测单.是否降痛",
-          "dataType": "boolean"
+          "dataType": "boolean",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "是否物理降温",
           "IndexFieldName": "visits.triple_test_table.IS_PHYSICAL_COOLING",
           "srchFieldName": "就诊.三测单.是否物理降温",
-          "dataType": "boolean"
+          "dataType": "boolean",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "物理降温温度",
@@ -35194,7 +35613,11 @@
           "UIFieldName": "是否重复测量",
           "IndexFieldName": "visits.triple_test_table.IS_REPEATED_MEASURE",
           "srchFieldName": "就诊.三测单.是否重复测量",
-          "dataType": "boolean"
+          "dataType": "boolean",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "病床号",
@@ -40296,7 +40719,8 @@
             "已婚",
             "未婚",
             "离异",
-            "丧偶"
+            "丧偶",
+            "其他"
           ]
         },
         {
@@ -40424,13 +40848,25 @@
           "UIFieldName": "入院途径",
           "IndexFieldName": "visits.medical_record_home_page.ADMISS_PATH",
           "srchFieldName": "就诊.病案首页.入院途径",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "急诊",
+            "门诊",
+            "其他医疗机构转入",
+            "其他"
+          ]
         },
         {
           "UIFieldName": "入院与出院符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM5",
           "srchFieldName": "就诊.病案首页.入院与出院符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "入院状态名称",
@@ -40476,7 +40912,9 @@
           "dataType": "string",
           "dataMap": [
             "阴性",
-            "阳性"
+            "阳性",
+            "不详",
+            "未查"
           ]
         },
         {
@@ -40489,7 +40927,8 @@
             "B",
             "O",
             "AB",
-            "不详"
+            "不详",
+            "未查"
           ]
         },
         {
@@ -40532,7 +40971,11 @@
           "UIFieldName": "输血反应名称",
           "IndexFieldName": "visits.medical_record_home_page.LI_TRANS_REACTION_NAME",
           "srchFieldName": "就诊.病案首页.输血反应名称",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "有",
+            "无"
+          ]
         },
         {
           "UIFieldName": "输液反应代码",
@@ -40544,13 +40987,30 @@
           "UIFieldName": "输液反应名称",
           "IndexFieldName": "visits.medical_record_home_page.TRANS_REACTION_NAME",
           "srchFieldName": "就诊.病案首页.输液反应名称",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "有",
+            "无"
+          ]
         },
         {
           "UIFieldName": "医疗付费方式",
           "IndexFieldName": "visits.medical_record_home_page.PAYMENT_TYPE",
           "srchFieldName": "就诊.病案首页.医疗付费方式",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "城镇居民",
+            "城镇职工",
+            "工伤",
+            "离休",
+            "其他",
+            "社会基本医疗保险",
+            "生育",
+            "新农合",
+            "异地居民",
+            "异地职工",
+            "自费"
+          ]
         },
         {
           "UIFieldName": "肿瘤分期_M分期",
@@ -40580,7 +41040,14 @@
           "UIFieldName": "主要诊断归转情况",
           "IndexFieldName": "visits.medical_record_home_page.MAIN_DIAG_REGRESSION",
           "srchFieldName": "就诊.病案首页.主要诊断归转情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "治愈",
+            "好转",
+            "未查",
+            "死亡",
+            "其他"
+          ]
         },
         {
           "UIFieldName": "抢救方法名称",
@@ -40604,43 +41071,83 @@
           "UIFieldName": "恶性肿瘤手术前与手术后病理诊断",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM7",
           "srchFieldName": "就诊.病案首页.恶性肿瘤手术前与手术后病理诊断",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "术前与术后符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM3",
           "srchFieldName": "就诊.病案首页.术前与术后符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "放射与病理符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM4",
           "srchFieldName": "就诊.病案首页.放射与病理符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "临床与病理符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM2",
           "srchFieldName": "就诊.病案首页.临床与病理符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "门诊与出院符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM1",
           "srchFieldName": "就诊.病案首页.门诊与出院符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "手术冰冻与石蜡诊断符合情况",
           "IndexFieldName": "visits.medical_record_home_page.DIAG_CONFORM6",
           "srchFieldName": "就诊.病案首页.手术冰冻与石蜡诊断符合情况",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "未做",
+            "符合",
+            "不符合",
+            "不肯定"
+          ]
         },
         {
           "UIFieldName": "是否有出院15天内再住院计划",
           "IndexFieldName": "visits.medical_record_home_page.READMISS_PLAN_15",
           "srchFieldName": "就诊.病案首页.是否有出院15天内再住院计划",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "15天再住院目的",
@@ -40658,25 +41165,41 @@
           "UIFieldName": "31天再住院目的",
           "IndexFieldName": "visits.medical_record_home_page.READMISS_PLAN_31_PURPOSE",
           "srchFieldName": "就诊.病案首页.31天再住院目的",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "非预期重返手术",
           "IndexFieldName": "visits.medical_record_home_page.SURGERY_UNEXPECTED",
           "srchFieldName": "就诊.病案首页.非预期重返手术",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "是否为手术后并发症",
           "IndexFieldName": "visits.medical_record_home_page.POSTOPERATIVE_COMPLICATION",
           "srchFieldName": "就诊.病案首页.是否为手术后并发症",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "死亡患者尸检",
           "IndexFieldName": "visits.medical_record_home_page.AUTOPSY",
           "srchFieldName": "就诊.病案首页.死亡患者尸检",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "特级护理天数",
@@ -40700,7 +41223,15 @@
           "UIFieldName": "离院方式",
           "IndexFieldName": "visits.medical_record_home_page.DISCHARGE_PASS",
           "srchFieldName": "就诊.病案首页.离院方式",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "医嘱离院",
+            "医嘱转院",
+            "医嘱转社区卫生服务机构/乡镇卫生院",
+            "非医嘱离院",
+            "死亡",
+            "其他"
+          ]
         },
         {
           "UIFieldName": "拟接收医疗机构名称",
@@ -40785,7 +41316,12 @@
           "UIFieldName": "病案质量",
           "IndexFieldName": "visits.medical_record_home_page.BA_QUALITY",
           "srchFieldName": "就诊.病案首页.病案质量",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "甲",
+            "乙",
+            "丙"
+          ]
         },
         {
           "UIFieldName": "凝血因子类制品费",
@@ -40922,7 +41458,13 @@
           "UIFieldName": "入院病情",
           "IndexFieldName": "visits.medical_record_home_page.dis_main_diag.ADMISS_CONDITION",
           "srchFieldName": "就诊.病案首页.出院主要诊断.入院病情",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "有",
+            "临床不确定",
+            "情况不明",
+            "无"
+          ]
         },
         {
           "UIFieldName": "出院主要诊断编码",
@@ -40942,7 +41484,13 @@
           "UIFieldName": "入院病情",
           "IndexFieldName": "visits.medical_record_home_page.dis_other_diag.ADMISS_CONDITION",
           "srchFieldName": "就诊.病案首页.出院其他诊断.入院病情",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "有",
+            "临床不确定",
+            "情况不明",
+            "无"
+          ]
         },
         {
           "UIFieldName": "出院其他诊断编码",
@@ -40982,7 +41530,11 @@
           "UIFieldName": "有无药物过敏",
           "IndexFieldName": "visits.medical_record_home_page.drug_allergy.DRUG_ALLERGIC_FLAG",
           "srchFieldName": "就诊.病案首页.药物过敏.有无药物过敏",
-          "dataType": "string"
+          "dataType": "string",
+          "dataMap": [
+            "无",
+            "有"
+          ]
         }
       ],
       "就诊.病案首页.重症监护": [
@@ -46008,13 +46560,21 @@
           "UIFieldName": "是否降痛",
           "IndexFieldName": "visits.triple_test_table.IS_REDUCTION_PAIN",
           "srchFieldName": "就诊.三测单.是否降痛",
-          "dataType": "boolean"
+          "dataType": "boolean",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "是否物理降温",
           "IndexFieldName": "visits.triple_test_table.IS_PHYSICAL_COOLING",
           "srchFieldName": "就诊.三测单.是否物理降温",
-          "dataType": "boolean"
+          "dataType": "boolean",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "物理降温温度",
@@ -46110,7 +46670,11 @@
           "UIFieldName": "是否重复测量",
           "IndexFieldName": "visits.triple_test_table.IS_REPEATED_MEASURE",
           "srchFieldName": "就诊.三测单.是否重复测量",
-          "dataType": "boolean"
+          "dataType": "boolean",
+          "dataMap": [
+            "是",
+            "否"
+          ]
         },
         {
           "UIFieldName": "病床号",
