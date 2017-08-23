@@ -1,5 +1,6 @@
 package com.gennlife.platform.service;
 
+import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.configuration.FileBean;
 import com.gennlife.platform.configuration.URLBean;
 import com.gennlife.platform.util.FilesUtils;
@@ -46,6 +47,8 @@ public class ConfigurationService {
     private static JsonArray resourceTypeArray = null;
 
     private static JsonObject LabIdToNumberObj = null;
+
+    private static String default_crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
 
     private static Gson gson = GsonUtil.getGson();
 
@@ -136,6 +139,9 @@ public class ConfigurationService {
 
     public static JsonObject getAllObj(String crf_id) {
         JsonObject jsonObject = allMap.get(crf_id);
+        if (jsonObject == null) {
+            jsonObject = allMap.get(default_crf_id);
+        }
         if (jsonObject != null) {
             String copy = gson.toJson(jsonObject);
             JsonObject target = (JsonObject) jsonParser.parse(copy);
@@ -147,6 +153,9 @@ public class ConfigurationService {
 
     public static JsonObject getDefaultObj(String crf_id) {
         JsonObject jsonObject = defaultMap.get(crf_id);
+        if (jsonObject == null) {
+            jsonObject = defaultMap.get(default_crf_id);
+        }
         if (jsonObject != null) {
             String copy = gson.toJson(jsonObject);
             JsonObject target = (JsonObject) jsonParser.parse(copy);
@@ -158,6 +167,9 @@ public class ConfigurationService {
 
     public static JsonObject getImportTree(String crf_id) {
         JsonObject jsonObject = importMap.get(crf_id);
+        if (jsonObject == null) {
+            jsonObject = importMap.get(default_crf_id);
+        }
         if (jsonObject != null) {
             String copy = gson.toJson(jsonObject);
             JsonObject target = (JsonObject) jsonParser.parse(copy);
@@ -168,6 +180,9 @@ public class ConfigurationService {
 
     public static JsonObject getAdvancedSearch(String crf_id) {
         JsonObject jsonObject = advancedSearchMap.get(crf_id);
+        if (jsonObject == null) {
+            jsonObject = advancedSearchMap.get(default_crf_id);
+        }
         if (jsonObject != null) {
             String copy = gson.toJson(jsonObject);
             JsonObject target = (JsonObject) jsonParser.parse(copy);
@@ -204,6 +219,9 @@ public class ConfigurationService {
 
     public static JsonObject getCompareObj(String crf_id) {
         JsonObject jsonObject = compareMap.get(crf_id);
+        if (jsonObject == null) {
+            jsonObject = compareMap.get(default_crf_id);
+        }
         if (jsonObject != null) {
             String copy = gson.toJson(jsonObject);
             JsonObject target = (JsonObject) jsonParser.parse(copy);
