@@ -110,7 +110,7 @@ public class CaseProcessor {
             resultBean.setCode(1);
             resultBean.setData(allNew);
         } else if ("3".equals(status)) {//更改属性,所有属性,带有搜索功能
-            JsonObject all = ConfigurationService.getAllObj(crf_id);
+            JsonObject all = ConfigurationService.getImportTree(crf_id);
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                 String groupName = obj.getKey();
