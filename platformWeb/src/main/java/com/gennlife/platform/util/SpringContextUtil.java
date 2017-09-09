@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContextAware;
 /**
  * Created by chensong on 2015/12/4.
  */
+
 public class SpringContextUtil implements ApplicationContextAware {
     private static ApplicationContext applicationContext = null;
 

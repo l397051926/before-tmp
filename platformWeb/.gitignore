@@ -1,12 +1,24 @@
-# Intellij project files
-*.iml
-*.class
-.idea/
-# Eclipse project files
-.classpath
-.project
 target/
-src/main/resources/conf.xml
-src/main/resources/logback.xml
-src/main/resources/applicationContext-mybatis.xml
-.DS_Store
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/

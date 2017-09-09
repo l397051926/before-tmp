@@ -3,9 +3,9 @@ package com.gennlife.platform.service;
 import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.configuration.FileBean;
 import com.gennlife.platform.configuration.URLBean;
+import com.gennlife.platform.util.ConfigUtils;
 import com.gennlife.platform.util.FilesUtils;
 import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.RedisUtil;
 import com.gennlife.platform.util.SpringContextUtil;
 import com.google.gson.*;
 import org.slf4j.Logger;
@@ -21,6 +21,7 @@ import java.util.Map;
 /**
  * Created by chen-song on 16/5/13.
  */
+
 public class ConfigurationService {
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationService.class);
     private static JsonParser jsonParser = new JsonParser();
@@ -60,8 +61,6 @@ public class ConfigurationService {
             urlBean = (URLBean) context.getBean("com.gennlife.platform.configuration.URLBean");
             logger.info("init fileBean");
             fileBean = (FileBean) context.getBean("FileLocation");
-            logger.info("init RedisUtil");
-            RedisUtil.init();
         } catch (Exception e) {
             logger.error("", e);
             throw new RuntimeException();
@@ -79,7 +78,8 @@ public class ConfigurationService {
     }
 
     public static void loadConfigurationInfo() throws IOException {
-        String caseStr = FilesUtils.readFile("/case.json");
+        //String caseStr = FilesUtils.readFile("/case.json");
+        String caseStr = ConfigUtils.getRemoteUtfFile("case.json");
         //logger.info("case.json = "+caseStr);
         JsonObject allDiseasesObj = (JsonObject) jsonParser.parse(caseStr);
         for (Map.Entry<String, JsonElement> item : allDiseasesObj.entrySet()) {

@@ -2,15 +2,18 @@ package com.gennlife.platform.util;
 
 
 import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.configuration.FileBean;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.Lab;
 import com.gennlife.platform.model.Role;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.LaboratoryProcessor;
-import com.gennlife.platform.service.ConfigurationService;
 import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.io.*;
@@ -21,17 +24,17 @@ import java.util.*;
 /**
  * Created by chen-song on 16/9/6.
  */
-public class FileUploadUtil {
+@Component
+public class FileUploadUtil implements InitializingBean {
     public static final Object Lock = new Object();
     public static Logger logger = LoggerFactory.getLogger(FileUploadUtil.class);
     public static Gson gson = GsonUtil.getGson();
     private static SimpleDateFormat time = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
     //文件位置，注意是绝对路径
     private static String tempPath = "/home/tomcat_demo2_web/update/";
+    @Autowired
+    private FileBean fileBean;
 
-    static {
-        tempPath = ConfigurationService.getFileBean().getManageFileLocation();
-    }
 
     public static String handleStaff(List<String> fileList, User user) throws Exception {
         if (fileList.size() == 0) {
@@ -556,4 +559,8 @@ public class FileUploadUtil {
         return strList;
     }
 
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        tempPath = fileBean.getManageFileLocation();
+    }
 }

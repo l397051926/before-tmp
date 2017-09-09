@@ -1,33 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration scan="true" scanPeriod="30 seconds" debug="false">   
-    <property name="logBase" value="/home-preserved/tomcat_demo2_web/local" />
- 	<!-- 系统日志文件-->
-	<appender name="SystemLog" class="ch.qos.logback.core.ConsoleAppender">
-		<file>${logBase}/system.log</file>
-	    <encoder>
-			<pattern>%d %-4level [%logger{40}] - %msg%n</pattern>
-			<charset>UTF-8</charset>
-		</encoder>
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${logBase}/system.log.%d{yyyy-MM-dd-HH}</fileNamePattern>
-		</rollingPolicy>
-	</appender>
-    <!-- 业务日志文件-->
-	<appender name="BusinessLog" class="ch.qos.logback.core.ConsoleAppender">
-		<file>${logBase}/kylin.log</file>
-		<encoder>
-			<pattern>%d %-4level [%logger{40}] - %msg%n</pattern>
-			<charset>UTF-8</charset>
-		</encoder>
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${logBase}/kylin.log.%d{yyyy-MM-dd}</fileNamePattern>
-		</rollingPolicy>
-	</appender>
-    <!--为具体logger指定appender-->
- 	<logger level="INFO" name="businesslog" additivity="false">  
-  		<appender-ref ref="BusinessLog" />  
- 	</logger>   
- 	<root level="INFO">
-  		<appender-ref ref="SystemLog" />  
- 	</root>   
-</configuration>  
+<configuration>
+    <!-- 文件输出格式 -->
+    <property name="PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n"/>
+    <!-- test文件路径 -->
+    <property name="FILE_PATH" value="logs"/>
+
+    <appender name="SystemLog" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <root>
+        <appender-ref ref="SystemLog"/>
+    </root>
+</configuration>

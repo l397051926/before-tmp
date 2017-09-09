@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean name="allDao" class="com.gennlife.platform.dao.AllDao">
+        <property name="syUserDao" ref="syUserDao" />
+        <property name="syRoleDao" ref="syRoleDao" />
+        <property name="syResourceDao" ref="syResourceDao" />
+        <property name="orgDao" ref="orgDao" />
+        <property name="projectDao" ref="projectDao" />
+        <property name="groupDao" ref="groupDao" />
+    </bean>
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="driverClassName">
+            <value>${ui.datasource.driverClassName}</value>
+        </property>
+        <property name="url">
+            <value>${ui.datasource.url}</value>
+        </property>
+        <property name="username">
+            <value>${ui.datasource.username}</value>
+        </property>
+        <property name="password">
+            <value>${ui.datasource.password}</value>
+        </property>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:mybatis_config/Configuration.xml" />
+    </bean>
+
+    <bean id="defaultLobHandler"
+          class="org.springframework.jdbc.support.lob.DefaultLobHandler"
+          lazy-init="true"/>
+    <!-- 映射接口 basePackage指定要扫描的包，此包及其子包之下的映射器接口 都会被搜索到 -->
+    <bean class="org.mybatis.spring.annotation.MapperScannerPostProcessor">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+        <property name="basePackage" value="com.gennlife.platform.dao" />
+    </bean>
+</beans>

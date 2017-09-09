@@ -1,8 +1,8 @@
 package com.gennlife.platform.controller;
 
+import com.gennlife.platform.configuration.FileBean;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.CommonProcessor;
-import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
@@ -10,6 +10,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 @RequestMapping("/common")
-public class CommonController {
+public class CommonController implements InitializingBean {
     private static Logger logger = LoggerFactory.getLogger(CommonController.class);
     private static String labImportsuffix = "导入科室历史.csv";
     private static String staffImportsuffix = "导入人员历史.csv";
@@ -36,10 +38,9 @@ public class CommonController {
     private static Gson gson = GsonUtil.getGson();
     //存放文件的位置
     private static String FilePath = "/home/tomcat_demo2_web/update/";//默认位置
+    @Autowired
+    private FileBean fileBean;
 
-    static {
-        FilePath = ConfigurationService.getFileBean().getManageFileLocation();
-    }
 
     //后缀
     private static String suffix = ".csv";
@@ -142,4 +143,8 @@ public class CommonController {
         processor.downLoadFile(file, response, fileName);
     }
 
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        FilePath = fileBean.getManageFileLocation();
+    }
 }

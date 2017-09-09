@@ -1,5 +1,6 @@
 package com.gennlife.platform.util;
 
+import com.gennlife.platform.configuration.JedisClusterFactory;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.CrfProcessor;
 import com.gennlife.platform.processor.UserProcessor;
@@ -10,18 +11,24 @@ import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPool;
 
 import java.io.StringReader;
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 /**
  * Created by chen-song on 2016/12/8.
  */
+@Component
 public class RedisUtil {
     private static Logger logger = LoggerFactory.getLogger(RedisUtil.class);
     private static JedisCluster jedisCluster = null;
@@ -30,10 +37,10 @@ public class RedisUtil {
     private static String suffix = "_info";
     private static boolean flag = true;
     private static String imageSaveToRedisId = "imageSaveToRedisId";
-
-    public static void init() {
+    @Autowired
+    public void init(JedisClusterFactory redis) {
         logger.info("Redis init");
-        jedisCluster = (JedisCluster) SpringContextUtil.getBean("jedisClusterFactory");
+        jedisCluster =redis.getJedisCluster();
     }
 
     public static boolean setImageId(String sessionID, List<String> imgUrl) {

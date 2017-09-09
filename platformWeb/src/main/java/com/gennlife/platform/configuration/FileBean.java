@@ -2,12 +2,16 @@ package com.gennlife.platform.configuration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 
 /**
  * Created by chen-song on 16/10/1.
  */
+@Component("FileLocation")
+@ConfigurationProperties(prefix = "ui.FileLocation")
 public class FileBean {
     private static Logger logger = LoggerFactory.getLogger(FileBean.class);
     /**

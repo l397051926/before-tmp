@@ -29,13 +29,13 @@ public class ChineseToEnglish {
         try {
             for (int i = 0; i < t0; i++) {
                 // 判断是否为汉字字符
-                if (java.lang.Character.toString(t1[i]).matches(
+                if (Character.toString(t1[i]).matches(
                         "[\\u4E00-\\u9FA5]+")) {
                     t2 = PinyinHelper.toHanyuPinyinStringArray(t1[i], t3);
                     if (t2 == null || t2.length == 0) throw new UnsupportedCharsetException("未知编码");
                     t4 += t2[0];
                 } else
-                    t4 += java.lang.Character.toString(t1[i]);
+                    t4 += Character.toString(t1[i]);
             }
             // System.out.println(t4);
             return t4;

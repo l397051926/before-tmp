@@ -1,33 +1,41 @@
 package com.gennlife.platform.configuration;
 
 
-import java.text.ParseException;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
+
+import java.text.ParseException;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by chen-song on 2016/11/15.
  */
-public class JedisClusterFactory implements FactoryBean<JedisCluster>, InitializingBean {
+@Component
+@Scope("singleton")
+@ConfigurationProperties(prefix = "ui.redis.config")
+public class JedisClusterFactory implements FactoryBean<JedisClusterFactory>, InitializingBean {
+    @Autowired
     private GenericObjectPoolConfig genericObjectPoolConfig;
     private JedisCluster jedisCluster;
     private int connectionTimeout = 2000;
     private int soTimeout = 3000;
     private int maxRedirections = 5;
-    private Set<String> jedisClusterNodes;
-
-    public JedisClusterFactory() {
-    }
-
-    public JedisCluster getObject() throws Exception {
-        return this.jedisCluster;
+    private String jedisClusterNodes;
+    private static final Logger logger= LoggerFactory.getLogger(JedisClusterFactory.class);
+    public JedisClusterFactory getObject() throws Exception {
+        return this;
     }
 
     public Class<?> getObjectType() {
@@ -38,25 +46,23 @@ public class JedisClusterFactory implements FactoryBean<JedisCluster>, Initializ
         return true;
     }
 
+    @Override
     public void afterPropertiesSet() throws Exception {
-        if (this.jedisClusterNodes != null && this.jedisClusterNodes.size() != 0) {
-            HashSet haps = new HashSet();
-            Iterator i$ = this.jedisClusterNodes.iterator();
 
-            while (i$.hasNext()) {
-                String node = (String) i$.next();
-                String[] arr = node.split(":");
-                if (arr.length != 2) {
-                    throw new ParseException("node address error !", node.length() - 1);
-                }
-
-                haps.add(new HostAndPort(arr[0], Integer.valueOf(arr[1]).intValue()));
-            }
-
-            this.jedisCluster = new JedisCluster(haps, this.connectionTimeout, this.soTimeout, this.maxRedirections, this.genericObjectPoolConfig);
-        } else {
+        if (jedisClusterNodes == null || jedisClusterNodes.length() == 0) {
             throw new NullPointerException("jedisClusterNodes is null.");
         }
+        logger.info("redis node "+jedisClusterNodes);
+        Set<HostAndPort> haps = new HashSet<HostAndPort>();
+        for (String node : jedisClusterNodes.split(";")) {
+            String[] arr = node.split(":");
+            if (arr.length != 2) {
+                throw new ParseException("node address error !", node.length() - 1);
+            }
+            haps.add(new HostAndPort(arr[0], Integer.valueOf(arr[1])));
+        }
+
+        jedisCluster = new JedisCluster(haps, connectionTimeout, soTimeout, maxRedirections, genericObjectPoolConfig);
     }
 
     public GenericObjectPoolConfig getGenericObjectPoolConfig() {
@@ -99,11 +105,17 @@ public class JedisClusterFactory implements FactoryBean<JedisCluster>, Initializ
         this.maxRedirections = maxRedirections;
     }
 
-    public Set<String> getJedisClusterNodes() {
+    public String getJedisClusterNodes() {
         return this.jedisClusterNodes;
     }
 
-    public void setJedisClusterNodes(Set<String> jedisClusterNodes) {
+    public void setJedisClusterNodes(String jedisClusterNodes) {
         this.jedisClusterNodes = jedisClusterNodes;
+    }
+    @Order
+    @Bean
+    @ConfigurationProperties(prefix = "ui.redis.config.pool")
+    public GenericObjectPoolConfig createGenericObjectPoolConfig() {
+        return new GenericObjectPoolConfig();
     }
 }

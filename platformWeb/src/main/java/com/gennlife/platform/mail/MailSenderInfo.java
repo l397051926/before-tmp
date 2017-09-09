@@ -1,12 +1,18 @@
 package com.gennlife.platform.mail;
 
 import com.gennlife.platform.util.SpringContextUtil;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.util.Properties;
 
 /**
  * Created by chensong on 2015/12/7.
  */
+@Component
+@Scope("singleton")
+@ConfigurationProperties(prefix = "ui.mailSenderInfo")
 public class MailSenderInfo {
     // 发送邮件的服务器的IP(或主机地址)
     private String mailServerHost = "smtp.mxhichina.com";

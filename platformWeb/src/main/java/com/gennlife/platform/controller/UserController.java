@@ -313,40 +313,6 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/IsInnerNet", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public
-    @ResponseBody
-    String IsInnerNet(HttpServletRequest paramRe) {
-        Object xRealIpobj = null;
-        try {
-            xRealIpobj = SpringContextUtil.getBean("xrealip");
-            if (xRealIpobj == null) {
-                return ParamUtils.errorParam("无内外网限制");
-            }
-        } catch (Exception e) {
-            logger.error("error 无内外网限制 ", e);
-            return ParamUtils.errorParam("无内外网限制");
-        }
-        XRealIp xRealIp = (XRealIp) xRealIpobj;
-        String value = paramRe.getHeader(xRealIp.getKey());
-        if (StringUtils.isEmpty(value)) {
-            return ParamUtils.errorParam("无对应key");
-        }
-        ResultBean resultBean = new ResultBean();
-        resultBean.setCode(1);
-        JsonObject json = new JsonObject();
-        logger.info("ip: " + value);
-        if (value.equals(xRealIp.getValue())) {
-            json.addProperty("inner", true);
-            resultBean.setMsg("内网");
-        } else {
-            json.addProperty("inner", false);
-            resultBean.setMsg("外网");
-            resultBean.setData(json);
-        }
-        return gson.toJson(resultBean);
-    }
-
     /**
      * 科室权限校验
      */

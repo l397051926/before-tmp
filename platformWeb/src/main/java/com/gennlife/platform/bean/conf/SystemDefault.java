@@ -1,8 +1,15 @@
 package com.gennlife.platform.bean.conf;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 /**
  * Created by Chenjinfeng on 2017/3/7.
  */
+@Component("systemDefault")
+@Scope("singleton")
+@ConfigurationProperties(prefix = "ui.systemDefault")
 public class SystemDefault {
 
     private String searchItemSetDefault;
