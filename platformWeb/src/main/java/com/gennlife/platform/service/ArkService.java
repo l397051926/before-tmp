@@ -31,14 +31,6 @@ public class ArkService {
         //项目疾病下拉菜单接口
         logger.info("项目疾病下拉菜单接口 ");
         parseProjectDisease();
-        try {
-            logger.info("ConfigurationService.init启动");
-            configurationService.init();
-        } catch (Exception e) {
-            logger.error("ConfigurationService 启动失败");
-            logger.error("", e);
-            throw new RuntimeException();
-        }
     }
 
     public void destroy() {

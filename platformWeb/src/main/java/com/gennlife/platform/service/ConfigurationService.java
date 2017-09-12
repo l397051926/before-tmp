@@ -6,10 +6,10 @@ import com.gennlife.platform.configuration.URLBean;
 import com.gennlife.platform.util.ConfigUtils;
 import com.gennlife.platform.util.FilesUtils;
 import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.SpringContextUtil;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +23,7 @@ import java.util.Map;
  * Created by chen-song on 16/5/13.
  */
 @Component
-public class ConfigurationService {
+public class ConfigurationService implements InitializingBean{
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationService.class);
     private static JsonParser jsonParser = new JsonParser();
     private static URLBean urlBean = null;
@@ -49,19 +49,15 @@ public class ConfigurationService {
     private static JsonArray resourceTypeArray = null;
 
     private static JsonObject LabIdToNumberObj = null;
-
-    private static String default_crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
+    private static String default_crf_id ;
+    @Autowired
+    public void setDefault_crf_id( SystemDefault systemDefault)
+    {
+        systemDefault.getSearchItemSetDefault();
+    }
 
     private static Gson gson = GsonUtil.getGson();
 
-    public static void init() {
-        try {
-            //搜索相关配置列表
-            loadConfigurationInfo();
-        } catch (Exception e) {
-            logger.error("", e);
-        }
-    }
 
     public static URLBean getUrlBean() {
         return urlBean;
@@ -257,5 +253,16 @@ public class ConfigurationService {
     @Autowired
     public  void setFileBean(FileBean fileBean) {
         ConfigurationService.fileBean = fileBean;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        try {
+            logger.info("ConfigurationService.init启动");
+            //搜索相关配置列表
+            loadConfigurationInfo();
+        } catch (Exception e) {
+            logger.error("", e);
+        }
     }
 }
