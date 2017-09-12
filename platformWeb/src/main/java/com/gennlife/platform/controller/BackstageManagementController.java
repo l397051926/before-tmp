@@ -398,6 +398,7 @@ public class BackstageManagementController {
         String resultStr = null;
         try {
             String param = ParamUtils.getParam(paramRe);
+            logger.info("GetResourceTree get方式 参数= " + param);
             User user = (User) paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr = processor.getResourceTree(paramObj, user);
