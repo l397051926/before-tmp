@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,6 +23,7 @@ import java.util.Set;
 /**
  * Created by chen-song on 16/9/21.
  */
+@WebFilter(urlPatterns = "/*")
 public class SessionFilter implements Filter {
     private static Logger logger = LoggerFactory.getLogger(SessionFilter.class);
     private static View view = new View();
