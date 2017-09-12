@@ -1,15 +1,13 @@
 package com.gennlife.platform.service;
 
 import com.gennlife.platform.util.FilesUtils;
-import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.SpringContextUtil;
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.w3c.dom.Element;
 
 import java.io.IOException;
@@ -19,14 +17,14 @@ import java.util.Map;
 /**
  * Created by chensong on 2015/12/10.
  */
+@Component
 public class ArkService {
     private static final Logger logger = LoggerFactory.getLogger(ArkService.class);
-    private static Gson gson = GsonUtil.getGson();
     private static JsonParser jsonParser = new JsonParser();
+    @Autowired
+    private ConfigurationService configurationService;
 
     public void init(String s, Element element) {
-        logger.info("ApplicationContext ");
-        ApplicationContext context = SpringContextUtil.getApplicationContext();
         //crf 属性关联配置文件
         logger.info("crf 属性关联配置文件 ");
         parseChain();
@@ -35,7 +33,7 @@ public class ArkService {
         parseProjectDisease();
         try {
             logger.info("ConfigurationService.init启动");
-            ConfigurationService.init();
+            configurationService.init();
         } catch (Exception e) {
             logger.error("ConfigurationService 启动失败");
             logger.error("", e);

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  * Created by chensong on 2015/12/10.
  */
 @Component
-public class ArkServer implements InitializingBean,DisposableBean{
+public class ArkServer implements InitializingBean, DisposableBean {
     private static final Logger logger = LoggerFactory.getLogger(ArkServer.class);
     //未启动
     private static final int SERVER_STATUS_PENDING = 0;
@@ -25,11 +25,13 @@ public class ArkServer implements InitializingBean,DisposableBean{
     private static final int SERVER_STATUS_STARTING = 2;
     //在关闭
     private static final int SERVER_STATUS_STOPPING = 3;
-    private static final ArkService arkService = new ArkService();
+    @Autowired
+    private ArkService arkService;
     private static volatile int SERVER_STATUS = SERVER_STATUS_PENDING;
     @Autowired
     private ConfigUtils configUtils;
-    public synchronized static void SERVER_START() {
+
+    public synchronized void SERVER_START() {
         if (SERVER_STATUS != SERVER_STATUS_PENDING) {
             return;
         }
@@ -41,7 +43,7 @@ public class ArkServer implements InitializingBean,DisposableBean{
         SERVER_STATUS = SERVER_STATUS_STARTED;
     }
 
-    public synchronized static void SERVER_STOP() {
+    public synchronized void SERVER_STOP() {
         long serverStop = System.currentTimeMillis();
         if (SERVER_STATUS != SERVER_STATUS_STARTED)
             return;
@@ -53,15 +55,15 @@ public class ArkServer implements InitializingBean,DisposableBean{
         SERVER_STATUS = SERVER_STATUS_PENDING;
     }
 
-        @Override
-        public void destroy() throws Exception {
-            SERVER_STOP();
-        }
+    @Override
+    public void destroy() throws Exception {
+        SERVER_STOP();
+    }
 
-        @Override
-        public void afterPropertiesSet() throws Exception {
-            SERVER_STATUS = SERVER_STATUS_PENDING;
-            SERVER_START();
-        }
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        SERVER_STATUS = SERVER_STATUS_PENDING;
+        SERVER_START();
+    }
 
 }

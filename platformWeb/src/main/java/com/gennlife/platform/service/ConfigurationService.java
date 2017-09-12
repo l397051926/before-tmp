@@ -10,7 +10,8 @@ import com.gennlife.platform.util.SpringContextUtil;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -21,7 +22,7 @@ import java.util.Map;
 /**
  * Created by chen-song on 16/5/13.
  */
-
+@Component
 public class ConfigurationService {
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationService.class);
     private static JsonParser jsonParser = new JsonParser();
@@ -54,17 +55,6 @@ public class ConfigurationService {
     private static Gson gson = GsonUtil.getGson();
 
     public static void init() {
-        try {
-            logger.info("init ApplicationContext");
-            ApplicationContext context = SpringContextUtil.getApplicationContext();
-            logger.info("init urlBean");
-            urlBean = (URLBean) context.getBean("com.gennlife.platform.configuration.URLBean");
-            logger.info("init fileBean");
-            fileBean = (FileBean) context.getBean("FileLocation");
-        } catch (Exception e) {
-            logger.error("", e);
-            throw new RuntimeException();
-        }
         try {
             //搜索相关配置列表
             loadConfigurationInfo();
@@ -259,5 +249,13 @@ public class ConfigurationService {
 
     public static JsonObject getLabIdToNumberObj() {
         return LabIdToNumberObj;
+    }
+    @Autowired
+    public  void setUrlBean(URLBean urlBean) {
+        ConfigurationService.urlBean = urlBean;
+    }
+    @Autowired
+    public  void setFileBean(FileBean fileBean) {
+        ConfigurationService.fileBean = fileBean;
     }
 }
