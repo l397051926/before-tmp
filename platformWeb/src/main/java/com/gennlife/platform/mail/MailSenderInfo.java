@@ -1,6 +1,6 @@
 package com.gennlife.platform.mail;
 
-import com.gennlife.platform.util.SpringContextUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -34,9 +34,14 @@ public class MailSenderInfo {
     private String content;
     // 邮件附件的文件名
     private String[] attachFileNames;
+    private static MailSenderInfo mailSenderInfo;
+    @Autowired
+    public  void setMailSenderInfo(MailSenderInfo mailSenderInfo) {
+        MailSenderInfo.mailSenderInfo = mailSenderInfo;
+    }
 
     public static MailSenderInfo buildMailSenderInfo() {
-        return (MailSenderInfo) SpringContextUtil.getBean("mailSenderInfo");
+        return mailSenderInfo;
     }
 
     public Properties getProperties() {

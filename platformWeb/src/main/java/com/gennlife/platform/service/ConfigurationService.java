@@ -28,6 +28,8 @@ public class ConfigurationService implements InitializingBean{
     private static JsonParser jsonParser = new JsonParser();
     private static URLBean urlBean = null;
     private static FileBean fileBean = null;
+    @Autowired
+    private ConfigUtils configUtils;
     //<orgID,indexName>
     private static Map<String, String> orgIDIndexNamemap = new HashMap<>();
     //全量属性的jsonobject<病种，List>
@@ -63,9 +65,9 @@ public class ConfigurationService implements InitializingBean{
         return urlBean;
     }
 
-    public static void loadConfigurationInfo() throws IOException {
+    public  void loadConfigurationInfo() throws IOException {
         //String caseStr = FilesUtils.readFile("/case.json");
-        String caseStr = ConfigUtils.getRemoteUtfFile("case.json");
+        String caseStr = configUtils.getRemoteUtfFile("case.json");
         //logger.info("case.json = "+caseStr);
         JsonObject allDiseasesObj = (JsonObject) jsonParser.parse(caseStr);
         for (Map.Entry<String, JsonElement> item : allDiseasesObj.entrySet()) {

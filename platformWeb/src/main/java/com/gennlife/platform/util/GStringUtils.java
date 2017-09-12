@@ -1,6 +1,8 @@
 package com.gennlife.platform.util;
 
 import com.gennlife.platform.bean.conf.SystemDefault;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -10,11 +12,17 @@ import java.util.regex.Pattern;
 /**
  * Created by Chenjinfeng on 2017/2/22.
  */
+@Component
 public class GStringUtils {
     /**
      * 字符串转16进制
      */
-    private static SystemDefault systemDefault = (SystemDefault) SpringContextUtil.getBean("systemDefault");
+    private static SystemDefault systemDefault ;
+    @Autowired
+    public void setSystemDefault(SystemDefault systemDefault)
+    {
+        GStringUtils.systemDefault=systemDefault;
+    }
 
     public static String toHexString(String s) {
         String str = "";

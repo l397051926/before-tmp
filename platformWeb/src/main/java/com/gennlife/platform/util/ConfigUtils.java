@@ -19,7 +19,6 @@ public class ConfigUtils {
     public static String  getConfig_uri() {
         return config_uri;
     }
-
     @Value("${spring.cloud.config.uri}")
     public void setConfig_uri(String config_uri) {
         this.config_uri = config_uri;
