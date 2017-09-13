@@ -61,6 +61,8 @@ public class FileBean implements InitializingBean {
     }
 
     private static void copy(String src, String des) {
+        src=src.replace("//","/");
+        des=des.replace("//","/");
         File file1 = new File(src);
         File[] fs = file1.listFiles();
         File file2 = new File(des);
@@ -69,9 +71,9 @@ public class FileBean implements InitializingBean {
         }
         for (File f : fs) {
             if (f.isFile()) {
-                fileCopy(f.getPath(), des + "\\" + f.getName()); //调用文件拷贝的方法
+                fileCopy(f.getPath(), des + "/" + f.getName()); //调用文件拷贝的方法
             } else if (f.isDirectory()) {
-                copy(f.getPath(), des + "\\" + f.getName());
+                copy(f.getPath(), des + "/" + f.getName());
             }
         }
 
