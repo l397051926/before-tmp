@@ -232,9 +232,9 @@ public class SampleProcessor {
     public String importTree(JsonObject paramObj) {
         String crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
         try {
-            if (paramObj.has("crf_id")) {
+            if (paramObj.has("crf_id") && paramObj.get("crf_id").isJsonPrimitive()) {
                 crf_id = paramObj.get("crf_id").getAsString();
-            }
+            } else return ParamUtils.errorParam("crf_id 参数错误");
         } catch (Exception e) {
             logger.error("", e);
             return ParamUtils.errorParam("参数错误");
