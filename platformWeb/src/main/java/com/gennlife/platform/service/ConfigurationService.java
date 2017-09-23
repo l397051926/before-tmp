@@ -56,7 +56,7 @@ public class ConfigurationService implements InitializingBean{
     @Autowired
     public void setDefault_crf_id( SystemDefault systemDefault)
     {
-        systemDefault.getSearchItemSetDefault();
+        default_crf_id=systemDefault.getSearchItemSetDefault();
     }
 
     private static Gson gson = GsonUtil.getGson();
