@@ -57,6 +57,7 @@ public class ConfigurationService implements InitializingBean{
     public void setDefault_crf_id( SystemDefault systemDefault)
     {
         default_crf_id=systemDefault.getSearchItemSetDefault();
+        logger.info("default crf_id"+default_crf_id);
     }
 
     private static Gson gson = GsonUtil.getGson();
