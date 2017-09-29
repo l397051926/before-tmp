@@ -19,9 +19,19 @@ public class ConfigUtils {
     public static String  getConfig_uri() {
         return config_uri;
     }
+    private static String searchIndexName;
     @Value("${spring.cloud.config.uri}")
     public void setConfig_uri(String config_uri) {
         this.config_uri = config_uri;
+    }
+    @Value("${searchIndexName}")
+    public void setSearchIndexName(String searchIndexName)
+    {
+        ConfigUtils.searchIndexName=searchIndexName;
+    }
+
+    public static String getSearchIndexName() {
+        return searchIndexName;
     }
 
     public String getAppName() {
