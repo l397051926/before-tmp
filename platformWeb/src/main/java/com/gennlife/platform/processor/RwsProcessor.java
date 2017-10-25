@@ -18,11 +18,10 @@ public class RwsProcessor {
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
 
-    public String PreLiminary(String reqStr){
+    public String PreLiminary(JsonObject paramObj){
         try {
             String url = ConfigurationService.getUrlBean().getPreLiminaryUrl();
-            url += "?" + reqStr;
-            String result = HttpRequestUtils.httpGet(url);
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
             return result;
         } catch (Exception e) {
             logger.error("请求发生异常", e);

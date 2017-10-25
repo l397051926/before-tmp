@@ -30,11 +30,12 @@ public class RwsController {
     String postSampleImport(@RequestBody String condition, @RequestBody String projectId) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
-        String reqStr = null;
         try {
-            reqStr = "condition=" + condition + "&" + "projectId=" + projectId;
-            logger.info("搜索结果导出到RWS项目空间 get方式 参数=" + reqStr);
-            resultStr = processor.PreLiminary(reqStr);
+            JsonObject paramObj = new JsonObject();
+            paramObj.addProperty("condition", condition);
+            paramObj.addProperty("projectId", projectId);
+            logger.info("搜索结果导出到RWS项目空间 get方式 参数=" + gson.toJson(paramObj));
+            resultStr = processor.PreLiminary(paramObj);
         } catch (Exception e) {
             logger.error("搜索结果导出到RWS项目空间", e);
             resultStr = ParamUtils.errorParam("出现异常");
