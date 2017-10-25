@@ -124,5 +124,11 @@
         <property name="CSSmg" value="http://${apache.ipAndPort}/smg"/>
         <property name="EmailSendURL" value="http://${webui.ipAndPort}/uranus/verify_email.html?token="></property>
         <property name="CSBaseline" value="http://${apache.ipAndPort}/baseline"/>
+
+        <!-- RWS服务接口 -->
+        <property name="PreLiminaryUrl" value="http://${rws.ipAndPort}/rws/pre/liminary"/>
+        <property name="PreAggregationUrl" value="http://${rws.ipAndPort}/rws/pre/aggregation"/>
+        <property name="PreFindForProjectData" value="http://${rws.ipAndPort}/rws/pre/findForProjectData"/>
+        <property name="FindByProjectId" value="http://${rws.ipAndPort}/rws/findByProjectId"/>
     </bean>
 </beans>

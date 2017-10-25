@@ -417,6 +417,45 @@ public class URLBean {
     private String TripleTestTableUrl = null;
 
     /**
+     *  RWS
+     */
+    private String PreLiminaryUrl = null;
+    private String PreAggregationUrl = null;
+    private String PreFindForProjectData = null;
+    private String FindByProjectId = null;
+
+    public String getFindByProjectId() {
+        return FindByProjectId;
+    }
+
+    public void setFindByProjectId(String findByProjectId) {
+        FindByProjectId = findByProjectId;
+    }
+
+    public String getPreFindForProjectData() {
+        return PreFindForProjectData;
+    }
+
+    public void setPreFindForProjectData(String preFindForProjectData) {
+        PreFindForProjectData = preFindForProjectData;
+    }
+
+    public String getPreAggregationUrl() {
+        return PreAggregationUrl;
+    }
+
+    public void setPreAggregationUrl(String preAggregationUrl) {
+        PreAggregationUrl = preAggregationUrl;
+    }
+
+    public String getPreLiminaryUrl() {
+        return PreLiminaryUrl;
+    }
+
+    public void setPreLiminaryUrl(String preLiminaryUrl) {
+        PreLiminaryUrl = preLiminaryUrl;
+    }
+    /**
      *  缩略图获取
      */
     private String PatientDetailThumbnail = null;
