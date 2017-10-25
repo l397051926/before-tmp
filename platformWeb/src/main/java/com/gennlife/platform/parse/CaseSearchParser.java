@@ -1,10 +1,7 @@
 package com.gennlife.platform.parse;
 
 import com.gennlife.platform.service.ConfigurationService;
-import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.HttpRequestUtils;
-import com.gennlife.platform.util.JsonUtils;
-import com.gennlife.platform.util.ParamUtils;
+import com.gennlife.platform.util.*;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.slf4j.Logger;
@@ -25,24 +22,23 @@ public class CaseSearchParser implements Callable<String> {
         logger.info("搜索请求参数=" + queryStr);
         queryjson = JsonUtils.getJsonObject(queryStr);
     }
-    public CaseSearchParser(String queryStr,String addquery) {
+
+    public CaseSearchParser(String queryStr, String addquery) {
         logger.info("搜索请求参数=" + queryStr);
         queryjson = JsonUtils.getJsonObject(queryStr);
         addQuery(addquery);
     }
 
     public void addQuery(String addquery) {
-        if(StringUtils.isEmpty(addquery))return;
-        if(queryjson.has("query"))
-        {
-           String query= queryjson.get("query").getAsString();
-            if(StringUtils.isEmpty(query)) queryjson.addProperty("query",addquery);
+        if (StringUtils.isEmpty(addquery)) return;
+        if (queryjson.has("query")) {
+            String query = queryjson.get("query").getAsString();
+            if (StringUtils.isEmpty(query)) queryjson.addProperty("query", addquery);
             else {
-                queryjson.addProperty("query","( "+query+" ) and "+addquery);
+                queryjson.addProperty("query", "( " + query + " ) and " + addquery);
             }
-        }
-        else queryjson.addProperty("query",addquery);
-        logger.info("query "+queryjson.get("query"));
+        } else queryjson.addProperty("query", addquery);
+        logger.info("query " + queryjson.get("query"));
     }
 
     public String call() throws Exception {
@@ -75,6 +71,7 @@ public class CaseSearchParser implements Callable<String> {
             } else return ParamUtils.errorParam("错误的查询条件");
         }
         isOk = true;
+        queryjson.addProperty("indexName", ConfigUtils.getSearchIndexName());
         return HttpRequestUtils.httpPost(url, GsonUtil.getGson().toJson(queryjson));
     }
 

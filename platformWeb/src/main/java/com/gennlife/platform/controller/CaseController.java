@@ -34,8 +34,15 @@ public class CaseController {
         String resultStr = null;
         try {
             String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj=null;
             logger.info("搜索结果列表展示的集合 post方式 参数=" + param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            try {
+                paramObj = (JsonObject) jsonParser.parse(param);
+            }
+            catch (Exception e)
+            {
+                return ParamUtils.errorParam("请求参数错误");
+            }
             resultStr = processor.searchItemSet(paramObj);
         } catch (Exception e) {
             logger.error("搜索结果列表展示的集合", e);

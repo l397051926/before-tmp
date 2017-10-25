@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -55,7 +56,8 @@ public class ConfigurationService implements InitializingBean{
     @Autowired
     public void setDefault_crf_id( SystemDefault systemDefault)
     {
-        systemDefault.getSearchItemSetDefault();
+        default_crf_id=systemDefault.getSearchItemSetDefault();
+        logger.info("default crf_id"+default_crf_id);
     }
 
     private static Gson gson = GsonUtil.getGson();
@@ -66,8 +68,11 @@ public class ConfigurationService implements InitializingBean{
     }
 
     public  void loadConfigurationInfo() throws IOException {
-        //String caseStr = FilesUtils.readFile("/case.json");
         String caseStr = configUtils.getRemoteUtfFile("case.json");
+        if(StringUtils.isEmpty(caseStr))
+        {
+            caseStr = FilesUtils.readFile("/case.json");
+        }
         //logger.info("case.json = "+caseStr);
         JsonObject allDiseasesObj = (JsonObject) jsonParser.parse(caseStr);
         for (Map.Entry<String, JsonElement> item : allDiseasesObj.entrySet()) {
