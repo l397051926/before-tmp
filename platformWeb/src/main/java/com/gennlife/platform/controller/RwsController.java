@@ -27,14 +27,13 @@ public class RwsController {
     @RequestMapping(value = "/PreLiminary", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
-    String postSampleImport(@RequestBody String condition, @RequestBody String projectId) {
+    String postSampleImport(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-            JsonObject paramObj = new JsonObject();
-            paramObj.addProperty("condition", condition);
-            paramObj.addProperty("projectId", projectId);
-            logger.info("搜索结果导出到RWS项目空间 get方式 参数=" + gson.toJson(paramObj));
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            logger.info("搜索结果导出到RWS项目空间 get方式 参数=" + gson.toJson(param));
             resultStr = processor.PreLiminary(paramObj);
         } catch (Exception e) {
             logger.error("搜索结果导出到RWS项目空间", e);
