@@ -133,5 +133,7 @@
         <property name="GetAllActiveOrIndex" value="http://${rws.ipAndPort}/rws/getAllActiveOrIndex"/>
         <property name="GetSavedActivityData" value="http://${rws.ipAndPort}/rws/getActive"/>
         <property name="SaveOrSearchActive" value="http://${rws.ipAndPort}/rws/saveActiveIndex"/>
+        <property name="ClacResultSearch" value="http://${rws.ipAndPort}/search/clacResultSearch"/>
+        <property name="ClacIndexResultSearch" value="http://${rws.ipAndPort}/search/clacIndexResultSearch"/>
     </bean>
 </beans>

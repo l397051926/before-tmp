@@ -426,6 +426,24 @@ public class URLBean {
     private String GetAllActiveOrIndex = null;
     private String GetSavedActivityData = null;
     private String SaveOrSearchActive = null;
+    private String ClacResultSearch = null;
+    private String ClacIndexResultSearch = null;
+
+    public String getClacIndexResultSearch() {
+        return ClacIndexResultSearch;
+    }
+
+    public void setClacIndexResultSearch(String clacIndexResultSearch) {
+        ClacIndexResultSearch = clacIndexResultSearch;
+    }
+
+    public String getClacResultSearch() {
+        return ClacResultSearch;
+    }
+
+    public void setClacResultSearch(String clacResultSearch) {
+        ClacResultSearch = clacResultSearch;
+    }
 
     public String getSaveOrSearchActive() {
         return SaveOrSearchActive;

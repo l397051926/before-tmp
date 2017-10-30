@@ -94,4 +94,26 @@ public class RwsProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String searchClacResultSearch(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getClacResultSearch();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("搜索事件定义页下的详情接口 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String searchClacIndexResultSearch(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getClacIndexResultSearch();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("指标定义下定义页下的详情接口 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }

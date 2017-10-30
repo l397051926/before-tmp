@@ -159,4 +159,42 @@ public class RwsController {
         logger.info("搜索或保存 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/ClacResultSearch", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String clacResultSearch(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("搜索事件定义页下的详情 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.searchClacResultSearch(paramObj);
+        } catch (Exception e) {
+            logger.error("搜索事件定义页下的详情接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("搜索事件定义页下的详情 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/ClacIndexResultSearch", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String clacIndexResultSearch(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("指标定义下定义页下的详情 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.searchClacIndexResultSearch(paramObj);
+        } catch (Exception e) {
+            logger.error("指标定义下定义页下的详情接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("指标定义下定义页下的详情 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }
