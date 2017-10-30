@@ -425,6 +425,15 @@ public class URLBean {
     private String FindByProjectId = null;
     private String GetAllActiveOrIndex = null;
     private String GetSavedActivityData = null;
+    private String SaveOrSearchActive = null;
+
+    public String getSaveOrSearchActive() {
+        return SaveOrSearchActive;
+    }
+
+    public void setSaveOrSearchActive(String saveOrSearchActive) {
+        SaveOrSearchActive = saveOrSearchActive;
+    }
 
     public String getGetSavedActivityData() {
         return GetSavedActivityData;

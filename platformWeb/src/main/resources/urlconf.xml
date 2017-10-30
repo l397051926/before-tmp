@@ -132,5 +132,6 @@
         <property name="FindByProjectId" value="http://${rws.ipAndPort}/rws/findByProjectId"/>
         <property name="GetAllActiveOrIndex" value="http://${rws.ipAndPort}/rws/getAllActiveOrIndex"/>
         <property name="GetSavedActivityData" value="http://${rws.ipAndPort}/rws/getActive"/>
+        <property name="SaveOrSearchActive" value="http://${rws.ipAndPort}/rws/saveActiveIndex"/>
     </bean>
 </beans>

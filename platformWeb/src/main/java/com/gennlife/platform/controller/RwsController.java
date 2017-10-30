@@ -139,4 +139,24 @@ public class RwsController {
         logger.info("获取后台保存的 事件/指标 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/SaveOrSearchActive", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String saveOrSearchActive(HttpServletRequest paramRe) {
+        // 搜索或保存接口
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("搜索或保存接口 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.saveOrSearchActive(paramObj);
+        } catch (Exception e) {
+            logger.error("搜索或保存接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("搜索或保存 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }
