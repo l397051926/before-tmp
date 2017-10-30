@@ -130,5 +130,7 @@
         <property name="PreAggregationUrl" value="http://${rws.ipAndPort}/rws/pre/aggregation"/>
         <property name="PreFindForProjectData" value="http://${rws.ipAndPort}/rws/pre/findForProjectData"/>
         <property name="FindByProjectId" value="http://${rws.ipAndPort}/rws/findByProjectId"/>
+        <property name="GetAllActiveOrIndex" value="http://${rws.ipAndPort}/rws/getAllActiveOrIndex"/>
+        <property name="GetSavedActivityData" value="http://${rws.ipAndPort}/rws/getActive"/>
     </bean>
 </beans>

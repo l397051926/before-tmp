@@ -61,4 +61,26 @@ public class RwsProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String getAllActiveOrIndex(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getGetAllActiveOrIndex();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取 事件/指标 下拉选项", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getSavedActivityData(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getGetSavedActivityData();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取后台保存的 事件/指标", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }

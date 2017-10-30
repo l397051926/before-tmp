@@ -423,6 +423,24 @@ public class URLBean {
     private String PreAggregationUrl = null;
     private String PreFindForProjectData = null;
     private String FindByProjectId = null;
+    private String GetAllActiveOrIndex = null;
+    private String GetSavedActivityData = null;
+
+    public String getGetSavedActivityData() {
+        return GetSavedActivityData;
+    }
+
+    public void setGetSavedActivityData(String getSavedActivityData) {
+        GetSavedActivityData = getSavedActivityData;
+    }
+
+    public String getGetAllActiveOrIndex() {
+        return GetAllActiveOrIndex;
+    }
+
+    public void setGetAllActiveOrIndex(String getAllActiveOrIndex) {
+        GetAllActiveOrIndex = getAllActiveOrIndex;
+    }
 
     public String getFindByProjectId() {
         return FindByProjectId;

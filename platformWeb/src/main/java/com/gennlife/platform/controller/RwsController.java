@@ -99,4 +99,44 @@ public class RwsController {
         logger.info("获取项目下所有已定义的事件/指标列表 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/GetAllActiveOrIndex", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getAllActiveOrIndex(HttpServletRequest paramRe) {
+        // 从后台获取 事件/指标 选项
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("获取 事件/指标 下拉选项 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.getAllActiveOrIndex(paramObj);
+        } catch (Exception e) {
+            logger.error("获取 事件/指标 下拉选项", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取 事件/指标 下拉选项 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/GetSavedActivityData", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getSavedActivityData(HttpServletRequest paramRe) {
+        // 获取后台保存的 事件/指标
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("获取后台保存的 事件/指标 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.getSavedActivityData(paramObj);
+        } catch (Exception e) {
+            logger.error("获取后台保存的 事件/指标", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取后台保存的 事件/指标 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }
