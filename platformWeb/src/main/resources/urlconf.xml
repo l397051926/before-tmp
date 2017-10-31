@@ -135,5 +135,6 @@
         <property name="SaveOrSearchActive" value="http://${rws.ipAndPort}/rws/saveActiveIndex"/>
         <property name="ClacResultSearch" value="http://${rws.ipAndPort}/search/clacResultSearch"/>
         <property name="ClacIndexResultSearch" value="http://${rws.ipAndPort}/search/clacIndexResultSearch"/>
+        <property name="GetCalcTotalByActiveId" value="http://${rws.ipAndPort}/search/getCalcTotalByActiveId"/>
     </bean>
 </beans>

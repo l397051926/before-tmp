@@ -428,6 +428,15 @@ public class URLBean {
     private String SaveOrSearchActive = null;
     private String ClacResultSearch = null;
     private String ClacIndexResultSearch = null;
+    private String GetCalcTotalByActiveId = null;
+
+    public String getGetCalcTotalByActiveId() {
+        return GetCalcTotalByActiveId;
+    }
+
+    public void setGetCalcTotalByActiveId(String getCalcTotalByActiveId) {
+        GetCalcTotalByActiveId = getCalcTotalByActiveId;
+    }
 
     public String getClacIndexResultSearch() {
         return ClacIndexResultSearch;
