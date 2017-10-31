@@ -206,14 +206,14 @@ public class RwsController {
         String resultStr = null;
         try {
             String param = ParamUtils.getParam(paramRe);
-            logger.info("获取患者列表头数据(大量数据的那种) 参数 = " + param);
+            logger.info("获取定义活动患者列表表头数据(大量数据的那种) 参数 = " + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr = processor.getCalcTotalByActiveId(paramObj);
         } catch (Exception e) {
-            logger.error("获取患者列表头数据 接口", e);
+            logger.error("获取定义活动患者列表表头数据 接口", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("获取患者列表头数据 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        logger.info("获取定义活动患者列表表头数据 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 }

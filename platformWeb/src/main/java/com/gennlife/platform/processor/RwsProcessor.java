@@ -123,7 +123,7 @@ public class RwsProcessor {
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
             return result;
         } catch (Exception e) {
-            logger.error("接口 ", e);
+            logger.error("获取定义活动患者列表表头数据接口 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
     }
