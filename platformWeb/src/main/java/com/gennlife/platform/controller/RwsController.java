@@ -156,6 +156,7 @@ public class RwsController {
             logger.error("搜索或保存接口", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
+        logger.info("搜索或保存 接口 请求结果" + resultStr);
         logger.info("搜索或保存 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
@@ -214,6 +215,25 @@ public class RwsController {
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("获取定义活动患者列表表头数据 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/FindTotalForImport", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String FindTotalForImport(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("列表上的总数接口 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.findTotalForImport(paramObj);
+        } catch (Exception e) {
+            logger.error("列表上的总数接口 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("列表上的总数接口 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 }

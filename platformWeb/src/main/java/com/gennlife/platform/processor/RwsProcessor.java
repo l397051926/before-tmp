@@ -127,4 +127,15 @@ public class RwsProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String findTotalForImport(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getFindTotalForImport();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("列表上的总数接口 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }

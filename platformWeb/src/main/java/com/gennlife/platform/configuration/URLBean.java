@@ -429,6 +429,15 @@ public class URLBean {
     private String ClacResultSearch = null;
     private String ClacIndexResultSearch = null;
     private String GetCalcTotalByActiveId = null;
+    private String FindTotalForImport = null;
+
+    public String getFindTotalForImport() {
+        return FindTotalForImport;
+    }
+
+    public void setFindTotalForImport(String findTotalForImport) {
+        FindTotalForImport = findTotalForImport;
+    }
 
     public String getGetCalcTotalByActiveId() {
         return GetCalcTotalByActiveId;
