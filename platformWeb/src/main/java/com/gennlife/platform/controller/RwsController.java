@@ -1,5 +1,8 @@
 package com.gennlife.platform.controller;
 
+import com.gennlife.platform.authority.AuthorityUtil;
+import com.gennlife.platform.model.User;
+import com.gennlife.platform.processor.CaseProcessor;
 import com.gennlife.platform.processor.RwsProcessor;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
@@ -23,6 +26,7 @@ public class RwsController {
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
     private RwsProcessor processor = new RwsProcessor();
+    private CaseProcessor caseProcessor = new CaseProcessor();
 
     @RequestMapping(value = "/PreLiminary", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
@@ -31,9 +35,13 @@ public class RwsController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-            String param = ParamUtils.getParam(paramRe);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            logger.info("搜索结果导出到RWS项目空间 get方式 参数=" + gson.toJson(param));
+            String paramNew = AuthorityUtil.addSearchCaseAuthority(paramRe);
+//            User user = (User) paramRe.getAttribute("currentUser");
+
+
+//            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(paramNew);
+            logger.info("搜索结果导出到RWS项目空间 get方式 参数=" + gson.toJson(paramNew));
             resultStr = processor.PreLiminary(paramObj);
         } catch (Exception e) {
             logger.error("搜索结果导出到RWS项目空间", e);
