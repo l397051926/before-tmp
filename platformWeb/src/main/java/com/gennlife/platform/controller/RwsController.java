@@ -244,4 +244,23 @@ public class RwsController {
         logger.info("列表上的总数接口 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/DeleteByActiveId", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String DeleteByActiveId(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("根据活动id删除活动的全部信息接口 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.deleteByActiveId(paramObj);
+        } catch (Exception e) {
+            logger.error("根据活动id删除活动的全部信息 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("根据活动id删除活动的全部信息 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }

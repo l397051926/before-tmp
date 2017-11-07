@@ -137,5 +137,6 @@
         <property name="ClacIndexResultSearch" value="http://${rws.ipAndPort}/search/clacIndexResultSearch"/>
         <property name="GetCalcTotalByActiveId" value="http://${rws.ipAndPort}/search/getCalcTotalByActiveId"/>
         <property name="FindTotalForImport" value="http://${rws.ipAndPort}/rws/pre/findTotalForImport"/>
+        <property name="DeleteByActiveId" value="http://${rws.ipAndPort}/rws/deleteByActiveId"/>
     </bean>
 </beans>

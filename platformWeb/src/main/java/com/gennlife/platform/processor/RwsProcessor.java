@@ -138,4 +138,15 @@ public class RwsProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String deleteByActiveId(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getDeleteByActiveId();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("根据活动id删除活动的全部信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }

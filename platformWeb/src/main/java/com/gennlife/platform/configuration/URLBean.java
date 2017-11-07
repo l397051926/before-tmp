@@ -430,6 +430,15 @@ public class URLBean {
     private String ClacIndexResultSearch = null;
     private String GetCalcTotalByActiveId = null;
     private String FindTotalForImport = null;
+    private String DeleteByActiveId = null;
+
+    public String getDeleteByActiveId() {
+        return DeleteByActiveId;
+    }
+
+    public void setDeleteByActiveId(String deleteByActiveId) {
+        DeleteByActiveId = deleteByActiveId;
+    }
 
     public String getFindTotalForImport() {
         return FindTotalForImport;
