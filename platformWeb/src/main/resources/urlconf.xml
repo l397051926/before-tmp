@@ -138,5 +138,6 @@
         <property name="GetCalcTotalByActiveId" value="http://${rws.ipAndPort}/search/getCalcTotalByActiveId"/>
         <property name="FindTotalForImport" value="http://${rws.ipAndPort}/rws/pre/findTotalForImport"/>
         <property name="DeleteByActiveId" value="http://${rws.ipAndPort}/rws/deleteByActiveId"/>
+        <property name="CheckActiveIsOnlyOne" value="http://${rws.ipAndPort}/rws/activeIsExists"/>
     </bean>
 </beans>

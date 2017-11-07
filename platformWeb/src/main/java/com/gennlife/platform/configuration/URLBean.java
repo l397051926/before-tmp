@@ -431,6 +431,15 @@ public class URLBean {
     private String GetCalcTotalByActiveId = null;
     private String FindTotalForImport = null;
     private String DeleteByActiveId = null;
+    private String CheckActiveIsOnlyOne = null;
+
+    public String getCheckActiveIsOnlyOne() {
+        return CheckActiveIsOnlyOne;
+    }
+
+    public void setCheckActiveIsOnlyOne(String checkActiveIsOnlyOne) {
+        CheckActiveIsOnlyOne = checkActiveIsOnlyOne;
+    }
 
     public String getDeleteByActiveId() {
         return DeleteByActiveId;
