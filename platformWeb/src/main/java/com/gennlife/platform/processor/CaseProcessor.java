@@ -104,7 +104,14 @@ public class CaseProcessor {
                     }
                 }
                 if (newGroup.size() > 0) {
-                    allNew.add(groupName, newGroup);
+                    if (paramObj.has("filterPath")) {
+                        String filterPath = paramObj.get("filterPath").getAsString();
+                        if (!StringUtils.isEmpty(filterPath) && !groupName.equals(filterPath)) {
+                            allNew.add(groupName, newGroup);
+                        }
+                    } else {
+                        allNew.add(groupName, newGroup);
+                    }
                 }
             }
             resultBean.setCode(1);
