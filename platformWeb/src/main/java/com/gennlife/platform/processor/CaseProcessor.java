@@ -106,7 +106,11 @@ public class CaseProcessor {
                 if (newGroup.size() > 0) {
                     if (paramObj.has("filterPath")) {
                         String filterPath = paramObj.get("filterPath").getAsString();
-                        if (!StringUtils.isEmpty(filterPath) && !groupName.equals(filterPath)) {
+                        if (!StringUtils.isEmpty(filterPath)) {
+                            if (!groupName.equals(filterPath)) {
+                                allNew.add(groupName, newGroup);
+                            }
+                        } else {
                             allNew.add(groupName, newGroup);
                         }
                     } else {
