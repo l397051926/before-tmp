@@ -452,12 +452,19 @@ public class SampleProcessor {
             int sub = 0; // 没有导出权限病例个数
             JsonObject power = jsonObject.getAsJsonObject("power");
             JsonArray searchExport = power.getAsJsonArray("has_searchExport");
+            JsonArray search = power.getAsJsonArray("has_search");
+
+            Set<String> sid = new HashSet<>();
             for (JsonElement ele : searchExport) {
                 JsonObject obj = ele.getAsJsonObject();
-                if (!"有".equals(obj.get("has_searchExport").getAsString())) {
-                    sub++;
-                }
+                sid.add(obj.get("sid").getAsString());
             }
+
+            for (JsonElement ele : search) {
+                JsonObject obj = ele.getAsJsonObject();
+                if (!sid.contains(obj.get("sid").getAsString())) sub++;
+            }
+
             if (sub > 0) next = false;
             if (sub < searchExport.size()) export = true;
             data.addProperty("next", next);
