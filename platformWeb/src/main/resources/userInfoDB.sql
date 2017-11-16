@@ -456,7 +456,7 @@ CREATE TABLE `pro_user` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `searchConditionHistory`
+-- Table structure for `searchConditioanHistory`
 -- ----------------------------
 DROP TABLE IF EXISTS `searchConditionHistory`;
 CREATE TABLE `searchConditionHistory` (

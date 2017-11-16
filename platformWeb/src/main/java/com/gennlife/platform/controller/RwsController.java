@@ -35,11 +35,8 @@ public class RwsController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-            String paramNew = AuthorityUtil.addSearchCaseAuthority(paramRe);
-//            User user = (User) paramRe.getAttribute("currentUser");
-
-
-//            String param = ParamUtils.getParam(paramRe);
+//            String paramNew = AuthorityUtil.addSearchCaseAuthority(paramRe);
+            String paramNew = AuthorityUtil.addTreatedAuthority(paramRe);
             JsonObject paramObj = (JsonObject) jsonParser.parse(paramNew);
             logger.info("搜索结果导出到RWS项目空间 get方式 参数=" + gson.toJson(paramNew));
             resultStr = processor.PreLiminary(paramObj);

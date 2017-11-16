@@ -445,36 +445,59 @@ public class SampleProcessor {
 
     public String importSampleCheck(JsonObject jsonObject, User user) {
         try {
-            JsonObject query = jsonObject.get("query").getAsJsonObject();
-            JsonArray groups = jsonObject.get("groups").getAsJsonArray();
+            // TODO 处理是否有导出权限    共3种情况  1.全有has_searchExport权限    2.部分有has_searchExport权限    3.全没有has_searchExport权限
+            JsonObject data = new JsonObject();
+            boolean next = true; // 表示全成功 执行下一步 导出任务
+            boolean export = false;
+            int sub = 0; // 没有导出权限病例个数
             JsonObject power = jsonObject.getAsJsonObject("power");
-            query.add("groups", groups);
-            query.add("power", power);
-            logger.info("原始搜索条件=" + gson.toJson(query));
-
-            String withSid = CaseProcessor.transformSidForImport(gson.toJson(query), user);
-            JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
-            if (queryNew.has("code") && queryNew.get("code").getAsInt() == 0) {
-                return gson.toJson(queryNew);
-            }
-            logger.info("sid 处理后导出条件=" + gson.toJson(queryNew));
-            String url = ConfigurationService.getUrlBean().getSampleImportChecKIURL();
-            String data = HttpRequestUtils.httpPostForSampleImport(url, gson.toJson(queryNew), 30000);
-            if (data == null || "".equals(data)) {
-                return ParamUtils.errorParam("FS 返回为空");
-            } else {
-                JsonObject resultBean = new JsonObject();
-                logger.info("FS 返回=" + data);
-                JsonObject dataObj = (JsonObject) jsonParser.parse(data);
-                boolean success = dataObj.get("success").getAsBoolean();
-                if (success) {
-                    resultBean.addProperty("code", 1);
-                } else {
-                    resultBean.addProperty("code", 0);
+            JsonArray searchExport = power.getAsJsonArray("has_searchExport");
+            for (JsonElement ele : searchExport) {
+                JsonObject obj = ele.getAsJsonObject();
+                if (!"有".equals(obj.get("has_searchExport").getAsString())) {
+                    sub++;
                 }
-                resultBean.add("data", dataObj);
-                return gson.toJson(resultBean);
             }
+            if (sub > 0) next = false;
+            if (sub < searchExport.size()) export = true;
+            data.addProperty("next", next);
+            data.addProperty("export", export);
+            data.addProperty("sub", sub);
+            ResultBean resultBean = new ResultBean();
+            resultBean.setCode(1);
+            resultBean.setData(data);
+            return gson.toJson(resultBean);
+
+//            JsonObject query = jsonObject.get("query").getAsJsonObject();
+//            JsonArray groups = jsonObject.get("groups").getAsJsonArray();
+//            JsonObject power = jsonObject.getAsJsonObject("power");
+//            query.add("groups", groups);
+//            query.add("power", power);
+//            logger.info("原始搜索条件=" + gson.toJson(query));
+//
+//            String withSid = CaseProcessor.transformSidForImport(gson.toJson(query), user);
+//            JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
+//            if (queryNew.has("code") && queryNew.get("code").getAsInt() == 0) {
+//                return gson.toJson(queryNew);
+//            }
+//            logger.info("sid 处理后导出条件=" + gson.toJson(queryNew));
+//            String url = ConfigurationService.getUrlBean().getSampleImportChecKIURL();
+//            String data = HttpRequestUtils.httpPostForSampleImport(url, gson.toJson(queryNew), 30000);
+//            if (data == null || "".equals(data)) {
+//                return ParamUtils.errorParam("FS 返回为空");
+//            } else {
+//                JsonObject resultBean = new JsonObject();
+//                logger.info("FS 返回=" + data);
+//                JsonObject dataObj = (JsonObject) jsonParser.parse(data);
+//                boolean success = dataObj.get("success").getAsBoolean();
+//                if (success) {
+//                    resultBean.addProperty("code", 1);
+//                } else {
+//                    resultBean.addProperty("code", 0);
+//                }
+//                resultBean.add("data", dataObj);
+//                return gson.toJson(resultBean);
+//            }
         } catch (Exception e) {
             logger.error("", e);
             return ParamUtils.errorParam("出现异常");
