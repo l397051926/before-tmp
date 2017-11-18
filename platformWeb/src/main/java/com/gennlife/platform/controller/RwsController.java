@@ -36,8 +36,15 @@ public class RwsController {
         String resultStr = null;
         try {
 //            String paramNew = AuthorityUtil.addSearchCaseAuthority(paramRe);
+            String sid = "";
+            JsonObject paramsObj = (JsonObject) jsonParser.parse(ParamUtils.getParam(paramRe));
+            if (paramsObj.has("sid")) {
+                sid = paramsObj.get("sid").getAsString();
+            }
             String paramNew = AuthorityUtil.addTreatedAuthority(paramRe);
             JsonObject paramObj = (JsonObject) jsonParser.parse(paramNew);
+            paramObj.addProperty("sid", sid);
+
             logger.info("搜索结果导出到RWS项目空间 get方式 参数=" + gson.toJson(paramNew));
             resultStr = processor.PreLiminary(paramObj);
         } catch (Exception e) {
