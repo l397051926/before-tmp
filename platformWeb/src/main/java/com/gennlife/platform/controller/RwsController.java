@@ -45,7 +45,7 @@ public class RwsController {
             JsonObject paramObj = (JsonObject) jsonParser.parse(paramNew);
             paramObj.addProperty("sid", sid);
 
-            logger.info("搜索结果导出到RWS项目空间 get方式 参数=" + gson.toJson(paramNew));
+            logger.info("搜索结果导出到RWS项目空间 get方式 参数=" + gson.toJson(paramObj));
             resultStr = processor.PreLiminary(paramObj);
         } catch (Exception e) {
             logger.error("搜索结果导出到RWS项目空间", e);
