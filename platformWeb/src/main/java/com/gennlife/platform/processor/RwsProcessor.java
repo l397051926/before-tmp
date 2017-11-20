@@ -160,4 +160,15 @@ public class RwsProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String activeIsChange(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getCheckActiveDataIsChange();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("验证事件数据是否改变 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }

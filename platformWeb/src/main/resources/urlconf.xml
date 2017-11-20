@@ -139,5 +139,6 @@
         <property name="FindTotalForImport" value="http://${rws.ipAndPort}/rws-service/rws/pre/findTotalForImport"/>
         <property name="DeleteByActiveId" value="http://${rws.ipAndPort}/rws-service/rws/deleteByActiveId"/>
         <property name="CheckActiveIsOnlyOne" value="http://${rws.ipAndPort}/rws-service/rws/activeIsExists"/>
+        <property name="CheckActiveDataIsChange" value="http://${rws.ipAndPort}/rws-service/rws/activeIsChange"/>
     </bean>
 </beans>

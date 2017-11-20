@@ -286,4 +286,23 @@ public class RwsController {
         logger.info("验证事件名称唯一 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/activeIsChange", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String activeIsChange(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("验证事件数据是否改变接口 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.activeIsChange(paramObj);
+        } catch (Exception e) {
+            logger.error("验证事件数据是否改变 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("验证事件数据是否改变 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }
