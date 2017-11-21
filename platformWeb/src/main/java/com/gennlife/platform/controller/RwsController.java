@@ -287,7 +287,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/activeIsChange", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/activeIsChange", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String activeIsChange(HttpServletRequest paramRe) {
