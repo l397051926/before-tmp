@@ -466,7 +466,7 @@ public class SampleProcessor {
             }
 
             if (sub > 0) next = false;
-            if (sub < searchExport.size()) export = true;
+            if (sub > 0 && sub < searchExport.size()) export = true;
             data.addProperty("next", next);
             data.addProperty("export", export);
             data.addProperty("sub", sub);
