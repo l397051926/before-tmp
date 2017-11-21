@@ -433,6 +433,15 @@ public class URLBean {
     private String DeleteByActiveId = null;
     private String CheckActiveIsOnlyOne = null;
     private String CheckActiveDataIsChange = null;
+    private String DependenceChange = null;
+
+    public String getDependenceChange() {
+        return DependenceChange;
+    }
+
+    public void setDependenceChange(String dependenceChange) {
+        DependenceChange = dependenceChange;
+    }
 
     public String getCheckActiveDataIsChange() {
         return CheckActiveDataIsChange;

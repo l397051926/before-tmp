@@ -305,4 +305,23 @@ public class RwsController {
         logger.info("验证事件数据是否改变 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/dependenceChange", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String dependenceChange(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("验证事件数据是否改变&有被依赖接口 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.dependenceChange(paramObj);
+        } catch (Exception e) {
+            logger.error("验证事件数据是否改变&有被依赖 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("验证事件数据是否改变&有被依赖 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }

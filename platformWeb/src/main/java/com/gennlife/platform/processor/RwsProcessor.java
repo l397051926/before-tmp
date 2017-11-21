@@ -171,4 +171,15 @@ public class RwsProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String dependenceChange(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getDependenceChange();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("验证事件数据是否改变&有被依赖 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }
