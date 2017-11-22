@@ -447,34 +447,46 @@ public class SampleProcessor {
         try {
             // TODO 处理是否有导出权限    共3种情况  1.全有has_searchExport权限    2.部分有has_searchExport权限    3.全没有has_searchExport权限
             JsonObject data = new JsonObject();
+            JsonObject query = jsonObject.get("query").getAsJsonObject();
+            ResultBean resultBean = new ResultBean();
             boolean next = true; // 表示全成功 执行下一步 导出任务
             boolean export = false;
             int sub = 0; // 没有导出权限病例个数
             JsonObject power = jsonObject.getAsJsonObject("power");
             JsonArray searchExport = power.getAsJsonArray("has_searchExport");
             JsonArray search = power.getAsJsonArray("has_search");
+            if (query.has("sid")) {
+                next = false;
+                String querySid = query.get("sid").getAsString();
+                for (JsonElement ele : searchExport) {
+                    JsonObject obj = ele.getAsJsonObject();
+                    if (obj.get("sid").getAsString().equals(querySid)) {
+                        next = true;
+                        export = true;
+                        break;
+                    }
+                }
+            } else {
+                Set<String> sid = new HashSet<>();
+                for (JsonElement ele : searchExport) {
+                    JsonObject obj = ele.getAsJsonObject();
+                    sid.add(obj.get("sid").getAsString());
+                }
 
-            Set<String> sid = new HashSet<>();
-            for (JsonElement ele : searchExport) {
-                JsonObject obj = ele.getAsJsonObject();
-                sid.add(obj.get("sid").getAsString());
+                for (JsonElement ele : search) {
+                    JsonObject obj = ele.getAsJsonObject();
+                    if (!sid.contains(obj.get("sid").getAsString())) sub++;
+                }
+
+                if (sub > 0) next = false;
+                if (sub > 0 && sub < searchExport.size()) export = true;
             }
-
-            for (JsonElement ele : search) {
-                JsonObject obj = ele.getAsJsonObject();
-                if (!sid.contains(obj.get("sid").getAsString())) sub++;
-            }
-
-            if (sub > 0) next = false;
-            if (sub > 0 && sub < searchExport.size()) export = true;
             data.addProperty("next", next);
             data.addProperty("export", export);
             data.addProperty("sub", sub);
-            ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
             resultBean.setData(data);
             return gson.toJson(resultBean);
-
 //            JsonObject query = jsonObject.get("query").getAsJsonObject();
 //            JsonArray groups = jsonObject.get("groups").getAsJsonArray();
 //            JsonObject power = jsonObject.getAsJsonObject("power");
