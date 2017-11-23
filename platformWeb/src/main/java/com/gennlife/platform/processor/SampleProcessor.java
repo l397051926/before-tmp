@@ -9,10 +9,7 @@ import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.enums.LogActionEnum;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.service.ConfigurationService;
-import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.HttpRequestUtils;
-import com.gennlife.platform.util.ParamUtils;
-import com.gennlife.platform.util.SpringContextUtil;
+import com.gennlife.platform.util.*;
 import com.gennlife.platform.view.View;
 import com.google.gson.*;
 import org.slf4j.Logger;
@@ -446,62 +443,83 @@ public class SampleProcessor {
     public String importSampleCheck(JsonObject jsonObject, User user) {
         try {
             // TODO 处理是否有导出权限    共3种情况  1.全有has_searchExport权限    2.部分有has_searchExport权限    3.全没有has_searchExport权限
-            JsonObject data = new JsonObject();
-            JsonObject query = jsonObject.get("query").getAsJsonObject();
-            ResultBean resultBean = new ResultBean();
-            boolean next = true; // 表示全成功 执行下一步 导出任务
-            boolean export = false;
-            int sub = 0; // 没有导出权限病例个数
-            JsonObject power = jsonObject.getAsJsonObject("power");
-            JsonArray searchExport = power.getAsJsonArray("has_searchExport");
-            JsonArray search = power.getAsJsonArray("has_search");
-            if (query.has("sid")) {
-                next = false;
-                String querySid = query.get("sid").getAsString();
-                for (JsonElement ele : searchExport) {
-                    JsonObject obj = ele.getAsJsonObject();
-                    if (obj.get("sid").getAsString().equals(querySid)) {
-                        next = true;
-                        export = true;
-                        break;
-                    }
-                }
-            } else {
-                Set<String> sid = new HashSet<>();
-                for (JsonElement ele : searchExport) {
-                    JsonObject obj = ele.getAsJsonObject();
-                    sid.add(obj.get("sid").getAsString());
-                }
-
-                for (JsonElement ele : search) {
-                    JsonObject obj = ele.getAsJsonObject();
-                    if (!sid.contains(obj.get("sid").getAsString())) sub++;
-                }
-
-                if (sub > 0) next = false;
-                if (sub > 0 && sub < searchExport.size()) export = true;
-            }
-            data.addProperty("next", next);
-            data.addProperty("export", export);
-            data.addProperty("sub", sub);
-            resultBean.setCode(1);
-            resultBean.setData(data);
-            return gson.toJson(resultBean);
+//            JsonObject data = new JsonObject();
 //            JsonObject query = jsonObject.get("query").getAsJsonObject();
-//            JsonArray groups = jsonObject.get("groups").getAsJsonArray();
+//            ResultBean resultBean = new ResultBean();
+//            boolean next = true; // 表示全成功 执行下一步 导出任务
+//            boolean export = false;
+//            int sub = 0; // 没有导出权限病例个数
 //            JsonObject power = jsonObject.getAsJsonObject("power");
-//            query.add("groups", groups);
-//            query.add("power", power);
-//            logger.info("原始搜索条件=" + gson.toJson(query));
+//            JsonArray searchExport = power.getAsJsonArray("has_searchExport");
+//            JsonArray search = power.getAsJsonArray("has_search");
+//            if (query.has("sid")) {
+//                next = false;
+//                String querySid = query.get("sid").getAsString();
+//                for (JsonElement ele : searchExport) {
+//                    JsonObject obj = ele.getAsJsonObject();
+//                    if (obj.get("sid").getAsString().equals(querySid)) {
+//                        next = true;
+//                        export = true;
+//                        break;
+//                    }
+//                }
+//            } else {
+//                //queryjson.addProperty("indexName", ConfigUtils.getSearchIndexName());
+//                JsonObject requestObj = new JsonObject();
+//                requestObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
+//                requestObj.addProperty("query", query.get("query").getAsString());
+//                requestObj.add("power", power);
 //
-//            String withSid = CaseProcessor.transformSidForImport(gson.toJson(query), user);
-//            JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
-//            if (queryNew.has("code") && queryNew.get("code").getAsInt() == 0) {
-//                return gson.toJson(queryNew);
+//
+//
+//
+//                Set<String> sid = new HashSet<>();
+//                for (JsonElement ele : searchExport) {
+//                    JsonObject obj = ele.getAsJsonObject();
+//                    sid.add(obj.get("sid").getAsString());
+//                }
+//
+//                for (JsonElement ele : search) {
+//                    JsonObject obj = ele.getAsJsonObject();
+//                    if (!sid.contains(obj.get("sid").getAsString())) sub++;
+//                }
+//
+//                if (sub > 0) next = false;
+//                if (sub > 0 && sub < searchExport.size()) export = true;
 //            }
-//            logger.info("sid 处理后导出条件=" + gson.toJson(queryNew));
+//            data.addProperty("next", next);
+//            data.addProperty("export", export);
+//            data.addProperty("sub", sub);
+//            resultBean.setCode(1);
+//            resultBean.setData(data);
+//            return gson.toJson(resultBean);
+
+
+
+            JsonObject query = jsonObject.get("query").getAsJsonObject();
+            JsonArray groups = jsonObject.get("groups").getAsJsonArray();
+            JsonObject power = jsonObject.getAsJsonObject("power");
+            query.add("groups", groups);
+            query.add("power", power);
+            logger.info("原始搜索条件=" + gson.toJson(query));
+
+            String withSid = CaseProcessor.transformSidForImport(gson.toJson(query), user);
+            JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
+            if (queryNew.has("code") && queryNew.get("code").getAsInt() == 0) {
+                return gson.toJson(queryNew);
+            }
+            logger.info("sid 处理后导出条件=" + gson.toJson(queryNew));
+
+            String url = ConfigurationService.getUrlBean().getCaseSearchURL();
+
+            String data = HttpRequestUtils.httpPost(url, GsonUtil.getGson().toJson(queryNew));
+
+            return gson.toJson(data);
+
+
 //            String url = ConfigurationService.getUrlBean().getSampleImportChecKIURL();
 //            String data = HttpRequestUtils.httpPostForSampleImport(url, gson.toJson(queryNew), 30000);
+
 //            if (data == null || "".equals(data)) {
 //                return ParamUtils.errorParam("FS 返回为空");
 //            } else {
