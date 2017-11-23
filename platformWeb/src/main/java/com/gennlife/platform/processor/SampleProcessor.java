@@ -442,59 +442,6 @@ public class SampleProcessor {
 
     public String importSampleCheck(JsonObject jsonObject, User user) {
         try {
-            // TODO 处理是否有导出权限    共3种情况  1.全有has_searchExport权限    2.部分有has_searchExport权限    3.全没有has_searchExport权限
-//            JsonObject data = new JsonObject();
-//            JsonObject query = jsonObject.get("query").getAsJsonObject();
-//            ResultBean resultBean = new ResultBean();
-//            boolean next = true; // 表示全成功 执行下一步 导出任务
-//            boolean export = false;
-//            int sub = 0; // 没有导出权限病例个数
-//            JsonObject power = jsonObject.getAsJsonObject("power");
-//            JsonArray searchExport = power.getAsJsonArray("has_searchExport");
-//            JsonArray search = power.getAsJsonArray("has_search");
-//            if (query.has("sid")) {
-//                next = false;
-//                String querySid = query.get("sid").getAsString();
-//                for (JsonElement ele : searchExport) {
-//                    JsonObject obj = ele.getAsJsonObject();
-//                    if (obj.get("sid").getAsString().equals(querySid)) {
-//                        next = true;
-//                        export = true;
-//                        break;
-//                    }
-//                }
-//            } else {
-//                //queryjson.addProperty("indexName", ConfigUtils.getSearchIndexName());
-//                JsonObject requestObj = new JsonObject();
-//                requestObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
-//                requestObj.addProperty("query", query.get("query").getAsString());
-//                requestObj.add("power", power);
-//
-//
-//
-//
-//                Set<String> sid = new HashSet<>();
-//                for (JsonElement ele : searchExport) {
-//                    JsonObject obj = ele.getAsJsonObject();
-//                    sid.add(obj.get("sid").getAsString());
-//                }
-//
-//                for (JsonElement ele : search) {
-//                    JsonObject obj = ele.getAsJsonObject();
-//                    if (!sid.contains(obj.get("sid").getAsString())) sub++;
-//                }
-//
-//                if (sub > 0) next = false;
-//                if (sub > 0 && sub < searchExport.size()) export = true;
-//            }
-//            data.addProperty("next", next);
-//            data.addProperty("export", export);
-//            data.addProperty("sub", sub);
-//            resultBean.setCode(1);
-//            resultBean.setData(data);
-//            return gson.toJson(resultBean);
-
-
 
             JsonObject query = jsonObject.get("query").getAsJsonObject();
             JsonArray groups = jsonObject.get("groups").getAsJsonArray();
@@ -503,19 +450,58 @@ public class SampleProcessor {
             query.add("power", power);
             logger.info("原始搜索条件=" + gson.toJson(query));
 
-            String withSid = CaseProcessor.transformSidForImport(gson.toJson(query), user);
-            JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
-            if (queryNew.has("code") && queryNew.get("code").getAsInt() == 0) {
-                return gson.toJson(queryNew);
+            boolean next = true; // 表示全成功 执行下一步 导出任务
+            boolean export = false;
+            int sub = 0; // 没有导出权限病例个数
+             if (query.has("sid")) {
+                next = false;
+                String querySid = query.get("sid").getAsString();
+                for (JsonElement ele : power.getAsJsonArray("has_searchExport")) {
+                    JsonObject obj = ele.getAsJsonObject();
+                    if (obj.get("sid").getAsString().equals(querySid)) {
+                        next = true;
+                        export = true;
+                        break;
+                    }
+                }
+            } else {
+                 String withSid = CaseProcessor.transformSidForImport(gson.toJson(query), user);
+                 JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
+                 if (queryNew.has("code") && queryNew.get("code").getAsInt() == 0) {
+                     return gson.toJson(queryNew);
+                 }
+                 queryNew.addProperty("indexName", ConfigUtils.getSearchIndexName());
+                 logger.info("sid 处理后导出条件=" + gson.toJson(queryNew));
+
+                 String url = ConfigurationService.getUrlBean().getCaseSearchURL();
+                 String data_01 = HttpRequestUtils.httpPost(url, GsonUtil.getGson().toJson(queryNew));
+                 logger.info("data_01=" + gson.toJson(data_01));
+
+                 JsonArray searchExport = power.getAsJsonArray("has_searchExport");
+                 JsonArray search = power.getAsJsonArray("has_search");
+                 queryNew.add("has_search", searchExport);
+                 queryNew.add("has_searchExport", search);
+                 String data_02 = HttpRequestUtils.httpPost(url, GsonUtil.getGson().toJson(queryNew));
+                 logger.info("data_02=" + gson.toJson(data_02));
+
+                 JsonObject hits_01 = jsonParser.parse(data_01).getAsJsonObject().get("data").getAsJsonObject().get("hits").getAsJsonObject();
+                 JsonObject hits_02 = jsonParser.parse(data_02).getAsJsonObject().get("data").getAsJsonObject().get("hits").getAsJsonObject();
+                 int count = hits_01.get("total").getAsInt() - hits_02.get("total").getAsInt();
+                 if (count > 0) {
+                     next = false;
+                     export = true;
+                     sub = count;
+                 }
             }
-            logger.info("sid 处理后导出条件=" + gson.toJson(queryNew));
 
-            String url = ConfigurationService.getUrlBean().getCaseSearchURL();
-
-            String data = HttpRequestUtils.httpPost(url, GsonUtil.getGson().toJson(queryNew));
-
-            return gson.toJson(data);
-
+            ResultBean resultBean = new ResultBean();
+            JsonObject data = new JsonObject();
+            data.addProperty("next", next);
+            data.addProperty("export", export);
+            data.addProperty("sub", sub);
+            resultBean.setCode(1);
+            resultBean.setData(data);
+            return gson.toJson(resultBean);
 
 //            String url = ConfigurationService.getUrlBean().getSampleImportChecKIURL();
 //            String data = HttpRequestUtils.httpPostForSampleImport(url, gson.toJson(queryNew), 30000);

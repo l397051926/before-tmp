@@ -42,7 +42,7 @@ public class HttpRequestUtils {
      * @return
      */
     public static String httpPost(String url, String jsonParam) {
-        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(30000).setConnectTimeout(3000).build();
+        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(50000).setConnectTimeout(10000).build();
         return httpPostExecute(url, jsonParam, requestConfig);
 
     }
