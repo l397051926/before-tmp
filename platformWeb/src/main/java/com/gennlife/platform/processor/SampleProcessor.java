@@ -472,6 +472,7 @@ public class SampleProcessor {
                  }
                  queryNew.addProperty("indexName", ConfigUtils.getSearchIndexName());
                  queryNew.addProperty("size", 1);
+                 queryNew.get("source").getAsJsonArray().add("patient_info.PATIENT_SN");
                  logger.info("sid 处理后导出条件=" + gson.toJson(queryNew));
 
                  String url = ConfigurationService.getUrlBean().getCaseSearchURL();
