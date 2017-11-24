@@ -479,10 +479,10 @@ public class SampleProcessor {
                  String data_01 = HttpRequestUtils.httpPost(url, GsonUtil.getGson().toJson(queryNew));
                  logger.info("data_01=" + data_01);
 
-                 JsonArray searchExport = power.getAsJsonArray("has_searchExport");
-                 JsonArray search = power.getAsJsonArray("has_search");
-                 queryNew.add("has_search", searchExport);
-                 queryNew.add("has_searchExport", search);
+                 String searchExport = gson.toJson(power.getAsJsonArray("has_searchExport"));
+                 String search = gson.toJson(power.getAsJsonArray("has_search"));
+                 power.add("has_search", jsonParser.parse(searchExport));
+                 power.add("has_searchExport", jsonParser.parse(search));
                  logger.info("data_02 处理后导出条件=" + gson.toJson(queryNew));
                  String data_02 = HttpRequestUtils.httpPost(url, GsonUtil.getGson().toJson(queryNew));
                  logger.info("data_02=" + data_02);
