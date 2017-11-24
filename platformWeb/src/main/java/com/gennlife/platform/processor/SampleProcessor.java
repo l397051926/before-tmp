@@ -486,9 +486,9 @@ public class SampleProcessor {
                  String data_02 = HttpRequestUtils.httpPost(url, GsonUtil.getGson().toJson(queryNew));
 
                  JsonObject hits_01 = jsonParser.parse(data_01).getAsJsonObject().get("data").getAsJsonObject().get("hits").getAsJsonObject();
-                 logger.info("data_01=" + gson.toJson(data_01));
+                 logger.info("data_01=" + data_01);
                  JsonObject hits_02 = jsonParser.parse(data_02).getAsJsonObject().get("data").getAsJsonObject().get("hits").getAsJsonObject();
-                 logger.info("data_02=" + gson.toJson(data_02));
+                 logger.info("data_02=" + data_02);
                  logger.info("total========= " + hits_01.get("total").getAsInt() + " ======== " + hits_02.get("total").getAsInt());
                  int count = hits_01.get("total").getAsInt() - hits_02.get("total").getAsInt();
                  if (count > 0) {
