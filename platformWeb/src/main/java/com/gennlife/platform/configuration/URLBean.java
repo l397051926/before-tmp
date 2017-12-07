@@ -1,7 +1,5 @@
 package com.gennlife.platform.configuration;
 
-import javax.swing.*;
-
 /**
  * Created by chen-song on 16/5/13.
  */
@@ -13,6 +11,7 @@ public class URLBean {
     private String casePatientBatchData;
     private String CrfCsvImportDetail;
     private String consultingRoomData;
+    private String fsIpAndPort;
 
     public String getCaseAdmission_records() {
         return caseAdmission_records;
@@ -1362,5 +1361,13 @@ public class URLBean {
 
     public String getResearchNumberUrl() {
         return ResearchNumberUrl;
+    }
+
+    public void setFsIpAndPort(String fsIpAndPort) {
+        this.fsIpAndPort = fsIpAndPort;
+    }
+
+    public String getFsIpAndPort() {
+        return fsIpAndPort;
     }
 }
