@@ -6,6 +6,8 @@
 
 
     <bean id="com.gennlife.platform.configuration.URLBean" class="com.gennlife.platform.configuration.URLBean">
+        <!-- ip -->
+        <property name="fsIpAndPort" value="${fileService.ipAndPort}"/>
         <!-- 搜索服务 -->
         <property name="caseSearchURL" value="http://${searchServer.ipAndPort}/search-server/search"/>
         <property name="caseSuggestURL" value="http://${searchServer.ipAndPort}/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
@@ -32,7 +34,7 @@
         <property name="casePathological_examination" value="http://${fileService.ipAndPort}/FileService/PatientDetail/pathological_examination"/>
         <property name="caseDiagnose" value="http://${fileService.ipAndPort}/FileService/VisitDetail/diagnose"/>
         <property name="caseAdmission_records" value="http://${fileService.ipAndPort}/FileService/PatientDetail/admission_records"></property>
-
+        <property name="TripleTestTableUrl" value="http://${fileService.ipAndPort}/FileService/PatientDetail/triple_test_table"></property>
         <property name="caseMedicalRecord" value="http://${fileService.ipAndPort}/FileService/PatientDetail/medical_records"></property>
         <property name="caseOperationRecords" value="http://${fileService.ipAndPort}/FileService/PatientDetail/operation_records"></property>
         <property name="casePharmacy" value="http://${fileService.ipAndPort}/FileService/PatientDetail/pharmacy"></property>

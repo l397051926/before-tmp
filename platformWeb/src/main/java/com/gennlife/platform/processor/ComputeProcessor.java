@@ -59,6 +59,8 @@ public class ComputeProcessor {
         }
         String param = sb.toString().substring(0, sb.toString().length() - 1);
         String url = ConfigurationService.getUrlBean().getCSBaseline() + "?" + param;
+        String[] fs = ConfigurationService.getUrlBean().getFsIpAndPort().split(":");
+        url = url + "&fsIp=" + fs[0] + "&fsPort" + fs[1];
         logger.info("baseline url=" + url);
         String reStr = HttpRequestUtils.httpGet(url, 600000);
         logger.info("baseline result=" + reStr);
