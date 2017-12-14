@@ -26,6 +26,7 @@ public class JsonUtils {
     private static SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd");
     private static JsonParser jsonParser = new JsonParser();
 
+
     public static CreateProjectQueryBean parseCreateProject(String param) throws ParseException {
         CreateProjectQueryBean createProjectQueryBean = new CreateProjectQueryBean();
         CreateProject createProject = new CreateProject();

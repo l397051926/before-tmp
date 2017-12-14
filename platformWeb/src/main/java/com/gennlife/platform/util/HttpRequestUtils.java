@@ -3,6 +3,7 @@ package com.gennlife.platform.util;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -24,12 +25,11 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.SocketTimeoutException;
 import java.net.URLDecoder;
 import java.nio.charset.Charset;
-
-import static com.gennlife.platform.util.FileUploadUtil.gson;
 
 public class HttpRequestUtils {
     private static Logger logger = LoggerFactory.getLogger(HttpRequestUtils.class);
@@ -307,5 +307,38 @@ public class HttpRequestUtils {
             logger.error("" + url, e);
         }
         return null;
+    }
+
+    //http get 透传流
+    public static void httpGetStream(String url, HttpServletResponse response) {
+        HttpClient httpclient = new DefaultHttpClient();
+        try {
+            HttpGet httpGet = new HttpGet(url);
+            RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(30000).setConnectTimeout(30000).build();
+            httpGet.setConfig(requestConfig);
+            HttpResponse httpResponse = httpclient.execute(httpGet);
+            if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                String headerName;
+                for (Header header : httpResponse.getAllHeaders()) {
+                    headerName = header.getName();
+                    switch (headerName){
+                        //这里根据需要自己添加需要输出的响应头
+                        case "Content-Disposition":
+                        case "Content-Type":
+                            response.setHeader(headerName, header.getValue());
+                            break;
+                    }
+                }
+                HttpEntity httpEntity = httpResponse.getEntity();
+                httpEntity.writeTo(response.getOutputStream());
+            }
+            EntityUtils.consume(httpResponse.getEntity());
+        } catch (Exception e) {
+            logger.error("", e);
+        } finally {
+            if (httpclient != null) {
+                httpclient.getConnectionManager().shutdown();
+            }
+        }
     }
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gennlife.platform.dao.GennMapper">
+    <resultMap id="GennDataModel" type="com.gennlife.platform.model.GennDataModel">
+        <result column="uniqueId" property="uniqueId" jdbcType="VARCHAR"/>
+        <result column="sampleType" property="sampleType" jdbcType="VARCHAR"/>
+        <result column="sampleGetDate" property="sampleGetDate" jdbcType="VARCHAR"/>
+        <result column="reportDate" property="reportDate" jdbcType="VARCHAR"/>
+        <result column="inspectionDept" property="inspectionDept" jdbcType="VARCHAR"/>
+        <result column="inspectionDoctor" property="inspectionDoctor" jdbcType="VARCHAR"/>
+        <result column="pdfId" property="pdfId" jdbcType="VARCHAR"/>
+        <result column="patientSn" property="patientSn" jdbcType="VARCHAR"/>
+        <result column="visitSn" property="visitSn" jdbcType="VARCHAR"/>
+        <result column="synTime" property="synTime" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="getGennData" resultMap="GennDataModel" parameterType="String">
+        select *
+        from gennlife_genn
+        where patientSn = #{patientSn}
+        <if test="visitSn != null">
+            and visitSn=#{visitSn}
+        </if>
+        limit #{from},#{size}
+    </select>
+    <insert id="upsert" parameterType="GennDataModel">
+        insert into gennlife_genn
+        (
+          uniqueId, sampleType, sampleGetDate, reportDate,inspectionDept,
+          inspectionDoctor,pdfId,patientSn,visitSn,synTime
+        ) values (
+        #{uniqueId}, #{sampleType}, #{sampleGetDate}, #{reportDate},#{inspectionDept},
+          #{inspectionDoctor},#{pdfId},#{patientSn},#{visitSn},#{synTime}
+        )
+        on duplicate key
+        update sampleType=#{sampleType},sampleGetDate=#{sampleGetDate}, reportDate=#{reportDate},
+        inspectionDept=#{inspectionDept},inspectionDoctor=#{inspectionDoctor},pdfId=#{pdfId},
+        patientSn=#{patientSn},visitSn=#{visitSn},synTime=#{synTime}
+    </insert>
+</mapper>

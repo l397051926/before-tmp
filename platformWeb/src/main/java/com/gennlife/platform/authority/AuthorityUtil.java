@@ -25,7 +25,6 @@ public class AuthorityUtil {
     private static Logger logger = LoggerFactory.getLogger(AuthorityUtil.class);
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
-
     public static String addAuthority(HttpServletRequest paramRe) {
         String param = ParamUtils.getParam(paramRe);
         JsonElement paramElement = jsonParser.parse(param);
@@ -61,7 +60,7 @@ public class AuthorityUtil {
     }
 
     public static String addTreatedAuthority(HttpServletRequest paramRe) {
-        String[] urlArray = paramRe.getRequestURI().split("/");
+
         String param = ParamUtils.getParam(paramRe);
         JsonElement paramElement = jsonParser.parse(param);
         Object object = paramRe.getAttribute("currentUser");
@@ -69,14 +68,22 @@ public class AuthorityUtil {
             logger.error("paramRe里面无currentUser");
             return ParamUtils.errorSessionLosParam();
         } else {
-            User user = (User) paramRe.getAttribute("currentUser");
-            //List<Role> roles = user.getRoles();
-            List<Group> groups = user.getGroups();
-            Power power = user.getPower();
             if (paramElement.isJsonObject()) {
                 JsonObject paramObj = paramElement.getAsJsonObject();
-                //paramObj.add("roles", gson.toJsonTree(roles));
-                //从groups数组扩展权限
+                return addRolesToParam(paramRe, paramObj);
+            } else {
+                return paramElement.isJsonArray() ? gson.toJson(paramElement) : null;
+            }
+        }
+    }
+
+    public static String addRolesToParam(HttpServletRequest paramRe, JsonObject paramObj) {
+        User user = (User) paramRe.getAttribute("currentUser");
+        //List<Role> roles = user.getRoles();
+        List<Group> groups = user.getGroups();
+        Power power = user.getPower();
+        //paramObj.add("roles", gson.toJsonTree(roles));
+        //从groups数组扩展权限
                 /*for (Group group: groups) {
                     // List<User> members = group.getMembers();
                     JsonArray members = gson.toJsonTree(group.getMembers()).getAsJsonArray();
@@ -100,22 +107,19 @@ public class AuthorityUtil {
                     }
                     group.setMembers(members);
                 }*/
-                if (isUrlArrayHasStr(urlArray, "detail")) {
-                    power.setHas_searchExport(null);
-                }
-                power.setHas_traceCRF(null);
-                power.setHas_addCRF(null);
-                power.setHas_editCRF(null);
-                power.setHas_deleteCRF(null);
-                power.setHas_browseDetail(null);
-                power.setHas_addBatchCRF(null);
-                paramObj.add("groups", gson.toJsonTree(groups));
-                paramObj.add("power", gson.toJsonTree(power));
-                return CaseProcessor.transformSid(paramObj, user);
-            } else {
-                return paramElement.isJsonArray() ? gson.toJson(paramElement) : null;
-            }
+        String[] urlArray = paramRe.getRequestURI().split("/");
+        if (isUrlArrayHasStr(urlArray, "detail")) {
+            power.setHas_searchExport(null);
         }
+        power.setHas_traceCRF(null);
+        power.setHas_addCRF(null);
+        power.setHas_editCRF(null);
+        power.setHas_deleteCRF(null);
+        power.setHas_browseDetail(null);
+        power.setHas_addBatchCRF(null);
+        paramObj.add("groups", gson.toJsonTree(groups));
+        paramObj.add("power", gson.toJsonTree(power));
+        return CaseProcessor.transformSid(paramObj, user);
     }
 
     public static String addSearchCaseAuthority(HttpServletRequest paramRe) {
