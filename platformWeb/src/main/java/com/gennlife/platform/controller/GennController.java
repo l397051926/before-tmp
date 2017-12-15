@@ -84,6 +84,16 @@ public class GennController {
                 + pdfId + "&patientSn=" + patientSn + "&hospital=" + hospitalId;
         HttpRequestUtils.httpGetStream(url, response);
     }
+    @RequestMapping("/json")
+    public void json(HttpServletResponse response, HttpServletRequest paramRe,
+                    @RequestParam("uniqueId") String uniqueId, @RequestParam("patientSn") String patientSn) throws IOException {
+        if (checkFail(response, paramRe, uniqueId, patientSn)) return;
+        User user = (User) paramRe.getAttribute("currentUser");
+        String hospitalId = user.getOrgID();
+        String url = "http://" + ipBean.getGennIpAndPort() + "/genn/data/json?uniqueId="
+                + uniqueId + "&patientSn=" + patientSn + "&hospital=" + hospitalId;
+        HttpRequestUtils.httpGetStream(url, response);
+    }
 
     @RequestMapping("list")
     public String list(@RequestParam("patientSn") String patientSn,
