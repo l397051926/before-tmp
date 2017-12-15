@@ -1,8 +1,10 @@
 package com.gennlife.platform.controller;
 
 import com.gennlife.platform.authority.AccessUtils;
+import com.gennlife.platform.bean.GennUpResultBean;
 import com.gennlife.platform.bean.IpBean;
 import com.gennlife.platform.dao.GennMapper;
+import com.gennlife.platform.enums.GennMappingEnum;
 import com.gennlife.platform.model.GennDataModel;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.util.GsonUtil;
@@ -26,10 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by Chenjinfeng on 2017/12/13.
@@ -41,6 +41,7 @@ public class GennController {
     private static int SUCCESS = 1;
     private static String ERR_KEY = "error";
     private static int FAIL = 0;
+
     Gson gson = GsonUtil.getGson();
     @Autowired
     GennMapper gennMapper;
@@ -116,35 +117,39 @@ public class GennController {
         JsonObject updateDatas = GsonUtil.toJsonObject(data);
         LinkedList<GennDataModel> list = gson.fromJson(updateDatas, new TypeToken<LinkedList<GennDataModel>>() {
         }.getType());
-        Map<String, String> upResult = new HashMap<>();
+        Map<String, GennUpResultBean> upResult = new HashMap<>();
         JsonArray source = new JsonArray();
         source.add("visits.visit_info.VISIT_SN");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(System.currentTimeMillis());
+        String synTime = format.format(date);
         for (GennDataModel item : list) {
             String id = item.getUniqueId();
             String patientSn = item.getPatientSn();
             String visitSn = item.getVisitSn();
             JsonObject patData = accessUtils.getPatData(patientSn, null, source);
             if (patData == null) {
-                upResult.put(id, "patientSn映射失败");
+                upResult.put(id, new GennUpResultBean(GennMappingEnum.MAPPING_ERR, "patientSn映射失败"));
                 continue;
             }
             if (checkVisitSnFail(upResult, id, visitSn, patData)) continue;
             try {
+                item.setSynTime(synTime);
                 gennMapper.upsert(item);
-                upResult.put(id, "");
+                upResult.put(id, new GennUpResultBean(GennMappingEnum.SUCCESS));
             } catch (Exception e) {
                 logger.error("", e);
-                upResult.put(id, e.getMessage());
+                upResult.put(id, new GennUpResultBean(GennMappingEnum.SAVE_ERR, e.getMessage()));
             }
         }
         return GsonUtil.toJsonStr(upResult);
 
     }
 
-    public boolean checkVisitSnFail(Map<String, String> upResult, String id, String visitSn, JsonObject patData) {
+    public boolean checkVisitSnFail(Map<String, GennUpResultBean> upResult, String id, String visitSn, JsonObject patData) {
         LinkedList<JsonElement> visits = GsonUtil.getJsonArrayAllValue("visits.visit_info.VISIT_SN", patData);
         if (visits == null || visits.size() == 0) {
-            upResult.put(id, "visitSn不匹配");
+            upResult.put(id, new GennUpResultBean(GennMappingEnum.MAPPING_ERR, "visitSn不匹配"));
             return true;
         }
         boolean find = false;
@@ -155,7 +160,7 @@ public class GennController {
             }
         }
         if (!find) {
-            upResult.put(id, "visitSn不匹配");
+            upResult.put(id, new GennUpResultBean(GennMappingEnum.MAPPING_ERR, "visitSn不匹配"));
             return true;
         }
         return false;
