@@ -122,7 +122,7 @@ public class GennController {
         return GsonUtil.toJsonStr(result);
     }
 
-    @RequestMapping(value = "list", method = RequestMethod.POST)
+    @RequestMapping(value = "receive", method = RequestMethod.POST)
     public String receive(@RequestBody String data) {
         JsonObject updateDatas = GsonUtil.toJsonObject(data);
         LinkedList<GennDataModel> list = gson.fromJson(updateDatas, new TypeToken<LinkedList<GennDataModel>>() {
