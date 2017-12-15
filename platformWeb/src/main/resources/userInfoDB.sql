@@ -472,6 +472,25 @@ CREATE TABLE `searchConditionHistory` (
 -- Records of searchConditionHistory
 -- ----------------------------
 
+DROP TABLE IF EXISTS `gennlife_genn`;
+CREATE TABLE `gennlife_genn` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniqueId` varchar(255) NOT NULL,
+  `sampleType` varchar(20) NOT NULL,
+  `sampleGetDate` varchar(20) NOT NULL,
+  `reportDate` varchar(20) NOT NULL,
+  `inspectionDept` varchar(20) NOT NULL,
+  `inspectionDoctor` varchar(10) NOT NULL,
+  `pdfId` char(42) NOT NULL,
+  `patientSn` char(37) NOT NULL,
+  `visitSn` char(37) NOT NULL,
+  `synTime` char(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniqueId` (`uniqueId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
 /*管理员*/
 
 INSERT INTO `gennlife_manage` VALUES ('admin@gennlife.com', 'admin', 'admin', 'hospital');
