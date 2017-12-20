@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.gennlife.platform.dao.GennMapper">
-    <resultMap id="GennDataModel" type="com.gennlife.platform.model.GennDataModel">
+    <resultMap id="com.gennlife.platform.model.GennDataModel" type="com.gennlife.platform.model.GennDataModel">
         <result column="uniqueId" property="uniqueId" jdbcType="VARCHAR"/>
         <result column="sampleType" property="sampleType" jdbcType="VARCHAR"/>
         <result column="sampleGetDate" property="sampleGetDate" jdbcType="VARCHAR"/>
@@ -12,28 +12,85 @@
         <result column="patientSn" property="patientSn" jdbcType="VARCHAR"/>
         <result column="visitSn" property="visitSn" jdbcType="VARCHAR"/>
         <result column="synTime" property="synTime" jdbcType="VARCHAR"/>
+        <result column="pdfPath" property="pdfPath" jdbcType="VARCHAR"/>
+        <result column="jsonData" property="jsonData" jdbcType="VARCHAR"/>
+        <result column="pdfName" property="pdfName" jdbcType="VARCHAR"/>
+        <result column="webName" property="webName" jdbcType="VARCHAR"/>
+        <result column="opTime" property="opTime" jdbcType="VARCHAR"/>
     </resultMap>
-    <select id="getGennData" resultMap="GennDataModel" parameterType="String">
+    <resultMap id="com.gennlife.platform.model.GennImage" type="com.gennlife.platform.model.GennImage">
+        <result column="uniqueId" property="uniqueId" jdbcType="VARCHAR"/>
+        <result column="imgId" property="imgId" jdbcType="VARCHAR"/>
+        <result column="imgPath" property="imgPath" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="getAllImage" resultMap="com.gennlife.platform.model.GennImage" parameterType="String">
+        SELECT * FROM gennlife_gene_img
+        where uniqueId in
+        <foreach collection='uniqueIds' index='index' item='item' open='(' separator=',' close=')'>
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+    </select>
+
+    <select id="getAllPdfPath" resultType="String">
+        SELECT pdfPath FROM gennlife_gene
+        where uniqueId in
+        <foreach collection='uniqueIds' index='index' item='item' open='(' separator=',' close=')'>
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+    </select>
+    <insert id="saveGennImage" parameterType="com.gennlife.platform.model.GennImage">
+        insert into gennlife_gene_img (uniqueId,imgId,imgPath) values (#{uniqueId},#{imgId},#{imgPath})
+    </insert>
+    <select id="getOneImagePath" resultType="String">
+        SELECT gennlife_gene_img.imgPath from gennlife_gene_img,gennlife_gene as d
+        where imgId=#{imgId} and d.patientSn=#{patientSn} and d.uniqueId=gennlife_gene_img.uniqueId;
+    </select>
+    <select id="getDataModel" resultMap="com.gennlife.platform.model.GennDataModel">
+        SELECT  * from gennlife_gene
+        WHERE patientSn=#{patientSn} and uniqueId=#{uniqueId} limit 1;
+    </select>
+    <select id="getJsonData" resultType="String">
+         SELECT  jsonData from gennlife_gene
+        WHERE patientSn=#{patientSn} and uniqueId=#{uniqueId} limit 1;
+    </select>
+    <select id="getPdfInfo" resultMap="com.gennlife.platform.model.GennDataModel">
+         SELECT  * from gennlife_gene
+        WHERE patientSn=#{patientSn} and pdfId=#{pdfId} limit 1;
+    </select>
+
+    <delete id="deleteAllImage">
+        delete FROM gennlife_gene_img
+        where uniqueId in
+        <foreach collection='uniqueIds' index='index' item='item' open='(' separator=',' close=')'>
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+    </delete>
+
+
+    <select id="getGennData" resultMap="com.gennlife.platform.model.GennDataModel" parameterType="String">
         select *
-        from gennlife_genn
+        from gennlife_gene
         where patientSn = #{patientSn}
         <if test="visitSn != null">
             and visitSn=#{visitSn}
         </if>
         limit #{from},#{size}
     </select>
-    <insert id="upsert" parameterType="GennDataModel">
-        insert into gennlife_genn
+    <insert id="upsert" parameterType="com.gennlife.platform.model.GennDataModel">
+        insert into gennlife_gene
         (
+        opTime,webName,
           uniqueId, sampleType, sampleGetDate, reportDate,inspectionDept,
-          inspectionDoctor,pdfId,patientSn,visitSn,synTime
+          inspectionDoctor,pdfId,patientSn,visitSn,synTime,pdfPath,jsonData,pdfName
         ) values (
+        #{opTime},#{webName},
         #{uniqueId}, #{sampleType}, #{sampleGetDate}, #{reportDate},#{inspectionDept},
-          #{inspectionDoctor},#{pdfId},#{patientSn},#{visitSn},#{synTime}
+          #{inspectionDoctor},#{pdfId},#{patientSn},#{visitSn},#{synTime},#{pdfPath},#{jsonData},#{pdfName}
         )
         on duplicate key
         update sampleType=#{sampleType},sampleGetDate=#{sampleGetDate}, reportDate=#{reportDate},
         inspectionDept=#{inspectionDept},inspectionDoctor=#{inspectionDoctor},pdfId=#{pdfId},
-        patientSn=#{patientSn},visitSn=#{visitSn},synTime=#{synTime}
+        patientSn=#{patientSn},visitSn=#{visitSn},synTime=#{synTime},pdfPath=#{pdfPath},jsonData=#{jsonData},
+        pdfName=#{pdfName},opTime=#{opTime},webName=#{webName}
     </insert>
 </mapper>

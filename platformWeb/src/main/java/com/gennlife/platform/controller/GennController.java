@@ -6,42 +6,53 @@ import com.gennlife.platform.bean.IpBean;
 import com.gennlife.platform.dao.GennMapper;
 import com.gennlife.platform.enums.GennMappingEnum;
 import com.gennlife.platform.model.GennDataModel;
-import com.gennlife.platform.model.User;
+import com.gennlife.platform.service.FileListenerAdaptor;
+import com.gennlife.platform.service.GeneDataService;
+import com.gennlife.platform.util.FilesUtils;
 import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.monitor.FileAlterationMonitor;
+import org.apache.commons.io.monitor.FileAlterationObserver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.io.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Chenjinfeng on 2017/12/13.
  */
-@Controller("genn")
-public class GennController {
+@Controller
+@RequestMapping("/genn")
+public class GennController implements InitializingBean, DisposableBean {
     private static final Logger logger = LoggerFactory.getLogger(GennController.class);
     private static String KEY = "code";
     private static int SUCCESS = 1;
     private static String ERR_KEY = "error";
     private static int FAIL = 0;
-
+    @Value("${ui.gene.zip.listenDir}")
+    private String listenDir;
     Gson gson = GsonUtil.getGson();
     @Autowired
     GennMapper gennMapper;
@@ -50,53 +61,90 @@ public class GennController {
     @Autowired
     AccessUtils accessUtils;
     View view = new View();
+    @Autowired
+    GeneDataService geneDataService;
 
-    @RequestMapping("/image")
+    @RequestMapping("/img")
     public void image(HttpServletResponse response, HttpServletRequest paramRe,
                       @RequestParam("imageId") String imageId, @RequestParam("patientSn") String patientSn) throws IOException {
         if (checkFail(response, paramRe, imageId, patientSn)) return;
-        User user = (User) paramRe.getAttribute("currentUser");
-        String hospitalId = user.getOrgID();
-        String url = "http://" + ipBean.getGennIpAndPort() + "/genn/data/img?imageId="
-                + imageId + "&patientSn=" + patientSn + "&hospital=" + hospitalId;
-        HttpRequestUtils.httpGetStream(url, response);
+        String match = gennMapper.getOneImagePath(imageId, patientSn);
+        if (StringUtils.isEmpty(match)) {
+            JsonObject jsonObject = createUnAccess();
+            view.setHttpServletResponse(response);
+            view.writeResult(GsonUtil.toJsonStr(jsonObject), response);
+            return;
+        }
+        String fileUrl = match;
+        File file = new File(fileUrl);
+        FileInputStream inputStream = new FileInputStream(file);
+        byte[] data = new byte[(int) file.length()];
+        int length = inputStream.read(data);
+        inputStream.close();
+        response.setContentType("image/png");
+        OutputStream stream = response.getOutputStream();
+        stream.write(data);
+        stream.flush();
+        stream.close();
     }
 
     private boolean checkFail(HttpServletResponse response, HttpServletRequest paramRe, String id, String patientSn) {
         if (StringUtils.isEmpty(id) || StringUtils.isEmpty(patientSn)) {
-            view.viewString("请求参数存在空", response);
+            if (response != null) view.viewString("请求参数存在空", response);
             return true;
         }
         if (!accessUtils.checkAccessPatientSn(patientSn, paramRe)) {
-            view.viewString("患者编号无权限访问或不存在", response);
+            if (response != null) view.viewString("患者编号无权限访问或不存在", response);
             return true;
         }
         return false;
     }
 
     @RequestMapping("/pdf")
-    public void pdf(HttpServletResponse response, HttpServletRequest paramRe,
-                    @RequestParam("pdfId") String pdfId, @RequestParam("patientSn") String patientSn) throws IOException {
-        if (checkFail(response, paramRe, pdfId, patientSn)) return;
-        User user = (User) paramRe.getAttribute("currentUser");
-        String hospitalId = user.getOrgID();
-        String url = "http://" + ipBean.getGennIpAndPort() + "/genn/data/pdf?imageId="
-                + pdfId + "&patientSn=" + patientSn + "&hospital=" + hospitalId;
-        HttpRequestUtils.httpGetStream(url, response);
-    }
-    @RequestMapping("/json")
-    public void json(HttpServletResponse response, HttpServletRequest paramRe,
-                    @RequestParam("uniqueId") String uniqueId, @RequestParam("patientSn") String patientSn) throws IOException {
-        if (checkFail(response, paramRe, uniqueId, patientSn)) return;
-        User user = (User) paramRe.getAttribute("currentUser");
-        String hospitalId = user.getOrgID();
-        String url = "http://" + ipBean.getGennIpAndPort() + "/genn/data/json?uniqueId="
-                + uniqueId + "&patientSn=" + patientSn + "&hospital=" + hospitalId;
-        HttpRequestUtils.httpGetStream(url, response);
+    public ResponseEntity<byte[]> pdf(HttpServletResponse response, HttpServletRequest paramRe,
+                                      @RequestParam("pdfId") String pdfId, @RequestParam("patientSn") String patientSn) throws IOException {
+        HttpHeaders headers = new HttpHeaders();
+        if (checkFail(response, paramRe, pdfId, patientSn)) return new ResponseEntity<byte[]>(null,
+                headers, HttpStatus.FORBIDDEN);
+        GennDataModel match = gennMapper.getPdfInfo(pdfId, patientSn);
+        if (match == null) {
+            return new ResponseEntity<byte[]>(null,
+                    headers, HttpStatus.FORBIDDEN);
+        }
+        String fileUrl = match.getPdfPath();
+        File file = new File(fileUrl);
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        String charset = new String(match.getPdfName().getBytes("utf-8"), "iso-8859-1");
+        headers.setContentDispositionFormData("file", charset);
+        return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),
+                headers, HttpStatus.OK);
     }
 
-    @RequestMapping("list")
-    public String list(@RequestParam("patientSn") String patientSn,
+    public JsonObject createUnAccess() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty(KEY, FAIL);
+        jsonObject.addProperty(ERR_KEY, "无权限或无相关记录");
+        return jsonObject;
+
+    }
+
+    @RequestMapping("/json")
+    public @ResponseBody
+    String json(HttpServletRequest paramRe,
+                @RequestParam("uniqueId") String uniqueId, @RequestParam("patientSn") String patientSn) throws IOException {
+        if (checkFail(null, paramRe, uniqueId, patientSn)) return GsonUtil.toJsonStr(createUnAccess());
+        String match = gennMapper.getJsonData(uniqueId, patientSn);
+        if (StringUtils.isEmpty(match)) {
+            return GsonUtil.toJsonStr(createUnAccess());
+        }
+        JsonObject result = new JsonObject();
+        result.add("data", GsonUtil.toJsonObject(match));
+        result.addProperty(KEY, SUCCESS);
+        return GsonUtil.toJsonStr(result);
+    }
+
+    @RequestMapping("/list")
+    public @ResponseBody String list(@RequestParam("patientSn") String patientSn,
                        @RequestParam(value = "visitSn", required = false) String visitSn,
                        @RequestParam("page") int page,
                        @RequestParam("size") int size, HttpServletRequest paramRe
@@ -117,43 +165,13 @@ public class GennController {
             result.addProperty(KEY, FAIL);
             return GsonUtil.toJsonStr(result);
         }
+        for (GennDataModel dataModel : list) {
+            dataModel.setPdfPath(null);
+            dataModel.setJsonData(null);
+        }
         result.addProperty(KEY, SUCCESS);
         result.add("data", GsonUtil.toJsonTree(list));
         return GsonUtil.toJsonStr(result);
-    }
-
-    @RequestMapping(value = "receive", method = RequestMethod.POST)
-    public String receive(@RequestBody String data) {
-        JsonObject updateDatas = GsonUtil.toJsonObject(data);
-        LinkedList<GennDataModel> list = gson.fromJson(updateDatas, new TypeToken<LinkedList<GennDataModel>>() {
-        }.getType());
-        Map<String, GennUpResultBean> upResult = new HashMap<>();
-        JsonArray source = new JsonArray();
-        source.add("visits.visit_info.VISIT_SN");
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date(System.currentTimeMillis());
-        String synTime = format.format(date);
-        for (GennDataModel item : list) {
-            String id = item.getUniqueId();
-            String patientSn = item.getPatientSn();
-            String visitSn = item.getVisitSn();
-            JsonObject patData = accessUtils.getPatData(patientSn, null, source);
-            if (patData == null) {
-                upResult.put(id, new GennUpResultBean(GennMappingEnum.MAPPING_ERR, "patientSn映射失败"));
-                continue;
-            }
-            if (checkVisitSnFail(upResult, id, visitSn, patData)) continue;
-            try {
-                item.setSynTime(synTime);
-                gennMapper.upsert(item);
-                upResult.put(id, new GennUpResultBean(GennMappingEnum.SUCCESS));
-            } catch (Exception e) {
-                logger.error("", e);
-                upResult.put(id, new GennUpResultBean(GennMappingEnum.SAVE_ERR, e.getMessage()));
-            }
-        }
-        return GsonUtil.toJsonStr(upResult);
-
     }
 
     public boolean checkVisitSnFail(Map<String, GennUpResultBean> upResult, String id, String visitSn, JsonObject patData) {
@@ -175,4 +193,30 @@ public class GennController {
         }
         return false;
     }
+
+    @Override
+    public void destroy() throws Exception {
+        fileMonitor.stop();
+    }
+
+    FileAlterationMonitor fileMonitor;
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        FilesUtils.mkdir(listenDir);
+        FileAlterationObserver observer = new FileAlterationObserver(new File(listenDir), new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                if (pathname.isFile() && pathname.getName().endsWith(".zip"))
+                    return true;
+                return false;
+            }
+        });
+        FileListenerAdaptor listener = new FileListenerAdaptor();
+        listener.init(geneDataService,listenDir);
+        observer.addListener(listener);
+        FileAlterationMonitor fileMonitor = new FileAlterationMonitor(5000, new FileAlterationObserver[]{observer});
+        fileMonitor.start();
+    }
+
 }

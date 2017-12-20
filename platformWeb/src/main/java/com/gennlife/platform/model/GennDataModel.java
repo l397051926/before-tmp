@@ -4,7 +4,7 @@ package com.gennlife.platform.model;
  * Created by Chenjinfeng on 2017/12/14.
  */
 public class GennDataModel {
-
+    private String opTime;
     private String uniqueId;
     private String sampleType;
     private String sampleGetDate;
@@ -15,6 +15,17 @@ public class GennDataModel {
     private String patientSn;
     private String visitSn;
     private String synTime;
+    private String pdfPath;
+    private String jsonData;
+    private String pdfName;
+    private String webName;
+    public String getWebName() {
+        return webName;
+    }
+
+    public void setWebName(String webName) {
+        this.webName = webName;
+    }
 
     public String getUniqueId() {
         return uniqueId;
@@ -94,5 +105,37 @@ public class GennDataModel {
 
     public void setSynTime(String synTime) {
         this.synTime = synTime;
+    }
+
+    public String getPdfPath() {
+        return pdfPath;
+    }
+
+    public void setPdfPath(String pdfPath) {
+        this.pdfPath = pdfPath;
+    }
+
+    public String getJsonData() {
+        return jsonData;
+    }
+
+    public void setJsonData(String jsonData) {
+        this.jsonData = jsonData;
+    }
+
+    public String getPdfName() {
+        return pdfName;
+    }
+
+    public void setPdfName(String pdfName) {
+        this.pdfName = pdfName;
+    }
+
+    public String getOpTime() {
+        return opTime;
+    }
+
+    public void setOpTime(String opTime) {
+        this.opTime = opTime;
     }
 }

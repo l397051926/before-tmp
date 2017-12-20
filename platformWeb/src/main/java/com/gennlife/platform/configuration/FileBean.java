@@ -56,6 +56,11 @@ public class FileBean implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         String updateFiles = this.getClass().getClassLoader().getResource("update").getFile();
+        if(System.getProperty("os.name").toLowerCase().contains("win"))
+        {
+            if(manageFileLocation.startsWith("/"))manageFileLocation=manageFileLocation.substring(1);
+            if(updateFiles.startsWith("/"))updateFiles=updateFiles.substring(1);
+        }
         logger.info("copy from " + updateFiles + " to " + manageFileLocation);
         copy(updateFiles, manageFileLocation);
     }

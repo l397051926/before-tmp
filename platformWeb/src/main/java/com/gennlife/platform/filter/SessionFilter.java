@@ -41,7 +41,7 @@ public class SessionFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String uri = request.getRequestURI();
-        if (okSet.contains(uri)) {
+        if (okSet.contains(uri) ) {
             filterChain.doFilter(request, response);
         } else {
             HttpSession session = request.getSession(false);
@@ -89,7 +89,6 @@ public class SessionFilter implements Filter {
 
     static {
         okSet.add("/user/Info");
-        okSet.add("/genn/receive");
         okSet.add("/user/Login");
         okSet.add("/base/Login");
         okSet.add("/user/SendEmailForChangePWD");

@@ -6,17 +6,25 @@ import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.enums.LogActionEnum;
 import com.gennlife.platform.enums.MemberEnum;
 import com.gennlife.platform.model.User;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
+
+import static com.gennlife.platform.util.FileUploadUtil.gson;
 
 /**
  * Created by chensong on 2015/12/7.
@@ -148,5 +156,64 @@ public class JsonUtils {
         }
     }
 
+
+    public static JsonElement toJsonElement(Object obj) {
+        if(obj == null) {
+            return null;
+        } else {
+            if(obj instanceof InputStream) {
+                toJsonElement((InputStream)obj);
+            }
+
+            if(obj instanceof JsonElement) {
+                return (JsonElement)obj;
+            } else if(obj instanceof String) {
+                try {
+                    return jsonParser.parse((String)obj);
+                } catch (Exception var2) {
+                    return null;
+                }
+            } else {
+                return gson.toJsonTree(obj);
+            }
+        }
+    }
+    public static <T> T fromJson(JsonElement jsonElement, Type type) {
+        return jsonElement == null?null:gson.fromJson(jsonElement, type);
+    }
+
+    public static JsonElement toJsonElement(InputStream content) {
+        InputStreamReader inputStream = null;
+        JsonElement result = null;
+        JsonReader reader = null;
+
+        try {
+            inputStream = new InputStreamReader(content, "utf-8");
+            reader = new JsonReader(inputStream);
+            result = jsonParser.parse(reader);
+        } catch (Exception var17) {
+            logger.error("", var17);
+            result = null;
+        } finally {
+            if(inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException var16) {
+                    logger.error("", var16);
+                }
+            }
+
+            if(reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException var15) {
+                    logger.error("", var15);
+                }
+            }
+
+        }
+
+        return result;
+    }
 
 }

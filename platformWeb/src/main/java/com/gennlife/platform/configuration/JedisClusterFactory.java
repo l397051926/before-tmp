@@ -4,7 +4,7 @@ package com.gennlife.platform.configuration;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.FactoryBean;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -25,15 +25,16 @@ import java.util.Set;
 @Component
 @Scope("singleton")
 @ConfigurationProperties(prefix = "ui.redis.config")
-public class JedisClusterFactory implements FactoryBean<JedisClusterFactory>, InitializingBean {
+public class JedisClusterFactory implements InitializingBean, DisposableBean {
     @Autowired
     private GenericObjectPoolConfig genericObjectPoolConfig;
     private JedisCluster jedisCluster;
     private int connectionTimeout = 2000;
     private int soTimeout = 3000;
     private int maxRedirections = 5;
+
     private String jedisClusterNodes;
-    private static final Logger logger= LoggerFactory.getLogger(JedisClusterFactory.class);
+    private static final Logger logger = LoggerFactory.getLogger(JedisClusterFactory.class);
     public JedisClusterFactory getObject() throws Exception {
         return this;
     }
@@ -48,11 +49,10 @@ public class JedisClusterFactory implements FactoryBean<JedisClusterFactory>, In
 
     @Override
     public void afterPropertiesSet() throws Exception {
-
         if (jedisClusterNodes == null || jedisClusterNodes.length() == 0) {
             throw new NullPointerException("jedisClusterNodes is null.");
         }
-        logger.info("redis node "+jedisClusterNodes);
+        logger.info("redis node " + jedisClusterNodes);
         Set<HostAndPort> haps = new HashSet<HostAndPort>();
         for (String node : jedisClusterNodes.split(";")) {
             String[] arr = node.split(":");
@@ -61,7 +61,6 @@ public class JedisClusterFactory implements FactoryBean<JedisClusterFactory>, In
             }
             haps.add(new HostAndPort(arr[0], Integer.valueOf(arr[1])));
         }
-
         jedisCluster = new JedisCluster(haps, connectionTimeout, soTimeout, maxRedirections, genericObjectPoolConfig);
     }
 
@@ -112,10 +111,16 @@ public class JedisClusterFactory implements FactoryBean<JedisClusterFactory>, In
     public void setJedisClusterNodes(String jedisClusterNodes) {
         this.jedisClusterNodes = jedisClusterNodes;
     }
+
     @Order
     @Bean
     @ConfigurationProperties(prefix = "ui.redis.config.pool")
     public GenericObjectPoolConfig createGenericObjectPoolConfig() {
         return new GenericObjectPoolConfig();
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        jedisCluster.close();
     }
 }
