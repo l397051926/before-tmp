@@ -116,13 +116,7 @@ public class GeneDataService implements InitializingBean {
                 pdfs.forEach(item -> FileUtils.deleteQuietly(new File(item)));
             }
             File imgPath = new File(outPath + "/sub/img");
-            if (!imgPath.exists()) {
-                imgPath = new File(outPath + "\\sub\\img");
-            }
             File pdfPath = new File(outPath + "/sub/pdf");
-            if (!pdfPath.exists()) {
-                pdfPath = new File(outPath + "\\sub\\pdf");
-            }
             if (imgPath.exists()) {
                 FileUtils.copyDirectory(imgPath, new File(imgBaseDir));
             }
