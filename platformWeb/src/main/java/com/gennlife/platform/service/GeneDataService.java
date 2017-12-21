@@ -52,7 +52,6 @@ public class GeneDataService implements InitializingBean {
         String outPath = workPath + "/" + target;
         try {
             DecryptionZipUtil.unzip(sourcefile.getAbsolutePath(), outPath, pwd);
-            ZipUtils.standDir(outPath);
             File file = new File(outPath);
             File[] files = file.listFiles();
             if (files == null || files.length != 1 || !files[0].isDirectory()) {
