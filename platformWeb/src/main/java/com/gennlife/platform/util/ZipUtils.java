@@ -3,6 +3,7 @@ package com.gennlife.platform.util;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.util.StringUtils;
 
 import java.io.*;
@@ -81,6 +82,7 @@ public class ZipUtils {
     public static boolean unZipFiles(String zipFilePath, String descDir) {
         File zipFile = new File(zipFilePath);
         File pathFile = new File(descDir);
+
         if (!pathFile.exists()) {
             pathFile.mkdirs();
         }
@@ -114,8 +116,8 @@ public class ZipUtils {
                 while ((len = in.read(buf)) >= 0) {
                     out.write(buf, 0, len);
                 }
-                in.close();
                 out.close();
+                in.close();
 
             }
         } catch (Exception e) {
@@ -132,10 +134,7 @@ public class ZipUtils {
                 if (out != null) {
                     try {
                         out.close();
-                    }
-                    catch (Exception e)
-                    {
-
+                    } catch (Exception e) {
                     }
                 }
             } catch (IOException e) {
@@ -143,6 +142,7 @@ public class ZipUtils {
                 return false;
             }
         }
+        standDirForNotWindows(pathFile);
         return true;
     }
 
@@ -193,7 +193,7 @@ public class ZipUtils {
             fos = new FileOutputStream(zipPath);
             zos = new ZipOutputStream(fos);
             //zos.setEncoding("gbk");//此处修改字节码方式。
-            //createXmlFile(sourcePath,"293.xml");  
+            //createXmlFile(sourcePath,"293.xml");
             writeZip(new File(sourcePath), "", zos);
         } finally {
             if (zos != null) {
@@ -237,5 +237,35 @@ public class ZipUtils {
                 }
             }
         }
+    }
+
+    public static void standDir(File base) {
+        if (base.exists()) {
+            if (base.isDirectory()) {
+                File[] files = base.listFiles();
+                if (files != null) {
+                    for (File item : files) {
+                        standDir(item);
+                    }
+                }
+
+            } else if (base.isFile()) {
+                if (base.getAbsolutePath().contains("\\")) {
+                    try {
+                        FileCopyUtils.copy(base, new File(base.getAbsolutePath().replace("\\", "/")));
+                    } catch (IOException e) {
+                        logger.error("standDir error", e);
+                    }
+                }
+            }
+        }
+    }
+
+    public static void standDirForNotWindows(File base) {
+        String os = System.getProperty("os.name");
+        if (os.toLowerCase().startsWith("win")) {
+            return;
+        }
+        standDir(base);
     }
 }

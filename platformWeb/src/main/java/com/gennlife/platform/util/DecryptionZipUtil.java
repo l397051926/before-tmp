@@ -108,6 +108,8 @@ public class DecryptionZipUtil {
         } finally {
             zipDecrypter.close();
         }
+        ZipUtils.standDirForNotWindows(outDirectory);
+
     }
 
     /**

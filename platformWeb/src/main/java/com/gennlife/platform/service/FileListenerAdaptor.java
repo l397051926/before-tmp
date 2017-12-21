@@ -1,5 +1,6 @@
 package com.gennlife.platform.service;
 
+import com.gennlife.platform.model.GennZipLog;
 import com.gennlife.platform.util.ZipUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.monitor.FileAlterationListenerAdaptor;
@@ -7,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 
 public class FileListenerAdaptor extends FileAlterationListenerAdaptor {
@@ -22,14 +25,22 @@ public class FileListenerAdaptor extends FileAlterationListenerAdaptor {
     }
 
     public void execUnZip(File file) {
+        GennZipLog zipLog = new GennZipLog();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        zipLog.setOpTime(simpleDateFormat.format(new Date()));
+        zipLog.setZipName(file.getName());
         try {
             logger.info("start unZip " + file.getAbsolutePath());
             long s = System.currentTimeMillis();
             geneDataService.unZip(file);
             FileUtils.deleteQuietly(file);
             logger.info("unzip " + file.getAbsolutePath() + " " + (System.currentTimeMillis() - s) + " ms");
+            zipLog.setZipResult("success");
         } catch (Exception e) {
+            zipLog.setZipResult("error :" + e.getMessage());
             logger.error(file.getAbsolutePath() + " unzip error :", e);
+        } finally {
+            geneDataService.getDao().addZipLog(zipLog);
         }
     }
 

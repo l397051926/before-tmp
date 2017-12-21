@@ -3,7 +3,6 @@ package com.gennlife.platform.service;
 import com.gennlife.platform.dao.GennMapper;
 import com.gennlife.platform.model.GennDataModel;
 import com.gennlife.platform.model.GennImage;
-import com.gennlife.platform.model.GennZipLog;
 import com.gennlife.platform.util.DecryptionZipUtil;
 import com.gennlife.platform.util.FilesUtils;
 import com.gennlife.platform.util.JsonUtils;
@@ -19,8 +18,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Chenjinfeng on 2017/12/19.
@@ -41,24 +42,19 @@ public class GeneDataService implements InitializingBean {
     @Autowired
     private GennMapper dao;
 
+    public GennMapper getDao() {
+        return dao;
+    }
+
     @Transactional
     public void unZip(File sourcefile) throws Exception {
         String target = "unZip" + UUID.randomUUID().toString();
         String outPath = workPath + "/" + target;
-        GennZipLog zipLog = new GennZipLog();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        zipLog.setOpTime(simpleDateFormat.format(new Date()));
-        zipLog.setZipName(sourcefile.getName());
         try {
             DecryptionZipUtil.unzip(sourcefile.getAbsolutePath(), outPath, pwd);
+            ZipUtils.standDir(outPath);
             File file = new File(outPath);
             File[] files = file.listFiles();
-            //for linux
-            if (files != null && files.length == 2) {
-                String path = files[0].getParent();
-                files = new File[1];
-                files[0] = new File(path);
-            }
             if (files == null || files.length != 1 || !files[0].isDirectory()) {
                 logger.error("outpath :" + outPath);
                 logger.error("files ==null " + (files == null));
@@ -120,14 +116,15 @@ public class GeneDataService implements InitializingBean {
             }
             File imgPath = new File(outPath + "/sub/img");
             File pdfPath = new File(outPath + "/sub/pdf");
-            if (imgPath.exists()) FileUtils.copyDirectory(imgPath, new File(imgBaseDir));
-            if (pdfPath.exists()) FileUtils.copyDirectory(pdfPath, new File(pdfBaseDir));
-            zipLog.setZipResult("success");
+            if (imgPath.exists()) {
+                FileUtils.copyDirectory(imgPath, new File(imgBaseDir));
+            }
+            if (pdfPath.exists()) {
+                FileUtils.copyDirectory(pdfPath, new File(pdfBaseDir));
+            }
         } catch (Exception e) {
-            zipLog.setZipResult("error:" + e.getMessage());
             throw e;
         } finally {
-            dao.addZipLog(zipLog);
             FileUtils.deleteQuietly(new File(outPath));
         }
     }
