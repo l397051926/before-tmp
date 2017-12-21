@@ -98,7 +98,6 @@ public class DecryptionZipUtil {
             for (ExtZipEntry entry : entryList) {
                 String eName = entry.getName();
                 eName = eName.replace("\\", "/");
-                logger.info(eName);
                 String dir = eName.substring(0, eName.lastIndexOf("/") + 1);
                 File extractDir = new File(outDir, dir);
                 if (!extractDir.exists()) {
@@ -108,7 +107,6 @@ public class DecryptionZipUtil {
                  * 抽出文件
                  */
                 File extractFile = new File(outDir + "/" + eName);
-                logger.info(extractFile.getAbsolutePath());
                 zipDecrypter.extractEntry(entry, extractFile, passwd);
             }
         } finally {

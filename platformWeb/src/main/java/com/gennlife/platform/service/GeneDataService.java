@@ -126,7 +126,7 @@ public class GeneDataService implements InitializingBean {
         } catch (Exception e) {
             throw e;
         } finally {
-            // FileUtils.deleteQuietly(new File(outPath));
+             FileUtils.deleteQuietly(new File(outPath));
         }
     }
 
