@@ -508,6 +508,15 @@ CREATE TABLE `gennlife_gene_img` (
   KEY `uniqueId` (`uniqueId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `gennlife_gene_log`;
+
+CREATE TABLE `gennlife_gene_log` (
+  `zipName` varchar(255) DEFAULT NULL,
+  `zipResult` text,
+  `opTime` varchar(20) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*管理员*/
 
 INSERT INTO `gennlife_manage` VALUES ('admin@gennlife.com', 'admin', 'admin', 'hospital');
