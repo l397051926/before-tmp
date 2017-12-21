@@ -23,9 +23,9 @@ public class FileListenerAdaptor extends FileAlterationListenerAdaptor {
 
     public void execUnZip(File file) {
         try {
-            logger.info("start unZip "+file.getAbsolutePath());
+            logger.info("start unZip " + file.getAbsolutePath());
             long s = System.currentTimeMillis();
-            geneDataService.unZip(file.getAbsolutePath());
+            geneDataService.unZip(file);
             FileUtils.deleteQuietly(file);
             logger.info("unzip " + file.getAbsolutePath() + " " + (System.currentTimeMillis() - s) + " ms");
         } catch (Exception e) {
@@ -40,6 +40,7 @@ public class FileListenerAdaptor extends FileAlterationListenerAdaptor {
     }
 
     public void init(GeneDataService geneDataService, String listenDir) {
+        logger.info("unzip listen dir " + listenDir);
         this.geneDataService = geneDataService;
         LinkedList<File> list = ZipUtils.getAllZip(listenDir);
         if (list != null) {

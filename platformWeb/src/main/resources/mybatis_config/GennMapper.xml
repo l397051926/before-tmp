@@ -18,11 +18,21 @@
         <result column="webName" property="webName" jdbcType="VARCHAR"/>
         <result column="opTime" property="opTime" jdbcType="VARCHAR"/>
     </resultMap>
+    <resultMap id="com.gennlife.platform.model.GennZipLog" type="com.gennlife.platform.model.GennZipLog">
+        <result column="zipName" property="zipName" jdbcType="VARCHAR"/>
+        <result column="zipResult" property="zipResult" jdbcType="VARCHAR"/>
+        <result column="opTime" property="opTime" jdbcType="VARCHAR"/>
+    </resultMap>
     <resultMap id="com.gennlife.platform.model.GennImage" type="com.gennlife.platform.model.GennImage">
         <result column="uniqueId" property="uniqueId" jdbcType="VARCHAR"/>
         <result column="imgId" property="imgId" jdbcType="VARCHAR"/>
         <result column="imgPath" property="imgPath" jdbcType="VARCHAR"/>
     </resultMap>
+
+    <insert id="addZipLog" parameterType="com.gennlife.platform.model.GennZipLog">
+        insert into gennlife_gene_log (zipName,zipResult,opTime) values (#{zipName},#{zipResult},#{opTime})
+    </insert>
+
     <select id="getAllImage" resultMap="com.gennlife.platform.model.GennImage" parameterType="String">
         SELECT * FROM gennlife_gene_img
         where uniqueId in
@@ -93,4 +103,5 @@
         patientSn=#{patientSn},visitSn=#{visitSn},synTime=#{synTime},pdfPath=#{pdfPath},jsonData=#{jsonData},
         pdfName=#{pdfName},opTime=#{opTime},webName=#{webName}
     </insert>
+
 </mapper>

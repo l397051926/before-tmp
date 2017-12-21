@@ -2,6 +2,7 @@ package com.gennlife.platform.dao;
 
 import com.gennlife.platform.model.GennDataModel;
 import com.gennlife.platform.model.GennImage;
+import com.gennlife.platform.model.GennZipLog;
 import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.Mapper;
 
@@ -12,6 +13,7 @@ import java.util.List;
  */
 @Mapper("gennDao")
 public interface GennMapper {
+    int addZipLog(GennZipLog log);
     List<GennDataModel> getGennData(@Param("from") int from,
                                     @Param("size") int size,
                                     @Param("patientSn") String patientSn,
