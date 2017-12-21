@@ -122,6 +122,7 @@ public class GeneDataService implements InitializingBean {
                 FileUtils.copyDirectory(pdfPath, new File(pdfBaseDir));
             }
         } catch (Exception e) {
+            System.exit(0);
             throw e;
         } finally {
             FileUtils.deleteQuietly(new File(outPath));
