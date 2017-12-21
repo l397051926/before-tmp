@@ -54,6 +54,13 @@ public class GeneDataService implements InitializingBean {
             File file = new File(outPath);
             File[] files = file.listFiles();
             if (files == null || files.length != 1 || !files[0].isDirectory()) {
+                logger.error("files ==null " + (files == null));
+                if (files != null) {
+                    logger.error("files.length " + (files.length));
+                    for (File tmp : files) {
+                        logger.error("item " + tmp.getAbsolutePath());
+                    }
+                }
                 throw new RuntimeException(outPath + " 压缩文件格式不对");
             }
             File subPath = files[0];
@@ -109,13 +116,11 @@ public class GeneDataService implements InitializingBean {
             if (imgPath.exists()) FileUtils.copyDirectory(imgPath, new File(imgBaseDir));
             if (pdfPath.exists()) FileUtils.copyDirectory(pdfPath, new File(pdfBaseDir));
             zipLog.setZipResult("success");
-            dao.addZipLog(zipLog);
         } catch (Exception e) {
             zipLog.setZipResult("error:" + e.getMessage());
-            dao.addZipLog(zipLog);
             throw e;
         } finally {
-
+            dao.addZipLog(zipLog);
             FileUtils.deleteQuietly(new File(outPath));
         }
     }
