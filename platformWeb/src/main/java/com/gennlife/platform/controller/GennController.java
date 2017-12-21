@@ -215,7 +215,7 @@ public class GennController implements InitializingBean, DisposableBean {
         FileListenerAdaptor listener = new FileListenerAdaptor();
         listener.init(geneDataService,listenDir);
         observer.addListener(listener);
-        FileAlterationMonitor fileMonitor = new FileAlterationMonitor(5000, new FileAlterationObserver[]{observer});
+        fileMonitor = new FileAlterationMonitor(5000, new FileAlterationObserver[]{observer});
         fileMonitor.start();
     }
 
