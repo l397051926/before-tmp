@@ -4,6 +4,8 @@ import de.idyl.winzipaes.AesZipFileDecrypter;
 import de.idyl.winzipaes.AesZipFileEncrypter;
 import de.idyl.winzipaes.impl.*;
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +20,7 @@ import java.util.List;
  * @author zyh
  */
 public class DecryptionZipUtil {
+    private static final Logger logger = LoggerFactory.getLogger(DecryptionZipUtil.class);
 
     /**
      * 使用指定密码将给定文件或文件夹压缩成指定的输出ZIP文件
@@ -33,13 +36,13 @@ public class DecryptionZipUtil {
             zipFileEncrypter = new AesZipFileEncrypter(destPath, encrypter);
             File sFile = new File(srcFile);
             /**
-             * AesZipFileEncrypter提供了重载的添加Entry的方法,其中: 
-             * add(File f, String passwd)  
-             *          方法是将文件直接添加进压缩文件 
+             * AesZipFileEncrypter提供了重载的添加Entry的方法,其中:
+             * add(File f, String passwd)
+             *          方法是将文件直接添加进压缩文件
              *
-             * add(File f,  String pathForEntry, String passwd) 
-             *          方法是按指定路径将文件添加进压缩文件 
-             * pathForEntry - to be used for addition of the file (path within zip file) 
+             * add(File f,  String pathForEntry, String passwd)
+             *          方法是按指定路径将文件添加进压缩文件
+             * pathForEntry - to be used for addition of the file (path within zip file)
              */
             doZip(sFile, zipFileEncrypter, "", passwd);
         } finally {
@@ -87,23 +90,25 @@ public class DecryptionZipUtil {
             zipDecrypter = new AesZipFileDecrypter(new File(inFile), decrypter);
             AesZipFileDecrypter.charset = "utf-8";
             /**
-             * 得到ZIP文件中所有Entry,但此处好像与JDK里不同,目录不视为Entry 
-             * 需要创建文件夹,entry.isDirectory()方法同样不适用,不知道是不是自己使用错误 
-             * 处理文件夹问题处理可能不太好 
+             * 得到ZIP文件中所有Entry,但此处好像与JDK里不同,目录不视为Entry
+             * 需要创建文件夹,entry.isDirectory()方法同样不适用,不知道是不是自己使用错误
+             * 处理文件夹问题处理可能不太好
              */
             List<ExtZipEntry> entryList = zipDecrypter.getEntryList();
             for (ExtZipEntry entry : entryList) {
                 String eName = entry.getName();
-                eName = eName.replace("\\*", "/");
+                eName = eName.replace("\\", "/");
+                logger.info(eName);
                 String dir = eName.substring(0, eName.lastIndexOf("/") + 1);
                 File extractDir = new File(outDir, dir);
                 if (!extractDir.exists()) {
                     FileUtils.forceMkdir(extractDir);
                 }
                 /**
-                 * 抽出文件 
+                 * 抽出文件
                  */
                 File extractFile = new File(outDir + "/" + eName);
+                logger.info(extractFile.getAbsolutePath());
                 zipDecrypter.extractEntry(entry, extractFile, passwd);
             }
         } finally {
