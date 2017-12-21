@@ -63,7 +63,7 @@ public class DecryptionZipUtil {
             encrypter.add(file, pathForEntry, passwd);
             return;
         }
-        pathForEntry += file.getName() + File.separator;
+        pathForEntry += file.getName() + "/";
         for (File subFile : file.listFiles()) {
             doZip(subFile, encrypter, pathForEntry, passwd);
         }
@@ -94,7 +94,8 @@ public class DecryptionZipUtil {
             List<ExtZipEntry> entryList = zipDecrypter.getEntryList();
             for (ExtZipEntry entry : entryList) {
                 String eName = entry.getName();
-                String dir = eName.substring(0, eName.lastIndexOf(File.separator) + 1);
+                eName = eName.replace("\\*", "/");
+                String dir = eName.substring(0, eName.lastIndexOf("/") + 1);
                 File extractDir = new File(outDir, dir);
                 if (!extractDir.exists()) {
                     FileUtils.forceMkdir(extractDir);
@@ -102,28 +103,12 @@ public class DecryptionZipUtil {
                 /**
                  * 抽出文件 
                  */
-                File extractFile = new File(outDir + File.separator + eName);
+                File extractFile = new File(outDir + "/" + eName);
                 zipDecrypter.extractEntry(entry, extractFile, passwd);
             }
         } finally {
             zipDecrypter.close();
         }
-        ZipUtils.standDirForNotWindows(outDirectory);
-
     }
 
-    /**
-     * 测试
-     *
-     * @param args
-     */
-    public static void main(String[] args) throws Exception {
-        /**
-         * 压缩测试 
-         * 可以传文件或者目录 
-         */
-        zip("D:\\ss", "D:\\ss.zip", "zyh");
-//      zip("M:\\ZIP\\test\\bb", "M:\\ZIP\\test\\temp2.zip", "zyh");  
-
-    }
 }

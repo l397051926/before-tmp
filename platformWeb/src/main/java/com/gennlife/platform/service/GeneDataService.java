@@ -50,15 +50,12 @@ public class GeneDataService implements InitializingBean {
     public void unZip(File sourcefile) throws Exception {
         String target = "unZip" + UUID.randomUUID().toString();
         String outPath = workPath + "/" + target;
+        File md5File = null;
+        File subZip = null;
         try {
             DecryptionZipUtil.unzip(sourcefile.getAbsolutePath(), outPath, pwd);
             File file = new File(outPath);
             File[] files = file.listFiles();
-            if (files != null && files.length == 2) {
-                String path = files[0].getParent();
-                files = new File[1];
-                files[0] = new File(path);
-            }
             if (files == null || files.length != 1 || !files[0].isDirectory()) {
                 logger.error("outpath :" + outPath);
                 logger.error("files ==null " + (files == null));
@@ -71,15 +68,9 @@ public class GeneDataService implements InitializingBean {
                 throw new RuntimeException(outPath + " 压缩文件格式不对");
             }
             File subPath = files[0];
-            File md5File = new File(subPath.getAbsolutePath() + "/md5.txt");
-            if (!md5File.exists()) {
-                md5File = new File(subPath.getAbsolutePath() + "\\md5.txt");
-            }
+            md5File = new File(subPath.getAbsolutePath() + "/md5.txt");
+            subZip = new File(subPath.getAbsolutePath() + "/sub.zip");
             String md5 = FileUtils.readFileToString(md5File, "utf-8");
-            File subZip = new File(subPath.getAbsolutePath() + "/sub.zip");
-            if (!subZip.exists()) {
-                subZip = new File(subPath.getAbsolutePath() + "\\sub.zip");
-            }
             String targetMd5 = ZipUtils.getMd5ByFile(subZip);
             if (md5 == null || !md5.equalsIgnoreCase(targetMd5)) {
                 throw new RuntimeException("md5 校验失败");
@@ -89,13 +80,7 @@ public class GeneDataService implements InitializingBean {
                 throw new RuntimeException("zip 解压失败");
             }
             File imgJsonFile = new File(outPath + "/sub/img.json");
-            if (!imgJsonFile.exists()) {
-                imgJsonFile = new File(outPath + "\\sub\\img.json");
-            }
             File synJsonFile = new File(outPath + "/sub/syn.json");
-            if (!synJsonFile.exists()) {
-                synJsonFile = new File(outPath + "\\sub\\syn.json");
-            }
             String data = FileUtils.readFileToString(synJsonFile, "utf-8");
             LinkedList<GennDataModel> synList = JsonUtils.fromJson(JsonUtils.toJsonElement(data), new TypeToken<LinkedList<GennDataModel>>() {
             }.getType());
@@ -147,7 +132,7 @@ public class GeneDataService implements InitializingBean {
         } catch (Exception e) {
             throw e;
         } finally {
-           // FileUtils.deleteQuietly(new File(outPath));
+            // FileUtils.deleteQuietly(new File(outPath));
         }
     }
 
