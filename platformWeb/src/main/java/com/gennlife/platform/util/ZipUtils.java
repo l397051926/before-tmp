@@ -1,16 +1,17 @@
 package com.gennlife.platform.util;
 
-import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.util.StringUtils;
 
 import java.io.*;
 import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
-import java.util.*;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -23,33 +24,12 @@ public class ZipUtils {
     private static final Logger logger = LoggerFactory.getLogger(ZipUtils.class);
     private static AtomicInteger incr = new AtomicInteger(0);
 
-    public static void main(String[] args) {
-        String source = "D:\\Users\\zhangshijian\\Desktop\\source\\demo_data_v0.2.zip";
-        String unZipBase = "D:\\Users\\zhangshijian\\Desktop\\source\\tmp";
-        FileUtils.deleteQuietly(new File(unZipBase));
-        int number = incr.incrementAndGet();
-        String targetDir = unZipBase + "/" + UUID.randomUUID().toString() + number;
-        boolean unZipFlag = unZipFiles(source, targetDir);
-
-        Map<String, String> md5Map = createMd5Map(targetDir + "/md5.txt");
-        if (md5Map != null) {
-            for (Map.Entry<String, String> entity : md5Map.entrySet()) {
-                String subZip = targetDir + "/" + entity.getKey();
-                String md5 = getMd5ByFile(new File(subZip));
-                if (md5 != null && md5.equals(entity.getValue())) {
-                    unZipFlag = unZipFiles(subZip, subZip.replace(".zip", ""));
-                    logger.info("unZip subdir");
-                } else {
-                    logger.error("md5 fail " + md5 + " != " + entity.getValue());
-                }
-            }
-        }
-
-    }
-
     public static Map<String, String> createMd5Map(String fileName) {
         Map<String, String> md5List = new HashMap<>();
         File file = new File(fileName);
+        if (!file.exists()) {
+            return null;
+        }
         BufferedReader reader = null;
         String temp = null;
         try {
@@ -97,7 +77,7 @@ public class ZipUtils {
                 ZipEntry entry = (ZipEntry) entries.nextElement();
                 String zipEntryName = entry.getName();
                 in = zip.getInputStream(entry);
-                String outPath = (descDir + "/" + zipEntryName).replace("\\*", "/");
+                String outPath = (descDir + "/" + zipEntryName).replace("\\", "/");
                 //判断路径是否存在，不存在则创建文件路径
                 File file = new File(outPath.substring(0, outPath.lastIndexOf('/')));
                 if (!file.exists()) {
@@ -142,7 +122,6 @@ public class ZipUtils {
                 return false;
             }
         }
-        standDirForNotWindows(pathFile);
         return true;
     }
 
@@ -239,33 +218,4 @@ public class ZipUtils {
         }
     }
 
-    public static void standDir(File base) {
-        if (base.exists()) {
-            if (base.isDirectory()) {
-                File[] files = base.listFiles();
-                if (files != null) {
-                    for (File item : files) {
-                        standDir(item);
-                    }
-                }
-
-            } else if (base.isFile()) {
-                if (base.getAbsolutePath().contains("\\")) {
-                    try {
-                        FileCopyUtils.copy(base, new File(base.getAbsolutePath().replace("\\", "/")));
-                    } catch (IOException e) {
-                        logger.error("standDir error", e);
-                    }
-                }
-            }
-        }
-    }
-
-    public static void standDirForNotWindows(File base) {
-        String os = System.getProperty("os.name");
-        if (os.toLowerCase().startsWith("win")) {
-            return;
-        }
-        standDir(base);
-    }
 }
