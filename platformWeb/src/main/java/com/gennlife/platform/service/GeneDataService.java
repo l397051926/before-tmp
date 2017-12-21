@@ -51,10 +51,14 @@ public class GeneDataService implements InitializingBean {
         zipLog.setZipName(sourcefile.getName());
         try {
             DecryptionZipUtil.unzip(sourcefile.getAbsolutePath(), outPath, pwd);
-            logger.info("outPath before " + outPath);
-            outPath = workPath + "/" + target;
             File file = new File(outPath);
             File[] files = file.listFiles();
+            //for linux
+            if (files != null && files.length == 2) {
+                String path = files[0].getParent();
+                files = new File[1];
+                files[0] = new File(path);
+            }
             if (files == null || files.length != 1 || !files[0].isDirectory()) {
                 logger.error("outpath :" + outPath);
                 logger.error("files ==null " + (files == null));
