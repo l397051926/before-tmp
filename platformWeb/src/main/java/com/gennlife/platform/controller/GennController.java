@@ -47,10 +47,13 @@ import java.util.Map;
 @RequestMapping("/genn")
 public class GennController implements InitializingBean, DisposableBean {
     private static final Logger logger = LoggerFactory.getLogger(GennController.class);
-    private static String KEY = "code";
-    private static int SUCCESS = 1;
-    private static String ERR_KEY = "error";
-    private static int FAIL = 0;
+    private static final String KEY = "code";
+    private static final String FS_KEY = "success";
+    private static final int SUCCESS = 1;
+    private static final boolean FS_SUCCESS = true;
+    private static final boolean FS_FAIL = false;
+    private static final String ERR_KEY = "error";
+    private static final int FAIL = 0;
     @Value("${ui.gene.zip.listenDir}")
     private String listenDir;
     Gson gson = GsonUtil.getGson();
@@ -122,14 +125,23 @@ public class GennController implements InitializingBean, DisposableBean {
 
     public JsonObject createUnAccess() {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty(KEY, FAIL);
+        setFail(jsonObject);
         jsonObject.addProperty(ERR_KEY, "无权限或无相关记录");
         return jsonObject;
 
     }
 
+    private void setFail(JsonObject jsonObject) {
+        jsonObject.addProperty(KEY, FAIL);
+        jsonObject.addProperty(FS_KEY,FS_FAIL);
+    }
+    private void setSuccess(JsonObject jsonObject) {
+        jsonObject.addProperty(KEY, SUCCESS);
+        jsonObject.addProperty(FS_KEY,FS_SUCCESS);
+    }
     @RequestMapping("/json")
-    public @ResponseBody
+    public
+    @ResponseBody
     String json(HttpServletRequest paramRe,
                 @RequestParam("uniqueId") String uniqueId, @RequestParam("patientSn") String patientSn) throws IOException {
         if (checkFail(null, paramRe, uniqueId, patientSn)) return GsonUtil.toJsonStr(createUnAccess());
@@ -139,22 +151,24 @@ public class GennController implements InitializingBean, DisposableBean {
         }
         JsonObject result = new JsonObject();
         result.add("data", GsonUtil.toJsonObject(match));
-        result.addProperty(KEY, SUCCESS);
+        setSuccess(result);
         return GsonUtil.toJsonStr(result);
     }
 
     @RequestMapping("/list")
-    public @ResponseBody String list(@RequestParam("patientSn") String patientSn,
-                       @RequestParam(value = "visitSn", required = false) String visitSn,
-                       @RequestParam("page") int page,
-                       @RequestParam("size") int size, HttpServletRequest paramRe
+    public
+    @ResponseBody
+    String list(@RequestParam("patientSn") String patientSn,
+                @RequestParam(value = "visitSn", required = false) String visitSn,
+                @RequestParam("page") int page,
+                @RequestParam("size") int size, HttpServletRequest paramRe
     ) {
         if (page <= 0) page = 1;
         if (size <= 0) size = 10;
         JsonObject result = new JsonObject();
         if (!accessUtils.checkAccessPatientSn(patientSn, paramRe)) {
             result.addProperty(ERR_KEY, "患者编号无权限访问或不存在");
-            result.addProperty(KEY, FAIL);
+            setFail(result);
             return GsonUtil.toJsonStr(result);
         }
         int from = (page - 1) * size;
@@ -162,14 +176,14 @@ public class GennController implements InitializingBean, DisposableBean {
         List<GennDataModel> list = gennMapper.getGennData(from, size, patientSn, visitSn);
         if (list == null || list.size() == 0) {
             result.addProperty(ERR_KEY, "no data");
-            result.addProperty(KEY, FAIL);
+            setFail(result);
             return GsonUtil.toJsonStr(result);
         }
         for (GennDataModel dataModel : list) {
             dataModel.setPdfPath(null);
             dataModel.setJsonData(null);
         }
-        result.addProperty(KEY, SUCCESS);
+        setSuccess(result);
         result.add("data", GsonUtil.toJsonTree(list));
         return GsonUtil.toJsonStr(result);
     }
@@ -213,7 +227,7 @@ public class GennController implements InitializingBean, DisposableBean {
             }
         });
         FileListenerAdaptor listener = new FileListenerAdaptor();
-        listener.init(geneDataService,listenDir);
+        listener.init(geneDataService, listenDir);
         observer.addListener(listener);
         fileMonitor = new FileAlterationMonitor(5000, new FileAlterationObserver[]{observer});
         fileMonitor.start();
