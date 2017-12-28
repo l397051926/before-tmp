@@ -325,5 +325,22 @@ public class CaseController {
         }
     }
 
-
+    @RequestMapping(value = "/highlight", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String searchHighlight(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = jsonParser.parse(param).getAsJsonObject();
+            resultStr = processor.searchHighlight(paramObj);
+            logger.info("搜索详情高亮 post 耗时:" + (System.currentTimeMillis() - start) + "ms");
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("搜索详情高亮 post 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }

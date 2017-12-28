@@ -281,6 +281,16 @@ public class URLBean {
      */
     private String caseGeneErrorURL = null;
 
+    public String getHighlight() {
+        return highlight;
+    }
+
+    public void setHighlight(String highlight) {
+        this.highlight = highlight;
+    }
+
+    private String highlight = null;
+
     /**
      * crf service:用户相关项目的crf模版列表：
      */

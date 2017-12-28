@@ -488,4 +488,15 @@ public class CaseProcessor {
             return ParamUtils.errorParam("请求出错");
         }
     }
+
+    public String searchHighlight(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getHighlight();
+            logger.info("搜索详情高亮 url=" + url);
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
 }
