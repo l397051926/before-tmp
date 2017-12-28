@@ -81,4 +81,10 @@ public class FilesUtils {
 
         return code;
     }
+
+    public static void mkdir(String path) {
+        File file = new File(path);
+        if (!file.exists() && file.mkdirs()) {
+        }
+    }
 }

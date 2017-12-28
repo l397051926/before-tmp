@@ -14,6 +14,7 @@ public class AllDao {
     private ProjectMapper projectDao;
     private GroupMapper groupDao;
 
+
     public ProjectMapper getProjectDao() {
         return projectDao;
     }

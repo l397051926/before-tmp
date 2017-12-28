@@ -472,6 +472,51 @@ CREATE TABLE `searchConditionHistory` (
 -- Records of searchConditionHistory
 -- ----------------------------
 
+DROP TABLE IF EXISTS `gennlife_gene`;
+CREATE TABLE `gennlife_gene` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniqueId` varchar(255) NOT NULL,
+  `sampleType` varchar(20) NOT NULL,
+  `sampleGetDate` varchar(20) NOT NULL,
+  `reportDate` varchar(20) NOT NULL,
+  `inspectionDept` varchar(20) NOT NULL,
+  `inspectionDoctor` varchar(10) NOT NULL,
+  `pdfId` char(42) NOT NULL,
+  `patientSn` char(37) NOT NULL,
+  `visitSn` char(37) NOT NULL,
+  `synTime` char(20) NOT NULL,
+  `pdfPath` varchar(255) DEFAULT NULL,
+  `jsonData` text,
+  `pdfName` varchar(255) DEFAULT NULL,
+  `webName` varchar(255) DEFAULT NULL,
+  `opTime` char(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniqueId` (`uniqueId`),
+  KEY `patientSn` (`patientSn`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+
+DROP TABLE IF EXISTS `gennlife_gene_img`;
+CREATE TABLE `gennlife_gene_img` (
+  `uniqueId` varchar(255) NOT NULL,
+  `imgId` varchar(42) NOT NULL,
+  `imgPath` varchar(255) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  KEY `imgId` (`imgId`),
+  KEY `uniqueId` (`uniqueId`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `gennlife_gene_log`;
+
+CREATE TABLE `gennlife_gene_log` (
+  `zipName` varchar(255) DEFAULT NULL,
+  `zipResult` text,
+  `opTime` varchar(20) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*管理员*/
 
 INSERT INTO `gennlife_manage` VALUES ('admin@gennlife.com', 'admin', 'admin', 'hospital');
