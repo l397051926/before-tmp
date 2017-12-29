@@ -493,6 +493,7 @@ public class CaseProcessor {
         try {
             String url = ConfigurationService.getUrlBean().getHighlight();
             logger.info("搜索详情高亮 url=" + url);
+            paramObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
             return result;
         } catch (Exception e) {
