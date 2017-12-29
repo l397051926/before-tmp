@@ -29,8 +29,6 @@ public class UserProcessor {
             if (StringUtils.isEmpty(email) || StringUtils.isEmpty(pwd))
                 return null;
             Long start = System.currentTimeMillis();
-            LogUtils.BussnissLog("用户：" + email + " >>> 进行登陆");
-
             User user = null;
             try {
                 pwd = GStringUtils.str2Password(pwd);
@@ -50,7 +48,10 @@ public class UserProcessor {
             if (user == null) {
                 return null;
             } else {
+                long s = System.currentTimeMillis();
                 user = getUserByUids(user.getUid());
+                long e = System.currentTimeMillis();
+                logger.info("登录时加载权限信息耗时 " + (e - s) + " ms");
                 return user;
             }
 
