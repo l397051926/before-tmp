@@ -13,6 +13,7 @@ import org.springframework.context.annotation.ImportResource;
 public class ArkUiServiceApplication {
 
 	public static void main(String[] args) {
+		System.setProperty("org.apache.catalina.SESSION_COOKIE_NAME", "UISESSION");
 		SpringApplication.run(ArkUiServiceApplication.class, args);
 	}
 }
