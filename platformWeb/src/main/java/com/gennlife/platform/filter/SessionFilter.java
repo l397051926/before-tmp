@@ -8,6 +8,7 @@ import com.gennlife.platform.util.LogUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.util.RedisUtil;
 import com.gennlife.platform.view.View;
+import org.apache.catalina.connector.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,8 +41,10 @@ public class SessionFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
+        org.apache.catalina.connector.Request req = (Request) request;
+        logger.info("cookie name " + req.getContext().getSessionCookieName());
         String uri = request.getRequestURI();
-        if (okSet.contains(uri) ) {
+        if (okSet.contains(uri)) {
             filterChain.doFilter(request, response);
         } else {
             HttpSession session = request.getSession(false);
