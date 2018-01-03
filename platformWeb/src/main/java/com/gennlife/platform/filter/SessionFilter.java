@@ -55,6 +55,7 @@ public class SessionFilter implements Filter {
                 view.viewString(ParamUtils.errorSessionLosParam(), response);
                 return;
             }
+            session.setMaxInactiveInterval(3600 * 5);
             String sessionID = session.getId();
             String uid = RedisUtil.getValue(sessionID);
             if (uid == null) {
