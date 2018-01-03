@@ -84,7 +84,7 @@ public class UserController {
                 view.viewString(ParamUtils.errorParam("登陆失败"), response);
             }
             resultStr = gson.toJson(resultBean);
-            logger.info("user is: " + resultStr);
+            //logger.info("user is: " + resultStr);
         } catch (Exception e) {
             logger.error("登陆异常", e);
             resultStr = ParamUtils.errorParam("登陆异常");
