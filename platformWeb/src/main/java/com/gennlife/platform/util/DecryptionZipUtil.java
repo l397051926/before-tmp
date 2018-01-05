@@ -110,7 +110,7 @@ public class DecryptionZipUtil {
                 zipDecrypter.extractEntry(entry, extractFile, passwd);
             }
         } finally {
-            zipDecrypter.close();
+            if (zipDecrypter != null) zipDecrypter.close();
         }
     }
 

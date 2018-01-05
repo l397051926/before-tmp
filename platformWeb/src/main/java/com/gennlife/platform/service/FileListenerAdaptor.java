@@ -38,7 +38,7 @@ public class FileListenerAdaptor extends FileAlterationListenerAdaptor {
             zipLog.setZipResult("success");
         } catch (Exception e) {
             zipLog.setZipResult("error :" + e.getMessage());
-            logger.error(file.getAbsolutePath() + " unzip error :", e);
+            logger.error(file.getAbsolutePath() + " unzip error :"+e.getMessage());
         } finally {
             geneDataService.getDao().addZipLog(zipLog);
         }
