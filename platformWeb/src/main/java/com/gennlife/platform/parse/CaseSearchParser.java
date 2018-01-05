@@ -19,12 +19,10 @@ public class CaseSearchParser implements Callable<String> {
     JsonObject queryjson;
 
     public CaseSearchParser(String queryStr) {
-        logger.info("搜索请求参数=" + queryStr);
         queryjson = JsonUtils.getJsonObject(queryStr);
     }
 
     public CaseSearchParser(String queryStr, String addquery) {
-        logger.info("搜索请求参数=" + queryStr);
         queryjson = JsonUtils.getJsonObject(queryStr);
         addQuery(addquery);
     }
@@ -72,6 +70,7 @@ public class CaseSearchParser implements Callable<String> {
         }
         isOk = true;
         queryjson.addProperty("indexName", ConfigUtils.getSearchIndexName());
+        logger.info("搜索请求参数=" + queryjson);
         return HttpRequestUtils.httpPost(url, GsonUtil.getGson().toJson(queryjson));
     }
 
