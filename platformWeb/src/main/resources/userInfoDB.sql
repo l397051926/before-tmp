@@ -233,7 +233,7 @@ CREATE TABLE `gennlife_user` (
   `md5` varchar(40) DEFAULT NULL COMMENT '修改密码的md5校验',
   PRIMARY KEY (`id`,`uid`),
   KEY `index_name` (`uemail`,`pwd`),
-  KEY `uemail_pwd` (`uemail`,`pwd`)
+  KEY `index_name` (`unumber`,`pwd`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8;
 
 -- ----------------------------

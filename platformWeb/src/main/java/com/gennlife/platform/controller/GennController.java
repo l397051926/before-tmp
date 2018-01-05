@@ -6,6 +6,7 @@ import com.gennlife.platform.bean.IpBean;
 import com.gennlife.platform.dao.GennMapper;
 import com.gennlife.platform.enums.GennMappingEnum;
 import com.gennlife.platform.model.GennDataModel;
+import com.gennlife.platform.model.GennListModel;
 import com.gennlife.platform.service.FileListenerAdaptor;
 import com.gennlife.platform.service.GeneDataService;
 import com.gennlife.platform.util.FilesUtils;
@@ -45,6 +46,10 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/genn")
+/***
+ * 基因检测报告功能，需要在机器安装ftp
+ * 路径 /opt/data/ui/gennListen
+ * **/
 public class GennController implements InitializingBean, DisposableBean {
     private static final Logger logger = LoggerFactory.getLogger(GennController.class);
     private static final String KEY = "code";
@@ -133,12 +138,14 @@ public class GennController implements InitializingBean, DisposableBean {
 
     private void setFail(JsonObject jsonObject) {
         jsonObject.addProperty(KEY, FAIL);
-        jsonObject.addProperty(FS_KEY,FS_FAIL);
+        jsonObject.addProperty(FS_KEY, FS_FAIL);
     }
+
     private void setSuccess(JsonObject jsonObject) {
         jsonObject.addProperty(KEY, SUCCESS);
-        jsonObject.addProperty(FS_KEY,FS_SUCCESS);
+        jsonObject.addProperty(FS_KEY, FS_SUCCESS);
     }
+
     @RequestMapping("/json")
     public
     @ResponseBody
@@ -179,12 +186,16 @@ public class GennController implements InitializingBean, DisposableBean {
             setFail(result);
             return GsonUtil.toJsonStr(result);
         }
+        List<GennListModel> uiList = new LinkedList<>();
         for (GennDataModel dataModel : list) {
-            dataModel.setPdfPath(null);
-            dataModel.setJsonData(null);
+            GennListModel item = new GennListModel(dataModel);
+            JsonObject jsonData = GsonUtil.toJsonObject(dataModel.getJsonData());
+            if (jsonData == null) continue;
+            item.setDisease(GsonUtil.getStringValue("患者信息.初步诊断",jsonData));
+            uiList.add(item);
         }
         setSuccess(result);
-        result.add("data", GsonUtil.toJsonTree(list));
+        result.add("data", GsonUtil.toJsonTree(uiList));
         return GsonUtil.toJsonStr(result);
     }
 
