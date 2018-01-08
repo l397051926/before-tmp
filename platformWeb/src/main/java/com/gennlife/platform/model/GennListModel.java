@@ -31,6 +31,7 @@ public class GennListModel extends GennDataModel {
     }
 
     public void setSampleSn(String sampleSn) {
+        if (sampleSn == null) sampleSn = "";
         this.sampleSn = sampleSn;
     }
 
