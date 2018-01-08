@@ -191,7 +191,8 @@ public class GennController implements InitializingBean, DisposableBean {
             GennListModel item = new GennListModel(dataModel);
             JsonObject jsonData = GsonUtil.toJsonObject(dataModel.getJsonData());
             if (jsonData == null) continue;
-            item.setDisease(GsonUtil.getStringValue("患者信息.初步诊断",jsonData));
+            item.setDisease(GsonUtil.getStringValue("基本信息.初步诊断",jsonData));
+            item.setDetectionResult(GsonUtil.getStringValue("检测结果",jsonData));
             uiList.add(item);
         }
         setSuccess(result);
