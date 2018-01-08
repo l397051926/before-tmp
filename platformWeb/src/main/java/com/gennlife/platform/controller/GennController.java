@@ -193,6 +193,11 @@ public class GennController implements InitializingBean, DisposableBean {
             if (jsonData == null) continue;
             item.setDisease(GsonUtil.getStringValue("基本信息.初步诊断",jsonData));
             item.setDetectionResult(GsonUtil.getStringValue("检测结果",jsonData));
+            item.setInspectionDept(GsonUtil.getStringValue("基本信息.送检信息.送检单位", jsonData));
+            item.setInspectionDoctor(GsonUtil.getStringValue("基本信息.送检信息.送检医生", jsonData));
+            item.setReportDate(GsonUtil.getStringValue("基本信息.样本信息.报告日期", jsonData));
+            item.setSampleGetDate(GsonUtil.getStringValue("基本信息.样本信息.样本采集日期", jsonData));
+            item.setSampleType(GsonUtil.getStringValue("基本信息.样本信息.样本类型", jsonData));
             uiList.add(item);
         }
         setSuccess(result);
