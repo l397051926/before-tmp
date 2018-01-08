@@ -486,7 +486,7 @@ CREATE TABLE `gennlife_gene` (
   `visitSn` char(37) NOT NULL,
   `synTime` char(20) NOT NULL,
   `pdfPath` varchar(255) DEFAULT NULL,
-  `jsonData` text,
+  `jsonData` mediumtext,
   `pdfName` varchar(255) DEFAULT NULL,
   `webName` varchar(255) DEFAULT NULL,
   `opTime` char(20) DEFAULT NULL,
