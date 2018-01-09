@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 /**
  * Created by Chenjinfeng on 2017/9/9.
@@ -48,6 +49,10 @@ public class ConfigUtils {
     }
 
     public static String getRemoteUtfFile(String file) {
+        if (StringUtils.isEmpty(config_uri)) {
+            logger.warn(" config url is null ");
+            return null;
+        }
         String url = "";
         if (config_uri.endsWith("/")) url = config_uri;
         else url = config_uri + "/";
