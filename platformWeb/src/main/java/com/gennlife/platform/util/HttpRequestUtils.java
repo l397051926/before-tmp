@@ -10,6 +10,7 @@ import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.GzipDecompressingEntity;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -111,19 +112,33 @@ public class HttpRequestUtils {
 
 
     public static String httpGet(String url) {
-        return httpGet(url, 60000);
+        return httpGet(url, 60000, false);
     }
 
-    public static String httpGet(String url, int time) {
+    public static String httpGetByGzip(String url) {
+        return httpGet(url, 60000, true);
+    }
+
+    public static String httpGet(String url, int time, boolean gzipFlag) {
         HttpClient httpClient = HttpClients.createDefault();
         HttpGet method = new HttpGet(url);
         try {
             RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(time).setConnectTimeout(time).build();
             method.setConfig(requestConfig);
+            if (gzipFlag) {
+                method.setHeader("Accept-Encoding", "gzip,deflate");
+            }
             HttpResponse result = httpClient.execute(method);
+            String str = null;
             if (result.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                String str = null;
+                Header contentHeader = result.getFirstHeader("Content-Encoding");
+                Header[] header=result.getAllHeaders();
                 try {
+                    if (contentHeader != null
+                            && contentHeader.getValue().toLowerCase().indexOf("gzip") > -1) {
+                        str = EntityUtils.toString(new GzipDecompressingEntity(result.getEntity()));
+                        return str;
+                    }
                     str = EntityUtils.toString(result.getEntity(), "utf-8");
                     return str;
                 } catch (Exception e) {
@@ -321,7 +336,7 @@ public class HttpRequestUtils {
                 String headerName;
                 for (Header header : httpResponse.getAllHeaders()) {
                     headerName = header.getName();
-                    switch (headerName){
+                    switch (headerName) {
                         //这里根据需要自己添加需要输出的响应头
                         case "Content-Disposition":
                         case "Content-Type":
