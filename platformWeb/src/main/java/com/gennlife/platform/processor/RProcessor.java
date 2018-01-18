@@ -29,7 +29,6 @@ public class RProcessor {
         try {
             String url = ConfigurationService.getUrlBean().getRRun();
             String result = HttpRequestUtils.httpPostForRRun(url, gson.toJson(paramObj));
-            logger.info("R执行 result=" + result);
             return result;
         } catch (Exception e) {
             logger.error("请求发生异常", e);
