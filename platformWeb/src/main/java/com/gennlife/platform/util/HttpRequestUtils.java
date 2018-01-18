@@ -77,14 +77,20 @@ public class HttpRequestUtils {
                 StringEntity entity = new StringEntity(jsonParam, "utf-8");
                 entity.setContentEncoding("UTF-8");
                 entity.setContentType("application/json");
-
+                method.setHeader("Accept-Encoding", "gzip,deflate");
                 method.setEntity(entity);
             }
             HttpResponse result = httpClient.execute(method);
             url = URLDecoder.decode(url, "UTF-8");
             if (result.getStatusLine().getStatusCode() == 200) {
                 String str = "";
+                Header contentHeader = result.getFirstHeader("Content-Encoding");
                 try {
+                    if (contentHeader != null
+                            && contentHeader.getValue().toLowerCase().indexOf("gzip") > -1) {
+                        str = EntityUtils.toString(new GzipDecompressingEntity(result.getEntity()));
+                        return str;
+                    }
                     str = EntityUtils.toString(result.getEntity());
                     return str;
                 } catch (Exception e) {
@@ -116,18 +122,16 @@ public class HttpRequestUtils {
     }*/
 
     public static String httpGet(String url) {
-        return httpGet(url, 60000, true);
+        return httpGet(url, 60000);
     }
 
-    public static String httpGet(String url, int time, boolean gzipFlag) {
+    public static String httpGet(String url, int time) {
         HttpClient httpClient = HttpClients.createDefault();
         HttpGet method = new HttpGet(url);
         try {
             RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(time).setConnectTimeout(time).build();
             method.setConfig(requestConfig);
-            if (gzipFlag) {
-                method.setHeader("Accept-Encoding", "gzip,deflate");
-            }
+            method.setHeader("Accept-Encoding", "gzip,deflate");
             HttpResponse result = httpClient.execute(method);
             String str = null;
             if (result.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
