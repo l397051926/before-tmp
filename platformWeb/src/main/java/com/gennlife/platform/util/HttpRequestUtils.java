@@ -111,11 +111,11 @@ public class HttpRequestUtils {
     }
 
 
-    public static String httpGet(String url) {
+ /*   public static String httpGet(String url) {
         return httpGet(url, 60000, false);
-    }
+    }*/
 
-    public static String httpGetByGzip(String url) {
+    public static String httpGet(String url) {
         return httpGet(url, 60000, true);
     }
 
@@ -132,7 +132,6 @@ public class HttpRequestUtils {
             String str = null;
             if (result.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 Header contentHeader = result.getFirstHeader("Content-Encoding");
-                Header[] header=result.getAllHeaders();
                 try {
                     if (contentHeader != null
                             && contentHeader.getValue().toLowerCase().indexOf("gzip") > -1) {
