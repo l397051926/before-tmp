@@ -31,7 +31,7 @@ public class ComputeProcessor {
         String url = ConfigurationService.getUrlBean().getCSSmg() + "?param=" + ParamUtils.encodeURI(param);
         logger.info("smg url=" + url);
         try {
-            String result = HttpRequestUtils.httpGet(url, 600000,false);
+            String result = HttpRequestUtils.httpGet(url, 600000);
             return result;
         } catch (Exception e) {
             return ParamUtils.errorParam("超时");
@@ -62,7 +62,7 @@ public class ComputeProcessor {
         String[] fs = ConfigurationService.getUrlBean().getFsIpAndPort().split(":");
         url = url + "&fsIp=" + fs[0] + "&fsPort" + fs[1];
         logger.info("baseline url=" + url);
-        String reStr = HttpRequestUtils.httpGet(url, 600000,false);
+        String reStr = HttpRequestUtils.httpGet(url, 600000);
         logger.info("baseline result=" + reStr);
         if (reStr == null || "".equals(reStr)) {
             return ParamUtils.errorParam("计算服务返回空");
