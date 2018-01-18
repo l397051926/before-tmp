@@ -63,7 +63,7 @@ public class View {
     }
 
     public void viewString(String str, HttpServletResponse response) {
-        if (str == null || str.length() < 1024 * 10) logger.info("结果:" + str);// 10k以下数据显示
+        if (str == null || str.length() < 1024 * 1) logger.info("结果:" + str);// 1k以下数据显示
         setHttpServletResponse(response);
         writeResult(str, response);
     }
