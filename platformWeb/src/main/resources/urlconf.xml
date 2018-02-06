@@ -10,86 +10,139 @@
         <property name="fsIpAndPort" value="${fileService.ipAndPort}"/>
         <!-- 搜索服务 -->
         <property name="caseSearchURL" value="http://${searchServer.ipAndPort}/search-server/search"/>
-        <property name="caseSuggestURL" value="http://${searchServer.ipAndPort}/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
+        <property name="caseSuggestURL"
+                  value="http://${searchServer.ipAndPort}/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
         <property name="caseGeneErrorURL" value="http://${searchServer.ipAndPort}/search-server/verify"/>
         <property name="highlight" value="http://${searchServer.ipAndPort}/search-server/highlight"/>
         <!-- 非隐私信息接口-->
-        <property name="casePatientBatchData" value="http://${fileService.ipAndPort}/FileService/PatientBatchData/BatchData"/>
-        <property name="ConsultingRoomData" value="http://${fileService.ipAndPort}/FileService/PatientBatchData/ConsultingRoom"/>
+        <property name="casePatientBatchData"
+                  value="http://${fileService.ipAndPort}/FileService/PatientBatchData/BatchData"/>
+        <property name="ConsultingRoomData"
+                  value="http://${fileService.ipAndPort}/FileService/PatientBatchData/ConsultingRoom"/>
 
         <!--FS 详情页 -->
-        <property name="caseDetailPatientBasicInfoURL" value="http://${fileService.ipAndPort}/FileService/PatientDetail/patient_basic_info"/>
-        <property name="caseDetailPatientBasicFigureURL" value="http://${fileService.ipAndPort}/FileService/PatientDetail/PatientBasicFigure"/>
-        <property name="casePatientBasicTimeAxisURL" value="http://${fileService.ipAndPort}/FileService/PatientDetail/visit_timeline"/>
-        <property name="casePhysical_examination_list" value="http://${fileService.ipAndPort}/FileService/PatientDetail/quota_name_list"/>
-        <property name="casePhysical_examination" value="http://${fileService.ipAndPort}/FileService/PatientDetail/quota_reports"/>
-        <property name="caseVisit_detail" value="http://${fileService.ipAndPort}/FileService/VisitDetail/visit_detail_info"/>
-        <property name="caseLab_result_item" value="http://${fileService.ipAndPort}/FileService/PatientDetail/lab_result_item"/>
-        <property name="caseLab_result_item_list" value="http://${fileService.ipAndPort}/FileService/PatientDetail/lab_result_item_list"/>
-        <property name="caseGenetic_disease" value="http://${fileService.ipAndPort}/FileService/PatientDetail/genetic_disease"/>
-        <property name="caseDrug_reaction" value="http://${fileService.ipAndPort}/FileService/PatientDetail/drug_reaction"/>
-        <property name="caseCategory_catalog" value="http://${fileService.ipAndPort}/FileService/PatientDetail/category_catalog"/>
-        <property name="caseMolecular_detection" value="http://${fileService.ipAndPort}/FileService/PatientDetail/molecular_detection"/>
-        <property name="caseBiological_specimen" value="http://${fileService.ipAndPort}/FileService/PatientDetail/biological_specimen"/>
+        <property name="caseDetailCommonUrl" value="http://${fileService.ipAndPort}/FileService/PatientDetail/"/>
+        <property name="caseDetailPatientBasicInfoURL"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/patient_basic_info"/>
+        <property name="caseDetailPatientBasicFigureURL"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/PatientBasicFigure"/>
+        <property name="casePatientBasicTimeAxisURL"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/visit_timeline"/>
+        <property name="casePhysical_examination_list"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/quota_name_list"/>
+        <property name="casePhysical_examination"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/quota_reports"/>
+        <property name="caseVisit_detail"
+                  value="http://${fileService.ipAndPort}/FileService/VisitDetail/visit_detail_info"/>
+        <property name="caseLab_result_item"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/lab_result_item"/>
+        <property name="caseLab_result_item_list"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/lab_result_item_list"/>
+        <property name="caseGenetic_disease"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/genetic_disease"/>
+        <property name="caseDrug_reaction"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/drug_reaction"/>
+        <property name="caseCategory_catalog"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/category_catalog"/>
+        <property name="caseMolecular_detection"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/molecular_detection"/>
+        <property name="caseBiological_specimen"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/biological_specimen"/>
         <property name="caseExam_result" value="http://${fileService.ipAndPort}/FileService/PatientDetail/exam_result"/>
-        <property name="casePathological_examination" value="http://${fileService.ipAndPort}/FileService/PatientDetail/pathological_examination"/>
+        <property name="casePathological_examination"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/pathological_examination"/>
         <property name="caseDiagnose" value="http://${fileService.ipAndPort}/FileService/VisitDetail/diagnose"/>
-        <property name="caseAdmission_records" value="http://${fileService.ipAndPort}/FileService/PatientDetail/admission_records"></property>
-        <property name="TripleTestTableUrl" value="http://${fileService.ipAndPort}/FileService/PatientDetail/triple_test_table"></property>
-        <property name="caseMedicalRecord" value="http://${fileService.ipAndPort}/FileService/PatientDetail/medical_records"></property>
-        <property name="caseOperationRecords" value="http://${fileService.ipAndPort}/FileService/PatientDetail/operation_records"></property>
-        <property name="casePharmacy" value="http://${fileService.ipAndPort}/FileService/PatientDetail/pharmacy"></property>
-        <property name="caseDischargeRecords" value="http://${fileService.ipAndPort}/FileService/PatientDetail/discharge_records"></property>
-        <property name="caseCourseRecords" value="http://${fileService.ipAndPort}/FileService/PatientDetail/course_records/"></property>
-        <property name="caseMedicalCourse" value="http://${fileService.ipAndPort}/FileService/PatientDetail/medical_course"></property>
-        <property name="caseDetailVisitClassifySectionURL" value="http://${fileService.ipAndPort}/FileService/VisitClassify/section"></property>
-        <property name="caseDetailVisitClassifyImageURL" value="http://${fileService.ipAndPort}/FileService/VisitClassify/image"></property>
-        <property name="casePatientDcOrder" value="http://${fileService.ipAndPort}/FileService/PatientDetail/dc_order"></property>
-        <property name="caseVisitDcOrder" value="http://${fileService.ipAndPort}/FileService/VisitDetail/dc_order"></property>
-        <property name="caseyVisitRadiotherapy" value="http://${fileService.ipAndPort}/FileService/VisitDetail/radiotherapy"></property>
-        <property name="casePatientRadiotherapy" value="http://${fileService.ipAndPort}/FileService/PatientDetail/radiotherapy"></property>
-        <property name="casePatientChemotherapyInfo" value="http://${fileService.ipAndPort}/FileService/PatientDetail/chemotherapy_info"></property>
-        <property name="PatientDetailThumbnail" value="http://${fileService.ipAndPort}/FileService/PatientDetail/thumbnail?url="></property>
+        <property name="caseAdmission_records"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/admission_records"></property>
+        <property name="TripleTestTableUrl"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/triple_test_table"></property>
+        <property name="caseMedicalRecord"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/medical_records"></property>
+        <property name="caseOperationRecords"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/operation_records"></property>
+        <property name="casePharmacy"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/pharmacy"></property>
+        <property name="caseDischargeRecords"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/discharge_records"></property>
+        <property name="caseCourseRecords"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/course_records/"></property>
+        <property name="caseMedicalCourse"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/medical_course"></property>
+        <property name="caseDetailVisitClassifySectionURL"
+                  value="http://${fileService.ipAndPort}/FileService/VisitClassify/section"></property>
+        <property name="caseDetailVisitClassifyImageURL"
+                  value="http://${fileService.ipAndPort}/FileService/VisitClassify/image"></property>
+        <property name="casePatientDcOrder"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/dc_order"></property>
+        <property name="caseVisitDcOrder"
+                  value="http://${fileService.ipAndPort}/FileService/VisitDetail/dc_order"></property>
+        <property name="caseyVisitRadiotherapy"
+                  value="http://${fileService.ipAndPort}/FileService/VisitDetail/radiotherapy"></property>
+        <property name="casePatientRadiotherapy"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/radiotherapy"></property>
+        <property name="casePatientChemotherapyInfo"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/chemotherapy_info"></property>
+        <property name="PatientDetailThumbnail"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/thumbnail?url="></property>
         <!--vitaBoard 服务-->
-        <property name="caseSimilarServiceVitaboardparam" value="http://${fileService.ipAndPort}/FileService/SimilarService/vitaboardparam"></property>
-        <property name="caseSimilarServiceSimilarParam" value="http://${fileService.ipAndPort}/FileService/SimilarService/SimilarParam"></property>
-        <property name="caseSimilarServiceGetSimilars" value="http://${fileService.ipAndPort}/FileService/SimilarService/vitaboard"></property>
-        <property name="caseSimilarServiceSimilarQuery" value="http://${fileService.ipAndPort}/FileService/SimilarService/SimilarQuery"></property>
-        <property name="caseSimilarServiceSimilarBasicDetail" value="http://${fileService.ipAndPort}/FileService/SimilarService/SimilarBasicDetail"></property>
-        <property name="caseSimilarServiceSimilarPatientInfo" value="http://${fileService.ipAndPort}/FileService/SimilarService/SimilarPatientInfo"></property>
-        <property name="caseSimilarServiceSimilarPatientExtraInfo" value="http://${fileService.ipAndPort}/FileService/SimilarService/SimilarPatientExtraInfo"></property>
+        <property name="caseSimilarServiceVitaboardparam"
+                  value="http://${fileService.ipAndPort}/FileService/SimilarService/vitaboardparam"></property>
+        <property name="caseSimilarServiceSimilarParam"
+                  value="http://${fileService.ipAndPort}/FileService/SimilarService/SimilarParam"></property>
+        <property name="caseSimilarServiceGetSimilars"
+                  value="http://${fileService.ipAndPort}/FileService/SimilarService/vitaboard"></property>
+        <property name="caseSimilarServiceSimilarQuery"
+                  value="http://${fileService.ipAndPort}/FileService/SimilarService/SimilarQuery"></property>
+        <property name="caseSimilarServiceSimilarBasicDetail"
+                  value="http://${fileService.ipAndPort}/FileService/SimilarService/SimilarBasicDetail"></property>
+        <property name="caseSimilarServiceSimilarPatientInfo"
+                  value="http://${fileService.ipAndPort}/FileService/SimilarService/SimilarPatientInfo"></property>
+        <property name="caseSimilarServiceSimilarPatientExtraInfo"
+                  value="http://${fileService.ipAndPort}/FileService/SimilarService/SimilarPatientExtraInfo"></property>
 
         <!--vitaGram 服务-->
-        <property name="vitaGramServerMedicalHistoryRecommendPath" value="http://${searchServer.ipAndPort}/vitaGram-server/medical_history_recommend_path"></property>
-        <property name="vitaGramServerNccnRecommendPath" value="http://${searchServer.ipAndPort}/vitaGram-server/nccn_recommend_path"></property>
-        <property name="vitaGramServerVitaGramData" value="http://${searchServer.ipAndPort}/vitaGram-server/vitaGramData"></property>
+        <property name="vitaGramServerMedicalHistoryRecommendPath"
+                  value="http://${searchServer.ipAndPort}/vitaGram-server/medical_history_recommend_path"></property>
+        <property name="vitaGramServerNccnRecommendPath"
+                  value="http://${searchServer.ipAndPort}/vitaGram-server/nccn_recommend_path"></property>
+        <property name="vitaGramServerVitaGramData"
+                  value="http://${searchServer.ipAndPort}/vitaGram-server/vitaGramData"></property>
 
 
         <!--FS 样本操作 -->
-        <property name="sampleImportIURL" value="http://${fileService.ipAndPort}/FileService/DataResultExport/data_export"/>
+        <property name="sampleImportIURL"
+                  value="http://${fileService.ipAndPort}/FileService/DataResultExport/data_export"/>
         <property name="sampleDetailURL" value="http://${fileService.ipAndPort}/FileService/DataResultExport/data_get"/>
-        <property name="sampleDaleteURL" value="http://${fileService.ipAndPort}/FileService/DataResultExport/data_delete"/>
-        <property name="sampleDetailSearchURL" value="http://${fileService.ipAndPort}/FileService/DataResultExport/SearchDataSet"/>
-        <property name="sampleImportChecKIURL" value="http://${fileService.ipAndPort}/FileService/DataResultExport/data_check"></property>
-        <property name="sampleUploadAdaptTagURL" value="http://${fileService.ipAndPort}/FileService/DataResultExport/UploadAdaptTag"/>
+        <property name="sampleDaleteURL"
+                  value="http://${fileService.ipAndPort}/FileService/DataResultExport/data_delete"/>
+        <property name="sampleDetailSearchURL"
+                  value="http://${fileService.ipAndPort}/FileService/DataResultExport/SearchDataSet"/>
+        <property name="sampleImportChecKIURL"
+                  value="http://${fileService.ipAndPort}/FileService/DataResultExport/data_check"></property>
+        <property name="sampleUploadAdaptTagURL"
+                  value="http://${fileService.ipAndPort}/FileService/DataResultExport/UploadAdaptTag"/>
         <property name="ImageUpload" value="http://${fileService.ipAndPort}/FileService/image/"></property>
         <property name="ImageDel" value="http://${fileService.ipAndPort}/FileService/image/"></property>
         <property name="ImageUrl" value="http://${fileService.ipAndPort}/FileService/image/"></property>
 
 
-
         <!--FS CRF导入文件 -->
-        <property name="fileStoreForCRFImport" value="http://${fileService.ipAndPort}/FileService/PatientDetail/UploadCsvFile"></property>
+        <property name="fileStoreForCRFImport"
+                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/UploadCsvFile"></property>
 
 
         <!--知识库服务 接口 -->
         <property name="knowledgeURL" value="http://${knowledge.ipAndPort}/knowledge/graph"/>
-        <property name="knowledgeDiseaseSearchGenesURL" value="http://${knowledge.ipAndPort}/knowledge/DiseaseSearchGenes"/>
+        <property name="knowledgeDiseaseSearchGenesURL"
+                  value="http://${knowledge.ipAndPort}/knowledge/DiseaseSearchGenes"/>
         <property name="knowledgeGeneInfoURL" value="http://${knowledge.ipAndPort}/knowledge/GeneInfo"/>
         <property name="knowledgeVariationInfoURL" value="http://${knowledge.ipAndPort}/knowledge/VariationInfo"/>
-        <property name="knowledgeDetailVariationSearchDiseaseURL" value="http://${knowledge.ipAndPort}/knowledge/VariationInfo"/>
-        <property name="knowledgeDetailVariationSearchDrugURL" value="http://${knowledge.ipAndPort}/knowledge/VariationInfo"/>
-        <property name="knowledgePharmGKBSearchDrugURL" value="http://${knowledge.ipAndPort}/knowledge/PharmGKBSearchDrug"/>
+        <property name="knowledgeDetailVariationSearchDiseaseURL"
+                  value="http://${knowledge.ipAndPort}/knowledge/VariationInfo"/>
+        <property name="knowledgeDetailVariationSearchDrugURL"
+                  value="http://${knowledge.ipAndPort}/knowledge/VariationInfo"/>
+        <property name="knowledgePharmGKBSearchDrugURL"
+                  value="http://${knowledge.ipAndPort}/knowledge/PharmGKBSearchDrug"/>
         <!--CRF 服务接口 -->
         <property name="CRFProjectCRFListURL" value="http://${crf.ipAndPort}/auto/ProjectCrfList"/>
         <property name="CRFAutoMapURL" value="http://${crf.ipAndPort}/auto/AutoMap"/>
@@ -137,8 +190,10 @@
         <property name="GetSavedActivityData" value="http://${rws.ipAndPort}/rws-service/rws/getActive"/>
         <property name="SaveOrSearchActive" value="http://${rws.ipAndPort}/rws-service/rws/saveActiveIndex"/>
         <property name="ClacResultSearch" value="http://${rws.ipAndPort}/rws-service/search/clacResultSearch"/>
-        <property name="ClacIndexResultSearch" value="http://${rws.ipAndPort}/rws-service/search/clacIndexResultSearch"/>
-        <property name="GetCalcTotalByActiveId" value="http://${rws.ipAndPort}/rws-service/search/getCalcTotalByActiveId"/>
+        <property name="ClacIndexResultSearch"
+                  value="http://${rws.ipAndPort}/rws-service/search/clacIndexResultSearch"/>
+        <property name="GetCalcTotalByActiveId"
+                  value="http://${rws.ipAndPort}/rws-service/search/getCalcTotalByActiveId"/>
         <property name="FindTotalForImport" value="http://${rws.ipAndPort}/rws-service/rws/pre/findTotalForImport"/>
         <property name="DeleteByActiveId" value="http://${rws.ipAndPort}/rws-service/rws/deleteByActiveId"/>
         <property name="CheckActiveIsOnlyOne" value="http://${rws.ipAndPort}/rws-service/rws/activeIsExists"/>

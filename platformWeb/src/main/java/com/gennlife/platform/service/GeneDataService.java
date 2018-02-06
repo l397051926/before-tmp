@@ -3,10 +3,7 @@ package com.gennlife.platform.service;
 import com.gennlife.platform.dao.GennMapper;
 import com.gennlife.platform.model.GennDataModel;
 import com.gennlife.platform.model.GennImage;
-import com.gennlife.platform.util.DecryptionZipUtil;
-import com.gennlife.platform.util.FilesUtils;
-import com.gennlife.platform.util.JsonUtils;
-import com.gennlife.platform.util.ZipUtils;
+import com.gennlife.platform.util.*;
 import com.google.gson.reflect.TypeToken;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -104,6 +101,11 @@ public class GeneDataService implements InitializingBean {
             if (synList != null) {
                 for (GennDataModel model : synList) {
                     model.setPdfPath(pdfBaseDir + "/" + model.getPdfId() + ".pdf");
+                    model.setInspectionDept("");
+                    model.setInspectionDoctor("");
+                    model.setReportDate("");
+                    model.setSampleGetDate("");
+                    model.setSampleType("");
                     dao.upsert(model);
                 }
             }

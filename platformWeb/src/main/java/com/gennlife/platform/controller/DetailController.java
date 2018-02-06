@@ -2,14 +2,13 @@ package com.gennlife.platform.controller;
 
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.processor.DetailProcessor;
+import com.gennlife.platform.service.ConfigurationService;
+import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,6 +38,24 @@ public class DetailController {
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("详情页患者基础信息接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/PatInfo/{type}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getPatientInfo(HttpServletRequest paramRe, @PathVariable("type") String type) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            String url = ConfigurationService.getUrlBean().getCaseDetailCommonUrl() + type;
+            resultStr = HttpRequestUtils.httpPost(url, param);
+        } catch (Exception e) {
+            logger.error("详情页通用患者信息接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("详情页通用患者信息接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 

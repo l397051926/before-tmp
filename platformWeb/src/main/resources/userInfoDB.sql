@@ -233,7 +233,7 @@ CREATE TABLE `gennlife_user` (
   `md5` varchar(40) DEFAULT NULL COMMENT '修改密码的md5校验',
   PRIMARY KEY (`id`,`uid`),
   KEY `index_name` (`uemail`,`pwd`),
-  KEY `uemail_pwd` (`uemail`,`pwd`)
+  KEY `index_name` (`unumber`,`pwd`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -482,11 +482,11 @@ CREATE TABLE `gennlife_gene` (
   `inspectionDept` varchar(20) NOT NULL,
   `inspectionDoctor` varchar(10) NOT NULL,
   `pdfId` char(42) NOT NULL,
-  `patientSn` char(37) NOT NULL,
-  `visitSn` char(37) NOT NULL,
+  `patientSn` varchar(100) NOT NULL,
+  `visitSn` varchar(100) NOT NULL,
   `synTime` char(20) NOT NULL,
   `pdfPath` varchar(255) DEFAULT NULL,
-  `jsonData` text,
+  `jsonData` mediumtext,
   `pdfName` varchar(255) DEFAULT NULL,
   `webName` varchar(255) DEFAULT NULL,
   `opTime` char(20) DEFAULT NULL,

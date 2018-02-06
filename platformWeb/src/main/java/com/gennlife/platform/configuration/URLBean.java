@@ -12,6 +12,10 @@ public class URLBean {
     private String CrfCsvImportDetail;
     private String consultingRoomData;
     private String fsIpAndPort;
+    /**
+     * 详情页通用接口
+     * */
+    private String caseDetailCommonUrl;
 
     public String getCaseAdmission_records() {
         return caseAdmission_records;
@@ -426,7 +430,7 @@ public class URLBean {
     private String TripleTestTableUrl = null;
 
     /**
-     *  RWS
+     * RWS
      */
     private String PreLiminaryUrl = null;
     private String PreAggregationUrl = null;
@@ -563,8 +567,9 @@ public class URLBean {
     public void setPreLiminaryUrl(String preLiminaryUrl) {
         PreLiminaryUrl = preLiminaryUrl;
     }
+
     /**
-     *  缩略图获取
+     * 缩略图获取
      */
     private String PatientDetailThumbnail = null;
 
@@ -1379,5 +1384,14 @@ public class URLBean {
 
     public String getFsIpAndPort() {
         return fsIpAndPort;
+    }
+
+    public void setCaseDetailCommonUrl(String caseDetailCommonUrl) {
+        if (!caseDetailCommonUrl.endsWith("/")) caseDetailCommonUrl = caseDetailCommonUrl + "/";
+        this.caseDetailCommonUrl = caseDetailCommonUrl;
+    }
+
+    public String getCaseDetailCommonUrl() {
+        return caseDetailCommonUrl;
     }
 }

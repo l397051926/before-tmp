@@ -41,7 +41,7 @@ public class SessionFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String uri = request.getRequestURI();
-        if (okSet.contains(uri) ) {
+        if (okSet.contains(uri)) {
             filterChain.doFilter(request, response);
         } else {
             HttpSession session = request.getSession(false);
@@ -52,6 +52,7 @@ public class SessionFilter implements Filter {
                 view.viewString(ParamUtils.errorSessionLosParam(), response);
                 return;
             }
+            session.setMaxInactiveInterval(3600 * 5);
             String sessionID = session.getId();
             String uid = RedisUtil.getValue(sessionID);
             if (uid == null) {

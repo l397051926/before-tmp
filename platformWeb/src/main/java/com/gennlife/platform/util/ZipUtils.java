@@ -148,7 +148,15 @@ public class ZipUtils {
         }
         BigInteger bigInt = new BigInteger(1, digest.digest());
 
-        return bigInt.toString(16);
+        String data = bigInt.toString(16);
+        if (data.length() < 32) {
+            StringBuffer buffer1=new StringBuffer();
+            for (int i=0;i<32-data.length();i++)
+                buffer1.append("0");
+            buffer1.append(data);
+            data=buffer1.toString();
+        }
+        return data;
     }
 
     public static LinkedList<File> getAllZip(String path) {

@@ -319,7 +319,9 @@ public class CaseController {
     @ResponseBody
     String myclinicSearchCaseTest(HttpServletRequest paramRe) {
         try {
-            return gson.toJson(new JsonObject());
+            JsonObject demo=new JsonObject();
+            demo.addProperty("msg","ngnix 没有转发到 hospital server上");
+            return gson.toJson(demo);
         } catch (Exception e) {
             return ParamUtils.errorParam(e.getMessage());
         }

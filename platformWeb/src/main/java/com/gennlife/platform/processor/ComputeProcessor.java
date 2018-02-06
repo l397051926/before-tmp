@@ -61,9 +61,7 @@ public class ComputeProcessor {
         String url = ConfigurationService.getUrlBean().getCSBaseline() + "?" + param;
         String[] fs = ConfigurationService.getUrlBean().getFsIpAndPort().split(":");
         url = url + "&fsIp=" + fs[0] + "&fsPort" + fs[1];
-        logger.info("baseline url=" + url);
         String reStr = HttpRequestUtils.httpGet(url, 600000);
-        logger.info("baseline result=" + reStr);
         if (reStr == null || "".equals(reStr)) {
             return ParamUtils.errorParam("计算服务返回空");
         } else {

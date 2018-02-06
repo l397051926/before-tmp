@@ -6,10 +6,12 @@ import com.gennlife.platform.bean.IpBean;
 import com.gennlife.platform.dao.GennMapper;
 import com.gennlife.platform.enums.GennMappingEnum;
 import com.gennlife.platform.model.GennDataModel;
+import com.gennlife.platform.model.GennListModel;
 import com.gennlife.platform.service.FileListenerAdaptor;
 import com.gennlife.platform.service.GeneDataService;
 import com.gennlife.platform.util.FilesUtils;
 import com.gennlife.platform.util.GsonUtil;
+import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -45,6 +47,10 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/genn")
+/***
+ * 基因检测报告功能，需要在机器安装ftp
+ * 路径 /opt/data/ui/gennListen
+ * **/
 public class GennController implements InitializingBean, DisposableBean {
     private static final Logger logger = LoggerFactory.getLogger(GennController.class);
     private static final String KEY = "code";
@@ -133,12 +139,14 @@ public class GennController implements InitializingBean, DisposableBean {
 
     private void setFail(JsonObject jsonObject) {
         jsonObject.addProperty(KEY, FAIL);
-        jsonObject.addProperty(FS_KEY,FS_FAIL);
+        jsonObject.addProperty(FS_KEY, FS_FAIL);
     }
+
     private void setSuccess(JsonObject jsonObject) {
         jsonObject.addProperty(KEY, SUCCESS);
-        jsonObject.addProperty(FS_KEY,FS_SUCCESS);
+        jsonObject.addProperty(FS_KEY, FS_SUCCESS);
     }
+
     @RequestMapping("/json")
     public
     @ResponseBody
@@ -163,29 +171,45 @@ public class GennController implements InitializingBean, DisposableBean {
                 @RequestParam("page") int page,
                 @RequestParam("size") int size, HttpServletRequest paramRe
     ) {
-        if (page <= 0) page = 1;
-        if (size <= 0) size = 10;
-        JsonObject result = new JsonObject();
-        if (!accessUtils.checkAccessPatientSn(patientSn, paramRe)) {
-            result.addProperty(ERR_KEY, "患者编号无权限访问或不存在");
-            setFail(result);
+        try {
+            if (page <= 0) page = 1;
+            if (size <= 0) size = 10;
+            JsonObject result = new JsonObject();
+            if (!accessUtils.checkAccessPatientSn(patientSn, paramRe)) {
+                result.addProperty(ERR_KEY, "患者编号无权限访问或不存在");
+                setFail(result);
+                return GsonUtil.toJsonStr(result);
+            }
+            int from = (page - 1) * size;
+            if (StringUtils.isEmpty(visitSn)) visitSn = null;
+            List<GennDataModel> list = gennMapper.getGennData(from, size, patientSn, visitSn);
+            if (list == null || list.size() == 0) {
+                result.addProperty(ERR_KEY, "no data");
+                setFail(result);
+                return GsonUtil.toJsonStr(result);
+            }
+            List<GennListModel> uiList = new LinkedList<>();
+            for (GennDataModel dataModel : list) {
+                GennListModel item = new GennListModel(dataModel);
+                JsonObject jsonData = GsonUtil.toJsonObject(dataModel.getJsonData());
+                if (jsonData == null) continue;
+                item.setSampleSn(GsonUtil.getStringValue("基本信息.样本信息.样本编号", jsonData));
+                item.setDisease(GsonUtil.getStringValue("基本信息.患者信息.初步诊断", jsonData));
+                item.setDetectionResult(GsonUtil.getStringValue("检测结果", jsonData));
+                item.setInspectionDept(GsonUtil.getStringValue("基本信息.送检信息.送检单位", jsonData));
+                item.setInspectionDoctor(GsonUtil.getStringValue("基本信息.送检信息.送检医生", jsonData));
+                item.setReportDate(GsonUtil.getStringValue("基本信息.样本信息.报告日期", jsonData));
+                item.setSampleGetDate(GsonUtil.getStringValue("基本信息.样本信息.样本采集日期", jsonData));
+                item.setSampleType(GsonUtil.getStringValue("基本信息.样本信息.样本类型", jsonData));
+                uiList.add(item);
+            }
+            setSuccess(result);
+            result.add("data", GsonUtil.toJsonTree(uiList));
             return GsonUtil.toJsonStr(result);
+        } catch (Exception e) {
+            return ParamUtils.errorParam("出现异常");
         }
-        int from = (page - 1) * size;
-        if (StringUtils.isEmpty(visitSn)) visitSn = null;
-        List<GennDataModel> list = gennMapper.getGennData(from, size, patientSn, visitSn);
-        if (list == null || list.size() == 0) {
-            result.addProperty(ERR_KEY, "no data");
-            setFail(result);
-            return GsonUtil.toJsonStr(result);
-        }
-        for (GennDataModel dataModel : list) {
-            dataModel.setPdfPath(null);
-            dataModel.setJsonData(null);
-        }
-        setSuccess(result);
-        result.add("data", GsonUtil.toJsonTree(list));
-        return GsonUtil.toJsonStr(result);
+
     }
 
     public boolean checkVisitSnFail(Map<String, GennUpResultBean> upResult, String id, String visitSn, JsonObject patData) {

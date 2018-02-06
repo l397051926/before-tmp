@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.6.RELEASE</version>
+		<version>1.5.9.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -198,6 +198,26 @@
 			<id>base</id>
 			<properties>
 				<package.id>base</package.id>
+			</properties>
+		</profile>
+		<profile>
+			<id>yantai162</id>
+			<properties>
+				<package.id>yantai162</package.id>
+			</properties>
+		</profile>
+		<profile>
+			<!--用于烟台一体机-->
+			<id>yaitaiyitiji</id>
+			<properties>
+				<package.id>yaitaiyitiji</package.id>
+			</properties>
+		</profile>
+		<profile>
+			<!--用于烟台一体机模拟-->
+			<id>yantaimoni</id>
+			<properties>
+				<package.id>yantaimoni</package.id>
 			</properties>
 		</profile>
 	</profiles>

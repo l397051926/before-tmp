@@ -313,9 +313,7 @@ public class SampleProcessor {
         paramObj.remove("limit");
         paramObj.addProperty("data_id", sampleURI);
         String paramNew = gson.toJson(paramObj);
-        logger.info("转化后的请求参数=" + paramNew);
         String reStr = HttpRequestUtils.httpPost(url, paramNew);
-        logger.info("sampleSetSearch result=" + reStr);
         if (reStr == null || "".equals(reStr)) {
             return ParamUtils.errorParam("FS 返回空");
         }
@@ -417,9 +415,7 @@ public class SampleProcessor {
         paramObj.addProperty("data_id", sampleURI);
         paramObj.remove("sampleURI");
         String paramNew = gson.toJson(paramObj);
-        logger.info("转化后的请求参数=" + paramNew);
         String reStr = HttpRequestUtils.httpPost(url, paramNew);
-        logger.info("uploadAdaptTag result=" + reStr);
         if (reStr == null || "".equals(reStr)) {
             return ParamUtils.errorParam("FS 返回空");
         }
