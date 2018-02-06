@@ -15,7 +15,7 @@
             <value>${ui.datasource.driverClassName}</value>
         </property>
         <property name="url">
-            <value>${ui.datasource.url}</value>
+            <value>${ui.datasource.url}&amp;autoReconnect=true</value>
         </property>
         <property name="username">
             <value>${ui.datasource.username}</value>
@@ -23,6 +23,8 @@
         <property name="password">
             <value>${ui.datasource.password}</value>
         </property>
+        <property name="initialSize" value="1" />
+        <property name="minIdle" value="1" />
     </bean>
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" primary="true">
