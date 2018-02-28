@@ -495,6 +495,7 @@ public class CaseProcessor {
             logger.info("搜索详情高亮 url=" + url);
             paramObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            logger.info("搜索详情高亮 SS返回结果： " + result);
             return result;
         } catch (Exception e) {
             return ParamUtils.errorParam("请求出错");
