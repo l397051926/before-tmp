@@ -1,8 +1,8 @@
-case.json 生成说明
-
-python configuration.py  即可，备注：文件路径或文件名最好用英文，出问题概率小
-
-依赖：
-安装python 2 将python的Scripts目录添加到环境变量即可  例如E:\Python27\Scripts
-安装python easy_install 以及pip http://blog.csdn.net/xsj_blog/article/details/52037609
-pip install xlrd
+case.json
+用途:前端搜索的字段配置
+生成说明：
+(1)python configuration.py
+(2)安装python 2 将python的Scripts目录添加到环境变量即可  例如E:\Python27\Scripts
+(3)安装依赖：
+   安装python easy_install 以及pip 参考http://blog.csdn.net/xsj_blog/article/details/52037609
+   安装xlrd,pip install xlrd
