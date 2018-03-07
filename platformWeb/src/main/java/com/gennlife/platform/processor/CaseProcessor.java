@@ -316,7 +316,7 @@ public class CaseProcessor {
                 power.add("has_search", newHas_searchArray);
             }
             paramObj.add("power", power);
-            logger.info("通过sid转化后，搜索请求参数 = " + gson.toJson(paramObj));
+            //logger.info("通过sid转化后，搜索请求参数 = " + gson.toJson(paramObj));
             return gson.toJson(paramObj);
         } else if (paramObj.has("power")) { // 角色,完成小组扩展
             ///buildGroup(paramObj, user);
@@ -400,9 +400,14 @@ public class CaseProcessor {
      * @param newParam
      */
     public String searchCase(String newParam, User user) {
-        return searchCaseWithAddQuery(newParam, user,null);
+        return searchCaseWithAddQuery(newParam, user, null);
     }
-    public String searchCaseWithAddQuery(String newParam, User user,String addQuery) {
+
+    public String SearchCaseRole(String newParam, User user) {
+        return transformSid(newParam, user);
+    }
+
+    public String searchCaseWithAddQuery(String newParam, User user, String addQuery) {
         if (newParam == null) {
             logger.error("searchCase缺失参数");
             return ParamUtils.errorSessionLosParam();
@@ -413,14 +418,13 @@ public class CaseProcessor {
             return param;
         }
         CaseSearchParser caseSearchParser = new CaseSearchParser(param);
-        if(!StringUtils.isEmpty(addQuery))
-        {
+        if (!StringUtils.isEmpty(addQuery)) {
             caseSearchParser.addQuery(addQuery);
         }
         try {
             String searchResultStr = caseSearchParser.parser();
             if (StringUtils.isEmpty(searchResultStr)) {
-                logger.error("search empty "+caseSearchParser.getQuery());
+                logger.error("search empty " + caseSearchParser.getQuery());
                 return ParamUtils.errorParam("搜索无结果");
             }
             JsonObject searchResult = (JsonObject) jsonParser.parse(searchResultStr);
@@ -433,9 +437,11 @@ public class CaseProcessor {
             return ParamUtils.errorParam("搜索失败");
         }
     }
+
     public String searchCaseByCurrentDept(String newParam, User user) {
-       return searchCaseWithAddQuery(newParam,user,AuthorityUtil.getCurrentDeptQuery(user));
+        return searchCaseWithAddQuery(newParam, user, AuthorityUtil.getCurrentDeptQuery(user));
     }
+
     /**
      * 返回该疾病相关基因
      *

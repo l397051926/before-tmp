@@ -199,6 +199,22 @@ public class CaseController {
         //logger.info("病历搜索 结果=" + resultStr);
         return resultStr;
     }
+    @RequestMapping(value = "/SearchCaseRole", produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String SearchCaseRole(HttpServletRequest paramRe) {
+        String resultStr = null;
+        try {
+            String paramNew = AuthorityUtil.addSearchCaseAuthority(paramRe);
+            User user = (User) paramRe.getAttribute("currentUser");
+            resultStr = processor.SearchCaseRole(paramNew, user);
+        } catch (Exception e) {
+            logger.error("病历搜索", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        //logger.info("病历搜索 结果=" + resultStr);
+        return resultStr;
+    }
 
     @RequestMapping(value = "/GeneVerify", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
