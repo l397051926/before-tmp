@@ -120,8 +120,7 @@ public class BackstageManagementController {
             JsonArray labList = new JsonArray();
             list.forEach(lab -> labList.add(lab.getLabID()));
             paramObj.add("labIDs", labList);
-            resultStr = gson.toJson(paramObj);
-            //resultStr = processor.deleteOrg(paramObj, user);
+            resultStr = processor.deleteOrg(paramObj, user);
         } catch (DataIntegrityViolationException e) {
             resultStr = DataIntegrityViolationExceptionMsg();
         } catch (Exception e) {
