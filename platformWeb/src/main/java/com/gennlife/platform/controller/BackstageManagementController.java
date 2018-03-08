@@ -1,6 +1,8 @@
 package com.gennlife.platform.controller;
 
 import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.dao.AllDao;
+import com.gennlife.platform.model.Lab;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.LaboratoryProcessor;
 import com.gennlife.platform.service.ConfigurationService;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.UnsupportedCharsetException;
+import java.util.List;
 
 /**
  * Created by chen-song on 16/9/12.
@@ -99,6 +102,33 @@ public class BackstageManagementController {
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("删除科室 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/DeleteAllOrg", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String DeleteAllOrg(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            User user = (User) paramRe.getAttribute("currentUser");
+            logger.info("删除全部科室 get方式 参数=" + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            List<Lab> list = AllDao.getInstance().getOrgDao().getLabs(user.getOrgID());
+            JsonArray labList = new JsonArray();
+            list.forEach(lab -> labList.add(lab.getLabID()));
+            paramObj.add("labIDs", labList);
+            resultStr = gson.toJson(paramObj);
+            //resultStr = processor.deleteOrg(paramObj, user);
+        } catch (DataIntegrityViolationException e) {
+            resultStr = DataIntegrityViolationExceptionMsg();
+        } catch (Exception e) {
+            logger.error("删除全部科室", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("删除全部科室 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
