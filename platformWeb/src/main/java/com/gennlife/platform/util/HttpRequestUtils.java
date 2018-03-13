@@ -96,6 +96,8 @@ public class HttpRequestUtils {
                 } catch (Exception e) {
                     logger.error("" + url + " param " + jsonParam, e);
                 }
+            } else if (result.getStatusLine().getStatusCode() == 404) {
+                logger.error(url + " 不存在");
             } else {
                 logger.error("error code " + result.getStatusLine().getStatusCode() + " url " + url + " param " + jsonParam);
             }
