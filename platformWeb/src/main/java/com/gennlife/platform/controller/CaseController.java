@@ -375,7 +375,7 @@ public class CaseController {
         return intelligentProcessor.inspectReport(paramObj);
     }
     //智能提示 根据id 获取相关信息
-    @RequestMapping(value = "/intelligent/inspect_report/info", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/intelligent/inspect_report/info", produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String intelligentInspectReportInfo(@RequestParam("id") int id) {

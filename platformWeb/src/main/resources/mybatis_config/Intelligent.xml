@@ -3,16 +3,16 @@
 <mapper namespace="com.gennlife.platform.dao.IntelligentMapper">
     <resultMap id="com.gennlife.platform.model.InspectReportIntellModel"
                type="com.gennlife.platform.model.InspectReportIntellModel">
-        <result column="inspectItemId" property="inspectItemId" jdbcType="INTEGER"/>
+        <result column="inspectId" property="inspectId" jdbcType="INTEGER"/>
         <result column="data" property="data" jdbcType="VARCHAR"/>
         <result column="inspectName" property="inspectName" jdbcType="VARCHAR"/>
     </resultMap>
     <select id="getOneData" resultMap="com.gennlife.platform.model.InspectReportIntellModel" parameterType="Integer">
-        SELECT * from smart_inspect_report where  inspectItemId=#{inspectItemId}
+        SELECT * from smart_inspect_report where  inspectId=#{inspectId}
     </select>
     <select id="inspectReportIntell" resultMap="com.gennlife.platform.model.InspectReportIntellModel"
             parameterType="Integer">
-        SELECT inspectName,inspectItemId from smart_inspect_report
+        SELECT inspectName,inspectId from smart_inspect_report
         where  inspectName like CONCAT(CONCAT('%', #{inspectName}), '%')
         limit 10
     </select>

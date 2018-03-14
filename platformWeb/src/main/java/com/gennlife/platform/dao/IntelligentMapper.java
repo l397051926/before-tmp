@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Mapper("intelligentDao")
 public interface IntelligentMapper {
-    InspectReportIntellModel getOneData(@Param("inspectItemId") int inspectItemId);
+    InspectReportIntellModel getOneData(@Param("inspectId") int inspectId);
 
     List<InspectReportIntellModel> inspectReportIntell(@Param("inspectName") String inspectName);
 }

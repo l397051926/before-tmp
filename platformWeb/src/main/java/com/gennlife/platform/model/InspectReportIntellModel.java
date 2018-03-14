@@ -4,16 +4,16 @@ package com.gennlife.platform.model;
  * Created by Chenjinfeng on 2018/3/14.
  */
 public class InspectReportIntellModel {
-    private int inspectItemId;
+    private int inspectId;
     private String data;
     private String inspectName;
 
-    public int getInspectItemId() {
-        return inspectItemId;
+    public int getInspectId() {
+        return inspectId;
     }
 
-    public void setInspectItemId(int inspectItemId) {
-        this.inspectItemId = inspectItemId;
+    public void setInspectId(int inspectId) {
+        this.inspectId = inspectId;
     }
 
     public String getData() {

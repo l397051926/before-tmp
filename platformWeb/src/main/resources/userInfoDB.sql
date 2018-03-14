@@ -19,9 +19,9 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `smart_inspect_report`;
 CREATE TABLE `smart_inspect_report` (
   `inspectName` mediumtext,
-  `inspectItemId` int(11) NOT NULL DEFAULT '0',
+  `inspectId` int(11) NOT NULL DEFAULT '0',
   `data` mediumtext,
-  PRIMARY KEY (`inspectItemId`)
+  PRIMARY KEY (`inspectId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='检查子项与大项的智能提示';
 -- ----------------------------
 -- Table structure for `gennlife_group`
