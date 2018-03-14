@@ -3,6 +3,7 @@ package com.gennlife.platform.controller;
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.CaseProcessor;
+import com.gennlife.platform.processor.IntelligentProcessor;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
@@ -10,7 +11,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,12 +20,14 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Created by chen-song on 16/5/13.
  */
-@Controller
+@ControllerAdvice
 @RequestMapping("/case")
 public class CaseController {
     private Logger logger = LoggerFactory.getLogger(CaseController.class);
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
+    @Autowired
+    private  IntelligentProcessor intelligentProcessor;
     private CaseProcessor processor = new CaseProcessor();
 
     @RequestMapping(value = "/SearchItemSet", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -34,13 +38,11 @@ public class CaseController {
         String resultStr = null;
         try {
             String param = ParamUtils.getParam(paramRe);
-            JsonObject paramObj=null;
+            JsonObject paramObj = null;
             logger.info("搜索结果列表展示的集合 post方式 参数=" + param);
             try {
                 paramObj = (JsonObject) jsonParser.parse(param);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 return ParamUtils.errorParam("请求参数错误");
             }
             resultStr = processor.searchItemSet(paramObj);
@@ -199,6 +201,7 @@ public class CaseController {
         //logger.info("病历搜索 结果=" + resultStr);
         return resultStr;
     }
+
     @RequestMapping(value = "/SearchCaseRole", produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
@@ -335,8 +338,8 @@ public class CaseController {
     @ResponseBody
     String myclinicSearchCaseTest(HttpServletRequest paramRe) {
         try {
-            JsonObject demo=new JsonObject();
-            demo.addProperty("msg","ngnix 没有转发到 hospital server上");
+            JsonObject demo = new JsonObject();
+            demo.addProperty("msg", "ngnix 没有转发到 hospital server上");
             return gson.toJson(demo);
         } catch (Exception e) {
             return ParamUtils.errorParam(e.getMessage());
@@ -361,4 +364,29 @@ public class CaseController {
         logger.info("搜索详情高亮 post 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    //智能提示 检查报告名称
+    @RequestMapping(value = "/intelligent/inspect_report", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String intelligentInspectReport(HttpServletRequest paramRe) {
+        String param = ParamUtils.getParam(paramRe);
+        JsonObject paramObj = jsonParser.parse(param).getAsJsonObject();
+        return intelligentProcessor.inspectReport(paramObj);
+    }
+    //智能提示 根据id 获取相关信息
+    @RequestMapping(value = "/intelligent/inspect_report/info", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String intelligentInspectReportInfo(@RequestParam("id") int id) {
+        return intelligentProcessor.getOneInspectReportData(id);
+    }
+
+    @ExceptionHandler(value = Exception.class)
+    @ResponseStatus(value = HttpStatus.OK)
+    public @ResponseBody String handleException(Exception exception) {
+        logger.error("系统异常!", exception);
+        return ParamUtils.errorParam("出现异常");
+    }
+
 }

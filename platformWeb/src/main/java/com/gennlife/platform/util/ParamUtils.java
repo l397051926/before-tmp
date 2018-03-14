@@ -85,15 +85,27 @@ public class ParamUtils {
 
     public static void errorParam(HttpServletRequest request, HttpServletResponse resps) {
         ResultBean resultBean = new ResultBean();
-        resultBean.setCode(0);
+        resultBean.setCode(getErrorCode());
         resultBean.setInfo("请求参数出错");
         viewer.viewString(gson.toJson(resultBean), resps, request);
         return;
     }
 
+    public static int getErrorCode() {
+        return 0;
+    }
+
+    public static int getSuccessCode() {
+        return 1;
+    }
+
+    public static String getDataKey() {
+        return "info";
+    }
+
     public static void errorParam(String info, HttpServletRequest req, HttpServletResponse resp) {
         ResultBean resultBean = new ResultBean();
-        resultBean.setCode(0);
+        resultBean.setCode(getErrorCode());
         resultBean.setInfo(info);
         String data = gson.toJson(resultBean);
         viewer.viewString(data, resp, req);
@@ -101,7 +113,7 @@ public class ParamUtils {
 
     public static String errorParam(String info) {
         ResultBean resultBean = new ResultBean();
-        resultBean.setCode(0);
+        resultBean.setCode(getErrorCode());
         resultBean.setInfo(info);
         JsonObject json = gson.toJsonTree(resultBean).getAsJsonObject();
         json.addProperty("success", false);
@@ -129,7 +141,7 @@ public class ParamUtils {
 
     public static ResultBean errorParamResultBean(String info) {
         ResultBean resultBean = new ResultBean();
-        resultBean.setCode(0);
+        resultBean.setCode(getErrorCode());
         resultBean.setInfo(info);
         return resultBean;
     }
@@ -139,5 +151,9 @@ public class ParamUtils {
         resultBean.setCode(-1);
         resultBean.setInfo("session失效");
         return gson.toJson(resultBean);
+    }
+
+    public static String getStatusKey() {
+        return "code";
     }
 }
