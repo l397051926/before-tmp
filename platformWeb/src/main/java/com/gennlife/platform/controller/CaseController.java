@@ -366,7 +366,7 @@ public class CaseController {
     }
 
     //智能提示 检查报告名称
-    @RequestMapping(value = "/intelligent/inspect_report", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/intelligent/inspect_report", produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String intelligentInspectReport(HttpServletRequest paramRe) {
