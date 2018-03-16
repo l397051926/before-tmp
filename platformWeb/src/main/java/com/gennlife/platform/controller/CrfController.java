@@ -2,12 +2,13 @@ package com.gennlife.platform.controller;
 
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.bean.ResultBean;
-import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.CommonProcessor;
 import com.gennlife.platform.processor.CrfProcessor;
 import com.gennlife.platform.service.ConfigurationService;
-import com.gennlife.platform.util.*;
+import com.gennlife.platform.util.GsonUtil;
+import com.gennlife.platform.util.HttpRequestUtils;
+import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -25,7 +26,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.UUID;
 
 
 /**
@@ -97,15 +97,15 @@ public class CrfController {
             String param = ParamUtils.getParam(paramRe);
             User user = (User) paramRe.getAttribute("currentUser");
             String indexName = ConfigurationService.getOrgIDIndexNamemap().get(user.getOrgID());
-            if (indexName == null) {
-                String needToCreateIndex = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getNeedToCreateIndex();
-                if (needToCreateIndex != null && needToCreateIndex.equals(true)) {
-                    return ParamUtils.errorParam("用户所在的组织无法建立索引");
-                } else {
-                    // 不需要建立索引
-                    logger.info("不需要建立索引");
-                }
-            }
+//            if (indexName == null) {
+//                String needToCreateIndex = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getNeedToCreateIndex();
+//                if (needToCreateIndex != null && needToCreateIndex.equals(true)) {
+//                    return ParamUtils.errorParam("用户所在的组织无法建立索引");
+//                } else {
+//                    // 不需要建立索引
+//                    logger.info("不需要建立索引");
+//                }
+//            }
             logger.info("上传crf数据 post方式 参数=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             paramObj.addProperty("indexName", indexName);
@@ -144,10 +144,10 @@ public class CrfController {
         try {
             User user = (User) paramRe.getAttribute("currentUser");
             String indexName = ConfigurationService.getOrgIDIndexNamemap().get(user.getOrgID());
-            String needToCreateIndex = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getNeedToCreateIndex();
-            if (needToCreateIndex != null && needToCreateIndex.equals(true) && indexName == null) {
-                return ParamUtils.errorParam("用户所在的组织无法建立索引");
-            }
+//            String needToCreateIndex = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getNeedToCreateIndex();
+//            if (needToCreateIndex != null && needToCreateIndex.equals(true) && indexName == null) {
+//                return ParamUtils.errorParam("用户所在的组织无法建立索引");
+//            }
             String param = ParamUtils.getParam(paramRe);
             logger.info("录入完成接口 post方式 参数=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
@@ -319,9 +319,9 @@ public class CrfController {
         try {
             User user = (User) paramRe.getAttribute("currentUser");
             String indexName = ConfigurationService.getOrgIDIndexNamemap().get(user.getOrgID());
-            if (indexName == null) {
-                return ParamUtils.errorParam("用户所在的组织无法建立索引");
-            }
+//            if (indexName == null) {
+//                return ParamUtils.errorParam("用户所在的组织无法建立索引");
+//            }
             String param = ParamUtils.getParam(paramRe);
             logger.info("自动映射检验上传crf数据 post方式 参数=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
@@ -372,9 +372,9 @@ public class CrfController {
         try {
             User user = (User) paramRe.getAttribute("currentUser");
             String indexName = ConfigurationService.getOrgIDIndexNamemap().get(user.getOrgID());
-            if (indexName == null) {
-                return ParamUtils.errorParam("用户所在的组织无法建立索引");
-            }
+//            if (indexName == null) {
+//                return ParamUtils.errorParam("用户所在的组织无法建立索引");
+//            }
             String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             paramObj.addProperty("indexName", indexName);
