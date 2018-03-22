@@ -106,10 +106,12 @@ public class SearchProcessor {
         String uid = null;
         String conditionStr = null;
         String conditionName = null;
+        String collectionList = null;
         try {
             uid = paramObj.get("uid").getAsString();
             conditionStr = paramObj.get("conditionStr").getAsString();
             conditionName = paramObj.get("conditionName").getAsString();
+            collectionList = paramObj.get("collectionList")==null? null:paramObj.get("collectionList").getAsString();
         } catch (Exception e) {
             logger.error("", e);
             return ParamUtils.errorParam("请求参数异常");
@@ -120,6 +122,7 @@ public class SearchProcessor {
             searchConditionBean.setUid(uid);
             searchConditionBean.setConditionStr(conditionStr);
             searchConditionBean.setConditionName(conditionName);
+            searchConditionBean.setConditionList(collectionList);
             int counter = AllDao.getInstance().getSyUserDao().insertSearchCondition(searchConditionBean);
             if (counter == 1) {
                 ResultBean resultBean = new ResultBean();
