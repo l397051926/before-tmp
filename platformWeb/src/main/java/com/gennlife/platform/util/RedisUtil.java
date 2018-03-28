@@ -37,10 +37,11 @@ public class RedisUtil {
     private static String suffix = "_info";
     private static boolean flag = true;
     private static String imageSaveToRedisId = "imageSaveToRedisId";
+
     @Autowired
     public void init(JedisClusterFactory redis) {
         logger.info("Redis init");
-        jedisCluster =redis.getJedisCluster();
+        jedisCluster = redis.getJedisCluster();
     }
 
     public static boolean setImageId(String sessionID, List<String> imgUrl) {
@@ -128,6 +129,7 @@ public class RedisUtil {
 
     public static void deleteKey(String key) {
         try {
+            if (StringUtils.isEmpty(key)) return;
             if (key != null && jedisCluster.exists(key)) {
                 jedisCluster.del(key);
             }
@@ -233,7 +235,7 @@ public class RedisUtil {
     public static void updateUserOnLine(Collection<String> uidList) {
         if (uidList == null || uidList.size() == 0) return;
         logger.info("update users " + gson.toJsonTree(uidList));
-        uidList.forEach(uid -> updateUserOnLine(uid));
+        uidList.parallelStream().forEach(uid -> updateUserOnLine(uid));
     }
 
     public static void clearAll() {
