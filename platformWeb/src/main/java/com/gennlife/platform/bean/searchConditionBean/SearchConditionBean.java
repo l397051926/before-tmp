@@ -9,7 +9,7 @@ public class SearchConditionBean {
     private String conditionStr = null;
     private String logTime = null;
     private String conditionName = null;
-
+    private String conditionList = null;
     public Integer getConditionID() {
         return conditionID;
     }
@@ -48,5 +48,13 @@ public class SearchConditionBean {
 
     public void setConditionName(String conditionName) {
         this.conditionName = conditionName;
+    }
+
+    public String getConditionList() {
+        return conditionList;
+    }
+
+    public void setConditionList(String conditionList) {
+        this.conditionList = conditionList;
     }
 }

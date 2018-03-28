@@ -281,9 +281,10 @@
 		<result column="conditionText" property="conditionStr" jdbcType="VARCHAR" />
 		<result column="logTime" property="logTime" jdbcType="VARCHAR" />
 		<result column="conditionName" property="conditionName" jdbcType="VARCHAR" />
+		<result column="conditionList" property="conditionList" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="SearchConditionSql">
-		id,uid,conditionText,logTime,conditionName
+		id,uid,conditionText,logTime,conditionName,conditionList
 	</sql>
 	<select id="searchConditionList" parameterType="map" resultMap="SearchConditionBean">
 		select
@@ -312,6 +313,9 @@
 			<if test="conditionName != null" >
 				conditionName,
 			</if>
+			<if test="conditionList != null" >
+				conditionList,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides="," >
 			<if test="uid != null" >
@@ -325,6 +329,9 @@
 			</if>
 			<if test="conditionName != null" >
 				#{conditionName,jdbcType=VARCHAR},
+			</if>
+			<if test="conditionList != null" >
+				#{conditionList,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
@@ -340,6 +347,9 @@
 			</if>
 			<if test="logTime != null">
 				logTime = #{logTime,jdbcType=VARCHAR},
+			</if>
+			<if test="conditionList != null">
+				conditionList = #{conditionList,jdbcType=VARCHAR},
 			</if>
 		</set>
 		WHERE id = #{conditionID,jdbcType=INTEGER}
