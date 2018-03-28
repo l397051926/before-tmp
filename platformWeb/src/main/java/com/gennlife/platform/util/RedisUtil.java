@@ -235,7 +235,7 @@ public class RedisUtil {
     public static void updateUserOnLine(Collection<String> uidList) {
         if (uidList == null || uidList.size() == 0) return;
         logger.info("update users " + gson.toJsonTree(uidList));
-        uidList.parallelStream().forEach(uid -> updateUserOnLine(uid));
+        uidList.parallelStream().forEach(uid -> deleteUser(uid));
     }
 
     public static void clearAll() {
