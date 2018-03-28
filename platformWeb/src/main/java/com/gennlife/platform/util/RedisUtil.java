@@ -212,11 +212,6 @@ public class RedisUtil {
     }
 
     public static void updateUserOnLine(String uid) {
-       /* if(true) {
-            exit(uid,null);
-            return;
-        }*/
-        //除了当前用户，其余全部下线
         String sessionID = getValue(uid);
         if (StringUtils.isEmpty(sessionID)) {
             return;
@@ -238,16 +233,7 @@ public class RedisUtil {
     public static void updateUserOnLine(Collection<String> uidList) {
         if (uidList == null || uidList.size() == 0) return;
         logger.info("update users " + gson.toJsonTree(uidList));
-        uidList.forEach(uid -> deleteUser(uid));//延迟更新
-        /*executorService.submit(new Callable<Boolean>() {
-            @Override
-            public Boolean call() throws Exception {
-                uidList.parallelStream().forEach(uid -> updateUserOnLine(uid));
-                return true;
-            }
-        });
-*/
-
+        uidList.forEach(uid -> updateUserOnLine(uid));
     }
 
     public static void clearAll() {
