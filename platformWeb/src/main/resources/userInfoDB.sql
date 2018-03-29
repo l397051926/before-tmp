@@ -527,8 +527,8 @@ CREATE TABLE `gennlife_gene_log` (
 
 INSERT INTO `gennlife_manage` VALUES ('admin@gennlife.com', 'admin', 'admin', 'hospital');
 /*明文是ls123456,密文是 d8b8f198d882909be0a58778875953e8*/
--- INSERT INTO `gennlife_user` VALUES (1, 'admin@gennlife.com', 'd8b8f198d882909be0a58778875953e8', '管理员', 'admin@gennlife.com', '', '', 'hospital', '', 'hospital', '', '', 0, 0, NULL, '2016-09-30 15:16:48', '', '');
-INSERT INTO `gennlife_user` VALUES (1, 'admin@gennlife.com', 'ls123456', '管理员', 'admin@gennlife.com', '', '', 'hospital', '', 'hospital', '', '', 0, 0, NULL, '2016-09-30 15:16:48', '', '');
+INSERT INTO `gennlife_user` VALUES (1, 'admin@gennlife.com', 'd8b8f198d882909be0a58778875953e8', '管理员', 'admin@gennlife.com', '', '', 'hospital', '', 'hospital', '', '', 0, 0, NULL, '2016-09-30 15:16:48', '', '');
+--INSERT INTO `gennlife_user` VALUES (1, 'admin@gennlife.com', 'ls123456', '管理员', 'admin@gennlife.com', '', '', 'hospital', '', 'hospital', '', '', 0, 0, NULL, '2016-09-30 15:16:48', '', '');
 INSERT INTO `gennlife_org` VALUES (3, 'hospital', '', 'XXX', '');
 
 /*1	科室成员	tianjin_city_1	科室成员全部资源	1			*/
