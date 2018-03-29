@@ -44,14 +44,16 @@ public class LaboratoryProcessor {
 
     public static List<Lab> generateLabTree(List<Lab> labs, String key, int maxLevel) {
         List<Lab> result = new LinkedList<>();
-        for (Lab lab : labs) {
-            if (lab.getLab_parent().equals(key)) {
-                lab.setOrgID(null);
-                result.add(lab);
-                if (maxLevel >= lab.getLab_level()) {
-                    List<Lab> subLabs = generateLabTree(labs, lab.getLabID(), maxLevel);
-                    if (subLabs.size() > 0) {
-                        lab.setSubLabs(subLabs);
+        if (labs != null) {
+            for (Lab lab : labs) {
+                if (lab.getLab_parent().equals(key)) {
+                    lab.setOrgID(null);
+                    result.add(lab);
+                    if (maxLevel >= lab.getLab_level()) {
+                        List<Lab> subLabs = generateLabTree(labs, lab.getLabID(), maxLevel);
+                        if (subLabs != null && subLabs.size() > 0) {
+                            lab.setSubLabs(subLabs);
+                        }
                     }
                 }
             }
