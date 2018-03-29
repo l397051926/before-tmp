@@ -168,6 +168,9 @@ public class LaboratoryProcessor {
         Organization organization = AllDao.getInstance().getOrgDao().getOrganization(orgID);
         List<Lab> labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
         Integer maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
+        if(maxLevel==null){
+            return organization;
+        }
         List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel);
         organization.setLabs(treeLabs);
         return organization;

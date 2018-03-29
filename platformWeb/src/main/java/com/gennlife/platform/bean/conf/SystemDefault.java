@@ -14,6 +14,7 @@ public class SystemDefault {
 
     private String searchItemSetDefault;
     private String needGroup;
+    @Deprecated
     private String passwdOperator;
     private String needToCreateIndex = null;
     private boolean DefaultCrfId;
@@ -42,10 +43,12 @@ public class SystemDefault {
         return searchItemSetDefault;
     }
 
+    @Deprecated
     public void setPasswdOperator(String passwdOperator) {
         this.passwdOperator = passwdOperator;
     }
 
+    @Deprecated
     public String getPasswdOperator() {
         return passwdOperator;
     }

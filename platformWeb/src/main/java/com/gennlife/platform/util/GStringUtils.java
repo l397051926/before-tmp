@@ -17,11 +17,11 @@ public class GStringUtils {
     /**
      * 字符串转16进制
      */
-    private static SystemDefault systemDefault ;
+    private static SystemDefault systemDefault;
+
     @Autowired
-    public void setSystemDefault(SystemDefault systemDefault)
-    {
-        GStringUtils.systemDefault=systemDefault;
+    public void setSystemDefault(SystemDefault systemDefault) {
+        GStringUtils.systemDefault = systemDefault;
     }
 
     public static String toHexString(String s) {
@@ -35,9 +35,7 @@ public class GStringUtils {
     }
 
     public static String str2Password(String str) {
-        if (systemDefault != null && "v2".equalsIgnoreCase(systemDefault.getPasswdOperator()))
-            return getMD5(toHexString(str));
-        else return str;
+        return getMD5(toHexString(str));
     }
 
     public static String getMD5(String str) {
