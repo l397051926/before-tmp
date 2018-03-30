@@ -714,10 +714,10 @@ public class LaboratoryProcessor {
         Map<String, Integer> map = new HashMap<>();
         if (checkedRoleids.size() > 0) {
             Integer[] roleids = checkedRoleids.toArray(new Integer[checkedRoleids.size()]);
+            List<String> userIds = AllDao.getInstance().getSyUserDao().getAllUserIDByRoleID(roleids);
             AllDao.getInstance().getSyRoleDao().deleteRelationsByRoleids(roleids);
             AllDao.getInstance().getSyRoleDao().deleteRelationsWithReourcesByRoleids(roleids);
             int counter = AllDao.getInstance().getSyRoleDao().deleteRolesByRoleids(roleids);
-            List<String> userIds = AllDao.getInstance().getSyUserDao().getAllUserIDByRoleID(roleids);
             RedisUtil.updateUserOnLine(userIds);
             map.put("succeed", counter);
             map.put("fail", paraRoleids.length - counter);
