@@ -63,6 +63,8 @@ public interface SyResourceMapper {
      */
     public int deleteLabsReource(@Param("sids") String[] sids);
 
+    public List<String> selectDeleteLabsReource(@Param("sids") String[] sids);
+    public int deleteRoleItem(@Param("sids") String[] sids);
     /**
      * 获取科室资源
      *

@@ -168,7 +168,7 @@ public class LaboratoryProcessor {
         Organization organization = AllDao.getInstance().getOrgDao().getOrganization(orgID);
         List<Lab> labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
         Integer maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
-        if(maxLevel==null){
+        if (maxLevel == null) {
             return organization;
         }
         List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel);
@@ -202,10 +202,20 @@ public class LaboratoryProcessor {
             if (alllab.contains(labID)) continue;
             alllab.addAll(getLabs(orgdao, labID, orgID, orgName, userdao));
         }
+        alllab = new TreeSet<>(AllDao.getInstance().getSyResourceDao().selectDeleteLabsReource(labIDs));
         labIDs = alllab.toArray(new String[alllab.size()]);
         int counter = AllDao.getInstance().getOrgDao().deleteLabs(labIDs);
+        List<String> uids = AllDao.getInstance().getSyUserDao().getRelateUserByLabId(labIDs, orgID);
+        TreeSet<String> allUids=new TreeSet<>();
+        if (uids != null && uids.size() > 0) {
+            allUids.addAll(uids);
+            uids = AllDao.getInstance().getSyUserDao().selectRelateUserByUid(uids.toArray(new String[uids.size()]));
+            if (uids != null) allUids.addAll(uids);
+        }
         // 同步删除资源
         AllDao.getInstance().getSyResourceDao().deleteLabsReource(labIDs);
+        AllDao.getInstance().getSyResourceDao().deleteRoleItem(labIDs);
+        RedisUtil.updateUserOnLine(allUids);
         int fail = alllab.size() - counter;
         // 更新用户信息
         logger.info("成功删除" + counter + "个科室信息,失败" + fail + "个");

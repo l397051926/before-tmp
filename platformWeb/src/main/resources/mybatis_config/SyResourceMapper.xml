@@ -178,6 +178,21 @@
       #{item,jdbcType=VARCHAR}
     </foreach>
   </delete>
+  <delete id="deleteRoleItem">
+    DELETE FROM gennlife_role_resource
+    WHERE sid IN
+    <foreach collection="sids" item="item" index="index" open="(" separator="," close=")">
+      #{item,jdbcType=VARCHAR}
+    </foreach>
+  </delete>
+  <select id="selectDeleteLabsReource" resultType="java.lang.String">
+    select  sid FROM gennlife_resource
+    WHERE stype='病例数据' AND sid IN
+    <foreach collection="sids" item="item" index="index" open="(" separator="," close=")">
+      #{item,jdbcType=VARCHAR}
+    </foreach>
+  </select>
+
   <select id="getLabResourcesByOrgID" resultType="com.gennlife.platform.model.LabResource">
     SELECT
     <include refid="labResourceProperty"/>

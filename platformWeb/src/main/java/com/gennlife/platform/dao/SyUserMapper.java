@@ -238,6 +238,10 @@ public interface SyUserMapper {
 
     List<String> getUserIDsByLabID(@Param("labIDs") String[] labIDs, @Param("orgID") String orgID);
 
+    List<String> getRelateUserByLabId(@Param("labIDs") String[] labIDs, @Param("orgID") String orgID);
+
+    List<String> selectRelateUserByUid(@Param("uids") String[] labIDs);
+
     /**
      * 获取组织内管理员
      *
@@ -325,7 +329,7 @@ public interface SyUserMapper {
     int updatePwdByUid(Map<String, String> map);
 
     /**
-     *  管理员重置密码
+     * 管理员重置密码
      */
     int adminResetPassword(Map<String, String> map);
 

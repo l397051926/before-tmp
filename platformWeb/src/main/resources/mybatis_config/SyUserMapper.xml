@@ -2,204 +2,205 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.gennlife.platform.dao.SyUserMapper">
 
-	<resultMap id="com.gennlife.platform.model.User" type="com.gennlife.platform.model.User">
-		<result column="gennlife_user.uid" property="uid" jdbcType="VARCHAR" />
-		<result column="uname" property="uname" jdbcType="VARCHAR" />
-		<result column="pwd" property="pwd" jdbcType="VARCHAR" />
-		<result column="uposition" property="uposition" jdbcType="VARCHAR" />
-		<result column="uprofession" property="uprofession" jdbcType="VARCHAR" />
-		<result column="gennlife_user.orgID" property="orgID" jdbcType="VARCHAR" />
-		<result column="org_name" property="org_name" jdbcType="VARCHAR" />
-		<result column="labID" property="labID" jdbcType="VARCHAR" />
-		<result column="lab_name" property="lab_name" jdbcType="VARCHAR" />
-		<result column="telphone" property="telphone" jdbcType="VARCHAR" />
-		<result column="uemail" property="uemail" jdbcType="VARCHAR" />
-		<result column="age" property="age" jdbcType="INTEGER" />
-		<result column="sex" property="sex" jdbcType="INTEGER" />
-		<result column="ctime" property="ctime" jdbcType="VARCHAR"/>
-		<result column="uptime" property="uptime" jdbcType="VARCHAR"/>
-		<result column="unumber" property="unumber" jdbcType="VARCHAR"/>
-	</resultMap>
-	<sql id="userProperty">
+    <resultMap id="com.gennlife.platform.model.User" type="com.gennlife.platform.model.User">
+        <result column="gennlife_user.uid" property="uid" jdbcType="VARCHAR"/>
+        <result column="uname" property="uname" jdbcType="VARCHAR"/>
+        <result column="pwd" property="pwd" jdbcType="VARCHAR"/>
+        <result column="uposition" property="uposition" jdbcType="VARCHAR"/>
+        <result column="uprofession" property="uprofession" jdbcType="VARCHAR"/>
+        <result column="gennlife_user.orgID" property="orgID" jdbcType="VARCHAR"/>
+        <result column="org_name" property="org_name" jdbcType="VARCHAR"/>
+        <result column="labID" property="labID" jdbcType="VARCHAR"/>
+        <result column="lab_name" property="lab_name" jdbcType="VARCHAR"/>
+        <result column="telphone" property="telphone" jdbcType="VARCHAR"/>
+        <result column="uemail" property="uemail" jdbcType="VARCHAR"/>
+        <result column="age" property="age" jdbcType="INTEGER"/>
+        <result column="sex" property="sex" jdbcType="INTEGER"/>
+        <result column="ctime" property="ctime" jdbcType="VARCHAR"/>
+        <result column="uptime" property="uptime" jdbcType="VARCHAR"/>
+        <result column="unumber" property="unumber" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="userProperty">
 		gennlife_user.uid,uname,pwd,uposition,uprofession,gennlife_user.orgID,org_name,labID,lab_name,telphone,uemail,age,sex,ctime,uptime,unumber
 	</sql>
-	<select id="getUser" resultMap="com.gennlife.platform.model.User" >
-		SELECT
-		<include refid="userProperty" />
-		FROM gennlife_user
-		<where> gennlife_user.uemail = #{email} AND gennlife_user.pwd = #{pwd} </where>
-	</select>
-	<select id="loginByUnumber" resultMap="com.gennlife.platform.model.User" >
-		SELECT
-		<include refid="userProperty" />
-		FROM gennlife_user
-		<where> gennlife_user.unumber = #{unumber} AND gennlife_user.pwd = #{pwd} </where>
-	</select>
-	<select id="getUserByLabID" resultType="com.gennlife.platform.model.User">
-		SELECT
-		<include refid="userProperty" />
-		FROM gennlife_user
-		<where> gennlife_user.labID = #{labID} AND gennlife_user.orgID = #{orgID} </where>
-	</select>
+    <select id="getUser" resultMap="com.gennlife.platform.model.User">
+        SELECT
+        <include refid="userProperty"/>
+        FROM gennlife_user
+        <where>gennlife_user.uemail = #{email} AND gennlife_user.pwd = #{pwd}</where>
+    </select>
+    <select id="loginByUnumber" resultMap="com.gennlife.platform.model.User">
+        SELECT
+        <include refid="userProperty"/>
+        FROM gennlife_user
+        <where>gennlife_user.unumber = #{unumber} AND gennlife_user.pwd = #{pwd}</where>
+    </select>
+    <select id="getUserByLabID" resultType="com.gennlife.platform.model.User">
+        SELECT
+        <include refid="userProperty"/>
+        FROM gennlife_user
+        <where>gennlife_user.labID = #{labID} AND gennlife_user.orgID = #{orgID}</where>
+    </select>
 
-	<select id="getUserIDByLabID" resultType="java.lang.String">
-		SELECT uid
-		FROM gennlife_user
-		<where> gennlife_user.labID = #{labID} AND gennlife_user.orgID = #{orgID} </where>
-	</select>
-	<select id="getUidByEmail" resultType="java.lang.String" parameterType="map">
-		SELECT uid
-		From gennlife_user
-		<where> gennlife_user.uemail = #{email} limit 1 </where>
-	</select>
+    <select id="getUserIDByLabID" resultType="java.lang.String">
+        SELECT uid
+        FROM gennlife_user
+        <where>gennlife_user.labID = #{labID} AND gennlife_user.orgID = #{orgID}</where>
+    </select>
+    <select id="getUidByEmail" resultType="java.lang.String" parameterType="map">
+        SELECT uid
+        From gennlife_user
+        <where>gennlife_user.uemail = #{email} limit 1</where>
+    </select>
 
-	<select id="getUserByEmail" resultType="com.gennlife.platform.model.User" >
-		SELECT
-		<include refid="userProperty" />
-		FROM gennlife_user
-		<where> gennlife_user.uemail = #{email} limit 1 </where>
-	</select>
-	<update id="updateUserLabNameByLabName">
+    <select id="getUserByEmail" resultType="com.gennlife.platform.model.User">
+        SELECT
+        <include refid="userProperty"/>
+        FROM gennlife_user
+        <where>gennlife_user.uemail = #{email} limit 1</where>
+    </select>
+    <update id="updateUserLabNameByLabName">
 		UPDATE
 			gennlife_user
 		SET lab_name = #{lab_name}
 		WHERE lab_name = #{old_name} AND orgID=#{orgID}
 	</update>
-	<update id="updateByUid" parameterType="com.gennlife.platform.model.User">
-		UPDATE
-			gennlife_user
-		<set>
-			<if test="uname != null">
-				uname = #{uname,jdbcType=VARCHAR},
-			</if>
-			<if test="uemail != null">
-				uemail = #{uemail,jdbcType=VARCHAR},
-			</if>
-			<if test="uposition != null">
-				uposition = #{uposition,jdbcType=VARCHAR},
-			</if>
-			<if test="uprofession != null">
-				uprofession = #{uprofession,jdbcType=VARCHAR},
-			</if>
-			<if test="labID != null">
-				labID = #{labID,jdbcType=VARCHAR},
-			</if>
-			<if test="lab_name != null">
-				lab_name = #{lab_name,jdbcType=VARCHAR},
-			</if>
-			<if test="orgID != null">
-				orgID = #{orgID,jdbcType=VARCHAR},
-			</if>
-			<if test="org_name != null">
-				org_name = #{org_name,jdbcType=VARCHAR},
-			</if>
-			<if test="telphone != null">
-				telphone = #{telphone,jdbcType=VARCHAR},
-			</if>
-			<if test="age != null">
-				age = #{age,jdbcType=INTEGER},
-			</if>
-			<if test="sex != null">
-				sex = #{sex,jdbcType=INTEGER},
-			</if>
-			<if test="uptime != null">
-				uptime = #{uptime,jdbcType=VARCHAR},
-			</if>
-			<if test="unumber != null">
-				unumber = #{unumber,jdbcType=VARCHAR},
-			</if>
-		</set>
-		WHERE uid = #{uid,jdbcType=VARCHAR}
-	</update>
-	<select id="getUserByUid" resultType="com.gennlife.platform.model.User" parameterType="map">
-		SELECT
-		<include refid="userProperty" />
-		FROM gennlife_user
-		<where> gennlife_user.uid = #{uid} </where>
-	</select>
-	<update id="updatePWD" parameterType="map">
+    <update id="updateByUid" parameterType="com.gennlife.platform.model.User">
+        UPDATE
+        gennlife_user
+        <set>
+            <if test="uname != null">
+                uname = #{uname,jdbcType=VARCHAR},
+            </if>
+            <if test="uemail != null">
+                uemail = #{uemail,jdbcType=VARCHAR},
+            </if>
+            <if test="uposition != null">
+                uposition = #{uposition,jdbcType=VARCHAR},
+            </if>
+            <if test="uprofession != null">
+                uprofession = #{uprofession,jdbcType=VARCHAR},
+            </if>
+            <if test="labID != null">
+                labID = #{labID,jdbcType=VARCHAR},
+            </if>
+            <if test="lab_name != null">
+                lab_name = #{lab_name,jdbcType=VARCHAR},
+            </if>
+            <if test="orgID != null">
+                orgID = #{orgID,jdbcType=VARCHAR},
+            </if>
+            <if test="org_name != null">
+                org_name = #{org_name,jdbcType=VARCHAR},
+            </if>
+            <if test="telphone != null">
+                telphone = #{telphone,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                age = #{age,jdbcType=INTEGER},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="uptime != null">
+                uptime = #{uptime,jdbcType=VARCHAR},
+            </if>
+            <if test="unumber != null">
+                unumber = #{unumber,jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE uid = #{uid,jdbcType=VARCHAR}
+    </update>
+    <select id="getUserByUid" resultType="com.gennlife.platform.model.User" parameterType="map">
+        SELECT
+        <include refid="userProperty"/>
+        FROM gennlife_user
+        <where>gennlife_user.uid = #{uid}</where>
+    </select>
+    <update id="updatePWD" parameterType="map">
 		UPDATE
 			gennlife_user
 		SET pwd = #{pwd,jdbcType=VARCHAR},md5=''
 		WHERE uemail = #{email,jdbcType=VARCHAR} AND md5 = #{md5,jdbcType=VARCHAR}
 	</update>
 
-	<update id="updatePwdByUid" parameterType="map">
+    <update id="updatePwdByUid" parameterType="map">
 		UPDATE
 			gennlife_user
 		SET pwd = #{pwd,jdbcType=VARCHAR}
 		WHERE uid = #{uid,jdbcType=VARCHAR}
 	</update>
 
-	<update id="adminResetPassword" parameterType="map">
+    <update id="adminResetPassword" parameterType="map">
 		UPDATE
 		gennlife_user
 		SET pwd = #{pwd,jdbcType=VARCHAR}
 		WHERE uid = #{uid,jdbcType=VARCHAR}
 	</update>
 
-	<update id="updateMd5" parameterType="map">
+    <update id="updateMd5" parameterType="map">
 		UPDATE
 			gennlife_user
 		SET md5 = #{md5,jdbcType=VARCHAR}
 		WHERE uemail = #{email,jdbcType=VARCHAR}
 	</update>
 
-	<update id="insertMd5ByUid" parameterType="map">
+    <update id="insertMd5ByUid" parameterType="map">
 		UPDATE
 		gennlife_user
 		SET md5 = #{md5,jdbcType=VARCHAR}
 		WHERE uid = #{uid,jdbcType=VARCHAR}
 	</update>
 
-	<select id="existEmail" resultType="java.lang.Integer">
-		SELECT
-		count(uid)
-		FROM gennlife_user
-		<where> gennlife_user.uemail=#{email} </where>
-	</select>
+    <select id="existEmail" resultType="java.lang.Integer">
+        SELECT
+        count(uid)
+        FROM gennlife_user
+        <where>gennlife_user.uemail=#{email}</where>
+    </select>
 
-	<select id="getPwdByUid" resultType="java.lang.String">
-		SELECT
-		gennlife_user.pwd
-		FROM gennlife_user
-		<where>gennlife_user.uid=#{uid}</where>
-	</select>
+    <select id="getPwdByUid" resultType="java.lang.String">
+        SELECT
+        gennlife_user.pwd
+        FROM gennlife_user
+        <where>gennlife_user.uid=#{uid}</where>
+    </select>
 
-	<select id="getMd5ByUid" resultType="java.lang.String">
-		SELECT
-		gennlife_user.md5
-		FROM gennlife_user
-		<where>gennlife_user.uid=#{uid}</where>
-	</select>
+    <select id="getMd5ByUid" resultType="java.lang.String">
+        SELECT
+        gennlife_user.md5
+        FROM gennlife_user
+        <where>gennlife_user.uid=#{uid}</where>
+    </select>
 
-	<select id="getAllUserIDByGroupID"  resultType="java.lang.String">
+    <select id="getAllUserIDByGroupID" resultType="java.lang.String">
 		SELECT
 		uid
 		FROM  gennlife_user_group
 		WHERE gennlife_user_group.gid = #{gid}
 	</select>
-	<select id="existUnumber" resultType="java.lang.Integer">
-		SELECT
-		count(uid)
-		FROM gennlife_user
-		<where> gennlife_user.unumber=#{unumber} AND gennlife_user.orgID=#{orgID}</where>
-	</select>
+    <select id="existUnumber" resultType="java.lang.Integer">
+        SELECT
+        count(uid)
+        FROM gennlife_user
+        <where>gennlife_user.unumber=#{unumber} AND gennlife_user.orgID=#{orgID}</where>
+    </select>
 
-	<select id="checkUnumber" resultType="java.lang.Integer">
-		SELECT
-		count(uid)
-		FROM gennlife_user
-		<where> gennlife_user.unumber=#{unumber} AND uid!=#{uid} AND gennlife_user.orgID=
-			(select gu.orgID from gennlife_user as gu where gu.uid=#{uid}) </where>
-	</select>
-	<resultMap id="com.gennlife.platform.model.Admin" type="com.gennlife.platform.model.Admin">
-		<result column="uid" property="uid" jdbcType="VARCHAR" />
-		<result column="privilegeType" property="privilegeType" jdbcType="VARCHAR" />
-		<result column="privilegeValue" property="privilegeValue" jdbcType="VARCHAR" />
-		<result column="orgID" property="orgID" jdbcType="VARCHAR" />
-	</resultMap>
-	<select id="getAdmins" resultType="com.gennlife.platform.model.Admin" parameterType="map">
+    <select id="checkUnumber" resultType="java.lang.Integer">
+        SELECT
+        count(uid)
+        FROM gennlife_user
+        <where>gennlife_user.unumber=#{unumber} AND uid!=#{uid} AND gennlife_user.orgID=
+            (select gu.orgID from gennlife_user as gu where gu.uid=#{uid})
+        </where>
+    </select>
+    <resultMap id="com.gennlife.platform.model.Admin" type="com.gennlife.platform.model.Admin">
+        <result column="uid" property="uid" jdbcType="VARCHAR"/>
+        <result column="privilegeType" property="privilegeType" jdbcType="VARCHAR"/>
+        <result column="privilegeValue" property="privilegeValue" jdbcType="VARCHAR"/>
+        <result column="orgID" property="orgID" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="getAdmins" resultType="com.gennlife.platform.model.Admin" parameterType="map">
 		SELECT
 			uid,privilegeType,privilegeValue,orgID
 		FROM
@@ -208,303 +209,306 @@
 	  	    gennlife_manage.uid = #{uid,jdbcType=VARCHAR}
 	  	    AND gennlife_manage.orgID = #{orgID,jdbcType=VARCHAR}
 	</select>
-	<select id="searchUsersByLabIDs" resultType="com.gennlife.platform.model.User">
-		SELECT
-		<include refid="userProperty" />
-		FROM gennlife_user
-		WHERE
-			(uname LIKE CONCAT(CONCAT('%', #{skey}), '%') OR unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
-			AND
-			labID in
-			<foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
-				#{item,jdbcType=VARCHAR}
-			</foreach>
-		LIMIT #{offset},#{limit}
-	</select>
-	<select id="searchUsersByLabIDsNoLimit" resultType="com.gennlife.platform.model.User">
-		SELECT
-		<include refid="userProperty" />
-		FROM gennlife_user
-		WHERE
-		(uname LIKE CONCAT(CONCAT('%', #{skey}), '%') OR unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
-		AND
-		labID in
-		<foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
-			#{item,jdbcType=VARCHAR}
-		</foreach>
-	</select>
-	<select id="searchUsersByLabIDsCounter" resultType="Long">
-		SELECT count(id)
-		FROM gennlife_user
-		WHERE
-			(uname LIKE CONCAT(CONCAT('%', #{skey}), '%')
-			OR
-			unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
-			AND
-			labID in
-			<foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
-				#{item,jdbcType=VARCHAR}
-			</foreach>
-	</select>
-	<select id="searchUsersByOrgID" resultType="com.gennlife.platform.model.User">
-		SELECT
-		<include refid="userProperty" />
-		FROM gennlife_user
-		WHERE
-			(uname LIKE CONCAT(CONCAT('%', #{skey}), '%') OR unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
-			AND
-			orgID = #{orgID}
-			LIMIT #{offset},#{limit}
-	</select>
+    <select id="searchUsersByLabIDs" resultType="com.gennlife.platform.model.User">
+        SELECT
+        <include refid="userProperty"/>
+        FROM gennlife_user
+        WHERE
+        (uname LIKE CONCAT(CONCAT('%', #{skey}), '%') OR unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
+        AND
+        labID in
+        <foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+        LIMIT #{offset},#{limit}
+    </select>
+    <select id="searchUsersByLabIDsNoLimit" resultType="com.gennlife.platform.model.User">
+        SELECT
+        <include refid="userProperty"/>
+        FROM gennlife_user
+        WHERE
+        (uname LIKE CONCAT(CONCAT('%', #{skey}), '%') OR unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
+        AND
+        labID in
+        <foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+    </select>
+    <select id="searchUsersByLabIDsCounter" resultType="Long">
+        SELECT count(id)
+        FROM gennlife_user
+        WHERE
+        (uname LIKE CONCAT(CONCAT('%', #{skey}), '%')
+        OR
+        unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
+        AND
+        labID in
+        <foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+    </select>
+    <select id="searchUsersByOrgID" resultType="com.gennlife.platform.model.User">
+        SELECT
+        <include refid="userProperty"/>
+        FROM gennlife_user
+        WHERE
+        (uname LIKE CONCAT(CONCAT('%', #{skey}), '%') OR unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
+        AND
+        orgID = #{orgID}
+        LIMIT #{offset},#{limit}
+    </select>
 
-	<select id="searchUsersByOrgIDNoLimit" resultType="com.gennlife.platform.model.User">
-		SELECT
-		<include refid="userProperty" />
+    <select id="searchUsersByOrgIDNoLimit" resultType="com.gennlife.platform.model.User">
+        SELECT
+        <include refid="userProperty"/>
+        FROM gennlife_user
+        WHERE
+        (uname LIKE CONCAT(CONCAT('%', #{skey}), '%') OR unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
+        AND
+        orgID = #{orgID}
+    </select>
+
+    <select id="searchUsersByOrgIDCounter" resultType="Long">
+		SELECT count(id)
 		FROM gennlife_user
 		WHERE
 		(uname LIKE CONCAT(CONCAT('%', #{skey}), '%') OR unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
 		AND
 		orgID = #{orgID}
 	</select>
-
-	<select id="searchUsersByOrgIDCounter" resultType="Long">
-		SELECT count(id)
-		FROM gennlife_user
-		WHERE
-		(uname LIKE CONCAT(CONCAT('%', #{skey}), '%') OR unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
-		AND
-		orgID = #{orgID}
-	</select>
-	<resultMap id="SearchConditionBean" type="com.gennlife.platform.bean.searchConditionBean.SearchConditionBean">
-		<result column="id" property="conditionID" jdbcType="INTEGER" />
-		<result column="uid" property="uid" jdbcType="VARCHAR" />
-		<result column="conditionText" property="conditionStr" jdbcType="VARCHAR" />
-		<result column="logTime" property="logTime" jdbcType="VARCHAR" />
-		<result column="conditionName" property="conditionName" jdbcType="VARCHAR" />
-		<result column="conditionList" property="conditionList" jdbcType="VARCHAR" />
-	</resultMap>
-	<sql id="SearchConditionSql">
+    <resultMap id="SearchConditionBean" type="com.gennlife.platform.bean.searchConditionBean.SearchConditionBean">
+        <result column="id" property="conditionID" jdbcType="INTEGER"/>
+        <result column="uid" property="uid" jdbcType="VARCHAR"/>
+        <result column="conditionText" property="conditionStr" jdbcType="VARCHAR"/>
+        <result column="logTime" property="logTime" jdbcType="VARCHAR"/>
+        <result column="conditionName" property="conditionName" jdbcType="VARCHAR"/>
+        <result column="conditionList" property="conditionList" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="SearchConditionSql">
 		id,uid,conditionText,logTime,conditionName,conditionList
 	</sql>
-	<select id="searchConditionList" parameterType="map" resultMap="SearchConditionBean">
-		select
-		<include refid="SearchConditionSql" />
-		from searchConditionHistory
-		<where>uid=#{uid} order by logTime desc</where>
-	</select>
-	<select id="findSearchConditionByName" resultType="com.gennlife.platform.bean.searchConditionBean.SearchConditionBean">
-		select
-		<include refid="SearchConditionSql" />
-		from searchConditionHistory
-		<where>uid = #{uid} AND conditionName = #{conditionName} </where>
-	</select>
-	<insert id="insertSearchCondition" parameterType="com.gennlife.platform.bean.searchConditionBean.SearchConditionBean">
-		insert into searchConditionHistory
-		<trim prefix="(" suffix=")" suffixOverrides="," >
-			<if test="uid != null" >
-				uid,
-			</if>
-			<if test="conditionStr != null" >
-				conditionText,
-			</if>
-			<if test="logTime != null" >
-				logTime,
-			</if>
-			<if test="conditionName != null" >
-				conditionName,
-			</if>
-			<if test="conditionList != null" >
-				conditionList,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides="," >
-			<if test="uid != null" >
-				#{uid,jdbcType=VARCHAR},
-			</if>
-			<if test="conditionStr != null" >
-				#{conditionStr,jdbcType=VARCHAR},
-			</if>
-			<if test="logTime != null" >
-				#{logTime,jdbcType=INTEGER},
-			</if>
-			<if test="conditionName != null" >
-				#{conditionName,jdbcType=VARCHAR},
-			</if>
-			<if test="conditionList != null" >
-				#{conditionList,jdbcType=VARCHAR},
-			</if>
-		</trim>
-	</insert>
-	<update id="updateSearchCondition" parameterType="com.gennlife.platform.bean.searchConditionBean.SearchConditionBean">
-		UPDATE
-		searchConditionHistory
-		<set>
-			<if test="conditionName != null">
-				conditionName = #{conditionName,jdbcType=VARCHAR},
-			</if>
-			<if test="conditionStr != null">
-				conditionText = #{conditionStr,jdbcType=VARCHAR},
-			</if>
-			<if test="logTime != null">
-				logTime = #{logTime,jdbcType=VARCHAR},
-			</if>
-			<if test="conditionList != null">
-				conditionList = #{conditionList,jdbcType=VARCHAR},
-			</if>
-		</set>
-		WHERE id = #{conditionID,jdbcType=INTEGER}
-	</update>
+    <select id="searchConditionList" parameterType="map" resultMap="SearchConditionBean">
+        select
+        <include refid="SearchConditionSql"/>
+        from searchConditionHistory
+        <where>uid=#{uid} order by logTime desc</where>
+    </select>
+    <select id="findSearchConditionByName"
+            resultType="com.gennlife.platform.bean.searchConditionBean.SearchConditionBean">
+        select
+        <include refid="SearchConditionSql"/>
+        from searchConditionHistory
+        <where>uid = #{uid} AND conditionName = #{conditionName}</where>
+    </select>
+    <insert id="insertSearchCondition"
+            parameterType="com.gennlife.platform.bean.searchConditionBean.SearchConditionBean">
+        insert into searchConditionHistory
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                uid,
+            </if>
+            <if test="conditionStr != null">
+                conditionText,
+            </if>
+            <if test="logTime != null">
+                logTime,
+            </if>
+            <if test="conditionName != null">
+                conditionName,
+            </if>
+            <if test="conditionList != null">
+                conditionList,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                #{uid,jdbcType=VARCHAR},
+            </if>
+            <if test="conditionStr != null">
+                #{conditionStr,jdbcType=VARCHAR},
+            </if>
+            <if test="logTime != null">
+                #{logTime,jdbcType=INTEGER},
+            </if>
+            <if test="conditionName != null">
+                #{conditionName,jdbcType=VARCHAR},
+            </if>
+            <if test="conditionList != null">
+                #{conditionList,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateSearchCondition"
+            parameterType="com.gennlife.platform.bean.searchConditionBean.SearchConditionBean">
+        UPDATE
+        searchConditionHistory
+        <set>
+            <if test="conditionName != null">
+                conditionName = #{conditionName,jdbcType=VARCHAR},
+            </if>
+            <if test="conditionStr != null">
+                conditionText = #{conditionStr,jdbcType=VARCHAR},
+            </if>
+            <if test="logTime != null">
+                logTime = #{logTime,jdbcType=VARCHAR},
+            </if>
+            <if test="conditionList != null">
+                conditionList = #{conditionList,jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE id = #{conditionID,jdbcType=INTEGER}
+    </update>
 
-	<delete id="deleteSearchCondition">
-		DELETE FROM searchConditionHistory
-		WHERE
-		id in
-		<foreach collection="conditionIDs" item="item" index="index" open="(" separator="," close=")">
-			#{item,jdbcType=INTEGER}
-		</foreach>
-	</delete>
-
-
-	<insert id="insertOneUser" parameterType="com.gennlife.platform.model.User">
-		insert into gennlife_user
-		<trim prefix="(" suffix=")" suffixOverrides="," >
-			uid,
-			uname,
-			pwd,
-			orgID,
-			org_name,
-			labID,
-			lab_name,
-			ctime,
-			uptime,
-			unumber,
-			uemail,
-			<if test="telphone != null" >
-				telphone,
-			</if>
-			<if test="age != null" >
-				age,
-			</if>
-			<if test="sex != null" >
-				sex,
-			</if>
-			<if test="uposition != null" >
-				uposition,
-			</if>
-			<if test="uprofession != null" >
-				uprofession,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides="," >
-			#{uid,jdbcType=VARCHAR},
-			#{uname,jdbcType=VARCHAR},
-			#{pwd,jdbcType=VARCHAR},
-			#{orgID,jdbcType=VARCHAR},
-			#{org_name,jdbcType=VARCHAR},
-			#{labID,jdbcType=VARCHAR},
-			#{lab_name,jdbcType=VARCHAR},
-			#{ctime,jdbcType=VARCHAR},
-			#{uptime,jdbcType=VARCHAR},
-			#{unumber,jdbcType=VARCHAR},
-			#{uemail,jdbcType=VARCHAR},
-			<if test="telphone != null" >
-				#{telphone,jdbcType=VARCHAR},
-			</if>
-			<if test="age != null" >
-				#{age,jdbcType=INTEGER},
-			</if>
-			<if test="sex != null" >
-				#{sex,jdbcType=INTEGER},
-			</if>
-			<if test="uposition != null" >
-				#{uposition,jdbcType=VARCHAR},
-			</if>
-			<if test="uprofession != null" >
-				#{uprofession,jdbcType=VARCHAR},
-			</if>
-		</trim>
-	</insert>
-
-	<delete id="deleteUserByUids">
-		DELETE FROM gennlife_user
-		WHERE
-		uid in
-		<foreach collection="uids" item="item" index="index" open="(" separator="," close=")">
-			#{item,jdbcType=VARCHAR}
-		</foreach>
-	</delete>
-	<select id="getUserByUnumber" resultType="com.gennlife.platform.model.User">
-		SELECT
-		<include refid="userProperty" />
-		FROM gennlife_user
-		<where> gennlife_user.unumber = #{unumber} AND gennlife_user.orgID = #{orgID} </where>
-	</select>
+    <delete id="deleteSearchCondition">
+        DELETE FROM searchConditionHistory
+        WHERE
+        id in
+        <foreach collection="conditionIDs" item="item" index="index" open="(" separator="," close=")">
+            #{item,jdbcType=INTEGER}
+        </foreach>
+    </delete>
 
 
-	<update id="updateUserByUnumber" parameterType="com.gennlife.platform.model.User">
-		UPDATE
-		gennlife_user
-		<set>
-			<if test="uname != null">
-				uname = #{uname,jdbcType=VARCHAR},
-			</if>
-			<if test="uemail != null">
-				uemail = #{uemail,jdbcType=VARCHAR},
-			</if>
-			<if test="uposition != null">
-				uposition = #{uposition,jdbcType=VARCHAR},
-			</if>
-			<if test="uprofession != null">
-				uprofession = #{uprofession,jdbcType=VARCHAR},
-			</if>
-			<if test="labID != null">
-				labID = #{labID,jdbcType=VARCHAR},
-			</if>
-			<if test="lab_name != null">
-				lab_name = #{lab_name,jdbcType=VARCHAR},
-			</if>
-			<if test="org_name != null">
-				org_name = #{org_name,jdbcType=VARCHAR},
-			</if>
-			<if test="telphone != null">
-				telphone = #{telphone,jdbcType=VARCHAR},
-			</if>
-			<if test="age != null">
-				age = #{age,jdbcType=INTEGER},
-			</if>
-			<if test="sex != null">
-				sex = #{sex,jdbcType=INTEGER},
-			</if>
-			<if test="uptime != null">
-				uptime = #{uptime,jdbcType=VARCHAR},
-			</if>
-		</set>
-		WHERE unumber = #{unumber,jdbcType=VARCHAR} AND orgID = #{orgID,jdbcType=VARCHAR}
-	</update>
+    <insert id="insertOneUser" parameterType="com.gennlife.platform.model.User">
+        insert into gennlife_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            uid,
+            uname,
+            pwd,
+            orgID,
+            org_name,
+            labID,
+            lab_name,
+            ctime,
+            uptime,
+            unumber,
+            uemail,
+            <if test="telphone != null">
+                telphone,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="uposition != null">
+                uposition,
+            </if>
+            <if test="uprofession != null">
+                uprofession,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{uid,jdbcType=VARCHAR},
+            #{uname,jdbcType=VARCHAR},
+            #{pwd,jdbcType=VARCHAR},
+            #{orgID,jdbcType=VARCHAR},
+            #{org_name,jdbcType=VARCHAR},
+            #{labID,jdbcType=VARCHAR},
+            #{lab_name,jdbcType=VARCHAR},
+            #{ctime,jdbcType=VARCHAR},
+            #{uptime,jdbcType=VARCHAR},
+            #{unumber,jdbcType=VARCHAR},
+            #{uemail,jdbcType=VARCHAR},
+            <if test="telphone != null">
+                #{telphone,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=INTEGER},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="uposition != null">
+                #{uposition,jdbcType=VARCHAR},
+            </if>
+            <if test="uprofession != null">
+                #{uprofession,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
 
-	<select id="getUserByRoleID" resultType="com.gennlife.platform.model.User">
-		SELECT
-		<include refid="userProperty" />
-		FROM gennlife_user
-		JOIN  gennlife_user_role
-		on gennlife_user.uid = gennlife_user_role.uid
-		WHERE gennlife_user_role.roleid = #{roleid}
-		LIMIT #{offset},#{limit}
-	</select>
+    <delete id="deleteUserByUids">
+        DELETE FROM gennlife_user
+        WHERE
+        uid in
+        <foreach collection="uids" item="item" index="index" open="(" separator="," close=")">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+    </delete>
+    <select id="getUserByUnumber" resultType="com.gennlife.platform.model.User">
+        SELECT
+        <include refid="userProperty"/>
+        FROM gennlife_user
+        <where>gennlife_user.unumber = #{unumber} AND gennlife_user.orgID = #{orgID}</where>
+    </select>
 
-	<select id="getAllUserIDByRoleID" resultType="java.lang.String">
-		SELECT
-		uid
-		FROM gennlife_user_role
-		WHERE
-		roleid in
-		<foreach collection="roleids" item="item" index="index" open="(" separator="," close=")">
-			#{item,jdbcType=INTEGER}
-		</foreach>
 
-	</select>
+    <update id="updateUserByUnumber" parameterType="com.gennlife.platform.model.User">
+        UPDATE
+        gennlife_user
+        <set>
+            <if test="uname != null">
+                uname = #{uname,jdbcType=VARCHAR},
+            </if>
+            <if test="uemail != null">
+                uemail = #{uemail,jdbcType=VARCHAR},
+            </if>
+            <if test="uposition != null">
+                uposition = #{uposition,jdbcType=VARCHAR},
+            </if>
+            <if test="uprofession != null">
+                uprofession = #{uprofession,jdbcType=VARCHAR},
+            </if>
+            <if test="labID != null">
+                labID = #{labID,jdbcType=VARCHAR},
+            </if>
+            <if test="lab_name != null">
+                lab_name = #{lab_name,jdbcType=VARCHAR},
+            </if>
+            <if test="org_name != null">
+                org_name = #{org_name,jdbcType=VARCHAR},
+            </if>
+            <if test="telphone != null">
+                telphone = #{telphone,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                age = #{age,jdbcType=INTEGER},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="uptime != null">
+                uptime = #{uptime,jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE unumber = #{unumber,jdbcType=VARCHAR} AND orgID = #{orgID,jdbcType=VARCHAR}
+    </update>
 
-	<select id="getUserByRoleIDCounter" resultType="INTEGER">
+    <select id="getUserByRoleID" resultType="com.gennlife.platform.model.User">
+        SELECT
+        <include refid="userProperty"/>
+        FROM gennlife_user
+        JOIN gennlife_user_role
+        on gennlife_user.uid = gennlife_user_role.uid
+        WHERE gennlife_user_role.roleid = #{roleid}
+        LIMIT #{offset},#{limit}
+    </select>
+
+    <select id="getAllUserIDByRoleID" resultType="java.lang.String">
+        SELECT
+        uid
+        FROM gennlife_user_role
+        WHERE
+        roleid in
+        <foreach collection="roleids" item="item" index="index" open="(" separator="," close=")">
+            #{item,jdbcType=INTEGER}
+        </foreach>
+
+    </select>
+
+    <select id="getUserByRoleIDCounter" resultType="INTEGER">
 		SELECT
 		count(gennlife_user.uid)
 		FROM gennlife_user
@@ -513,7 +517,7 @@
 		WHERE gennlife_user_role.roleid = #{roleid}
 	</select>
 
-	<select id="getAdminsByOrgID" resultType="java.lang.String">
+    <select id="getAdminsByOrgID" resultType="java.lang.String">
 		SELECT
 		uid
 		FROM
@@ -522,16 +526,16 @@
 		orgID=#{orgID} and privilegeType='admin' AND privilegeValue = 'admin'
 	</select>
 
-	<delete id="deleteVitaCong">
+    <delete id="deleteVitaCong">
 		DELETE FROM gennlife_user_vitaConfig
 		WHERE
 		uid =#{uid}
 	</delete>
 
-	<insert id="insertVitaCong">
+    <insert id="insertVitaCong">
 		insert into gennlife_user_vitaConfig (uid,dataArray) values (#{uid},#{data})
 	</insert>
-	<select id="getVitaCong" resultType="java.lang.String">
+    <select id="getVitaCong" resultType="java.lang.String">
 		SELECT
 		dataArray
 		FROM
@@ -539,7 +543,7 @@
 		WHERE uid = #{uid}
 	</select>
 
-	<select id="getUserIdByLabID" resultType="java.lang.String">
+    <select id="getUserIdByLabID" resultType="java.lang.String">
 		SELECT
 		uid
 		FROM
@@ -547,7 +551,7 @@
 		WHERE  orgID=#{orgID} and labID=#{labID}
 	</select>
 
-	<select id="getPasswordByUid" resultType="java.lang.String">
+    <select id="getPasswordByUid" resultType="java.lang.String">
 		SELECT
 		pwd
 		FROM
@@ -555,40 +559,62 @@
 		WHERE  uid=#{uid}
 	</select>
 
-	<select id="getUserIDsByLabID" resultType="java.lang.String">
-		SELECT
-		uid
-		FROM
-		gennlife_user
-		WHERE  orgID=#{orgID} and labID in
-		<foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
-			#{item,jdbcType=VARCHAR}
-		</foreach>
-	</select>
+    <select id="getUserIDsByLabID" resultType="java.lang.String">
+        SELECT
+        uid
+        FROM
+        gennlife_user
+        WHERE orgID=#{orgID} and labID in
+        <foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+    </select>
+    <select id="getRelateUserByLabId" resultType="java.lang.String">
+        SELECT
+        gennlife_user_role.uid
+        FROM
+        gennlife_user_role,gennlife_role_resource
+        WHERE orgID=#{orgID}
+        and gennlife_user_role.roleid=gennlife_role_resource.roleid
+        and gennlife_role_resource.sid in
+        <foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+    </select>
 
-
-	<update id="updateUseInfoWhenDelLab" >
+    <update id="updateUseInfoWhenDelLab">
 		update   gennlife_user set
 		labID=#{labPID},lab_name=#{lab_pname},uposition="",uprofession=""
 		where  orgID=#{orgID} and labID=#{labID}
 	</update>
 
-	<update id="updateUsersWhenDelLab" >
-		update   gennlife_user set
-		labID=#{labPID},lab_name=#{lab_pname},uposition="",uprofession=""
-		where  orgID=#{orgID} and labID in
-		<foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
-			#{item,jdbcType=VARCHAR}
-		</foreach>
-	</update>
+    <update id="updateUsersWhenDelLab">
+        update gennlife_user set
+        labID=#{labPID},lab_name=#{lab_pname},uposition="",uprofession=""
+        where orgID=#{orgID} and labID in
+        <foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+    <select id="selectRelateUserByUid" resultType="java.lang.String">
+        select a.uid from gennlife_user_group as a
+        WHERE a.gid in (
+        select b.gid from gennlife_user_group as b
+        WHERE uid in
+        <foreach collection="uids" item="item" index="index" open="(" separator="," close=")">
+            #{item,jdbcType=VARCHAR}
+        </foreach>)
 
-	<update id="updatePWDByUids">
-		UPDATE
-		gennlife_user
-		SET pwd = #{pwd,jdbcType=VARCHAR},md5=''
-		WHERE uid in
-		<foreach collection="uids" item="item" index="index" open="(" separator="," close=")">
-			#{item,jdbcType=VARCHAR}
-		</foreach> AND orgID=#{orgID}
-	</update>
+    </select>
+
+    <update id="updatePWDByUids">
+        UPDATE
+        gennlife_user
+        SET pwd = #{pwd,jdbcType=VARCHAR},md5=''
+        WHERE uid in
+        <foreach collection="uids" item="item" index="index" open="(" separator="," close=")">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+        AND orgID=#{orgID}
+    </update>
 </mapper>
