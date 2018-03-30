@@ -239,8 +239,11 @@ public interface SyUserMapper {
     List<String> getUserIDsByLabID(@Param("labIDs") String[] labIDs, @Param("orgID") String orgID);
 
     List<String> getRelateUserByLabId(@Param("labIDs") String[] labIDs, @Param("orgID") String orgID);
-
-    List<String> selectRelateUserByUid(@Param("uids") String[] labIDs);
+    /**
+     * 简单解决小组嵌套关联更新的问题，以目前一体机的形式，用户量不大
+     * */
+    List<String> getAllGroupUserId();
+    List<String> selectRelateUserByUid(@Param("uids") String[] uids);
 
     /**
      * 获取组织内管理员

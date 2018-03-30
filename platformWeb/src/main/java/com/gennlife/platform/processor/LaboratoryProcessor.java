@@ -206,10 +206,10 @@ public class LaboratoryProcessor {
         labIDs = alllab.toArray(new String[alllab.size()]);
         int counter = AllDao.getInstance().getOrgDao().deleteLabs(labIDs);
         List<String> uids = AllDao.getInstance().getSyUserDao().getRelateUserByLabId(labIDs, orgID);
-        TreeSet<String> allUids=new TreeSet<>();
+        TreeSet<String> allUids = new TreeSet<>();
         if (uids != null && uids.size() > 0) {
             allUids.addAll(uids);
-            uids = AllDao.getInstance().getSyUserDao().selectRelateUserByUid(uids.toArray(new String[uids.size()]));
+            uids = AllDao.getInstance().getSyUserDao().getAllGroupUserId();
             if (uids != null) allUids.addAll(uids);
         }
         // 同步删除资源
@@ -1071,11 +1071,14 @@ public class LaboratoryProcessor {
             Map<String, Object> map = new HashMap<>();
             map.put("gid", group.getGid());
             map.put("orgID", group.getOrgID());
-            for (String uid : list) {
-                map.put("uid", uid);
-                AllDao.getInstance().getGroupDao().insertOneGroupRelationUid(map);
+            if (list != null && list.size() > 0) {
+                for (String uid : list) {
+                    map.put("uid", uid);
+                    AllDao.getInstance().getGroupDao().insertOneGroupRelationUid(map);
+                }
+                list.addAll(AllDao.getInstance().getSyUserDao().getAllGroupUserId());
+                RedisUtil.updateUserOnLine(new TreeSet<String>(list));
             }
-            RedisUtil.updateUserOnLine(list);
         }
         ResultBean re = new ResultBean();
         re.setCode(1);
@@ -1116,6 +1119,8 @@ public class LaboratoryProcessor {
                 AllDao.getInstance().getGroupDao().insertOneGroupRelationUid(map);
             }
             uids.addAll(list);
+            List<String> guids = AllDao.getInstance().getSyUserDao().getAllGroupUserId();
+            if (guids != null) uids.addAll(guids);
             RedisUtil.updateUserOnLine(new TreeSet<String>(uids));
             re.setCode(1);
         } else {
@@ -1215,18 +1220,26 @@ public class LaboratoryProcessor {
         Map<String, Object> data = new HashMap<>();
         int succeed = 0;
         int fail = 0;
+        TreeSet<String> uids = new TreeSet<>();
         for (String gid : set) {
             int count = AllDao.getInstance().getGroupDao().deleteGroupByGID(gid);
             if (count == 1) {
                 data.put(gid, true);
                 List<String> uidList = AllDao.getInstance().getSyUserDao().getAllUserIDByGroupID(gid);
                 AllDao.getInstance().getGroupDao().deleteGroupRelationUid(gid);
-                RedisUtil.updateUserOnLine(uidList);
+                uids.addAll(uidList);
                 succeed++;
             } else {
                 data.put(gid, false);
                 fail++;
             }
+        }
+        if (uids != null && uids.size() > 0) {
+            List<String> guids = AllDao.getInstance().getSyUserDao().getAllGroupUserId();
+            if (guids != null) {
+                uids.addAll(guids);
+            }
+            RedisUtil.updateUserOnLine(uids);
         }
         Map<String, Object> info = new HashMap<>();
         info.put("succeed", succeed);

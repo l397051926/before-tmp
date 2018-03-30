@@ -569,6 +569,9 @@
             #{item,jdbcType=VARCHAR}
         </foreach>
     </select>
+    <select id="getAllGroupUserId" resultType="java.lang.String">
+         select DISTINCT uid from gennlife_user_group
+    </select>
     <select id="getRelateUserByLabId" resultType="java.lang.String">
         SELECT
         gennlife_user_role.uid
