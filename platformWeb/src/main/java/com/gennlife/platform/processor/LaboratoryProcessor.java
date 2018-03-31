@@ -209,8 +209,7 @@ public class LaboratoryProcessor {
         TreeSet<String> allUids = new TreeSet<>();
         if (uids != null && uids.size() > 0) {
             allUids.addAll(uids);
-            uids = AllDao.getInstance().getSyUserDao().getAllGroupUserId();
-            if (uids != null) allUids.addAll(uids);
+            SyUserMapper.addSelectRelateUid(allUids);
         }
         // 同步删除资源
         AllDao.getInstance().getSyResourceDao().deleteLabsReource(labIDs);
@@ -728,6 +727,7 @@ public class LaboratoryProcessor {
             AllDao.getInstance().getSyRoleDao().deleteRelationsByRoleids(roleids);
             AllDao.getInstance().getSyRoleDao().deleteRelationsWithReourcesByRoleids(roleids);
             int counter = AllDao.getInstance().getSyRoleDao().deleteRolesByRoleids(roleids);
+            SyUserMapper.addSelectRelateUid(userIds);
             RedisUtil.updateUserOnLine(userIds);
             map.put("succeed", counter);
             map.put("fail", paraRoleids.length - counter);
@@ -778,6 +778,7 @@ public class LaboratoryProcessor {
                     resourceObj.setRoleid(exRole.getRoleid());
                     AllDao.getInstance().getSyResourceDao().insertRoleResourceRelation(resourceObj);
                 }
+                SyUserMapper.addSelectRelateUid(uidList);
                 RedisUtil.updateUserOnLine(uidList);
                 ResultBean resultBean = new ResultBean();
                 resultBean.setCode(1);
@@ -874,21 +875,16 @@ public class LaboratoryProcessor {
             String roleName = role.getRole();
             if ("1".equals(exRole.getRole_type())) {
                 Role role1 = AllDao.getInstance().getSyRoleDao().getRoleByroleid(role.getRoleid());
-                Long start2 = System.currentTimeMillis();
-                //System.out.println("role1="+(start2-start1)+"ms");
                 if (role1 != null) {//
                     Integer[] roleids = new Integer[]{role.getRoleid()};
                     AllDao.getInstance().getSyRoleDao().deleteRelationsByRoleids(roleids);//删除原有的关联关系
-                    Long start3 = System.currentTimeMillis();
-                    //System.out.println("deleteRelationsByRoleids="+(start3-start2)+"ms");
                     for (String uid : uids) {
                         AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(exRole.getRoleid(), uid);//插入新的
                     }
-                    Long start4 = System.currentTimeMillis();
-                    //System.out.println("insertUserRoleRelation="+(start4-start3)+"ms");
                     ResultBean resultBean = new ResultBean();
                     resultBean.setCode(1);
                     resultBean.setInfo("系统角色 更新完成");
+                    SyUserMapper.addSelectRelateUid(updateUids);
                     RedisUtil.updateUserOnLine(new TreeSet<String>(updateUids));
                     return gson.toJson(resultBean);
                 } else {
@@ -898,23 +894,16 @@ public class LaboratoryProcessor {
             //如果更新角色了名称
             if (!roleName.equals(exRole.getRole())) {
                 //如果更新后的名字已经存在
-                Long start2 = System.currentTimeMillis();
                 Role exRenameRole = AllDao.getInstance().getSyRoleDao().getRoleByRoleName(user.getOrgID(), roleName);
-                Long start3 = System.currentTimeMillis();
-                //System.out.println("exRenameRole="+(start3-start2)+"ms");
                 if (exRenameRole != null) {
                     return ParamUtils.errorParam("角色已经存在");
                 }
             }
-            Long start2 = System.currentTimeMillis();
             int counter = AllDao.getInstance().getSyRoleDao().updateUserRole(role);//更新用户信息
-            Long start3 = System.currentTimeMillis();
 
-            //System.out.println("getUserByRoleID="+(start4-start3)+"ms");
             if (counter == 0) {
                 return ParamUtils.errorParam("更新失败");
             } else {
-                Long start5 = System.currentTimeMillis();
                 List<String> uidList = (List<String>) role.getStaff();
                 Integer[] roleids = new Integer[]{role.getRoleid()};
                 AllDao.getInstance().getSyRoleDao().deleteRelationsByRoleids(roleids);//删除原有的关联关系
@@ -929,10 +918,9 @@ public class LaboratoryProcessor {
                     resourceObj.setRoleid(role.getRoleid());
                     AllDao.getInstance().getSyResourceDao().insertRoleResourceRelation(resourceObj);//插入新的
                 }
-                Long start6 = System.currentTimeMillis();
-                //System.out.println("end="+(start6-start5)+"ms");
                 ResultBean resultBean = new ResultBean();
                 resultBean.setCode(1);
+                SyUserMapper.addSelectRelateUid(updateUids);
                 RedisUtil.updateUserOnLine(new TreeSet<String>(updateUids));
                 return gson.toJson(resultBean);
             }
@@ -1076,7 +1064,7 @@ public class LaboratoryProcessor {
                     map.put("uid", uid);
                     AllDao.getInstance().getGroupDao().insertOneGroupRelationUid(map);
                 }
-                list.addAll(AllDao.getInstance().getSyUserDao().getAllGroupUserId());
+                SyUserMapper.addSelectRelateUid(list);
                 RedisUtil.updateUserOnLine(new TreeSet<String>(list));
             }
         }
@@ -1119,8 +1107,7 @@ public class LaboratoryProcessor {
                 AllDao.getInstance().getGroupDao().insertOneGroupRelationUid(map);
             }
             uids.addAll(list);
-            List<String> guids = AllDao.getInstance().getSyUserDao().getAllGroupUserId();
-            if (guids != null) uids.addAll(guids);
+            SyUserMapper.addSelectRelateUid(uids);
             RedisUtil.updateUserOnLine(new TreeSet<String>(uids));
             re.setCode(1);
         } else {
@@ -1235,10 +1222,7 @@ public class LaboratoryProcessor {
             }
         }
         if (uids != null && uids.size() > 0) {
-            List<String> guids = AllDao.getInstance().getSyUserDao().getAllGroupUserId();
-            if (guids != null) {
-                uids.addAll(guids);
-            }
+            SyUserMapper.addSelectRelateUid(uids);
             RedisUtil.updateUserOnLine(uids);
         }
         Map<String, Object> info = new HashMap<>();

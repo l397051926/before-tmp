@@ -7,6 +7,7 @@ import com.gennlife.platform.model.User;
 import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.Mapper;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -239,11 +240,19 @@ public interface SyUserMapper {
     List<String> getUserIDsByLabID(@Param("labIDs") String[] labIDs, @Param("orgID") String orgID);
 
     List<String> getRelateUserByLabId(@Param("labIDs") String[] labIDs, @Param("orgID") String orgID);
+
     /**
      * 简单解决小组嵌套关联更新的问题，以目前一体机的形式，用户量不大
-     * */
+     */
     List<String> getAllGroupUserId();
+
     List<String> selectRelateUserByUid(@Param("uids") String[] uids);
+
+    static void addSelectRelateUid(Collection<String> updateUids) {
+        if (updateUids == null || updateUids.size() == 0) return;
+        updateUids.addAll(AllDao.getInstance().getSyUserDao().selectRelateUserByUid(updateUids.toArray(new String[updateUids.size()])));
+        return;
+    }
 
     /**
      * 获取组织内管理员
@@ -301,7 +310,6 @@ public interface SyUserMapper {
     /**
      * 项目详情
      *
-     * @param map
      * @return public MyProjectList baiscInfo(Map<String, Object> map);
      */
 
