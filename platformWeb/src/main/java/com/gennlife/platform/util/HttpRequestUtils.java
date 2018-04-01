@@ -45,7 +45,6 @@ public class HttpRequestUtils {
     public static String httpPost(String url, String jsonParam) {
         RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(50000).setConnectTimeout(10000).build();
         return httpPostExecute(url, jsonParam, requestConfig);
-
     }
 
 

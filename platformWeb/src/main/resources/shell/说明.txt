@@ -1,7 +1,7 @@
 case.json
 用途:前端搜索的字段配置
 生成说明：
-(1)python configuration.py xlsx文件名
+(1)python configuration.py （要修改代码  data = xlrd.open_workbook('D:\\副本.xlsx'.decode('utf-8'))）
 (2)安装python 2 将python的Scripts目录添加到环境变量即可  例如E:\Python27\Scripts
 (3)安装依赖：
    安装python easy_install 以及pip 参考http://blog.csdn.net/xsj_blog/article/details/52037609
