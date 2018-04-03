@@ -471,8 +471,9 @@ CREATE TABLE `searchConditionHistory` (
   `conditionText` text,
   `logTime` varchar(30) DEFAULT NULL,
   `conditionName` varchar(50) DEFAULT NULL,
+  `conditionList` text,
   PRIMARY KEY (`id`,`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of searchConditionHistory
