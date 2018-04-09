@@ -18,6 +18,7 @@ import org.springframework.util.StringUtils;
 
 import java.io.*;
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -105,6 +106,8 @@ public class FileUploadUtil implements InitializingBean {
             Integer telIndex = map.get("手机");
             Integer uprofessionIndex = map.get("职称");
             Integer upositionIndex = map.get("职务");
+            Integer effectiveIndex = map.get("生效时间");
+            Integer failureIndex=map.get("失效时间");
             List<Lab> labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
             if (unumberIndex == null) {
                 for (int index = 1; index < strList.size(); index++) {
@@ -137,6 +140,7 @@ public class FileUploadUtil implements InitializingBean {
             List<User> userList = new LinkedList<>();
             List<String> lineList = new LinkedList<>();
             Role role = AllDao.getInstance().getSyRoleDao().getLabMember(orgID);
+            //角色
             for (int index = 1; index < strList.size(); index++) {
                 String line = strList.get(index);
                 String[] terms = line.split(",");
@@ -144,10 +148,12 @@ public class FileUploadUtil implements InitializingBean {
                     srcList.add(line + ",失败,缺少数据");
                     continue;
                 } else {
+                    //工号,姓名,邮箱,手机,职称,职务,所属部门
                     String number = terms[unumberIndex].replaceAll("\n", "");
                     String name = terms[nameIndex].replaceAll("\n", "");
                     String lab_name = terms[labIndex].replaceAll("\n", "");
                     String email = terms[emailIndex].replaceAll("\n", "");
+                    //---
                     if (name == null || name.equals("")) {
                         srcList.add(line + ",失败,姓名为空");
                         continue;
@@ -186,6 +192,28 @@ public class FileUploadUtil implements InitializingBean {
                     if (uprofessionIndex != null) {
                         uprofession = terms[uprofessionIndex];
                     }
+                    String effective_time="";
+                    if(effectiveIndex!=null){
+                        effective_time=terms[effectiveIndex];
+                        try{
+                            new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(effective_time);
+                        }catch (Exception e){
+                            srcList.add(line + ",失败,生效时间日期格式不对");
+                            effective_time="";
+                            continue;
+                        }
+                    }
+                    String failure_time="";
+                    if(failureIndex!=null){
+                        failure_time=terms[failureIndex];
+                        try{
+                            new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(failure_time);
+                        }catch (Exception e){
+                            srcList.add(line + ",失败,失效时间日期格式不对");
+                            failure_time="";
+                            continue;
+                        }
+                    }
                     User addUser = new User();
                     Lab lab = getLabByName(lab_name, labs);
                     if (lab == null && !"医院".equals(lab_name)) {
@@ -211,6 +239,8 @@ public class FileUploadUtil implements InitializingBean {
                     addUser.setUname(name);
                     addUser.setUposition(uposition);
                     addUser.setUprofession(uprofession);
+                    addUser.setEffective_time(effective_time);
+                    addUser.setFailure_time(failure_time);
                     userList.add(addUser);
                     lineList.add(line);
                 }
@@ -317,6 +347,9 @@ public class FileUploadUtil implements InitializingBean {
                     } else {
                         String name = data[0].trim();
                         String parentName = data[1].trim();
+                        String departName = data[2].trim();
+                        String partName = AllDao.getInstance().getOrgDao().getDepartNameByParentName(parentName);
+
                         if (StringUtils.isEmpty(name)) {
                             srcList.add(str + ",失败,科室名称为空");
                             continue;
@@ -332,6 +365,12 @@ public class FileUploadUtil implements InitializingBean {
                         } else if (parentName.equals(name)) {
                             srcList.add(str + ",失败,上级科室与当前科室名称一致");
                             continue;
+                        } else if(StringUtils.isEmpty(departName)){
+                            srcList.add(str + ",失败,部门类别为空");
+                            continue;
+                        } else if(DepartDecide.decide(departName,partName)){
+                            srcList.add(str + ",上级科室类型为: "+partName+"，当前科室类型为: "+departName+ "，不符合科室类型关系约束");
+                            continue;
                         } else {
                             Lab lab = new Lab();
                             lab.setOrgID(orgID);
@@ -340,6 +379,7 @@ public class FileUploadUtil implements InitializingBean {
                             lab.setLab_name(name);
                             lab.setLab_parentName(parentName);
                             lab.setAdd_user(uid);
+                            lab.setDepart_name(departName);//
                             lab.setAdd_time(time.format(new Date()));
                             lab.status = "未处理";
                             newList.add(lab);

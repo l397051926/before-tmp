@@ -1,3 +1,4 @@
+/**/
 package com.gennlife.platform.processor;
 
 import com.gennlife.platform.bean.ResultBean;
@@ -31,12 +32,12 @@ public class UserProcessor {
             Long start = System.currentTimeMillis();
             User user = null;
             try {
-                pwd = GStringUtils.str2Password(pwd);
+                pwd = GStringUtils.str2Password(pwd);//通过md5加密处理
                 if (email != null && GStringUtils.checkEmail(email)) {
                     Map<String, Object> confMap = new HashMap<String, Object>();
                     confMap.put("email", email);
                     confMap.put("pwd", pwd);
-                    user = AllDao.getInstance().getSyUserDao().getUser(confMap);
+                    user = AllDao.getInstance().getSyUserDao().getUser(confMap);//从数据库获取用户信息
                 } else {
                     user = AllDao.getInstance().getSyUserDao().loginByUnumber(email, pwd);
                 }

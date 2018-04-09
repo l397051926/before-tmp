@@ -348,4 +348,18 @@ public interface SyUserMapper {
      * 判断当前密码是否为默认密码
      */
     String getPasswordByUid(@Param("uid") String uid);
+
+    /**
+     * 根据uid 查找 failureTime
+     * @param uid
+     * @return
+     */
+    String getFailureTimeByUid(String uid);
+
+    /**
+     * 根据uid 查找 effective_time
+     * @param uid
+     * @return
+     */
+    String getEffectiveTimeByUid(String uid);
 }

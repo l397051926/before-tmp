@@ -145,4 +145,13 @@ public interface OrgMapper {
     public List<String> getSubLabs(@Param("labID") String labID, @Param("orgID") String orgID);
 
     int updateSubLabPid(@Param("labIDs") String[] labIDs, @Param("orgID") String orgID, @Param("pid") String pid);
+
+    String getDepartNameByParentName(@Param("lab_name") String lab_name);
+
+    /**
+     * 根据科室名字查找lab
+     * @param lab_name
+     * @return
+     */
+    Lab getLabByOnelabName(@Param("lab_name") String lab_name);
 }

@@ -19,9 +19,12 @@
         <result column="ctime" property="ctime" jdbcType="VARCHAR"/>
         <result column="uptime" property="uptime" jdbcType="VARCHAR"/>
         <result column="unumber" property="unumber" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
+        <result column="effective_time" property="effective_time" jdbcType="VARCHAR"/>
+        <result column="failure_time" property="failure_time" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="userProperty">
-		gennlife_user.uid,uname,pwd,uposition,uprofession,gennlife_user.orgID,org_name,labID,lab_name,telphone,uemail,age,sex,ctime,uptime,unumber
+		gennlife_user.uid,uname,pwd,uposition,uprofession,gennlife_user.orgID,org_name,labID,lab_name,telphone,uemail,age,sex,ctime,uptime,unumber,status,effective_time,failure_time
 	</sql>
     <select id="getUser" resultMap="com.gennlife.platform.model.User">
         SELECT
@@ -107,6 +110,14 @@
             </if>
             <if test="unumber != null">
                 unumber = #{unumber,jdbcType=VARCHAR},
+            </if>
+
+            <if test="effective_ime != null">
+                effective_ime = #{effective_ime,jdbcType=VARCHAR},
+            </if>
+
+            <if test="failure_time != null">
+                failure_time = #{failure_time,jdbcType=VARCHAR},
             </if>
         </set>
         WHERE uid = #{uid,jdbcType=VARCHAR}
@@ -383,6 +394,9 @@
             uptime,
             unumber,
             uemail,
+            status,
+            effective_time,
+            failure_time,
             <if test="telphone != null">
                 telphone,
             </if>
@@ -411,6 +425,9 @@
             #{uptime,jdbcType=VARCHAR},
             #{unumber,jdbcType=VARCHAR},
             #{uemail,jdbcType=VARCHAR},
+            #{status,jdbcType=VARCHAR},
+            #{effective_time,jdbcType=VARCHAR},
+            #{failure_time,jdbcType=VARCHAR},
             <if test="telphone != null">
                 #{telphone,jdbcType=VARCHAR},
             </if>
@@ -558,6 +575,23 @@
 		gennlife_user
 		WHERE  uid=#{uid}
 	</select>
+
+    <select id="getFailureTimeByUid" resultType="java.lang.String">
+        SELECT
+        failure_time
+        FROM
+        gennlife_user
+        WHERE  uid=#{uid}
+    </select>
+
+    <select id="getEffectiveTimeByUid" resultType="java.lang.String">
+        SELECT
+        effective_time
+        FROM
+        gennlife_user
+        WHERE  uid=#{uid}
+    </select>
+
 
     <select id="getUserIDsByLabID" resultType="java.lang.String">
         SELECT

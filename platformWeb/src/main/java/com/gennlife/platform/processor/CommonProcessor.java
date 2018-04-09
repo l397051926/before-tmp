@@ -57,7 +57,7 @@ public class CommonProcessor {
         }
     }
 
-    public String uploadFileForImportStaff(MultipartFile file, User user) {
+    public String uploadFileForImportStaff(MultipartFile file, User user) {//通过文件创建用户？
         try {
             byte[] bytes = file.getBytes();
             String string = new String(bytes, "GBK");

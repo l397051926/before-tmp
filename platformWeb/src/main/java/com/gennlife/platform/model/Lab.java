@@ -19,6 +19,16 @@ public class Lab {
     public Object staff;//成员
     private String sid;
 
+    private String depart_name; //部门类别
+
+    public String getDepart_name() {
+        return depart_name;
+    }
+
+    public void setDepart_name(String depart_name) {
+        this.depart_name = depart_name;
+    }
+
     public String getSid() {
         return sid;
     }

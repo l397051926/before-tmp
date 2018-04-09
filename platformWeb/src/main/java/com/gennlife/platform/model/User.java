@@ -30,6 +30,34 @@ public class User {
     private Power power = new Power(); // 权限
     private Power frontEndPower = new Power();
 
+    private String status;  //1:长期有效、2:定期有效、3:禁用
+    private String effective_time;   //有效开始时间
+    private String failure_time;    //失效时间
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getEffective_time() {
+        return effective_time;
+    }
+
+    public void setEffective_time(String effective_time) {
+        this.effective_time = effective_time;
+    }
+
+    public String getFailure_time() {
+        return failure_time;
+    }
+
+    public void setFailure_time(String failure_time) {
+        this.failure_time = failure_time;
+    }
+
     public Power getFrontEndPower() {
         return frontEndPower;
     }

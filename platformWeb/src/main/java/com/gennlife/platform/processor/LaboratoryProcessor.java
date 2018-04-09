@@ -72,12 +72,17 @@ public class LaboratoryProcessor {
         String lab_parent = null;
         String lab_name = null;
         String lab_leader = null;
+        String depart_name = null;//部门类别
         try {
             uid = paramObj.get("uid").getAsString();
             lab_parent = paramObj.get("lab_parent").getAsString();
             lab_name = paramObj.get("lab_name").getAsString();
+            depart_name = paramObj.get("depart_name").getAsString();
             if (paramObj.has("lab_leader")) {
                 lab_leader = paramObj.get("lab_leader").getAsString();
+            }
+            if(!("行政管理类".equals(depart_name)||"业务管理类".equals(depart_name)||"一线临床类".equals(depart_name))){
+                return ParamUtils.errorParam("请求参数有错误");
             }
         } catch (Exception e) {
             logger.error("", e);
@@ -121,6 +126,7 @@ public class LaboratoryProcessor {
                 lab.setLab_level(lab_level + 1);
             }
         }
+        lab.setDepart_name(depart_name);
         lab.setLab_leader(lab_leader);
         lab.setLab_name(lab_name);
         lab.setAdd_time(LogUtils.getStringTime());
@@ -278,9 +284,11 @@ public class LaboratoryProcessor {
         String lab_leader = "";
         String lab_leaderName = "";
         String lab_parent = null;
+        String depart_name="";
         try {
             labID = paramObj.get("labID").getAsString();
             lab_name = paramObj.get("lab_name").getAsString();
+            depart_name=paramObj.get("depart_name").getAsString();
             if (paramObj.has("lab_leader")) {
                 lab_leader = paramObj.get("lab_leader").getAsString();
             }
@@ -342,6 +350,7 @@ public class LaboratoryProcessor {
         map.put("lab_leader", lab_leader);
         map.put("lab_leaderName", lab_leaderName);
         map.put("lab_parent", lab_parent);
+        map.put("depart_name",depart_name);//-增加 depart_name
         int counter = AllDao.getInstance().getOrgDao().updateLabInfo(map);
         if (counter == 0) {
             return ParamUtils.errorParam("更新失败");
@@ -417,6 +426,13 @@ public class LaboratoryProcessor {
             Map<String, Object> map = new HashMap<>();
             map.put("orgID", usr.getOrgID());
             map.put("uid", usr.getUid());
+            String effective=user.getEffective_time();
+            String failure=user.getFailure_time();
+            if(LogUtils.decideDate(effective,failure)){
+                user.setStatus("1");
+            }else{
+                user.setStatus("3");
+            }
             List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(map);
             if (rolesList != null) {
                 for (Role role : rolesList) {
@@ -1340,9 +1356,41 @@ public class LaboratoryProcessor {
             } else {
                 re.setInfo(false);
             }
+            SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String failTime = AllDao.getInstance().getSyUserDao().getFailureTimeByUid(uid);
+            String effecTime = AllDao.getInstance().getSyUserDao().getEffectiveTimeByUid(uid);
+            Date date=new Date();
+            if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
+                return "false";
+            }
         } catch (Exception e) {
             logger.error("", e);
             return ParamUtils.errorParam("判断当前密码是否为默认密码操作失败");
+        }
+        return gson.toJson(re);
+    }
+    //判断lab名字是否存在
+    public String isExistLabName(JsonObject paramObj) {
+        ResultBean re = null;
+        try{
+            re =new ResultBean();
+            String labName=paramObj.get("lab_name").getAsString();
+            if(StringUtils.isEmpty(labName)){
+                return ParamUtils.errorParam(labName + "科室名字不能为空");
+            }
+            Lab lab=AllDao.getInstance().getOrgDao().getLabByOnelabName(labName);
+            if(lab!=null){
+                re.setCode(0);
+                re.setInfo("名称重复");
+                return ParamUtils.errorParam(labName + "科室名字已经存在");
+            }else{
+                re.setCode(1);
+                re.setInfo("名称可用");
+            }
+
+        }catch(Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("判断当前科室名称是否存在操作失败");
         }
         return gson.toJson(re);
     }

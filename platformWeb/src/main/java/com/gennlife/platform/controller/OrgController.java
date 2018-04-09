@@ -18,7 +18,7 @@ public class OrgController {
     private Logger logger = LoggerFactory.getLogger(OrgController.class);
     private static OrganizationProcessor processor = new OrganizationProcessor();
     private static JsonParser jsonParser = new JsonParser();
-
+//
     @RequestMapping(value = "/List", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -34,6 +35,7 @@ public class UserController {
     private static Gson gson = GsonUtil.getGson();
     private static View view = new View();
 
+    //用户登陆
     @RequestMapping(value = "/Login", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public void postLogin(HttpServletRequest paramRe, HttpServletResponse response) {
         Long start = System.currentTimeMillis();
@@ -55,9 +57,25 @@ public class UserController {
                 view.viewString(ParamUtils.errorParam("参数错误"), response);
                 return;
             }
+            //获取用户名密码
             User user = processor.login(email, pwd);
             ResultBean resultBean = new ResultBean();
             if (user != null) {
+                SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String status=user.getStatus();
+                String failTime=user.getFailure_time();
+                String effectiveTtime=user.getEffective_time();
+                Date date=new Date();
+                if("3".equals(status)){
+                    view.viewString(ParamUtils.errorParam("没有权限登陆"), response);
+                    return;
+                }
+                if("2".equals(status)){
+                    if(date.after(time.parse(failTime)) || date.before(time.parse(effectiveTtime))){
+                        view.viewString(ParamUtils.errorParam("时间失效，没有权限登陆"), response);
+                        return;
+                    }
+                }
                 HttpSession session = paramRe.getSession(true);
                 String sessionID = session.getId();
                 String loginSession = RedisUtil.getValue(user.getUid());
@@ -93,6 +111,7 @@ public class UserController {
         view.viewString(resultStr, response);
     }
 
+    //获取用户信息
     @RequestMapping(value = "/getUserInfo", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public void getUserInfo(HttpServletRequest paramRe, HttpServletResponse response) {
         Long start = System.currentTimeMillis();
@@ -113,6 +132,7 @@ public class UserController {
         view.viewString(resultStr, response);
     }
 
+    //修改
     @RequestMapping(value = "/UpdateInfo", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody

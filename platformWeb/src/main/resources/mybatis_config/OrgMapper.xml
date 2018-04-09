@@ -37,7 +37,7 @@
         <result column="add_time" property="add_time" jdbcType="VARCHAR"></result>
     </resultMap>
     <sql id="labProperty">
-         orgID,labID,lab_name,lab_leader,lab_leaderName,lab_parent,lab_level,add_user,add_time
+         orgID,labID,lab_name,lab_leader,lab_leaderName,lab_parent,lab_level,add_user,add_time,depart_name
     </sql>
     <select id="getLabs" resultMap="com.gennlife.platform.model.Lab" parameterType="String"  >
         select
@@ -107,6 +107,10 @@
             <if test="add_time != null" >
                 add_time,
             </if>
+
+            <if test="depart_name != null" >
+                depart_name,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="orgID != null" >
@@ -132,6 +136,9 @@
             </if>
             <if test="add_time != null" >
                 #{add_time,jdbcType=VARCHAR},
+            </if>
+            <if test="depart_name != null" >
+                #{depart_name,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -223,5 +230,19 @@
         </foreach>
         and orgID=#{orgID}
     </update>
+    <select id="getDepartNameByParentName" resultType="Integer" parameterType="map">
+        select
+        depart_name
+        from gennlife_lab
+        where lab_name = #{lab_name,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getLabByOnelabName" parameterType="String" resultMap="com.gennlife.platform.model.Lab">
+        select
+        <include refid="labProperty"></include>
+        from gennlife_lab
+        where lab_name = #{lab_name}
+    </select>
+
 
 </mapper>

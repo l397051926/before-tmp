@@ -45,6 +45,12 @@ public class CommonController implements InitializingBean {
     //后缀
     private static String suffix = ".csv";
 
+    /**
+     *
+     * @param file
+     * @param paramRe
+     * @return
+     */
     @RequestMapping(value = "/UploadFileForImportLab", method = RequestMethod.POST, produces = {"text/html;charset=UTF-8", "application/json;charset=UTF-8"})
     public
     @ResponseBody

@@ -3,6 +3,7 @@ package com.gennlife.platform.util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -33,4 +34,15 @@ public class LogUtils {
     public static String getString_Time() {
         return time_.format(new Date());
     }
+
+    public static Boolean decideDate(String effective,String failure)  {
+        Date date=new Date();
+        try {
+            return date.before(time.parse(failure)) && date.after(time.parse(effective));
+        } catch (ParseException e) {
+            logger.error(e+"");
+        }
+        return false;
+    }
+
 }
