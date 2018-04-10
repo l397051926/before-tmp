@@ -1366,10 +1366,7 @@ public class LaboratoryProcessor {
                 if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
                     return "false";
                 }
-            }else{
-                return "false";
             }
-
         } catch (Exception e) {
             logger.error("", e);
             return ParamUtils.errorParam("判断当前密码是否为默认密码操作失败");
