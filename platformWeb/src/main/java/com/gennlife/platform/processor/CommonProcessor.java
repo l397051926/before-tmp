@@ -56,8 +56,8 @@ public class CommonProcessor {
             view.viewString(ParamUtils.errorParam("发生异常"), response);
         }
     }
-
-    public String uploadFileForImportStaff(MultipartFile file, User user) {//通过文件创建用户？
+    //通过文件创建用户 切割每行 存到list
+    public String uploadFileForImportStaff(MultipartFile file, User user) {
         try {
             byte[] bytes = file.getBytes();
             String string = new String(bytes, "GBK");

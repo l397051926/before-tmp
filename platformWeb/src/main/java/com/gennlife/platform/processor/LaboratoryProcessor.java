@@ -428,10 +428,12 @@ public class LaboratoryProcessor {
             map.put("uid", usr.getUid());
             String effective=user.getEffective_time();
             String failure=user.getFailure_time();
-            if(LogUtils.decideDate(effective,failure)){
-                user.setStatus("1");
-            }else{
-                user.setStatus("3");
+            if(!("1".equals(user.getStatus()))){
+                if(LogUtils.decideDate(effective,failure)){
+                    user.setStatus("1");
+                }else{
+                    user.setStatus("3");
+                }
             }
             List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(map);
             if (rolesList != null) {
@@ -1360,9 +1362,14 @@ public class LaboratoryProcessor {
             String failTime = AllDao.getInstance().getSyUserDao().getFailureTimeByUid(uid);
             String effecTime = AllDao.getInstance().getSyUserDao().getEffectiveTimeByUid(uid);
             Date date=new Date();
-            if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
+            if(!("1".equals(user.getStatus()))){
+                if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
+                    return "false";
+                }
+            }else{
                 return "false";
             }
+
         } catch (Exception e) {
             logger.error("", e);
             return ParamUtils.errorParam("判断当前密码是否为默认密码操作失败");

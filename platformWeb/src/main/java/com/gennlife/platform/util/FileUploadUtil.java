@@ -42,6 +42,7 @@ public class FileUploadUtil implements InitializingBean {
             return ParamUtils.errorParam("文件为空");
         } else {
             List<String> list = importsStaffs(fileList, user.getOrgID(), user);
+            //创建最近导入模板
             File orgIDImportResultFile = new File(tempPath + user.getOrg_name() + "导入人员历史.csv");
             return writeResultFile(list, orgIDImportResultFile);
         }
@@ -83,7 +84,7 @@ public class FileUploadUtil implements InitializingBean {
         resultBean.setData(map);
         return gson.toJson(resultBean);
     }
-
+    //处理文件
     public static List<String> importsStaffs(List<String> fileList, String orgID, User user) throws Exception {
         synchronized (Lock) {
             List<String> strList = fileList;
@@ -106,9 +107,11 @@ public class FileUploadUtil implements InitializingBean {
             Integer telIndex = map.get("手机");
             Integer uprofessionIndex = map.get("职称");
             Integer upositionIndex = map.get("职务");
+            Integer statusIndex=map.get("状态");
             Integer effectiveIndex = map.get("生效时间");
             Integer failureIndex=map.get("失效时间");
             List<Lab> labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
+            //获取labs
             if (unumberIndex == null) {
                 for (int index = 1; index < strList.size(); index++) {
                     String line = strList.get(index);
@@ -137,6 +140,13 @@ public class FileUploadUtil implements InitializingBean {
                 }
                 return srcList;
             }
+            if (statusIndex == null) {
+                for (int index = 1; index < strList.size(); index++) {
+                    String line = strList.get(index);
+                    srcList.add(line + ",失败,缺少状态序列");
+                }
+                return srcList;
+            }
             List<User> userList = new LinkedList<>();
             List<String> lineList = new LinkedList<>();
             Role role = AllDao.getInstance().getSyRoleDao().getLabMember(orgID);
@@ -148,11 +158,11 @@ public class FileUploadUtil implements InitializingBean {
                     srcList.add(line + ",失败,缺少数据");
                     continue;
                 } else {
-                    //工号,姓名,邮箱,手机,职称,职务,所属部门
-                    String number = terms[unumberIndex].replaceAll("\n", "");
-                    String name = terms[nameIndex].replaceAll("\n", "");
+                    //工号,姓名,邮箱,手机,职称,职务,所属部门 状态 生效时间 失效时间
+                    String number = terms[unumberIndex].replaceAll("\n", "");//工号
+                    String name = terms[nameIndex].replaceAll("\n", "");//姓名
                     String lab_name = terms[labIndex].replaceAll("\n", "");
-                    String email = terms[emailIndex].replaceAll("\n", "");
+                    String email = terms[emailIndex].replaceAll("\n", "");//邮箱
                     //---
                     if (name == null || name.equals("")) {
                         srcList.add(line + ",失败,姓名为空");
@@ -181,8 +191,6 @@ public class FileUploadUtil implements InitializingBean {
                                 continue;
                             }
                         }
-
-
                     }
                     String uposition = "";
                     if (upositionIndex != null) {
@@ -198,7 +206,7 @@ public class FileUploadUtil implements InitializingBean {
                         try{
                             new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(effective_time);
                         }catch (Exception e){
-                            srcList.add(line + ",失败,生效时间日期格式不对");
+                            srcList.add(line + ",失败,生效时间日期格式不对,格式应该为 2015-01-01 00:00:00");
                             effective_time="";
                             continue;
                         }
@@ -209,8 +217,22 @@ public class FileUploadUtil implements InitializingBean {
                         try{
                             new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(failure_time);
                         }catch (Exception e){
-                            srcList.add(line + ",失败,失效时间日期格式不对");
+                            srcList.add(line + ",失败,失效时间日期格式不对,格式应该为 2015-01-01 00:00:00");
                             failure_time="";
+                            continue;
+                        }
+                    }
+                    String status="";
+                    if(statusIndex!=null){
+                        status=terms[statusIndex];
+                        if("长期有效".equals(status)){
+                            status="1";
+                        }else if("定期有效".equals(status)){
+                            status="2";
+                        }else if("禁用".equals(status)){
+                            status="3";
+                        }else{
+                            srcList.add(line + ",失败,状态名称错误，请从：长期有效，定期有效，禁用中选择");
                             continue;
                         }
                     }
@@ -241,6 +263,7 @@ public class FileUploadUtil implements InitializingBean {
                     addUser.setUprofession(uprofession);
                     addUser.setEffective_time(effective_time);
                     addUser.setFailure_time(failure_time);
+                    addUser.setStatus(status);
                     userList.add(addUser);
                     lineList.add(line);
                 }

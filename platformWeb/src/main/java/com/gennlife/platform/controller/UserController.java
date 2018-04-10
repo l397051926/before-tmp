@@ -57,7 +57,7 @@ public class UserController {
                 view.viewString(ParamUtils.errorParam("参数错误"), response);
                 return;
             }
-            //获取用户名密码
+            //获取用户名密码hospital_1
             User user = processor.login(email, pwd);
             ResultBean resultBean = new ResultBean();
             if (user != null) {

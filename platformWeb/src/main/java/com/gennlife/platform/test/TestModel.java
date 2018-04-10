@@ -14,16 +14,16 @@ public class TestModel {
     public static void main(String[] args) throws ParseException {
 //        System.out.println("abcdefg");
 //
-//        String x=new SimpleDateFormat().format(new Date());
-//
-//        System.out.println(x);
-//        SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd");
-//        Date d1=new Date();
-//        System.out.println(d1);
-//        String a =time.format(d1);
-//        System.out.println(a);
-//        Date date =time.parse(a);
-//        System.out.println(date);
+        String x=new SimpleDateFormat().format(new Date());
+
+        System.out.println(x);
+        SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date d1=new Date();
+        System.out.println(d1);
+        String a =time.format(d1);
+        System.out.println(a);
+        Date date =time.parse(a);
+        System.out.println(date);
 //
 //        try{
 //            String x1="2212.22.2";
@@ -36,9 +36,9 @@ public class TestModel {
 //
 //
 //        System.out.println(1111);
-        String a="1";
-        System.out.println("1".equals(a));
-
+//        String a="1";
+//        System.out.println("1".equals(a));
+//        System.out.println("1".equals(null));
 
     }
 
