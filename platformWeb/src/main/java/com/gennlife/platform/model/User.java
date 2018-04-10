@@ -30,9 +30,20 @@ public class User {
     private Power power = new Power(); // 权限
     private Power frontEndPower = new Power();
 
+    private String status_now ; //当前状态
     private String status;  //1:长期有效、2:定期有效、3:禁用
     private String effective_time;   //有效开始时间
     private String failure_time;    //失效时间
+
+    public String getStatus_now() {
+        return status_now;
+    }
+
+    public void setStatus_now(String status_now) {
+        this.status_now = status_now;
+    }
+
+
 
     public String getStatus() {
         return status;

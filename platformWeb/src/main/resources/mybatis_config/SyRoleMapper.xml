@@ -91,6 +91,13 @@
         gennlife_role
         WHERE gennlife_role.roleid = #{roleid}
     </select>
+    <select id="getRoleByRole" resultType="com.gennlife.platform.model.Role">
+        select
+        <include refid="roleProperty" />
+        FROM
+        gennlife_role
+        WHERE gennlife_role.role = #{role}
+    </select>
     <select id="getRoleByRoleName" resultType="com.gennlife.platform.model.Role">
         select
         <include refid="roleProperty" />

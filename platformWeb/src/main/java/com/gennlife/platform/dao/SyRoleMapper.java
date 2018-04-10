@@ -135,4 +135,11 @@ public interface SyRoleMapper {
     List<String> getSlabNameMappingByLabName(@Param("lab_name") String lab_name, @Param("orgID") String orgID);
 
     List<String> getUserIdByRole(@Param("roleid") int roleid);
+
+    /**
+     * 根据 role 获取 角色数据
+     * @param
+     * @return
+     */
+    Role getRoleByRole(@Param("role") String role);
 }

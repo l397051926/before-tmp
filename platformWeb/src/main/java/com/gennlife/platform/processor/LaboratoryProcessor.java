@@ -428,11 +428,11 @@ public class LaboratoryProcessor {
             map.put("uid", usr.getUid());
             String effective=user.getEffective_time();
             String failure=user.getFailure_time();
-            if(!("1".equals(user.getStatus()))){
+            if(!("长期有效".equals(user.getStatus()))){
                 if(LogUtils.decideDate(effective,failure)){
-                    user.setStatus("1");
+                    user.setStatus_now("当前可用");
                 }else{
-                    user.setStatus("3");
+                    user.setStatus_now("当前不可用");
                 }
             }
             List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(map);
@@ -1397,5 +1397,21 @@ public class LaboratoryProcessor {
             return ParamUtils.errorParam("判断当前科室名称是否存在操作失败");
         }
         return gson.toJson(re);
+    }
+
+    public void addAllRole() {
+        Role roleAll=AllDao.getInstance().getSyRoleDao().getRoleByRole("全院科室数据");
+        if(roleAll!=null) {
+
+            roleAll = new Role();
+            Role roleLab = AllDao.getInstance().getSyRoleDao().getRoleByroleid(1);
+            roleAll.setRole("全院科室数据");
+            roleAll.setOrgID(roleLab.getOrgID());
+            roleAll.setRole_type("0");
+            roleAll.setDesctext("全院科室资源");
+            AllDao.getInstance().getSyRoleDao().insertUserRole(roleAll);
+            //增加 功能
+
+        }
     }
 }
