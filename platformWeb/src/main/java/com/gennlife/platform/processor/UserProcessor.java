@@ -750,4 +750,71 @@ public class UserProcessor {
         User user = UserProcessor.getUserByUids(uid);
         if (user != null) RedisUtil.setUserOnLine(user, sessionID);
     }
+
+
+    public String isExistUserName(JsonObject paramObj, User user) {
+        ResultBean re = null;
+        try{
+            re =new ResultBean();
+            String uname=paramObj.get("uname").getAsString();
+            Integer exuser=AllDao.getInstance().getSyUserDao().existUserName(uname);
+            if(exuser!=0){
+                re.setCode(0);
+                re.setInfo("名称重复");
+                return ParamUtils.errorParam(uname + "用户名字已经存在");
+            }else{
+                re.setCode(1);
+                re.setInfo("名称可用");
+            }
+
+        }catch(Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("判断当前用户名称是否存在操作失败");
+        }
+        return gson.toJson(re);
+    }
+
+    public String isExistUserID(JsonObject paramObj, User user) {
+        ResultBean re = null;
+        try{
+            re =new ResultBean();
+            String unumber=paramObj.get("unumber").getAsString();
+            Integer exuser=AllDao.getInstance().getSyUserDao().existUserNumber(unumber);
+            if(exuser!=0){
+                re.setCode(0);
+                re.setInfo("名称重复");
+                return ParamUtils.errorParam(unumber + "用户工号已经存在");
+            }else{
+                re.setCode(1);
+                re.setInfo("名称可用");
+            }
+
+        }catch(Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("判断当前用户工号是否存在操作失败");
+        }
+        return gson.toJson(re);
+    }
+
+    public String isExistUserEmail(JsonObject paramObj, User user) {
+        ResultBean re = null;
+        try{
+            re =new ResultBean();
+            String uemail=paramObj.get("uemail").getAsString();
+            Integer exuser=AllDao.getInstance().getSyUserDao().existEmail(uemail);
+            if(exuser!=0){
+                re.setCode(0);
+                re.setInfo("名称重复");
+                return ParamUtils.errorParam(uemail + "用户邮箱已经存在");
+            }else{
+                re.setCode(1);
+                re.setInfo("名称可用");
+            }
+
+        }catch(Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("判断当前用户邮箱是否存在操作失败");
+        }
+        return gson.toJson(re);
+    }
 }

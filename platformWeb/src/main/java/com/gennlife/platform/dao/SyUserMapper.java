@@ -362,4 +362,18 @@ public interface SyUserMapper {
      * @return
      */
     String getEffectiveTimeByUid(String uid);
+
+    /**
+     *根据用户名判定是否存在用户
+     * @param uname
+     * @return
+     */
+    Integer existUserName(@Param("uname") String uname);
+
+    /**
+     * 根据用户工号判定用户是否存在
+     * @param unumber
+     * @return
+     */
+    Integer existUserNumber(@Param("unumber") String unumber);
 }

@@ -443,4 +443,58 @@ public class UserController {
         bean.setData(user);
         return gson.toJson(bean);
     }
+
+    @RequestMapping(value="/isExistUserName",method = RequestMethod.GET,produces="application/json;charset=UTF-8")
+    @ResponseBody
+    public String isExistUserName(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            User user = (User) paramRe.getAttribute("currentUser");
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.isExistUserName(paramObj, user);
+        }catch(Exception e){
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("判断当前用户名是否唯一 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/isExistUserID",method = RequestMethod.GET,produces="application/json;charset=UTF-8")
+    @ResponseBody
+    public String isExistUserID(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            User user = (User) paramRe.getAttribute("currentUser");
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.isExistUserID(paramObj, user);
+        }catch(Exception e){
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("判断当前员工号是否唯一 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value="/isExistUserEmail",method = RequestMethod.GET,produces="application/json;charset=UTF-8")
+    @ResponseBody
+    public String isExistUserEmail(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            User user = (User) paramRe.getAttribute("currentUser");
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.isExistUserEmail(paramObj, user);
+        }catch(Exception e){
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("判断当前员工邮箱是否唯一 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }

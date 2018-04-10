@@ -665,4 +665,20 @@
         </foreach>
         AND orgID=#{orgID}
     </update>
+
+    <select id="existUserName" resultType="java.lang.Integer">
+        SELECT
+        count(uid)
+        FROM gennlife_user
+        <where> gennlife_user.uname=#{uname}</where>
+    </select>
+
+    <select id="existUserNumber" resultType="java.lang.Integer">
+        SELECT
+        count(uid)
+        FROM gennlife_user
+        <where> gennlife_user.unumber=#{unumber}</where>
+    </select>
+
+
 </mapper>
