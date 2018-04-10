@@ -1362,7 +1362,7 @@ public class LaboratoryProcessor {
             String failTime = AllDao.getInstance().getSyUserDao().getFailureTimeByUid(uid);
             String effecTime = AllDao.getInstance().getSyUserDao().getEffectiveTimeByUid(uid);
             Date date=new Date();
-            if(!("1".equals(user.getStatus()))){
+            if(!("长期有效".equals(user.getStatus()))){
                 if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
                     return "false";
                 }

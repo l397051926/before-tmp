@@ -226,11 +226,11 @@ public class FileUploadUtil implements InitializingBean {
                     if(statusIndex!=null){
                         status=terms[statusIndex];
                         if("长期有效".equals(status)){
-                            status="1";
+                            status="长期有效";
                         }else if("定期有效".equals(status)){
-                            status="2";
+                            status="定期有效";
                         }else if("禁用".equals(status)){
-                            status="3";
+                            status="禁用";
                         }else{
                             srcList.add(line + ",失败,状态名称错误，请从：长期有效，定期有效，禁用中选择");
                             continue;

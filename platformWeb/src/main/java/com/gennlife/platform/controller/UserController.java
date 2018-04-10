@@ -66,11 +66,11 @@ public class UserController {
                 String failTime=user.getFailure_time();
                 String effectiveTtime=user.getEffective_time();
                 Date date=new Date();
-                if("3".equals(status)){
+                if("禁止".equals(status)){
                     view.viewString(ParamUtils.errorParam("没有权限登陆"), response);
                     return;
                 }
-                if("2".equals(status)){
+                if("定期有效".equals(status)){
                     if(date.after(time.parse(failTime)) || date.before(time.parse(effectiveTtime))){
                         view.viewString(ParamUtils.errorParam("时间失效，没有权限登陆"), response);
                         return;
