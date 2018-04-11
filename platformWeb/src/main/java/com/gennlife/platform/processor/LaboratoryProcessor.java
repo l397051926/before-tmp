@@ -438,7 +438,7 @@ public class LaboratoryProcessor {
                     usr.setStatus_now("当前不可用");
                 }
             }
-            if("长期有效".equals(user.getStatus())){
+            if("长期有效".equals(usr.getStatus())){
                 usr.setStatus_now("当前可用");
             }
             List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(map);
