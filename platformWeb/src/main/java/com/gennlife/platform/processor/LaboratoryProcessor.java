@@ -1363,6 +1363,9 @@ public class LaboratoryProcessor {
             String effecTime = AllDao.getInstance().getSyUserDao().getEffectiveTimeByUid(uid);
             Date date=new Date();
             if(!("长期有效".equals(user.getStatus()))){
+                if("禁用".equals(user.getStatus())){
+                    return "false";
+                }
                 if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
                     return "false";
                 }
@@ -1400,18 +1403,18 @@ public class LaboratoryProcessor {
     }
 
     public void addAllRole() {
-        Role roleAll=AllDao.getInstance().getSyRoleDao().getRoleByRole("全院科室数据");
-        if(roleAll!=null) {
+        Role roleAll=AllDao.getInstance().getSyRoleDao().getRoleByRole("全院科室成员");
+        if(roleAll==null) {
 
             roleAll = new Role();
             Role roleLab = AllDao.getInstance().getSyRoleDao().getRoleByroleid(1);
-            roleAll.setRole("全院科室数据");
+            roleAll.setRole("全院科室成员");
             roleAll.setOrgID(roleLab.getOrgID());
             roleAll.setRole_type("0");
             roleAll.setDesctext("全院科室资源");
-            AllDao.getInstance().getSyRoleDao().insertUserRole(roleAll);
+            Integer  i=AllDao.getInstance().getSyRoleDao().insertUserRole(roleAll);
+            logger.info("全院科室成员 角色创建成功");
             //增加 功能
-
         }
     }
 }

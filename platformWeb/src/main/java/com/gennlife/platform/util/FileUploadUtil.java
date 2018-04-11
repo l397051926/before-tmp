@@ -201,27 +201,9 @@ public class FileUploadUtil implements InitializingBean {
                         uprofession = terms[uprofessionIndex];
                     }
                     String effective_time="";
-                    if(effectiveIndex!=null){
-                        effective_time=terms[effectiveIndex];
-                        try{
-                            new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(effective_time);
-                        }catch (Exception e){
-                            srcList.add(line + ",失败,生效时间日期格式不对,格式应该为 2015-01-01 00:00:00");
-                            effective_time="";
-                            continue;
-                        }
-                    }
+
                     String failure_time="";
-                    if(failureIndex!=null){
-                        failure_time=terms[failureIndex];
-                        try{
-                            new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(failure_time);
-                        }catch (Exception e){
-                            srcList.add(line + ",失败,失效时间日期格式不对,格式应该为 2015-01-01 00:00:00");
-                            failure_time="";
-                            continue;
-                        }
-                    }
+
                     String status="";
                     if(statusIndex!=null){
                         status=terms[statusIndex];
@@ -229,6 +211,34 @@ public class FileUploadUtil implements InitializingBean {
                             status="长期有效";
                         }else if("定期有效".equals(status)){
                             status="定期有效";
+                            if(failureIndex!=null){
+                                failure_time=terms[failureIndex];
+                                try{
+                                    new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(failure_time);
+                                }catch (Exception e){
+                                    srcList.add(line + ",失败,失效时间日期格式不对,格式应该为 2015-01-01 00:00:00");
+                                    failure_time="";
+                                    continue;
+                                }
+                            }else {
+                                srcList.add(line + ",失败,失效时间不能为空");
+                                failure_time="";
+                                continue;
+                            }
+                            if(effectiveIndex!=null){
+                                effective_time=terms[effectiveIndex];
+                                try{
+                                    new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(effective_time);
+                                }catch (Exception e){
+                                    srcList.add(line + ",失败,生效时间日期格式不对,格式应该为 2015-01-01 00:00:00");
+                                    effective_time="";
+                                    continue;
+                                }
+                            }else{
+                                srcList.add(line + ",失败,生效时间不能为空");
+                                failure_time="";
+                                continue;
+                            }
                         }else if("禁用".equals(status)){
                             status="禁用";
                         }else{

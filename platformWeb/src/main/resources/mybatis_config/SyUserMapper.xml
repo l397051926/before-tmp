@@ -111,13 +111,9 @@
             <if test="status != null">
                 status = #{status,jdbcType=VARCHAR},
             </if>
-            <if test="effective_ime != null">
-                effective_ime = #{effective_ime,jdbcType=VARCHAR},
+            <if test="effective_time != null">
+                effective_time = #{effective_time,jdbcType=VARCHAR},
             </if>
-            <if test="effective_ime != null">
-                effective_ime = #{effective_ime,jdbcType=VARCHAR},
-            </if>
-
             <if test="failure_time != null">
                 failure_time = #{failure_time,jdbcType=VARCHAR},
             </if>

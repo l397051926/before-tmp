@@ -66,7 +66,7 @@ public class UserController {
                 String failTime=user.getFailure_time();
                 String effectiveTtime=user.getEffective_time();
                 Date date=new Date();
-                if("禁止".equals(status)){
+                if("禁用".equals(status)){
                     view.viewString(ParamUtils.errorParam("没有权限登陆"), response);
                     return;
                 }
