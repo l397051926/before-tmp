@@ -675,7 +675,6 @@ public class BackstageManagementController {
         try {
             User user = (User) paramRe.getAttribute("currentUser");
             resultStr = processor.isDefaultPassword(user);
-            resultStr="false";
             if("false".equals(resultStr)){
                 //每次刷新页面都会退出
                 String sessionId = paramRe.getSession(false).getId();

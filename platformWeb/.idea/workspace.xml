@@ -4,12 +4,6 @@
     <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/UserController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/test/TestModel.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/test/TestModel.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/FileUploadUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/FileUploadUtil.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis_config/SyUserMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis_config/SyUserMapper.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/update/人员导入模版.csv" afterPath="$PROJECT_DIR$/src/main/resources/update/人员导入模版.csv" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,21 +27,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BackstageManagementController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BackstageManagementController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="633" column="36" lean-forward="false" selection-start-line="633" selection-start-column="36" selection-end-line="633" selection-end-column="36" />
+            <state relative-caret-position="377">
+              <caret line="677" column="42" lean-forward="true" selection-start-line="677" selection-start-column="42" selection-end-line="677" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="140" column="32" lean-forward="true" selection-start-line="140" selection-start-column="32" selection-end-line="140" selection-end-column="32" />
+            <state relative-caret-position="-10270">
+              <caret line="139" column="48" lean-forward="true" selection-start-line="139" selection-start-column="48" selection-end-line="139" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -148,8 +142,8 @@
       <find>getsta</find>
       <find>addstaf</find>
       <find>updateinfo</find>
-      <find>updatein</find>
       <find>updateByUid</find>
+      <find>updatein</find>
     </findStrings>
     <dirStrings>
       <dir>C:\work\Ark-UI_Service\platformWeb</dir>
@@ -193,11 +187,11 @@
         <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/SyRoleMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/test/TestModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/UserController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/FileUploadUtil.java" />
         <option value="$PROJECT_DIR$/src/main/resources/update/人员导入模版.csv" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/SyUserMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java" />
       </list>
     </option>
   </component>
@@ -237,8 +231,8 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1358" />
     <option name="y" value="-8" />
-    <option name="width" value="1364" />
-    <option name="height" value="728" />
+    <option name="width" value="1936" />
+    <option name="height" value="1176" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -641,7 +635,7 @@
       <workItem from="1523276711179" duration="6040000" />
       <workItem from="1523322482684" duration="6682000" />
       <workItem from="1523329479238" duration="27494000" />
-      <workItem from="1523372557275" duration="9685000" />
+      <workItem from="1523372557275" duration="10939000" />
     </task>
     <task id="LOCAL-00001" summary="添加 用户生效时间 和科室部分功能">
       <created>1523283706149</created>
@@ -692,11 +686,18 @@
       <option name="project" value="LOCAL" />
       <updated>1523376061263</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="修改 用户修改bug 修改用户导入问题">
+      <created>1523414720264</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1523414720264</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122436000" />
+    <option name="totallyTimeSpent" value="123690000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
@@ -807,7 +808,8 @@
     <MESSAGE value="增加条件验证 针对前台uiservice 修改bug" />
     <MESSAGE value="增加自动创建 全院科室角色 修改为汉字存储" />
     <MESSAGE value="修改状态判定" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改状态判定" />
+    <MESSAGE value="修改 用户修改bug 修改用户导入问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改 用户修改bug 修改用户导入问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -850,7 +852,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java</url>
-          <line>681</line>
+          <line>680</line>
           <properties />
           <option name="timeStamp" value="55" />
         </line-breakpoint>
@@ -1229,10 +1231,10 @@
         <state relative-caret-position="370">
           <caret line="42" column="36" lean-forward="true" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="36" />
           <folding>
-            <element signature="e#1020#1021#0" expanded="true" />
-            <element signature="e#1053#1054#0" expanded="true" />
-            <element signature="e#1105#1106#0" expanded="true" />
-            <element signature="e#1149#1150#0" expanded="true" />
+            <element signature="e#1020#1021#0" expanded="false" />
+            <element signature="e#1053#1054#0" expanded="false" />
+            <element signature="e#1105#1106#0" expanded="false" />
+            <element signature="e#1149#1150#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1273,14 +1275,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="403">
           <caret line="432" column="28" lean-forward="true" selection-start-line="432" selection-start-column="28" selection-end-line="432" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="633" column="36" lean-forward="false" selection-start-line="633" selection-start-column="36" selection-end-line="633" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -1349,8 +1343,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="140" column="32" lean-forward="true" selection-start-line="140" selection-start-column="32" selection-end-line="140" selection-end-column="32" />
+        <state relative-caret-position="-10270">
+          <caret line="139" column="48" lean-forward="true" selection-start-line="139" selection-start-column="48" selection-end-line="139" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="677" column="42" lean-forward="true" selection-start-line="677" selection-start-column="42" selection-end-line="677" selection-end-column="42" />
           <folding />
         </state>
       </provider>
