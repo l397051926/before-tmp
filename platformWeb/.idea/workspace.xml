@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CommonProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CommonProcessor.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/test/TestModel.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/test/TestModel.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/FileUploadUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/FileUploadUtil.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -53,8 +52,8 @@
       <file leaf-file-name="TestModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/test/TestModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="21" column="46" lean-forward="false" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
+            <state relative-caret-position="737">
+              <caret line="40" column="47" lean-forward="false" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -73,7 +72,7 @@
       <file leaf-file-name="CommonController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
+            <state relative-caret-position="259">
               <caret line="60" column="44" lean-forward="false" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
               <folding />
             </state>
@@ -83,8 +82,8 @@
       <file leaf-file-name="CommonProcessor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CommonProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="80" column="46" lean-forward="false" selection-start-line="80" selection-start-column="46" selection-end-line="80" selection-end-column="46" />
+            <state relative-caret-position="381">
+              <caret line="87" column="53" lean-forward="true" selection-start-line="87" selection-start-column="53" selection-end-line="87" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -93,8 +92,18 @@
       <file leaf-file-name="FileUploadUtil.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/FileUploadUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="423" column="65" lean-forward="false" selection-start-line="423" selection-start-column="65" selection-end-line="423" selection-end-column="65" />
+            <state relative-caret-position="794">
+              <caret line="227" column="45" lean-forward="true" selection-start-line="227" selection-start-column="45" selection-end-line="227" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Lab.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Lab.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="337">
+              <caret line="17" column="18" lean-forward="false" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -123,16 +132,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OrgMapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/OrgMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="692">
-              <caret line="158" column="0" lean-forward="false" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -144,7 +143,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>role</find>
       <find>component</find>
       <find>CommandLineRunner</find>
       <find>@Order</find>
@@ -174,6 +172,7 @@
       <find>orgmapd</find>
       <find>span</find>
       <find>getst</find>
+      <find>sortList</find>
     </findStrings>
     <dirStrings>
       <dir>C:\work\Ark-UI_Service\platformWeb</dir>
@@ -217,11 +216,11 @@
         <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/SyResourceMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/OrgMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/OrgMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/test/TestModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CommonProcessor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/test/TestModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/FileUploadUtil.java" />
       </list>
     </option>
@@ -538,7 +537,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ArkUiServiceApplication">
+  <component name="RunManager" selected="Application.TestModel">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -688,7 +687,7 @@
       <workItem from="1523276711179" duration="6040000" />
       <workItem from="1523322482684" duration="6682000" />
       <workItem from="1523329479238" duration="27494000" />
-      <workItem from="1523372557275" duration="42186000" />
+      <workItem from="1523372557275" duration="43633000" />
     </task>
     <task id="LOCAL-00001" summary="添加 用户生效时间 和科室部分功能">
       <created>1523283706149</created>
@@ -788,11 +787,18 @@
       <option name="project" value="LOCAL" />
       <updated>1523458314214</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="处理导入文件问题">
+      <created>1523459042272</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1523459042272</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154937000" />
+    <option name="totallyTimeSpent" value="156384000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
@@ -844,7 +850,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34744948" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34744948" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3012512" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -856,7 +862,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.65928775" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1881663" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1881663" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -908,7 +914,8 @@
     <MESSAGE value="修改人员导入问题" />
     <MESSAGE value="修改导入人员bug" />
     <MESSAGE value="增加科室搜索功能 变红处理" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加科室搜索功能 变红处理" />
+    <MESSAGE value="处理导入文件问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="处理导入文件问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -951,7 +958,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/test/TestModel.java</url>
-          <line>65</line>
+          <line>71</line>
           <properties />
           <option name="timeStamp" value="60" />
         </line-breakpoint>
@@ -968,7 +975,7 @@
           <option name="timeStamp" value="89" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="90" />
+      <option name="time" value="91" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1393,14 +1400,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Lab.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/mybatis/mybatis/3.0.2/mybatis-3.0.2.jar!/org/apache/ibatis/executor/loader/ResultObjectProxy.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -1444,14 +1443,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/test/TestModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="21" column="46" lean-forward="false" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -1460,9 +1451,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Lab.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="17" column="18" lean-forward="false" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
+        <state relative-caret-position="259">
           <caret line="60" column="44" lean-forward="false" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
           <folding />
         </state>
@@ -1470,16 +1469,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CommonProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="80" column="46" lean-forward="false" selection-start-line="80" selection-start-column="46" selection-end-line="80" selection-end-column="46" />
+        <state relative-caret-position="381">
+          <caret line="87" column="53" lean-forward="true" selection-start-line="87" selection-start-column="53" selection-end-line="87" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/test/TestModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="737">
+          <caret line="40" column="47" lean-forward="false" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/FileUploadUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="423" column="65" lean-forward="false" selection-start-line="423" selection-start-column="65" selection-end-line="423" selection-end-column="65" />
+        <state relative-caret-position="794">
+          <caret line="227" column="45" lean-forward="true" selection-start-line="227" selection-start-column="45" selection-end-line="227" selection-end-column="45" />
           <folding />
         </state>
       </provider>

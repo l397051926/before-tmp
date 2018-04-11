@@ -1,7 +1,9 @@
 package com.gennlife.platform.test;
 
+import com.gennlife.platform.model.Lab;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.util.ParamUtils;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -28,11 +30,15 @@ public class TestModel {
 //        String x=new SimpleDateFormat().format(new Date());
 //
 //        System.out.println(x);
-//        SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        SimpleDateFormat time1 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-//        String date1="2020/1/1 0:00:00";
-//        Date date=time1.parse(date1);
-//        System.out.println("Aaa");
+        SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat time1 = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        String date1="2020/1/1 0:00";
+        Date date=time1.parse(date1);
+        System.out.println("Aaa");
+
+        Lab lab=new Lab();
+        lab.setLab_name("aaa");
+        System.out.println(new Gson().toJson(lab));
 
 //        Date d1=new Date();
 //        System.out.println(d1);

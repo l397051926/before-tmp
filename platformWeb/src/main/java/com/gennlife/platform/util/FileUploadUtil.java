@@ -220,10 +220,10 @@ public class FileUploadUtil implements InitializingBean {
                                     continue;
                                 }
                                 try{
-                                    Date failDate=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(failure_time);
+                                    Date failDate=new SimpleDateFormat("yyyy/MM/dd HH:mm").parse(failure_time);
                                     failure_time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(failDate);
                                 }catch (Exception e){
-                                    srcList.add(line + ",失败,失效时间日期格式不对 格式应该为 2020/1/1 00:00:00");
+                                    srcList.add(line + ",失败,失效时间日期格式不对 格式应该为 2020/1/1 00:00");
                                     failure_time="";
                                     continue;
                                 }
@@ -237,10 +237,11 @@ public class FileUploadUtil implements InitializingBean {
                                 }
                                 try{
                                     logger.info("---------------"+effective_time);
-                                    Date effDate=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(effective_time);
+                                    //这里需要处理这种形式
+                                    Date effDate=new SimpleDateFormat("yyyy/MM/dd HH:mm").parse(effective_time);
                                     effective_time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(effDate);
                                 }catch (Exception e){
-                                    srcList.add(line + ",失败,生效时间日期格式不对 格式应该为 2020/1/1 00:00:00");
+                                    srcList.add(line + ",失败,生效时间日期格式不对 格式应该为 2020/1/1 00:00");
                                     effective_time="";
                                     continue;
                                 }
@@ -460,6 +461,7 @@ public class FileUploadUtil implements InitializingBean {
             List<Lab> updateList = new LinkedList<>();
             logger.info("关联无问题" + gson.toJson(sortList));
             for (Lab lab : sortList) {
+                logger.info(gson.toJson(lab));
                 if ("未处理".equals(lab.status)) {
                     Lab exLab = getLabByNameFilter(lab.getLab_name(), sortList);
                     if (exLab == null) {
