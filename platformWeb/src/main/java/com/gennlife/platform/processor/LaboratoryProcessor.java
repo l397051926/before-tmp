@@ -171,24 +171,14 @@ public class LaboratoryProcessor {
      * @return
      */
     public static Organization getOrganization(String orgID) {
-        String key="鼻咽";
+
         Organization organization = AllDao.getInstance().getOrgDao().getOrganization(orgID);
         List<Lab> labs =null;
         Integer maxLevel =null;
-//        if(key==null){
-//            labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
-//            maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
-//        }else {
-//            labs = AllDao.getInstance().getOrgDao().getLabsBylabId(key,orgID);
-//            maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevelBylabId(key,orgID);
-//        }
+
         labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
         maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
-        if(!StringUtils.isEmpty(key)){
-            Set<Lab> resultlabs=new HashSet<>();
-            spellLab(labs,key,resultlabs);
-            labs =new LinkedList<>(resultlabs);
-        }
+
         if (maxLevel == null) {
             return organization;
         }
@@ -211,7 +201,7 @@ public class LaboratoryProcessor {
         maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
         if(!StringUtils.isEmpty(key)){
             Set<Lab> resultlabs=new HashSet<>();
-            spellLab(labs,key,resultlabs);
+            spellLab(labs,key,resultlabs,key);
             labs =new LinkedList<>(resultlabs);
         }
         if (maxLevel == null) {
@@ -222,16 +212,16 @@ public class LaboratoryProcessor {
         return organization;
     }
 
-    public static void spellLab(List<Lab> labs,String key,Set<Lab> resultlabs){
+    public static void spellLab(List<Lab> labs,String key,Set<Lab> resultlabs,String key1){
 
         for(Lab lab :labs){
             String lab_name=lab.getLab_name();
             if(lab_name.contains(key) || lab.getLabID().contains(key)){
                 if(!resultlabs.contains(lab)){
-                    lab.setLab_name(lab_name.replaceAll(key,"<span style='color:red'>" + lab_name + "</span>"));
+                    lab.setLab_name(lab_name.replaceAll(key1,"<span style='color:red'>" + key1 + "</span>"));
                     resultlabs.add(lab);
                     if(lab.getLab_parent()!=null && !("hospital_1".equals(lab.getLab_parent()) )){
-                        spellLab(labs,lab.getLab_parent(),resultlabs);
+                        spellLab(labs,lab.getLab_parent(),resultlabs,key1);
                     }
                 }
             }
