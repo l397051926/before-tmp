@@ -58,7 +58,7 @@ public class CommonController implements InitializingBean {
         Long start = System.currentTimeMillis();
         String resultStr = "";
         try {
-            System.out.println("*-----------开始导入科室");
+            logger.info("*-----------开始导入科室");
             User user = (User) paramRe.getAttribute("currentUser");
             resultStr = processor.uploadFileForImportLab(file, user);
             logger.info("上传文件导入科室 耗时:" + (System.currentTimeMillis() - start) + "ms");

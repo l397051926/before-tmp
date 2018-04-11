@@ -44,11 +44,14 @@ public class BackstageManagementController {
     String postOrgMapData(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
+        String key=null;
         try {
             String param = ParamUtils.getParam(paramRe);
             User user = (User) paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            String key =paramObj.get("key").getAsString();
+            if(paramObj.has("key")){
+                 key =paramObj.get("key").getAsString();
+            }
             resultStr = processor.orgMapData(user,key);
         } catch (DataIntegrityViolationException e) {
             resultStr = DataIntegrityViolationExceptionMsg();

@@ -213,7 +213,7 @@ public class FileUploadUtil implements InitializingBean {
                             status="定期有效";
                             if(failureIndex!=null){
                                 failure_time=terms[failureIndex];
-                                System.out.println("---------------"+failure_time);
+                                logger.info("---------------"+failure_time);
                                 if(StringUtils.isEmpty(failure_time)){
                                     srcList.add(line + ",失败,失效时间不能为空");
                                     failure_time="";
@@ -236,7 +236,7 @@ public class FileUploadUtil implements InitializingBean {
                                     continue;
                                 }
                                 try{
-                                    System.out.println("---------------"+effective_time);
+                                    logger.info("---------------"+effective_time);
                                     Date effDate=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(effective_time);
                                     effective_time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(effDate);
                                 }catch (Exception e){
@@ -373,7 +373,7 @@ public class FileUploadUtil implements InitializingBean {
     public static List<String> importLabs(List<String> fileList, String orgID, String uid) throws Exception {
         synchronized (Lock) {
 
-            System.out.println("*--------------------开始处理科室信息");
+            logger.info("*--------------------开始处理科室信息");
             List<String> strList = fileList;
             List<String> srcList = new LinkedList<>();
             List<Lab> newList = new LinkedList<>();
@@ -388,9 +388,9 @@ public class FileUploadUtil implements InitializingBean {
                         String parentName = data[1].trim();
                         String departName = data[2].trim();
                         String partName = AllDao.getInstance().getOrgDao().getDepartNameByParentName(parentName);
-                        System.out.println("*---------------name: "+name);
-                        System.out.println("*--------------parentName"+parentName);
-                        System.out.println("*----------------departName"+departName);
+                        logger.info("*---------------name: "+name);
+                        logger.info("*--------------parentName"+parentName);
+                        logger.info("*----------------departName"+departName);
                         if (StringUtils.isEmpty(name)) {
                             srcList.add(str + ",失败,科室名称为空");
                             continue;
@@ -430,7 +430,7 @@ public class FileUploadUtil implements InitializingBean {
                     srcList.add(str + ",失败,缺少数据");
                 }
             }
-            System.out.println("*---------------------反向遍历去重");
+            logger.info("*---------------------反向遍历去重");
             Set<String> names = new HashSet<>();
             List<Lab> invertedList = new LinkedList<>();
             for (int i = newList.size() - 1; i >= 0; i--) {//反向遍历去重
