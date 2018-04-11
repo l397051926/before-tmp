@@ -45,8 +45,11 @@ public class BackstageManagementController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
+            String param = ParamUtils.getParam(paramRe);
             User user = (User) paramRe.getAttribute("currentUser");
-            resultStr = processor.orgMapData(user);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            String key =paramObj.get("key").getAsString();
+            resultStr = processor.orgMapData(user,key);
         } catch (DataIntegrityViolationException e) {
             resultStr = DataIntegrityViolationExceptionMsg();
         } catch (Exception e) {
@@ -675,6 +678,7 @@ public class BackstageManagementController {
         try {
             User user = (User) paramRe.getAttribute("currentUser");
             resultStr = processor.isDefaultPassword(user);
+
             if("false".equals(resultStr)){
                 //每次刷新页面都会退出
                 String sessionId = paramRe.getSession(false).getId();

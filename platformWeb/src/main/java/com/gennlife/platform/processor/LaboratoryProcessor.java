@@ -32,10 +32,10 @@ public class LaboratoryProcessor {
      * @param user
      * @return
      */
-    public String orgMapData(User user) {
+    public String orgMapData(User user,String key) {
         String orgID = user.getOrgID();
         //通过科室数据，初始化的数据结构
-        Organization organization = getOrganization(orgID);
+        Organization organization = getOrganization(orgID,key);
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(1);
         resultBean.setData(organization);
@@ -171,15 +171,71 @@ public class LaboratoryProcessor {
      * @return
      */
     public static Organization getOrganization(String orgID) {
+        String key="鼻咽";
         Organization organization = AllDao.getInstance().getOrgDao().getOrganization(orgID);
-        List<Lab> labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
-        Integer maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
+        List<Lab> labs =null;
+        Integer maxLevel =null;
+//        if(key==null){
+//            labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
+//            maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
+//        }else {
+//            labs = AllDao.getInstance().getOrgDao().getLabsBylabId(key,orgID);
+//            maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevelBylabId(key,orgID);
+//        }
+        labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
+        maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
+        if(!StringUtils.isEmpty(key)){
+            Set<Lab> resultlabs=new HashSet<>();
+            spellLab(labs,key,resultlabs);
+            labs =new LinkedList<>(resultlabs);
+        }
         if (maxLevel == null) {
             return organization;
         }
         List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel);
         organization.setLabs(treeLabs);
         return organization;
+    }
+    public static Organization getOrganization(String orgID,String key) {
+        Organization organization = AllDao.getInstance().getOrgDao().getOrganization(orgID);
+        List<Lab> labs =null;
+        Integer maxLevel =null;
+//        if(key==null){
+//            labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
+//            maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
+//        }else {
+//            labs = AllDao.getInstance().getOrgDao().getLabsBylabId(key,orgID);
+//            maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevelBylabId(key,orgID);
+//        }
+        labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
+        maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
+        if(!StringUtils.isEmpty(key)){
+            Set<Lab> resultlabs=new HashSet<>();
+            spellLab(labs,key,resultlabs);
+            labs =new LinkedList<>(resultlabs);
+        }
+        if (maxLevel == null) {
+            return organization;
+        }
+        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel);
+        organization.setLabs(treeLabs);
+        return organization;
+    }
+
+    public static void spellLab(List<Lab> labs,String key,Set<Lab> resultlabs){
+
+        for(Lab lab :labs){
+            String lab_name=lab.getLab_name();
+            if(lab_name.contains(key) || lab.getLabID().contains(key)){
+                if(!resultlabs.contains(lab)){
+                    lab.setLab_name(lab_name.replaceAll(key,"<span style='color:red'>" + lab_name + "</span>"));
+                    resultlabs.add(lab);
+                    if(lab.getLab_parent()!=null && !("hospital_1".equals(lab.getLab_parent()) )){
+                        spellLab(labs,lab.getLab_parent(),resultlabs);
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -954,8 +1010,10 @@ public class LaboratoryProcessor {
 
     public String getResourceTree(JsonObject paramObj, User user) {
         String type = null;
+        String key = "aa";
         try {
             type = paramObj.get("type").getAsString();
+
         } catch (Exception e) {
             return ParamUtils.errorParam("参数错误");
         }

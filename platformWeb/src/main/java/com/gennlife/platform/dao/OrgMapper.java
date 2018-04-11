@@ -154,4 +154,8 @@ public interface OrgMapper {
      * @return
      */
     Lab getLabByOnelabName(@Param("lab_name") String lab_name);
+
+    List<Lab> getLabsBylabId(@Param("skey") String key, @Param("orgID") String orgID);
+
+    Integer getMaxlabLevelBylabId(@Param("skey") String key, @Param("orgID") String orgID);
 }

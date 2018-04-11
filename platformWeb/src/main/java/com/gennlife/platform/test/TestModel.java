@@ -17,16 +17,22 @@ import java.util.Date;
  **/
 public class TestModel {
     public static void main(String[] args) throws ParseException {
+
+        String x="abcdefg";
+        System.out.println(x.contains("abcdefg"));
+
+
+
 //        System.out.println("abcdefg");
 //
 //        String x=new SimpleDateFormat().format(new Date());
 //
 //        System.out.println(x);
-        SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        SimpleDateFormat time1 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        String date1="2020/1/1 0:00:00";
-        Date date=time1.parse(date1);
-        System.out.println("Aaa");
+//        SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        SimpleDateFormat time1 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//        String date1="2020/1/1 0:00:00";
+//        Date date=time1.parse(date1);
+//        System.out.println("Aaa");
 
 //        Date d1=new Date();
 //        System.out.println(d1);

@@ -244,5 +244,23 @@
         where lab_name = #{lab_name}
     </select>
 
+    <select id="getLabsBylabId" resultType="java.lang.String" parameterType="String">
+        SELECT
+        DISTINCT (lab_name)
+        FROM
+        gennlife_lab
+        WHERE
+        (lab_name LIKE CONCAT(CONCAT('%', #{skey}), '%'))
+        AND
+        gennlife_lab.orgID = #{orgID}
+    </select>
+
+    <select id="getMaxlabLevelBylabId" resultType="Integer" parameterType="String">
+        select
+        max(lab_level)
+        from gennlife_lab
+        where orgID = #{orgID} AND lab_name = #{skey}
+    </select>
+
 
 </mapper>
