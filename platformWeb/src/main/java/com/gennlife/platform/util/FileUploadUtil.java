@@ -213,6 +213,11 @@ public class FileUploadUtil implements InitializingBean {
                             status="定期有效";
                             if(failureIndex!=null){
                                 failure_time=terms[failureIndex];
+                                if(StringUtils.isEmpty(failure_time)){
+                                    srcList.add(line + ",失败,失效时间不能为空");
+                                    failure_time="";
+                                    continue;
+                                }
                                 try{
                                     Date failDate=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(failure_time);
                                     failure_time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(failDate);
@@ -221,13 +226,14 @@ public class FileUploadUtil implements InitializingBean {
                                     failure_time="";
                                     continue;
                                 }
-                            }else {
-                                srcList.add(line + ",失败,失效时间不能为空");
-                                failure_time="";
-                                continue;
                             }
                             if(effectiveIndex!=null){
                                 effective_time=terms[effectiveIndex];
+                                if(StringUtils.isEmpty(effective_time)){
+                                    srcList.add(line + ",失败,生效时间不能为空");
+                                    failure_time="";
+                                    continue;
+                                }
                                 try{
                                     Date effDate=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(effective_time);
                                     effective_time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(effDate);
@@ -236,10 +242,6 @@ public class FileUploadUtil implements InitializingBean {
                                     effective_time="";
                                     continue;
                                 }
-                            }else{
-                                srcList.add(line + ",失败,生效时间不能为空");
-                                failure_time="";
-                                continue;
                             }
                         }else if("禁用".equals(status)){
                             status="禁用";

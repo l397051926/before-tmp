@@ -782,6 +782,7 @@ public class LaboratoryProcessor {
         if (role.getRole_type() == null) {
             role.setRole_type("0");
         }
+        //从数据尝试获取角色
         Role exRole = AllDao.getInstance().getSyRoleDao().getRoleByRoleName(user.getOrgID(), role.getRole());
         if (exRole != null) {
             return ParamUtils.errorParam("角色名称已经存在");
