@@ -22,7 +22,12 @@ public class TestModel {
 //        String x=new SimpleDateFormat().format(new Date());
 //
 //        System.out.println(x);
-//        SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat time1 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        String date1="2020/1/1 0:00:00";
+        Date date=time1.parse(date1);
+        System.out.println("Aaa");
+
 //        Date d1=new Date();
 //        System.out.println(d1);
 //        String a =time.format(d1);
@@ -45,10 +50,14 @@ public class TestModel {
 //        System.out.println("1".equals(a));
 //        System.out.println("1".equals(null));
 
-        JsonParser jsonParser=new JsonParser();
-        String param = "{\"role\":\"aaa\",\"staff\":[\"admin@ytyhdyy.com\"],\"resources\":[],\"desctext\":\"\"}";
-        JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-        System.out.println("aaa");
+//        JsonParser jsonParser=new JsonParser();
+//        String param = "{\"role\":\"aaa\",\"staff\":[\"admin@ytyhdyy.com\"],\"resources\":[],\"desctext\":\"\"}";
+//        JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+//        System.out.println("aaa");
+//
+//        User user =new User();
+//        user.setStatus_now("agcd");
+//        System.out.println("asdf");
     }
 
 }

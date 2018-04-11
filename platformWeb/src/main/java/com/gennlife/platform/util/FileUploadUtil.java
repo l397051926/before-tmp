@@ -214,9 +214,10 @@ public class FileUploadUtil implements InitializingBean {
                             if(failureIndex!=null){
                                 failure_time=terms[failureIndex];
                                 try{
-                                    new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(failure_time);
+                                    Date failDate=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(failure_time);
+                                    failure_time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(failDate);
                                 }catch (Exception e){
-                                    srcList.add(line + ",失败,失效时间日期格式不对,格式应该为 2015-01-01 00:00:00");
+                                    srcList.add(line + ",失败,失效时间日期格式不对 格式应该为 2020/1/1 00:00:00");
                                     failure_time="";
                                     continue;
                                 }
@@ -228,9 +229,10 @@ public class FileUploadUtil implements InitializingBean {
                             if(effectiveIndex!=null){
                                 effective_time=terms[effectiveIndex];
                                 try{
-                                    new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(effective_time);
+                                    Date effDate=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(effective_time);
+                                    effective_time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(effDate);
                                 }catch (Exception e){
-                                    srcList.add(line + ",失败,生效时间日期格式不对,格式应该为 2015-01-01 00:00:00");
+                                    srcList.add(line + ",失败,生效时间日期格式不对 格式应该为 2020/1/1 00:00:00");
                                     effective_time="";
                                     continue;
                                 }

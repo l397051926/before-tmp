@@ -426,14 +426,20 @@ public class LaboratoryProcessor {
             Map<String, Object> map = new HashMap<>();
             map.put("orgID", usr.getOrgID());
             map.put("uid", usr.getUid());
-            String effective=user.getEffective_time();
-            String failure=user.getFailure_time();
-            if(!("长期有效".equals(user.getStatus()))){
+            String effective=usr.getEffective_time();
+            String failure=usr.getFailure_time();
+            if("禁用".equals(usr.getStatus())){
+                usr.setStatus_now("当前不可用");
+            }
+            if("定期有效".equals(usr.getStatus())){
                 if(LogUtils.decideDate(effective,failure)){
-                    user.setStatus_now("当前可用");
+                    usr.setStatus_now("当前可用");
                 }else{
-                    user.setStatus_now("当前不可用");
+                    usr.setStatus_now("当前不可用");
                 }
+            }
+            if("长期有效".equals(user.getStatus())){
+                usr.setStatus_now("当前可用");
             }
             List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(map);
             if (rolesList != null) {
