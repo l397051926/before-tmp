@@ -249,7 +249,7 @@ public class FileUploadUtil implements InitializingBean {
                         }else if("禁用".equals(status)){
                             status="禁用";
                         }else{
-                            srcList.add(line + ",失败,状态名称错误，请从：长期有效，定期有效，禁用中选择");
+                            srcList.add(line + ",失败,状态名称错误 请从：长期有效、定期有效、禁用中选择");
                             continue;
                         }
                     }
@@ -381,7 +381,7 @@ public class FileUploadUtil implements InitializingBean {
             for (String str : strList) {
                 str = str.replace("\r", "");
                 String[] data = str.split(",");
-                if (data.length >= 2) {
+                if (data.length >= 3) {
                     if ("科室名称".equals(data[0].trim())) {
                         srcList.add(str);
                     } else {
@@ -389,8 +389,12 @@ public class FileUploadUtil implements InitializingBean {
                         String parentName = data[1].trim();
                         String departName = data[2].trim();
                         String partName = AllDao.getInstance().getOrgDao().getDepartNameByParentName(parentName);
-                        if(StringUtils.isEmpty(partName)){
+                        if("医院".equals(parentName)){
                             partName="行政管理类";
+                        }
+                        if(StringUtils.isEmpty(partName)){
+                            srcList.add(str + ",失败,科室不存在");
+                            continue;
                         }
                         logger.info("*---------------name: "+name);
                         logger.info("*--------------parentName"+parentName);
@@ -414,7 +418,7 @@ public class FileUploadUtil implements InitializingBean {
                             srcList.add(str + ",失败,部门类别为空");
                             continue;
                         } else if(DepartDecide.decide(departName,partName)){
-                            srcList.add(str + ",上级科室类型为: "+partName+"，当前科室类型为: "+departName+ "，不符合科室类型关系约束");
+                            srcList.add(str + ",失败,上级科室类型为: "+partName+" 当前科室类型为: "+departName+ " 不符合科室类型关系约束");
                             continue;
                         } else {
                             Lab lab = new Lab();

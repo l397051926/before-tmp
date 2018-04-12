@@ -19,6 +19,16 @@ public class Role {
     private Object users;
     private Object staff;
 
+    private String role_privilege;
+
+    public String getRole_privilege() {
+        return role_privilege;
+    }
+
+    public void setRole_privilege(String role_privilege) {
+        this.role_privilege = role_privilege;
+    }
+
     public void setRoleid(Integer roleid) {
         this.roleid = roleid;
     }

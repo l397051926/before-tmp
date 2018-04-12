@@ -6,6 +6,7 @@ import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import org.springframework.util.StringUtils;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -22,7 +23,7 @@ public class TestModel {
 
         String x="abcdefg";
         System.out.println(x.contains("abcdefg"));
-
+        System.out.println(!StringUtils.isEmpty(x));
 
 
 //        System.out.println("abcdefg");
@@ -30,15 +31,15 @@ public class TestModel {
 //        String x=new SimpleDateFormat().format(new Date());
 //
 //        System.out.println(x);
-        SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        SimpleDateFormat time1 = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-        String date1="2020/1/1 0:00";
-        Date date=time1.parse(date1);
-        System.out.println("Aaa");
-
-        Lab lab=new Lab();
-        lab.setLab_name("aaa");
-        System.out.println(new Gson().toJson(lab));
+//        SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        SimpleDateFormat time1 = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+//        String date1="2020/1/1 0:00";
+//        Date date=time1.parse(date1);
+//        System.out.println("Aaa");
+//
+//        Lab lab=new Lab();
+//        lab.setLab_name("aaa");
+//        System.out.println(new Gson().toJson(lab));
 
 //        Date d1=new Date();
 //        System.out.println(d1);

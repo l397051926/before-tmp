@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.util.StringUtils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -77,7 +78,9 @@ public class LaboratoryProcessor {
             uid = paramObj.get("uid").getAsString();
             lab_parent = paramObj.get("lab_parent").getAsString();
             lab_name = paramObj.get("lab_name").getAsString();
-            depart_name = paramObj.get("depart_name").getAsString();
+            if(paramObj.has("depart_name")){
+                depart_name = paramObj.get("depart_name").getAsString();
+            }
             if (paramObj.has("lab_leader")) {
                 lab_leader = paramObj.get("lab_leader").getAsString();
             }
@@ -334,7 +337,9 @@ public class LaboratoryProcessor {
         try {
             labID = paramObj.get("labID").getAsString();
             lab_name = paramObj.get("lab_name").getAsString();
-            depart_name=paramObj.get("depart_name").getAsString();
+            if(paramObj.has("depart_name")){
+                depart_name=paramObj.get("depart_name").getAsString();
+            }
             if (paramObj.has("lab_leader")) {
                 lab_leader = paramObj.get("lab_leader").getAsString();
             }
@@ -527,6 +532,23 @@ public class LaboratoryProcessor {
         String name = adduser.getUname();
         String unumber = adduser.getUnumber();
         String lab_name = adduser.getLab_name();
+        String efftime=adduser.getEffective_time();
+        String failtime=adduser.getFailure_time();
+        if(!StringUtils.isEmpty(efftime) && !StringUtils.isEmpty(failtime)){
+            try {
+                Date etime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(efftime);
+                Date ftime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(failtime);
+                if(etime.after(ftime)){
+                    resultBean.addProperty("code", 0);
+                    resultBean.addProperty("info", "日期格式不对，失效时间在生效时间前");
+                    return resultBean;
+                }
+            } catch (ParseException e) {
+                resultBean.addProperty("code", 0);
+                resultBean.addProperty("info", "日期格式不对");
+                return resultBean;
+            }
+        }
         if (name == null || "".equals(name)) {
             resultBean.addProperty("code", 0);
             resultBean.addProperty("info", "姓名不合法");

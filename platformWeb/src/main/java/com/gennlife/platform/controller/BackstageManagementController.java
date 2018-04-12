@@ -715,6 +715,23 @@ public class BackstageManagementController {
         return resultStr;
     }
 
+    @RequestMapping(value="/isExistRoleName",method = RequestMethod.POST,produces="application/json;charset=UTF-8")
+    @ResponseBody
+    public String isExistRoleName(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.isExistLabName(paramObj);
+        }catch(Exception e){
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("判断当前科室名称是否唯一 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
     /*
     *
     @RequestMapping(value="/isExistLabName",method = RequestMethod.GET,produces="application/json;charset=UTF-8")

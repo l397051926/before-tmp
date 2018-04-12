@@ -17,7 +17,7 @@
         <result column="depart_name" property="depart_name" jdbcType="VARCHAR" />
     </resultMap>
     <sql id="roleProperty">
-        gennlife_role.roleid,role,orgID,desctext,role_type,ctime,creator,creatorID
+        gennlife_role.roleid,role,orgID,desctext,role_type,ctime,creator,creatorID,role_privilege
     </sql>
     <select id="getRoles" resultMap="com.gennlife.platform.model.Role"  parameterType="map">
         select
