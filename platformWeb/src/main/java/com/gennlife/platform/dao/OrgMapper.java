@@ -146,6 +146,11 @@ public interface OrgMapper {
 
     int updateSubLabPid(@Param("labIDs") String[] labIDs, @Param("orgID") String orgID, @Param("pid") String pid);
 
+    /**
+     * 根据 labname 查找其 departname
+     * @param lab_name
+     * @return
+     */
     String getDepartNameByParentName(@Param("lab_name") String lab_name);
 
     /**

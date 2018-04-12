@@ -389,6 +389,9 @@ public class FileUploadUtil implements InitializingBean {
                         String parentName = data[1].trim();
                         String departName = data[2].trim();
                         String partName = AllDao.getInstance().getOrgDao().getDepartNameByParentName(parentName);
+                        if(StringUtils.isEmpty(partName)){
+                            partName="行政管理类";
+                        }
                         logger.info("*---------------name: "+name);
                         logger.info("*--------------parentName"+parentName);
                         logger.info("*----------------departName"+departName);
