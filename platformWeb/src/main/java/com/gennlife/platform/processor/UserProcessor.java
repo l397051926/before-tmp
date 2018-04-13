@@ -50,7 +50,7 @@ public class UserProcessor {
                 return null;
             } else {
                 long s = System.currentTimeMillis();
-                user = getUserByUids(user.getUid());
+                user = getUserByUids(user.getUid());//~~~~~~~~~~~~~~
                 long e = System.currentTimeMillis();
                 logger.info("登录时加载权限信息耗时 " + (e - s) + " ms");
                 return user;
@@ -221,10 +221,10 @@ public class UserProcessor {
             //System.out.println("设置组成员="+(start6-start5)+"ms");
             //
             Power frontEndPower = power.deepCopy();
-            user.setFrontEndPower(frontEndPower);
+            user.setFrontEndPower(frontEndPower);//前端可视化
             try {
                 Map<String, List<String>> mapDep = getDepartmentFromMysql(AllDao.getInstance().getSyRoleDao().getSlabNames());
-                power.setHas_search(addDepartmentPower(power.getHas_search(), mapDep));
+                power.setHas_search(addDepartmentPower(power.getHas_search(), mapDep));//更改方案，我查询其父级下面所有子科室
                 power.setHas_searchExport(addDepartmentPower(power.getHas_searchExport(), mapDep));
             } catch (Exception e) {
                 logger.error("科室映射失败：" + e.getMessage());
@@ -320,7 +320,7 @@ public class UserProcessor {
         return copy;
     }
 
-
+    //加一组gennlife_resource 若其下有映射，在加一组拼接特定单词的映射
     public static Set<Resource> addDepartmentPower(Collection<Resource> list, Map<String, List<String>> departNames) {
         JsonArray resource = gson.toJsonTree(list).getAsJsonArray();
         JsonArray insert = new JsonArray();
@@ -331,7 +331,7 @@ public class UserProcessor {
             insert.add(json);
             if (departName != null && departName.size() > 0) {
                 for (String department : departName) {
-                    JsonObject jsonCopy = powerSearchCopy(jsonobj);
+                    JsonObject jsonCopy = powerSearchCopy(jsonobj);//把特定的词提出来 存入jsonobject
                     jsonCopy.addProperty("slab_name", department);
                     insert.add(jsonCopy);
                 }
@@ -342,7 +342,7 @@ public class UserProcessor {
         return gson.fromJson(insert, new TypeToken<TreeSet<Resource>>() {
         }.getType());
     }
-
+    //将相同的labid departname放入list中，每个labid 当为key
     public static Map<String, List<String>> getDepartmentFromMysql(List<DepartmentMap> departName) {
         Map<String, List<String>> mapDep = new HashMap<String, List<String>>();
         for (DepartmentMap dep : departName) {
@@ -370,6 +370,12 @@ public class UserProcessor {
         }
     }
 
+    /**
+     * 转换本科室
+     * @param user
+     * @param rolesList
+     * @return
+     */
     public static Power transformRole(User user, List<Role> rolesList) {
         if (rolesList == null) {
             return null;

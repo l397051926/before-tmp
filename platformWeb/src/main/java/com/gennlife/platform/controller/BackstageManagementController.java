@@ -723,12 +723,12 @@ public class BackstageManagementController {
         try{
             String param = ParamUtils.getParam(paramRe);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.isExistLabName(paramObj);
+            resultStr = processor.isExistRoleName(paramObj);
         }catch(Exception e){
             logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("判断当前科室名称是否唯一 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        logger.info("判断当前角色名称是否唯一 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 

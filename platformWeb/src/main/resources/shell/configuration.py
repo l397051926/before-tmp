@@ -21,7 +21,7 @@ def sortItem(itemArray,allSortIndexName):
     return newArray
 
 def process():
-    data = xlrd.open_workbook('D:\\副本.xlsx'.decode('utf-8'))
+    data = xlrd.open_workbook('c:\\opt\副本.xlsx'.decode('utf-8'))
     allItemList = OrderedDict()
     allItemListCopy = OrderedDict()
     sheet = data.sheets()[0]

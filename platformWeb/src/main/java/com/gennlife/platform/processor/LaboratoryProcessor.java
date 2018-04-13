@@ -1466,7 +1466,6 @@ public class LaboratoryProcessor {
             if(lab!=null){
                 re.setCode(0);
                 re.setInfo("名称重复");
-                return ParamUtils.errorParam(labName + "科室名字已经存在");
             }else{
                 re.setCode(1);
                 re.setInfo("名称可用");
@@ -1493,5 +1492,29 @@ public class LaboratoryProcessor {
             logger.info("全院科室成员 角色创建成功");
             //增加 功能
         }
+    }
+
+    public String isExistRoleName(JsonObject paramObj) {
+        ResultBean re = null;
+        try{
+            re =new ResultBean();
+            String roleName=paramObj.get("role_name").getAsString();
+            if(StringUtils.isEmpty(roleName)){
+                return ParamUtils.errorParam(roleName + "角色名字不能为空");
+            }
+            Role role=AllDao.getInstance().getSyRoleDao().getRoleByRole(roleName);
+            if(role!=null){
+                re.setCode(0);
+                re.setInfo("名称重复");
+            }else{
+                re.setCode(1);
+                re.setInfo("名称可用");
+            }
+
+        }catch(Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("判断当前科室名称是否存在操作失败");
+        }
+        return gson.toJson(re);
     }
 }
