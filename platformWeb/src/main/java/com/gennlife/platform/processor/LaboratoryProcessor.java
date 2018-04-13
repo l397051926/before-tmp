@@ -1493,9 +1493,31 @@ public class LaboratoryProcessor {
             roleAll.setOrgID(roleLab.getOrgID());
             roleAll.setRole_type("0");
             roleAll.setDesctext("全院科室资源");
+            roleAll.setRole_privilege("1");
             Integer  i=AllDao.getInstance().getSyRoleDao().insertUserRole(roleAll);
+            roleAll=AllDao.getInstance().getSyRoleDao().getRoleByRole("全院科室成员");
             logger.info("全院科室成员 角色创建成功");
-            //增加 功能
+            //增加 功能 resource
+            Resource resource=new Resource();
+            resource.setRoleid(roleAll.getRoleid());
+            resource.setSid("hospital_1-all");
+            resource.setSorgID("hospital_1");
+            resource.setHas_search("有");
+            resource.setHas_searchExport("有");
+            AllDao.getInstance().getSyResourceDao().insertRoleResourceRelation(resource);
+            //增加 科室resource
+            LabResource labResource=new LabResource();
+            labResource.setSid("hospital_1");
+            labResource.setSname("全数据资源");
+            labResource.setSdesc("全部数据资源");
+            labResource.setStype("");
+            labResource.setSlab_name("全数据");
+            labResource.setSorgID("hospital_1");
+            labResource.setSlab_parent("hospital_1");
+            labResource.setStype_role("2");
+            AllDao.getInstance().getSyResourceDao().insertOneResource(labResource);
+
+
         }
     }
 }
