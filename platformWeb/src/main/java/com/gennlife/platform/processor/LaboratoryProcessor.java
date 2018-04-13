@@ -483,10 +483,14 @@ public class LaboratoryProcessor {
                 usr.setStatus_now("当前不可用");
             }
             if("定期有效".equals(usr.getStatus())){
-                if(LogUtils.decideDate(effective,failure)){
-                    usr.setStatus_now("当前可用");
-                }else{
+                if(StringUtils.isEmpty(effective) || StringUtils.isEmpty(failure)){
                     usr.setStatus_now("当前不可用");
+                }else {
+                    if (LogUtils.decideDate(effective, failure)) {
+                        usr.setStatus_now("当前可用");
+                    } else {
+                        usr.setStatus_now("当前不可用");
+                    }
                 }
             }
             if("长期有效".equals(usr.getStatus())){
