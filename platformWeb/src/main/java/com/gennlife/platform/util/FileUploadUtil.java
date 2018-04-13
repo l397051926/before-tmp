@@ -298,7 +298,11 @@ public class FileUploadUtil implements InitializingBean {
                         } else {
                             int counter = AllDao.getInstance().getSyUserDao().updateUserByUnumber(addUser);
                             if (counter >= 1) {
-                                AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role.getRoleid(), exUser.getUid());
+                                try{
+                                    AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role.getRoleid(), exUser.getUid());
+                                }catch (Exception e){
+                                    srcList.add(line + ",失败,数据存在问题");
+                                }
                                 srcList.add(line + ",成功,更新成功");
                             } else {
                                 srcList.add(line + ",失败,更新失败");
