@@ -71,6 +71,10 @@ public class UserController {
                     return;
                 }
                 if("定期有效".equals(status)){
+                    if(StringUtils.isEmpty(failTime) || StringUtils.isEmpty(effectiveTtime)){
+                        view.viewString(ParamUtils.errorParam("没有权限登陆"), response);
+                        return;
+                    }
                     if(date.after(time.parse(failTime)) || date.before(time.parse(effectiveTtime))){
                         view.viewString(ParamUtils.errorParam("时间失效，没有权限登陆"), response);
                         return;

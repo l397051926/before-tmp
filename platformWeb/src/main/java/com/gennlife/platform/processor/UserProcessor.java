@@ -173,6 +173,8 @@ public class UserProcessor {
             List<Admin> adminList = AllDao.getInstance().getSyUserDao().getAdmins(confMap);
             user.setAdministrators(adminList);
             List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(confMap);
+            //转换全院 方式
+//            rolesList=transforAllRole(rolesList);
             //转化本科室信息
             Power power = transformRole(user, rolesList);
             //
@@ -241,6 +243,15 @@ public class UserProcessor {
             logger.error("", e);
         }
         return user;
+    }
+
+    private static List<Role> transforAllRole(List<Role> rolesList) {
+        for (Role role :rolesList){
+            if(role.getRole().equals("全院科室成员")){
+                rolesList=AllDao.getInstance().getSyRoleDao().getAllRoles();
+            }
+        }
+        return rolesList;
     }
 
     public static User getUserByUidFromRedis(String uid) {
@@ -391,7 +402,16 @@ public class UserProcessor {
         confMap.put("orgID", user.getOrgID());
         confMap.put("uid", user.getUid());
         for (Role role : rolesList) {
-            if ("1".equals(role.getRole_type())) {
+
+            if("全院科室成员".equals(role.getRole())){
+                List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getAllResources(user.getOrgID(), role.getRoleid());
+                List<Resource> reList = new LinkedList<>();
+                for (Resource resource : resourcesList) {
+                    reList.add(resource);
+                    power = addResourceToPowerForAll(power, resource);
+                }
+                role.setResources(reList);
+            }else  if ("1".equals(role.getRole_type())) {
                 List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResourcesBySid(user.getOrgID(), user.getLabID(), role.getRoleid());
                 List<Resource> reList = new LinkedList<>();
                 for (Resource resource : resourcesList) {
@@ -417,6 +437,20 @@ public class UserProcessor {
                     power = addResourceToPower(power, resource);
                 }
                 role.setResources(reList);
+            }
+        }
+        return power;
+    }
+
+    private static Power addResourceToPowerForAll(Power power, Resource resource) {
+        if ("有".equals(resource.getHas_search())) {
+            if (!isExistResource(power.getHas_search(), resource)) {
+                power.addInHasSearch(resource);
+            }
+        }
+        if ("有".equals(resource.getHas_searchExport())) {
+            if (!isExistResource(power.getHas_searchExport(), resource)) {
+                power.addInHasSearchExport(resource);
             }
         }
         return power;

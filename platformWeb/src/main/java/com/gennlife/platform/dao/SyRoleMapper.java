@@ -142,4 +142,10 @@ public interface SyRoleMapper {
      * @return
      */
     Role getRoleByRole(@Param("role") String role);
+
+    /**
+     * 获取全部角色
+     * @return
+     */
+    List<Role> getAllRoles();
 }

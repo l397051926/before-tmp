@@ -45,6 +45,17 @@
     AND gennlife_resource.sid = #{sid}
     AND gennlife_role_resource.roleid = #{roleid}
   </select>
+
+  <select id="getAllResources" resultMap="com.gennlife.platform.model.Resource" >
+    select
+    <include refid="resourceProperty" />
+    FROM
+    gennlife_role_resource,gennlife_resource
+    where
+    gennlife_resource.sorgID=#{orgID}
+    AND gennlife_role_resource.roleid = #{roleid}
+  </select>
+
   <select id="getResourceByRoleID" resultMap="com.gennlife.platform.model.Resource">
     SELECT
     <include refid="resourceProperty" />
