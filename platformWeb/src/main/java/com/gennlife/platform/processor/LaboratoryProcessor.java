@@ -538,6 +538,21 @@ public class LaboratoryProcessor {
         String lab_name = adduser.getLab_name();
         String efftime=adduser.getEffective_time();
         String failtime=adduser.getFailure_time();
+        String status =adduser.getStatus();
+        if(StringUtils.isEmpty(status)){
+            resultBean.addProperty("code", 0);
+            resultBean.addProperty("info", "账号有效期不能为空");
+            return resultBean;
+        }
+
+        if("定期有效".equals(status)){
+            if(StringUtils.isEmpty(efftime) || StringUtils.isEmpty(failtime)){
+                resultBean.addProperty("code", 0);
+                resultBean.addProperty("info", "时间不能为空");
+                return resultBean;
+            }
+        }
+
         if(!StringUtils.isEmpty(efftime) && !StringUtils.isEmpty(failtime)){
             try {
                 Date etime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(efftime);
