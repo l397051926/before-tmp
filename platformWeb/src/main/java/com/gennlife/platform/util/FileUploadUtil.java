@@ -202,7 +202,7 @@ public class FileUploadUtil implements InitializingBean {
                     if (uprofessionIndex != null) {
                         uprofession = terms[uprofessionIndex];
                         Uprofession up=new Uprofession();
-                        if(!up.getUprofession().contains(uprofession)){
+                        if(!StringUtils.isEmpty(uposition) && !up.getUprofession().contains(uprofession)){
                             srcList.add(line + ",失败,职称错误");
                             continue;
                         }
