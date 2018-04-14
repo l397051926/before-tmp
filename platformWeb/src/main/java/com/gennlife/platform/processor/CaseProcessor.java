@@ -406,7 +406,22 @@ public class CaseProcessor {
     public String SearchCaseRole(String newParam, User user) {
         return transformSid(newParam, user);
     }
-
+/*
+{"uid":"13157887-ff05-47a2-b34a-bcf09312be8f",
+"indexName":"yantai_hospital_clinical_patients",
+"query":"诊断",
+"from":"cases",
+"to":"cases",
+"isAdv":false,
+"hospitalID":"public",
+"size":10,"page":1,
+"topGeneSymbol":[],
+"source":["patient_info.PATIENT_SN"编号,"patient_info.GENDER"性别,"patient_info.BLOOD_ABO ABO血型","patient_info.BLOOD_RH","patient_info.BIRTH_PLACE","patient_info.BIRTH_DATE","patient_info.NATIONALITY","patient_info.MARITAL_STATUS","patient_info.NATIVE_PLACE","patient_info.ETHNIC","patient_info.EDUCATION_DEGREE","patient_info.OCCUPATION"],
+"aggs":{"terms_aggs":[{"field":"patient_info.GENDER","topN":0},
+{"field":"patient_info.ETHNIC","topN":0},{"field":"patient_info.MARITAL_STATUS","topN":0}],
+"range_aggs":[]},
+"sort":[],"isHighlightAllfields":true}:
+ */
     public String searchCaseWithAddQuery(String newParam, User user, String addQuery) {
         if (newParam == null) {
             logger.error("searchCase缺失参数");

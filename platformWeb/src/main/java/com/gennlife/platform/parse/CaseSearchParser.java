@@ -43,6 +43,11 @@ public class CaseSearchParser implements Callable<String> {
         return null;
     }
 
+    /**
+     * emr搜索！
+     * @return
+     * @throws Exception
+     */
     public String parser() throws Exception {
         isOk = false;
         String url = ConfigurationService.getUrlBean().getCaseSearchURL();

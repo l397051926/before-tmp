@@ -1025,7 +1025,6 @@ public class LaboratoryProcessor {
         String key = "aa";
         try {
             type = paramObj.get("type").getAsString();
-
         } catch (Exception e) {
             return ParamUtils.errorParam("参数错误");
         }
