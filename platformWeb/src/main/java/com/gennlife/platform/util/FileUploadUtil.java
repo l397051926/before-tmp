@@ -6,6 +6,7 @@ import com.gennlife.platform.configuration.FileBean;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.Lab;
 import com.gennlife.platform.model.Role;
+import com.gennlife.platform.model.Uprofession;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.LaboratoryProcessor;
 import com.google.gson.Gson;
@@ -200,6 +201,11 @@ public class FileUploadUtil implements InitializingBean {
                     String uprofession = "";
                     if (uprofessionIndex != null) {
                         uprofession = terms[uprofessionIndex];
+                        Uprofession up=new Uprofession();
+                        if(!up.getUprofession().contains(uprofession)){
+                            srcList.add(line + ",失败,职称错误");
+                            continue;
+                        }
                     }
                     String effective_time="";
 
@@ -303,6 +309,7 @@ public class FileUploadUtil implements InitializingBean {
                                     AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role.getRoleid(), exUser.getUid());
                                 }catch (DataIntegrityViolationException e){
                                     srcList.add(line + ",失败,数据存在问题");
+                                    continue;
                                 }
                                 srcList.add(line + ",成功,更新成功");
                             } else {
@@ -315,6 +322,7 @@ public class FileUploadUtil implements InitializingBean {
                             counter = AllDao.getInstance().getSyUserDao().updateUserByUnumber(addUser);
                         }catch (DataIntegrityViolationException e){
                             srcList.add(line + ",失败,数据存在问题");
+                            continue;
                         }
 
                         if (counter >= 1) {
@@ -336,6 +344,7 @@ public class FileUploadUtil implements InitializingBean {
                             AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role1.getRoleid(), addUser.getUid());
                         }catch (DataIntegrityViolationException e){
                             srcList.add(line + ",失败,数据存在问题");
+                            continue;
                         }
 
                         if (counter >= 1) {
