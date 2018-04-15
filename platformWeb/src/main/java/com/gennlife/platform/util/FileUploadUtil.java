@@ -6,6 +6,7 @@ import com.gennlife.platform.configuration.FileBean;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.Lab;
 import com.gennlife.platform.model.Role;
+import com.gennlife.platform.model.Uprofession;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.LaboratoryProcessor;
 import com.google.gson.Gson;
@@ -13,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -199,6 +201,11 @@ public class FileUploadUtil implements InitializingBean {
                     String uprofession = "";
                     if (uprofessionIndex != null) {
                         uprofession = terms[uprofessionIndex];
+                        Uprofession up=new Uprofession();
+                        if(!StringUtils.isEmpty(uposition) && !up.getUprofession().contains(uprofession)){
+                            srcList.add(line + ",失败,职称错误");
+                            continue;
+                        }
                     }
                     String effective_time="";
 
@@ -298,14 +305,26 @@ public class FileUploadUtil implements InitializingBean {
                         } else {
                             int counter = AllDao.getInstance().getSyUserDao().updateUserByUnumber(addUser);
                             if (counter >= 1) {
-                                AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role.getRoleid(), exUser.getUid());
+                                try {
+                                    AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role.getRoleid(), exUser.getUid());
+                                }catch (DataIntegrityViolationException e){
+                                    srcList.add(line + ",失败,数据存在问题");
+                                    continue;
+                                }
                                 srcList.add(line + ",成功,更新成功");
                             } else {
                                 srcList.add(line + ",失败,更新失败");
                             }
                         }
                     } else {
-                        int counter = AllDao.getInstance().getSyUserDao().updateUserByUnumber(addUser);
+                        int counter=0;
+                        try {
+                            counter = AllDao.getInstance().getSyUserDao().updateUserByUnumber(addUser);
+                        }catch (DataIntegrityViolationException e){
+                            srcList.add(line + ",失败,数据存在问题");
+                            continue;
+                        }
+
                         if (counter >= 1) {
                             srcList.add(line + ",成功,更新成功");
                         } else {
@@ -318,9 +337,16 @@ public class FileUploadUtil implements InitializingBean {
                     if (exUserFile) {
                         srcList.add(line + ",失败,文件存在相同的email");
                     } else {
-                        int counter = AllDao.getInstance().getSyUserDao().insertOneUser(addUser);
-                        Role role1 = AllDao.getInstance().getSyRoleDao().getLabMember(addUser.getOrgID());//科室成员
-                        AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role1.getRoleid(), addUser.getUid());
+                        int counter=0;
+                        try {
+                            counter = AllDao.getInstance().getSyUserDao().insertOneUser(addUser);
+                            Role role1 = AllDao.getInstance().getSyRoleDao().getLabMember(addUser.getOrgID());//科室成员
+                            AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role1.getRoleid(), addUser.getUid());
+                        }catch (DataIntegrityViolationException e){
+                            srcList.add(line + ",失败,数据存在问题");
+                            continue;
+                        }
+
                         if (counter >= 1) {
                             srcList.add(line + ",成功,插入成功");
                         } else {

@@ -204,7 +204,7 @@ public class LaboratoryProcessor {
         maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
         if(!StringUtils.isEmpty(key)){
             Set<Lab> resultlabs=new HashSet<>();
-            spellLab(labs,key,resultlabs,key);
+            spellLab(labs,key,resultlabs,key,orgID);
             labs =new LinkedList<>(resultlabs);
         }
         if (maxLevel == null) {
@@ -215,7 +215,7 @@ public class LaboratoryProcessor {
         return organization;
     }
 
-    public static void spellLab(List<Lab> labs,String key,Set<Lab> resultlabs,String key1){
+    public static void spellLab(List<Lab> labs,String key,Set<Lab> resultlabs,String key1,String orgID){
 
         for(Lab lab :labs){
             String lab_name=lab.getLab_name();
@@ -223,8 +223,8 @@ public class LaboratoryProcessor {
                 if(!resultlabs.contains(lab)){
                     lab.setLab_name(lab_name.replaceAll(key1,"<span style='color:red'>" + key1 + "</span>"));
                     resultlabs.add(lab);
-                    if(lab.getLab_parent()!=null && !("hospital_1".equals(lab.getLab_parent()) )){
-                        spellLab(labs,lab.getLab_parent(),resultlabs,key1);
+                    if(lab.getLab_parent()!=null && !(orgID.equals(lab.getLab_parent()) )){
+                        spellLab(labs,lab.getLab_parent(),resultlabs,key1,orgID);
                     }
                 }
             }
@@ -483,10 +483,14 @@ public class LaboratoryProcessor {
                 usr.setStatus_now("当前不可用");
             }
             if("定期有效".equals(usr.getStatus())){
-                if(LogUtils.decideDate(effective,failure)){
-                    usr.setStatus_now("当前可用");
-                }else{
+                if(StringUtils.isEmpty(effective) || StringUtils.isEmpty(failure)){
                     usr.setStatus_now("当前不可用");
+                }else {
+                    if (LogUtils.decideDate(effective, failure)) {
+                        usr.setStatus_now("当前可用");
+                    } else {
+                        usr.setStatus_now("当前不可用");
+                    }
                 }
             }
             if("长期有效".equals(usr.getStatus())){
@@ -534,6 +538,21 @@ public class LaboratoryProcessor {
         String lab_name = adduser.getLab_name();
         String efftime=adduser.getEffective_time();
         String failtime=adduser.getFailure_time();
+        String status =adduser.getStatus();
+        if(StringUtils.isEmpty(status)){
+            resultBean.addProperty("code", 0);
+            resultBean.addProperty("info", "账号有效期不能为空");
+            return resultBean;
+        }
+
+        if("定期有效".equals(status)){
+            if(StringUtils.isEmpty(efftime) || StringUtils.isEmpty(failtime)){
+                resultBean.addProperty("code", 0);
+                resultBean.addProperty("info", "时间不能为空");
+                return resultBean;
+            }
+        }
+
         if(!StringUtils.isEmpty(efftime) && !StringUtils.isEmpty(failtime)){
             try {
                 Date etime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(efftime);
@@ -1495,9 +1514,31 @@ public class LaboratoryProcessor {
             roleAll.setOrgID(roleLab.getOrgID());
             roleAll.setRole_type("0");
             roleAll.setDesctext("全院科室资源");
+            roleAll.setRole_privilege("1");
             Integer  i=AllDao.getInstance().getSyRoleDao().insertUserRole(roleAll);
+            roleAll=AllDao.getInstance().getSyRoleDao().getRoleByRole("全院科室成员");
             logger.info("全院科室成员 角色创建成功");
-            //增加 功能
+            //增加 功能 resource
+            Resource resource=new Resource();
+            resource.setRoleid(roleAll.getRoleid());
+            resource.setSid("hospital_1-all");
+            resource.setSorgID("hospital_1");
+            resource.setHas_search("有");
+            resource.setHas_searchExport("有");
+            AllDao.getInstance().getSyResourceDao().insertRoleResourceRelation(resource);
+            //增加 科室resource
+            LabResource labResource=new LabResource();
+            labResource.setSid("hospital_1");
+            labResource.setSname("全数据资源");
+            labResource.setSdesc("全部数据资源");
+            labResource.setStype("");
+            labResource.setSlab_name("全数据");
+            labResource.setSorgID("hospital_1");
+            labResource.setSlab_parent("hospital_1");
+            labResource.setStype_role("2");
+            AllDao.getInstance().getSyResourceDao().insertOneResource(labResource);
+
+
         }
     }
 
