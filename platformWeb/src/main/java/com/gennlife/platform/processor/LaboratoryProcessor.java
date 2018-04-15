@@ -1022,7 +1022,10 @@ public class LaboratoryProcessor {
 
     public String getResourceTree(JsonObject paramObj, User user) {
         String type = null;
-        String key = "aa";
+        String key = null;
+        if(paramObj.has("key")){
+            key=paramObj.get("key").getAsString();
+        }
         try {
             type = paramObj.get("type").getAsString();
         } catch (Exception e) {
@@ -1030,18 +1033,23 @@ public class LaboratoryProcessor {
         }
         List<LabResource> list = AllDao.getInstance().getSyResourceDao().getLabResourcesByOrgID(user.getOrgID(), type);
         if (list != null && list.size() > 0) {
-            Organization organization = getOrganization(user.getOrgID());
-            organization.setLabs(injectResource(organization.getLabs(), list));
-            for (LabResource labResource : list) {
-                if ("本科室资源".equals(labResource.getSname())) {
-                    Lab lab = new Lab();
-                    lab.setLab_name(labResource.getSlab_name());
-                    lab.setSid(labResource.getSid());
-                    List<Lab> spLab = new LinkedList<>();
-                    spLab.add(lab);
-                    organization.setSpResource(spLab);
-                }
+            Organization organization=null;
+            if(StringUtils.isEmpty(key)){
+                organization = getOrganization(user.getOrgID());
+            }else {
+                organization = getOrganization(user.getOrgID(),key);
             }
+            organization.setLabs(injectResource(organization.getLabs(), list));
+//            for (LabResource labResource : list) {
+//                if ("本科室资源".equals(labResource.getSname())) {
+//                    Lab lab = new Lab();
+//                    lab.setLab_name(labResource.getSlab_name());
+//                    lab.setSid(labResource.getSid());
+//                    List<Lab> spLab = new LinkedList<>();
+//                    spLab.add(lab);
+//                    organization.setSpResource(spLab);
+//                }
+//            }
             ResultBean re = new ResultBean();
             re.setCode(1);
             re.setData(organization);
