@@ -204,7 +204,7 @@ public class LaboratoryProcessor {
         maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
         if(!StringUtils.isEmpty(key)){
             Set<Lab> resultlabs=new HashSet<>();
-            spellLab(labs,key,resultlabs,key);
+            spellLab(labs,key,resultlabs,key,orgID);
             labs =new LinkedList<>(resultlabs);
         }
         if (maxLevel == null) {
@@ -215,7 +215,7 @@ public class LaboratoryProcessor {
         return organization;
     }
 
-    public static void spellLab(List<Lab> labs,String key,Set<Lab> resultlabs,String key1){
+    public static void spellLab(List<Lab> labs,String key,Set<Lab> resultlabs,String key1,String orgID){
 
         for(Lab lab :labs){
             String lab_name=lab.getLab_name();
@@ -223,8 +223,8 @@ public class LaboratoryProcessor {
                 if(!resultlabs.contains(lab)){
                     lab.setLab_name(lab_name.replaceAll(key1,"<span style='color:red'>" + key1 + "</span>"));
                     resultlabs.add(lab);
-                    if(lab.getLab_parent()!=null && !("hospital_1".equals(lab.getLab_parent()) )){
-                        spellLab(labs,lab.getLab_parent(),resultlabs,key1);
+                    if(lab.getLab_parent()!=null && !(orgID.equals(lab.getLab_parent()) )){
+                        spellLab(labs,lab.getLab_parent(),resultlabs,key1,orgID);
                     }
                 }
             }
