@@ -76,7 +76,9 @@ public class AuthorityUtil {
             }
         }
     }
-
+    /**
+     * 给详情页加上权限
+     * */
     public static String addRolesToParam(HttpServletRequest paramRe, JsonObject paramObj) {
         User user = (User) paramRe.getAttribute("currentUser");
         //List<Role> roles = user.getRoles();
