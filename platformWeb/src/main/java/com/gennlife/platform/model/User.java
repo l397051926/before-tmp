@@ -29,11 +29,21 @@ public class User {
     private List<Group> groups;
     private Power power = new Power(); // 权限
     private Power frontEndPower = new Power();
+    private String ifRoleAll;       //是  or 不是
 
     private String status_now ; //当前状态
     private String status;  //1:长期有效、2:定期有效、3:禁用
     private String effective_time;   //有效开始时间
     private String failure_time;    //失效时间
+
+
+    public String getIfRoleAll() {
+        return ifRoleAll;
+    }
+
+    public void setIfRoleAll(String ifRoleAll) {
+        this.ifRoleAll = ifRoleAll;
+    }
 
     public String getStatus_now() {
         return status_now;

@@ -4,6 +4,8 @@ import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.model.Group;
+import com.gennlife.platform.model.Power;
+import com.gennlife.platform.model.Resource;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.parse.CaseSearchParser;
 import com.gennlife.platform.parse.CaseSuggestParser;
@@ -321,6 +323,18 @@ public class CaseProcessor {
             //logger.info("通过sid转化后，搜索请求参数 = " + gson.toJson(paramObj));
             return gson.toJson(paramObj);
         } else { // 角色,完成小组扩展
+            if("是".equals(user.getIfRoleAll())){
+                Power power=new Power();
+                Resource resource=new Resource();
+                resource.setSid("hospital_all");
+                resource.setSlab_name("_all");
+                resource.setHas_search("有");
+                List<Resource> list=new LinkedList<>();
+                list.add(resource);
+                power.setHas_search(list);
+                paramObj.remove("power");
+                paramObj.add("power",new Gson().toJsonTree(power));
+            }
             return gson.toJson(paramObj);
         }
 

@@ -151,6 +151,9 @@ public class LaboratoryProcessor {
     }
 
     public static void addResource(Lab lab) {
+        if("一线临床类".equals(lab.getDepart_name())){
+            return ;
+        }
         LabResource labResource = new LabResource();
         labResource.setSorgID(lab.getOrgID());
         labResource.setSdesc(lab.getLab_name() + "病例数据资源");
@@ -1527,16 +1530,16 @@ public class LaboratoryProcessor {
             resource.setHas_searchExport("有");
             AllDao.getInstance().getSyResourceDao().insertRoleResourceRelation(resource);
             //增加 科室resource
-            LabResource labResource=new LabResource();
-            labResource.setSid(roleAll.getOrgID());
-            labResource.setSname("全数据资源");
-            labResource.setSdesc("全部数据资源");
-            labResource.setStype("");
-            labResource.setSlab_name("全数据");
-            labResource.setSorgID(roleAll.getOrgID());
-            labResource.setSlab_parent(roleAll.getOrgID());
-            labResource.setStype_role("2");
-            AllDao.getInstance().getSyResourceDao().insertOneResource(labResource);
+//            LabResource labResource=new LabResource();
+//            labResource.setSid(roleAll.getOrgID());
+//            labResource.setSname("全数据资源");
+//            labResource.setSdesc("全部数据资源");
+//            labResource.setStype("");
+//            labResource.setSlab_name("全数据");
+//            labResource.setSorgID(roleAll.getOrgID());
+//            labResource.setSlab_parent(roleAll.getOrgID());
+//            labResource.setStype_role("2");
+//            AllDao.getInstance().getSyResourceDao().insertOneResource(labResource);
 
 
         }

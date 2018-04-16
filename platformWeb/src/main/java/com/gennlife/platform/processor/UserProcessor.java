@@ -410,6 +410,8 @@ public class UserProcessor {
                     reList.add(resource);
                     power = addResourceToPowerForAll(power, resource);
                 }
+                //添加 判断user 权限是否全量
+                user.setIfRoleAll("是");
                 role.setResources(reList);
             }else  if ("1".equals(role.getRole_type())) {
                 List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResourcesBySid(user.getOrgID(), user.getLabID(), role.getRoleid());
