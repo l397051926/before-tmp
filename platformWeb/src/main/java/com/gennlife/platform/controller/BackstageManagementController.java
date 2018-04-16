@@ -698,7 +698,7 @@ public class BackstageManagementController {
         logger.info("判断当前密码是否为默认密码 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-    @RequestMapping(value="/isExistLabName",method = RequestMethod.POST,produces="application/json;charset=UTF-8")
+    @RequestMapping(value="/isExistLabName",method = RequestMethod.GET,produces="application/json;charset=UTF-8")
     @ResponseBody
     public String isExistLabName(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
@@ -715,7 +715,7 @@ public class BackstageManagementController {
         return resultStr;
     }
 
-    @RequestMapping(value="/isExistRoleName",method = RequestMethod.POST,produces="application/json;charset=UTF-8")
+    @RequestMapping(value="/isExistRoleName",method = RequestMethod.GET,produces="application/json;charset=UTF-8")
     @ResponseBody
     public String isExistRoleName(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();

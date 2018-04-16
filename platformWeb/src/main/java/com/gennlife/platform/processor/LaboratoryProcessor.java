@@ -1491,7 +1491,7 @@ public class LaboratoryProcessor {
             Lab lab=AllDao.getInstance().getOrgDao().getLabByOnelabName(labName);
             if(lab!=null){
                 re.setCode(0);
-                re.setInfo("名称重复");
+                re.setInfo("科室名称不可用");
             }else{
                 re.setCode(1);
                 re.setInfo("名称可用");
@@ -1521,20 +1521,20 @@ public class LaboratoryProcessor {
             //增加 功能 resource
             Resource resource=new Resource();
             resource.setRoleid(roleAll.getRoleid());
-            resource.setSid("hospital_1-all");
-            resource.setSorgID("hospital_1");
+            resource.setSid(roleAll.getOrgID()+"-all");
+            resource.setSorgID(roleAll.getOrgID());
             resource.setHas_search("有");
             resource.setHas_searchExport("有");
             AllDao.getInstance().getSyResourceDao().insertRoleResourceRelation(resource);
             //增加 科室resource
             LabResource labResource=new LabResource();
-            labResource.setSid("hospital_1");
+            labResource.setSid(roleAll.getOrgID());
             labResource.setSname("全数据资源");
             labResource.setSdesc("全部数据资源");
             labResource.setStype("");
             labResource.setSlab_name("全数据");
-            labResource.setSorgID("hospital_1");
-            labResource.setSlab_parent("hospital_1");
+            labResource.setSorgID(roleAll.getOrgID());
+            labResource.setSlab_parent(roleAll.getOrgID());
             labResource.setStype_role("2");
             AllDao.getInstance().getSyResourceDao().insertOneResource(labResource);
 
@@ -1553,7 +1553,7 @@ public class LaboratoryProcessor {
             Role role=AllDao.getInstance().getSyRoleDao().getRoleByRole(roleName);
             if(role!=null){
                 re.setCode(0);
-                re.setInfo("名称重复");
+                re.setInfo("角色名称不可用");
             }else{
                 re.setCode(1);
                 re.setInfo("名称可用");

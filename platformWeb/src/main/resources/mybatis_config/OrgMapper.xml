@@ -230,7 +230,7 @@
         </foreach>
         and orgID=#{orgID}
     </update>
-    <select id="getDepartNameByParentName" resultType="Integer" parameterType="map">
+    <select id="getDepartNameByParentName" resultType="String" parameterType="map">
         select
         depart_name
         from gennlife_lab

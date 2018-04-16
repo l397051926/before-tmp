@@ -404,6 +404,7 @@ public class FileUploadUtil implements InitializingBean {
             List<String> strList = fileList;
             List<String> srcList = new LinkedList<>();
             List<Lab> newList = new LinkedList<>();
+            Map<String,String> partNameMap=new HashMap<>();// key:departName value :parentName
             for (String str : strList) {
                 str = str.replace("\r", "");
                 String[] data = str.split(",");
@@ -414,7 +415,12 @@ public class FileUploadUtil implements InitializingBean {
                         String name = data[0].trim();
                         String parentName = data[1].trim();
                         String departName = data[2].trim();
-                        String partName = AllDao.getInstance().getOrgDao().getDepartNameByParentName(parentName);
+                        String partName=null;
+                        if(partNameMap.containsKey(name)){
+                            partName=partNameMap.get(name);
+                        }else{
+                            partName = AllDao.getInstance().getOrgDao().getDepartNameByParentName(parentName);
+                        }
                         if("医院".equals(parentName)){
                             partName="行政管理类";
                         }
@@ -447,6 +453,7 @@ public class FileUploadUtil implements InitializingBean {
                             srcList.add(str + ",失败,上级科室类型为: "+partName+" 当前科室类型为: "+departName+ " 不符合科室类型关系约束");
                             continue;
                         } else {
+                            partNameMap.put(name,parentName);
                             Lab lab = new Lab();
                             lab.setOrgID(orgID);
                             lab.setLab_level(1);

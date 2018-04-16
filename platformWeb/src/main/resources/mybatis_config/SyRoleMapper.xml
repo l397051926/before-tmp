@@ -126,7 +126,7 @@
     <insert id="insertUserRole" parameterType="com.gennlife.platform.model.Role">
         insert into gennlife_role
         <trim prefix="(" suffix=")" suffixOverrides="," >
-            role,orgID,desctext,role_type,ctime,creator,creatorID
+            role,orgID,desctext,role_type,ctime,creator,creatorID,role_privilege
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             #{role},
@@ -135,7 +135,8 @@
             #{role_type},
             #{ctime},
             #{creator},
-            #{creatorID}
+            #{creatorID},
+            #{role_privilege}
         </trim>
     </insert>
     <select id="findUserRoleRelationCounter" resultType="INTEGER">

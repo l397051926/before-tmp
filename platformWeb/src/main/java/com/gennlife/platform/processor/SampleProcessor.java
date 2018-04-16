@@ -435,7 +435,7 @@ public class SampleProcessor {
             return ParamUtils.errorParam("出现异常");
         }
     }
-
+    //导出项目
     public String importSampleCheck(JsonObject jsonObject, User user) {
         try {
 
@@ -472,6 +472,7 @@ public class SampleProcessor {
 
                  String url = ConfigurationService.getUrlBean().getCaseSearchURL();
                  logger.info("data_01 处理后导出条件=" + gson.toJson(queryNew));
+                 //查找数据
                  String data_01 = HttpRequestUtils.httpPost(url, GsonUtil.getGson().toJson(queryNew));
                  logger.info("data_01=" + data_01);
 
@@ -490,6 +491,7 @@ public class SampleProcessor {
                  queryNew.get("power").getAsJsonObject().add("has_search", searchExport);
                  queryNew.get("power").getAsJsonObject().add("has_searchExport", search);
                  logger.info("data_02 处理后导出条件=" + gson.toJson(queryNew));
+                 //查找数据
                  String data_02 = HttpRequestUtils.httpPost(url, GsonUtil.getGson().toJson(queryNew));
                  logger.info("data_02=" + data_02);
 

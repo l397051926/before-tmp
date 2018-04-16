@@ -830,7 +830,7 @@ public class UserProcessor {
                     Integer exuser=AllDao.getInstance().getSyUserDao().existEmail(uemail);
                     if(exuser!=0){
                         re.setCode(0);
-                        re.setInfo("名称不可用");
+                        re.setInfo("邮箱不可用");
 //                        return ParamUtils.errorParam(uemail + "用户邮箱已经存在");
                     }else{
                         re.setCode(1);
