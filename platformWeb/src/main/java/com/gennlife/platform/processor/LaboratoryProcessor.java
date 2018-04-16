@@ -47,7 +47,7 @@ public class LaboratoryProcessor {
         List<Lab> result = new LinkedList<>();
         if (labs != null) {
             for (Lab lab : labs) {
-                if("是".equals(isParentLab) && "一线临床类".equals(lab.getDepart_name())){
+                if("true".equals(isParentLab) && "一线临床类".equals(lab.getDepart_name())){
                     continue;
                 }
                 if (lab.getLab_parent().equals(key)) {
