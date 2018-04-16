@@ -416,14 +416,17 @@ public class FileUploadUtil implements InitializingBean {
                         String parentName = data[1].trim();
                         String departName = data[2].trim();
                         String partName=null;
-                        if(partNameMap.containsKey(name)){
-                            partName=partNameMap.get(name);
+
+                        if(partNameMap.containsKey(parentName)){
+                            partName=parentName;
                         }else{
                             partName = AllDao.getInstance().getOrgDao().getDepartNameByParentName(parentName);
                         }
+
                         if("医院".equals(parentName)){
                             partName="行政管理类";
                         }
+
                         if(StringUtils.isEmpty(partName)){
                             srcList.add(str + ",失败,科室不存在");
                             continue;
@@ -499,9 +502,8 @@ public class FileUploadUtil implements InitializingBean {
             List<Lab> insertList = new LinkedList<>();
             //更新的
             List<Lab> updateList = new LinkedList<>();
-            logger.info("关联无问题" + gson.toJson(sortList));
+
             for (Lab lab : sortList) {
-                logger.info(gson.toJson(lab));
                 if ("未处理".equals(lab.status)) {
                     Lab exLab = getLabByNameFilter(lab.getLab_name(), sortList);
                     if (exLab == null) {

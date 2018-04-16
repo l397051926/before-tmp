@@ -45,7 +45,7 @@ public class LaboratoryProcessor {
 
     public static List<Lab> generateLabTree(List<Lab> labs, String key, int maxLevel,String isParentLab) {
         List<Lab> result = new LinkedList<>();
-        logger.info("isParentLab: "+isParentLab);
+
         if (labs != null) {
             for (Lab lab : labs) {
                 if("true".equals(isParentLab) && "一线临床类".equals(lab.getDepart_name())){
