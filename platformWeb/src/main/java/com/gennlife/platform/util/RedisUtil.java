@@ -206,10 +206,15 @@ public class RedisUtil {
         }
 
     }
-
+    /**
+     * 用户退出
+     * */
     public static void exit(String uid, String sessionID) {
+        //关联信息  uid 与session
         deleteKey(sessionID);
+        //关联信息  uid 与session
         deleteKey(uid);
+        //uid 和 人的json信息
         deleteUser(uid);
     }
 
@@ -231,7 +236,9 @@ public class RedisUtil {
             jedisCluster.del(key);
         }
     }
-
+    /**
+     * 在线更新
+     * */
     public static void updateUserOnLine(Collection<String> uidList) {
         if (uidList == null || uidList.size() == 0) return;
         logger.info("update users " + uidList.size());

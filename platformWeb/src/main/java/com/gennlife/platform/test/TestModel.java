@@ -1,6 +1,7 @@
 package com.gennlife.platform.test;
 
 import com.gennlife.platform.model.Lab;
+import com.gennlife.platform.model.Uprofession;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
@@ -21,9 +22,13 @@ import java.util.Date;
 public class TestModel {
     public static void main(String[] args) throws ParseException {
 
-        String x="abcdefg";
-        System.out.println(x.contains("abcdefg"));
-        System.out.println(!StringUtils.isEmpty(x));
+        String x=null;
+        Uprofession up=new Uprofession();
+        if(!StringUtils.isEmpty(x) &&!up.getUprofession().contains(x)){
+            System.out.println("cuowu");
+        }else{
+            System.out.println("meiyou");
+        }
 
 
 //        System.out.println("abcdefg");
