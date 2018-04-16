@@ -45,6 +45,7 @@ public class BackstageManagementController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         String key=null;
+        String isParentLab=null;
         try {
             String param = ParamUtils.getParam(paramRe);
             User user = (User) paramRe.getAttribute("currentUser");
@@ -52,7 +53,10 @@ public class BackstageManagementController {
             if(paramObj.has("key")){
                  key =paramObj.get("key").getAsString();
             }
-            resultStr = processor.orgMapData(user,key);
+            if(paramObj.has("isParentLab")){
+                isParentLab=paramObj.get("isParentLab").getAsString();
+            }
+            resultStr = processor.orgMapData(user,key,isParentLab);
         } catch (DataIntegrityViolationException e) {
             resultStr = DataIntegrityViolationExceptionMsg();
         } catch (Exception e) {

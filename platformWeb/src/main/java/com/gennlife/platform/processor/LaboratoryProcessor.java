@@ -33,25 +33,28 @@ public class LaboratoryProcessor {
      * @param user
      * @return
      */
-    public String orgMapData(User user,String key) {
+    public String orgMapData(User user,String key,String isParentLab) {
         String orgID = user.getOrgID();
         //通过科室数据，初始化的数据结构
-        Organization organization = getOrganization(orgID,key);
+        Organization organization = getOrganization(orgID,key,isParentLab);
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(1);
         resultBean.setData(organization);
         return gson.toJson(resultBean);
     }
 
-    public static List<Lab> generateLabTree(List<Lab> labs, String key, int maxLevel) {
+    public static List<Lab> generateLabTree(List<Lab> labs, String key, int maxLevel,String isParentLab) {
         List<Lab> result = new LinkedList<>();
         if (labs != null) {
             for (Lab lab : labs) {
+                if("是".equals(isParentLab) && "一线临床类".equals(lab.getDepart_name())){
+                    continue;
+                }
                 if (lab.getLab_parent().equals(key)) {
                     lab.setOrgID(null);
                     result.add(lab);
                     if (maxLevel >= lab.getLab_level()) {
-                        List<Lab> subLabs = generateLabTree(labs, lab.getLabID(), maxLevel);
+                        List<Lab> subLabs = generateLabTree(labs, lab.getLabID(), maxLevel,isParentLab);
                         if (subLabs != null && subLabs.size() > 0) {
                             lab.setSubLabs(subLabs);
                         }
@@ -188,11 +191,11 @@ public class LaboratoryProcessor {
         if (maxLevel == null) {
             return organization;
         }
-        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel);
+        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,null);
         organization.setLabs(treeLabs);
         return organization;
     }
-    public static Organization getOrganization(String orgID,String key) {
+    public static Organization getOrganization(String orgID,String key,String isParentLab) {
         Organization organization = AllDao.getInstance().getOrgDao().getOrganization(orgID);
         List<Lab> labs =null;
         Integer maxLevel =null;
@@ -213,7 +216,7 @@ public class LaboratoryProcessor {
         if (maxLevel == null) {
             return organization;
         }
-        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel);
+        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,isParentLab);
         organization.setLabs(treeLabs);
         return organization;
     }
@@ -337,6 +340,7 @@ public class LaboratoryProcessor {
         String lab_leaderName = "";
         String lab_parent = null;
         String depart_name="";
+        boolean isResourceopen=false;
         try {
             labID = paramObj.get("labID").getAsString();
             lab_name = paramObj.get("lab_name").getAsString();
@@ -355,6 +359,7 @@ public class LaboratoryProcessor {
         }
         String orgID = user.getOrgID();
         Map<String, Object> map = new HashMap<>();
+        Lab labNow = new Lab();
         Lab lab = AllDao.getInstance().getOrgDao().getLabBylabID(labID);
         if (lab == null) {
             return ParamUtils.errorParam(labID + "无此科室");
@@ -367,18 +372,26 @@ public class LaboratoryProcessor {
             // 当前科室下面的用户科室名称
 
             AllDao.getInstance().getSyUserDao().updateUserLabNameByLabName(lab_name, lab.getLab_name(), orgID);
-            LabResource labResource = new LabResource();
-            labResource.setSorgID(lab.getOrgID());
-            labResource.setSdesc(lab_name + "病例数据资源");
-            labResource.setSid(labID);
-            labResource.setSlab_parent(lab_parent);
-            labResource.setSlab_type(lab.getLab_level() + "");
-            labResource.setStype("病例数据");
-            labResource.setSname(lab_name + "资源");
-            labResource.setSlab_name(lab_name);
-            // logger.info("update "+gson.toJson(labResource));
-            AllDao.getInstance().getSyResourceDao().updateResource(labResource);
-
+            //如果现在不是一线临床类  原来不是一线临床类 则随着更新
+            if(!"一线临床类".equals(lab.getDepart_name()) && !"一线临床类".equals(depart_name)){
+                LabResource labResource = new LabResource();
+                labResource.setSorgID(lab.getOrgID());
+                labResource.setSdesc(lab_name + "病例数据资源");
+                labResource.setSid(labID);
+                labResource.setSlab_parent(lab_parent);
+                labResource.setSlab_type(lab.getLab_level() + "");
+                labResource.setStype("病例数据");
+                labResource.setSname(lab_name + "资源");
+                labResource.setSlab_name(lab_name);
+                // logger.info("update "+gson.toJson(labResource));
+                AllDao.getInstance().getSyResourceDao().updateResource(labResource);
+            }else if("一线临床类".equals(depart_name) && !"一线临床类".equals(lab.getDepart_name()) ){
+                //如果 现在是一线临床类，原来不是的话 则删除 resouce
+                AllDao.getInstance().getSyResourceDao().deleteLabsReource(new String[]{lab.getLabID()});
+            }else if("一线临床类".equals(lab.getDepart_name()) && !"一线临床类".equals(depart_name)){
+                //如果 现在不是一线临床类  原来是一线临床类 则增加resource
+                isResourceopen=true;
+            }
             List<String> userIds = AllDao.getInstance().getSyUserDao().getUserIDByLabID(labID, orgID);
             // 更新缓存
             RedisUtil.updateUserOnLine(userIds);
@@ -396,8 +409,10 @@ public class LaboratoryProcessor {
             map.put("labID", lab_parent);
             lab_level = AllDao.getInstance().getOrgDao().getLabLevel(map);
             map.put("lab_level", lab_level + 1);
+            labNow.setLab_level(lab_level);
         } else {
             map.put("lab_level", lab_level);
+            labNow.setLab_level(lab_level);
         }
         map.put("labID", labID);
         map.put("lab_name", lab_name);
@@ -405,6 +420,16 @@ public class LaboratoryProcessor {
         map.put("lab_leaderName", lab_leaderName);
         map.put("lab_parent", lab_parent);
         map.put("depart_name",depart_name);//-增加 depart_name
+        if(isResourceopen){
+            labNow.setDepart_name(depart_name);
+            labNow.setLab_leader(lab_leader);
+            labNow.setLab_name(lab_name);
+            labNow.setAdd_time(LogUtils.getStringTime());
+            labNow.setLabID(labID);
+            labNow.setLab_parent(lab_parent);
+            lab.setOrgID(orgID);
+            addResource(lab);
+        }
         int counter = AllDao.getInstance().getOrgDao().updateLabInfo(map);
         if (counter == 0) {
             return ParamUtils.errorParam("更新失败");
@@ -1059,7 +1084,7 @@ public class LaboratoryProcessor {
             if(StringUtils.isEmpty(key)){
                 organization = getOrganization(user.getOrgID());
             }else {
-                organization = getOrganization(user.getOrgID(),key);
+                organization = getOrganization(user.getOrgID(),key,null);
             }
             organization.setLabs(injectResource(organization.getLabs(), list));
 //            for (LabResource labResource : list) {

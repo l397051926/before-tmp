@@ -169,6 +169,16 @@
         FROM
         gennlife_lab_map
     </select>
+
+    <select id="getLabMAP" resultMap="com.gennlife.platform.model.DepartmentMap">
+        SELECT
+        laID,lab_name
+        FROM
+        gennlife_lab
+        WHERE
+        depart_name="一线临床类"
+    </select>
+
     <select id="getSlabNameMappingByLabName" resultType="java.lang.String">
         SELECT
         depart_name
@@ -177,6 +187,19 @@
         (
         select labID  from gennlife_lab where  lab_name=#{lab_name} and orgID=#{orgID}
         )
+
+    </select>
+
+    <select id="getlabMappingByLabName" resultType="java.lang.String">
+        SELECT
+        lab_name
+        FROM
+        gennlife_lab where lab_parent=
+       (
+        select labID  from gennlife_lab where  lab_name=#{lab_name} and orgID=#{orgID}
+        )
+        and
+        depart_name="一线临床类"
 
     </select>
     <select id="getUserIdByRole" resultType="java.lang.String">

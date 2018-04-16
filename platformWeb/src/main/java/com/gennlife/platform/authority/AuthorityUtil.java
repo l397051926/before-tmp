@@ -172,7 +172,8 @@ public class AuthorityUtil {
     }
 
     public static String getCurrentDeptQuery(User user) {
-        List<String> depts = AllDao.getInstance().getSyRoleDao().getSlabNameMappingByLabName(user.getLab_name(), user.getOrgID());
+//        List<String> depts = AllDao.getInstance().getSyRoleDao().getSlabNameMappingByLabName(user.getLab_name(), user.getOrgID());
+        List<String> depts = AllDao.getInstance().getSyRoleDao().getlabMappingByLabName(user.getLab_name(), user.getOrgID());
         if (depts == null) depts = new LinkedList<>();
         if(!StringUtils.isEmpty(user.getLab_name()))depts.add(user.getLab_name());
         if(depts.size()==0)return null;

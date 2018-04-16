@@ -424,7 +424,8 @@ public class UserController {
         if (depts == null) depts = new TreeSet<>();
         depts.add(dept);
         try {
-            List<String> mapping = AllDao.getInstance().getSyRoleDao().getSlabNameMappingByLabName(dept, orgID);
+//            List<String> mapping = AllDao.getInstance().getSyRoleDao().getSlabNameMappingByLabName(dept, orgID);
+            List<String> mapping = AllDao.getInstance().getSyRoleDao().getlabMappingByLabName(dept, orgID);
             if (mapping != null && mapping.size() > 0) {
                 depts.addAll(mapping);
             }
