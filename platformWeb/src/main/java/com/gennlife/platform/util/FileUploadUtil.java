@@ -418,7 +418,7 @@ public class FileUploadUtil implements InitializingBean {
                         String partName=null;
 
                         if(partNameMap.containsKey(parentName)){
-                            partName=parentName;
+                            partName=partNameMap.get(parentName);
                         }else{
                             partName = AllDao.getInstance().getOrgDao().getDepartNameByParentName(parentName);
                         }
