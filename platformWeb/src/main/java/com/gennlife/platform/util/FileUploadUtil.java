@@ -456,7 +456,7 @@ public class FileUploadUtil implements InitializingBean {
                             srcList.add(str + ",失败,上级科室类型为: "+partName+" 当前科室类型为: "+departName+ " 不符合科室类型关系约束");
                             continue;
                         } else {
-                            partNameMap.put(name,parentName);
+                            partNameMap.put(name,departName);
                             Lab lab = new Lab();
                             lab.setOrgID(orgID);
                             lab.setLab_level(1);
