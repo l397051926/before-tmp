@@ -158,6 +158,7 @@ public class CrfProcessor {
             boolean flag = flag1 || flag2 || flag3 || flag4 || flag5;
             if (flag) {
                 String url = ConfigurationService.getUrlBean().getCRFSearchSampleList();
+                //10.0.0.152:9885/crf/SearchSampleList
                 String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
                 return result;
             } else {

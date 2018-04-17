@@ -137,7 +137,7 @@ public class CrfController {
 
     @RequestMapping(value = "/SaveData", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
-    @ResponseBody
+    @ResponseBody//param: {"crf_id":"lung_cancer","PATIENT_SN":"aa"}
     String postSaveData(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
@@ -188,7 +188,7 @@ public class CrfController {
         return resultStr;
     }
 
-
+    //首页搜索 crf数据
     @RequestMapping(value = "/SearchSampleList", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody

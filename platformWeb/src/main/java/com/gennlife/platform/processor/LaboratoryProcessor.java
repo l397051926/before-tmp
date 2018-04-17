@@ -212,7 +212,10 @@ public class LaboratoryProcessor {
         if(!StringUtils.isEmpty(key)){
             Set<Lab> resultlabs=new HashSet<>();
             spellLab(labs,key,resultlabs,key,orgID);
-            labs =new LinkedList<>(resultlabs);
+            if(resultlabs.size()!=0){//若一个没搜到 默认全部
+                labs =new LinkedList<>(resultlabs);
+            }
+
         }
         if (maxLevel == null) {
             return organization;
