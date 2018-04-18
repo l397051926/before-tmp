@@ -11,9 +11,11 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.GzipDecompressingEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
@@ -31,6 +33,7 @@ import java.io.*;
 import java.net.SocketTimeoutException;
 import java.net.URLDecoder;
 import java.nio.charset.Charset;
+import java.util.Map;
 
 public class HttpRequestUtils {
     private static Logger logger = LoggerFactory.getLogger(HttpRequestUtils.class);
@@ -360,4 +363,39 @@ public class HttpRequestUtils {
             }
         }
     }
+    public static String doGet(String url, Map<String, String> params, String encode) throws Exception {
+        HttpClient httpClient = HttpClients.createDefault();
+        logger.info("执行GET请求，URL = {}", url);
+        if(null != params){
+            URIBuilder builder = new URIBuilder(url);
+            for (Map.Entry<String, String> entry : params.entrySet()) {
+                builder.setParameter(entry.getKey(), entry.getValue());
+            }
+            url = builder.build().toString();
+        }
+        // 创建http GET请求
+        HttpGet httpGet = new HttpGet(url);
+        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(30000).setConnectTimeout(30000).build();
+        httpGet.setConfig(requestConfig);
+        CloseableHttpResponse response = null;
+        try {
+            // 执行请求
+             response = (CloseableHttpResponse) httpClient.execute(httpGet);
+            // 判断返回状态是否为200
+            if (response.getStatusLine().getStatusCode() == 200) {
+                if(encode == null){
+                    encode = "UTF-8";
+                }
+                return EntityUtils.toString(response.getEntity(), encode);
+            }
+        } finally {
+            if (response != null) {
+                response.close();
+            }
+            // 此处不能关闭httpClient，如果关闭httpClient，连接池也会销毁
+        }
+        return null;
+    }
+
+
 }

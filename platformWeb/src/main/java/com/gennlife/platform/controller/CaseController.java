@@ -12,6 +12,7 @@ import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -388,5 +389,25 @@ public class CaseController {
         logger.error("系统异常!", exception);
         return ParamUtils.errorParam("出现异常");
     }
+
+    @RequestMapping(value = "/synonyms", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String postOrgMapData(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            User user = (User) paramRe.getAttribute("currentUser");
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.searchSynonyms(paramObj);
+        }  catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("高级搜索 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
 
 }

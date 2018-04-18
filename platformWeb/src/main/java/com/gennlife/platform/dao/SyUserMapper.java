@@ -3,6 +3,7 @@ package com.gennlife.platform.dao;
 
 import com.gennlife.platform.bean.searchConditionBean.SearchConditionBean;
 import com.gennlife.platform.model.Admin;
+import com.gennlife.platform.model.Lab;
 import com.gennlife.platform.model.User;
 import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.Mapper;
@@ -376,4 +377,7 @@ public interface SyUserMapper {
      * @return
      */
     Integer existUserNumber(@Param("unumber") String unumber);
+
+    List<Lab> searchLabByOrgID(String key, String orgID);
+
 }

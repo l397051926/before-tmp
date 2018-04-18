@@ -33,10 +33,10 @@ public class LaboratoryProcessor {
      * @param user
      * @return
      */
-    public String orgMapData(User user,String key,String isParentLab) {
+    public String orgMapData(User user,String key,String isParentLab,String isLabCast) {
         String orgID = user.getOrgID();
         //通过科室数据，初始化的数据结构
-        Organization organization = getOrganization(orgID,key,isParentLab);
+        Organization organization = getOrganization(orgID,key,isParentLab,isLabCast);
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(1);
         resultBean.setData(organization);
@@ -196,7 +196,7 @@ public class LaboratoryProcessor {
         organization.setLabs(treeLabs);
         return organization;
     }
-    public static Organization getOrganization(String orgID,String key,String isParentLab) {
+    public static Organization getOrganization(String orgID,String key,String isParentLab,String isLabCast) {
         Organization organization = AllDao.getInstance().getOrgDao().getOrganization(orgID);
         List<Lab> labs =null;
         Integer maxLevel =null;
@@ -211,7 +211,12 @@ public class LaboratoryProcessor {
         maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
         if(!StringUtils.isEmpty(key)){
             Set<Lab> resultlabs=new HashSet<>();
-            spellLab(labs,key,resultlabs,key,orgID);
+            if("true".equals(isLabCast)){
+                spellLabCast(labs,key,resultlabs,key,orgID);
+            }else{
+                spellLab(labs,key,resultlabs,key,orgID);
+            }
+
             if(resultlabs.size()!=0){//若一个没搜到 默认全部
                 labs =new LinkedList<>(resultlabs);
             }
@@ -235,6 +240,20 @@ public class LaboratoryProcessor {
                     resultlabs.add(lab);
                     if(lab.getLab_parent()!=null && !(orgID.equals(lab.getLab_parent()) )){
                         spellLab(labs,lab.getLab_parent(),resultlabs,key1,orgID);
+                    }
+                }
+            }
+        }
+    }
+    public static void spellLabCast(List<Lab> labs,String key,Set<Lab> resultlabs,String key1,String orgID){
+
+        for(Lab lab :labs){
+            String lab_name=lab.getLab_name();
+            if(lab_name.contains(key) || lab.getLabID().contains(key)){
+                if(!resultlabs.contains(lab)){
+                    resultlabs.add(lab);
+                    if(lab.getLab_parent()!=null && !(orgID.equals(lab.getLab_parent()) )){
+                        spellLabCast(labs,lab.getLab_parent(),resultlabs,key1,orgID);
                     }
                 }
             }
@@ -1088,7 +1107,7 @@ public class LaboratoryProcessor {
             if(StringUtils.isEmpty(key)){
                 organization = getOrganization(user.getOrgID());
             }else {
-                organization = getOrganization(user.getOrgID(),key,null);
+                organization = getOrganization(user.getOrgID(),key,null,null);
             }
             organization.setLabs(injectResource(organization.getLabs(), list));
 //            for (LabResource labResource : list) {
@@ -1596,5 +1615,52 @@ public class LaboratoryProcessor {
             return ParamUtils.errorParam("判断当前科室名称是否存在操作失败");
         }
         return gson.toJson(re);
+    }
+
+    public String getOrgInfo(JsonObject paramObj, User user) {
+        String labID = null;
+        String key = null;
+        String limitStr = null;
+        Integer offset = null;
+        Integer limit = null;
+        try {
+            labID = paramObj.get("labID").getAsString();
+            key = paramObj.get("key").getAsString();
+            if (paramObj.has("limit")) {
+                limitStr = paramObj.get("limit").getAsString();
+                int[] ls = ParamUtils.parseLimit(limitStr);
+                offset = (ls[0] - 1) * ls[1];
+                limit = ls[1];
+            }
+        } catch (Exception e) {
+            return ParamUtils.errorParam("参数错误");
+        }
+        List<User> users = null;
+        List<Lab> labs = null;
+        ResultBean re = new ResultBean();
+        re.setCode(1);
+        if ("".equals(labID)) {
+            if (offset != null && limit != null) {
+                labs = AllDao.getInstance().getOrgDao().getLabsByOrgID(key, offset, limit, user.getOrgID());
+
+            } else {
+                labs = AllDao.getInstance().getOrgDao().searchLabByOrgIDNoLimit(key, user.getOrgID());
+            }
+
+        } else {
+            if (offset != null && limit != null) {
+                labs = AllDao.getInstance().getOrgDao().getLabsBypartId(labID,key,user.getOrgID(),offset,limit);
+
+            } else {
+                labs = AllDao.getInstance().getOrgDao().getLabsBypartIdNoLimit(labID,key, user.getOrgID());
+            }
+            //labID 集合
+            List<String> list = new LinkedList<>();
+            list.add(labID);
+        }
+        re.setData(labs);
+        return gson.toJson(re);
+
+
     }
 }

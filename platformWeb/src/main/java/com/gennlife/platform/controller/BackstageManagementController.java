@@ -46,6 +46,7 @@ public class BackstageManagementController {
         String resultStr = null;
         String key=null;
         String isParentLab=null;
+        String isLabCast = null;
         try {
             String param = ParamUtils.getParam(paramRe);
             User user = (User) paramRe.getAttribute("currentUser");
@@ -56,7 +57,10 @@ public class BackstageManagementController {
             if(paramObj.has("isParentLab")){
                 isParentLab=paramObj.get("isParentLab").getAsString();
             }
-            resultStr = processor.orgMapData(user,key,isParentLab);
+            if(paramObj.has("isLabCast")){
+                isLabCast=paramObj.get("isLabCast").getAsString();
+            }
+            resultStr = processor.orgMapData(user,key,isParentLab,isLabCast);
         } catch (DataIntegrityViolationException e) {
             resultStr = DataIntegrityViolationExceptionMsg();
         } catch (Exception e) {
@@ -733,6 +737,28 @@ public class BackstageManagementController {
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("判断当前角色名称是否唯一 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+
+    @RequestMapping(value = "/GetOrgInfo", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String GetOrgInfo(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            User user = (User) paramRe.getAttribute("currentUser");
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.getOrgInfo(paramObj, user);
+        } catch (DataIntegrityViolationException e) {
+            resultStr = DataIntegrityViolationExceptionMsg();
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("用于获取某组织科室下的人员信息 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 

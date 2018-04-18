@@ -513,4 +513,29 @@ public class CaseProcessor {
             return ParamUtils.errorParam("请求出错");
         }
     }
+
+    public String searchSynonyms(JsonObject paramObj) {
+        try {
+            String field = null;
+            String keyWord = null;
+            if(paramObj.has("field")){
+                field=paramObj.get("field").getAsString();
+            }else {
+                return ParamUtils.errorParam("缺少参数");
+            }
+            if(paramObj.has("keyword")){
+                keyWord = paramObj.get("keyword").getAsString();
+            }else {
+                return ParamUtils.errorParam("缺少参数");
+            }
+            Map<String,String> map =new HashMap<>();
+            map.put("field",field);
+            map.put("keyword",keyWord);
+            String url="http://10.0.2.53:8989/synonyms";
+            String result = HttpRequestUtils.doGet(url,map,null);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
 }

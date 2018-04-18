@@ -3,6 +3,7 @@ package com.gennlife.platform.test;
 import com.gennlife.platform.model.Lab;
 import com.gennlife.platform.model.Uprofession;
 import com.gennlife.platform.model.User;
+import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -13,6 +14,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author liumingxin
@@ -20,17 +23,21 @@ import java.util.Date;
  * @desc
  **/
 public class TestModel {
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws Exception {
 
-        String x=null;
-        Uprofession up=new Uprofession();
-        if(!StringUtils.isEmpty(x) &&!up.getUprofession().contains(x)){
-            System.out.println("cuowu");
-        }else{
-            System.out.println("meiyou");
-        }
-
-
+        String url="http://10.0.2.53:8989/synonyms";
+        Map<String,String> map=new HashMap<>();
+        map.put("field","...");
+        map.put("keyword","...");
+        String aaa=HttpRequestUtils.doGet(url,map,null);
+        System.out.println(aaa);
+//        String x=null;
+//        Uprofession up=new Uprofession();
+//        if(!StringUtils.isEmpty(x) &&!up.getUprofession().contains(x)){
+//            System.out.println("cuowu");
+//        }else{
+//            System.out.println("meiyou");
+//        }
 //        System.out.println("abcdefg");
 //
 //        String x=new SimpleDateFormat().format(new Date());

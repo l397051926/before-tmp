@@ -263,4 +263,51 @@
     </select>
 
 
+    <select id="getLabsByOrgID" resultType="com.gennlife.platform.model.Lab">
+        SELECT
+        <include refid="labProperty" />
+        FROM gennlife_lab
+        WHERE
+        (lab_name LIKE CONCAT(CONCAT('%', #{skey}), '%') OR depart_name LIKE CONCAT(CONCAT('%', #{skey}), '%'))
+        AND
+        orgID = #{orgID}
+        LIMIT #{offset},#{limit}
+    </select>
+
+    <select id="searchLabByOrgIDNoLimit" resultType="com.gennlife.platform.model.Lab">
+        SELECT
+        <include refid="labProperty" />
+        FROM gennlife_lab
+        WHERE
+        (lab_name LIKE CONCAT(CONCAT('%', #{skey}), '%') OR depart_name LIKE CONCAT(CONCAT('%', #{skey}), '%'))
+        AND
+        orgID = #{orgID}
+    </select>
+
+    <select id="getLabsBypartId" resultType="com.gennlife.platform.model.Lab">
+        SELECT
+        <include refid="labProperty" />
+        FROM gennlife_lab
+        WHERE
+        (lab_name LIKE CONCAT(CONCAT('%', #{skey}), '%') OR depart_name LIKE CONCAT(CONCAT('%', #{skey}), '%'))
+        AND
+        orgID = #{orgID}
+        AND
+        lab_parent = #{labID}
+        LIMIT #{offset},#{limit}
+    </select>
+
+    <select id="getLabsBypartIdNoLimit" resultType="com.gennlife.platform.model.Lab">
+        SELECT
+        <include refid="labProperty" />
+        FROM gennlife_lab
+        WHERE
+        (lab_name LIKE CONCAT(CONCAT('%', #{skey}), '%') OR depart_name LIKE CONCAT(CONCAT('%', #{skey}), '%'))
+        AND
+        orgID = #{orgID}
+        AND
+        lab_parent = #{labID}
+    </select>
+
+
 </mapper>

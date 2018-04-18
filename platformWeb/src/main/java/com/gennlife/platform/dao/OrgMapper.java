@@ -4,6 +4,7 @@ import com.gennlife.platform.bean.OrgListBean;
 import com.gennlife.platform.bean.OrgMemberBean;
 import com.gennlife.platform.model.Lab;
 import com.gennlife.platform.model.Organization;
+import com.gennlife.platform.model.User;
 import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.Mapper;
 
@@ -163,4 +164,20 @@ public interface OrgMapper {
     List<Lab> getLabsBylabId(@Param("skey") String key, @Param("orgID") String orgID);
 
     Integer getMaxlabLevelBylabId(@Param("skey") String key, @Param("orgID") String orgID);
+
+    /**
+     * 全部数据
+     * @param key
+     * @param offset
+     * @param limit
+     * @param orgID
+     * @return
+     */
+    List<Lab> getLabsByOrgID(@Param("skey") String key, @Param("offset") Integer offset,@Param("limit") Integer limit, @Param("orgID") String orgID);
+
+    List<Lab> getLabsBypartId(@Param("labID") String labID, @Param("skey") String key,@Param("orgID")String orgID, @Param("offset") Integer offset, @Param("limit") Integer limit);
+
+    List<Lab> searchLabByOrgIDNoLimit(@Param("skey") String key, @Param("orgID") String orgID);
+
+    List<Lab> getLabsBypartIdNoLimit(String labID, String key, String orgID);
 }
