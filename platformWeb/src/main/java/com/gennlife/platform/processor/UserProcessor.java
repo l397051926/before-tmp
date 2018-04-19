@@ -348,26 +348,44 @@ public class UserProcessor {
                     insert.add(jsonCopy);
                 }
             }
-
         }
 
         return gson.fromJson(insert, new TypeToken<TreeSet<Resource>>() {
         }.getType());
     }
+//    将相同的labid departname放入list中，每个labid 当为key
+//    public static Map<String, List<String>> getDepartmentFromMysql(List<DepartmentMap> departName) {
+//        Map<String, List<String>> mapDep = new HashMap<String, List<String>>();
+//        for (DepartmentMap dep : departName) {
+//
+//            List<String> array = new LinkedList<String>();
+//
+//            List<String> arrayList = mapDep.get(dep.getLab_id());
+//            if (arrayList != null && arrayList.size() != 0) {
+//                arrayList.add(dep.getDepart_name());
+//                mapDep.put(dep.getLab_id(), arrayList);
+//            } else {
+//                array.add(dep.getDepart_name());
+//                mapDep.put(dep.getLab_id(), array);
+//            }
+//        }
+//        return mapDep;
+//    }
+
     //将相同的labid departname放入list中，每个labid 当为key
-    public static Map<String, List<String>> getDepartmentFromMysql(List<DepartmentMap> departName) {
+    public static Map<String, List<String>> getDepartmentFromMysql(List<Lab> departName) {
         Map<String, List<String>> mapDep = new HashMap<String, List<String>>();
-        for (DepartmentMap dep : departName) {
+        for (Lab dep : departName) {
 
             List<String> array = new LinkedList<String>();
 
-            List<String> arrayList = mapDep.get(dep.getLab_id());
+            List<String> arrayList = mapDep.get(dep.getLabID());
             if (arrayList != null && arrayList.size() != 0) {
                 arrayList.add(dep.getDepart_name());
-                mapDep.put(dep.getLab_id(), arrayList);
+                mapDep.put(dep.getLabID(), arrayList);
             } else {
                 array.add(dep.getDepart_name());
-                mapDep.put(dep.getLab_id(), array);
+                mapDep.put(dep.getLabID(), array);
             }
         }
         return mapDep;

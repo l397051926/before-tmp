@@ -19,7 +19,26 @@ public class Lab {
     public Object staff;//成员
     private String sid;
 
+    private String checked;
+
     private String depart_name; //部门类别
+    private String parentLabName;
+
+    public String getChecked() {
+        return checked;
+    }
+
+    public void setChecked(String checked) {
+        this.checked = checked;
+    }
+
+    public String getParentLabName() {
+        return parentLabName;
+    }
+
+    public void setParentLabName(String parentLabName) {
+        this.parentLabName = parentLabName;
+    }
 
     public String getDepart_name() {
         return depart_name;

@@ -1,5 +1,7 @@
 package com.gennlife.platform.model;
 
+import org.springframework.util.StringUtils;
+
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Set;
@@ -32,9 +34,10 @@ public class Power {
         this.has_search.clear();
         if (has_search != null) {
             for (Resource resource : has_search) {
-                if (resource.getHas_search().equals("有"))
+                if (StringUtils.isEmpty(resource.getHas_search()) && resource.getHas_search().equals("有"))
                     addInHasSearch(resource);
             }
+            System.out.println("Aaa");
         }
 
     }
@@ -51,7 +54,7 @@ public class Power {
         this.has_searchExport.clear();
         if (has_searchExport != null) {
             for (Resource resource : has_searchExport) {
-                if (resource.getHas_searchExport().equals("有"))
+                if (StringUtils.isEmpty(resource.getHas_searchExport()) && resource.getHas_searchExport().equals("有"))
                     addInHasSearchExport(resource);
             }
         }

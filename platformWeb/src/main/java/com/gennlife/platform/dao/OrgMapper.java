@@ -175,9 +175,16 @@ public interface OrgMapper {
      */
     List<Lab> getLabsByOrgID(@Param("skey") String key, @Param("offset") Integer offset,@Param("limit") Integer limit, @Param("orgID") String orgID);
 
-    List<Lab> getLabsBypartId(@Param("labID") String labID, @Param("skey") String key,@Param("orgID")String orgID, @Param("offset") Integer offset, @Param("limit") Integer limit);
+    List<Lab> getLabsBypartId(@Param("labIDs") String[] labIDs, @Param("skey") String key,@Param("orgID")String orgID, @Param("offset") Integer offset, @Param("limit") Integer limit);
 
     List<Lab> searchLabByOrgIDNoLimit(@Param("skey") String key, @Param("orgID") String orgID);
 
-    List<Lab> getLabsBypartIdNoLimit(String labID, String key, String orgID);
+    List<Lab> getLabsBypartIdNoLimit(@Param("labIDs") String[] labIDs, @Param("skey") String key, @Param("orgID") String orgID);
+
+    /**
+     * 跟据 labid 获取 labname
+     * @param labID
+     * @return
+     */
+    String getlabnameBylabID(@Param("labID") String labID);
 }

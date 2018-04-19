@@ -293,7 +293,10 @@
         AND
         orgID = #{orgID}
         AND
-        lab_parent = #{labID}
+        lab_parent in
+    <foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
+        #{item,jdbcType=VARCHAR}
+    </foreach>
         LIMIT #{offset},#{limit}
     </select>
 
@@ -306,7 +309,18 @@
         AND
         orgID = #{orgID}
         AND
-        lab_parent = #{labID}
+        lab_parent in
+        <foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+
+    </select>
+
+    <select id="getlabnameBylabID" resultType="String" >
+        select
+        lab_name
+        from gennlife_lab
+        where labID = #{labID,jdbcType=VARCHAR}
     </select>
 
 

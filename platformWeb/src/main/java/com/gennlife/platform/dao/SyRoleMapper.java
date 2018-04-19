@@ -2,6 +2,7 @@ package com.gennlife.platform.dao;
 
 
 import com.gennlife.platform.model.DepartmentMap;
+import com.gennlife.platform.model.Lab;
 import com.gennlife.platform.model.Role;
 import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.Mapper;
@@ -131,7 +132,7 @@ public interface SyRoleMapper {
     int updateUserRole(Role role);
 
     List<DepartmentMap> getSlabNames();
-    List<DepartmentMap> getLabMAP();
+    List<Lab> getLabMAP();
 
     List<String> getSlabNameMappingByLabName(@Param("lab_name") String lab_name, @Param("orgID") String orgID);
     List<String> getlabMappingByLabName(@Param("lab_name") String lab_name, @Param("orgID") String orgID);

@@ -273,4 +273,9 @@
     </foreach>
   </select>
 
+  <select id="getSidsByRoleid" resultType="String">
+    select  sid  FROM gennlife_role_resource
+    WHERE roleid=#{roleid,jdbcType=VARCHAR}
+  </select>
+
 </mapper>

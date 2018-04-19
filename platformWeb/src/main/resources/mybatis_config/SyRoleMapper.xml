@@ -170,9 +170,9 @@
         gennlife_lab_map
     </select>
 
-    <select id="getLabMAP" resultMap="com.gennlife.platform.model.DepartmentMap">
+    <select id="getLabMAP" resultType="com.gennlife.platform.model.Lab">
         SELECT
-        laID,lab_name
+        labID,lab_name
         FROM
         gennlife_lab
         WHERE

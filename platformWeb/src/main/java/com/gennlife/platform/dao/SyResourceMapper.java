@@ -97,4 +97,6 @@ public interface SyResourceMapper {
     int updateResource(LabResource labResource);
 
     List<Resource> getAllResources(@Param("orgID") String orgID,@Param("roleid") Integer roleid);
+
+    List<String> getSidsByRoleid(@Param("roleid") String roleid);
 }

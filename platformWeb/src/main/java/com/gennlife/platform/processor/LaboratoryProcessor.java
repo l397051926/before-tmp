@@ -196,6 +196,30 @@ public class LaboratoryProcessor {
         organization.setLabs(treeLabs);
         return organization;
     }
+
+    public static Organization getOrganization(String orgID,String roleid) {
+
+        Organization organization = AllDao.getInstance().getOrgDao().getOrganization(orgID);
+        List<Lab> labs =null;
+        Integer maxLevel =null;
+
+        labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
+        maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
+        List<String> sids=AllDao.getInstance().getSyResourceDao().getSidsByRoleid(roleid);
+        for(Lab lab :labs){
+            if(sids.contains(lab.getLabID())){
+                lab.setChecked("true");
+            }
+        }
+
+        if (maxLevel == null) {
+            return organization;
+        }
+        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,null);
+        organization.setLabs(treeLabs);
+        return organization;
+    }
+
     public static Organization getOrganization(String orgID,String key,String isParentLab,String isLabCast) {
         Organization organization = AllDao.getInstance().getOrgDao().getOrganization(orgID);
         List<Lab> labs =null;
@@ -796,13 +820,15 @@ public class LaboratoryProcessor {
 
     public String getStaffTree(JsonObject paramObj, User user) {
         String key = null;
+        String roleid = null;
         try {
             key = paramObj.get("key").getAsString();
+            roleid = paramObj.get("roleid").getAsString();
         } catch (Exception e) {
             return ParamUtils.errorParam("参数异常");
         }
         List<User> users = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDNoLimit(key, user.getOrgID());
-        Organization organization = getOrganization(user.getOrgID());
+        Organization organization = getOrganization(user.getOrgID(),roleid);
         // 将搜索到的用户挂在organization对象中
         organization = injectUsers(organization, users);
         ResultBean resultBean = new ResultBean();
@@ -1635,32 +1661,45 @@ public class LaboratoryProcessor {
         } catch (Exception e) {
             return ParamUtils.errorParam("参数错误");
         }
-        List<User> users = null;
         List<Lab> labs = null;
         ResultBean re = new ResultBean();
         re.setCode(1);
         if ("".equals(labID)) {
             if (offset != null && limit != null) {
                 labs = AllDao.getInstance().getOrgDao().getLabsByOrgID(key, offset, limit, user.getOrgID());
-
             } else {
                 labs = AllDao.getInstance().getOrgDao().searchLabByOrgIDNoLimit(key, user.getOrgID());
             }
-
         } else {
-            if (offset != null && limit != null) {
-                labs = AllDao.getInstance().getOrgDao().getLabsBypartId(labID,key,user.getOrgID(),offset,limit);
-
-            } else {
-                labs = AllDao.getInstance().getOrgDao().getLabsBypartIdNoLimit(labID,key, user.getOrgID());
-            }
+            List<Lab> labAll=AllDao.getInstance().getOrgDao().getLabs(user.getOrgID());
             //labID 集合
             List<String> list = new LinkedList<>();
             list.add(labID);
+            getLabIDs(labAll,list,labID);
+            String labids[] =  list.toArray(new String[list.size()]);
+            if (offset != null && limit != null) {
+                labs = AllDao.getInstance().getOrgDao().getLabsBypartId(labids,key,user.getOrgID(),offset,limit);
+            } else {
+                labs = AllDao.getInstance().getOrgDao().getLabsBypartIdNoLimit(labids,key,user.getOrgID());
+            }
         }
+
+        for(Lab lab :labs){
+            String pname = AllDao.getInstance().getOrgDao().getlabnameBylabID(lab.getLab_parent());
+            lab.setParentLabName(pname);
+        }
+
         re.setData(labs);
         return gson.toJson(re);
-
-
     }
+
+    public void getLabIDs(List<Lab> labs,List<String> list,String labID){
+        for(Lab lab : labs){
+            if(labID.equals(lab.getLab_parent())){
+                list.add(lab.getLabID());
+                getLabIDs(labs,list,lab.getLabID());
+            }
+        }
+    }
+
 }
