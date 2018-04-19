@@ -34,7 +34,7 @@ public class Power {
         this.has_search.clear();
         if (has_search != null) {
             for (Resource resource : has_search) {
-                if (StringUtils.isEmpty(resource.getHas_search()) && resource.getHas_search().equals("有"))
+                if ( resource.getHas_search().equals("有"))
                     addInHasSearch(resource);
             }
         }
@@ -53,7 +53,7 @@ public class Power {
         this.has_searchExport.clear();
         if (has_searchExport != null) {
             for (Resource resource : has_searchExport) {
-                if (StringUtils.isEmpty(resource.getHas_searchExport()) && resource.getHas_searchExport().equals("有"))
+                if ( resource.getHas_searchExport().equals("有"))
                     addInHasSearchExport(resource);
             }
         }

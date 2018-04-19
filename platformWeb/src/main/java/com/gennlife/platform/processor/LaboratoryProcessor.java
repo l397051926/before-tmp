@@ -1132,10 +1132,15 @@ public class LaboratoryProcessor {
             key=paramObj.get("key").getAsString();
         }
         if(paramObj.has("roleid")){
-            roleid = paramObj.get("roleid").getAsString();
+            JsonElement jsonElement=paramObj.get("roleid");
+            if(jsonElement.isJsonPrimitive()){
+                roleid=jsonElement.getAsString();
+            }
         }
         try {
-            type = paramObj.get("type").getAsString();
+            if(paramObj.has("type")) {
+                type = paramObj.get("type").getAsString();
+            }
         } catch (Exception e) {
             return ParamUtils.errorParam("参数错误");
         }

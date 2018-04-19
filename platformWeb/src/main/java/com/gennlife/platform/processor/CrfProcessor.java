@@ -100,7 +100,8 @@ public class CrfProcessor {
 
     public String upLoadData(JsonObject paramObj) {
         try {
-            String url = ConfigurationService.getUrlBean().getCRFUpLoadData();
+//            String url = ConfigurationService.getUrlBean().getCRFUpLoadData();
+            String url = "http://127.0.0.1:8090/crf/UpLoadData";
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
             return result;
         } catch (Exception e) {
