@@ -27,21 +27,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BackstageManagementController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BackstageManagementController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="748" column="32" lean-forward="true" selection-start-line="748" selection-start-column="32" selection-end-line="748" selection-end-column="32" />
+            <state relative-caret-position="680">
+              <caret line="289" column="39" lean-forward="true" selection-start-line="289" selection-start-column="39" selection-end-line="289" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LaboratoryProcessor.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LaboratoryProcessor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1171">
-              <caret line="1683" column="107" lean-forward="false" selection-start-line="1683" selection-start-column="107" selection-end-line="1683" selection-end-column="107" />
+            <state relative-caret-position="626">
+              <caret line="214" column="9" lean-forward="true" selection-start-line="214" selection-start-column="9" selection-end-line="214" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SyUserMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyUserMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="337">
+              <caret line="204" column="15" lean-forward="false" selection-start-line="204" selection-start-column="15" selection-end-line="204" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -58,7 +68,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>HttpClient</find>
       <find>staffin</find>
       <find>GetStaffInfo</find>
       <find>List&lt;Lab&gt;</find>
@@ -88,6 +97,7 @@
       <find>getLabMAP</find>
       <find>selectDeleteLabsReource</find>
       <find>getorg</find>
+      <find>getstafftree</find>
     </findStrings>
     <dirStrings>
       <dir>C:\lmx\clooud\Ark-UI_Service\platformWeb</dir>
@@ -593,7 +603,7 @@
       <workItem from="1523372557275" duration="59365000" />
       <workItem from="1523762766829" duration="6585000" />
       <workItem from="1523975094925" duration="430000" />
-      <workItem from="1524014277164" duration="28339000" />
+      <workItem from="1524014277164" duration="28992000" />
     </task>
     <task id="LOCAL-00001" summary="添加 用户生效时间 和科室部分功能">
       <created>1523283706149</created>
@@ -840,11 +850,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524101203675</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="科室搜索功能暂时取消后台分页">
+      <created>1524102083052</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1524102083052</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="281728000" />
+    <option name="totallyTimeSpent" value="282381000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
@@ -859,7 +876,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35611165" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35611165" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3012512" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -949,7 +966,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改 fileter 注释bug" />
     <MESSAGE value="增加条件验证 针对前台uiservice 修改bug" />
     <MESSAGE value="增加自动创建 全院科室角色 修改为汉字存储" />
     <MESSAGE value="修改状态判定" />
@@ -974,7 +990,8 @@
     <MESSAGE value="增加科室 搜索问题bug" />
     <MESSAGE value="增加 同义词 接口 ，增加 获取科室接口" />
     <MESSAGE value="优化科室搜索功能，增加角色科室功能回填功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化科室搜索功能，增加角色科室功能回填功能" />
+    <MESSAGE value="科室搜索功能暂时取消后台分页" />
+    <option name="LAST_COMMIT_MESSAGE" value="科室搜索功能暂时取消后台分页" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1257,14 +1274,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyUserMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="208" column="27" lean-forward="false" selection-start-line="208" selection-start-column="15" selection-end-line="208" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.13.RELEASE/spring-web-4.3.13.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -1498,18 +1507,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1171">
-          <caret line="1683" column="107" lean-forward="false" selection-start-line="1683" selection-start-column="107" selection-end-line="1683" selection-end-column="107" />
+        <state relative-caret-position="680">
+          <caret line="289" column="39" lean-forward="true" selection-start-line="289" selection-start-column="39" selection-end-line="289" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyUserMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="748" column="32" lean-forward="true" selection-start-line="748" selection-start-column="32" selection-end-line="748" selection-end-column="32" />
+        <state relative-caret-position="337">
+          <caret line="204" column="15" lean-forward="false" selection-start-line="204" selection-start-column="15" selection-end-line="204" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="626">
+          <caret line="214" column="9" lean-forward="true" selection-start-line="214" selection-start-column="9" selection-end-line="214" selection-end-column="9" />
           <folding />
         </state>
       </provider>

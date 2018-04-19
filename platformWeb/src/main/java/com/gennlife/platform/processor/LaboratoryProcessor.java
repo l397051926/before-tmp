@@ -205,13 +205,14 @@ public class LaboratoryProcessor {
 
         labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
         maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
-        List<String> sids=AllDao.getInstance().getSyResourceDao().getSidsByRoleid(roleid);
-        for(Lab lab :labs){
-            if(sids.contains(lab.getLabID())){
-                lab.setChecked("true");
+        if(!StringUtils.isEmpty(roleid)){
+            List<String> sids=AllDao.getInstance().getSyResourceDao().getSidsByRoleid(roleid);
+            for(Lab lab :labs){
+                if(sids.contains(lab.getLabID())){
+                    lab.setChecked("true");
+                }
             }
         }
-
         if (maxLevel == null) {
             return organization;
         }
@@ -823,7 +824,9 @@ public class LaboratoryProcessor {
         String roleid = null;
         try {
             key = paramObj.get("key").getAsString();
-            roleid = paramObj.get("roleid").getAsString();
+            if(paramObj.has("roleid")){
+                roleid = paramObj.get("roleid").getAsString();
+            }
         } catch (Exception e) {
             return ParamUtils.errorParam("参数异常");
         }
