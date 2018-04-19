@@ -4,6 +4,8 @@ import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.model.Group;
+import com.gennlife.platform.model.Power;
+import com.gennlife.platform.model.Resource;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.parse.CaseSearchParser;
 import com.gennlife.platform.parse.CaseSuggestParser;
@@ -357,6 +359,18 @@ public class CaseProcessor {
             //logger.info("通过sid转化后，搜索请求参数 = " + gson.toJson(paramObj));
             return gson.toJson(paramObj);
         } else { // 角色,完成小组扩展
+            if("是".equals(user.getIfRoleAll())){
+                Power power=new Power();
+                Resource resource=new Resource();
+                resource.setSid("hospital_all");
+                resource.setSlab_name("_all");
+                resource.setHas_search("有");
+                List<Resource> list=new LinkedList<>();
+                list.add(resource);
+                power.setHas_search(list);
+                paramObj.remove("power");
+                paramObj.add("power",new Gson().toJsonTree(power));
+            }
             return gson.toJson(paramObj);
         }
 
@@ -419,7 +433,22 @@ public class CaseProcessor {
     public String SearchCaseRole(String newParam, User user) {
         return transformSid(newParam, user);
     }
-
+    /*
+    {"uid":"13157887-ff05-47a2-b34a-bcf09312be8f",
+    "indexName":"yantai_hospital_clinical_patients",
+    "query":"诊断",
+    "from":"cases",
+    "to":"cases",
+    "isAdv":false,
+    "hospitalID":"public",
+    "size":10,"page":1,
+    "topGeneSymbol":[],
+    "source":["patient_info.PATIENT_SN"编号,"patient_info.GENDER"性别,"patient_info.BLOOD_ABO ABO血型","patient_info.BLOOD_RH","patient_info.BIRTH_PLACE","patient_info.BIRTH_DATE","patient_info.NATIONALITY","patient_info.MARITAL_STATUS","patient_info.NATIVE_PLACE","patient_info.ETHNIC","patient_info.EDUCATION_DEGREE","patient_info.OCCUPATION"],
+    "aggs":{"terms_aggs":[{"field":"patient_info.GENDER","topN":0},
+    {"field":"patient_info.ETHNIC","topN":0},{"field":"patient_info.MARITAL_STATUS","topN":0}],
+    "range_aggs":[]},
+    "sort":[],"isHighlightAllfields":true}:
+     */
     public String searchCaseWithAddQuery(String newParam, User user, String addQuery) {
         if (newParam == null) {
             logger.error("searchCase缺失参数");
@@ -515,6 +544,31 @@ public class CaseProcessor {
             paramObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
             logger.info("搜索详情高亮 SS返回结果： " + result);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String searchSynonyms(JsonObject paramObj) {
+        try {
+            String field = null;
+            String keyWord = null;
+            if(paramObj.has("field")){
+                field=paramObj.get("field").getAsString();
+            }else {
+                return ParamUtils.errorParam("缺少参数");
+            }
+            if(paramObj.has("keyword")){
+                keyWord = paramObj.get("keyword").getAsString();
+            }else {
+                return ParamUtils.errorParam("缺少参数");
+            }
+            Map<String,String> map =new HashMap<>();
+            map.put("field",field);
+            map.put("keyword",keyWord);
+            String url="http://10.0.2.53:8989/search-server/synonyms";
+            String result = HttpRequestUtils.doGet(url,map,null);
             return result;
         } catch (Exception e) {
             return ParamUtils.errorParam("请求出错");
