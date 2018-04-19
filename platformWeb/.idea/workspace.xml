@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="增加 同义词 接口 ，增加 获取科室接口">
+    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/OrgMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/OrgMapper.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyResourceMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyResourceMapper.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyRoleMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyRoleMapper.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Lab.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Lab.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Power.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Power.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/UserProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/UserProcessor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis_config/OrgMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis_config/OrgMapper.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis_config/SyResourceMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis_config/SyResourceMapper.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis_config/SyRoleMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis_config/SyRoleMapper.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,151 +27,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BackstageManagementController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BackstageManagementController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="289" column="40" lean-forward="false" selection-start-line="289" selection-start-column="40" selection-end-line="289" selection-end-column="40" />
+            <state relative-caret-position="95">
+              <caret line="748" column="32" lean-forward="true" selection-start-line="748" selection-start-column="32" selection-end-line="748" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LaboratoryProcessor.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LaboratoryProcessor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="626">
-              <caret line="1687" column="60" lean-forward="false" selection-start-line="1687" selection-start-column="60" selection-end-line="1687" selection-end-column="60" />
+            <state relative-caret-position="1171">
+              <caret line="1683" column="107" lean-forward="false" selection-start-line="1683" selection-start-column="107" selection-end-line="1683" selection-end-column="107" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrgMapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/OrgMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="188" column="20" lean-forward="false" selection-start-line="188" selection-start-column="20" selection-end-line="188" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SyResourceMapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyResourceMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="725">
-              <caret line="100" column="26" lean-forward="false" selection-start-line="100" selection-start-column="26" selection-end-line="100" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrgMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis_config/OrgMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="318" column="56" lean-forward="true" selection-start-line="318" selection-start-column="56" selection-end-line="318" selection-end-column="56" />
-              <folding>
-                <marker date="1524062980629" expanded="true" signature="564:648" ph="select orgID... gennlife_org" />
-                <marker date="1524062980629" expanded="true" signature="1195:1343" ph="select orgNa... gennlife_org" />
-                <marker date="1524062980629" expanded="true" signature="2433:2575" ph="select from gennlife_lab" />
-                <marker date="1524062980629" expanded="true" signature="2701:2835" ph="select from gennlife_lab" />
-                <marker date="1524062980629" expanded="true" signature="3390:3501" ph="SELECT orgID... gennlife_org" />
-                <marker date="1524062980629" expanded="true" signature="3600:3686" ph="select max(l... gennlife_lab" />
-                <marker date="1524062980629" expanded="true" signature="3781:3917" ph="select lab_l... gennlife_lab" />
-                <marker date="1524062980629" expanded="true" signature="6041:6157" ph="SELECT DISTI... gennlife_lab" />
-                <marker date="1524062980629" expanded="true" signature="6554:6665" ph="select from gennlife_lab" />
-                <marker date="1524062980629" expanded="true" signature="6740:7128" ph="UPDATE gennlife_lab... " />
-                <marker date="1524062980629" expanded="true" signature="7252:7768" ph="UPDATE gennlife_lab... " />
-                <marker date="1524062980629" expanded="true" signature="7900:8037" ph="select from gennlife_lab" />
-                <marker date="1524062980629" expanded="true" signature="8140:8296" ph="select disti... gennlife_org_profession" />
-                <marker date="1524062980629" expanded="true" signature="8394:8606" ph="select from gennlife_lab" />
-                <marker date="1524062980629" expanded="true" signature="8722:8827" ph="select labID... gennlife_lab" />
-                <marker date="1524062980629" expanded="true" signature="8884:9157" ph="update gennlife_lab... " />
-                <marker date="1524062980629" expanded="true" signature="9264:9370" ph="select depar... gennlife_lab" />
-                <marker date="1524062980629" expanded="true" signature="9498:9615" ph="select from gennlife_lab" />
-                <marker date="1524062980629" expanded="true" signature="9725:9915" ph="SELECT DISTI... gennlife_lab" />
-                <marker date="1524062980629" expanded="true" signature="10023:10132" ph="select max(l... gennlife_lab" />
-                <marker date="1524062980629" expanded="true" signature="10235:10503" ph="SELECT FROM gennlife_lab" />
-                <marker date="1524062980629" expanded="true" signature="10614:10849" ph="SELECT FROM gennlife_user" />
-                <marker date="1524062980629" expanded="true" signature="10952:11395" ph="SELECT FROM gennlife_lab" />
-                <marker date="1524062980629" expanded="true" signature="11505:11772" ph="SELECT FROM gennlife_lab" />
-                <marker date="1524062980629" expanded="true" signature="12009:12106" ph="select lab_n... gennlife_lab" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SyResourceMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis_config/SyResourceMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="273" column="11" lean-forward="true" selection-start-line="273" selection-start-column="11" selection-end-line="273" selection-end-column="11" />
-              <folding>
-                <marker date="1524062985549" expanded="true" signature="1897:2157" ph="select FROM gennlife_role_resource" />
-                <marker date="1524062985549" expanded="true" signature="2259:2497" ph="select FROM gennlife_role_resource" />
-                <marker date="1524062985549" expanded="true" signature="2597:2796" ph="select FROM gennlife_role_resource" />
-                <marker date="1524062985549" expanded="true" signature="2899:3182" ph="SELECT FROM gennlife_role_resource" />
-                <marker date="1524062985549" expanded="true" signature="5063:5169" ph="SELECT COUNT... gennlife_role_resource" />
-                <marker date="1524062985549" expanded="true" signature="7932:8065" ph="SELECT FROM gennlife_resource" />
-                <marker date="1524062985549" expanded="true" signature="8147:8394" ph="SELECT count... gennlife_role_resource" />
-                <marker date="1524062985549" expanded="true" signature="8499:8989" ph="UPDATE gennlife_resource sna... " />
-                <marker date="1524062985549" expanded="true" signature="9568:9684" ph="SELECT FROM gennlife_lab_crf" />
-                <marker date="1524062985549" expanded="true" signature="9762:9874" ph="SELECT count... gennlife_lab_crf" />
-                <marker date="1524062985549" expanded="true" signature="10311:10395" ph="select sid F... gennlife_role_resource" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SyRoleMapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyRoleMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-15">
-              <caret line="127" column="6" lean-forward="true" selection-start-line="127" selection-start-column="6" selection-end-line="127" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SyRoleMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis_config/SyRoleMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="172" column="70" lean-forward="false" selection-start-line="172" selection-start-column="70" selection-end-line="172" selection-end-column="70" />
-              <folding>
-                <marker date="1524063265155" expanded="true" signature="1445:1692" ph="select FROM gennlife_role" />
-                <marker date="1524063265155" expanded="true" signature="1792:1961" ph="select FROM gennlife_role" />
-                <marker date="1524063265155" expanded="true" signature="2637:2988" ph="select FROM gennlife_role" />
-                <marker date="1524063265155" expanded="true" signature="3079:3347" ph="select count... gennlife_role" />
-                <marker date="1524063265155" expanded="true" signature="3732:3861" ph="select FROM gennlife_role" />
-                <marker date="1524063265155" expanded="true" signature="3962:4087" ph="select FROM gennlife_role" />
-                <marker date="1524063265155" expanded="true" signature="4192:4352" ph="select FROM gennlife_role" />
-                <marker date="1524063265155" expanded="true" signature="5577:5699" ph="SELECT count... gennlife_user_role" />
-                <marker date="1524063265155" expanded="true" signature="5804:6232" ph="UPDATE gennlife_role ro... " />
-                <marker date="1524063265155" expanded="true" signature="6340:6394" ph="SELECT * FRO... gennlife_lab_map" />
-                <marker date="1524063265155" expanded="true" signature="6491:6596" ph="SELECT labID... gennlife_lab" />
-                <marker date="1524063265155" expanded="true" signature="6696:6881" ph="SELECT depar... gennlife_lab_map" />
-                <marker date="1524063265155" expanded="true" signature="6793:6871" ph="select labID... gennlife_lab" />
-                <marker date="1524063265155" expanded="true" signature="6977:7198" ph="SELECT lab_n... gennlife_lab" />
-                <marker date="1524063265155" expanded="true" signature="7070:7148" ph="select labID... gennlife_lab" />
-                <marker date="1524063265155" expanded="true" signature="7286:7367" ph="SELECT uid F... gennlife_user_role" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Lab.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Lab.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="26" column="32" lean-forward="false" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
-              <folding>
-                <element signature="e#677#678#0" expanded="true" />
-                <element signature="e#723#724#0" expanded="true" />
-                <element signature="e#761#762#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -196,7 +58,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>highlight</find>
       <find>HttpClient</find>
       <find>staffin</find>
       <find>GetStaffInfo</find>
@@ -226,6 +87,7 @@
       <find>getSidsByRoleid</find>
       <find>getLabMAP</find>
       <find>selectDeleteLabsReource</find>
+      <find>getorg</find>
     </findStrings>
     <dirStrings>
       <dir>C:\lmx\clooud\Ark-UI_Service\platformWeb</dir>
@@ -282,11 +144,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/UserProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Power.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Lab.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyResourceMapper.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/OrgMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/SyResourceMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/SyRoleMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java" />
       </list>
     </option>
   </component>
@@ -731,7 +593,7 @@
       <workItem from="1523372557275" duration="59365000" />
       <workItem from="1523762766829" duration="6585000" />
       <workItem from="1523975094925" duration="430000" />
-      <workItem from="1524014277164" duration="27274000" />
+      <workItem from="1524014277164" duration="28339000" />
     </task>
     <task id="LOCAL-00001" summary="添加 用户生效时间 和科室部分功能">
       <created>1523283706149</created>
@@ -971,11 +833,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524032370942</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="优化科室搜索功能，增加角色科室功能回填功能">
+      <created>1524101203675</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1524101203675</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="280663000" />
+    <option name="totallyTimeSpent" value="281728000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
@@ -1001,7 +870,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.65928775" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20522387" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20522387" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1080,7 +949,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改部分bug 调整获取列表数据" />
     <MESSAGE value="修改 fileter 注释bug" />
     <MESSAGE value="增加条件验证 针对前台uiservice 修改bug" />
     <MESSAGE value="增加自动创建 全院科室角色 修改为汉字存储" />
@@ -1105,7 +973,8 @@
     <MESSAGE value="解决导入 bug" />
     <MESSAGE value="增加科室 搜索问题bug" />
     <MESSAGE value="增加 同义词 接口 ，增加 获取科室接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加 同义词 接口 ，增加 获取科室接口" />
+    <MESSAGE value="优化科室搜索功能，增加角色科室功能回填功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化科室搜索功能，增加角色科室功能回填功能" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1129,7 +998,7 @@
           <option name="timeStamp" value="60" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="154" />
+      <option name="time" value="155" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1288,14 +1157,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1320">
           <caret line="50" column="18" lean-forward="false" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BaseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="102" column="53" lean-forward="false" selection-start-line="102" selection-start-column="41" selection-end-line="102" selection-end-column="53" />
           <folding />
         </state>
       </provider>
@@ -1526,14 +1387,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="289" column="40" lean-forward="false" selection-start-line="289" selection-start-column="40" selection-end-line="289" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis_config/SyRoleMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
@@ -1637,10 +1490,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33">
+          <caret line="102" column="53" lean-forward="false" selection-start-line="102" selection-start-column="41" selection-end-line="102" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="626">
-          <caret line="1687" column="60" lean-forward="false" selection-start-line="1687" selection-start-column="60" selection-end-line="1687" selection-end-column="60" />
+        <state relative-caret-position="1171">
+          <caret line="1683" column="107" lean-forward="false" selection-start-line="1683" selection-start-column="107" selection-end-line="1683" selection-end-column="107" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="748" column="32" lean-forward="true" selection-start-line="748" selection-start-column="32" selection-end-line="748" selection-end-column="32" />
           <folding />
         </state>
       </provider>

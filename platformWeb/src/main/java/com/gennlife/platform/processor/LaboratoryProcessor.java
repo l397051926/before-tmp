@@ -1666,7 +1666,9 @@ public class LaboratoryProcessor {
         re.setCode(1);
         if ("".equals(labID)) {
             if (offset != null && limit != null) {
-                labs = AllDao.getInstance().getOrgDao().getLabsByOrgID(key, offset, limit, user.getOrgID());
+//                labs = AllDao.getInstance().getOrgDao().getLabsByOrgID(key, offset, limit, user.getOrgID());
+                labs = AllDao.getInstance().getOrgDao().searchLabByOrgIDNoLimit(key, user.getOrgID());
+
             } else {
                 labs = AllDao.getInstance().getOrgDao().searchLabByOrgIDNoLimit(key, user.getOrgID());
             }
@@ -1678,7 +1680,8 @@ public class LaboratoryProcessor {
             getLabIDs(labAll,list,labID);
             String labids[] =  list.toArray(new String[list.size()]);
             if (offset != null && limit != null) {
-                labs = AllDao.getInstance().getOrgDao().getLabsBypartId(labids,key,user.getOrgID(),offset,limit);
+//                labs = AllDao.getInstance().getOrgDao().getLabsBypartId(labids,key,user.getOrgID(),offset,limit);
+                labs = AllDao.getInstance().getOrgDao().getLabsBypartIdNoLimit(labids,key,user.getOrgID());
             } else {
                 labs = AllDao.getInstance().getOrgDao().getLabsBypartIdNoLimit(labids,key,user.getOrgID());
             }
