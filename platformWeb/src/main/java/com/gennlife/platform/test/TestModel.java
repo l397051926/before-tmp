@@ -25,12 +25,18 @@ import java.util.Map;
 public class TestModel {
     public static void main(String[] args) throws Exception {
 
-        String url="http://10.0.2.53:8989/synonyms";
-        Map<String,String> map=new HashMap<>();
-        map.put("field","...");
-        map.put("keyword","...");
-        String aaa=HttpRequestUtils.doGet(url,map,null);
-        System.out.println(aaa);
+        JsonObject p = new JsonObject();
+        p.addProperty("indexName", "bbb");
+        p.addProperty("data", "asdf");
+        String paramStr = new Gson().toJson(p);
+        System.out.println(paramStr);
+
+//        String url="http://10.0.2.53:8989/synonyms";
+//        Map<String,String> map=new HashMap<>();
+//        map.put("field","...");
+//        map.put("keyword","...");
+//        String aaa=HttpRequestUtils.doGet(url,map,null);
+//        System.out.println(aaa);
 //        String x=null;
 //        Uprofession up=new Uprofession();
 //        if(!StringUtils.isEmpty(x) &&!up.getUprofession().contains(x)){

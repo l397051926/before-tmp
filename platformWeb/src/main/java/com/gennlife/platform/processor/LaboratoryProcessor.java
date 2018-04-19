@@ -210,6 +210,7 @@ public class LaboratoryProcessor {
             for(Lab lab :labs){
                 if(sids.contains(lab.getLabID())){
                     lab.setChecked("true");
+                    setLabChecked(labs,lab.getLab_parent());
                 }
             }
         }
@@ -221,6 +222,14 @@ public class LaboratoryProcessor {
         return organization;
     }
 
+    public static void setLabChecked(List<Lab> labs,String labID){
+        for (Lab lab :labs){
+            if(labID.equals(lab.getLabID())){
+                lab.setChecked("true");
+                setLabChecked(labs,lab.getLab_parent());
+            }
+        }
+    }
     public static Organization getOrganization(String orgID,String key,String isParentLab,String isLabCast) {
         Organization organization = AllDao.getInstance().getOrgDao().getOrganization(orgID);
         List<Lab> labs =null;

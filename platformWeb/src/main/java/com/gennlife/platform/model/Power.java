@@ -37,7 +37,6 @@ public class Power {
                 if (StringUtils.isEmpty(resource.getHas_search()) && resource.getHas_search().equals("有"))
                     addInHasSearch(resource);
             }
-            System.out.println("Aaa");
         }
 
     }
