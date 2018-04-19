@@ -821,17 +821,13 @@ public class LaboratoryProcessor {
 
     public String getStaffTree(JsonObject paramObj, User user) {
         String key = null;
-        String roleid = null;
         try {
             key = paramObj.get("key").getAsString();
-            if(paramObj.has("roleid")){
-                roleid = paramObj.get("roleid").getAsString();
-            }
         } catch (Exception e) {
             return ParamUtils.errorParam("参数异常");
         }
         List<User> users = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDNoLimit(key, user.getOrgID());
-        Organization organization = getOrganization(user.getOrgID(),roleid);
+        Organization organization = getOrganization(user.getOrgID());
         // 将搜索到的用户挂在organization对象中
         organization = injectUsers(organization, users);
         ResultBean resultBean = new ResultBean();
@@ -1121,9 +1117,13 @@ public class LaboratoryProcessor {
 
     public String getResourceTree(JsonObject paramObj, User user) {
         String type = null;
+        String roleid = null;
         String key = null;
         if(paramObj.has("key")){
             key=paramObj.get("key").getAsString();
+        }
+        if(paramObj.has("roleid")){
+            roleid = paramObj.get("roleid").getAsString();
         }
         try {
             type = paramObj.get("type").getAsString();
@@ -1131,14 +1131,17 @@ public class LaboratoryProcessor {
             return ParamUtils.errorParam("参数错误");
         }
         List<LabResource> list = AllDao.getInstance().getSyResourceDao().getLabResourcesByOrgID(user.getOrgID(), type);
+
+
         if (list != null && list.size() > 0) {
             Organization organization=null;
             if(StringUtils.isEmpty(key)){
-                organization = getOrganization(user.getOrgID());
+                organization = getOrganization(user.getOrgID(),roleid);
             }else {
                 organization = getOrganization(user.getOrgID(),key,null,null);
             }
             organization.setLabs(injectResource(organization.getLabs(), list));
+            //去掉本科室
 //            for (LabResource labResource : list) {
 //                if ("本科室资源".equals(labResource.getSname())) {
 //                    Lab lab = new Lab();
