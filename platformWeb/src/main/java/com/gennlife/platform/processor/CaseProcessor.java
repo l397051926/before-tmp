@@ -531,7 +531,7 @@ public class CaseProcessor {
             Map<String,String> map =new HashMap<>();
             map.put("field",field);
             map.put("keyword",keyWord);
-            String url="http://10.0.2.53:8989/synonyms";
+            String url="http://10.0.2.53:8989/search-server/synonyms";
             String result = HttpRequestUtils.doGet(url,map,null);
             return result;
         } catch (Exception e) {
