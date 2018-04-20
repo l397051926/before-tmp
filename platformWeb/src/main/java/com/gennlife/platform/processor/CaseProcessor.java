@@ -641,4 +641,14 @@ public class CaseProcessor {
             return ParamUtils.errorParam("请求出错");
         }
     }
+
+    public String synonymUserbehavior(JsonObject paramObj, User user) {
+        try {
+            String url="http://10.0.2.53:8989/search-server/synonymUserbehavior";
+            String result = HttpRequestUtils.httpPostPubMed(url,gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
 }
