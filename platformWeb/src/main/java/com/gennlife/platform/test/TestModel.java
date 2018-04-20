@@ -31,12 +31,20 @@ public class TestModel {
 //        String paramStr = new Gson().toJson(p);
 //        System.out.println(paramStr);
 
-        String url="http://10.0.2.53:8989/search-server/synonyms";
-        Map<String,String> map=new HashMap<>();
-        map.put("field","...");
-        map.put("keyword","...");
-        String aaa=HttpRequestUtils.doGet(url,map,null);
-        System.out.println(aaa);
+//        String url="http://10.0.2.53:8989/search-server/synonyms";
+//        Map<String,String> map=new HashMap<>();
+//        map.put("field","...");
+//        map.put("keyword","...");
+//        String aaa=HttpRequestUtils.doGet(url,map,null);
+//        System.out.println(aaa);
+
+        String url = "http://10.0.2.53:8989/search-server/addSynonym";
+        JsonObject jsonObject=new JsonObject();
+        jsonObject.addProperty("keyword","a");
+        jsonObject.addProperty("target","b");
+        jsonObject.addProperty("field","3");
+       String s=HttpRequestUtils.httpPostPubMed(url,new Gson().toJson(jsonObject));
+        System.out.println(s);
 //        String x=null;
 //        Uprofession up=new Uprofession();
 //        if(!StringUtils.isEmpty(x) &&!up.getUprofession().contains(x)){
