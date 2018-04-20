@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="去掉测试打印">
+    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="修改可是修改bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis_config/OrgMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis_config/OrgMapper.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,7 +42,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1286">
-              <caret line="480" column="5" lean-forward="true" selection-start-line="451" selection-start-column="4" selection-end-line="480" selection-end-column="5" />
+              <caret line="480" column="5" lean-forward="false" selection-start-line="451" selection-start-column="4" selection-end-line="480" selection-end-column="5" />
               <folding>
                 <element signature="e#18001#18002#0" expanded="true" />
                 <element signature="e#18068#18069#0" expanded="true" />
@@ -76,7 +75,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="282">
-              <caret line="515" column="9" lean-forward="true" selection-start-line="515" selection-start-column="9" selection-end-line="515" selection-end-column="9" />
+              <caret line="515" column="9" lean-forward="false" selection-start-line="515" selection-start-column="9" selection-end-line="515" selection-end-column="9" />
               <folding>
                 <element signature="e#19915#19916#0" expanded="true" />
                 <element signature="e#19982#19983#0" expanded="true" />
@@ -101,8 +100,8 @@
       <file leaf-file-name="LaboratoryProcessor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="415" column="9" lean-forward="true" selection-start-line="415" selection-start-column="9" selection-end-line="415" selection-end-column="9" />
+            <state relative-caret-position="117">
+              <caret line="416" column="39" lean-forward="true" selection-start-line="416" selection-start-column="39" selection-end-line="416" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -122,7 +121,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis_config/OrgMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
-              <caret line="181" column="43" lean-forward="true" selection-start-line="181" selection-start-column="43" selection-end-line="181" selection-end-column="43" />
+              <caret line="181" column="43" lean-forward="false" selection-start-line="181" selection-start-column="43" selection-end-line="181" selection-end-column="43" />
               <folding>
                 <marker date="1524209788336" expanded="true" signature="564:648" ph="select orgID... gennlife_org" />
                 <marker date="1524209788336" expanded="true" signature="1195:1343" ph="select orgNa... gennlife_org" />
@@ -304,10 +303,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1358" />
-    <option name="y" value="-8" />
+    <option name="x" value="1347" />
     <option name="width" value="1936" />
-    <option name="height" value="1176" />
+    <option name="height" value="1167" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -700,7 +698,7 @@
       <workItem from="1523372557275" duration="59365000" />
       <workItem from="1523762766829" duration="6585000" />
       <workItem from="1523975094925" duration="430000" />
-      <workItem from="1524014277164" duration="59832000" />
+      <workItem from="1524014277164" duration="60952000" />
     </task>
     <task id="LOCAL-00001" summary="添加 用户生效时间 和科室部分功能">
       <created>1523283706149</created>
@@ -1031,11 +1029,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524188486717</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="修改可是修改bug">
+      <created>1524209938034</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1524209938034</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="313221000" />
+    <option name="totallyTimeSpent" value="314341000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
@@ -1050,7 +1055,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42155918" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42155918" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3012512" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1140,7 +1145,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改导入人员bug" />
     <MESSAGE value="增加科室搜索功能 变红处理" />
     <MESSAGE value="处理导入文件问题" />
     <MESSAGE value="调整 科室导入bug" />
@@ -1165,7 +1169,8 @@
     <MESSAGE value="调整bug" />
     <MESSAGE value="调整科室映射bug" />
     <MESSAGE value="去掉测试打印" />
-    <option name="LAST_COMMIT_MESSAGE" value="去掉测试打印" />
+    <MESSAGE value="修改可是修改bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改可是修改bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1642,7 +1647,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1286">
-          <caret line="480" column="5" lean-forward="true" selection-start-line="451" selection-start-column="4" selection-end-line="480" selection-end-column="5" />
+          <caret line="480" column="5" lean-forward="false" selection-start-line="451" selection-start-column="4" selection-end-line="480" selection-end-column="5" />
           <folding>
             <element signature="e#18001#18002#0" expanded="true" />
             <element signature="e#18068#18069#0" expanded="true" />
@@ -1661,7 +1666,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
-          <caret line="515" column="9" lean-forward="true" selection-start-line="515" selection-start-column="9" selection-end-line="515" selection-end-column="9" />
+          <caret line="515" column="9" lean-forward="false" selection-start-line="515" selection-start-column="9" selection-end-line="515" selection-end-column="9" />
           <folding>
             <element signature="e#19915#19916#0" expanded="true" />
             <element signature="e#19982#19983#0" expanded="true" />
@@ -1696,7 +1701,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis_config/OrgMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="181" column="43" lean-forward="true" selection-start-line="181" selection-start-column="43" selection-end-line="181" selection-end-column="43" />
+          <caret line="181" column="43" lean-forward="false" selection-start-line="181" selection-start-column="43" selection-end-line="181" selection-end-column="43" />
           <folding>
             <marker date="1524209788336" expanded="true" signature="564:648" ph="select orgID... gennlife_org" />
             <marker date="1524209788336" expanded="true" signature="1195:1343" ph="select orgNa... gennlife_org" />
@@ -1729,8 +1734,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="415" column="9" lean-forward="true" selection-start-line="415" selection-start-column="9" selection-end-line="415" selection-end-column="9" />
+        <state relative-caret-position="117">
+          <caret line="416" column="39" lean-forward="true" selection-start-line="416" selection-start-column="39" selection-end-line="416" selection-end-column="39" />
           <folding />
         </state>
       </provider>

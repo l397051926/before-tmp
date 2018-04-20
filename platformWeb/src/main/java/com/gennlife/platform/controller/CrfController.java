@@ -634,4 +634,25 @@ public class CrfController {
         logger.info("获取研究序列号 耗时 " + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/SearchCase", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String postSearchCase(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String paramNew = AuthorityUtil.addSearchCaseAuthority(paramRe);
+            User user = (User) paramRe.getAttribute("currentUser");
+            logger.info("crf 搜索 参数形式=" + paramNew);
+            resultStr = processor.searchCase(paramNew, user);
+        } catch (Exception e) {
+            logger.error("crf单病种 搜错", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("crf单病种 搜错 post 耗时" + (System.currentTimeMillis() - start) + "ms");
+        //logger.info("病历搜索 结果=" + resultStr);
+        return resultStr;
+    }
+
 }
