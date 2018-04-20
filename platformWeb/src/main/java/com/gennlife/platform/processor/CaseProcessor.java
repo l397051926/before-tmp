@@ -574,4 +574,58 @@ public class CaseProcessor {
             return ParamUtils.errorParam("请求出错");
         }
     }
+
+    public String addSynonym(JsonObject paramObj, User user) {
+        try {
+            String target = null;
+            String keyword = null;
+            String uid = user.getUid();
+            if(paramObj.has("keyword")){
+                keyword=paramObj.get("keyword").getAsString();
+            }else {
+                return ParamUtils.errorParam("缺少参数");
+            }
+            if(paramObj.has("target")){
+                target = paramObj.get("target").getAsString();
+            }else {
+                return ParamUtils.errorParam("缺少参数");
+            }
+            String url="http://10.0.2.53:8989/search-server/addSynonym";
+            JsonObject jsonObject=new JsonObject();
+            jsonObject.addProperty("keyword",keyword);
+            jsonObject.addProperty("target",target);
+            jsonObject.addProperty("uid",uid);
+            String result = HttpRequestUtils.httpPost(url,gson.toJson(jsonObject));
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String removeSynonym(JsonObject paramObj, User user) {
+        try {
+            String target = null;
+            String keyword = null;
+            String uid = user.getUid();
+            if(paramObj.has("keyword")){
+                keyword=paramObj.get("keyword").getAsString();
+            }else {
+                return ParamUtils.errorParam("缺少参数");
+            }
+            if(paramObj.has("target")){
+                target = paramObj.get("target").getAsString();
+            }else {
+                return ParamUtils.errorParam("缺少参数");
+            }
+            String url="http://10.0.2.53:8989/search-server/removeSynonym";
+            JsonObject jsonObject=new JsonObject();
+            jsonObject.addProperty("keyword",keyword);
+            jsonObject.addProperty("target",target);
+            jsonObject.addProperty("uid",uid);
+            String result = HttpRequestUtils.httpPost(url,gson.toJson(jsonObject));
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
 }

@@ -408,6 +408,43 @@ public class CaseController {
         logger.info("高级搜索 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+    @RequestMapping(value = "/addSynonym", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String postAddSynonym(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            User user = (User) paramRe.getAttribute("currentUser");
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.addSynonym(paramObj,user);
+        }  catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("高级搜索 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/removeSynonym", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String postremoveSynonym(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            User user = (User) paramRe.getAttribute("currentUser");
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.removeSynonym(paramObj,user);
+        }  catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("高级搜索 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 
 
 }
