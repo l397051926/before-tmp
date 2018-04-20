@@ -28,42 +28,42 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="UserProcessor.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserProcessor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/UserProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="232" column="35" lean-forward="true" selection-start-line="232" selection-start-column="35" selection-end-line="232" selection-end-column="35" />
+            <state relative-caret-position="150">
+              <caret line="229" column="29" lean-forward="true" selection-start-line="229" selection-start-column="29" selection-end-line="229" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Power.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Power.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Power.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="249">
-              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <caret line="40" column="14" lean-forward="true" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
               <folding>
                 <element signature="e#411#412#0" expanded="true" />
                 <element signature="e#488#489#0" expanded="true" />
-                <element signature="e#1705#1706#0" expanded="true" />
-                <element signature="e#1785#1786#0" expanded="true" />
-                <element signature="e#1835#1836#0" expanded="true" />
-                <element signature="e#1874#1875#0" expanded="true" />
-                <element signature="e#2432#2433#0" expanded="true" />
-                <element signature="e#2467#2468#0" expanded="true" />
-                <element signature="e#2982#2983#0" expanded="true" />
-                <element signature="e#3015#3016#0" expanded="true" />
-                <element signature="e#3386#3387#0" expanded="true" />
-                <element signature="e#3466#3467#0" expanded="true" />
-                <element signature="e#3511#3512#0" expanded="true" />
-                <element signature="e#3545#3546#0" expanded="true" />
-                <element signature="e#4053#4054#0" expanded="true" />
-                <element signature="e#4089#4090#0" expanded="true" />
-                <element signature="e#4620#4621#0" expanded="true" />
-                <element signature="e#4659#4660#0" expanded="true" />
-                <element signature="e#5068#5069#0" expanded="true" />
-                <element signature="e#5106#5107#0" expanded="true" />
+                <element signature="e#1599#1600#0" expanded="true" />
+                <element signature="e#1679#1680#0" expanded="true" />
+                <element signature="e#1729#1730#0" expanded="true" />
+                <element signature="e#1768#1769#0" expanded="true" />
+                <element signature="e#2326#2327#0" expanded="true" />
+                <element signature="e#2361#2362#0" expanded="true" />
+                <element signature="e#2876#2877#0" expanded="true" />
+                <element signature="e#2909#2910#0" expanded="true" />
+                <element signature="e#3280#3281#0" expanded="true" />
+                <element signature="e#3360#3361#0" expanded="true" />
+                <element signature="e#3405#3406#0" expanded="true" />
+                <element signature="e#3439#3440#0" expanded="true" />
+                <element signature="e#3947#3948#0" expanded="true" />
+                <element signature="e#3983#3984#0" expanded="true" />
+                <element signature="e#4514#4515#0" expanded="true" />
+                <element signature="e#4553#4554#0" expanded="true" />
+                <element signature="e#4962#4963#0" expanded="true" />
+                <element signature="e#5000#5001#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -200,8 +200,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CaseController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Power.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/UserProcessor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Power.java" />
       </list>
     </option>
   </component>
@@ -668,7 +668,7 @@
       <workItem from="1523372557275" duration="59365000" />
       <workItem from="1523762766829" duration="6585000" />
       <workItem from="1523975094925" duration="430000" />
-      <workItem from="1524014277164" duration="48472000" />
+      <workItem from="1524014277164" duration="49092000" />
     </task>
     <task id="LOCAL-00001" summary="添加 用户生效时间 和科室部分功能">
       <created>1523283706149</created>
@@ -985,11 +985,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524145172783</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="调整科室映射bug">
+      <created>1524187856472</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1524187856472</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="301861000" />
+    <option name="totallyTimeSpent" value="302481000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
@@ -1094,7 +1101,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改bug" />
     <MESSAGE value="修改人员导入问题" />
     <MESSAGE value="修改导入人员bug" />
     <MESSAGE value="增加科室搜索功能 变红处理" />
@@ -1119,7 +1125,8 @@
     <MESSAGE value="角色科室搜索树 功能优化" />
     <MESSAGE value="同义词修改" />
     <MESSAGE value="调整bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整bug" />
+    <MESSAGE value="调整科室映射bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整科室映射bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1174,7 +1181,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/UserProcessor.java</url>
-          <line>230</line>
+          <line>229</line>
           <properties />
           <option name="timeStamp" value="189" />
         </line-breakpoint>
@@ -1659,35 +1666,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Power.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding>
-            <element signature="e#411#412#0" expanded="true" />
-            <element signature="e#488#489#0" expanded="true" />
-            <element signature="e#1705#1706#0" expanded="true" />
-            <element signature="e#1785#1786#0" expanded="true" />
-            <element signature="e#1835#1836#0" expanded="true" />
-            <element signature="e#1874#1875#0" expanded="true" />
-            <element signature="e#2432#2433#0" expanded="true" />
-            <element signature="e#2467#2468#0" expanded="true" />
-            <element signature="e#2982#2983#0" expanded="true" />
-            <element signature="e#3015#3016#0" expanded="true" />
-            <element signature="e#3386#3387#0" expanded="true" />
-            <element signature="e#3466#3467#0" expanded="true" />
-            <element signature="e#3511#3512#0" expanded="true" />
-            <element signature="e#3545#3546#0" expanded="true" />
-            <element signature="e#4053#4054#0" expanded="true" />
-            <element signature="e#4089#4090#0" expanded="true" />
-            <element signature="e#4620#4621#0" expanded="true" />
-            <element signature="e#4659#4660#0" expanded="true" />
-            <element signature="e#5068#5069#0" expanded="true" />
-            <element signature="e#5106#5107#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyRoleMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
@@ -1698,9 +1676,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/UserProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="232" column="35" lean-forward="true" selection-start-line="232" selection-start-column="35" selection-end-line="232" selection-end-column="35" />
+        <state relative-caret-position="150">
+          <caret line="229" column="29" lean-forward="true" selection-start-line="229" selection-start-column="29" selection-end-line="229" selection-end-column="29" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Power.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="40" column="14" lean-forward="true" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
+          <folding>
+            <element signature="e#411#412#0" expanded="true" />
+            <element signature="e#488#489#0" expanded="true" />
+            <element signature="e#1599#1600#0" expanded="true" />
+            <element signature="e#1679#1680#0" expanded="true" />
+            <element signature="e#1729#1730#0" expanded="true" />
+            <element signature="e#1768#1769#0" expanded="true" />
+            <element signature="e#2326#2327#0" expanded="true" />
+            <element signature="e#2361#2362#0" expanded="true" />
+            <element signature="e#2876#2877#0" expanded="true" />
+            <element signature="e#2909#2910#0" expanded="true" />
+            <element signature="e#3280#3281#0" expanded="true" />
+            <element signature="e#3360#3361#0" expanded="true" />
+            <element signature="e#3405#3406#0" expanded="true" />
+            <element signature="e#3439#3440#0" expanded="true" />
+            <element signature="e#3947#3948#0" expanded="true" />
+            <element signature="e#3983#3984#0" expanded="true" />
+            <element signature="e#4514#4515#0" expanded="true" />
+            <element signature="e#4553#4554#0" expanded="true" />
+            <element signature="e#4962#4963#0" expanded="true" />
+            <element signature="e#5000#5001#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

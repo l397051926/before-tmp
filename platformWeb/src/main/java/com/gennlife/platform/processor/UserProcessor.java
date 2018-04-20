@@ -227,7 +227,6 @@ public class UserProcessor {
             try {
 //                Map<String, List<String>> mapDep = getDepartmentFromMysql(AllDao.getInstance().getSyRoleDao().getSlabNames());
                 Map<String, List<String>> mapDep = getDepartmentFromMysql(AllDao.getInstance().getSyRoleDao().getLabMAP());
-                System.out.println(mapDep.toString());
                 power.setHas_search(addDepartmentPower(power.getHas_search(), mapDep));//更改方案，我查询其父级下面所有子科室
                 power.setHas_searchExport(addDepartmentPower(power.getHas_searchExport(), mapDep));
             } catch (Exception e) {

@@ -37,10 +37,8 @@ public class Power {
              for (Resource resource : has_search) {
                  if ( "有".equals(resource.getHas_search())) {
                      addInHasSearch(resource);
-                     System.out.println(resource.getSlab_name());
                  }
              }
-             System.out.println("ggg");
          }
      }catch (Exception e){
          e.printStackTrace();
