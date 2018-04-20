@@ -171,7 +171,8 @@
             lab_leader=#{lab_leader,jdbcType=VARCHAR},
             lab_leaderName=#{lab_leaderName,jdbcType=VARCHAR},
             lab_level = #{lab_level,jdbcType=INTEGER},
-            lab_parent=#{lab_parent,jdbcType=VARCHAR}
+            lab_parent=#{lab_parent,jdbcType=VARCHAR},
+            depart_name=#{depart_name,jdbcType=VARCHAR}
         </set>
         <where>gennlife_lab.labID = #{labID,jdbcType=VARCHAR}</where>
     </update>
