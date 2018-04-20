@@ -31,13 +31,20 @@ public class Power {
     }
 
     public void setHas_search(Collection<Resource> has_search) {
-        this.has_search.clear();
-        if (has_search != null) {
-            for (Resource resource : has_search) {
-                if ( resource.getHas_search().equals("有"))
-                    addInHasSearch(resource);
-            }
-        }
+     try {
+         this.has_search.clear();
+         if (has_search != null) {
+             for (Resource resource : has_search) {
+                 if ( "有".equals(resource.getHas_search())) {
+                     addInHasSearch(resource);
+                     System.out.println(resource.getSlab_name());
+                 }
+             }
+             System.out.println("ggg");
+         }
+     }catch (Exception e){
+         e.printStackTrace();
+     }
 
     }
 

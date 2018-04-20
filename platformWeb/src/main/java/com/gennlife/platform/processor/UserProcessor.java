@@ -227,6 +227,7 @@ public class UserProcessor {
             try {
 //                Map<String, List<String>> mapDep = getDepartmentFromMysql(AllDao.getInstance().getSyRoleDao().getSlabNames());
                 Map<String, List<String>> mapDep = getDepartmentFromMysql(AllDao.getInstance().getSyRoleDao().getLabMAP());
+                System.out.println(mapDep.toString());
                 power.setHas_search(addDepartmentPower(power.getHas_search(), mapDep));//更改方案，我查询其父级下面所有子科室
                 power.setHas_searchExport(addDepartmentPower(power.getHas_searchExport(), mapDep));
             } catch (Exception e) {
@@ -379,13 +380,13 @@ public class UserProcessor {
 
             List<String> array = new LinkedList<String>();
 
-            List<String> arrayList = mapDep.get(dep.getLabID());
+            List<String> arrayList = mapDep.get(dep.getLab_parent());
             if (arrayList != null && arrayList.size() != 0) {
-                arrayList.add(dep.getDepart_name());
-                mapDep.put(dep.getLabID(), arrayList);
+                arrayList.add(dep.getLab_name());
+                mapDep.put(dep.getLab_parent(), arrayList);
             } else {
-                array.add(dep.getDepart_name());
-                mapDep.put(dep.getLabID(), array);
+                array.add(dep.getLab_name());
+                mapDep.put(dep.getLab_parent(), array);
             }
         }
         return mapDep;
