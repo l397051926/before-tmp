@@ -75,6 +75,35 @@ public class ConfigurationService implements InitializingBean{
         }
         //logger.info("case.json = "+caseStr);
         JsonObject allDiseasesObj = (JsonObject) jsonParser.parse(caseStr);
+        //处理emr 高级搜索case 文件
+        disposeCaseFile(allDiseasesObj);
+
+        String allCRFDiseases = FilesUtils.readFile("/crf/angiocardiopathy.json");
+        JsonObject allCRFConfig = (JsonObject) jsonParser.parse(allCRFDiseases);
+        disposeCaseFile(allCRFConfig);
+
+
+        String resourceStr = FilesUtils.readFile("/resourceConfig.json");
+        JsonObject resourceConfig = (JsonObject) jsonParser.parse(resourceStr);
+        resourceTypeArray = resourceConfig.get("resourceTypeArray").getAsJsonArray();
+
+        String orgIDIndexNameStr = FilesUtils.readFile("/UserOrgIDMapIndex.json");
+
+        JsonObject orgIDIndexNameObj = (JsonObject) jsonParser.parse(orgIDIndexNameStr);
+        for (Map.Entry<String, JsonElement> entity : orgIDIndexNameObj.entrySet()) {
+            String orgID = entity.getKey();
+            String indexName = entity.getValue().getAsString();
+            orgIDIndexNamemap.put(orgID, indexName);
+        }
+
+        String LabIdToNumber = FilesUtils.readFile("/LabIdToNumber.json");
+        LabIdToNumberObj = (JsonObject) jsonParser.parse(LabIdToNumber);
+
+        /* crf 映射文件*/
+
+    }
+
+    public static void disposeCaseFile(JsonObject allDiseasesObj){
         for (Map.Entry<String, JsonElement> item : allDiseasesObj.entrySet()) {
             String crf_id = item.getKey();
             JsonObject jsonObject = item.getValue().getAsJsonObject();
@@ -111,23 +140,6 @@ public class ConfigurationService implements InitializingBean{
             allMap.put(crf_id, allObj);
             compareMap.put(crf_id, compareObj);
         }
-
-
-        String resourceStr = FilesUtils.readFile("/resourceConfig.json");
-        JsonObject resourceConfig = (JsonObject) jsonParser.parse(resourceStr);
-        resourceTypeArray = resourceConfig.get("resourceTypeArray").getAsJsonArray();
-
-        String orgIDIndexNameStr = FilesUtils.readFile("/UserOrgIDMapIndex.json");
-
-        JsonObject orgIDIndexNameObj = (JsonObject) jsonParser.parse(orgIDIndexNameStr);
-        for (Map.Entry<String, JsonElement> entity : orgIDIndexNameObj.entrySet()) {
-            String orgID = entity.getKey();
-            String indexName = entity.getValue().getAsString();
-            orgIDIndexNamemap.put(orgID, indexName);
-        }
-
-        String LabIdToNumber = FilesUtils.readFile("/LabIdToNumber.json");
-        LabIdToNumberObj = (JsonObject) jsonParser.parse(LabIdToNumber);
     }
 
     public static JsonObject getAllObj(String crf_id) {

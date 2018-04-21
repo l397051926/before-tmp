@@ -654,5 +654,28 @@ public class CrfController {
         //logger.info("病历搜索 结果=" + resultStr);
         return resultStr;
     }
+    @RequestMapping(value = "/SearchItemSet", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String postSearchItemSet(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = null;
+            logger.info("CRF搜索结果列表展示的集合 post方式 参数=" + param);
+            try {
+                paramObj = (JsonObject) jsonParser.parse(param);
+            } catch (Exception e) {
+                return ParamUtils.errorParam("请求参数错误");
+            }
+            resultStr = processor.searchItemSet(paramObj);
+        } catch (Exception e) {
+            logger.error("CRF搜索结果列表展示的集合", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("CRF搜索结果列表展示的集合 post 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 
 }

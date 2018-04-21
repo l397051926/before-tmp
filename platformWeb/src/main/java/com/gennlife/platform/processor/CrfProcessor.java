@@ -1,5 +1,7 @@
 package com.gennlife.platform.processor;
 
+import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.bean.projectBean.MyProjectList;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.Power;
@@ -7,10 +9,7 @@ import com.gennlife.platform.model.Resource;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.parse.CaseSearchParser;
 import com.gennlife.platform.service.ConfigurationService;
-import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.HttpRequestUtils;
-import com.gennlife.platform.util.LogUtils;
-import com.gennlife.platform.util.ParamUtils;
+import com.gennlife.platform.util.*;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -594,6 +593,64 @@ public class CrfProcessor {
 
     }
 
-
-
+    public String searchItemSet(JsonObject paramObj) {
+        String param = null;
+        String searchKey = null;
+        String keywords = null;
+        String status = null;
+        String crf_id = null;
+        Set<String> set = new HashSet<String>();
+        ResultBean resultBean = new ResultBean();
+        try {
+            //searchKey = paramObj.get("searchKey").getAsString();//病历搜索的关键词
+            keywords = paramObj.get("keywords").getAsString();//属性搜索的关键词
+//            status = paramObj.get("status").getAsString();
+            JsonArray arrange = paramObj.get("arrange").getAsJsonArray();
+            for (JsonElement json : arrange) {
+                set.add(json.getAsString());
+            }
+            if (paramObj.has("crf_id")) {
+                crf_id = paramObj.get("crf_id").getAsString();
+            }
+        } catch (Exception e) {
+            logger.error("", e);
+            return ParamUtils.errorParam("请求参数出错");
+        }
+        JsonObject all = ConfigurationService.getAdvancedSearch(crf_id);
+        JsonObject allNew = new JsonObject();
+        for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
+            String groupName = obj.getKey();
+            JsonArray items = obj.getValue().getAsJsonArray();
+            JsonArray newGroup = new JsonArray();
+            for (JsonElement json : items) {
+                JsonObject item = json.getAsJsonObject();
+                String UIFieldName = item.get("UIFieldName").getAsString();
+                if ("".equals(keywords) || UIFieldName.contains(keywords)) {
+                    JsonObject itemNew = (JsonObject) jsonParser.parse(gson.toJson(item));
+                    if (!"".equals(keywords)) {
+                        UIFieldName = UIFieldName.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
+                        itemNew.addProperty("UIFieldName", UIFieldName);
+                    }
+                    newGroup.add(itemNew);
+                }
+            }
+            if (newGroup.size() > 0) {
+                if (paramObj.has("filterPath")) {
+                    String filterPath = paramObj.get("filterPath").getAsString();
+                    if (!StringUtils.isEmpty(filterPath)) {
+                        if (groupName.equals(filterPath)) {
+                            allNew.add(groupName, newGroup);
+                        }
+                    } else {
+                        allNew.add(groupName, newGroup);
+                    }
+                } else {
+                    allNew.add(groupName, newGroup);
+                }
+            }
+        }
+        resultBean.setCode(1);
+        resultBean.setData(allNew);
+        return gson.toJson(resultBean);
+    }
 }
