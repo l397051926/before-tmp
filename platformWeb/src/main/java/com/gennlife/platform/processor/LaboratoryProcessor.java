@@ -807,6 +807,7 @@ public class LaboratoryProcessor {
         } else {
             String[] uids = uidsList.toArray(new String[uidsList.size()]);
             AllDao.getInstance().getSyRoleDao().deleteByUids(uids);
+            AllDao.getInstance().getOrgDao().updatalableader(uids);
             int counter = AllDao.getInstance().getSyUserDao().deleteUserByUids(uids);
             RedisUtil.updateUserOnLine(uidsList);
             if (counter > 0) {

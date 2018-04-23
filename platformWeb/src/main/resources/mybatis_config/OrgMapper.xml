@@ -324,5 +324,18 @@
         where labID = #{labID,jdbcType=VARCHAR}
     </select>
 
+    <update id="updatalableader">
+        UPDATE gennlife_lab
+        SET lab_leader=NULL ,lab_leaderName=NULL
+        WHERE lab_leaderName in (SELECT uname FROM gennlife_user
+        where
+        uid in
+        <foreach collection="uids" item="item" index="index" open="(" separator="," close=")">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+        )
+    </update>
+
+
 
 </mapper>

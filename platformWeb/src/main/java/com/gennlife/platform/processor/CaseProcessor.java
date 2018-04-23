@@ -646,7 +646,7 @@ public class CaseProcessor {
 
     public String synonymUserbehavior(JsonObject paramObj, User user) {
         try {
-            String url="http://10.0.2.53:8989/search-server/synonymUserbehavior";
+            String url="http://10.0.2.53:8989/search-server/synonymUserBehavior";
             String result = HttpRequestUtils.httpPostPubMed(url,gson.toJson(paramObj));
             return result;
         } catch (Exception e) {

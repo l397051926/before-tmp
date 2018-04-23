@@ -445,7 +445,7 @@ public class CaseController {
         logger.info("高级搜索 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-    @RequestMapping(value = "/synonymUserbehavior", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/synonymUserBehavior", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String synonymUserbehavior(HttpServletRequest paramRe) {

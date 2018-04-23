@@ -187,4 +187,6 @@ public interface OrgMapper {
      * @return
      */
     String getlabnameBylabID(@Param("labID") String labID);
+
+    void updatalableader(@Param("uids") String[] uids);
 }
