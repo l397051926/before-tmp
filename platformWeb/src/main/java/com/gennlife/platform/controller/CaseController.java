@@ -400,7 +400,7 @@ public class CaseController {
             String param = ParamUtils.getParam(paramRe);
             User user = (User) paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.searchSynonyms(paramObj);
+            resultStr = processor.searchSynonyms(paramObj,user);
         }  catch (Exception e) {
             logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");

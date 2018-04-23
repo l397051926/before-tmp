@@ -550,10 +550,11 @@ public class CaseProcessor {
         }
     }
 
-    public String searchSynonyms(JsonObject paramObj) {
+    public String searchSynonyms(JsonObject paramObj,User user) {
         try {
             String field = null;
             String keyWord = null;
+            String uid = user.getUid();
             if(paramObj.has("field")){
                 field=paramObj.get("field").getAsString();
             }else {
@@ -567,6 +568,7 @@ public class CaseProcessor {
             Map<String,String> map =new HashMap<>();
             map.put("field",field);
             map.put("keyword",keyWord);
+            map.put("uid",uid);
             String url="http://10.0.2.53:8989/search-server/synonyms";
             String result = HttpRequestUtils.doGet(url,map,null);
             return result;

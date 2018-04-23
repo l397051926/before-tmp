@@ -105,7 +105,7 @@ public class LaboratoryProcessor {
         }
         // 生成科室id
         String labID = orgID + "-" + ChineseToEnglish.getPingYin(lab_name);
-        //
+        //获取當前科室信息
         Lab exLab = AllDao.getInstance().getOrgDao().getLabBylabID(labID);
         if (exLab != null) {
             int count = 1;
@@ -155,7 +155,7 @@ public class LaboratoryProcessor {
     }
 
     public static void addResource(Lab lab) {
-        if("一线临床类".equals(lab.getDepart_name())){
+        if("一线临床类".equals(lab.getDepart_name()) || "行政管理类".equals(lab.getDepart_name()) ){
             return ;
         }
         LabResource labResource = new LabResource();
@@ -397,7 +397,8 @@ public class LaboratoryProcessor {
         String lab_leaderName = "";
         String lab_parent = null;
         String depart_name="";
-        boolean isResourceopen=false;
+        String parent_depart_name="";
+        boolean isResourceopen=false; //判断是否增加 lab_resources
         try {
             labID = paramObj.get("labID").getAsString();
             lab_name = paramObj.get("lab_name").getAsString();
@@ -416,8 +417,14 @@ public class LaboratoryProcessor {
         }
         String orgID = user.getOrgID();
         Map<String, Object> map = new HashMap<>();
-        Lab labNow = new Lab();
-        Lab lab = AllDao.getInstance().getOrgDao().getLabBylabID(labID);
+        Lab labNow = new Lab();//当前科室 labNow
+        Lab lab = AllDao.getInstance().getOrgDao().getLabBylabID(labID);//要修改的科室
+        if(lab_parent.equals(user.getOrgID())){
+            parent_depart_name="行政管理类";
+        }else {
+            Lab parentLab = AllDao.getInstance().getOrgDao().getLabBylabID(lab_parent);
+            parent_depart_name=parentLab.getDepart_name();
+        }
         if (lab == null) {
             return ParamUtils.errorParam(labID + "无此科室");
         }
@@ -426,11 +433,27 @@ public class LaboratoryProcessor {
             if (labNames.contains(lab_name)) {
                 return ParamUtils.errorParam(lab_name + "已经存在");
             }
-            // 当前科室下面的用户科室名称
-
+            // 当前科室下面的用户科室名称 ，若修改科室名 则更改 用户相关的科室
             AllDao.getInstance().getSyUserDao().updateUserLabNameByLabName(lab_name, lab.getLab_name(), orgID);
-            //如果现在不是一线临床类  原来不是一线临床类 则随着更新
-            if(!"一线临床类".equals(lab.getDepart_name()) && !"一线临床类".equals(depart_name)){
+
+            List<String> userIds = AllDao.getInstance().getSyUserDao().getUserIDByLabID(labID, orgID);
+            // 更新缓存
+            RedisUtil.updateUserOnLine(userIds);
+        }
+
+         /*修改科室类别考虑以下情况：
+            1.修改前 是行政  修改后是业务，增加 lab_resourece 修改后的上级只能为 行政 或业务
+            2.修改前 是行政  修改后是临床   不增加 lab_resource 修改后上级只能为 业务
+            3.修改前 是业务  修改后是行政  删除 lab_resource  修改后的上级只能为行政
+            4.修改前 是业务  修改后是临床  删除 lab_resource 修改后上级只能为业务
+            5.修改前 是临床  修改后是行政  不修改lab_resource 修改后上级只能为行政
+            6.修改前 是临床  修改后是业务  增加 lab_resource 修改后上级可以为 行政 或者业务*/
+
+        //如果现在不是一线临床类  原来不是一线临床类 则随着更新
+        if("业务管理类".equals(lab.getDepart_name()) && "业务管理类".equals(depart_name)){
+            if("一线临床类".equals(parent_depart_name)){
+                return ParamUtils.errorParam("上下级科室类别不符-更新失败");
+            }else{
                 LabResource labResource = new LabResource();
                 labResource.setSorgID(lab.getOrgID());
                 labResource.setSdesc(lab_name + "病例数据资源");
@@ -442,16 +465,47 @@ public class LaboratoryProcessor {
                 labResource.setSlab_name(lab_name);
                 // logger.info("update "+gson.toJson(labResource));
                 AllDao.getInstance().getSyResourceDao().updateResource(labResource);
-            }else if("一线临床类".equals(depart_name) && !"一线临床类".equals(lab.getDepart_name()) ){
-                //如果 现在是一线临床类，原来不是的话 则删除 resouce
+            }
+        }else if("业务管理类".equals(lab.getDepart_name()) && "行政管理类".equals(depart_name)){
+            if(!"行政管理类".equals(parent_depart_name)){
+                return ParamUtils.errorParam("上下级科室类别不符-更新失败");
+            }else {
                 AllDao.getInstance().getSyResourceDao().deleteLabsReource(new String[]{lab.getLabID()});
-            }else if("一线临床类".equals(lab.getDepart_name()) && !"一线临床类".equals(depart_name)){
-                //如果 现在不是一线临床类  原来是一线临床类 则增加resource
+            }
+        }else if("业务管理类".equals(lab.getDepart_name()) && "一线临床类".equals(depart_name)){
+            if(!"业务管理类".equals(parent_depart_name)){
+                return ParamUtils.errorParam("上下级科室类别不符-更新失败");
+            }else {
+                AllDao.getInstance().getSyResourceDao().deleteLabsReource(new String[]{lab.getLabID()});
+            }
+        }else if("行政管理类".equals(lab.getDepart_name()) && "行政管理类".equals(depart_name)){
+            if(!"行政管理类".equals(parent_depart_name)){
+                return ParamUtils.errorParam("上下级科室类别不符-更新失败");
+            }
+        }else if("行政管理类".equals(lab.getDepart_name()) && "业务管理类".equals(depart_name)){
+            if("一线临床类".equals(parent_depart_name)){
+                return ParamUtils.errorParam("上下级科室类别不符-更新失败");
+            }else {
                 isResourceopen=true;
             }
-            List<String> userIds = AllDao.getInstance().getSyUserDao().getUserIDByLabID(labID, orgID);
-            // 更新缓存
-            RedisUtil.updateUserOnLine(userIds);
+        }else if("行政管理类".equals(lab.getDepart_name()) && "一线临床类".equals(depart_name)){
+            if(!"业务管理类".equals(parent_depart_name)){
+                return ParamUtils.errorParam("上下级科室类别不符-更新失败");
+            }
+        }else if("一线临床类".equals(lab.getDepart_name()) && "行政管理类".equals(depart_name)){
+            if(!"行政管理类".equals(parent_depart_name)){
+                return ParamUtils.errorParam("上下级科室类别不符-更新失败");
+            }
+        }else if("一线临床类".equals(lab.getDepart_name()) && "业务管理类".equals(depart_name)){
+            if("一线临床类".equals(parent_depart_name)){
+                return ParamUtils.errorParam("上下级科室类别不符-更新失败");
+            }else {
+                isResourceopen=true;
+            }
+        }else if("一线临床类".equals(lab.getDepart_name()) && "一线临床类".equals(depart_name)){
+            if(!"业务管理类".equals(parent_depart_name)){
+                return ParamUtils.errorParam("上下级科室类别不符-更新失败");
+            }
         }
         if (!lab.getLab_parent().equals(lab_parent)
                 && !lab_parent.equals(orgID)) { // 改变了上级部门,并且改变的上级部门不是当前医院,需要检查上级部门是否存在
@@ -460,6 +514,7 @@ public class LaboratoryProcessor {
                 return ParamUtils.errorParam("上级部门不存在");
             }
         }
+        //同事修改等级
         Integer lab_level = 1;
         if (!lab_parent.equals(orgID)) {
             map.put("orgID", orgID);
@@ -477,7 +532,7 @@ public class LaboratoryProcessor {
         map.put("lab_leaderName", lab_leaderName);
         map.put("lab_parent", lab_parent);
         map.put("depart_name",depart_name);//-增加 depart_name
-        if(isResourceopen){
+        if(isResourceopen){//同期增加 lab_resource
             labNow.setDepart_name(depart_name);
             labNow.setLab_leader(lab_leader);
             labNow.setLab_name(lab_name);
