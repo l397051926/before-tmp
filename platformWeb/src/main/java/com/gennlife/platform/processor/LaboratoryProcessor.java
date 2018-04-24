@@ -520,7 +520,7 @@ public class LaboratoryProcessor {
         }
 
         //根据下级 约束当前科室
-        List<Lab> juniorLabs = AllDao.getInstance().getOrgDao().getLabsByparentID(orgID,lab_name);
+        List<Lab> juniorLabs = AllDao.getInstance().getOrgDao().getLabsByparentID(orgID,labID);
         for(Lab labTmp : juniorLabs){
             if("行政管理类".equals(labTmp.getDepart_name()) && !"行政管理类".equals(depart_name)){
                 return ParamUtils.errorParam("上下级科室类别不符-更新失败");
