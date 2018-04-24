@@ -12,6 +12,8 @@
         <property name="caseSearchURL" value="http://${searchServer.ipAndPort}/search-server/search"/>
         <property name="caseSuggestURL"
                   value="http://${searchServer.ipAndPort}/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
+        <property name="caseSuggestURL2"
+                  value="http://${searchServer.ipAndPort}/search-server/suggest2?indexName=%s&amp;fieldName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
         <property name="caseGeneErrorURL" value="http://${searchServer.ipAndPort}/search-server/verify"/>
         <property name="highlight" value="http://${searchServer.ipAndPort}/search-server/highlight"/>
         <!-- 非隐私信息接口-->

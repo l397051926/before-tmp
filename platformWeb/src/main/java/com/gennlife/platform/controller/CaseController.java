@@ -110,6 +110,42 @@ public class CaseController {
         return resultStr;
     }
 
+    @RequestMapping(value = "/SearchTermSuggest2", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String postSearchTermSuggest2(@RequestBody String param) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            logger.info("搜索关键词提示 post方式 参数=" + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.searchTermSuggest2(paramObj);
+        } catch (Exception e) {
+            logger.error("搜索关键词提示", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("搜索关键词提示 post 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/SearchTermSuggest2", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getSearchTermSuggest2(@RequestParam("param") String param) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            logger.info("搜索关键词提示 get方式 参数=" + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.searchTermSuggest2(paramObj);
+        } catch (Exception e) {
+            logger.error("搜索关键词提示", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("搜索关键词提示 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
     @RequestMapping(value = "/AdvancedSearchTermSuggest", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
@@ -445,7 +481,7 @@ public class CaseController {
         logger.info("高级搜索 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-    @RequestMapping(value = "/synonymUserBehavior", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/saveRelatedPhrasesSelectionBehavior", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String synonymUserbehavior(HttpServletRequest paramRe) {
@@ -455,7 +491,7 @@ public class CaseController {
             String param = ParamUtils.getParam(paramRe);
             User user = (User) paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.synonymUserbehavior(paramObj,user);
+            resultStr = processor.saveRelatedPhrasesSelectionBehavior(paramObj,user);
         }  catch (Exception e) {
             logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");

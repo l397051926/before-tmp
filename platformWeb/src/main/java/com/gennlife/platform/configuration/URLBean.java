@@ -181,6 +181,10 @@ public class URLBean {
      */
     private String caseSuggestURL = null;
     /**
+     * 搜索关键词提示2
+     */
+    private String caseSuggestURL2 = null;
+    /**
      * 搜索:V1.0
      * 详情页患者基础信息接口
      */
@@ -921,6 +925,13 @@ public class URLBean {
         this.caseSuggestURL = caseSuggestURL;
     }
 
+    public String getCaseSuggestURL2() {
+        return caseSuggestURL2;
+    }
+
+    public void setCaseSuggestURL2(String caseSuggestURL2) {
+        this.caseSuggestURL2 = caseSuggestURL2;
+    }
 
     public String getCasePatientBasicTimeAxisURL() {
         return casePatientBasicTimeAxisURL;

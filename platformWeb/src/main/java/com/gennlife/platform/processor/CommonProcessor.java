@@ -78,8 +78,6 @@ public class CommonProcessor {
 
     public String uploadFileForImportLab(MultipartFile file, User user) {
         try {
-            logger.info("*-------------开始切割文件");
-
             byte[] bytes = file.getBytes();
             String string = new String(bytes, "GBK");
             //logger.info("GBK "+string);

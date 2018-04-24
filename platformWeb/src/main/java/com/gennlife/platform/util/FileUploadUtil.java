@@ -400,7 +400,6 @@ public class FileUploadUtil implements InitializingBean {
     public static List<String> importLabs(List<String> fileList, String orgID, String uid) throws Exception {
         synchronized (Lock) {
 
-            logger.info("*--------------------开始处理科室信息");
             List<String> strList = fileList;
             List<String> srcList = new LinkedList<>();
             List<Lab> newList = new LinkedList<>();
@@ -431,9 +430,6 @@ public class FileUploadUtil implements InitializingBean {
                             srcList.add(str + ",失败,科室不存在");
                             continue;
                         }
-                        logger.info("*---------------name: "+name);
-                        logger.info("*--------------parentName"+parentName);
-                        logger.info("*----------------departName"+departName);
                         if (StringUtils.isEmpty(name)) {
                             srcList.add(str + ",失败,科室名称为空");
                             continue;
@@ -474,7 +470,6 @@ public class FileUploadUtil implements InitializingBean {
                     srcList.add(str + ",失败,缺少数据");
                 }
             }
-            logger.info("*---------------------反向遍历去重");
             Set<String> names = new HashSet<>();
             List<Lab> invertedList = new LinkedList<>();
             for (int i = newList.size() - 1; i >= 0; i--) {//反向遍历去重

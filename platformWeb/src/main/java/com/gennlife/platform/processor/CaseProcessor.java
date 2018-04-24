@@ -9,6 +9,7 @@ import com.gennlife.platform.model.Resource;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.parse.CaseSearchParser;
 import com.gennlife.platform.parse.CaseSuggestParser;
+import com.gennlife.platform.parse.CaseSuggestParser2;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.*;
 import com.google.gson.*;
@@ -251,6 +252,63 @@ public class CaseProcessor {
             page = "1";
         }
         CaseSuggestParser parserIndex = new CaseSuggestParser(indexName, dicName, keywords, size, page);
+        Set<String> set = new HashSet<String>();
+        int count = 0;
+        try {
+            String data = parserIndex.parser();
+            JsonObject dataObj = (JsonObject) jsonParser.parse(data);
+            count = dataObj.get("total").getAsInt();
+            JsonArray dataArray = dataObj.getAsJsonArray("words");
+            for (JsonElement json : dataArray) {
+                String key = json.getAsString();
+                set.add(key);
+            }
+        } catch (Exception e) {
+            logger.error("", e);
+            return ParamUtils.errorParam("请求出错");
+        }
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("counter", count);
+        resultBean.setCode(1);
+        resultBean.setData(set);
+        resultBean.setInfo(map);
+        return gson.toJson(resultBean);
+    }
+
+    public String searchTermSuggest2(JsonObject paramObj) {
+        String keywords = null;
+        String indexName = null;
+        String size = null;
+        String fieldName = null;
+        String page = null;
+        ResultBean resultBean = new ResultBean();
+        try {
+            if (paramObj.get("indexName") != null) {
+                indexName = paramObj.get("indexName").getAsString();
+            }
+            keywords = paramObj.get("keywords").getAsString();
+            if (StringUtils.isEmpty(keywords)) return ParamUtils.errorParam("查询条件为空");
+            if (paramObj.get("size") != null) {
+                size = paramObj.get("size").getAsString();
+            }
+            fieldName = paramObj.get("fieldName").getAsString();
+            if (paramObj.get("page") != null) {
+                page = paramObj.get("page").getAsString();
+            }
+        } catch (Exception e) {
+            logger.error("", e);
+            return ParamUtils.errorParam("请求参数出错");
+        }
+        if (indexName == null) {
+            indexName = "clinical_cases_dic";
+        }
+        if (size == null) {
+            size = "5";
+        }
+        if (page == null) {
+            page = "1";
+        }
+        CaseSuggestParser2 parserIndex = new CaseSuggestParser2(indexName, fieldName, keywords, size, page);
         Set<String> set = new HashSet<String>();
         int count = 0;
         try {
@@ -644,9 +702,9 @@ public class CaseProcessor {
         }
     }
 
-    public String synonymUserbehavior(JsonObject paramObj, User user) {
+    public String saveRelatedPhrasesSelectionBehavior(JsonObject paramObj, User user) {
         try {
-            String url="http://10.0.2.53:8989/search-server/synonymUserBehavior";
+            String url="http://10.0.2.53:8989/search-server/saveRelatedPhrasesSelectionBehavior";
             String result = HttpRequestUtils.httpPostPubMed(url,gson.toJson(paramObj));
             return result;
         } catch (Exception e) {
