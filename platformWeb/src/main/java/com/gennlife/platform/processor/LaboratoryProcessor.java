@@ -97,6 +97,9 @@ public class LaboratoryProcessor {
         }
         User user = UserProcessor.getUserByUids(uid);
         String orgID = user.getOrgID();
+        if(orgID.equals(lab_parent) && "一线临床类".equals(depart_name)){
+            return  ParamUtils.errorParam("科室类别不符合要求");
+        }
         Organization organization = null;
         Map<String, Object> map = new HashMap<>();
         List<String> labNames = AllDao.getInstance().getOrgDao().getLabsName(orgID);
@@ -251,9 +254,10 @@ public class LaboratoryProcessor {
                 spellLab(labs,key,resultlabs,key,orgID);
             }
 
-            if(resultlabs.size()!=0){//若一个没搜到 默认全部
-                labs =new LinkedList<>(resultlabs);
-            }
+//            if(resultlabs.size()!=0){//若一个没搜到 默认全部
+//                labs =new LinkedList<>(resultlabs);
+//            }
+            labs =new LinkedList<>(resultlabs);
 
         }
         if (maxLevel == null) {
@@ -512,6 +516,20 @@ public class LaboratoryProcessor {
             Lab parentLab = AllDao.getInstance().getOrgDao().getLabBylabID(lab_parent);
             if (parentLab == null) {
                 return ParamUtils.errorParam("上级部门不存在");
+            }
+        }
+
+        //根据下级 约束当前科室
+        List<Lab> juniorLabs = AllDao.getInstance().getOrgDao().getLabsByparentID(orgID,lab_name);
+        for(Lab labTmp : juniorLabs){
+            if("行政管理类".equals(labTmp.getDepart_name()) && !"行政管理类".equals(depart_name)){
+                return ParamUtils.errorParam("上下级科室类别不符-更新失败");
+            }
+            if("业务管理类".equals(labTmp.getDepart_name()) && "一线临床类".equals(depart_name) ){
+                return ParamUtils.errorParam("上下级科室类别不符-更新失败");
+            }
+            if("一线临床类".equals(labTmp.getDepart_name()) && !"业务管理类".equals(depart_name) ){
+                return ParamUtils.errorParam("上下级科室类别不符-更新失败");
             }
         }
         //同事修改等级
