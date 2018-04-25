@@ -286,6 +286,8 @@ public class CaseProcessor {
             if (paramObj.get("indexName") != null) {
                 indexName = paramObj.get("indexName").getAsString();
             }
+
+
             keywords = paramObj.get("keywords").getAsString();
             if (StringUtils.isEmpty(keywords)) return ParamUtils.errorParam("查询条件为空");
             if (paramObj.get("size") != null) {
@@ -308,11 +310,25 @@ public class CaseProcessor {
         if (page == null) {
             page = "1";
         }
+        //临时增加函数
+        indexName = ConfigUtils.getSearchIndexName();
+
+        logger.info("indexName: "+indexName);
+        if("jiangsu_humor_hospital_clinical_patients".equals(indexName)){
+            indexName="jiangsu_humor_hospital_clinical_patients";
+        }
         CaseSuggestParser2 parserIndex = new CaseSuggestParser2(indexName, fieldName, keywords, size, page);
         Set<String> set = new HashSet<String>();
         int count = 0;
         try {
-            String data = parserIndex.parser();
+            Map<String,String> map = new HashMap<>();
+            map.put("indexName",indexName);
+            map.put("fieldName",fieldName);
+            map.put("keywords",keywords);
+            map.put("size",size);
+            map.put("page",page);
+            String url = "http://10.0.2.53:8989/search-server/suggest2";
+            String data = HttpRequestUtils.doGet(url,map,null);
             JsonObject dataObj = (JsonObject) jsonParser.parse(data);
             count = dataObj.get("total").getAsInt();
             JsonArray dataArray = dataObj.getAsJsonArray("words");
