@@ -278,4 +278,13 @@
     WHERE roleid=#{roleid,jdbcType=VARCHAR}
   </select>
 
+  <select id="getLabResourcesBySid" resultType="com.gennlife.platform.model.LabResource">
+    SELECT
+    <include refid="labResourceProperty"/>
+    FROM
+    gennlife_resource
+    WHERE
+    sid = #{sid}
+  </select>
+
 </mapper>

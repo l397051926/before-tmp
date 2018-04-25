@@ -530,6 +530,12 @@ public class FileUploadUtil implements InitializingBean {
                     srcList.add(lab.getSrcLog() + ",失败,上级部门插入失败");
                 } else {
                     int counter = AllDao.getInstance().getOrgDao().updateLabInfoByNameWithLab(lab);
+                    if("一线临床类".equals(lab.getDepart_name()) || "行政管理类".equals(lab.getDepart_name())){
+                        AllDao.getInstance().getSyResourceDao().deleteLabsReource(new String[]{lab.getLabID()});
+                    }
+                    if("业务管理类".equals(lab.getDepart_name())){
+                        LaboratoryProcessor.addResource(lab);
+                    }
                     if (counter == 1) {
                         srcList.add(lab.getSrcLog() + ",成功,更新成功");
                     } else {
