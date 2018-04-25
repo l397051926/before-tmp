@@ -3,13 +3,11 @@ package com.gennlife.platform.processor;
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.conf.SystemDefault;
-import com.gennlife.platform.model.Group;
 import com.gennlife.platform.model.Power;
 import com.gennlife.platform.model.Resource;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.parse.CaseSearchParser;
 import com.gennlife.platform.parse.CaseSuggestParser;
-import com.gennlife.platform.parse.CaseSuggestParser2;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.*;
 import com.google.gson.*;
@@ -286,8 +284,6 @@ public class CaseProcessor {
             if (paramObj.get("indexName") != null) {
                 indexName = paramObj.get("indexName").getAsString();
             }
-
-
             keywords = paramObj.get("keywords").getAsString();
             if (StringUtils.isEmpty(keywords)) return ParamUtils.errorParam("查询条件为空");
             if (paramObj.get("size") != null) {
@@ -312,12 +308,6 @@ public class CaseProcessor {
         }
         //临时增加函数
         indexName = ConfigUtils.getSearchIndexName();
-
-        logger.info("-----indexName: "+indexName);
-        if(!"jiangsu_humor_hospital_clinical_patients".equals(indexName)){
-            indexName="jiangsu_humor_hospital_clinical_patients";
-        }
-        CaseSuggestParser2 parserIndex = new CaseSuggestParser2(indexName, fieldName, keywords, size, page);
         Set<String> set = new HashSet<String>();
         int count = 0;
         try {
@@ -327,7 +317,8 @@ public class CaseProcessor {
             map.put("keywords",keywords);
             map.put("size",size);
             map.put("page",page);
-            String url = "http://10.0.2.53:8989/search-server/suggest2";
+//            String url = "http://10.0.2.53:8989/search-server/suggest2";
+            String url = ConfigurationService.getUrlBean().getCaseSuggestURL2();
             String data = HttpRequestUtils.doGet(url,map,null);
             JsonObject dataObj = (JsonObject) jsonParser.parse(data);
             count = dataObj.get("total").getAsInt();
@@ -646,8 +637,8 @@ public class CaseProcessor {
             map.put("field",field);
             map.put("keyword",keyWord);
             map.put("uid",uid);
-//            String url = ConfigurationService.getUrlBean().getSynonyms();
-            String url="http://10.0.2.53:8989/search-server/synonyms";
+            String url = ConfigurationService.getUrlBean().getSynonyms();
+//            String url="http://10.0.2.53:8989/search-server/synonyms";
             String result = HttpRequestUtils.doGet(url,map,null);
             return result;
         } catch (Exception e) {
@@ -676,8 +667,8 @@ public class CaseProcessor {
             }else {
                 return ParamUtils.errorParam("缺少参数");
             }
-//            String url = ConfigurationService.getUrlBean().getAddSynonym();
-            String url="http://10.0.2.53:8989/search-server/addSynonym";
+            String url = ConfigurationService.getUrlBean().getAddSynonym();
+//            String url="http://10.0.2.53:8989/search-server/addSynonym";
             JsonObject jsonObject=new JsonObject();
             jsonObject.addProperty("keyword",keyword);
             jsonObject.addProperty("target",target);
@@ -710,8 +701,8 @@ public class CaseProcessor {
             }else {
                 return ParamUtils.errorParam("缺少参数");
             }
-//            String url = ConfigurationService.getUrlBean().getRemoveSynonym();
-            String url="http://10.0.2.53:8989/search-server/removeSynonym";
+            String url = ConfigurationService.getUrlBean().getRemoveSynonym();
+//            String url="http://10.0.2.53:8989/search-server/removeSynonym";
             JsonObject jsonObject=new JsonObject();
             jsonObject.addProperty("keyword",keyword);
             jsonObject.addProperty("target",target);
@@ -726,8 +717,8 @@ public class CaseProcessor {
 
     public String saveRelatedPhrasesSelectionBehavior(JsonObject paramObj, User user) {
         try {
-//            String url = ConfigurationService.getUrlBean().getSaveRelatedPhrasesSelectionBehavior();
-            String url="http://10.0.2.53:8989/search-server/saveRelatedPhrasesSelectionBehavior";
+            String url = ConfigurationService.getUrlBean().getSaveRelatedPhrasesSelectionBehavior();
+//            String url="http://10.0.2.53:8989/search-server/saveRelatedPhrasesSelectionBehavior";
             String result = HttpRequestUtils.httpPostPubMed(url,gson.toJson(paramObj));
             return result;
         } catch (Exception e) {
