@@ -160,6 +160,16 @@ public class URLBean {
         this.sampleImportChecKIURL = sampleImportChecKIURL;
     }
 
+
+    /**
+     * 同义词接口
+     */
+    private String synonyms = null;
+    private String addSynonym = null;
+    private String removeSynonym = null;
+    private String saveRelatedPhrasesSelectionBehavior = null;
+
+
     /**
      * 样本详情接口
      */
@@ -1404,5 +1414,37 @@ public class URLBean {
 
     public String getCaseDetailCommonUrl() {
         return caseDetailCommonUrl;
+    }
+
+    public String getSynonyms() {
+        return synonyms;
+    }
+
+    public void setSynonyms(String synonyms) {
+        this.synonyms = synonyms;
+    }
+
+    public String getAddSynonym() {
+        return addSynonym;
+    }
+
+    public void setAddSynonym(String addSynonym) {
+        this.addSynonym = addSynonym;
+    }
+
+    public String getRemoveSynonym() {
+        return removeSynonym;
+    }
+
+    public void setRemoveSynonym(String removeSynonym) {
+        this.removeSynonym = removeSynonym;
+    }
+
+    public String getSaveRelatedPhrasesSelectionBehavior() {
+        return saveRelatedPhrasesSelectionBehavior;
+    }
+
+    public void setSaveRelatedPhrasesSelectionBehavior(String saveRelatedPhrasesSelectionBehavior) {
+        this.saveRelatedPhrasesSelectionBehavior = saveRelatedPhrasesSelectionBehavior;
     }
 }

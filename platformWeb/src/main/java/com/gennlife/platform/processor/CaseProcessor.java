@@ -627,6 +627,7 @@ public class CaseProcessor {
             map.put("field",field);
             map.put("keyword",keyWord);
             map.put("uid",uid);
+//            String url = ConfigurationService.getUrlBean().getSynonyms();
             String url="http://10.0.2.53:8989/search-server/synonyms";
             String result = HttpRequestUtils.doGet(url,map,null);
             return result;
@@ -656,6 +657,7 @@ public class CaseProcessor {
             }else {
                 return ParamUtils.errorParam("缺少参数");
             }
+//            String url = ConfigurationService.getUrlBean().getAddSynonym();
             String url="http://10.0.2.53:8989/search-server/addSynonym";
             JsonObject jsonObject=new JsonObject();
             jsonObject.addProperty("keyword",keyword);
@@ -689,6 +691,7 @@ public class CaseProcessor {
             }else {
                 return ParamUtils.errorParam("缺少参数");
             }
+//            String url = ConfigurationService.getUrlBean().getRemoveSynonym();
             String url="http://10.0.2.53:8989/search-server/removeSynonym";
             JsonObject jsonObject=new JsonObject();
             jsonObject.addProperty("keyword",keyword);
@@ -704,6 +707,7 @@ public class CaseProcessor {
 
     public String saveRelatedPhrasesSelectionBehavior(JsonObject paramObj, User user) {
         try {
+//            String url = ConfigurationService.getUrlBean().getSaveRelatedPhrasesSelectionBehavior();
             String url="http://10.0.2.53:8989/search-server/saveRelatedPhrasesSelectionBehavior";
             String result = HttpRequestUtils.httpPostPubMed(url,gson.toJson(paramObj));
             return result;

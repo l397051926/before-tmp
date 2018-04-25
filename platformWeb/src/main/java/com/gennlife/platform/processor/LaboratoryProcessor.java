@@ -263,10 +263,6 @@ public class LaboratoryProcessor {
             }else{
                 spellLab(labs,key,resultlabs,key,orgID);
             }
-
-            if(resultlabs.size()==0){//若一个没搜到 默认全部
-                organization.setEmpty(true);
-            }
             labs =new LinkedList<>(resultlabs);
 
         }
@@ -274,6 +270,9 @@ public class LaboratoryProcessor {
             return organization;
         }
         List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,isParentLab,lab_id);
+        if(treeLabs.size()==0){//若一个没搜到 默认全部
+            organization.setEmpty(true);
+        }
         organization.setLabs(treeLabs);
         return organization;
     }

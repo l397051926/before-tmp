@@ -16,6 +16,11 @@
                   value="http://${searchServer.ipAndPort}/search-server/suggest2?indexName=%s&amp;fieldName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
         <property name="caseGeneErrorURL" value="http://${searchServer.ipAndPort}/search-server/verify"/>
         <property name="highlight" value="http://${searchServer.ipAndPort}/search-server/highlight"/>
+        <!--同义词crf服务-->
+        <property name="synonyms" value="http://${searchServer.ipAndPort}/search-server/synonyms"/>
+        <property name="addSynonym" value="http://${searchServer.ipAndPort}/search-server/addSynonym"/>
+        <property name="removeSynonym" value="http://${searchServer.ipAndPort}/search-server/removeSynonym"/>
+        <property name="saveRelatedPhrasesSelectionBehavior" value="http://${searchServer.ipAndPort}/search-server/saveRelatedPhrasesSelectionBehavior"/>
         <!-- 非隐私信息接口-->
         <property name="casePatientBatchData"
                   value="http://${fileService.ipAndPort}/FileService/PatientBatchData/BatchData"/>
