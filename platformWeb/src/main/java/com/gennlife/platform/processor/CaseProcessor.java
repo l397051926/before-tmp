@@ -431,9 +431,11 @@ public class CaseProcessor {
             }
             paramObj.add("power", power);
             //logger.info("通过sid转化后，搜索请求参数 = " + gson.toJson(paramObj));
+            user.setIfRoleAll("否");
             return gson.toJson(paramObj);
         } else { // 角色,完成小组扩展
-            if("是".equals(user.getIfRoleAll())){
+            if("是".equals(user.getIfRoleAll())){  //全量处理
+                paramObj.remove("groups"); // 选择科室后，工号权限小时
                 Power power=new Power();
                 Resource resource=new Resource();
                 resource.setSid("hospital_all");
@@ -444,6 +446,7 @@ public class CaseProcessor {
                 power.setHas_search(list);
                 paramObj.remove("power");
                 paramObj.add("power",new Gson().toJsonTree(power));
+                user.setIfRoleAll("否");
             }
             return gson.toJson(paramObj);
         }
