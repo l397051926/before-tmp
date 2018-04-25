@@ -313,8 +313,8 @@ public class CaseProcessor {
         //临时增加函数
         indexName = ConfigUtils.getSearchIndexName();
 
-        logger.info("indexName: "+indexName);
-        if("jiangsu_humor_hospital_clinical_patients".equals(indexName)){
+        logger.info("-----indexName: "+indexName);
+        if(!"jiangsu_humor_hospital_clinical_patients".equals(indexName)){
             indexName="jiangsu_humor_hospital_clinical_patients";
         }
         CaseSuggestParser2 parserIndex = new CaseSuggestParser2(indexName, fieldName, keywords, size, page);
