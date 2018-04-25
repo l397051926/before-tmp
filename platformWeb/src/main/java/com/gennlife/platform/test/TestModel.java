@@ -13,9 +13,7 @@ import org.springframework.util.StringUtils;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author liumingxin
@@ -24,6 +22,17 @@ import java.util.Map;
  **/
 public class TestModel {
     public static void main(String[] args) throws Exception {
+
+        List<String> ab =new ArrayList<>();
+        ab.add("a");
+        ab.add("b");
+        ab.add("c");
+        ab.remove("a");
+        System.out.println(ab);
+
+
+
+
 
 //        JsonObject p = new JsonObject();
 //        p.addProperty("indexName", "bbb");
@@ -37,14 +46,14 @@ public class TestModel {
 //        map.put("keyword","...");
 //        String aaa=HttpRequestUtils.doGet(url,map,null);
 //        System.out.println(aaa);
-
-        String url = "http://10.0.2.53:8989/search-server/addSynonym";
-        JsonObject jsonObject=new JsonObject();
-        jsonObject.addProperty("keyword","a");
-        jsonObject.addProperty("target","b");
-        jsonObject.addProperty("field","3");
-       String s=HttpRequestUtils.httpPostPubMed(url,new Gson().toJson(jsonObject));
-        System.out.println(s);
+//
+//        String url = "http://10.0.2.53:8989/search-server/addSynonym";
+//        JsonObject jsonObject=new JsonObject();
+//        jsonObject.addProperty("keyword","a");
+//        jsonObject.addProperty("target","b");
+//        jsonObject.addProperty("field","3");
+//       String s=HttpRequestUtils.httpPostPubMed(url,new Gson().toJson(jsonObject));
+//        System.out.println(s);
 //        String x=null;
 //        Uprofession up=new Uprofession();
 //        if(!StringUtils.isEmpty(x) &&!up.getUprofession().contains(x)){

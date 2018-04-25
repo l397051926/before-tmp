@@ -33,17 +33,24 @@ public class LaboratoryProcessor {
      * @param user
      * @return
      */
-    public String orgMapData(User user,String key,String isParentLab,String isLabCast) {
+    public String orgMapData(User user,String key,String isParentLab,String isLabCast,String lab_id) {
         String orgID = user.getOrgID();
         //通过科室数据，初始化的数据结构
-        Organization organization = getOrganization(orgID,key,isParentLab,isLabCast);
+        Organization organization = getOrganization(orgID,key,isParentLab,isLabCast,lab_id);
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(1);
-        resultBean.setData(organization);
+        if(StringUtils.isEmpty(organization.getLabs())){
+            System.out.println("aaa");
+        }
+        if(organization.isEmpty()){
+            resultBean.setData(new Organization());
+        }else {
+            resultBean.setData(organization);
+        }
         return gson.toJson(resultBean);
     }
 
-    public static List<Lab> generateLabTree(List<Lab> labs, String key, int maxLevel,String isParentLab) {
+    public static List<Lab> generateLabTree(List<Lab> labs, String key, int maxLevel,String isParentLab,String lab_id) {
         List<Lab> result = new LinkedList<>();
 
         if (labs != null) {
@@ -51,11 +58,14 @@ public class LaboratoryProcessor {
                 if("true".equals(isParentLab) && "一线临床类".equals(lab.getDepart_name())){
                     continue;
                 }
+                if(lab.getLabID().equals(lab_id)){
+                    continue;
+                }
                 if (lab.getLab_parent().equals(key)) {
                     lab.setOrgID(null);
                     result.add(lab);
                     if (maxLevel >= lab.getLab_level()) {
-                        List<Lab> subLabs = generateLabTree(labs, lab.getLabID(), maxLevel,isParentLab);
+                        List<Lab> subLabs = generateLabTree(labs, lab.getLabID(), maxLevel,isParentLab,null);
                         if (subLabs != null && subLabs.size() > 0) {
                             lab.setSubLabs(subLabs);
                         }
@@ -195,7 +205,7 @@ public class LaboratoryProcessor {
         if (maxLevel == null) {
             return organization;
         }
-        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,null);
+        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,null,null);
         organization.setLabs(treeLabs);
         return organization;
     }
@@ -220,7 +230,7 @@ public class LaboratoryProcessor {
         if (maxLevel == null) {
             return organization;
         }
-        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,null);
+        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,null,null);
         organization.setLabs(treeLabs);
         return organization;
     }
@@ -233,7 +243,7 @@ public class LaboratoryProcessor {
             }
         }
     }
-    public static Organization getOrganization(String orgID,String key,String isParentLab,String isLabCast) {
+    public static Organization getOrganization(String orgID,String key,String isParentLab,String isLabCast,String lab_id) {
         Organization organization = AllDao.getInstance().getOrgDao().getOrganization(orgID);
         List<Lab> labs =null;
         Integer maxLevel =null;
@@ -248,22 +258,22 @@ public class LaboratoryProcessor {
         maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
         if(!StringUtils.isEmpty(key)){
             Set<Lab> resultlabs=new HashSet<>();
-            if("true".equals(isLabCast)){
+            if("true".equals(isLabCast)){//是否高亮
                 spellLabCast(labs,key,resultlabs,key,orgID);
             }else{
                 spellLab(labs,key,resultlabs,key,orgID);
             }
 
-//            if(resultlabs.size()!=0){//若一个没搜到 默认全部
-//                labs =new LinkedList<>(resultlabs);
-//            }
+            if(resultlabs.size()==0){//若一个没搜到 默认全部
+                organization.setEmpty(true);
+            }
             labs =new LinkedList<>(resultlabs);
 
         }
         if (maxLevel == null) {
             return organization;
         }
-        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,isParentLab);
+        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,isParentLab,lab_id);
         organization.setLabs(treeLabs);
         return organization;
     }
@@ -324,8 +334,6 @@ public class LaboratoryProcessor {
             if (alllab.contains(labID)) continue;
             alllab.addAll(getLabs(orgdao, labID, orgID, orgName, userdao));
         }
-        alllab = new TreeSet<>(AllDao.getInstance().getSyResourceDao().selectDeleteLabsReource(labIDs));
-        labIDs = alllab.toArray(new String[alllab.size()]);
         int counter = AllDao.getInstance().getOrgDao().deleteLabs(labIDs);
         List<String> uids = AllDao.getInstance().getSyUserDao().getRelateUserByLabId(labIDs, orgID);
         TreeSet<String> allUids = new TreeSet<>();
@@ -333,9 +341,13 @@ public class LaboratoryProcessor {
             allUids.addAll(uids);
             SyUserMapper.addSelectRelateUid(allUids);
         }
-        // 同步删除资源
-        AllDao.getInstance().getSyResourceDao().deleteLabsReource(labIDs);
-        AllDao.getInstance().getSyResourceDao().deleteRoleItem(labIDs);
+        alllab = new TreeSet<>(AllDao.getInstance().getSyResourceDao().selectDeleteLabsReource(labIDs));
+        labIDs = alllab.toArray(new String[alllab.size()]);
+        if(labIDs.length!=0) {
+            // 同步删除资源
+            AllDao.getInstance().getSyResourceDao().deleteLabsReource(labIDs);
+            AllDao.getInstance().getSyResourceDao().deleteRoleItem(labIDs);
+        }
         RedisUtil.updateUserOnLine(allUids);
         int fail = alllab.size() - counter;
         // 更新用户信息
@@ -1226,7 +1238,7 @@ public class LaboratoryProcessor {
             if(StringUtils.isEmpty(key)){
                 organization = getOrganization(user.getOrgID(),roleid);
             }else {
-                organization = getOrganization(user.getOrgID(),key,null,null);
+                organization = getOrganization(user.getOrgID(),key,null,null,null);
             }
             organization.setLabs(injectResource(organization.getLabs(), list));
             //去掉本科室
@@ -1242,7 +1254,11 @@ public class LaboratoryProcessor {
 //            }
             ResultBean re = new ResultBean();
             re.setCode(1);
-            re.setData(organization);
+            if(organization.isEmpty()){
+                re.setData(new Organization());
+            }else{
+                re.setData(organization);
+            }
             return gson.toJson(re);
         } else {
             return ParamUtils.errorParam("该类型资源现在不支持");

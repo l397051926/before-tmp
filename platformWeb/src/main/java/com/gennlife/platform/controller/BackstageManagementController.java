@@ -47,6 +47,7 @@ public class BackstageManagementController {
         String key=null;
         String isParentLab=null;
         String isLabCast = null;
+        String lab_id = null;
         try {
             String param = ParamUtils.getParam(paramRe);
             User user = (User) paramRe.getAttribute("currentUser");
@@ -60,7 +61,10 @@ public class BackstageManagementController {
             if(paramObj.has("isLabCast")){
                 isLabCast=paramObj.get("isLabCast").getAsString();
             }
-            resultStr = processor.orgMapData(user,key,isParentLab,isLabCast);
+            if(paramObj.has("lab_id")){
+                lab_id =paramObj.get("lab_id").getAsString();
+            }
+            resultStr = processor.orgMapData(user,key,isParentLab,isLabCast,lab_id);
         } catch (DataIntegrityViolationException e) {
             resultStr = DataIntegrityViolationExceptionMsg();
         } catch (Exception e) {

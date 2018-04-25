@@ -15,6 +15,16 @@ public class Organization {
     private Object Resource = new LinkedList<>();
     private Object spResource = null;
 
+    private boolean isEmpty;
+
+    public boolean isEmpty() {
+        return isEmpty;
+    }
+
+    public void setEmpty(boolean empty) {
+        isEmpty = empty;
+    }
+
     public Object getSpResource() {
         return spResource;
     }
