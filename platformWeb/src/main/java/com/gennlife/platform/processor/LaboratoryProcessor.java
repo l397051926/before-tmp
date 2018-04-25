@@ -65,7 +65,7 @@ public class LaboratoryProcessor {
                     lab.setOrgID(null);
                     result.add(lab);
                     if (maxLevel >= lab.getLab_level()) {
-                        List<Lab> subLabs = generateLabTree(labs, lab.getLabID(), maxLevel,isParentLab,null);
+                        List<Lab> subLabs = generateLabTree(labs, lab.getLabID(), maxLevel,isParentLab,lab_id);
                         if (subLabs != null && subLabs.size() > 0) {
                             lab.setSubLabs(subLabs);
                         }
