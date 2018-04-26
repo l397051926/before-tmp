@@ -182,7 +182,7 @@ public class LaboratoryProcessor {
         labResource.setSlab_name(lab.getLab_name());
         labResource.setStype_role("0"); // 初始化的是普通科室
         LabResource labResourceTmp=AllDao.getInstance().getSyResourceDao().getLabResourcesBySid(labResource.getSid());
-        if(labResource !=null){
+        if(labResourceTmp !=null){
             return;
         }
         AllDao.getInstance().getSyResourceDao().insertOneResource(labResource);
