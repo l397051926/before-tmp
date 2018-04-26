@@ -1159,7 +1159,7 @@ public class LaboratoryProcessor {
             if (updateUids == null) updateUids = new LinkedList<>();
             updateUids.addAll(uids);
             String roleName = role.getRole();
-            if ("1".equals(exRole.getRole_type())) {
+            if ("1".equals(exRole.getRole_type()) || "1".equals(exRole.getRole_privilege())) {
                 Role role1 = AllDao.getInstance().getSyRoleDao().getRoleByroleid(role.getRoleid());
                 if (role1 != null) {//
                     Integer[] roleids = new Integer[]{role.getRoleid()};
