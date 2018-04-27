@@ -2,6 +2,8 @@ package com.gennlife.platform.filter;
 
 
 import com.gennlife.platform.authority.AuthorityUtil;
+import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.UserProcessor;
 import com.gennlife.platform.util.LogUtils;
@@ -17,6 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -41,6 +46,7 @@ public class SessionFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String uri = request.getRequestURI();
+        boolean  permissionFlag =true;
         if (okSet.contains(uri)) {
             filterChain.doFilter(request, response);
         } else {
@@ -64,6 +70,42 @@ public class SessionFilter implements Filter {
                 return;
             }
             User user = UserProcessor.getUserByUidFromRedis(uid);
+
+            SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String failTime = AllDao.getInstance().getSyUserDao().getFailureTimeByUid(uid);
+            String effecTime = AllDao.getInstance().getSyUserDao().getEffectiveTimeByUid(uid);
+            Date date=new Date();
+            if(!("长期有效".equals(user.getStatus()))){
+                if("禁用".equals(user.getStatus())){
+                    RedisUtil.userLogout(session.getId());
+                    permissionFlag=false;
+                }
+                try {
+                    if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
+                        RedisUtil.userLogout(session.getId());
+                        permissionFlag=false;
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            sessionID = session.getId();
+            uid = RedisUtil.getValue(sessionID);
+            if (uid == null) {
+                logger.info("RedisUtil.getValue()-> uid is null");
+                logger.info("request url is: " + uri);
+                String cookie = ((HttpServletRequest) servletRequest).getHeader("Cookie");
+                logger.info("RedisUtil.getValue取不到数据 sessionID:" + sessionID + " cookie:" + cookie + " uri=" + uri);
+                if(permissionFlag){
+                    view.viewString(ParamUtils.errorSessionLosParam(), response);
+                }else {
+                    view.viewString(ParamUtils.errorPermission(),response);
+                }
+
+                return;
+            }
+
             if (user == null) {
                 //LogUtils.BussnissLogError("RedisUtil.getUser取不到数据:" + uid);
                 user = UserProcessor.getUserByUids(uid);

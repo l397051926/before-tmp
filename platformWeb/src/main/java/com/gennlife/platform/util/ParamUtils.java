@@ -156,4 +156,11 @@ public class ParamUtils {
     public static String getStatusKey() {
         return "code";
     }
+
+    public static String errorPermission() {
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(0);
+        resultBean.setInfo("账户失效，请联系管理员");
+        return gson.toJson(resultBean);
+    }
 }
