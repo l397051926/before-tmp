@@ -80,7 +80,8 @@ public class SessionFilter implements Filter {
 //                    RedisUtil.userLogout(session.getId());
                     permissionFlag=false;
                     view.viewString(ParamUtils.errorSessionLosParam(), response);
-                    response.sendRedirect("uranus/login.html");
+//                    response.sendRedirect("uranus/login.html");
+                    response.sendRedirect("/uranus/UI/bsma/isDefaultPassword");
                     return;
 
                 }
@@ -89,7 +90,8 @@ public class SessionFilter implements Filter {
 //                        RedisUtil.userLogout(session.getId());
                         permissionFlag=false;
                         view.viewString(ParamUtils.errorSessionLosParam(), response);
-                        response.sendRedirect("uranus/login.html");
+//                        response.sendRedirect("uranus/login.html");
+                        response.sendRedirect("uranus//uranus/UI/bsma/isDefaultPassword");
                         return;
 
                     }
