@@ -79,11 +79,13 @@ public class SessionFilter implements Filter {
                 if("禁用".equals(user.getStatus())){
                     RedisUtil.userLogout(session.getId());
                     permissionFlag=false;
+                    session.setMaxInactiveInterval(0);
                 }
                 try {
                     if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
                         RedisUtil.userLogout(session.getId());
                         permissionFlag=false;
+                        session.setMaxInactiveInterval(0);
                     }
                 } catch (ParseException e) {
                     e.printStackTrace();

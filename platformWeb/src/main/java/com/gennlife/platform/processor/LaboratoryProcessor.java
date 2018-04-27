@@ -260,8 +260,8 @@ public class LaboratoryProcessor {
 //        }
         labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
         maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
+        Set<Lab> resultlabs=new HashSet<>();
         if(!StringUtils.isEmpty(key)){
-            Set<Lab> resultlabs=new HashSet<>();
             if("true".equals(isLabCast)){//是否高亮
                 spellLabCast(labs,key,resultlabs,key,orgID);
             }else{
@@ -274,7 +274,13 @@ public class LaboratoryProcessor {
             return organization;
         }
         List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,isParentLab,lab_id);
-        if(treeLabs.size()==0){//若一个没搜到 默认全部
+        if(!StringUtils.isEmpty(key)){
+            resultlabs.clear();
+            spellLabCast(treeLabs,key,resultlabs,key,orgID);
+            treeLabs =new LinkedList<>(resultlabs);
+        }
+
+        if(treeLabs.size()==0){//若一个没搜到 默认清空
             organization.setEmpty(true);
         }
         organization.setLabs(treeLabs);
