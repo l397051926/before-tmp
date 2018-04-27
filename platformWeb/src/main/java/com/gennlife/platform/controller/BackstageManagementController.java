@@ -238,7 +238,7 @@ public class BackstageManagementController {
         logger.info("删除用户 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-
+    /*作废接口---- 2018-04-26 标注*/
     @RequestMapping(value = "/GetProfessionList", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody

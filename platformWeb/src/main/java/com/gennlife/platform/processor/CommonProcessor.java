@@ -61,7 +61,7 @@ public class CommonProcessor {
         try {
             byte[] bytes = file.getBytes();
             String string = new String(bytes, "GBK");
-            if (ChineseToEnglish.isMessyCode(string)) return ParamUtils.errorParam("文件里含有非GBK编码的字符");
+            if (ChineseToEnglish.isMessyCode(string)) return ParamUtils.errorParam("上传文件无法解析或解析失败");
             logger.info("uploadFileForImportStaff=\n" + string);
             String[] strings = string.split("\n");
             List<String> list = new LinkedList();
@@ -83,7 +83,7 @@ public class CommonProcessor {
             //logger.info("GBK "+string);
             //logger.info("default "+new String(bytes));
             if (ChineseToEnglish.isMessyCode(string)) {
-                return ParamUtils.errorParam("文件里含有非GBK编码的字符");
+                return ParamUtils.errorParam("上传文件无法解析或解析失败");
             }
             logger.info("uploadFileForImportLab=" + string);
             String[] strings = string.split("\n");

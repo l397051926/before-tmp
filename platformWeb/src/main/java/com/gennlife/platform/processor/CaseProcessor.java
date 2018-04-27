@@ -620,26 +620,27 @@ public class CaseProcessor {
 
     public String searchSynonyms(JsonObject paramObj,User user) {
         try {
-            String field = null;
-            String keyWord = null;
+//            String field = null;
+//            String keyWord = null;
             String uid = user.getUid();
-            if(paramObj.has("field")){
-                field=paramObj.get("field").getAsString();
-            }else {
-                return ParamUtils.errorParam("缺少参数");
-            }
-            if(paramObj.has("keyword")){
-                keyWord = paramObj.get("keyword").getAsString();
-            }else {
-                return ParamUtils.errorParam("缺少参数");
-            }
-            Map<String,String> map =new HashMap<>();
-            map.put("field",field);
-            map.put("keyword",keyWord);
-            map.put("uid",uid);
+//            if(paramObj.has("field")){
+//                field=paramObj.get("field").getAsString();
+//            }else {
+//                return ParamUtils.errorParam("缺少参数");
+//            }
+//            if(paramObj.has("keyword")){
+//                keyWord = paramObj.get("keyword").getAsString();
+//            }else {
+//                return ParamUtils.errorParam("缺少参数");
+//            }
+//            Map<String,String> map =new HashMap<>();
+//            map.put("field",field);
+//            map.put("keyword",keyWord);
+//            map.put("uid",uid);
+            paramObj.addProperty("uid",uid);
             String url = ConfigurationService.getUrlBean().getSynonyms();
 //            String url="http://10.0.2.53:8989/search-server/synonyms";
-            String result = HttpRequestUtils.doGet(url,map,null);
+            String result = HttpRequestUtils.httpPostPubMed(url,gson.toJson(paramObj));
             return result;
         } catch (Exception e) {
             return ParamUtils.errorParam("请求出错");

@@ -75,7 +75,7 @@ public class BaseController {
         logger.info("项目病种get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-
+    /*测试？？？*/
     @RequestMapping(value = "/Test", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody

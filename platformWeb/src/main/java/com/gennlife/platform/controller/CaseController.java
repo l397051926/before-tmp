@@ -426,7 +426,7 @@ public class CaseController {
         return ParamUtils.errorParam("出现异常");
     }
 
-    @RequestMapping(value = "/synonyms", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/synonyms", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String postOrgMapData(HttpServletRequest paramRe) {
