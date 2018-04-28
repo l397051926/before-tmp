@@ -274,7 +274,7 @@ public class LaboratoryProcessor {
             return organization;
         }
         List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,isParentLab,lab_id);
-        if(!StringUtils.isEmpty(key)){
+        if(!StringUtils.isEmpty(key) && "true".equals(isParentLab)){
             resultlabs.clear();
             spellLabCast(treeLabs,key,resultlabs,key,orgID);
             treeLabs =new LinkedList<>(resultlabs);
