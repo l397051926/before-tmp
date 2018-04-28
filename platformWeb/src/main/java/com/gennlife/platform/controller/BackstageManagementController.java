@@ -710,6 +710,42 @@ public class BackstageManagementController {
         logger.info("判断当前密码是否为默认密码 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/isDefaultPassword", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String isDefaultPasswordPost(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            User user = (User) paramRe.getAttribute("currentUser");
+            resultStr = processor.isDefaultPassword(user);
+
+            if("false".equals(resultStr)){
+                //每次刷新页面都会退出
+                String sessionId = paramRe.getSession(false).getId();
+                RedisUtil.userLogout(sessionId);
+                ResultBean resultBean = new ResultBean();
+                resultBean.setCode(0);
+                resultBean.setInfo("账户失效，请联系管理员");
+                return gson.toJson(resultBean);
+            }
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("判断当前密码是否为默认密码 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+
+
+
+
+
+
+
+
     @RequestMapping(value="/isExistLabName",method = RequestMethod.GET,produces="application/json;charset=UTF-8")
     @ResponseBody
     public String isExistLabName(HttpServletRequest paramRe){
