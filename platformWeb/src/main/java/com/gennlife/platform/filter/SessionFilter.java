@@ -99,7 +99,7 @@ public class SessionFilter implements Filter {
                     view.viewString(ParamUtils.errorPermission(), response);
                     RedisUtil.userLogout(session.getId());
                     String url = ConfigurationService.getUrlBean().getEmailURL();
-                    response.sendRedirect("/uranus/login.html");
+                    response.sendRedirect("uranus/login.html");
 //                    servletRequest.getRequestDispatcher("/bsma/isDefaultPassword").forward(servletRequest,servletResponse);
                     return;
 
@@ -109,7 +109,7 @@ public class SessionFilter implements Filter {
                         RedisUtil.userLogout(session.getId());
                         view.viewString(ParamUtils.errorPermission(), response);
                         String url = ConfigurationService.getUrlBean().getEmailURL();
-                        response.sendRedirect("/uranus/login.html");
+                        response.sendRedirect("uranus/login.html");
 //                        servletRequest.getRequestDispatcher("/bsma/isDefaultPassword").forward(servletRequest,servletResponse);
                         return;
                     }
