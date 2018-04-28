@@ -6,6 +6,7 @@ import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.UserProcessor;
+import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.LogUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.util.RedisUtil;
@@ -92,11 +93,18 @@ public class SessionFilter implements Filter {
             String failTime = AllDao.getInstance().getSyUserDao().getFailureTimeByUid(uid);
             String effecTime = AllDao.getInstance().getSyUserDao().getEffectiveTimeByUid(uid);
             Date date=new Date();
-            if(!("长期有效".equals(user.getStatus()))){
+
+            if("/bsma/isDefaultPassword".equals(uri)){
+                filterChain.doFilter(request, response);
+                return;
+            }
+
+            if(!("长期有效".equals(user.getStatus())) && !"/uranus/bsma_staff.html".equals(uri)){
                 if("禁用".equals(user.getStatus())){
 //                    view.viewString(ParamUtils.errorPermission(), response);
-//                    response.sendRedirect("/uranus/login.html");
-                    servletRequest.getRequestDispatcher("/bsma/isDefaultPassword").forward(servletRequest,servletResponse);
+                    String url = ConfigurationService.getUrlBean().getEmailSendURL();
+                    response.sendRedirect(url+"uranus/search_index.html");
+//                    servletRequest.getRequestDispatcher("/bsma/isDefaultPassword").forward(servletRequest,servletResponse);
                     return;
 
                 }
@@ -104,8 +112,9 @@ public class SessionFilter implements Filter {
                     if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
 //                        RedisUtil.userLogout(session.getId());
                         view.viewString(ParamUtils.errorPermission(), response);
-//                        response.sendRedirect("/uranus/login.html");
-                        servletRequest.getRequestDispatcher("/bsma/isDefaultPassword").forward(servletRequest,servletResponse);
+                        String url = ConfigurationService.getUrlBean().getEmailSendURL();
+                        response.sendRedirect(url+"uranus/search_index.html");
+//                        servletRequest.getRequestDispatcher("/bsma/isDefaultPassword").forward(servletRequest,servletResponse);
                         return;
                     }
                 } catch (ParseException e) {
