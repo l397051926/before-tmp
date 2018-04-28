@@ -94,26 +94,22 @@ public class SessionFilter implements Filter {
             String effecTime = AllDao.getInstance().getSyUserDao().getEffectiveTimeByUid(uid);
             Date date=new Date();
 
-            if("/bsma/isDefaultPassword".equals(uri)){
-                filterChain.doFilter(request, response);
-                return;
-            }
-
-            if(!("长期有效".equals(user.getStatus())) && !"/uranus/bsma_staff.html".equals(uri)){
+            if(!("长期有效".equals(user.getStatus()))){
                 if("禁用".equals(user.getStatus())){
 //                    view.viewString(ParamUtils.errorPermission(), response);
+                    RedisUtil.userLogout(session.getId());
                     String url = ConfigurationService.getUrlBean().getEmailURL();
-                    response.sendRedirect(url+"/uranus/search_index.html");
+                    response.sendRedirect("/uranus/login.html");
 //                    servletRequest.getRequestDispatcher("/bsma/isDefaultPassword").forward(servletRequest,servletResponse);
                     return;
 
                 }
                 try {
                     if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
-//                        RedisUtil.userLogout(session.getId());
-                        view.viewString(ParamUtils.errorPermission(), response);
+                        RedisUtil.userLogout(session.getId());
+//                        view.viewString(ParamUtils.errorPermission(), response);
                         String url = ConfigurationService.getUrlBean().getEmailURL();
-                        response.sendRedirect(url+"/uranus/search_index.html");
+                        response.sendRedirect("/uranus/login.html");
 //                        servletRequest.getRequestDispatcher("/bsma/isDefaultPassword").forward(servletRequest,servletResponse);
                         return;
                     }
