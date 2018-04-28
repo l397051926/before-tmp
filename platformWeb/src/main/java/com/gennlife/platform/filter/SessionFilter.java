@@ -96,7 +96,7 @@ public class SessionFilter implements Filter {
 
             if(!("长期有效".equals(user.getStatus()))){
                 if("禁用".equals(user.getStatus())){
-//                    view.viewString(ParamUtils.errorPermission(), response);
+                    view.viewString(ParamUtils.errorPermission(), response);
                     RedisUtil.userLogout(session.getId());
                     String url = ConfigurationService.getUrlBean().getEmailURL();
                     response.sendRedirect("/uranus/login.html");
@@ -107,7 +107,7 @@ public class SessionFilter implements Filter {
                 try {
                     if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
                         RedisUtil.userLogout(session.getId());
-//                        view.viewString(ParamUtils.errorPermission(), response);
+                        view.viewString(ParamUtils.errorPermission(), response);
                         String url = ConfigurationService.getUrlBean().getEmailURL();
                         response.sendRedirect("/uranus/login.html");
 //                        servletRequest.getRequestDispatcher("/bsma/isDefaultPassword").forward(servletRequest,servletResponse);
