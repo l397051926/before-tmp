@@ -47,7 +47,7 @@ public class SessionFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String uri = request.getRequestURI();
-
+        boolean  permissionFlag =true;
         if (okSet.contains(uri)) {
             filterChain.doFilter(request, response);
         } else {
@@ -72,6 +72,29 @@ public class SessionFilter implements Filter {
             }
             User user = UserProcessor.getUserByUidFromRedis(uid);
 
+            SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String failTime = AllDao.getInstance().getSyUserDao().getFailureTimeByUid(uid);
+            String effecTime = AllDao.getInstance().getSyUserDao().getEffectiveTimeByUid(uid);
+            Date date=new Date();
+            if(!("长期有效".equals(user.getStatus()))){
+                if("禁用".equals(user.getStatus())){
+                    view.viewString(ParamUtils.errorPermission(), response);
+                    response.sendRedirect("/uranus/login.html");
+                    return;
+
+                }
+                try {
+                    if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
+//                        RedisUtil.userLogout(session.getId());
+                        view.viewString(ParamUtils.errorPermission(), response);
+                        response.sendRedirect("/uranus/login.html");
+                        return;
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
             if (user == null) {
                 //LogUtils.BussnissLogError("RedisUtil.getUser取不到数据:" + uid);
                 user = UserProcessor.getUserByUids(uid);
@@ -83,40 +106,11 @@ public class SessionFilter implements Filter {
                 RedisUtil.setUser(user);
             }
 
-            SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String failTime = AllDao.getInstance().getSyUserDao().getFailureTimeByUid(uid);
-            String effecTime = AllDao.getInstance().getSyUserDao().getEffectiveTimeByUid(uid);
-            Date date=new Date();
-
-            if(!("长期有效".equals(user.getStatus()))){
-                if("禁用".equals(user.getStatus())){
-//                    view.viewString(ParamUtils.errorPermission(), response);
-//                    RedisUtil.userLogout(session.getId());
-                    String url = ConfigurationService.getUrlBean().getEmailURL();
-//                    response.sendRedirect("/uranus/login.html");
-                    servletRequest.getRequestDispatcher("/bsma/tologin").forward(servletRequest,servletResponse);
-                    return;
-
-                }
-                try {
-                    if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
-//                        RedisUtil.userLogout(session.getId());
-//                        view.viewString(ParamUtils.errorPermission(), response);
-                        servletRequest.getRequestDispatcher("/bsma/tologin").forward(servletRequest,servletResponse);
-                        return;
-                    }
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
-
             servletRequest.setAttribute("currentUser", user);
             if (adminSet.contains(uri) && !AuthorityUtil.isAdmin(user)) {
                 view.viewString(ParamUtils.errorAuthorityParam(), response);
                 return;
             }
-
-
             filterChain.doFilter(request, response);
         }
 
