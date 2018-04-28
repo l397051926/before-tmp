@@ -739,6 +739,19 @@ public class BackstageManagementController {
     }
 
 
+    @RequestMapping(value = "/tologin", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public String tologin(HttpServletRequest paramRe) {
+        String url = ConfigurationService.getUrlBean().getEmailURL();
+       return url+"/uranus/login.html";
+    }
+
+    @RequestMapping(value = "/tologin", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public String tologinpost(HttpServletRequest paramRe) {
+        String url = ConfigurationService.getUrlBean().getEmailURL();
+
+        return url+"/uranus/login.html";
+    }
+
 
 
 

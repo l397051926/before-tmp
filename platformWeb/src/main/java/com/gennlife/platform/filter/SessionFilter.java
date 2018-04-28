@@ -83,12 +83,6 @@ public class SessionFilter implements Filter {
                 RedisUtil.setUser(user);
             }
 
-            servletRequest.setAttribute("currentUser", user);
-            if (adminSet.contains(uri) && !AuthorityUtil.isAdmin(user)) {
-                view.viewString(ParamUtils.errorAuthorityParam(), response);
-                return;
-            }
-
             SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String failTime = AllDao.getInstance().getSyUserDao().getFailureTimeByUid(uid);
             String effecTime = AllDao.getInstance().getSyUserDao().getEffectiveTimeByUid(uid);
@@ -96,27 +90,32 @@ public class SessionFilter implements Filter {
 
             if(!("长期有效".equals(user.getStatus()))){
                 if("禁用".equals(user.getStatus())){
-                    view.viewString(ParamUtils.errorPermission(), response);
-                    RedisUtil.userLogout(session.getId());
+//                    view.viewString(ParamUtils.errorPermission(), response);
+//                    RedisUtil.userLogout(session.getId());
                     String url = ConfigurationService.getUrlBean().getEmailURL();
-                    response.sendRedirect("uranus/login.html");
-//                    servletRequest.getRequestDispatcher("/bsma/isDefaultPassword").forward(servletRequest,servletResponse);
+//                    response.sendRedirect("/uranus/login.html");
+                    servletRequest.getRequestDispatcher("/bsma/tologin").forward(servletRequest,servletResponse);
                     return;
 
                 }
                 try {
                     if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
-                        RedisUtil.userLogout(session.getId());
-                        view.viewString(ParamUtils.errorPermission(), response);
-                        String url = ConfigurationService.getUrlBean().getEmailURL();
-                        response.sendRedirect("uranus/login.html");
-//                        servletRequest.getRequestDispatcher("/bsma/isDefaultPassword").forward(servletRequest,servletResponse);
+//                        RedisUtil.userLogout(session.getId());
+//                        view.viewString(ParamUtils.errorPermission(), response);
+                        servletRequest.getRequestDispatcher("/bsma/tologin").forward(servletRequest,servletResponse);
                         return;
                     }
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             }
+
+            servletRequest.setAttribute("currentUser", user);
+            if (adminSet.contains(uri) && !AuthorityUtil.isAdmin(user)) {
+                view.viewString(ParamUtils.errorAuthorityParam(), response);
+                return;
+            }
+
 
             filterChain.doFilter(request, response);
         }
