@@ -159,7 +159,7 @@ public class ParamUtils {
 
     public static String errorPermission() {
         ResultBean resultBean = new ResultBean();
-        resultBean.setCode(0);
+        resultBean.setCode(-1);
         resultBean.setInfo("账户失效，请联系管理员");
         return gson.toJson(resultBean);
     }
