@@ -1247,7 +1247,7 @@ public class LaboratoryProcessor {
             if(StringUtils.isEmpty(key)){
                 organization = getOrganization(user.getOrgID(),roleid);
             }else {
-                organization = getOrganization(user.getOrgID(),key,null,null,null);
+                organization = getOrganization(user.getOrgID(),key,"true",null,null);
             }
             organization.setLabs(injectResource(organization.getLabs(), list));
             //去掉本科室
