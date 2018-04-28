@@ -78,7 +78,7 @@ public class SessionFilter implements Filter {
             if(!("长期有效".equals(user.getStatus()))){
                 if("禁用".equals(user.getStatus())){
                     view.viewString(ParamUtils.errorPermission(), response);
-                    response.sendRedirect("/uranus/search_index.html");
+                    response.sendRedirect("/uranus/login.html");
                     return;
 
                 }
@@ -86,7 +86,7 @@ public class SessionFilter implements Filter {
                     if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
 //                        RedisUtil.userLogout(session.getId());
                         view.viewString(ParamUtils.errorPermission(), response);
-                        response.sendRedirect("/uranus/search_index.html");
+                        response.sendRedirect("/uranus/login.html");
                         return;
                     }
                 } catch (ParseException e) {
