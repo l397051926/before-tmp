@@ -185,6 +185,7 @@
         <property name="toolsURL" value="http://${apache.ipAndPort}/get_tools"/>
         <property name="CSSmg" value="http://${apache.ipAndPort}/smg"/>
         <property name="EmailSendURL" value="http://${webui.ipAndPort}/uranus/verify_email.html?token="></property>
+        <property name="EmailURL" value="http://${webui.ipAndPort}"></property>
         <property name="CSBaseline" value="http://${apache.ipAndPort}/baseline"/>
 
         <!-- RWS服务接口 -->

@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/urlconf.xml" afterPath="$PROJECT_DIR$/src/main/resources/urlconf.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,8 +72,8 @@
       <file leaf-file-name="urlconf.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/urlconf.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="186" column="36" lean-forward="false" selection-start-line="186" selection-start-column="24" selection-end-line="186" selection-end-column="36" />
+            <state relative-caret-position="256">
+              <caret line="188" column="81" lean-forward="true" selection-start-line="188" selection-start-column="81" selection-end-line="188" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -80,13 +82,17 @@
       <file leaf-file-name="URLBean.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="1129" column="33" lean-forward="false" selection-start-line="1129" selection-start-column="18" selection-end-line="1129" selection-end-column="33" />
+            <state relative-caret-position="262">
+              <caret line="140" column="16" lean-forward="false" selection-start-line="140" selection-start-column="16" selection-end-line="140" selection-end-column="16" />
               <folding>
-                <element signature="e#26827#26828#0" expanded="true" />
-                <element signature="e#26862#26863#0" expanded="true" />
-                <element signature="e#35490#35491#0" expanded="true" />
-                <element signature="e#35521#35522#0" expanded="true" />
+                <element signature="e#26897#26898#0" expanded="true" />
+                <element signature="e#26932#26933#0" expanded="true" />
+                <element signature="e#35560#35561#0" expanded="true" />
+                <element signature="e#35591#35592#0" expanded="true" />
+                <element signature="e#36380#36381#0" expanded="true" />
+                <element signature="e#36411#36412#0" expanded="true" />
+                <element signature="e#36459#36460#0" expanded="true" />
+                <element signature="e#36494#36495#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -120,7 +126,7 @@
       <file leaf-file-name="SessionFilter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
+            <state relative-caret-position="229">
               <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -236,10 +242,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/test/TestModel.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/OrgMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Organization.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/parse/CaseSuggestParser2.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/urlconf.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyResourceMapper.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/SyResourceMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BaseController.java" />
@@ -250,6 +254,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/FileUploadUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/urlconf.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java" />
       </list>
     </option>
@@ -774,14 +780,7 @@
       <workItem from="1524214295690" duration="1331000" />
       <workItem from="1524446123486" duration="7469000" />
       <workItem from="1524744786556" duration="3641000" />
-      <workItem from="1524791249031" duration="37779000" />
-    </task>
-    <task id="LOCAL-00003" summary="修改 fileter 注释bug">
-      <created>1523345696805</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1523345696805</updated>
+      <workItem from="1524791249031" duration="38265000" />
     </task>
     <task id="LOCAL-00004" summary="修改 fileter 注释bug">
       <created>1523349890361</created>
@@ -1119,11 +1118,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524894849620</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="微调整">
+      <created>1524898878188</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1524898878188</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="348970000" />
+    <option name="totallyTimeSpent" value="349456000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
@@ -1253,9 +1259,9 @@
     <MESSAGE value="修改 科室导入 提示问题，修改同义词接口编程post" />
     <MESSAGE value="调整系统bug" />
     <MESSAGE value="修改用户权限问题" />
-    <MESSAGE value="微调整" />
     <MESSAGE value="微调整 权限认证 最后测试" />
-    <option name="LAST_COMMIT_MESSAGE" value="微调整 权限认证 最后测试" />
+    <MESSAGE value="微调整" />
+    <option name="LAST_COMMIT_MESSAGE" value="微调整" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1368,8 +1374,14 @@
           <properties />
           <option name="timeStamp" value="219" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java</url>
+          <line>104</line>
+          <properties />
+          <option name="timeStamp" value="221" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="221" />
+      <option name="time" value="222" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1789,19 +1801,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="1129" column="33" lean-forward="false" selection-start-line="1129" selection-start-column="18" selection-end-line="1129" selection-end-column="33" />
-          <folding>
-            <element signature="e#26827#26828#0" expanded="true" />
-            <element signature="e#26862#26863#0" expanded="true" />
-            <element signature="e#35490#35491#0" expanded="true" />
-            <element signature="e#35521#35522#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/FileUploadUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
@@ -1810,17 +1809,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="140" column="16" lean-forward="false" selection-start-line="140" selection-start-column="16" selection-end-line="140" selection-end-column="16" />
+          <folding>
+            <element signature="e#26897#26898#0" expanded="true" />
+            <element signature="e#26932#26933#0" expanded="true" />
+            <element signature="e#35560#35561#0" expanded="true" />
+            <element signature="e#35591#35592#0" expanded="true" />
+            <element signature="e#36380#36381#0" expanded="true" />
+            <element signature="e#36411#36412#0" expanded="true" />
+            <element signature="e#36459#36460#0" expanded="true" />
+            <element signature="e#36494#36495#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/urlconf.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="186" column="36" lean-forward="false" selection-start-line="186" selection-start-column="24" selection-end-line="186" selection-end-column="36" />
+        <state relative-caret-position="256">
+          <caret line="188" column="81" lean-forward="true" selection-start-line="188" selection-start-column="81" selection-end-line="188" selection-end-column="81" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
+        <state relative-caret-position="229">
           <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />

@@ -102,8 +102,8 @@ public class SessionFilter implements Filter {
             if(!("长期有效".equals(user.getStatus())) && !"/uranus/bsma_staff.html".equals(uri)){
                 if("禁用".equals(user.getStatus())){
 //                    view.viewString(ParamUtils.errorPermission(), response);
-                    String url = ConfigurationService.getUrlBean().getEmailSendURL();
-                    response.sendRedirect(url+"uranus/search_index.html");
+                    String url = ConfigurationService.getUrlBean().getEmailURL();
+                    response.sendRedirect(url+"/uranus/search_index.html");
 //                    servletRequest.getRequestDispatcher("/bsma/isDefaultPassword").forward(servletRequest,servletResponse);
                     return;
 
@@ -112,8 +112,8 @@ public class SessionFilter implements Filter {
                     if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
 //                        RedisUtil.userLogout(session.getId());
                         view.viewString(ParamUtils.errorPermission(), response);
-                        String url = ConfigurationService.getUrlBean().getEmailSendURL();
-                        response.sendRedirect(url+"uranus/search_index.html");
+                        String url = ConfigurationService.getUrlBean().getEmailURL();
+                        response.sendRedirect(url+"/uranus/search_index.html");
 //                        servletRequest.getRequestDispatcher("/bsma/isDefaultPassword").forward(servletRequest,servletResponse);
                         return;
                     }

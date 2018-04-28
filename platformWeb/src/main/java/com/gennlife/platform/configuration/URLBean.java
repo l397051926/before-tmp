@@ -138,6 +138,11 @@ public class URLBean {
     private String EmailSendURL = null;
 
     /**
+     * email url
+     */
+    private String EmailURL = null;
+
+    /**
      * 工作区工具列表
      */
     private String toolsURL = null;
@@ -1446,5 +1451,13 @@ public class URLBean {
 
     public void setSaveRelatedPhrasesSelectionBehavior(String saveRelatedPhrasesSelectionBehavior) {
         this.saveRelatedPhrasesSelectionBehavior = saveRelatedPhrasesSelectionBehavior;
+    }
+
+    public String getEmailURL() {
+        return EmailURL;
+    }
+
+    public void setEmailURL(String emailURL) {
+        EmailURL = emailURL;
     }
 }
