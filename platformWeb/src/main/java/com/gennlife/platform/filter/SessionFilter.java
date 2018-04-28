@@ -77,43 +77,21 @@ public class SessionFilter implements Filter {
             Date date=new Date();
             if(!("长期有效".equals(user.getStatus()))){
                 if("禁用".equals(user.getStatus())){
-//                    RedisUtil.userLogout(session.getId());
-                    permissionFlag=false;
-                    view.viewString(ParamUtils.errorSessionLosParam(), response);
-//                    response.sendRedirect("uranus/login.html");
-                    response.sendRedirect("/uranus/UI/bsma/isDefaultPassword");
+                    view.viewString(ParamUtils.errorPermission(), response);
+                    response.sendRedirect("/uranus/search_index.html");
                     return;
 
                 }
                 try {
                     if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
 //                        RedisUtil.userLogout(session.getId());
-                        permissionFlag=false;
-                        view.viewString(ParamUtils.errorSessionLosParam(), response);
-//                        response.sendRedirect("uranus/login.html");
-                        response.sendRedirect("uranus//uranus/UI/bsma/isDefaultPassword");
+                        view.viewString(ParamUtils.errorPermission(), response);
+                        response.sendRedirect("/uranus/search_index.html");
                         return;
-
                     }
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-            }
-
-            sessionID = session.getId();
-            uid = RedisUtil.getValue(sessionID);
-            if (uid == null) {
-                logger.info("RedisUtil.getValue()-> uid is null");
-                logger.info("request url is: " + uri);
-                String cookie = ((HttpServletRequest) servletRequest).getHeader("Cookie");
-                logger.info("RedisUtil.getValue取不到数据 sessionID:" + sessionID + " cookie:" + cookie + " uri=" + uri);
-                if(permissionFlag){
-                    view.viewString(ParamUtils.errorSessionLosParam(), response);
-                }else {
-                    view.viewString(ParamUtils.errorPermission(),response);
-                }
-
-                return;
             }
 
             if (user == null) {

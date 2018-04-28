@@ -291,7 +291,7 @@ public class LaboratoryProcessor {
 
         for(Lab lab :labs){
             String lab_name=lab.getLab_name();
-            if(lab_name.contains(key) || lab.getLabID().contains(key)){
+            if(lab_name.contains(key) || lab.getLabID().equals(key)){
                 if(!resultlabs.contains(lab)){
                     lab.setLab_name(lab_name.replaceAll(key1,"<span style='color:red'>" + key1 + "</span>"));
                     resultlabs.add(lab);

@@ -246,6 +246,13 @@ public class FileUploadUtil implements InitializingBean {
                                     logger.info("---------------"+effective_time);
                                     //这里需要处理这种形式
                                     Date effDate=new SimpleDateFormat("yyyy/MM/dd HH:mm").parse(effective_time);
+                                    Date failDate=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(failure_time);
+                                    if(effDate.after(failDate)){
+                                        srcList.add(line + ",失败,生效时间 不能小于失效时间");
+                                        failure_time="";
+                                        effective_time="";
+                                        continue;
+                                    }
                                     effective_time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(effDate);
                                 }catch (Exception e){
                                     srcList.add(line + ",失败,生效时间日期格式不对 格式应该为 2020/1/1 00:00");
