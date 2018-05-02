@@ -189,4 +189,11 @@ public interface OrgMapper {
     String getlabnameBylabID(@Param("labID") String labID);
 
     void updatalableader(@Param("uids") String[] uids);
+
+    /**id
+     * 根据父亲获取 labs
+     * @param labId
+     * @return
+     */
+    List<String> getLabIdByParentId(@Param("labId") String labId);
 }

@@ -339,6 +339,15 @@
         )
     </update>
 
+    <select id="getLabIdByParentId" resultType="java.lang.String">
+        select
+        labID
+        FROM
+        gennlife_lab
+        WHERE
+        lab_parent = #{labId}
+    </select>
+
 
 
 </mapper>

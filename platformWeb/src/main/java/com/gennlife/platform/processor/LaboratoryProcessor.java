@@ -332,7 +332,9 @@ public class LaboratoryProcessor {
             logger.error("", e);
             return ParamUtils.errorParam("请求参数有错误");
         }
-        String[] labIDs = labIDsList.toArray(new String[labIDsList.size()]);
+        Set<String> tempLabIdList =new HashSet<>();
+        getAllDeleteLabids(tempLabIdList,labIDsList);
+        String[] labIDs = tempLabIdList.toArray(new String[tempLabIdList.size()]);
         String orgID = user.getOrgID();
         String orgName = user.getOrg_name();
         Organization organization = null;
@@ -368,6 +370,18 @@ public class LaboratoryProcessor {
 
         return gson.toJson(resultBean);
     }
+
+    private void getAllDeleteLabids(Set<String> tempLabIdList, List<String> labIDsList) {
+        if(labIDsList.size()==0){
+            return;
+        }
+        for (String labId : labIDsList){
+            tempLabIdList.add(labId);
+            List<String> labIds=AllDao.getInstance().getOrgDao().getLabIdByParentId(labId);
+            getAllDeleteLabids(tempLabIdList,labIds);
+        }
+    }
+
 
     public Set<String> getLabs(OrgMapper orgdao, String labID, String orgID, String orgName, SyUserMapper userdao) {
         Lab parent = orgdao.getLabPInfo(labID, orgID);
