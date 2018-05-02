@@ -647,7 +647,7 @@ public class CrfController {
             logger.info("crf 搜索 参数形式=" + paramNew);
             resultStr = processor.searchCase(paramNew, user);
         } catch (Exception e) {
-            logger.error("crf单病种 搜错", e);
+            logger.error("crf单病种 搜索", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("crf单病种 搜错 post 耗时" + (System.currentTimeMillis() - start) + "ms");

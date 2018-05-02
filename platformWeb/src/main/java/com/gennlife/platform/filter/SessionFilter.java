@@ -72,6 +72,17 @@ public class SessionFilter implements Filter {
             }
             User user = UserProcessor.getUserByUidFromRedis(uid);
 
+            if (user == null) {
+                //LogUtils.BussnissLogError("RedisUtil.getUser取不到数据:" + uid);
+                user = UserProcessor.getUserByUids(uid);
+                if (user == null) {
+                    LogUtils.BussnissLogError("错误user id");
+                    view.viewString(ParamUtils.errorSessionLosParam(), response);
+                    return;
+                }
+                RedisUtil.setUser(user);
+            }
+
             SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String failTime = AllDao.getInstance().getSyUserDao().getFailureTimeByUid(uid);
             String effecTime = AllDao.getInstance().getSyUserDao().getEffectiveTimeByUid(uid);
@@ -93,17 +104,6 @@ public class SessionFilter implements Filter {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-            }
-
-            if (user == null) {
-                //LogUtils.BussnissLogError("RedisUtil.getUser取不到数据:" + uid);
-                user = UserProcessor.getUserByUids(uid);
-                if (user == null) {
-                    LogUtils.BussnissLogError("错误user id");
-                    view.viewString(ParamUtils.errorSessionLosParam(), response);
-                    return;
-                }
-                RedisUtil.setUser(user);
             }
 
             servletRequest.setAttribute("currentUser", user);

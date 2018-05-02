@@ -441,7 +441,7 @@ public class CaseController {
             logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("高级搜索 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        logger.info("同义词 高级搜索 POST 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
     @RequestMapping(value = "/addSynonym", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -459,7 +459,7 @@ public class CaseController {
             logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("高级搜索 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        logger.info("同义词 增加 高级搜索 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
@@ -478,7 +478,7 @@ public class CaseController {
             logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("高级搜索 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        logger.info("同义词 删除 高级搜索 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
     @RequestMapping(value = "/saveRelatedPhrasesSelectionBehavior", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -496,7 +496,7 @@ public class CaseController {
             logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
-        logger.info("高级搜索 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        logger.info("同义词 保存 相关短语 高级搜索 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
