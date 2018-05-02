@@ -159,7 +159,9 @@ public class Lab {
         StringBuffer sb = new StringBuffer();
         sb.append(this.getLab_name())
                 .append(",")
-                .append(this.getLab_parentName());
+                .append(this.getLab_parentName())
+                .append(",")
+                .append(this.getDepart_name());
         return sb.toString();
     }
 }
