@@ -103,7 +103,9 @@ public class SessionFilter implements Filter {
                         return;
                     }
                 } catch (ParseException e) {
-                    e.printStackTrace();
+                    logger.error("", e);
+                    view.viewString(ParamUtils.errorPermission(), response);
+                    return;
                 }
             }
 

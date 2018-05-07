@@ -752,13 +752,6 @@ public class BackstageManagementController {
         return url+"/uranus/login.html";
     }
 
-
-
-
-
-
-
-
     @RequestMapping(value="/isExistLabName",method = RequestMethod.GET,produces="application/json;charset=UTF-8")
     @ResponseBody
     public String isExistLabName(HttpServletRequest paramRe){

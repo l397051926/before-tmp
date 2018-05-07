@@ -15,6 +15,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -77,6 +79,32 @@ public class UserProcessor {
                     String uidEx = AllDao.getInstance().getSyUserDao().getUidByEmail(map);
                     if (!StringUtils.isEmpty(uidEx) && !user.getUid().equals(uidEx)) {//更新的email不合法,已经存在
                         return ParamUtils.errorParamResultBean("更新的email不合法,已经存在");
+                    }
+                }
+                //时间限制
+                String status = user.getStatus();
+                if(StringUtils.isEmpty(status)){
+                    return ParamUtils.errorParamResultBean("更新失败，状态不能为空");
+                }
+                String efftime=user.getEffective_time();
+                String failtime=user.getFailure_time();
+
+                if("定期有效".equals(status)){
+                    if(StringUtils.isEmpty(efftime) || StringUtils.isEmpty(failtime)){
+                        return ParamUtils.errorParamResultBean("更新失败， 生效时间 失效时间不能位空");
+                    }
+                }
+
+                if(!StringUtils.isEmpty(efftime) && !StringUtils.isEmpty(failtime)){
+                    try {
+                        Date etime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(efftime);
+                        Date ftime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(failtime);
+                        if(etime.after(ftime)){
+                            return ParamUtils.errorParamResultBean("更新失败，日期格式不对，失效时间在生效时间前");
+                        }
+                    } catch (ParseException e) {
+                        logger.error("", e);
+                        return ParamUtils.errorParamResultBean("日期格式不对");
                     }
                 }
                 user.setCtime(null);//创建时间不可更新
