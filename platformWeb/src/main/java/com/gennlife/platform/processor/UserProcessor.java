@@ -93,20 +93,20 @@ public class UserProcessor {
                     if(StringUtils.isEmpty(efftime) || StringUtils.isEmpty(failtime)){
                         return ParamUtils.errorParamResultBean("更新失败， 生效时间 失效时间不能位空");
                     }
-                }
-
-                if(!StringUtils.isEmpty(efftime) && !StringUtils.isEmpty(failtime)){
-                    try {
-                        Date etime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(efftime);
-                        Date ftime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(failtime);
-                        if(etime.after(ftime)){
-                            return ParamUtils.errorParamResultBean("更新失败，日期格式不对，失效时间在生效时间前");
+                    if(!StringUtils.isEmpty(efftime) && !StringUtils.isEmpty(failtime)){
+                        try {
+                            Date etime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(efftime);
+                            Date ftime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(failtime);
+                            if(etime.after(ftime)){
+                                return ParamUtils.errorParamResultBean("更新失败，日期格式不对，失效时间在生效时间前");
+                            }
+                        } catch (ParseException e) {
+                            logger.error("", e);
+                            return ParamUtils.errorParamResultBean("日期格式不对");
                         }
-                    } catch (ParseException e) {
-                        logger.error("", e);
-                        return ParamUtils.errorParamResultBean("日期格式不对");
                     }
                 }
+
                 user.setCtime(null);//创建时间不可更新
                 user.setUptime(LogUtils.getStringTime());//更新时间
                 user.setOrg_name(null);//医院名称不能修改
