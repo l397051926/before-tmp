@@ -1838,4 +1838,40 @@ public class LaboratoryProcessor {
         }
     }
 
+    public String isAccountLose(User user) {
+        ResultBean re = null;
+        boolean isAccountLose = true;
+        try {
+            re = new ResultBean();
+            String uid = user.getUid();
+
+            SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String failTime = AllDao.getInstance().getSyUserDao().getFailureTimeByUid(uid);
+            String effecTime = AllDao.getInstance().getSyUserDao().getEffectiveTimeByUid(uid);
+            Date date=new Date();
+            if(!("长期有效".equals(user.getStatus()))){
+                if("禁用".equals(user.getStatus())){
+                    isAccountLose = false;
+                }
+                if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
+                    isAccountLose = false;
+                }
+            }
+
+            if(isAccountLose){
+                re.setCode(1);
+                re.setInfo("false");
+            }else {
+                re.setCode(0);
+                re.setInfo("账户失效，请联系管理员");
+            }
+
+        } catch (Exception e) {
+            logger.error("", e);
+            return ParamUtils.errorParam("判断当前密码是否为默认密码操作失败");
+        }
+        return gson.toJson(re);
+
+
+    }
 }

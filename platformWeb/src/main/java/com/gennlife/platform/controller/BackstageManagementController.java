@@ -815,6 +815,32 @@ public class BackstageManagementController {
         return resultStr;
     }
 
+    @RequestMapping(value = "/isAccountLose", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String isAccountLose(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            User user = (User) paramRe.getAttribute("currentUser");
+            resultStr = processor.isAccountLose(user);
+
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("判断用户是否失效 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+
+
+
+
+
+
+
+
     /*
     *
     @RequestMapping(value="/isExistLabName",method = RequestMethod.GET,produces="application/json;charset=UTF-8")
