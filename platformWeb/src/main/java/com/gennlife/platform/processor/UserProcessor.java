@@ -106,6 +106,10 @@ public class UserProcessor {
                         }
                     }
                 }
+                if("长期有效".equals(status) || "禁用".equals(status)){
+                    user.setEffective_time(null);
+                    user.setFailure_time(null);
+                }
 
                 user.setCtime(null);//创建时间不可更新
                 user.setUptime(LogUtils.getStringTime());//更新时间

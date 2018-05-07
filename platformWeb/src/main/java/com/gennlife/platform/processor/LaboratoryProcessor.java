@@ -744,23 +744,27 @@ public class LaboratoryProcessor {
                 resultBean.addProperty("info", "时间不能为空");
                 return resultBean;
             }
-        }
-
-        if(!StringUtils.isEmpty(efftime) && !StringUtils.isEmpty(failtime)){
-            try {
-                Date etime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(efftime);
-                Date ftime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(failtime);
-                if(etime.after(ftime)){
+            if(!StringUtils.isEmpty(efftime) && !StringUtils.isEmpty(failtime)){
+                try {
+                    Date etime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(efftime);
+                    Date ftime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(failtime);
+                    if(etime.after(ftime)){
+                        resultBean.addProperty("code", 0);
+                        resultBean.addProperty("info", "日期格式不对，失效时间在生效时间前");
+                        return resultBean;
+                    }
+                } catch (ParseException e) {
                     resultBean.addProperty("code", 0);
-                    resultBean.addProperty("info", "日期格式不对，失效时间在生效时间前");
+                    resultBean.addProperty("info", "日期格式不对");
                     return resultBean;
                 }
-            } catch (ParseException e) {
-                resultBean.addProperty("code", 0);
-                resultBean.addProperty("info", "日期格式不对");
-                return resultBean;
             }
         }
+        if("长期有效".equals(status) || "禁用".equals(status)){
+            adduser.setEffective_time(null);
+            adduser.setFailure_time(null);
+        }
+
         if (name == null || "".equals(name)) {
             resultBean.addProperty("code", 0);
             resultBean.addProperty("info", "姓名不合法");
