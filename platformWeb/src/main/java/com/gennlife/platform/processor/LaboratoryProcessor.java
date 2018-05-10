@@ -265,7 +265,7 @@ public class LaboratoryProcessor {
             if("true".equals(isLabCast)){//是否高亮
                 spellLabCast(labs,key,resultlabs,key,orgID);
             }else{
-                spellLab(labs,key,resultlabs,key,orgID);
+                spellLab(labs,key,resultlabs,key,orgID,isParentLab);
             }
             labs =new LinkedList<>(resultlabs);
 
@@ -274,11 +274,11 @@ public class LaboratoryProcessor {
             return organization;
         }
         List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,isParentLab,lab_id);
-        if(!StringUtils.isEmpty(key) && "true".equals(isParentLab)){
-            resultlabs.clear();
-            spellLabCast(treeLabs,key,resultlabs,key,orgID);
-            treeLabs =new LinkedList<>(resultlabs);
-        }
+//        if(!StringUtils.isEmpty(key) && "true".equals(isParentLab)){
+//            resultlabs.clear();
+//            spellLabCast(treeLabs,key,resultlabs,key,orgID);
+//            treeLabs =new LinkedList<>(resultlabs);
+//        }
 
         if(treeLabs.size()==0){//若一个没搜到 默认清空
             organization.setEmpty(true);
@@ -287,21 +287,23 @@ public class LaboratoryProcessor {
         return organization;
     }
 
-    public static void spellLab(List<Lab> labs,String key,Set<Lab> resultlabs,String key1,String orgID){
+    public static void spellLab(List<Lab> labs,String key,Set<Lab> resultlabs,String key1,String orgID,String isParentLab){
 
         for(Lab lab :labs){
             String lab_name=lab.getLab_name();
             if(lab_name.contains(key) || lab.getLabID().equals(key)){
+                if("true".equals(isParentLab) && "一线临床类".equals(lab.getDepart_name())) continue;
                 if(!resultlabs.contains(lab)){
                     lab.setLab_name(lab_name.replaceAll(key1,"<span style='color:red'>" + key1 + "</span>"));
                     resultlabs.add(lab);
                     if(lab.getLab_parent()!=null && !(orgID.equals(lab.getLab_parent()) )){
-                        spellLab(labs,lab.getLab_parent(),resultlabs,key1,orgID);
+                        spellLab(labs,lab.getLab_parent(),resultlabs,key1,orgID,isParentLab);
                     }
                 }
             }
         }
     }
+
     public static void spellLabCast(List<Lab> labs,String key,Set<Lab> resultlabs,String key1,String orgID){
 
         for(Lab lab :labs){
