@@ -678,6 +678,7 @@ public class CrfController {
         logger.info("CRF搜索结果列表展示的集合 post 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+    //获取病种资源
     @RequestMapping(value = "/getCrfProjectDiseaseItem",method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String getCrfProjectDiseaseItem(HttpServletRequest paramRe){

@@ -9,6 +9,7 @@ import com.gennlife.platform.model.Power;
 import com.gennlife.platform.model.Resource;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.parse.CaseSearchParser;
+import com.gennlife.platform.service.ArkService;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.*;
 import com.google.gson.*;
@@ -668,8 +669,10 @@ public class CrfProcessor {
             List<CRFLab> crfLabs = AllDao.getInstance().getSyResourceDao().getCrfIDByLab(labId,orgId);
             JSONArray jsonArray = new JSONArray();
             for (CRFLab crfLab:crfLabs) {
-
+                jsonArray.add(ArkService.getDiseaseName(crfLab.getCrf_id()));
             }
+            resultBean.setCode(1);
+            resultBean.setData(jsonArray);
 
         }catch (Exception e){
             logger.error("error",e);
