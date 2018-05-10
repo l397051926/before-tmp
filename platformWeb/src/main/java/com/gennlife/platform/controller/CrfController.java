@@ -634,7 +634,7 @@ public class CrfController {
         logger.info("获取研究序列号 耗时 " + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-
+    /*高級搜索*/
     @RequestMapping(value = "/SearchCase", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
@@ -654,6 +654,7 @@ public class CrfController {
         //logger.info("病历搜索 结果=" + resultStr);
         return resultStr;
     }
+    /*搜索結果列表*/
     @RequestMapping(value = "/SearchItemSet", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
@@ -675,6 +676,24 @@ public class CrfController {
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("CRF搜索结果列表展示的集合 post 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+    @RequestMapping(value = "/getCrfProjectDiseaseItem",method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String getCrfProjectDiseaseItem(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = jsonParser.parse(param).getAsJsonObject();
+            User user = (User) paramRe.getAttribute("currentUser");
+            resultStr = processor.getCrfProjectDiseaseItem(paramObj,user);
+
+        }catch (Exception e){
+            logger.error("CRF病种列表获取失败",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("CRF 病种列表获取 get 耗时：" + (System.currentTimeMillis()-start) + "ms");
         return resultStr;
     }
 

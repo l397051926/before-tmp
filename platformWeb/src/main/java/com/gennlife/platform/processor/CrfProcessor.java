@@ -4,6 +4,7 @@ import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.bean.projectBean.MyProjectList;
 import com.gennlife.platform.dao.AllDao;
+import com.gennlife.platform.model.CRFLab;
 import com.gennlife.platform.model.Power;
 import com.gennlife.platform.model.Resource;
 import com.gennlife.platform.model.User;
@@ -11,6 +12,7 @@ import com.gennlife.platform.parse.CaseSearchParser;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.*;
 import com.google.gson.*;
+import net.minidev.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -653,6 +655,27 @@ public class CrfProcessor {
         }
         resultBean.setCode(1);
         resultBean.setData(allNew);
+        return gson.toJson(resultBean);
+    }
+
+    public String getCrfProjectDiseaseItem(JsonObject paramObj, User user) {
+        String orgId = null;
+        String labId = null;
+        ResultBean resultBean = new ResultBean();
+        try {
+            orgId = user.getOrgID();
+            labId = paramObj.get("labId").getAsString();
+            List<CRFLab> crfLabs = AllDao.getInstance().getSyResourceDao().getCrfIDByLab(labId,orgId);
+            JSONArray jsonArray = new JSONArray();
+            for (CRFLab crfLab:crfLabs) {
+
+            }
+
+        }catch (Exception e){
+            logger.error("error",e);
+            return ParamUtils.errorParam("获取病种列表失败");
+        }
+
         return gson.toJson(resultBean);
     }
 }
