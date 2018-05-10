@@ -19,10 +19,12 @@
     <result column="has_addBatchCRF" property="has_addBatchCRF" jdbcType="VARCHAR" />
     <result column="has_deleteCRF" property="has_deleteCRF" jdbcType="VARCHAR" />
     <result column="stype_role" property="stype_role" jdbcType="VARCHAR" />
+    <result column="has_searchCRF" property="has_searchCRF" jdbcType="VARCHAR"/>
+    <result column="has_importCRF" property="has_importCRF" jdbcType="VARCHAR"/>
   </resultMap>
   <sql id="resourceProperty">
     gennlife_resource.sid,sname,sdesc,stype,slab_type,slab_name,sorgID,has_search,has_searchExport,has_traceCRF,has_addCRF,
-    has_editCRF,has_browseDetail,has_addBatchCRF,has_deleteCRF,stype_role
+    has_editCRF,has_browseDetail,has_addBatchCRF,has_deleteCRF,stype_role,has_searchCRF,has_importCRF
   </sql>
   
   <select id="getResources" resultMap="com.gennlife.platform.model.Resource"  parameterType="map">
@@ -95,6 +97,12 @@
       <if test="has_addBatchCRF != null" >
         has_addBatchCRF,
       </if>
+      <if test="has_searchCRF != null" >
+        has_searchCRF,
+      </if>
+      <if test="has_importCRF != null" >
+        has_importCRF,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       #{roleid,jdbcType=INTEGER},
@@ -123,6 +131,12 @@
       </if>
       <if test="has_addBatchCRF != null" >
         #{has_addBatchCRF,jdbcType=VARCHAR},
+      </if>
+      <if test="has_searchCRF != null" >
+        has_searchCRF,
+      </if>
+      <if test="has_importCRF != null" >
+        has_importCRF,
       </if>
     </trim>
   </insert>

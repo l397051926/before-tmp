@@ -119,6 +119,8 @@ public class AuthorityUtil {
         power.setHas_deleteCRF(null);
         power.setHas_browseDetail(null);
         power.setHas_addBatchCRF(null);
+        power.setHas_searchCRF(null);
+        power.setHas_importCRF(null);
         paramObj.add("groups", gson.toJsonTree(groups));
         paramObj.add("power", gson.toJsonTree(power));
         return CaseProcessor.transformSid(paramObj, user);
@@ -147,6 +149,8 @@ public class AuthorityUtil {
                 power.setHas_deleteCRF(null);
                 power.setHas_browseDetail(null);
                 power.setHas_addBatchCRF(null);
+                power.setHas_searchCRF(null);
+                power.setHas_importCRF(null);
                 paramObj.add("groups", gson.toJsonTree(groups));
                 paramObj.add("power", gson.toJsonTree(power));
                 return CaseProcessor.transformSid(paramObj, user);

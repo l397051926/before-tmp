@@ -157,7 +157,9 @@ public class CrfProcessor {
             boolean flag3 = getCRFFlag(power, user.getOrgID(), crf_id, "has_addCRF");
             boolean flag4 = getCRFFlag(power, user.getOrgID(), crf_id, "has_editCRF");
             boolean flag5 = getCRFFlag(power, user.getOrgID(), crf_id, "has_addBatchCRF");
-            boolean flag = flag1 || flag2 || flag3 || flag4 || flag5;
+            boolean flag6 = getCRFFlag(power, user.getOrgID(), crf_id, "has_searchCRF");
+            boolean flag7 = getCRFFlag(power, user.getOrgID(), crf_id, "has_importCRF");
+            boolean flag = flag1 || flag2 || flag3 || flag4 || flag5 || flag6 || flag7;
             if (flag) {
                 String url = ConfigurationService.getUrlBean().getCRFSearchSampleList();
                 //10.0.0.152:9885/crf/SearchSampleList

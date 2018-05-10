@@ -323,6 +323,8 @@ public class UserProcessor {
         list.addAll(power.getHas_traceCRF());
         list.addAll(power.getHas_deleteCRF());
         list.addAll(power.getHas_editCRF());
+        list.addAll(power.getHas_searchCRF());
+        list.addAll(power.getHas_importCRF());
         role.setResources(list);
         result.add(role);
         return result;
@@ -550,6 +552,16 @@ public class UserProcessor {
                 power.addInHasBrowseDetail(resource);
             }
         }
+        if ("有".equals(resource.getHas_searchCRF())) {
+            if (!isExistResource(power.getHas_searchCRF(), resource)) {
+                power.addInHassearchCRF(resource);
+            }
+        }
+        if ("有".equals(resource.getHas_importCRF())) {
+            if (!isExistResource(power.getHas_importCRF(), resource)) {
+                power.addInHasimportCRF(resource);
+            }
+        }
         return power;
     }
 
@@ -598,6 +610,18 @@ public class UserProcessor {
         if ("有".equals(resource.getHas_browseDetail()) && "有".equals(group.getHas_browseDetail())) {
             if (!isExistResource(power.getHas_browseDetail(), resource)) {
                 power.addInHasBrowseDetail(resource);
+            }
+
+        }
+        if ("有".equals(resource.getHas_searchCRF()) && "有".equals(group.getHas_searchCRF())) {
+            if (!isExistResource(power.getHas_searchCRF(), resource)) {
+                power.addInHassearchCRF(resource);
+            }
+
+        }
+        if ("有".equals(resource.getHas_importCRF()) && "有".equals(group.getHas_importCRF())) {
+            if (!isExistResource(power.getHas_importCRF(), resource)) {
+                power.addInHasimportCRF(resource);
             }
 
         }

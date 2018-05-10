@@ -12,6 +12,7 @@ public class Group {
     private String groupCreator;
     private String groupCreatTime;
     private String groupCreatName;
+
     private String has_search;
     private String has_searchExport;
     private String has_traceCRF;
@@ -20,9 +21,29 @@ public class Group {
     private String has_deleteCRF;
     private String has_browseDetail;
     private String has_addBatchCRF;
+    //新增 crf 搜索 导入权限
+    private String has_searchCRF;
+    private String has_importCRF;
     @SerializedName("groupID")
     private String gid;
     private Object members;
+
+
+    public String getHas_searchCRF() {
+        return has_searchCRF;
+    }
+
+    public void setHas_searchCRF(String has_searchCRF) {
+        this.has_searchCRF = has_searchCRF;
+    }
+
+    public String getHas_importCRF() {
+        return has_importCRF;
+    }
+
+    public void setHas_importCRF(String has_importCRF) {
+        this.has_importCRF = has_importCRF;
+    }
 
     public String getGid() {
         return gid;
