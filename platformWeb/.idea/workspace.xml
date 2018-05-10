@@ -45,8 +45,8 @@
       <file leaf-file-name="LaboratoryProcessor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="1283" column="0" lean-forward="false" selection-start-line="1283" selection-start-column="0" selection-end-line="1283" selection-end-column="0" />
+            <state relative-caret-position="387">
+              <caret line="1278" column="59" lean-forward="true" selection-start-line="1278" selection-start-column="59" selection-end-line="1278" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -596,13 +596,6 @@
       <workItem from="1525657489879" duration="3487000" />
       <workItem from="1525665295473" duration="11525000" />
     </task>
-    <task id="LOCAL-00021" summary="增加导入数据判断 ，增加添加数据时数据判断">
-      <created>1523676476842</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1523676476842</updated>
-    </task>
     <task id="LOCAL-00022" summary="增加导入数据 中职称判断">
       <created>1523682080516</created>
       <option name="number" value="00022" />
@@ -939,11 +932,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525931668408</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="调整 角色 搜索不为空情况">
+      <created>1525933000120</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1525933000120</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="445363000" />
+    <option name="totallyTimeSpent" value="446709000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
@@ -1078,7 +1078,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="crf 测试 ip 修正回来" />
     <MESSAGE value="调整 人员删除 科室主任不删除bug" />
     <MESSAGE value="修改同义词接口名，增加智能提示2接口" />
     <MESSAGE value="修改 科室bug" />
@@ -1103,7 +1102,8 @@
     <MESSAGE value="失效时间 增加新接口" />
     <MESSAGE value="用户修改时间问题" />
     <MESSAGE value="科室搜索bug 修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="科室搜索bug 修改" />
+    <MESSAGE value="调整 角色 搜索不为空情况" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整 角色 搜索不为空情况" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1188,12 +1188,6 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java</url>
-          <line>1283</line>
-          <properties />
-          <option name="timeStamp" value="251" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java</url>
           <line>1271</line>
           <properties />
           <option name="timeStamp" value="252" />
@@ -1205,7 +1199,7 @@
           <option name="timeStamp" value="253" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="254" />
+      <option name="time" value="256" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1668,8 +1662,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="1283" column="0" lean-forward="false" selection-start-line="1283" selection-start-column="0" selection-end-line="1283" selection-end-column="0" />
+        <state relative-caret-position="387">
+          <caret line="1278" column="59" lean-forward="true" selection-start-line="1278" selection-start-column="59" selection-end-line="1278" selection-end-column="59" />
           <folding />
         </state>
       </provider>

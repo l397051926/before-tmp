@@ -1281,6 +1281,10 @@ public class LaboratoryProcessor {
 //                    organization.setSpResource(spLab);
 //                }
 //            }
+            List<Object> objlist = gson.fromJson(gson.toJson(organization.getLabs()), LinkedList.class);
+            if(objlist.size()==0){
+                organization.setEmpty(true);
+            }
             ResultBean re = new ResultBean();
             re.setCode(1);
             if(organization.isEmpty()){
@@ -1311,9 +1315,6 @@ public class LaboratoryProcessor {
             }
         }
         //位空 则全空
-        if(labList.size()==0){
-            organization.setEmpty(true);
-        }
         return labList;
     }
 
