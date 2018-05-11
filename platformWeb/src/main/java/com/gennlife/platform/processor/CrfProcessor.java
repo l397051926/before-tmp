@@ -520,85 +520,33 @@ public class CrfProcessor {
         }
     }
 
-    public String searchCase(String newParam, User user) {
-        return searchCaseWithAddQuery(newParam, user, null);
-    }
-
-    public String searchCaseWithAddQuery(String newParam, User user, String addQuery) {
-        if (newParam == null) {
-            logger.error("searchCase缺失参数");
-            return ParamUtils.errorSessionLosParam();
-        }
-        String param = transformSid(newParam, user);
-        JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-        if (paramObj.has("code") && paramObj.get("code").getAsInt() == 0) {
-            return param;
-        }
-        CaseSearchParser caseSearchParser = new CaseSearchParser(param);
-        if (!StringUtils.isEmpty(addQuery)) {
-            caseSearchParser.addQuery(addQuery);
-        }
-        try {
-            String searchResultStr = caseSearchParser.parser();
-            if (StringUtils.isEmpty(searchResultStr)) {
-                logger.error("search empty " + caseSearchParser.getQuery());
-                return ParamUtils.errorParam("搜索无结果");
+    public String searchCase(JsonObject newParam, User user) {
+        String crf_id = null;
+        ResultBean resultBean = new ResultBean();
+        try{
+            crf_id = newParam.get("crf_id").getAsString();
+            Power power = user.getPower();
+            boolean flag = getCRFFlag(power, user.getOrgID(), crf_id, "has_searchCRF");
+            if(flag){
+                String url = ConfigurationService.getUrlBean().getCRFSearchSampleList();
+                logger.info("请求参数： "+newParam);
+                String result = HttpRequestUtils.httpPost(url, gson.toJson(newParam));
+                resultBean.setCode(1);
+                resultBean.setData(result);
+            }else {
+                return ParamUtils.errorParam("没有搜索权限");
             }
-            JsonObject searchResult = (JsonObject) jsonParser.parse(searchResultStr);
-            JsonObject result = new JsonObject();
-            result.addProperty("code", 1);
-            result.add("data", searchResult);
-            return gson.toJson(result);
-        } catch (Exception e) {
-            logger.error("error", e);
-            return ParamUtils.errorParam("搜索失败");
-        }
-    }
-    /**
-     * 搜索接口，sid 转化
-     *
-     * @param param
-     * @return
-     */
-    public static String transformSid(String param, User user) {
-        JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-        return transformSid(paramObj, user);
 
-    }
+            return gson.toJson(resultBean);
 
-    /**
-     * sid前端选择科室 ,传给搜索
-     * */
-    public static String transformSid(JsonObject paramObj, User user) {
-        if (paramObj.has("sid") && paramObj.has("power")) {
-            String sid = paramObj.get("sid").getAsString();
-            paramObj.remove("groups"); // 选择科室后，工号权限小时
-            paramObj.remove("sid");
-            JsonObject power = paramObj.getAsJsonObject("power");
-            JsonArray has_searchArray = power.getAsJsonArray("has_search");
-            JsonArray newHas_searchArray = new JsonArray();
-            for (JsonElement item : has_searchArray) {
-                JsonObject has_searchObj = item.getAsJsonObject();
-                String tmpSid = has_searchObj.get("sid").getAsString();
-                if (tmpSid.equals(sid)) {
-                    newHas_searchArray.add(has_searchObj);
-                }
-            }
-            if (newHas_searchArray.size() == 0) {
-                return ParamUtils.errorParam("无搜索权限");
-            } else {
-                power.add("has_search", newHas_searchArray);
-            }
-            paramObj.add("power", power);
-            //logger.info("通过sid转化后，搜索请求参数 = " + gson.toJson(paramObj));
-            return gson.toJson(paramObj);
-        } else { // 角色,完成小组扩展
-            return gson.toJson(paramObj);
+        }catch (Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("出现异常");
         }
 
     }
 
-    public String searchItemSet(JsonObject paramObj) {
+       public String searchItemSet(JsonObject paramObj) {
         String param = null;
         String searchKey = null;
         String keywords = null;

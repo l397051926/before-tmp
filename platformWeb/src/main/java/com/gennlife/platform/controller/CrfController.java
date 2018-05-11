@@ -641,11 +641,13 @@ public class CrfController {
     String postSearchCase(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
+        JsonObject paramObj = null;
         try {
-            String paramNew = AuthorityUtil.addSearchCaseAuthority(paramRe);
+            String param = AuthorityUtil.addSearchCaseAuthority(paramRe);
+            paramObj = (JsonObject) jsonParser.parse(param);
             User user = (User) paramRe.getAttribute("currentUser");
-            logger.info("crf 搜索 参数形式=" + paramNew);
-            resultStr = processor.searchCase(paramNew, user);
+            logger.info("crf 搜索 参数形式=" + param);
+            resultStr = processor.searchCase(paramObj, user);
         } catch (Exception e) {
             logger.error("crf单病种 搜索", e);
             resultStr = ParamUtils.errorParam("出现异常");

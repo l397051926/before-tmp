@@ -1265,11 +1265,13 @@ public class LaboratoryProcessor {
         if (list != null && list.size() > 0) {
             Organization organization=null;
             if(StringUtils.isEmpty(key)){
-                organization = getOrganization(user.getOrgID(),roleid);
+//                organization = getOrganization(user.getOrgID(),roleid);
+                organization = getOrganization(user.getOrgID(),null,"true",null,null);
+
             }else {
                 organization = getOrganization(user.getOrgID(),key,"true",null,null);
             }
-            organization.setLabs(injectResource(organization,organization.getLabs(), list));
+//            organization.setLabs(injectResource(organization,organization.getLabs(), list));
             //去掉本科室
 //            for (LabResource labResource : list) {
 //                if ("本科室资源".equals(labResource.getSname())) {
@@ -1281,10 +1283,10 @@ public class LaboratoryProcessor {
 //                    organization.setSpResource(spLab);
 //                }
 //            }
-            List<Object> objlist = gson.fromJson(gson.toJson(organization.getLabs()), LinkedList.class);
-            if(objlist.size()==0){
-                organization.setEmpty(true);
-            }
+//            List<Object> objlist = gson.fromJson(gson.toJson(organization.getLabs()), LinkedList.class);
+//            if(objlist.size()==0){
+//                organization.setEmpty(true);
+//            }
             ResultBean re = new ResultBean();
             re.setCode(1);
             if(organization.isEmpty()){

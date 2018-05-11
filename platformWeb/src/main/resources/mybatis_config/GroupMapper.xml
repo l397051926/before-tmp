@@ -222,10 +222,10 @@
                 #{has_addBatchCRF,jdbcType=VARCHAR},
             </if>
             <if test="has_searchCRF != null" >
-                has_searchCRF,
+                #{has_searchCRF,jdbcType=VARCHAR},
             </if>
             <if test="has_importCRF != null" >
-                has_importCRF,
+                #{has_importCRF,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
