@@ -303,6 +303,7 @@ public class LaboratoryProcessor {
             }
         }
     }
+
     public static void spellLabCast(List<Lab> labs,String key,Set<Lab> resultlabs,String key1,String orgID){
 
         for(Lab lab :labs){
@@ -1268,7 +1269,7 @@ public class LaboratoryProcessor {
             }else {
                 organization = getOrganization(user.getOrgID(),key,"true",null,null);
             }
-            organization.setLabs(injectResource(organization.getLabs(), list));
+            organization.setLabs(injectResource(organization,organization.getLabs(), list));
             //去掉本科室
 //            for (LabResource labResource : list) {
 //                if ("本科室资源".equals(labResource.getSname())) {
@@ -1280,6 +1281,10 @@ public class LaboratoryProcessor {
 //                    organization.setSpResource(spLab);
 //                }
 //            }
+            List<Object> objlist = gson.fromJson(gson.toJson(organization.getLabs()), LinkedList.class);
+            if(objlist.size()==0){
+                organization.setEmpty(true);
+            }
             ResultBean re = new ResultBean();
             re.setCode(1);
             if(organization.isEmpty()){
@@ -1293,7 +1298,7 @@ public class LaboratoryProcessor {
         }
     }
 
-    private Object injectResource(Object labs, List<LabResource> list) {
+    private Object injectResource(Organization organization,Object labs, List<LabResource> list) {
         List<Object> objlist = gson.fromJson(gson.toJson(labs), LinkedList.class);
         List<Lab> labList = new LinkedList<>();
         for (Object obj : objlist) {
@@ -1305,10 +1310,11 @@ public class LaboratoryProcessor {
                 labList.add(lab);
             }
             if (lab.getSubLabs() != null) {
-                Object subLab = injectResource(lab.getSubLabs(), list);
+                Object subLab = injectResource(organization,lab.getSubLabs(), list);
                 lab.setSubLabs(subLab);
             }
         }
+        //位空 则全空
         return labList;
     }
 
