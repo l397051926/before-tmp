@@ -234,7 +234,7 @@ public class LaboratoryProcessor {
         if (maxLevel == null) {
             return organization;
         }
-        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,null,null);
+        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,"true",null);
         organization.setLabs(treeLabs);
         return organization;
     }
@@ -1269,7 +1269,7 @@ public class LaboratoryProcessor {
             }else {
                 organization = getOrganization(user.getOrgID(),key,"true",null,null);
             }
-            organization.setLabs(injectResource(organization,organization.getLabs(), list));
+//            organization.setLabs(injectResource(organization,organization.getLabs(), list));
             //去掉本科室
 //            for (LabResource labResource : list) {
 //                if ("本科室资源".equals(labResource.getSname())) {
