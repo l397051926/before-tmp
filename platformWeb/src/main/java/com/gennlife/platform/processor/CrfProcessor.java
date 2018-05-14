@@ -630,7 +630,10 @@ public class CrfProcessor {
             List<CRFLab> crfLabs = AllDao.getInstance().getSyResourceDao().getCrfIDByLab(labId,orgId);
             JSONArray jsonArray = new JSONArray();
             for (CRFLab crfLab:crfLabs) {
-                jsonArray.add(ArkService.getDiseaseName(crfLab.getCrf_id()));
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.addProperty("crfID",crfLab.getCrf_id());
+                jsonObject.addProperty("crfName",ArkService.getDiseaseName(crfLab.getCrf_id()));
+                jsonArray.add(jsonObject);
             }
             resultBean.setCode(1);
             resultBean.setData(jsonArray);
