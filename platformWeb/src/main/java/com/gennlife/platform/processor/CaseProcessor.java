@@ -55,9 +55,9 @@ public class CaseProcessor {
                 set.add(json.getAsString());
             }
 //            都给了 crf_id 为什么 还要在重新获取 crf_id.... 迷
-//            if (paramObj.has("crf_id")) {
-//                crf_id = paramObj.get("crf_id").getAsString();
-//            }
+            if (paramObj.has("crf_id")) {
+                crf_id = paramObj.get("crf_id").getAsString();
+            }
         } catch (Exception e) {
             logger.error("", e);
             return ParamUtils.errorParam("请求参数出错");

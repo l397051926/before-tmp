@@ -657,7 +657,7 @@ public class CrfController {
         return resultStr;
     }
     /*搜索結果列表*/
-    @RequestMapping(value = "/SearchItemSet", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/SearchItemSet", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String postSearchItemSet(HttpServletRequest paramRe) {

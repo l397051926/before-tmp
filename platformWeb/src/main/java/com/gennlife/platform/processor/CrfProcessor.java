@@ -255,13 +255,18 @@ public class CrfProcessor {
      */
 
     public String PatientInfo(String paramObj) {
+        String keyWords = null;
         try {
-
+            JsonObject paramObject = (JsonObject) jsonParser.parse(paramObj);
+            if(paramObject.has("keyWords")){
+                keyWords = paramObject.get("key").getAsString();
+            }
             String url = ConfigurationService.getUrlBean().getCRFGetPatientInfo() + "?param=";
             String param = URLEncoder.encode(paramObj, "utf-8");
             url = url + param;
             logger.info("request url:" + url);
             String result = HttpRequestUtils.httpGet(url);
+            result = result.replaceAll(keyWords,"<span style='color:red'>" + keyWords + "</span>");
             return result;
         } catch (Exception e) {
             logger.error("请求发生异常", e);
@@ -275,12 +280,19 @@ public class CrfProcessor {
     * @return
     */
     public String PatientVisitDetail(String paramObj) {
+        String keyWords = null;
         try {
+            JsonObject paramObject = (JsonObject) jsonParser.parse(paramObj);
+            if(paramObject.has("keyWords")){
+                keyWords = paramObject.get("key").getAsString();
+            }
             String url = ConfigurationService.getUrlBean().getCRFPatientVisitDetail() + "?param=";
             String param = URLEncoder.encode(paramObj, "utf-8");
             url = url + param;
             logger.info("request url:" + url);
             String result = HttpRequestUtils.httpGet(url);
+            result = result.replaceAll(keyWords,"<span style='color:red'>" + keyWords + "</span>");
+
             return result;
         } catch (Exception e) {
             logger.error("请求发生异常", e);
@@ -551,10 +563,11 @@ public class CrfProcessor {
         String searchKey = null;
         String keywords = null;
         String status = null;
-        String crf_id = null;
+        String crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
         Set<String> set = new HashSet<String>();
         ResultBean resultBean = new ResultBean();
         try {
+
             //searchKey = paramObj.get("searchKey").getAsString();//病历搜索的关键词
             keywords = paramObj.get("keywords").getAsString();//属性搜索的关键词
 //            status = paramObj.get("status").getAsString();
@@ -569,7 +582,7 @@ public class CrfProcessor {
             logger.error("", e);
             return ParamUtils.errorParam("请求参数出错");
         }
-        JsonObject all = ConfigurationService.getAdvancedSearch(crf_id);
+        JsonObject all = ConfigurationService.getCrfSearch(crf_id);
         JsonObject allNew = new JsonObject();
         for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
             String groupName = obj.getKey();
