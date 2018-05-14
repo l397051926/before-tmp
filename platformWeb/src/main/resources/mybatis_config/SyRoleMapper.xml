@@ -172,7 +172,7 @@
 
     <select id="getLabMAP" resultType="com.gennlife.platform.model.Lab">
         SELECT
-        labID,lab_name
+        labID,lab_name,lab_parent
         FROM
         gennlife_lab
         WHERE
