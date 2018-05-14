@@ -594,8 +594,8 @@ public class LaboratoryProcessor {
             labNow.setAdd_time(LogUtils.getStringTime());
             labNow.setLabID(labID);
             labNow.setLab_parent(lab_parent);
-            lab.setOrgID(orgID);
-            addResource(lab);
+            labNow.setOrgID(orgID);
+            addResource(labNow);
         }
         int counter = AllDao.getInstance().getOrgDao().updateLabInfo(map);
         if (counter == 0) {
