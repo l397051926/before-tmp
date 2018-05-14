@@ -48,6 +48,8 @@ public class ConfigurationService implements InitializingBean{
     private static Map<String, JsonObject> allMap = new HashMap<>();
     //比较因子属性列表
     private static Map<String, JsonObject> compareMap = new HashMap<>();
+    //CRF 高级搜索属性列表
+    private static Map<String, JsonObject> CrfSearchMap = new HashMap<>();
 
     private static JsonArray resourceTypeArray = null;
 
@@ -77,10 +79,10 @@ public class ConfigurationService implements InitializingBean{
         JsonObject allDiseasesObj = (JsonObject) jsonParser.parse(caseStr);
         //处理emr 高级搜索case 文件
         disposeCaseFile(allDiseasesObj);
-
+        //处理crf json
         String allCRFDiseases = FilesUtils.readFile("/crf/angiocardiopathy.json");
         JsonObject allCRFConfig = (JsonObject) jsonParser.parse(allCRFDiseases);
-        disposeCaseFile(allCRFConfig);
+        disposeCRFCaseFile(allCRFConfig);
 
 
         String resourceStr = FilesUtils.readFile("/resourceConfig.json");
@@ -142,6 +144,20 @@ public class ConfigurationService implements InitializingBean{
         }
     }
 
+    public static void disposeCRFCaseFile(JsonObject allDiseasesObj){
+        for (Map.Entry<String, JsonElement> item : allDiseasesObj.entrySet()) {
+            String crf_id = item.getKey();
+            JsonObject jsonObject = item.getValue().getAsJsonObject();
+            JsonObject defaultObj = jsonObject.getAsJsonObject("default");
+            JsonObject allObj = jsonObject.getAsJsonObject("all");
+            JsonObject advancedSearch = jsonObject.getAsJsonObject("advancedSearch");
+            JsonObject compareObj = jsonObject.getAsJsonObject("compare");
+            JsonObject importTree = jsonObject.getAsJsonObject("import");
+
+            CrfSearchMap.put(crf_id,advancedSearch);
+        }
+    }
+
     public static JsonObject getAllObj(String crf_id) {
         JsonObject jsonObject = allMap.get(crf_id);
         if (jsonObject == null) {
@@ -188,6 +204,16 @@ public class ConfigurationService implements InitializingBean{
         if (jsonObject == null) {
             jsonObject = advancedSearchMap.get(default_crf_id);
         }
+        if (jsonObject != null) {
+            String copy = gson.toJson(jsonObject);
+            JsonObject target = (JsonObject) jsonParser.parse(copy);
+            return target;
+        }
+        return new JsonObject();
+    }
+
+    public static JsonObject getCrfSearch(String crf_id) {
+        JsonObject jsonObject = CrfSearchMap.get(crf_id);
         if (jsonObject != null) {
             String copy = gson.toJson(jsonObject);
             JsonObject target = (JsonObject) jsonParser.parse(copy);
