@@ -1265,9 +1265,7 @@ public class LaboratoryProcessor {
         if (list != null && list.size() > 0) {
             Organization organization=null;
             if(StringUtils.isEmpty(key)){
-//                organization = getOrganization(user.getOrgID(),roleid);
-                organization = getOrganization(user.getOrgID(),null,"true",null,null);
-
+                organization = getOrganization(user.getOrgID(),roleid);
             }else {
                 organization = getOrganization(user.getOrgID(),key,"true",null,null);
             }
@@ -1283,10 +1281,10 @@ public class LaboratoryProcessor {
 //                    organization.setSpResource(spLab);
 //                }
 //            }
-//            List<Object> objlist = gson.fromJson(gson.toJson(organization.getLabs()), LinkedList.class);
-//            if(objlist.size()==0){
-//                organization.setEmpty(true);
-//            }
+            List<Object> objlist = gson.fromJson(gson.toJson(organization.getLabs()), LinkedList.class);
+            if(objlist.size()==0){
+                organization.setEmpty(true);
+            }
             ResultBean re = new ResultBean();
             re.setCode(1);
             if(organization.isEmpty()){
