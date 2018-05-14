@@ -37,7 +37,7 @@ public class Power {
         this.has_searchCRF.clear();
         if (has_searchCRF != null) {
             for (Resource resource : has_searchCRF) {
-                if ( resource.getHas_searchExport().equals("有"))
+                if ( resource.getHas_searchCRF().equals("有"))
                     addInHasSearchExport(resource);
             }
         }
@@ -56,7 +56,7 @@ public class Power {
         this.has_importCRF.clear();
         if (has_importCRF != null) {
             for (Resource resource : has_importCRF) {
-                if ( resource.getHas_searchExport().equals("有"))
+                if ( resource.getHas_importCRF().equals("有"))
                     addInHasSearchExport(resource);
             }
         }
