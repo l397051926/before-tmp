@@ -234,7 +234,7 @@ public class LaboratoryProcessor {
         if (maxLevel == null) {
             return organization;
         }
-        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,null,null);
+        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,"true",null);
         organization.setLabs(treeLabs);
         return organization;
     }
