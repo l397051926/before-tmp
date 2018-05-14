@@ -626,7 +626,7 @@ public class CrfProcessor {
         ResultBean resultBean = new ResultBean();
         try {
             orgId = user.getOrgID();
-            labId = paramObj.get("labId").getAsString();
+            labId = paramObj.get("labID").getAsString();
             List<CRFLab> crfLabs = AllDao.getInstance().getSyResourceDao().getCrfIDByLab(labId,orgId);
             JSONArray jsonArray = new JSONArray();
             for (CRFLab crfLab:crfLabs) {
