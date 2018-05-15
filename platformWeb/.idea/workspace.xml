@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/profiles/local/bootstrap.properties" afterPath="$PROJECT_DIR$/src/main/resources/profiles/local/bootstrap.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,7 +34,7 @@
     <splitter split-orientation="horizontal" split-proportion="0.50373137">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="CommonController.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="CommonController.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="649">
@@ -42,6 +42,26 @@
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="bootstrap.properties" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/resources/bootstrap.properties">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="515">
+                  <caret line="18" column="55" lean-forward="true" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="bootstrap.properties" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/resources/profiles/local/bootstrap.properties">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="330">
+                  <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -103,7 +123,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>addstaf</find>
       <find>DateFormat</find>
       <find>cook</find>
       <find>cookie</find>
@@ -133,6 +152,7 @@
       <find>handleException</find>
       <find>Syst</find>
       <find>response</find>
+      <find>multipart</find>
     </findStrings>
     <dirStrings>
       <dir>C:\lmx\clooud\Ark-UI_Service\platformWeb</dir>
@@ -156,7 +176,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/HelloDemo.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mybaits.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/update/组织导入模版.csv" />
@@ -207,6 +226,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CommonProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/profiles/local/bootstrap.properties" />
       </list>
     </option>
   </component>
@@ -332,6 +352,23 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="crf" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="platformWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="profiles" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="platformWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="profiles" type="462c0819:PsiDirectoryNode" />
+              <item name="local" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -589,14 +626,7 @@
       <workItem from="1525657489879" duration="3487000" />
       <workItem from="1525665295473" duration="11525000" />
       <workItem from="1526287896766" duration="7105000" />
-      <workItem from="1526346518454" duration="14166000" />
-    </task>
-    <task id="LOCAL-00028" summary="调整 人员删除 科室主任不删除bug">
-      <created>1524494395102</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1524494395102</updated>
+      <workItem from="1526346518454" duration="14634000" />
     </task>
     <task id="LOCAL-00029" summary="修改同义词接口名，增加智能提示2接口">
       <created>1524562783107</created>
@@ -934,11 +964,18 @@
       <option name="project" value="LOCAL" />
       <updated>1526391948877</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="详情页 点阵图 问题解决2">
+      <created>1526392585361</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1526392585362</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="475182000" />
+    <option name="totallyTimeSpent" value="475650000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
@@ -1047,7 +1084,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改智能提示" />
     <MESSAGE value="全科室搜索调整" />
     <MESSAGE value="转换为配置文件" />
     <MESSAGE value="修改 科室搜索到本科室问题" />
@@ -1072,7 +1108,8 @@
     <MESSAGE value="详情页 点阵图 下载" />
     <MESSAGE value="详情页 点阵图 问题解决" />
     <MESSAGE value="详情页 点阵图 问题解决1" />
-    <option name="LAST_COMMIT_MESSAGE" value="详情页 点阵图 问题解决1" />
+    <MESSAGE value="详情页 点阵图 问题解决2" />
+    <option name="LAST_COMMIT_MESSAGE" value="详情页 点阵图 问题解决2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1191,20 +1228,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
           <caret line="41" column="9" lean-forward="true" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/bootstrap.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="515">
-          <caret line="18" column="55" lean-forward="true" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/profiles/local/bootstrap.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -1454,10 +1477,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="348">
           <caret line="709" column="0" lean-forward="false" selection-start-line="709" selection-start-column="0" selection-end-line="710" selection-end-column="0" />
-          <folding>
-            <element signature="e#21486#21494#0" expanded="false" />
-            <element signature="e#21547#21555#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1612,6 +1632,22 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/bootstrap.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="18" column="55" lean-forward="true" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/profiles/local/bootstrap.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
