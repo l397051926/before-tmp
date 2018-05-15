@@ -197,8 +197,8 @@ public class CommonController implements InitializingBean {
                 } else if (type.equals("image/svg+xml")) {
                     ext = "svg";
                 }
-                response.addHeader("Content-Disposition", "attachment; filename=chart."+ext);
-                response.addHeader("Content-Type", type);
+                response.setHeader("Content-disposition", "attachment; filename=chart."+ext);
+                response.setHeader("Content-Type", type);
                 if (null != t){
                     TranscoderInput input = new TranscoderInput(new StringReader(svg));
                     TranscoderOutput output = new TranscoderOutput(out);
