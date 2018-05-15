@@ -645,4 +645,28 @@ public class CrfProcessor {
 
         return gson.toJson(resultBean);
     }
+
+
+    public String searchHighlight(JsonObject paramObj) {
+        String crfID = null;
+        try {
+            if(paramObj.has("crfID")){
+                crfID = paramObj.get("crfID").getAsString();
+            }
+            /*
+            获取 indexName；
+            * */
+
+            String url = ConfigurationService.getUrlBean().getHighlight();
+            logger.info("CRF搜索详情高亮 url=" + url);
+            paramObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            logger.info("CRF搜索详情高亮 SS返回结果： " + result);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+
+
+    }
 }

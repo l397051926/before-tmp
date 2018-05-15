@@ -700,4 +700,23 @@ public class CrfController {
         return resultStr;
     }
 
+    @RequestMapping(value = "/highlight",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String crfHighlight(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = jsonParser.parse(param).getAsJsonObject();
+            User user = (User) paramRe.getAttribute("currentUser");
+            resultStr = processor.searchHighlight(paramObj);
+
+        }catch (Exception e){
+            logger.error("CRF搜索详情高亮",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("CRF搜索详情高亮 get 耗时：" + (System.currentTimeMillis()-start) + "ms");
+        return resultStr;
+    }
+
 }
