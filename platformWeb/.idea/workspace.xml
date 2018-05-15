@@ -31,14 +31,14 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.50692964">
+    <splitter split-orientation="horizontal" split-proportion="0.50373137">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="CommonController.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="253">
-                  <caret line="203" column="70" lean-forward="false" selection-start-line="203" selection-start-column="67" selection-end-line="203" selection-end-column="70" />
+                <state relative-caret-position="649">
+                  <caret line="200" column="59" lean-forward="false" selection-start-line="200" selection-start-column="59" selection-end-line="200" selection-end-column="59" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -49,8 +49,8 @@
           <file leaf-file-name="SessionFilter.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-292">
-                  <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+                <state relative-caret-position="203">
+                  <caret line="51" column="48" lean-forward="false" selection-start-line="51" selection-start-column="48" selection-end-line="51" selection-end-column="48" />
                   <folding />
                 </state>
               </provider>
@@ -73,8 +73,18 @@
           <file leaf-file-name="CommonProcessor.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CommonProcessor.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="183">
-                  <caret line="39" column="51" lean-forward="true" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="51" />
+                <state relative-caret-position="282">
+                  <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="37" selection-end-column="59" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ServletResponse.class" pinned="false" current-in-tab="false">
+            <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.23/tomcat-embed-core-8.5.23.jar!/javax/servlet/ServletResponse.class">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="617">
+                  <caret line="38" column="9" lean-forward="false" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
                   <folding />
                 </state>
               </provider>
@@ -579,14 +589,7 @@
       <workItem from="1525657489879" duration="3487000" />
       <workItem from="1525665295473" duration="11525000" />
       <workItem from="1526287896766" duration="7105000" />
-      <workItem from="1526346518454" duration="13526000" />
-    </task>
-    <task id="LOCAL-00027" summary="crf 测试 ip 修正回来">
-      <created>1524467412571</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1524467412571</updated>
+      <workItem from="1526346518454" duration="14166000" />
     </task>
     <task id="LOCAL-00028" summary="调整 人员删除 科室主任不删除bug">
       <created>1524494395102</created>
@@ -924,11 +927,18 @@
       <option name="project" value="LOCAL" />
       <updated>1526390908362</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="详情页 点阵图 问题解决1">
+      <created>1526391948876</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1526391948877</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="474542000" />
+    <option name="totallyTimeSpent" value="475182000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
@@ -1037,7 +1047,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="增加只能提示接口" />
     <MESSAGE value="修改智能提示" />
     <MESSAGE value="全科室搜索调整" />
     <MESSAGE value="转换为配置文件" />
@@ -1062,7 +1071,8 @@
     <MESSAGE value="增加 search highlight 接口" />
     <MESSAGE value="详情页 点阵图 下载" />
     <MESSAGE value="详情页 点阵图 问题解决" />
-    <option name="LAST_COMMIT_MESSAGE" value="详情页 点阵图 问题解决" />
+    <MESSAGE value="详情页 点阵图 问题解决1" />
+    <option name="LAST_COMMIT_MESSAGE" value="详情页 点阵图 问题解决1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1177,13 +1187,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SearchProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="147" column="18" lean-forward="false" selection-start-line="147" selection-start-column="18" selection-end-line="147" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/SearchController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
@@ -1578,6 +1581,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="51" column="48" lean-forward="false" selection-start-line="51" selection-start-column="48" selection-end-line="51" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.23/tomcat-embed-core-8.5.23.jar!/javax/servlet/ServletResponse.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="617">
+          <caret line="38" column="9" lean-forward="false" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CommonProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1335">
@@ -1586,18 +1605,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-292">
-          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="203" column="70" lean-forward="false" selection-start-line="203" selection-start-column="67" selection-end-line="203" selection-end-column="70" />
+        <state relative-caret-position="649">
+          <caret line="200" column="59" lean-forward="false" selection-start-line="200" selection-start-column="59" selection-end-line="200" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
