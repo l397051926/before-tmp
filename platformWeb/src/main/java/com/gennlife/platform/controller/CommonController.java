@@ -8,6 +8,13 @@ import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import org.apache.batik.transcoder.Transcoder;
+import org.apache.batik.transcoder.TranscoderException;
+import org.apache.batik.transcoder.TranscoderInput;
+import org.apache.batik.transcoder.TranscoderOutput;
+import org.apache.batik.transcoder.image.JPEGTranscoder;
+import org.apache.batik.transcoder.image.PNGTranscoder;
+import org.apache.fop.svg.PDFTranscoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -20,8 +27,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.OutputStreamWriter;
+import java.io.StringReader;
 
 
 /**
@@ -148,6 +158,76 @@ public class CommonController implements InitializingBean {
         }
         logger.info("DownloadFileForExplainCRFImport: " + crfId + " : " + fileName);
         processor.downLoadFile(file, response, fileName);
+    }
+    @RequestMapping(value = "/DownloadDetailImage",method = {RequestMethod.POST,RequestMethod.GET} )
+    public void DownloadDetailImage( HttpServletRequest paramRe, HttpServletResponse response){
+        Long start = System.currentTimeMillis();
+        String type = null;
+        String svg = null;
+        try {
+            paramRe.setCharacterEncoding("utf-8");
+            String oparam = ParamUtils.getParam(paramRe);
+            String[] dataArgs = oparam.split("------");
+            for(int i = 0;i<dataArgs.length; i++){
+                String temp = dataArgs[i];
+                if(temp.contains("name=\"type\"")){
+                    String[] tmparrg = temp.split("\"");
+                    type = tmparrg[tmparrg.length-1];
+                }
+                if(temp.contains("name=\"svg\"")){
+                    String[] tmparrg = temp.split("name=\"svg\"");
+                    svg = tmparrg[tmparrg.length-1];
+                }
+            }
+            response.setCharacterEncoding("utf-8");
+            System.out.println("type: "+type);
+            System.out.println("svg: "+svg);
+            ServletOutputStream out = response.getOutputStream();
+            if (null != type && null != svg){
+                svg = svg.replaceAll(":rect", "rect");
+                String ext = "";
+                Transcoder t = null;
+                if (type.equals("image/png")) {
+                    ext = "png";
+                    t = new PNGTranscoder();
+                } else if (type.equals("image/jpeg")) {
+                    ext = "jpg";
+                    t = new JPEGTranscoder();
+                } else if (type.equals("application/pdf")) {
+                    ext = "pdf";
+                    t = new PDFTranscoder();
+                } else if (type.equals("image/svg+xml")) {
+                    ext = "svg";
+                }
+                response.addHeader("Content-Disposition", "attachment; filename=chart."+ext);
+                response.addHeader("Content-Type", type);
+                if (null != t){
+                    TranscoderInput input = new TranscoderInput(new StringReader(svg));
+                    TranscoderOutput output = new TranscoderOutput(out);
+                    try {
+                        t.transcode(input,output);
+                    } catch (TranscoderException e){
+                        logger.error("编码流错误", e);
+                    }
+                } else if (ext == "svg"){
+                    OutputStreamWriter writer = new OutputStreamWriter(out, "UTF-8");
+                    writer.append(svg);
+                    writer.close();
+                } else {
+                    out.print("Invalid type: " + type);
+                }
+            } else {
+                response.addHeader("Content-Type", "text/html");
+            }
+            out.flush();
+            out.close();
+            logger.info("下载图片 耗时:" + (System.currentTimeMillis() - start) + "ms");
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+        logger.info("下载图片 耗时" + (System.currentTimeMillis() - start) + "ms");
+
+
     }
 
     @Override

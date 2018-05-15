@@ -156,6 +156,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
+		<!--解析 pdf jpeg svg 图片-->
+		<dependency>
+			<groupId>batik</groupId>
+			<artifactId>batik-transcoder</artifactId>
+			<version>1.6-1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
