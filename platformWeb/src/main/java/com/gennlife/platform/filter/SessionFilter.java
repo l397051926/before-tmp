@@ -123,6 +123,7 @@ public class SessionFilter implements Filter {
     }
 
     static {
+        okSet.add("/common/DownloadDetailImage");
         okSet.add("/user/Info");
         okSet.add("/user/Login");
         okSet.add("/base/Login");
