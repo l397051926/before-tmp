@@ -47,14 +47,15 @@ public class CaseProcessor {
                     && !"1".equals(status)
                     && !"2".equals(status)
                     && !"3".equals(status)
-                    && !"4".equals(status)&& !"5".equals(status)) {
+                    && !"4".equals(status)
+                    && !"5".equals(status)
+                    && ! "6".equals(status)) {
                 return ParamUtils.errorParam("status参数出错");
             }
             JsonArray arrange = paramObj.get("arrange").getAsJsonArray();
             for (JsonElement json : arrange) {
                 set.add(json.getAsString());
             }
-//            都给了 crf_id 为什么 还要在重新获取 crf_id.... 迷
             if (paramObj.has("crf_id")) {
                 crf_id = paramObj.get("crf_id").getAsString();
             }
@@ -196,6 +197,42 @@ public class CaseProcessor {
                         String filterPath = paramObj.get("filterPath").getAsString();
                         if (!StringUtils.isEmpty(filterPath)) {
                             if (groupName.startsWith(filterPath)) {
+                                allNew.add(groupName, newGroup);
+                            }
+                        } else {
+                            allNew.add(groupName, newGroup);
+                        }
+                    } else {
+                        allNew.add(groupName, newGroup);
+                    }
+                }
+            }
+            resultBean.setCode(1);
+            resultBean.setData(allNew);
+        }  else if ("6".equals(status)) {//高级搜索,所有属性,带有搜索功能
+            JsonObject all = ConfigurationService.getCrfSearch(crf_id);
+            JsonObject allNew = new JsonObject();
+            for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
+                String groupName = obj.getKey();
+                JsonArray items = obj.getValue().getAsJsonArray();
+                JsonArray newGroup = new JsonArray();
+                for (JsonElement json : items) {
+                    JsonObject item = json.getAsJsonObject();
+                    String UIFieldName = item.get("UIFieldName").getAsString();
+                    if ("".equals(keywords) || UIFieldName.contains(keywords)) {
+                        JsonObject itemNew = (JsonObject) jsonParser.parse(gson.toJson(item));
+                        if (!"".equals(keywords)) {
+                            UIFieldName = UIFieldName.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
+                            itemNew.addProperty("UIFieldName", UIFieldName);
+                        }
+                        newGroup.add(itemNew);
+                    }
+                }
+                if (newGroup.size() > 0) {
+                    if (paramObj.has("filterPath")) {
+                        String filterPath = paramObj.get("filterPath").getAsString();
+                        if (!StringUtils.isEmpty(filterPath)) {
+                            if (groupName.equals(filterPath)) {
                                 allNew.add(groupName, newGroup);
                             }
                         } else {

@@ -266,7 +266,7 @@ public class CrfProcessor {
             url = url + param;
             logger.info("request url:" + url);
             String result = HttpRequestUtils.httpGet(url);
-            result = result.replaceAll(keyWords,"<span style='color:red'>" + keyWords + "</span>");
+//            result = result.replaceAll(keyWords,"<span style='color:red'>" + keyWords + "</span>");
             return result;
         } catch (Exception e) {
             logger.error("请求发生异常", e);
@@ -291,8 +291,7 @@ public class CrfProcessor {
             url = url + param;
             logger.info("request url:" + url);
             String result = HttpRequestUtils.httpGet(url);
-            result = result.replaceAll(keyWords,"<span style='color:red'>" + keyWords + "</span>");
-
+//            result = result.replaceAll(keyWords,"<span style='color:red'>" + keyWords + "</span>");
             return result;
         } catch (Exception e) {
             logger.error("请求发生异常", e);
