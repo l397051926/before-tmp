@@ -168,7 +168,9 @@ public class CommonController implements InitializingBean {
         String svg = paramRe.getParameter("svg");
 
         String data = ParamUtils.getParam(paramRe);
-
+        if(StringUtils.isEmpty(data)){
+            return;
+        }
         String[] arrgs = data.split("------");
         for(int i = 0;i<arrgs.length; i++){
             String temp = arrgs[i];
