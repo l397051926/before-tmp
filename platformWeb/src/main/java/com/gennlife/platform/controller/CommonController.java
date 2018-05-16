@@ -161,6 +161,7 @@ public class CommonController implements InitializingBean {
     }
     @RequestMapping(value = "/DownloadDetailImage",method = {RequestMethod.POST,RequestMethod.GET} )
     public void DownloadDetailImage( HttpServletRequest paramRe, HttpServletResponse response){
+        System.out.println("------ download image  begin");
         Long start = System.currentTimeMillis();
         String type = null;
         String svg = null;
@@ -179,6 +180,8 @@ public class CommonController implements InitializingBean {
                     svg = tmparrg[tmparrg.length-1];
                 }
             }
+            System.out.println("type: "+type);
+            System.out.println("svg: " +svg);
             response.setCharacterEncoding("utf-8");
             ServletOutputStream out = response.getOutputStream();
             if (null != type && null != svg){
@@ -197,14 +200,16 @@ public class CommonController implements InitializingBean {
                 } else if (type.equals("image/svg+xml")) {
                     ext = "svg";
                 }
+                System.out.println("---------判定结束");
                 response.reset();
-                response.setContentType("application/"+type);
+//                response.setContentType("application/"+type);
                 response.setHeader("Content-disposition", "attachment; filename=chart."+ext);
-//                response.setHeader("Content-Type", type);
+                response.setHeader("Content-Type", type);
                 if (null != t){
                     TranscoderInput input = new TranscoderInput(new StringReader(svg));
                     TranscoderOutput output = new TranscoderOutput(out);
                     try {
+                        System.out.println("---------开始写出");
                         t.transcode(input,output);
                     } catch (TranscoderException e){
                         logger.error("编码流错误", e);
@@ -219,6 +224,7 @@ public class CommonController implements InitializingBean {
             } else {
                 response.addHeader("Content-Type", "text/html");
             }
+            System.out.println("--------关闭流");
             out.flush();
             out.close();
             logger.info("下载图片 耗时:" + (System.currentTimeMillis() - start) + "ms");
