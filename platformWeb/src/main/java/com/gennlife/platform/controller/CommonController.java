@@ -228,12 +228,8 @@ public class CommonController implements InitializingBean {
 //        out.close();
 //
 //    }
-    @RequestMapping(value = "/DownloadDetailImage",method = RequestMethod.GET)
-    public void DownloadDetailImageGet(){
-        logger.info("莫名奇妙进入了-----DownloadDetailImage  get方法");
-    }
 
-    @RequestMapping(value = "/DownloadDetailImage",method = RequestMethod.POST )
+    @RequestMapping(value = "/DownloadDetailImage",method = { RequestMethod.POST,RequestMethod.GET } )
     public void DownloadDetailImage( HttpServletRequest paramRe, HttpServletResponse response){
         Long start = System.currentTimeMillis();
         String type = null;
