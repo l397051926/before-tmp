@@ -168,9 +168,7 @@ public class CommonController implements InitializingBean {
         String svg = paramRe.getParameter("svg");
 
         String data = ParamUtils.getParam(paramRe);
-        if(StringUtils.isEmpty(data)){
-            return;
-        }
+        System.out.println("data: "+data);
         String[] arrgs = data.split("------");
         for(int i = 0;i<arrgs.length; i++){
             String temp = arrgs[i];
@@ -184,6 +182,8 @@ public class CommonController implements InitializingBean {
             }
         }
         response.setCharacterEncoding("utf-8");
+        System.out.println("type: "+type);
+        System.out.println("svg: "+svg);
         ServletOutputStream out = response.getOutputStream();
         if (null != type && null != svg){
             svg = svg.replaceAll(":rect", "rect");
@@ -219,8 +219,10 @@ public class CommonController implements InitializingBean {
             } else {
                 out.print("Invalid type: " + type);
             }
+            System.out.println("succefull !!!!!!!!!!!!");
         } else {
             response.addHeader("Content-Type", "text/html");
+            System.out.println("default!!!!!!!!");
         }
         out.flush();
         out.close();
