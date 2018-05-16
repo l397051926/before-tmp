@@ -231,7 +231,7 @@ public class CommonController implements InitializingBean {
 //    }
 
 
-    @RequestMapping(value = "/DownloadDetailImage",method = { RequestMethod.POST,RequestMethod.GET } )
+    @RequestMapping(value = "/DownloadDetailImage",method = RequestMethod.POST )
     public void DownloadDetailImage( HttpServletRequest paramRe, HttpServletResponse response){
         System.out.println("------ download image  begin");
         Long start = System.currentTimeMillis();
@@ -240,6 +240,9 @@ public class CommonController implements InitializingBean {
         try {
             paramRe.setCharacterEncoding("utf-8");
             String oparam = ParamUtils.getParam(paramRe);
+            if(StringUtils.isEmpty(oparam)){
+                return ;
+            }
             String[] dataArgs = oparam.split("------");
             for(int i = 0;i<dataArgs.length; i++){
                 String temp = dataArgs[i];
