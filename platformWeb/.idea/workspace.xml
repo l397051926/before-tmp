@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="调整成 utf-8">
+    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/update/人员导入模版.csv" afterPath="$PROJECT_DIR$/src/main/resources/update/人员导入模版.csv" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/update/组织导入模版.csv" afterPath="$PROJECT_DIR$/src/main/resources/update/组织导入模版.csv" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CommonProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CommonProcessor.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,11 +32,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CommonController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CommonProcessor.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CommonProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="766">
+              <caret line="45" column="45" lean-forward="false" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommonController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="117" column="55" lean-forward="false" selection-start-line="117" selection-start-column="30" selection-end-line="117" selection-end-column="55" />
+            <state relative-caret-position="494">
+              <caret line="161" column="28" lean-forward="false" selection-start-line="161" selection-start-column="28" selection-end-line="161" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -175,9 +184,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/profiles/local/bootstrap.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CommonProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/resources/update/人员导入模版.csv" />
         <option value="$PROJECT_DIR$/src/main/resources/update/组织导入模版.csv" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CommonProcessor.java" />
       </list>
     </option>
   </component>
@@ -601,13 +610,6 @@
       <workItem from="1526346518454" duration="15086000" />
       <workItem from="1526432685964" duration="8418000" />
     </task>
-    <task id="LOCAL-00039" summary="crf 处理">
-      <created>1524735217398</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1524735217398</updated>
-    </task>
     <task id="LOCAL-00040" summary="全院科室修改时限制">
       <created>1524735530431</created>
       <option name="number" value="00040" />
@@ -944,11 +946,18 @@
       <option name="project" value="LOCAL" />
       <updated>1526454601686</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="调整成 utf-8 汉字">
+      <created>1526455508850</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1526455508850</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="490551000" />
+    <option name="totallyTimeSpent" value="490958000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
@@ -963,7 +972,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32916266" sideWeight="0.4978678" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.4978678" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3012512" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1086,7 +1095,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整用户被以外退出 引起的用户登陆异常" />
     <MESSAGE value="用户退出 提示词" />
     <MESSAGE value="导入科室不回显 部门类别" />
     <MESSAGE value="增加 关联删除" />
@@ -1111,7 +1119,8 @@
     <MESSAGE value="调试1下" />
     <MESSAGE value="人员导入模板" />
     <MESSAGE value="调整成 utf-8" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整成 utf-8" />
+    <MESSAGE value="调整成 utf-8 汉字" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整成 utf-8 汉字" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2805,14 +2814,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CommonProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="45" column="72" lean-forward="true" selection-start-line="45" selection-start-column="72" selection-end-line="45" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/update/烟台毓璜顶医院导入科室历史.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2863,8 +2864,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="117" column="55" lean-forward="false" selection-start-line="117" selection-start-column="30" selection-end-line="117" selection-end-column="55" />
+        <state relative-caret-position="494">
+          <caret line="161" column="28" lean-forward="false" selection-start-line="161" selection-start-column="28" selection-end-line="161" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CommonProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="766">
+          <caret line="45" column="45" lean-forward="false" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
           <folding />
         </state>
       </provider>
