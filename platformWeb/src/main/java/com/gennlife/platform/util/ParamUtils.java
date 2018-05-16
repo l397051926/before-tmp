@@ -43,8 +43,7 @@ public class ParamUtils {
             while ((line = reader.readLine()) != null)
                 jb.append(line);
         }catch (IllegalStateException e){
-            logger.info("getReader 被调用了两次的原因么" );
-            return null;
+            logger.error("getReader 被调用了两次的原因么", e);
         } catch (Exception e) {
             logger.error("读取请求参数出错", e);
         } finally {

@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/ParamUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/ParamUtils.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,21 +32,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CommonController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CommonController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="579">
-              <caret line="171" column="19" lean-forward="false" selection-start-line="171" selection-start-column="19" selection-end-line="171" selection-end-column="19" />
+            <state relative-caret-position="414">
+              <caret line="169" column="51" lean-forward="true" selection-start-line="169" selection-start-column="51" selection-end-line="169" selection-end-column="51" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParamUtils.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ParamUtils.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/ParamUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="28" column="50" lean-forward="true" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -186,8 +186,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/LoadConfigurationInterface.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/LoadConfigurationToRedis.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/LoadConfigurationToJava.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/ParamUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/ParamUtils.java" />
       </list>
     </option>
   </component>
@@ -644,14 +644,7 @@
       <workItem from="1526287896766" duration="7105000" />
       <workItem from="1526346518454" duration="15086000" />
       <workItem from="1526432685964" duration="8418000" />
-      <workItem from="1526469918958" duration="7751000" />
-    </task>
-    <task id="LOCAL-00046" summary="修改用户权限问题">
-      <created>1524838477125</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1524838477125</updated>
+      <workItem from="1526469918958" duration="7889000" />
     </task>
     <task id="LOCAL-00047" summary="微调整">
       <created>1524878030273</created>
@@ -989,11 +982,18 @@
       <option name="project" value="LOCAL" />
       <updated>1526477545088</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="图片下载 bug调整 调整为旧代码">
+      <created>1526477813428</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1526477813428</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="504988000" />
+    <option name="totallyTimeSpent" value="505126000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
@@ -2818,18 +2818,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/ParamUtils.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state relative-caret-position="414">
+          <caret line="169" column="51" lean-forward="true" selection-start-line="169" selection-start-column="51" selection-end-line="169" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/ParamUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="579">
-          <caret line="171" column="19" lean-forward="false" selection-start-line="171" selection-start-column="19" selection-end-line="171" selection-end-column="19" />
+        <state relative-caret-position="0">
+          <caret line="28" column="50" lean-forward="true" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
           <folding />
         </state>
       </provider>
