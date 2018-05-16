@@ -161,138 +161,139 @@ public class CommonController implements InitializingBean {
         logger.info("DownloadFileForExplainCRFImport: " + crfId + " : " + fileName);
         processor.downLoadFile(file, response, fileName);
     }
-//    @RequestMapping(value = "/DownloadDetailImage",method = { RequestMethod.POST,RequestMethod.GET } )
-//    public void DownloadDetailImage( HttpServletRequest paramRe, HttpServletResponse response) throws IOException {
-//        paramRe.setCharacterEncoding("utf-8");//注意编码
-//        String type = paramRe.getParameter("type");
-//        String svg = paramRe.getParameter("svg");
-//
-//        String data = ParamUtils.getParam(paramRe);
-//        String[] arrgs = data.split("------");
-//        for(int i = 0;i<arrgs.length; i++){
-//            String temp = arrgs[i];
-//            if(temp.contains("name=\"type\"")){
-//                String[] tmparrg = temp.split("\"");
-//                type = tmparrg[tmparrg.length-1];
-//            }
-//            if(temp.contains("name=\"svg\"")){
-//                String[] tmparrg = temp.split("name=\"svg\"");
-//                svg = tmparrg[tmparrg.length-1];
-//            }
-//        }
-//        response.setCharacterEncoding("utf-8");
-//        ServletOutputStream out = response.getOutputStream();
-//        if (null != type && null != svg){
-//            svg = svg.replaceAll(":rect", "rect");
-//            String ext = "";
-//            Transcoder t = null;
-//            if (type.equals("image/png")) {
-//                ext = "png";
-//                t = new PNGTranscoder();
-//            } else if (type.equals("image/jpeg")) {
-//                ext = "jpg";
-//                t = new JPEGTranscoder();
-//            } else if (type.equals("application/pdf")) {
-//                ext = "pdf";
-//                t = new PDFTranscoder();
-//            } else if (type.equals("image/svg+xml")) {
-//                ext = "svg";
-//            }
-//            response.addHeader("Content-Disposition", "attachment; filename=chart."+ext);
-//            response.addHeader("Content-Type", type);
-//            if (null != t){
-//                TranscoderInput input = new TranscoderInput(new StringReader(svg));
-//                TranscoderOutput output = new TranscoderOutput(out);
-//                try {
-//                    t.transcode(input,output);
-//                } catch (TranscoderException e){
-//                    out.print("编码流错误.");
-//                    e.printStackTrace();
-//                }
-//            } else if (ext == "svg"){
-//                OutputStreamWriter writer = new OutputStreamWriter(out, "UTF-8");
-//                writer.append(svg);
-//                writer.close();
-//            } else {
-//                out.print("Invalid type: " + type);
-//            }
-//        } else {
-//            response.addHeader("Content-Type", "text/html");
-//        }
-//        out.flush();
-//        out.close();
-//
-//    }
-
     @RequestMapping(value = "/DownloadDetailImage",method = { RequestMethod.POST,RequestMethod.GET } )
-    public void DownloadDetailImage( HttpServletRequest paramRe, HttpServletResponse response){
+    public void DownloadDetailImage( HttpServletRequest paramRe, HttpServletResponse response) throws IOException {
         Long start = System.currentTimeMillis();
-        String type = null;
-        String svg = null;
-        try {
-            paramRe.setCharacterEncoding("utf-8");
-            String oparam = ParamUtils.getParam(paramRe);
-            
-            String[] dataArgs = oparam.split("------");
-            for(int i = 0;i<dataArgs.length; i++){
-                String temp = dataArgs[i];
-                if(temp.contains("name=\"type\"")){
-                    String[] tmparrg = temp.split("\"");
-                    type = tmparrg[tmparrg.length-1];
-                }
-                if(temp.contains("name=\"svg\"")){
-                    String[] tmparrg = temp.split("name=\"svg\"");
-                    svg = tmparrg[tmparrg.length-1];
-                }
+        paramRe.setCharacterEncoding("utf-8");//注意编码
+        String type = paramRe.getParameter("type");
+        String svg = paramRe.getParameter("svg");
+
+        String data = ParamUtils.getParam(paramRe);
+        String[] arrgs = data.split("------");
+        for(int i = 0;i<arrgs.length; i++){
+            String temp = arrgs[i];
+            if(temp.contains("name=\"type\"")){
+                String[] tmparrg = temp.split("\"");
+                type = tmparrg[tmparrg.length-1];
             }
-            response.setCharacterEncoding("utf-8");
-            ServletOutputStream out = response.getOutputStream();
-            if (null != type && null != svg){
-                svg = svg.replaceAll(":rect", "rect");
-                String ext = "";
-                Transcoder t = null;
-                if (type.equals("image/png")) {
-                    ext = "png";
-                    t = new PNGTranscoder();
-                } else if (type.equals("image/jpeg")) {
-                    ext = "jpg";
-                    t = new JPEGTranscoder();
-                } else if (type.equals("application/pdf")) {
-                    ext = "pdf";
-                    t = new PDFTranscoder();
-                } else if (type.equals("image/svg+xml")) {
-                    ext = "svg";
-                }
-                response.reset();
-                response.setHeader("Content-disposition", "attachment; filename=chart."+ext);
-                response.setHeader("Content-Type", type);
-                if (null != t){
-                    TranscoderInput input = new TranscoderInput(new StringReader(svg));
-                    TranscoderOutput output = new TranscoderOutput(out);
-                    try {
-                        t.transcode(input,output);
-                    } catch (TranscoderException e){
-                        logger.error("编码流错误", e);
-                    }
-                } else if (ext == "svg"){
-                    OutputStreamWriter writer = new OutputStreamWriter(out, "UTF-8");
-                    writer.append(svg);
-                    writer.close();
-                } else {
-                    out.print("Invalid type: " + type);
-                }
-            } else {
-                response.addHeader("Content-Type", "text/html");
+            if(temp.contains("name=\"svg\"")){
+                String[] tmparrg = temp.split("name=\"svg\"");
+                svg = tmparrg[tmparrg.length-1];
             }
-            out.flush();
-            out.close();
-            logger.info("下载图片 耗时:" + (System.currentTimeMillis() - start) + "ms");
-        } catch (Exception e) {
-            logger.error("", e);
         }
-        logger.info("下载图片 耗时" + (System.currentTimeMillis() - start) + "ms");
+        response.setCharacterEncoding("utf-8");
+        ServletOutputStream out = response.getOutputStream();
+        if (null != type && null != svg){
+            svg = svg.replaceAll(":rect", "rect");
+            String ext = "";
+            Transcoder t = null;
+            if (type.equals("image/png")) {
+                ext = "png";
+                t = new PNGTranscoder();
+            } else if (type.equals("image/jpeg")) {
+                ext = "jpg";
+                t = new JPEGTranscoder();
+            } else if (type.equals("application/pdf")) {
+                ext = "pdf";
+                t = new PDFTranscoder();
+            } else if (type.equals("image/svg+xml")) {
+                ext = "svg";
+            }
+            response.addHeader("Content-Disposition", "attachment; filename=chart."+ext);
+            response.addHeader("Content-Type", type);
+            if (null != t){
+                TranscoderInput input = new TranscoderInput(new StringReader(svg));
+                TranscoderOutput output = new TranscoderOutput(out);
+                try {
+                    t.transcode(input,output);
+                } catch (TranscoderException e){
+                    out.print("编码流错误.");
+                    e.printStackTrace();
+                }
+            } else if (ext == "svg"){
+                OutputStreamWriter writer = new OutputStreamWriter(out, "UTF-8");
+                writer.append(svg);
+                writer.close();
+            } else {
+                out.print("Invalid type: " + type);
+            }
+        } else {
+            response.addHeader("Content-Type", "text/html");
+        }
+        out.flush();
+        out.close();
+        logger.info("下载图片 耗时:" + (System.currentTimeMillis() - start) + "ms");
 
     }
+
+//    @RequestMapping(value = "/DownloadDetailImage",method = { RequestMethod.POST,RequestMethod.GET } )
+//    public void DownloadDetailImage( HttpServletRequest paramRe, HttpServletResponse response){
+//        Long start = System.currentTimeMillis();
+//        String type = null;
+//        String svg = null;
+//        try {
+//            paramRe.setCharacterEncoding("utf-8");
+//            String oparam = ParamUtils.getParam(paramRe);
+//
+//            String[] dataArgs = oparam.split("------");
+//            for(int i = 0;i<dataArgs.length; i++){
+//                String temp = dataArgs[i];
+//                if(temp.contains("name=\"type\"")){
+//                    String[] tmparrg = temp.split("\"");
+//                    type = tmparrg[tmparrg.length-1];
+//                }
+//                if(temp.contains("name=\"svg\"")){
+//                    String[] tmparrg = temp.split("name=\"svg\"");
+//                    svg = tmparrg[tmparrg.length-1];
+//                }
+//            }
+//            response.setCharacterEncoding("utf-8");
+//            ServletOutputStream out = response.getOutputStream();
+//            if (null != type && null != svg){
+//                svg = svg.replaceAll(":rect", "rect");
+//                String ext = "";
+//                Transcoder t = null;
+//                if (type.equals("image/png")) {
+//                    ext = "png";
+//                    t = new PNGTranscoder();
+//                } else if (type.equals("image/jpeg")) {
+//                    ext = "jpg";
+//                    t = new JPEGTranscoder();
+//                } else if (type.equals("application/pdf")) {
+//                    ext = "pdf";
+//                    t = new PDFTranscoder();
+//                } else if (type.equals("image/svg+xml")) {
+//                    ext = "svg";
+//                }
+//                response.reset();
+//                response.setHeader("Content-disposition", "attachment; filename=chart."+ext);
+//                response.setHeader("Content-Type", type);
+//                if (null != t){
+//                    TranscoderInput input = new TranscoderInput(new StringReader(svg));
+//                    TranscoderOutput output = new TranscoderOutput(out);
+//                    try {
+//                        t.transcode(input,output);
+//                    } catch (TranscoderException e){
+//                        logger.error("编码流错误", e);
+//                    }
+//                } else if (ext == "svg"){
+//                    OutputStreamWriter writer = new OutputStreamWriter(out, "UTF-8");
+//                    writer.append(svg);
+//                    writer.close();
+//                } else {
+//                    out.print("Invalid type: " + type);
+//                }
+//            } else {
+//                response.addHeader("Content-Type", "text/html");
+//            }
+//            out.flush();
+//            out.close();
+//            logger.info("下载图片 耗时:" + (System.currentTimeMillis() - start) + "ms");
+//        } catch (Exception e) {
+//            logger.error("", e);
+//        }
+//        logger.info("下载图片 耗时" + (System.currentTimeMillis() - start) + "ms");
+//    }
 
 
     @Override
