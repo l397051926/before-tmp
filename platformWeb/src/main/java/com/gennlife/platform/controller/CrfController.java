@@ -209,7 +209,7 @@ public class CrfController {
         return resultStr;
     }
 
-
+    //将搜索到的病例导入crf接口
     @RequestMapping(value = "/AutoMap", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
@@ -362,7 +362,7 @@ public class CrfController {
         return resultStr;
     }
 
-
+    //导入CRF导入配置
     @RequestMapping(value = "/ImportCRFMap", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
@@ -387,6 +387,7 @@ public class CrfController {
         return resultStr;
     }
 
+    //查询导入状态
     @RequestMapping(value = "/CsvImportResult", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
@@ -700,4 +701,27 @@ public class CrfController {
         return resultStr;
     }
 
+    /**
+     * 检查是否有导出权限
+     * @param paramRe
+     * @return
+     */
+    @RequestMapping(value = "/ImportCheck", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String ImportCheck(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            User user = (User) paramRe.getAttribute("currentUser");
+            logger.info("接口: /crf/ImportCheck 处理后的请求： param = " + param);
+            resultStr = processor.importCRFCheck(paramObj, user);
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("CRF导入校验 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }
