@@ -49,6 +49,9 @@ public class SessionFilter implements Filter {
         String uri = request.getRequestURI();
         boolean  permissionFlag =true;
         if (okSet.contains(uri)) {
+            if(uri.contains("/common/DownloadDetailImage")){
+                filterChain.doFilter(servletRequest, servletResponse);
+            }
             filterChain.doFilter(request, response);
         } else {
             HttpSession session = request.getSession(false);
