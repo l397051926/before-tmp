@@ -78,7 +78,7 @@ public class ProjectProcessor {
                 } else if(dataSource.equals("-")||StringUtils.isEmpty(dataSource)){
                     myProjectList.setDataSource("-");
                 }else{
-                    myProjectList.setDataSource("单病种-"+dataSource);
+                    myProjectList.setDataSource("单病种-"+ArkService.getDiseaseName(dataSource));
                 }
 
 

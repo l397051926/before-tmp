@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="Merge branches 'cloud_1.0.0' and 'lmx_demo' of http://10.0.0.6/Gennlife-Eng/Ark-UI_Service into lmx_demo&#10;&#10;# Conflicts:&#10;#&#9;platformWeb/.idea/workspace.xml">
+    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/projectBean/CreateProject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/projectBean/CreateProject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/projectBean/MyProjectList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/projectBean/MyProjectList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/ProjectProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/ProjectProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/JsonUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/JsonUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis_config/ProjectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis_config/ProjectMapper.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,8 +71,8 @@
       <file leaf-file-name="ProjectProcessor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/ProjectProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="78" column="50" selection-start-line="78" selection-start-column="50" selection-end-line="78" selection-end-column="50" />
+            <state relative-caret-position="-50">
+              <caret line="75" column="46" lean-forward="true" selection-start-line="75" selection-start-column="46" selection-end-line="75" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -93,8 +89,8 @@
       <file leaf-file-name="CrfController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="693" column="46" selection-start-line="693" selection-start-column="46" selection-end-line="693" selection-end-column="46" />
+            <state relative-caret-position="119">
+              <caret line="693" column="45" selection-start-line="693" selection-start-column="45" selection-end-line="693" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#postSelectAttr#0;class#CrfController#0" />
@@ -162,10 +158,10 @@
       <find>fileService.ipAndPort</find>
       <find>getMyProjectList</find>
       <find>MyProjectListSelect</find>
-      <find>getCrfProjectDiseaseItem</find>
       <find>insertCreateProject</find>
-      <find>CreateNewProject</find>
       <find>getProjectList</find>
+      <find>getCrfProjectDiseaseItem</find>
+      <find>CreateNewProject</find>
     </findStrings>
     <dirStrings>
       <dir>C:\lmx\clooud\Ark-UI_Service\platformWeb</dir>
@@ -268,10 +264,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="-42" />
+    <option name="y" value="195" />
+    <option name="width" value="1378" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -524,14 +520,7 @@
       <workItem from="1526528576705" duration="1547000" />
       <workItem from="1526530162138" duration="215000" />
       <workItem from="1526530490651" duration="727000" />
-      <workItem from="1526531251757" duration="5910000" />
-    </task>
-    <task id="LOCAL-00024" summary="增加导入数据 中职称判断 加入飞空判断">
-      <created>1523763366941</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1523763366941</updated>
+      <workItem from="1526531251757" duration="7004000" />
     </task>
     <task id="LOCAL-00025" summary="同义词接口修改">
       <created>1524219397317</created>
@@ -869,15 +858,21 @@
       <option name="project" value="LOCAL" />
       <updated>1526466078650</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Merge branches 'cloud_1.0.0' and 'lmx_demo' of http://10.0.0.6/Gennlife-Eng/Ark-UI_Service into lmx_demo&#10;&#10;1.在“我的项目”中添加数据源属性&#10;2.导出项目时只显示对应的可导项目">
+      <created>1526537424267</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1526537424268</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="524260000" />
+    <option name="totallyTimeSpent" value="525354000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="2" />
       <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" weight="0.30132452" />
@@ -897,7 +892,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.76612127" />
-      <window_info active="true" anchor="bottom" id="Run" order="4" visible="true" weight="0.49225473" />
+      <window_info active="true" anchor="bottom" id="Run" order="4" visible="true" weight="0.40791738" />
       <window_info anchor="bottom" id="Spring" order="12" weight="0.32916266" />
       <window_info anchor="bottom" id="Terminal" order="13" weight="0.32874355" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09304085" />
@@ -948,7 +943,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改 科室bug" />
     <MESSAGE value="修改 科室删除问题 科室搜索为空问题" />
     <MESSAGE value="调整 同义词ip 为自动映射， 调整搜索为空" />
     <MESSAGE value="增加只能提示接口" />
@@ -973,7 +967,8 @@
     <MESSAGE value="调整 角色 搜索不为空情况" />
     <MESSAGE value="Merge branches 'cloud_1.0.0' and 'lmx_demo' of http://10.0.0.6/Gennlife-Eng/Ark-UI_Service into lmx_demo&#10;&#10;# Conflicts:&#10;#&#9;platformWeb/.idea/workspace.xml" />
     <MESSAGE value="Merge branches 'cloud_1.0.0' and 'lmx_demo' of http://10.0.0.6/Gennlife-Eng/Ark-UI_Service into lmx_demo&#10;&#10;修改功能：&#10;1.给我的项目展示列表添加crfId和crfName,并修改数据库userInfoDB中的p_project&#10;2.单病种项目中添加导出功能&#10;  1&gt;只能导入到对应的单病种项目或者空项目&#10;  2&gt;导出权限判断" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branches 'cloud_1.0.0' and 'lmx_demo' of http://10.0.0.6/Gennlife-Eng/Ark-UI_Service into lmx_demo&#10;&#10;修改功能：&#10;1.给我的项目展示列表添加crfId和crfName,并修改数据库userInfoDB中的p_project&#10;2.单病种项目中添加导出功能&#10;  1&gt;只能导入到对应的单病种项目或者空项目&#10;  2&gt;导出权限判断" />
+    <MESSAGE value="Merge branches 'cloud_1.0.0' and 'lmx_demo' of http://10.0.0.6/Gennlife-Eng/Ark-UI_Service into lmx_demo&#10;&#10;1.在“我的项目”中添加数据源属性&#10;2.导出项目时只显示对应的可导项目" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branches 'cloud_1.0.0' and 'lmx_demo' of http://10.0.0.6/Gennlife-Eng/Ark-UI_Service into lmx_demo&#10;&#10;1.在“我的项目”中添加数据源属性&#10;2.导出项目时只显示对应的可导项目" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1396,13 +1391,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="636" column="96" selection-start-line="636" selection-start-column="51" selection-end-line="636" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ArkUiServiceApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -1432,39 +1420,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-605">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="693" column="46" selection-start-line="693" selection-start-column="46" selection-end-line="693" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#postSelectAttr#0;class#CrfController#0" />
-            <element signature="method#getGetData#0;class#CrfController#0" />
-            <element signature="method#postUpLoadData#0;class#CrfController#0" />
-            <element signature="method#postSaveData#0;class#CrfController#0" />
-            <element signature="docComment;method#postDeleteSample#0;class#CrfController#0" />
-            <element signature="method#postProjectCrfList#0;class#CrfController#0" />
-            <element signature="method#getPatientInfo#0;class#CrfController#0" />
-            <element signature="method#getPatientVisitDetail#0;class#CrfController#0" />
-            <element signature="method#getPatientAllVisitDetail#0;class#CrfController#0" />
-            <element signature="method#getModelForTraceByCRFID#0;class#CrfController#0" />
-            <element signature="method#postUpLoadDataForCheck#0;class#CrfController#0" />
-            <element signature="method#UploadFileForImportCRF#0;class#CrfController#0" />
-            <element signature="method#ImportCRFMap#0;class#CrfController#0" />
-            <element signature="method#CsvImportResult#0;class#CrfController#0" />
-            <element signature="method#IsExistPatient#0;class#CrfController#0" />
-            <element signature="method#CsvImportDetail#0;class#CrfController#0" />
-            <element signature="method#InputSmartPrompt#0;class#CrfController#0" />
-            <element signature="method#ICD_10_Code#0;class#CrfController#0" />
-            <element signature="method#UploadImage#0;class#CrfController#0" />
-            <element signature="method#getImageUrl#0;class#CrfController#0" />
-            <element signature="method#deleteImg#0;class#CrfController#0" />
-            <element signature="method#ResearchNumber#0;class#CrfController#0" />
-            <element signature="method#postSearchItemSet#0;class#CrfController#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1506,10 +1461,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="633" column="41" lean-forward="true" selection-start-line="633" selection-start-column="41" selection-end-line="633" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="693" column="45" selection-start-line="693" selection-start-column="45" selection-end-line="693" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#postSelectAttr#0;class#CrfController#0" />
+            <element signature="method#getGetData#0;class#CrfController#0" />
+            <element signature="method#postUpLoadData#0;class#CrfController#0" />
+            <element signature="method#postSaveData#0;class#CrfController#0" />
+            <element signature="docComment;method#postDeleteSample#0;class#CrfController#0" />
+            <element signature="method#postProjectCrfList#0;class#CrfController#0" />
+            <element signature="method#getPatientInfo#0;class#CrfController#0" />
+            <element signature="method#getPatientVisitDetail#0;class#CrfController#0" />
+            <element signature="method#getPatientAllVisitDetail#0;class#CrfController#0" />
+            <element signature="method#getModelForTraceByCRFID#0;class#CrfController#0" />
+            <element signature="method#postUpLoadDataForCheck#0;class#CrfController#0" />
+            <element signature="method#UploadFileForImportCRF#0;class#CrfController#0" />
+            <element signature="method#ImportCRFMap#0;class#CrfController#0" />
+            <element signature="method#CsvImportResult#0;class#CrfController#0" />
+            <element signature="method#IsExistPatient#0;class#CrfController#0" />
+            <element signature="method#CsvImportDetail#0;class#CrfController#0" />
+            <element signature="method#InputSmartPrompt#0;class#CrfController#0" />
+            <element signature="method#ICD_10_Code#0;class#CrfController#0" />
+            <element signature="method#UploadImage#0;class#CrfController#0" />
+            <element signature="method#getImageUrl#0;class#CrfController#0" />
+            <element signature="method#deleteImg#0;class#CrfController#0" />
+            <element signature="method#ResearchNumber#0;class#CrfController#0" />
+            <element signature="method#postSearchItemSet#0;class#CrfController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/ProjectProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="78" column="50" selection-start-line="78" selection-start-column="50" selection-end-line="78" selection-end-column="50" />
+        <state relative-caret-position="-50">
+          <caret line="75" column="46" lean-forward="true" selection-start-line="75" selection-start-column="46" selection-end-line="75" selection-end-column="46" />
         </state>
       </provider>
     </entry>
