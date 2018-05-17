@@ -40,23 +40,14 @@ public class MyProjectList {
     private String startTime = "";
     private String endTime = "";
     private String center = "";
-    private String crfId = "";
-    private String crfName= "";
+    private String dataSource = "";
 
-    public String getCrfId() {
-        return crfId;
+    public String getDataSource() {
+        return dataSource;
     }
 
-    public void setCrfId(String crfId) {
-        this.crfId = crfId;
-    }
-
-    public String getCrfName() {
-        return crfName;
-    }
-
-    public void setCrfName(String crfName) {
-        this.crfName = crfName;
+    public void setDataSource(String dataSource) {
+        this.dataSource = dataSource;
     }
 
     public String getCenter() {

@@ -3,17 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="Merge branches 'cloud_1.0.0' and 'lmx_demo' of http://10.0.0.6/Gennlife-Eng/Ark-UI_Service into lmx_demo&#10;&#10;# Conflicts:&#10;#&#9;platformWeb/.idea/workspace.xml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ArkUiServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ArkUiServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/projectBean/CreateProject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/projectBean/CreateProject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/projectBean/MyProjectList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/projectBean/MyProjectList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/ProjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/SampleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/SampleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/AllDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/AllDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/ProjectProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/ProjectProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/JsonUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/JsonUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis_config/ProjectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis_config/ProjectMapper.xml" afterDir="false" />
     </list>
@@ -27,6 +19,9 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/platform$ArkUiServiceApplication.coverage" NAME="ArkUiServiceApplication Coverage Results" MODIFIED="1524904496974" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.gennlife.platform.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/platform$ArkUiServiceApplication.ic" NAME="ArkUiServiceApplication Coverage Results" MODIFIED="1526530728556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.gennlife.platform.*</FILTER>
     </SUITE>
   </component>
@@ -44,20 +39,62 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ConfigurationService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/ConfigurationService.java">
+      <file leaf-file-name="ProjectController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/ProjectController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="121" column="79" lean-forward="true" selection-start-line="121" selection-start-column="79" selection-end-line="121" selection-end-column="79" />
+            <state relative-caret-position="238">
+              <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
+              <folding>
+                <element signature="method#getProjectLogList#0;class#ProjectController#0" />
+                <element signature="method#getProjectPlanList#0;class#ProjectController#0" />
+                <element signature="method#getMemberList#0;class#ProjectController#0" />
+                <element signature="method#getBasicInfo#0;class#ProjectController#0" />
+                <element signature="method#getIsExistPlan#0;class#ProjectController#0" />
+                <element signature="method#getIsExistSet#0;class#ProjectController#0" />
+                <element signature="method#getIsExistProject#0;class#ProjectController#0" />
+                <element signature="method#postCreateNewPlan#0;class#ProjectController#0" />
+                <element signature="method#postAddMember#0;class#ProjectController#0" />
+                <element signature="method#postTools#0;class#ProjectController#0" />
+                <element signature="method#postEditProject#0;class#ProjectController#0" />
+                <element signature="method#postEditPlan#0;class#ProjectController#0" />
+                <element signature="method#postDeletePlan#0;class#ProjectController#0" />
+                <element signature="method#postDeleteProjectSet#0;class#ProjectController#0" />
+                <element signature="method#postDeleteMember#0;class#ProjectController#0" />
+                <element signature="method#postAtool#0;class#ProjectController#0" />
+                <element signature="method#getAtool#0;class#ProjectController#0" />
+                <element signature="method#getSurvivalAtool#0;class#ProjectController#0" />
+                <element signature="method#postSetList#0;class#ProjectController#0" />
+                <element signature="method#getSetList#0;class#ProjectController#0" />
+                <element signature="method#postSetNameList#0;class#ProjectController#0" />
+                <element signature="method#getSetNameList#0;class#ProjectController#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CrfController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ProjectProcessor.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/ProjectProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="81">
+              <caret line="78" column="50" selection-start-line="78" selection-start-column="50" selection-end-line="78" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProjectMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/ProjectMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="186" column="45" selection-start-line="186" selection-start-column="31" selection-end-line="186" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CrfController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="694" lean-forward="true" selection-start-line="694" selection-end-line="694" />
+            <state relative-caret-position="238">
+              <caret line="693" column="46" selection-start-line="693" selection-start-column="46" selection-end-line="693" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#postSelectAttr#0;class#CrfController#0" />
@@ -88,83 +125,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CrfProcessor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="661" column="20" selection-start-line="661" selection-start-column="20" selection-end-line="661" selection-end-column="20" />
-              <folding>
-                <element signature="method#autoMap#0;class#CrfProcessor#0" />
-                <element signature="method#modelByCRFID#0;class#CrfProcessor#0" />
-                <element signature="method#PatientInfo#0;class#CrfProcessor#0" />
-                <element signature="method#PatientVisitDetail#0;class#CrfProcessor#0" />
-                <element signature="method#PatientAllVisitDetail#0;class#CrfProcessor#0" />
-                <element signature="method#modelForTraceByCRFID#0;class#CrfProcessor#0" />
-                <element signature="method#upLoadDataForCheck#0;class#CrfProcessor#0" />
-                <element signature="method#uploadFileForImportCRF#0;class#CrfProcessor#0" />
-                <element signature="method#importCRFMap#0;class#CrfProcessor#0" />
-                <element signature="method#csvImportResult#0;class#CrfProcessor#0" />
-                <element signature="method#isExistPatient#0;class#CrfProcessor#0" />
-                <element signature="method#inputSmartPrompt#0;class#CrfProcessor#0" />
-                <element signature="method#ICD_10_Code#0;class#CrfProcessor#0" />
-                <element signature="method#UploadImage#0;class#CrfProcessor#0" />
-                <element signature="method#deleteImg#0;class#CrfProcessor#0" />
-                <element signature="method#ResearchNumber#0;class#CrfProcessor#0" />
-                <element signature="method#searchItemSet#0;class#CrfProcessor#0" />
-                <element signature="e#22069#22077#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CaseController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CaseController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="236" column="82" selection-start-line="236" selection-start-column="82" selection-end-line="236" selection-end-column="82" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AuthorityUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="61" column="25" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SampleController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/SampleController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="65" column="41" selection-start-line="65" selection-start-column="41" selection-end-line="65" selection-end-column="41" />
-              <folding>
-                <element signature="method#postImport#0;class#SampleController#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SampleProcessor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2654">
-              <caret line="447" column="52" selection-start-line="447" selection-start-column="52" selection-end-line="447" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Power.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Power.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="963">
-              <caret line="54" column="32" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -176,11 +136,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>allDao</find>
-      <find>syUserDao</find>
-      <find>systemDefault</find>
-      <find>boolean flag = getCRFFlag(power, user.getOrgID(), crf_id, &quot;has_searchCRF&quot;);</find>
-      <find>getProjectList</find>
       <find>power</find>
       <find>case.json</find>
       <find>@map</find>
@@ -188,14 +143,10 @@
       <find>Role</find>
       <find>/SearchSampleList</find>
       <find>MyProjectList</find>
-      <find>getMyProjectList</find>
-      <find>MyProjectListSelect</find>
       <find>myprojectList</find>
       <find>/DeleteProject</find>
       <find>createproject</find>
       <find>/CreateNewProject</find>
-      <find>getCrfProjectDiseaseItem</find>
-      <find>insertCreateProject</find>
       <find>editproject</find>
       <find>delete</find>
       <find>boolean flag = getCRFFlag</find>
@@ -206,6 +157,15 @@
       <find>searchcase</find>
       <find>redis</find>
       <find>Jedis</find>
+      <find>sql</find>
+      <find>${fileService.ipAndPort}</find>
+      <find>fileService.ipAndPort</find>
+      <find>getMyProjectList</find>
+      <find>MyProjectListSelect</find>
+      <find>getCrfProjectDiseaseItem</find>
+      <find>insertCreateProject</find>
+      <find>CreateNewProject</find>
+      <find>getProjectList</find>
     </findStrings>
     <dirStrings>
       <dir>C:\lmx\clooud\Ark-UI_Service\platformWeb</dir>
@@ -265,16 +225,16 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/SampleController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/ProjectController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/projectBean/MyProjectList.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/projectBean/CreateProject.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/JsonUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/ProjectMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/ProjectProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/ConfigurationService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/projectBean/CreateProject.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/JsonUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/ProjectMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/projectBean/MyProjectList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/ProjectController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/ProjectProcessor.java" />
       </list>
     </option>
   </component>
@@ -311,7 +271,7 @@
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
-    <option name="height" value="784" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -319,8 +279,6 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -359,29 +317,14 @@
               <item name="platformWeb" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="platform" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="platformWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="platformWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="crf" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -425,6 +368,7 @@
     </configuration>
     <configuration name="ArkUiServiceApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.gennlife.platform.ArkUiServiceApplication" />
+      <module name="platform" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -577,6 +521,10 @@
       <workItem from="1526352723233" duration="9266000" />
       <workItem from="1526370163333" duration="24002000" />
       <workItem from="1526433322963" duration="28325000" />
+      <workItem from="1526528576705" duration="1547000" />
+      <workItem from="1526530162138" duration="215000" />
+      <workItem from="1526530490651" duration="727000" />
+      <workItem from="1526531251757" duration="5910000" />
     </task>
     <task id="LOCAL-00024" summary="增加导入数据 中职称判断 加入飞空判断">
       <created>1523763366941</created>
@@ -925,7 +873,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="515861000" />
+    <option name="totallyTimeSpent" value="524260000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -933,7 +881,7 @@
     <layout>
       <window_info anchor="right" id="Palette" order="2" />
       <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" weight="0.30132452" />
-      <window_info anchor="right" id="Maven Projects" order="9" weight="0.32995737" />
+      <window_info anchor="right" id="Maven Projects" order="9" weight="0.32980332" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="7" />
@@ -941,30 +889,30 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
       <window_info id="UI Designer" order="3" />
-      <window_info anchor="bottom" id="Debug" order="5" weight="0.5182119" />
+      <window_info anchor="bottom" id="Debug" order="5" weight="0.41480207" />
       <window_info anchor="bottom" id="TODO" order="8" />
-      <window_info anchor="bottom" id="Messages" order="14" weight="0.29801324" />
+      <window_info anchor="bottom" id="Messages" order="14" weight="0.24096386" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info id="Image Layers" order="4" />
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.76612127" />
-      <window_info anchor="bottom" id="Run" order="4" weight="0.26490065" />
+      <window_info active="true" anchor="bottom" id="Run" order="4" visible="true" weight="0.49225473" />
       <window_info anchor="bottom" id="Spring" order="12" weight="0.32916266" />
-      <window_info anchor="bottom" id="Terminal" order="13" weight="0.32916266" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16544656" />
+      <window_info anchor="bottom" id="Terminal" order="13" weight="0.32874355" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09304085" />
       <window_info anchor="right" id="Bean Validation" order="7" weight="0.32995737" />
       <window_info id="Web" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32916266" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
+      <window_info anchor="right" id="Coverage" order="10" side_tool="true" weight="0.32980332" />
       <window_info anchor="bottom" id="Message" order="2" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Application Servers" order="1" weight="0.32916266" />
-      <window_info anchor="right" id="Coverage" order="10" side_tool="true" weight="0.32995737" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1097,22 +1045,16 @@
           <option name="timeStamp" value="262" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/ProjectController.java</url>
-          <line>36</line>
-          <properties />
-          <option name="timeStamp" value="293" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CaseController.java</url>
-          <line>222</line>
-          <properties />
-          <option name="timeStamp" value="296" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java</url>
           <line>638</line>
           <properties />
           <option name="timeStamp" value="297" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/ProjectProcessor.java</url>
+          <line>398</line>
+          <properties />
+          <option name="timeStamp" value="304" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java</url>
@@ -1123,13 +1065,15 @@
           <option name="timeStamp" value="284" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/ProjectMapper.java</url>
-          <line>192</line>
-          <properties class="com.gennlife.platform.dao.ProjectMapper" method="getMyProjectList" />
-          <option name="timeStamp" value="286" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/ProjectProcessor.java</url>
+          <line>38</line>
+          <properties class="com.gennlife.platform.processor.ProjectProcessor" method="myProjectList">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="305" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="303" />
+      <option name="time" value="306" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1154,27 +1098,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14025">
-          <caret line="449" column="43" selection-start-line="449" selection-start-column="43" selection-end-line="449" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/OrgMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="39" column="28" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="231" column="13" selection-start-line="231" selection-start-column="13" selection-end-line="231" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/java/jdk1.8.0_172/src.zip!/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -1228,10 +1151,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1825">
           <caret line="92" column="8" selection-start-line="92" selection-start-column="8" selection-end-line="92" selection-end-column="8" />
-          <folding>
-            <element signature="docComment;method#getResourceByRoleID#0;class#SyResourceMapper#0" />
-            <element signature="docComment;method#insertRoleResourceRelation#0;class#SyResourceMapper#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1277,24 +1196,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ArkUiServiceApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="e#643#644#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.5/gson-2.5-sources.jar!/com/google/gson/JsonElement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="86" selection-start-line="86" selection-end-line="86" />
-          <folding>
-            <element signature="e#6648#6649#0" expanded="true" />
-            <element signature="e#6725#6726#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1326,20 +1231,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/projectBean/MyProjectList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-225">
-          <caret line="36" column="30" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/AllDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
           <caret line="27" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="e#807#808#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1364,53 +1259,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/projectBean/CreateProjectQueryBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="e#309#310#0" expanded="true" />
-            <element signature="e#345#346#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/ArkService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="116">
           <caret line="56" column="25" selection-start-line="56" selection-start-column="25" selection-end-line="56" selection-end-column="25" />
-          <folding>
-            <element signature="e#1575#1576#0" expanded="true" />
-            <element signature="e#1617#1618#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/ProjectMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="16" column="34" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/JsonUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="56" column="58" lean-forward="true" selection-start-line="56" selection-start-column="58" selection-end-line="56" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/projectBean/CreateProject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-219">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis_config/ProjectMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="131" lean-forward="true" selection-start-line="131" selection-end-line="131" />
         </state>
       </provider>
     </entry>
@@ -1432,21 +1284,194 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/ProjectProcessor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="362" column="18" selection-start-line="362" selection-start-column="18" selection-end-line="362" selection-end-column="18" />
+        <state relative-caret-position="388">
+          <caret line="241" column="14" selection-start-line="241" selection-start-column="14" selection-end-line="241" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.5/gson-2.5-sources.jar!/com/google/gson/JsonObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="170" column="19" selection-start-line="170" selection-start-column="19" selection-end-line="170" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="124" column="23" lean-forward="true" selection-start-line="124" selection-start-column="23" selection-end-line="124" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/SampleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="775">
+          <caret line="65" column="41" selection-start-line="65" selection-start-column="41" selection-end-line="65" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Power.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1075">
+          <caret line="54" column="32" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.5/gson-2.5-sources.jar!/com/google/gson/JsonParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="43" column="21" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1150">
+          <caret line="61" column="25" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/ConfigurationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2525">
+          <caret line="121" column="79" selection-start-line="121" selection-start-column="79" selection-end-line="121" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="447" column="52" selection-start-line="447" selection-start-column="52" selection-end-line="447" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="236" column="82" selection-start-line="236" selection-start-column="82" selection-end-line="236" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.5/gson-2.5-sources.jar!/com/google/gson/Gson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="561" column="16" selection-start-line="561" selection-start-column="16" selection-end-line="561" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-243">
+          <caret line="386" column="38" selection-start-line="386" selection-start-column="19" selection-end-line="386" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/JsonUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-200">
+          <caret line="89" column="36" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/profiles/yaitaiyitiji/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="33" column="10" lean-forward="true" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/urlconf.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-359">
+          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis_config/ProjectMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="618" column="274" selection-start-line="618" selection-start-column="274" selection-end-line="618" selection-end-column="274" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="636" column="96" selection-start-line="636" selection-start-column="51" selection-end-line="636" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ArkUiServiceApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="12" column="36" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="36" />
           <folding>
-            <element signature="e#1683#1699#0" expanded="true" />
-            <element signature="e#2549#2565#0" expanded="true" />
+            <element signature="e#578#579#0" expanded="true" />
+            <element signature="e#643#644#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/projectBean/CreateProjectQueryBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-139">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/projectBean/CreateProject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2300">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/projectBean/MyProjectList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-605">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="693" column="46" selection-start-line="693" selection-start-column="46" selection-end-line="693" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#postSelectAttr#0;class#CrfController#0" />
+            <element signature="method#getGetData#0;class#CrfController#0" />
+            <element signature="method#postUpLoadData#0;class#CrfController#0" />
+            <element signature="method#postSaveData#0;class#CrfController#0" />
+            <element signature="docComment;method#postDeleteSample#0;class#CrfController#0" />
+            <element signature="method#postProjectCrfList#0;class#CrfController#0" />
+            <element signature="method#getPatientInfo#0;class#CrfController#0" />
+            <element signature="method#getPatientVisitDetail#0;class#CrfController#0" />
+            <element signature="method#getPatientAllVisitDetail#0;class#CrfController#0" />
+            <element signature="method#getModelForTraceByCRFID#0;class#CrfController#0" />
+            <element signature="method#postUpLoadDataForCheck#0;class#CrfController#0" />
+            <element signature="method#UploadFileForImportCRF#0;class#CrfController#0" />
+            <element signature="method#ImportCRFMap#0;class#CrfController#0" />
+            <element signature="method#CsvImportResult#0;class#CrfController#0" />
+            <element signature="method#IsExistPatient#0;class#CrfController#0" />
+            <element signature="method#CsvImportDetail#0;class#CrfController#0" />
+            <element signature="method#InputSmartPrompt#0;class#CrfController#0" />
+            <element signature="method#ICD_10_Code#0;class#CrfController#0" />
+            <element signature="method#UploadImage#0;class#CrfController#0" />
+            <element signature="method#getImageUrl#0;class#CrfController#0" />
+            <element signature="method#deleteImg#0;class#CrfController#0" />
+            <element signature="method#ResearchNumber#0;class#CrfController#0" />
+            <element signature="method#postSearchItemSet#0;class#CrfController#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/ProjectController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="65" column="45" selection-start-line="65" selection-start-column="45" selection-end-line="65" selection-end-column="45" />
+        <state relative-caret-position="238">
+          <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
           <folding>
             <element signature="method#getProjectLogList#0;class#ProjectController#0" />
             <element signature="method#getProjectPlanList#0;class#ProjectController#0" />
@@ -1474,159 +1499,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/User.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/ProjectMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="241" column="14" selection-start-line="241" selection-start-column="14" selection-end-line="241" selection-end-column="14" />
-          <folding>
-            <element signature="e#3233#3234#0" expanded="true" />
-            <element signature="e#3261#3262#0" expanded="true" />
-            <element signature="e#4885#4886#0" expanded="true" />
-            <element signature="e#4919#4920#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="277">
+          <caret line="186" column="45" selection-start-line="186" selection-start-column="31" selection-end-line="186" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.5/gson-2.5-sources.jar!/com/google/gson/JsonObject.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/ProjectProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="170" column="19" selection-start-line="170" selection-start-column="19" selection-end-line="170" selection-end-column="19" />
-          <folding>
-            <element signature="e#4969#4970#0" expanded="true" />
-            <element signature="e#5009#5010#0" expanded="true" />
-            <element signature="e#5621#5622#0" expanded="true" />
-            <element signature="e#5673#5674#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="124" column="23" lean-forward="true" selection-start-line="124" selection-start-column="23" selection-end-line="124" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/SampleController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="65" column="41" selection-start-line="65" selection-start-column="41" selection-end-line="65" selection-end-column="41" />
-          <folding>
-            <element signature="method#postImport#0;class#SampleController#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Power.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="963">
-          <caret line="54" column="32" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2654">
-          <caret line="447" column="52" selection-start-line="447" selection-start-column="52" selection-end-line="447" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="386" column="38" selection-start-line="386" selection-start-column="19" selection-end-line="386" selection-end-column="38" />
-          <folding>
-            <element signature="e#16203#16204#0" expanded="true" />
-            <element signature="e#16245#16246#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CaseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="236" column="82" selection-start-line="236" selection-start-column="82" selection-end-line="236" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="661" column="20" selection-start-line="661" selection-start-column="20" selection-end-line="661" selection-end-column="20" />
-          <folding>
-            <element signature="method#autoMap#0;class#CrfProcessor#0" />
-            <element signature="method#modelByCRFID#0;class#CrfProcessor#0" />
-            <element signature="method#PatientInfo#0;class#CrfProcessor#0" />
-            <element signature="method#PatientVisitDetail#0;class#CrfProcessor#0" />
-            <element signature="method#PatientAllVisitDetail#0;class#CrfProcessor#0" />
-            <element signature="method#modelForTraceByCRFID#0;class#CrfProcessor#0" />
-            <element signature="method#upLoadDataForCheck#0;class#CrfProcessor#0" />
-            <element signature="method#uploadFileForImportCRF#0;class#CrfProcessor#0" />
-            <element signature="method#importCRFMap#0;class#CrfProcessor#0" />
-            <element signature="method#csvImportResult#0;class#CrfProcessor#0" />
-            <element signature="method#isExistPatient#0;class#CrfProcessor#0" />
-            <element signature="method#inputSmartPrompt#0;class#CrfProcessor#0" />
-            <element signature="method#ICD_10_Code#0;class#CrfProcessor#0" />
-            <element signature="method#UploadImage#0;class#CrfProcessor#0" />
-            <element signature="method#deleteImg#0;class#CrfProcessor#0" />
-            <element signature="method#ResearchNumber#0;class#CrfProcessor#0" />
-            <element signature="method#searchItemSet#0;class#CrfProcessor#0" />
-            <element signature="e#22069#22077#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.5/gson-2.5-sources.jar!/com/google/gson/JsonParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="43" column="21" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="61" column="25" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/ConfigurationService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="121" column="79" lean-forward="true" selection-start-line="121" selection-start-column="79" selection-end-line="121" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="694" lean-forward="true" selection-start-line="694" selection-end-line="694" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#postSelectAttr#0;class#CrfController#0" />
-            <element signature="method#getGetData#0;class#CrfController#0" />
-            <element signature="method#postUpLoadData#0;class#CrfController#0" />
-            <element signature="method#postSaveData#0;class#CrfController#0" />
-            <element signature="docComment;method#postDeleteSample#0;class#CrfController#0" />
-            <element signature="method#postProjectCrfList#0;class#CrfController#0" />
-            <element signature="method#getPatientInfo#0;class#CrfController#0" />
-            <element signature="method#getPatientVisitDetail#0;class#CrfController#0" />
-            <element signature="method#getPatientAllVisitDetail#0;class#CrfController#0" />
-            <element signature="method#getModelForTraceByCRFID#0;class#CrfController#0" />
-            <element signature="method#postUpLoadDataForCheck#0;class#CrfController#0" />
-            <element signature="method#UploadFileForImportCRF#0;class#CrfController#0" />
-            <element signature="method#ImportCRFMap#0;class#CrfController#0" />
-            <element signature="method#CsvImportResult#0;class#CrfController#0" />
-            <element signature="method#IsExistPatient#0;class#CrfController#0" />
-            <element signature="method#CsvImportDetail#0;class#CrfController#0" />
-            <element signature="method#InputSmartPrompt#0;class#CrfController#0" />
-            <element signature="method#ICD_10_Code#0;class#CrfController#0" />
-            <element signature="method#UploadImage#0;class#CrfController#0" />
-            <element signature="method#getImageUrl#0;class#CrfController#0" />
-            <element signature="method#deleteImg#0;class#CrfController#0" />
-            <element signature="method#ResearchNumber#0;class#CrfController#0" />
-            <element signature="method#postSearchItemSet#0;class#CrfController#0" />
-          </folding>
+        <state relative-caret-position="81">
+          <caret line="78" column="50" selection-start-line="78" selection-start-column="50" selection-end-line="78" selection-end-column="50" />
         </state>
       </provider>
     </entry>

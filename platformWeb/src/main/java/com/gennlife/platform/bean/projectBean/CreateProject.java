@@ -25,15 +25,17 @@ public class CreateProject {
     private String disease;
     private String registerNumber;
     private int isdelete = 0;
-    private String crfId;
-    private String crfName;
 
-    public String getCrfId() {
-        return crfId;
+    //病种的名字和数据源
+    private String crfName;
+    private String dataSource;
+
+    public String getDataSource() {
+        return dataSource;
     }
 
-    public void setCrfId(String crfId) {
-        this.crfId = crfId;
+    public void setDataSource(String dataSource) {
+        this.dataSource = dataSource;
     }
 
     public String getCrfName() {

@@ -63,14 +63,25 @@ public class ProjectProcessor {
             for (MyProjectList myProjectList : list) {
                 String projectID = myProjectList.getProjectID();
                 String creator = myProjectList.getCreator();
+                String dataSource = myProjectList.getDataSource();
 
                 if (creator != null) {
                     User user = AllDao.getInstance().getSyUserDao().getUserByUid(creator);
                     if (user != null) {
                         myProjectList.setCreatorName(user.getUname() + "");
                     }
-
                 }
+
+                //对数据源进行判断
+                if (dataSource.equals("EMR")){
+                   continue;
+                } else if(dataSource.equals("-")||StringUtils.isEmpty(dataSource)){
+                    myProjectList.setDataSource("-");
+                }else{
+                    myProjectList.setDataSource("单病种-"+dataSource);
+                }
+
+
                 confMap.put("projectID", projectID);
                 confMap.put("startIndex", 0);
                 confMap.put("maxNum", 5);
@@ -81,6 +92,7 @@ public class ProjectProcessor {
                 }
                 myProjectList.setLogs(logList);
             }
+
             Long start3 = System.currentTimeMillis();
             logger.debug("填充日志 mysql耗时:" + (start3 - start2) + "ms");
             Map<String, Integer> info = new HashMap<String, Integer>();
@@ -371,7 +383,6 @@ public class ProjectProcessor {
             flag = paramObj.has("crf_id");//是否含有crf_id
             if (flag){
                 crf_id = paramObj.get("crf_id").getAsString();
-                conf.put("crf_id", crf_id);
             }
             conf.put("uid",uid);
         } catch (Exception e) {
@@ -383,9 +394,10 @@ public class ProjectProcessor {
             List<JsonObject> paramList = new LinkedList<>();
             if (flag) {
                 for (MyProjectList myProjectList : list) {
-                    String pro_crfId = myProjectList.getCrfId();
+                    //获取项目的数据源
+                    String dataSource = myProjectList.getDataSource();
                     //含有crf_id字段，同时项目病种相同，或者项目为空 可导入
-                    if (pro_crfId.equals(crf_id) || StringUtils.isEmpty(pro_crfId)) {
+                    if (dataSource.equals(crf_id) || StringUtils.isEmpty(dataSource)) {
                         JsonObject newParamObj = new JsonObject();
                         String projectID = myProjectList.getProjectID();
                         String projectName = myProjectList.getProjectName();
@@ -397,9 +409,11 @@ public class ProjectProcessor {
                     }
                 }
             } else {
+                //emr项目，导入datasource为空或者emr的项目
                 for (MyProjectList myProjectList : list) {
-                    //如果是emr数据则导入crf_id为空的项目
-                    if (StringUtils.isEmpty(myProjectList.getCrfId())){
+                    //获取项目的数据源
+                    String dataSource = myProjectList.getDataSource();
+                    if (dataSource.equals("EMR")||StringUtils.isEmpty(dataSource)){
                         JsonObject newParamObj = new JsonObject();
                         String projectID = myProjectList.getProjectID();
                         String projectName = myProjectList.getProjectName();
