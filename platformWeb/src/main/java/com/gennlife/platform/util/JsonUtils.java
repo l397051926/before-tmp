@@ -6,6 +6,7 @@ import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.enums.LogActionEnum;
 import com.gennlife.platform.enums.MemberEnum;
 import com.gennlife.platform.model.User;
+import com.gennlife.platform.service.ArkService;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -51,6 +52,9 @@ public class JsonUtils {
         String manager = jsonObject.get("manager") != null ? jsonObject.get("manager").getAsString() : "";
         String unit = jsonObject.get("unit") == null ? "" : jsonObject.get("unit").getAsString();
         String disease = jsonObject.get("disease").getAsString();
+        //添加单病种的id和name
+        String crfId = jsonObject.get("disease").getAsString();
+        String crfName = ArkService.getDiseaseName(crfId);
         String registerNumber = jsonObject.get("registerNumber") == null ? "" : jsonObject.get("registerNumber").getAsString();
         String type = jsonObject.get("type").getAsString();
         createProject.setCreator(creator);
@@ -87,6 +91,8 @@ public class JsonUtils {
         createProject.setDisease(disease);
         createProject.setRegisterNumber(registerNumber);
         createProject.setType(type);
+        createProject.setCrfId(crfId);
+        createProject.setCrfName(crfName);
         //组建log日志
         User syUser = AllDao.getInstance().getSyUserDao().getUserByUid(creator);
         ProLog proLog = new ProLog();

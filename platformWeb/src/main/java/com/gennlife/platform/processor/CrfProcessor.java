@@ -83,9 +83,11 @@ public class CrfProcessor {
      */
     public static boolean getCRFFlag(Power power, String orgID, String crf_id, String key) {
         boolean flag = false;
+        //sId 与 labId 均为科室Id
         Set<String> validLabID = new HashSet<>();
         JsonObject powerObj = (JsonObject) jsonParser.parse(gson.toJson(power));
         JsonArray array = powerObj.getAsJsonArray(key);
+        //得到该权限下的所有科室id
         for (JsonElement item : array) {
             JsonObject itemObj = item.getAsJsonObject();
             String sid = itemObj.get("sid").getAsString();
@@ -624,9 +626,10 @@ public class CrfProcessor {
         String labId = null;
         ResultBean resultBean = new ResultBean();
         try {
+            //orgId 医院，labId 科室
             orgId = user.getOrgID();
             labId = paramObj.get("labID").getAsString();
-            List<CRFLab> crfLabs = AllDao.getInstance().getSyResourceDao().getCrfIDByLab(labId,orgId);
+            List<CRFLab> crfLabs = AllDao.getInstance().getSyResourceDao().getCrfIDByLab(labId,orgId);//获取科室对应的单病种id
             JSONArray jsonArray = new JSONArray();
             for (CRFLab crfLab:crfLabs) {
                 JsonObject jsonObject = new JsonObject();
@@ -643,6 +646,37 @@ public class CrfProcessor {
         }
 
         return gson.toJson(resultBean);
+    }
+
+    /**
+     *  是否有CRF导出权限
+     * @param paramObj   参数实体
+     * @param user       当前用户
+     * @return
+     */
+    public String importCRFCheck(JsonObject paramObj, User user) {
+        String crf_id = null;
+        ResultBean resultBean = new ResultBean();
+        try{
+            crf_id = paramObj.get("crfID").getAsString();
+            Power power = user.getPower();
+            //判断是否有权限
+            boolean flag = getCRFFlag(power, user.getOrgID(), crf_id, "has_importCRF");
+            if(flag){
+                String url = ConfigurationService.getUrlBean().getCRFSearchSampleList();
+                logger.info("请求参数： "+paramObj);
+                String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+                resultBean.setCode(1);
+                resultBean.setData(result);
+            }else {
+                return ParamUtils.errorParam("没有导出权限");
+            }
+            return gson.toJson(resultBean);
+
+        }catch (Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("出现异常");
+        }
     }
 
 

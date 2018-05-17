@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ImportResource;
 @ServletComponentScan
 @ImportResource(locations={"classpath:urlconf.xml","classpath:mybaits.xml"})
 public class ArkUiServiceApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(ArkUiServiceApplication.class, args);
 	}

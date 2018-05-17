@@ -25,6 +25,24 @@ public class CreateProject {
     private String disease;
     private String registerNumber;
     private int isdelete = 0;
+    private String crfId;
+    private String crfName;
+
+    public String getCrfId() {
+        return crfId;
+    }
+
+    public void setCrfId(String crfId) {
+        this.crfId = crfId;
+    }
+
+    public String getCrfName() {
+        return crfName;
+    }
+
+    public void setCrfName(String crfName) {
+        this.crfName = crfName;
+    }
 
     public String getRegisterNumber() {
         return registerNumber;

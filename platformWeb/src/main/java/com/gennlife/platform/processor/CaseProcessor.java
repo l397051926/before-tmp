@@ -435,9 +435,13 @@ public class CaseProcessor {
         return transformSid(paramObj, user);
 
     }
+
     /**
      * sid前端选择科室 ,传给搜索
-     * */
+     * @param paramObj 对请求中的实体内容添加了group和power两个字段的jsonObject
+     * @param user     当前登陆的用户对象
+     * @return
+     */
     public static String transformSid(JsonObject paramObj, User user) {
         if (paramObj.has("sid") && paramObj.has("power")) {
             String sid = paramObj.get("sid").getAsString();

@@ -14,6 +14,15 @@ public class AllDao {
     private ProjectMapper projectDao;
     private GroupMapper groupDao;
 
+    private static AllDao instance = null;
+
+    public static AllDao getInstance() {
+        if (instance == null) {
+            ApplicationContext context = SpringContextUtil.getApplicationContext();
+            instance = (AllDao) context.getBean("allDao");
+        }
+        return instance;
+    }
 
     public ProjectMapper getProjectDao() {
         return projectDao;
@@ -29,16 +38,6 @@ public class AllDao {
 
     public void setOrgDao(OrgMapper orgDao) {
         this.orgDao = orgDao;
-    }
-
-    private static AllDao instance = null;
-
-    public static AllDao getInstance() {
-        if (instance == null) {
-            ApplicationContext context = SpringContextUtil.getApplicationContext();
-            instance = (AllDao) context.getBean("allDao");
-        }
-        return instance;
     }
 
     public SyUserMapper getSyUserDao() {
