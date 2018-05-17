@@ -63,6 +63,7 @@ public class ProjectProcessor {
             for (MyProjectList myProjectList : list) {
                 String projectID = myProjectList.getProjectID();
                 String creator = myProjectList.getCreator();
+
                 if (creator != null) {
                     User user = AllDao.getInstance().getSyUserDao().getUserByUid(creator);
                     if (user != null) {
@@ -356,33 +357,59 @@ public class ProjectProcessor {
 
     /**
      * 用户相关项目的列表不分页
-     *
      * @param paramObj
      * @return
      */
-    public String projectListNoPage(JsonObject paramObj) {
-        String uid = null;
+    public String projectListNoPage(JsonObject paramObj, HttpServletRequest paramRe) {
+        String uid = null,crf_id = null;
+        boolean flag = false;
+        Map<String, Object> conf = new HashMap<>();
+        ResultBean resultBean = new ResultBean();
+
         try {
             uid = paramObj.get("uid").getAsString();
+            flag = paramObj.has("crf_id");//是否含有crf_id
+            if (flag){
+                crf_id = paramObj.get("crf_id").getAsString();
+                conf.put("crf_id", crf_id);
+            }
+            conf.put("uid",uid);
         } catch (Exception e) {
             logger.error("请求参数出错", e);
             return ParamUtils.errorParam("请求参数出错");
         }
-        Map<String, Object> conf = new HashMap<>();
-        conf.put("uid", uid);
         try {
             List<MyProjectList> list = AllDao.getInstance().getProjectDao().getProjectList(conf);
-            //getSyUserDao().getProjectList(conf);
             List<JsonObject> paramList = new LinkedList<>();
-            for (MyProjectList myProjectList : list) {
-                JsonObject newParamObj = new JsonObject();
-                String projectID = myProjectList.getProjectID();
-                String projectName = myProjectList.getProjectName();
-                newParamObj.addProperty("projectID", projectID);
-                newParamObj.addProperty("projectName", projectName);
-                paramList.add(newParamObj);
+            if (flag) {
+                for (MyProjectList myProjectList : list) {
+                    String pro_crfId = myProjectList.getCrfId();
+                    //含有crf_id字段，同时项目病种相同，或者项目为空 可导入
+                    if (pro_crfId.equals(crf_id) || StringUtils.isEmpty(pro_crfId)) {
+                        JsonObject newParamObj = new JsonObject();
+                        String projectID = myProjectList.getProjectID();
+                        String projectName = myProjectList.getProjectName();
+
+                        newParamObj.addProperty("crfId",crf_id);
+                        newParamObj.addProperty("projectID", projectID);
+                        newParamObj.addProperty("projectName", projectName);
+                        paramList.add(newParamObj);
+                    }
+                }
+            } else {
+                for (MyProjectList myProjectList : list) {
+                    //如果是emr数据则导入crf_id为空的项目
+                    if (StringUtils.isEmpty(myProjectList.getCrfId())){
+                        JsonObject newParamObj = new JsonObject();
+                        String projectID = myProjectList.getProjectID();
+                        String projectName = myProjectList.getProjectName();
+
+                        newParamObj.addProperty("projectID", projectID);
+                        newParamObj.addProperty("projectName", projectName);
+                        paramList.add(newParamObj);
+                    }
+                }
             }
-            ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
             resultBean.setData(paramList);
             return gson.toJson(resultBean);

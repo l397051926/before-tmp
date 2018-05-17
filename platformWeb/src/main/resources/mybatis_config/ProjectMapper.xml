@@ -56,7 +56,13 @@
                 manager,
             </if>
             <if test="isdelete != null" >
-                isdelete
+                isdelete,
+            </if>
+            <if test="crfId != null" >
+                crfId,
+            </if>
+            <if test="crfName != null" >
+                crfName
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -113,7 +119,13 @@
                 #{manager,jdbcType=VARCHAR},
             </if>
             <if test="isdelete != null" >
-                #{isdelete,jdbcType=INTEGER}
+                #{isdelete,jdbcType=INTEGER},
+            </if>
+            <if test="crfId != null" >
+                #{crfId,jdbcType=VARCHAR},
+            </if>
+            <if test="crfName != null" >
+                #{crfName,jdbcType=VARCHAR}
             </if>
         </trim>
     </insert>
@@ -603,7 +615,7 @@
     </resultMap>
 
     <sql id="MyProjectListSelect">
-        creator,p.projectID,projectName,date_format(createTime,"%Y-%m-%d") AS cTime,date_format(startTime,"%Y-%m-%d") AS startTime,date_format(endTime,"%Y-%m-%d") AS endTime,members,planNum,projectDesp,setCount,projectEngName,unit,manager,type,disease,registerNumber,center
+        creator,p.projectID,projectName,date_format(createTime,"%Y-%m-%d") AS cTime,date_format(startTime,"%Y-%m-%d") AS startTime,date_format(endTime,"%Y-%m-%d") AS endTime,members,planNum,projectDesp,setCount,projectEngName,unit,manager,type,disease,registerNumber,center,crfId,crfName
     </sql>
 
     <select id="baiscInfo" resultMap="com.gennlife.platform.bean.projectBean.MyProjectList"

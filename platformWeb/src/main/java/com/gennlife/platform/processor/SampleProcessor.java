@@ -438,7 +438,6 @@ public class SampleProcessor {
     //导出项目
     public String importSampleCheck(JsonObject jsonObject, User user) {
         try {
-
             JsonObject query = jsonObject.get("query").getAsJsonObject();
             JsonArray groups = jsonObject.get("groups").getAsJsonArray();
             JsonObject power = jsonObject.getAsJsonObject("power");
