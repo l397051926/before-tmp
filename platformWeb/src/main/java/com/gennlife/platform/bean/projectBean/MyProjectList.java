@@ -41,6 +41,15 @@ public class MyProjectList {
     private String endTime = "";
     private String center = "";
     private String dataSource = "";
+    private String crfId = "";
+
+    public String getCrfId() {
+        return crfId;
+    }
+
+    public void setCrfId(String crfId) {
+        this.crfId = crfId;
+    }
 
     public String getDataSource() {
         return dataSource;

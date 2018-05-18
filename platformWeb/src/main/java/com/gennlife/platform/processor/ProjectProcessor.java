@@ -63,7 +63,6 @@ public class ProjectProcessor {
             for (MyProjectList myProjectList : list) {
                 String projectID = myProjectList.getProjectID();
                 String creator = myProjectList.getCreator();
-                String dataSource = myProjectList.getDataSource();
 
                 if (creator != null) {
                     User user = AllDao.getInstance().getSyUserDao().getUserByUid(creator);
@@ -71,16 +70,9 @@ public class ProjectProcessor {
                         myProjectList.setCreatorName(user.getUname() + "");
                     }
                 }
-
-                //对数据源进行判断
-                if (dataSource.equals("EMR")){
-                   continue;
-                } else if(dataSource.equals("-")||StringUtils.isEmpty(dataSource)){
+                if (StringUtils.isEmpty(myProjectList.getDataSource())){
                     myProjectList.setDataSource("-");
-                }else{
-                    myProjectList.setDataSource("单病种-"+ArkService.getDiseaseName(dataSource));
                 }
-
 
                 confMap.put("projectID", projectID);
                 confMap.put("startIndex", 0);
@@ -396,15 +388,16 @@ public class ProjectProcessor {
                 for (MyProjectList myProjectList : list) {
                     //获取项目的数据源
                     String dataSource = myProjectList.getDataSource();
+                    String pro_crfId = myProjectList.getCrfId();
                     //含有crf_id字段，同时项目病种相同，或者项目为空 可导入
-                    if (dataSource.equals(crf_id) || StringUtils.isEmpty(dataSource)) {
+                    if (pro_crfId.equals(crf_id) || StringUtils.isEmpty(dataSource)) {
                         JsonObject newParamObj = new JsonObject();
                         String projectID = myProjectList.getProjectID();
                         String projectName = myProjectList.getProjectName();
 
-                        newParamObj.addProperty("crfId",crf_id);
                         newParamObj.addProperty("projectID", projectID);
                         newParamObj.addProperty("projectName", projectName);
+                        newParamObj.addProperty("dataSource",myProjectList.getDataSource());
                         paramList.add(newParamObj);
                     }
                 }
@@ -420,6 +413,7 @@ public class ProjectProcessor {
 
                         newParamObj.addProperty("projectID", projectID);
                         newParamObj.addProperty("projectName", projectName);
+                        newParamObj.addProperty("dataSource",dataSource);
                         paramList.add(newParamObj);
                     }
                 }
@@ -931,6 +925,5 @@ public class ProjectProcessor {
         String content = HttpRequestUtils.httpGetForCS(url);
         logger.info("aTool 结果:" + content);
         return content;
-
     }
 }

@@ -58,12 +58,11 @@
             <if test="isdelete != null" >
                 isdelete,
             </if>
-            <if test="crfName != null" >
-                crfName,
-            </if>
             <if test="dataSource != null" >
-                dataSource
-
+                dataSource,
+            </if>
+            <if test="crfId != null" >
+                crfId
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -122,11 +121,11 @@
             <if test="isdelete != null" >
                 #{isdelete,jdbcType=INTEGER},
             </if>
-            <if test="crfName != null" >
-                #{crfName,jdbcType=VARCHAR},
-            </if>
             <if test="dataSource != null" >
-                #{dataSource,jdbcType=VARCHAR}
+                #{dataSource,jdbcType=VARCHAR},
+            </if>
+            <if test="crfId != null" >
+                #{crfId,jdbcType=VARCHAR}
             </if>
         </trim>
     </insert>
@@ -198,7 +197,7 @@
 
     <insert id="insertProjectMember" parameterType="map" >
         insert into userInfoDB.pro_user
-        (uid,projectID,role) values (#{uid,,jdbcType=VARCHAR},#{projectID},2);
+        (uid,projectID,role) values (#{uid,jdbcType=VARCHAR},#{projectID},2);
     </insert>
 
     <resultMap id="com.gennlife.platform.bean.projectBean.ProLog" type="com.gennlife.platform.bean.projectBean.ProLog">
@@ -616,7 +615,7 @@
     </resultMap>
 
     <sql id="MyProjectListSelect">
-        creator,p.projectID,projectName,date_format(createTime,"%Y-%m-%d") AS cTime,date_format(startTime,"%Y-%m-%d") AS startTime,date_format(endTime,"%Y-%m-%d") AS endTime,members,planNum,projectDesp,setCount,projectEngName,unit,manager,type,disease,registerNumber,center,dataSource
+        creator,p.projectID,projectName,date_format(createTime,"%Y-%m-%d") AS cTime,date_format(startTime,"%Y-%m-%d") AS startTime,date_format(endTime,"%Y-%m-%d") AS endTime,members,planNum,projectDesp,setCount,projectEngName,unit,manager,type,disease,registerNumber,center,dataSource,crfId
     </sql>
 
     <select id="baiscInfo" resultMap="com.gennlife.platform.bean.projectBean.MyProjectList"
@@ -781,5 +780,11 @@
         update pro_user
         set puisdelete=1
         where projectID = #{projectID}
+    </update>
+
+    <update id="insertProCrfId" parameterType="map" >
+        update userInfoDB.p_project
+        set dataSource = #{dataSource,jdbcType=VARCHAR},crfId = #{crfId,jdbcType=VARCHAR}
+        where projectID = #{projectID,jdbcType=VARCHAR}
     </update>
 </mapper>

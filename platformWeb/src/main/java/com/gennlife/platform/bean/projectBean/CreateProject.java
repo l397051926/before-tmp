@@ -27,8 +27,16 @@ public class CreateProject {
     private int isdelete = 0;
 
     //病种的名字和数据源
-    private String crfName;
     private String dataSource;
+    private String crfId;
+
+    public String getCrfId() {
+        return crfId;
+    }
+
+    public void setCrfId(String crfId) {
+        this.crfId = crfId;
+    }
 
     public String getDataSource() {
         return dataSource;
@@ -36,14 +44,6 @@ public class CreateProject {
 
     public void setDataSource(String dataSource) {
         this.dataSource = dataSource;
-    }
-
-    public String getCrfName() {
-        return crfName;
-    }
-
-    public void setCrfName(String crfName) {
-        this.crfName = crfName;
     }
 
     public String getRegisterNumber() {

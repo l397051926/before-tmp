@@ -251,4 +251,10 @@ public interface ProjectMapper {
     int deletePlanByProjectID(@Param("projectID") String projectID);
 
     int deleteMemberByProjectID(@Param("projectID") String projectID);
+
+    /**
+     * 向p_project中添加crfId,dataSource
+     * @param
+     */
+    public int insertProCrfId(Map<String,String> map);
 }
