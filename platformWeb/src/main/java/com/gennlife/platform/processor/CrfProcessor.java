@@ -133,7 +133,6 @@ public class CrfProcessor {
         }
     }
 
-
     public String deleteSample(JsonObject paramObj, String orgID, User user) {
         try {
             Power power = user.getPower();
