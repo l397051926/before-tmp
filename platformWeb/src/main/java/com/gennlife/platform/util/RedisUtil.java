@@ -70,6 +70,10 @@ public class RedisUtil {
         }
     }
 
+    public static boolean isExists(String key){
+        return jedisCluster.exists(key);
+    }
+
     public static void delImageIdFromFs(String sessionID) {
         try {
             sessionID += imageSaveToRedisId;
@@ -277,5 +281,19 @@ public class RedisUtil {
 
     public static void exit(List<String> uids) {
         if (uids != null) uids.forEach(uid -> exit(uid, null));
+    }
+
+    public static boolean setMap(String key, Map<String,String> value) {
+        try {
+            String result = jedisCluster.hmset(key,value);
+            if (!result.equalsIgnoreCase("ok")) {
+                logger.error("redis 写入失败 " + key + " return result " + result);
+                return false;
+            }
+            return true;
+        } catch (Exception e) {
+            logger.error("redis 出错" + e.getMessage());
+            return false;
+        }
     }
 }

@@ -1,6 +1,5 @@
 package com.gennlife.platform.ReadConfig;
 
-import com.gennlife.platform.service.ArkService;
 import com.gennlife.platform.util.FilesUtils;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.RedisUtil;
@@ -16,10 +15,10 @@ import java.util.Map;
 
 /**
  * @author liumingxin
- * @create 2018 17 20:50
+ * @create 2018 18 14:01
  * @desc
  **/
-public class LoadCrfCondition {
+public class ReadConditionByRedis {
     private static final Logger logger = LoggerFactory.getLogger(LoadCrfCondition.class);
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
@@ -38,7 +37,7 @@ public class LoadCrfCondition {
                 JsonObject advancedSearch = jsonObject.getAsJsonObject("advancedSearch");
                 JsonObject compareObj = jsonObject.getAsJsonObject("compare");
                 JsonObject importTree = jsonObject.getAsJsonObject("import");
-                CrfSearchMap.put(crf_id,advancedSearch);
+                RedisUtil.setValue(crf_id,gson.toJson(advancedSearch));
             }
         }catch (Exception e){
             logger.error("", e);
@@ -46,22 +45,15 @@ public class LoadCrfCondition {
         }
     }
 
-    public static Map<String, JsonObject> getCrfSearchMap() {
-        if(CrfSearchMap.size() ==0){
+    public static JsonObject getCrfSearch(String crf_id) {
+        if(!RedisUtil.isExists(crf_id)){
             loadConfigurationInfo();
         }
-        return CrfSearchMap;
-    }
-
-    public static JsonObject getCrfSearch(String crf_id) {
-        JsonObject jsonObject = getCrfSearchMap().get(crf_id);
-        if (jsonObject != null) {
-            String copy = gson.toJson(jsonObject);
-            JsonObject target = (JsonObject) jsonParser.parse(copy);
+        String data = RedisUtil.getValue(crf_id);
+        if (data != null) {
+            JsonObject target = (JsonObject) jsonParser.parse(data);
             return target;
         }
         return new JsonObject();
     }
-
-
 }

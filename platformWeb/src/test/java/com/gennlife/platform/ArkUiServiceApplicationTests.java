@@ -1,5 +1,6 @@
 package com.gennlife.platform;
 
+import com.gennlife.platform.util.RedisUtil;
 import net.minidev.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -57,4 +58,6 @@ public class ArkUiServiceApplicationTests {
 			e.printStackTrace();
 		}
 	}
+
+
 }

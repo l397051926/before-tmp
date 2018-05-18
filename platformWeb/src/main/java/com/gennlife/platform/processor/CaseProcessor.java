@@ -1,5 +1,6 @@
 package com.gennlife.platform.processor;
 
+import com.gennlife.platform.ReadConfig.ReadConditionByRedis;
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.conf.SystemDefault;
@@ -210,7 +211,8 @@ public class CaseProcessor {
             resultBean.setCode(1);
             resultBean.setData(allNew);
         }  else if ("6".equals(status)) {//高级搜索,所有属性,带有搜索功能
-            JsonObject all = ConfigurationService.getCrfSearch(crf_id);
+//            JsonObject all = ConfigurationService.getCrfSearch(crf_id);
+            JsonObject all = ReadConditionByRedis.getCrfSearch(crf_id);
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                 String groupName = obj.getKey();
