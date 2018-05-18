@@ -787,4 +787,13 @@
         set dataSource = #{dataSource,jdbcType=VARCHAR},crfId = #{crfId,jdbcType=VARCHAR}
         where projectID = #{projectID,jdbcType=VARCHAR}
     </update>
+
+    <select id="getCrfName" resultType="String">
+        SELECT crf_name FROM (
+          (SELECT crfId FROM p_project) projects
+          LEFT JOIN
+          (SELECT crf_id,crf_name FROM gennlife_lab_crf) crfs
+          ON projects.crfId = crfs.crf_id
+        ) LIMIT 1
+    </select>
 </mapper>

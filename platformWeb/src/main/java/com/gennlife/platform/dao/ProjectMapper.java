@@ -4,6 +4,7 @@ import com.gennlife.platform.bean.projectBean.*;
 import com.gennlife.platform.model.User;
 import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -257,4 +258,11 @@ public interface ProjectMapper {
      * @param
      */
     public int insertProCrfId(Map<String,String> map);
+
+    /**
+     * 获取单病种的名称
+     * @param crfId
+     * @return
+     */
+    public String getCrfName(String crfId);
 }

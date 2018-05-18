@@ -88,6 +88,8 @@ public class JsonUtils {
         createProject.setDisease(disease);
         createProject.setRegisterNumber(registerNumber);
         createProject.setType(type);
+        createProject.setCrfId("");
+        createProject.setDataSource("");
 
         //组建log日志
         User syUser = AllDao.getInstance().getSyUserDao().getUserByUid(creator);

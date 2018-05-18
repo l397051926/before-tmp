@@ -11,6 +11,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +26,8 @@ public class RwsController {
     private Logger logger = LoggerFactory.getLogger(RwsController.class);
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
-    private RwsProcessor processor = new RwsProcessor();
+    @Autowired
+    private RwsProcessor processor;
     private CaseProcessor caseProcessor = new CaseProcessor();
 
     @RequestMapping(value = "/PreLiminary", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")

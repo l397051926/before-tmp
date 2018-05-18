@@ -367,16 +367,16 @@ public class ProjectProcessor {
     public String projectListNoPage(JsonObject paramObj, HttpServletRequest paramRe) {
         String uid = null,crf_id = null;
         User user = (User) paramRe.getAttribute("currentUser");
-        boolean flag = false;
+        boolean CRFFlag = false;
         boolean crfImportFlag = true;
         Map<String, Object> conf = new HashMap<>();
         ResultBean resultBean = new ResultBean();
 
         try {
             uid = paramObj.get("uid").getAsString();
-            flag = paramObj.has("crf_id");//是否含有crf_id
-            if (flag){
-                crf_id = paramObj.get("crf_id").getAsString();
+            CRFFlag = paramObj.has("crfId");//是否含有crfId
+            if (CRFFlag){
+                crf_id = paramObj.get("crfId").getAsString();
                 crfImportFlag = CrfProcessor.getCRFFlag(user.getPower(),user.getOrgID(),crf_id,"has_importCRF");
             }
             conf.put("uid",uid);
@@ -390,7 +390,7 @@ public class ProjectProcessor {
             if(!crfImportFlag){
                 return ParamUtils.errorParam("没有导出权限");
             }
-            if (flag) {
+            if (CRFFlag) {
                 for (MyProjectList myProjectList : list) {
                     //获取项目的数据源
                     String dataSource = myProjectList.getDataSource();
