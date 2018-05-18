@@ -18,7 +18,7 @@ import java.util.Map;
  * @desc
  **/
 public class CrfConditionService {
-    private static final Logger logger = LoggerFactory.getLogger(ArkService.class);
+    private static final Logger logger = LoggerFactory.getLogger(CrfConditionService.class);
     private static JsonParser jsonParser = new JsonParser();
 
     private static JsonObject crfConditionJson = null;
