@@ -43,7 +43,7 @@ public class CommonProcessor {
             byte[] buff = new byte[2048];
             int bytesRead;
             if(isTemplate){
-                response.getOutputStream().write(new   byte []{( byte ) 0xEF ,( byte ) 0xBB ,( byte ) 0xBF });
+                response.getOutputStream().write(new byte []{( byte ) 0xEF ,( byte ) 0xBB ,( byte ) 0xBF });
             }
             while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
                 os.write(buff, 0, bytesRead);
