@@ -74,7 +74,7 @@ public class CommonController implements InitializingBean {
     public void getDownloadFileForImportLabHistory(HttpServletRequest paramRe, HttpServletResponse response) {
         User user = (User) paramRe.getAttribute("currentUser");
         String file = FilePath + user.getOrg_name() + labImportsuffix;
-        processor.downLoadFile(file, response, "最近组织导入结果.csv");
+        processor.downLoadFile(file, response, "最近组织导入结果.csv",false);
     }
 
     @RequestMapping(value = "/UploadFileForImportStaff", method = RequestMethod.POST, produces = {"text/html;charset=UTF-8", "application/json;charset=UTF-8"})
@@ -100,20 +100,20 @@ public class CommonController implements InitializingBean {
     public void getDownloadFileForStaffHistory(HttpServletRequest paramRe, HttpServletResponse response) {
         User user = (User) paramRe.getAttribute("currentUser");
         String file = FilePath + user.getOrg_name() + staffImportsuffix;
-        processor.downLoadFile(file, response, "最近成员导入结果.csv");
+        processor.downLoadFile(file, response, "最近成员导入结果.csv",false);
     }
 
     @RequestMapping(value = "/DownloadFileForStaffModel", method = RequestMethod.GET)
     public void DownloadFileForStaffModel(HttpServletRequest paramRe, HttpServletResponse response) {
         String file = FilePath + "人员导入模版" + suffix;
         logger.info(file);
-        processor.downLoadFile(file, response, "人员导入模版.csv");
+        processor.downLoadFile(file, response, "人员导入模版.csv",true);
     }
 
     @RequestMapping(value = "/DownloadFileForLabModel", method = RequestMethod.GET)
     public void DownloadFileForLabModel(HttpServletRequest paramRe, HttpServletResponse response) {
         String file = FilePath + "组织导入模版" + suffix;
-        processor.downLoadFile(file, response, "组织导入模版.csv");
+        processor.downLoadFile(file, response, "组织导入模版.csv",true);
     }
 
 
@@ -147,7 +147,7 @@ public class CommonController implements InitializingBean {
             fileName = kidney_cancer;
         }
         logger.info("DownloadFileForExplainCRFImport: " + crfId + " : " + fileName);
-        processor.downLoadFile(file, response, fileName);
+        processor.downLoadFile(file, response, fileName,false);
     }
 
     @Override
