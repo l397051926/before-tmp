@@ -260,9 +260,10 @@
     <result column="gennlife_lab_crf.labID" property="labID" jdbcType="VARCHAR" />
     <result column="gennlife_lab_crf.crf_id" property="crf_id" jdbcType="VARCHAR" />
     <result column="gennlife_lab_crf.crf_name" property="crf_name" jdbcType="VARCHAR" />
+    <result column="gennlife_lab_crf.index_name" property="index_name" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="CRFLabProperty">
-    gennlife_lab_crf.labID,gennlife_lab_crf.crf_id,gennlife_lab_crf.crf_name
+    gennlife_lab_crf.labID,gennlife_lab_crf.crf_id,gennlife_lab_crf.crf_name,gennlife_lab_crf.index_name
   </sql>
   <select id="getCrfIDByLab" resultType="com.gennlife.platform.model.CRFLab">
     SELECT
@@ -285,6 +286,12 @@
     <foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
       #{item,jdbcType=VARCHAR}
     </foreach>
+  </select>
+
+  <select id="getCrfIndexName" resultType="String">
+    SELECT index_name
+    FROM gennlife_lab_crf
+    WHERE crf_id=#{crf_id,jdbcType=VARCHAR}
   </select>
 
   <select id="getSidsByRoleid" resultType="String">

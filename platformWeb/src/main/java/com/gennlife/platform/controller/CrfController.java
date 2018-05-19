@@ -644,7 +644,7 @@ public class CrfController {
         String resultStr = null;
         JsonObject paramObj = null;
         try {
-            String param = AuthorityUtil.addSearchCaseAuthority(paramRe);
+            String param = ParamUtils.getParam(paramRe);
             paramObj = (JsonObject) jsonParser.parse(param);
             User user = (User) paramRe.getAttribute("currentUser");
             logger.info("crf 搜索 参数形式=" + param);
