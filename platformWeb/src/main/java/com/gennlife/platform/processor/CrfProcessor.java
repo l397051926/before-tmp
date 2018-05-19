@@ -550,8 +550,9 @@ public class CrfProcessor {
                 String url = "http://10.0.2.53:8989/search-server/search";
                 logger.info("请求参数： "+newParam);
                 String result = HttpRequestUtils.httpPost(url, gson.toJson(newParam));
+                JsonObject searchResult = (JsonObject) jsonParser.parse(result);
                 resultBean.setCode(1);
-                resultBean.setData(result);
+                resultBean.setData(searchResult);
             }else {
                 return ParamUtils.errorParam("没有搜索权限");
             }
