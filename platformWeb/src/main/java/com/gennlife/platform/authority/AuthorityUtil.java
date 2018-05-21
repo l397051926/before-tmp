@@ -63,6 +63,10 @@ public class AuthorityUtil {
         //从request请求中获取传送的实体内容
         String param = ParamUtils.getParam(paramRe);
         JsonElement paramElement = jsonParser.parse(param);
+        if(param.contains("crfID")){
+            return param;
+        }
+
         //从request域中获取当前用户
         Object object = paramRe.getAttribute("currentUser");
         if (object == null) {
