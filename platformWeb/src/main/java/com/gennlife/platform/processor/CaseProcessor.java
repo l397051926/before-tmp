@@ -471,11 +471,13 @@ public class CaseProcessor {
         } else { // 角色,完成小组扩展
             if("是".equals(user.getIfRoleAll())){  //全量处理
                 paramObj.remove("groups"); // 选择科室后，工号权限小时
-                Power power=new Power();
+//                Power power=new Power();
+                Power power = user.getPower();
                 Resource resource=new Resource();
                 resource.setSid("hospital_all");
                 resource.setSlab_name("_all");
                 resource.setHas_search("有");
+
                 List<Resource> list=new LinkedList<>();
                 list.add(resource);
                 power.setHas_search(list);
