@@ -7,6 +7,15 @@ public class CRFLab {
     private String labID;
     private String crf_id;
     private String crf_name;
+    private String index_name;
+
+    public String getIndex_name() {
+        return index_name;
+    }
+
+    public void setIndex_name(String index_name) {
+        this.index_name = index_name;
+    }
 
     public String getLabID() {
         return labID;

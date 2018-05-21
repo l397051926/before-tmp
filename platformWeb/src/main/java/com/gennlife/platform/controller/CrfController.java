@@ -451,7 +451,7 @@ public class CrfController {
                 logger.error("CsvImportDetail写文件异常", e);
                 return;
             }
-            processor.downLoadFile(tmpFilePath, response, filename);
+            processor.downLoadFile(tmpFilePath, response, filename,false);
 
             if (f.exists()) f.delete();
         } catch (Exception e) {
@@ -644,7 +644,7 @@ public class CrfController {
         String resultStr = null;
         JsonObject paramObj = null;
         try {
-            String param = AuthorityUtil.addSearchCaseAuthority(paramRe);
+            String param = ParamUtils.getParam(paramRe);
             paramObj = (JsonObject) jsonParser.parse(param);
             User user = (User) paramRe.getAttribute("currentUser");
             logger.info("crf 搜索 参数形式=" + param);

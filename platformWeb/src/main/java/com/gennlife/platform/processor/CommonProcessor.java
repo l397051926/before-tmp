@@ -30,7 +30,7 @@ public class CommonProcessor {
         return commonProcessor;
     }
 
-    public void downLoadFile(String pathfile, HttpServletResponse response, String fileName) {
+    public void downLoadFile(String pathfile, HttpServletResponse response, String fileName,boolean isTemplate ) {
         try {
             // fileName = URLEncoder.encode(fileName, "utf-8"); // 可以解决下载后文件名中文乱码问题
             fileName = new String(fileName.getBytes("GBK"), "iso-8859-1");
@@ -42,7 +42,9 @@ public class CommonProcessor {
             BufferedOutputStream os = new BufferedOutputStream(response.getOutputStream());
             byte[] buff = new byte[2048];
             int bytesRead;
-            response.getOutputStream().write(new   byte []{( byte ) 0xEF ,( byte ) 0xBB ,( byte ) 0xBF });
+            if(isTemplate){
+                response.getOutputStream().write(new byte []{( byte ) 0xEF ,( byte ) 0xBB ,( byte ) 0xBF });
+            }
             while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
                 os.write(buff, 0, bytesRead);
             }

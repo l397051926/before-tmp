@@ -101,4 +101,12 @@ public interface SyResourceMapper {
     List<String> getSidsByRoleid(@Param("roleid") String roleid);
 
     LabResource getLabResourcesBySid(@Param("sid") String sid);
+
+    /**
+     * 获取病种索引名
+     * @param crf_id
+     * @return
+     */
+    String getCrfIndexName(@Param("crf_id")String crf_id);
+
 }

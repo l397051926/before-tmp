@@ -534,17 +534,25 @@ public class CrfProcessor {
 
     public String searchCase(JsonObject newParam, User user) {
         String crf_id = null;
+        String index_name = null;
         ResultBean resultBean = new ResultBean();
         try{
-            crf_id = newParam.get("crf_id").getAsString();
+            crf_id = newParam.get("crfID").getAsString();
+            index_name = AllDao.getInstance().getSyResourceDao().getCrfIndexName(crf_id);
+            if(StringUtils.isEmpty(index_name)){
+                return ParamUtils.errorParam("没有此病种索引数据");
+            }
             Power power = user.getPower();
             boolean flag = getCRFFlag(power, user.getOrgID(), crf_id, "has_searchCRF");
             if(flag){
-                String url = ConfigurationService.getUrlBean().getCRFSearchSampleList();
+//                String url = ConfigurationService.getUrlBean().getCRFSearchSampleList();
+                newParam.addProperty("indexName",index_name);
+                String url = "http://10.0.2.53:8989/search-server/search";
                 logger.info("请求参数： "+newParam);
                 String result = HttpRequestUtils.httpPost(url, gson.toJson(newParam));
+                JsonObject searchResult = (JsonObject) jsonParser.parse(result);
                 resultBean.setCode(1);
-                resultBean.setData(result);
+                resultBean.setData(searchResult);
             }else {
                 return ParamUtils.errorParam("没有搜索权限");
             }
