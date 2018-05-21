@@ -758,7 +758,7 @@ public class UserProcessor {
             defaultObj.add("crfList", crfList);
             for (CRFLab crfLab : defaultList) {
                 JsonObject item = new JsonObject();
-                item.addProperty(crfLab.getCrf_id(), crfLab.getCrf_name());
+                item.addProperty(crfLab.getCrf_id(), crfLab.getCrfName());
             }
             if (crfList.size() == 0) {
                 data.add("default", new JsonObject());
@@ -783,7 +783,7 @@ public class UserProcessor {
                 item.add("crfList", crfList);
                 for (CRFLab crfLab : crfLablist) {
                     if (crfLab.getLabID().equals(tmpID)) {
-                        crfList.addProperty(crfLab.getCrf_id(), crfLab.getCrf_name());
+                        crfList.addProperty(crfLab.getCrf_id(), crfLab.getCrfName());
                     }
                 }
                 listArray.add(item);

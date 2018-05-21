@@ -267,23 +267,30 @@
   </sql>
 
   <select id="getCrfIDByLab" resultType="com.gennlife.platform.model.CRFLab">
-    SELECT
-    <include refid="CRFLabProperty"/>
-    FROM gennlife_lab_crf
-    WHERE labID=#{labID} AND orgID = #{orgID}
+    SELECT labID,crf_id,crfName,index_name
+    FROM (
+    gennlife_lab_crf lc
+    INNER JOIN
+    gennlife_crf c
+    ON lc.crf_id = c.crfId
+    ) WHERE labID=#{labID}
   </select>
   <select id="isExistsCrfID" resultType="java.lang.Integer">
     SELECT
     count(1)
     FROM gennlife_lab_crf
-    WHERE labID=#{labID} AND orgID = #{orgID} and crf_id=#{crf_id}
+    WHERE labID=#{labID} and crf_id=#{crf_id}
   </select>
 
   <select id="getCrfIDListByLab" resultType="com.gennlife.platform.model.CRFLab">
-    SELECT
-    <include refid="CRFLabProperty"/>
-    FROM gennlife_lab_crf
-    WHERE crf_id != "" AND  orgID = #{orgID} AND labID in
+    SELECT labID,crf_id,crfName,index_name
+    FROM (
+    gennlife_lab_crf lc
+    LEFT JOIN
+    gennlife_crf c
+    ON lc.crf_id = c.crfId
+    )
+    WHERE crf_id != "" AND labID in
     <foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
       #{item,jdbcType=VARCHAR}
     </foreach>

@@ -789,13 +789,12 @@
     </update>
 
     <select id="getCrfName" resultType="String">
-        SELECT crf_name FROM (
+        SELECT crfName FROM (
         gennlife_lab_crf
         INNER JOIN
-        (SELECT crfId FROM p_project) p
-        ON gennlife_lab_crf.crf_id=p.crfId
+        gennlife_crf c
+        ON gennlife_lab_crf.crf_id=c.crfId
         )
         WHERE crfId=#{crf_id}
-        LIMIT 1
     </select>
 </mapper>
