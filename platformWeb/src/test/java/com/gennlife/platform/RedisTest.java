@@ -33,4 +33,10 @@ public class RedisTest {
 
         System.out.println("js" +jsonObject);
     }
+
+    @Test
+    public void deleteRedisKey(){
+        String key = "CVD";
+        RedisUtil.deleteKey(key);
+    }
 }
