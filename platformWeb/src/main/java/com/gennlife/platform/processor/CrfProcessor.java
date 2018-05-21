@@ -628,6 +628,12 @@ public class CrfProcessor {
         return gson.toJson(resultBean);
     }
 
+    /**
+     * 获取 crf name
+     * @param paramObj
+     * @param user
+     * @return
+     */
     public String getCrfProjectDiseaseItem(JsonObject paramObj, User user) {
         String orgId = null;
         String labId = null;
@@ -641,7 +647,8 @@ public class CrfProcessor {
             for (CRFLab crfLab:crfLabs) {
                 JsonObject jsonObject = new JsonObject();
                 jsonObject.addProperty("sid",crfLab.getCrf_id());
-                jsonObject.addProperty("slab_name",ArkService.getDiseaseName(crfLab.getCrf_id()));
+                jsonObject.addProperty("slab_name",crfLab.getCrfName());
+                jsonObject.addProperty("indexName",crfLab.getIndex_name());
                 jsonArray.add(jsonObject);
             }
             resultBean.setCode(1);

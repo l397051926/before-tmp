@@ -826,6 +826,24 @@ public class BackstageManagementController {
         return resultStr;
     }
 
+    @RequestMapping(value="/deleteRedisKey",method = RequestMethod.GET,produces="application/json;charset=UTF-8")
+    @ResponseBody
+    public String deleteRedisKey(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try{
+            String param = ParamUtils.getParam(paramRe);
+            User user = (User) paramRe.getAttribute("currentUser");
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.deleteRedisKey(paramObj, user);
+        }catch(Exception e){
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("判断当前科室名称是否唯一 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
 
 
 
