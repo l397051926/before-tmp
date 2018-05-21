@@ -760,7 +760,7 @@
         and isdelete!=1
     </update>
     <update id="autoDeleteSetCountOne">
-         UPDATE
+        UPDATE
         userInfoDB.p_project
         SET setCount = setCount - 1
         WHERE  projectID = #{projectID}
@@ -790,10 +790,12 @@
 
     <select id="getCrfName" resultType="String">
         SELECT crf_name FROM (
-          (SELECT crfId FROM p_project) projects
-          LEFT JOIN
-          (SELECT crf_id,crf_name FROM gennlife_lab_crf) crfs
-          ON projects.crfId = crfs.crf_id
-        ) LIMIT 1
+        gennlife_lab_crf
+        INNER JOIN
+        (SELECT crfId FROM p_project) p
+        ON gennlife_lab_crf.crf_id=p.crfId
+        )
+        WHERE crfId=#{crf_id}
+        LIMIT 1
     </select>
 </mapper>

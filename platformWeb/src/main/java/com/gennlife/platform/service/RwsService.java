@@ -39,8 +39,7 @@ public class RwsService implements RwsServiceImpl {
                 if (paramObj.has("crfId")){
                     String crfId = paramObj.get("crfId").getAsString();
                     //获取单病种对应的名称
-                    String crfName = AllDao.getInstance().getProjectDao().getCrfName(crfId);
-                    //String crfName = projectMapper.getCrfName(crfId);
+                    String crfName = projectMapper.getCrfName(crfId);
                     counter = insertProCrfId(projectId,"单病种-"+crfName,crfId);
                 } else {
                     counter = insertProCrfId(projectId,"EMR","");
@@ -66,8 +65,7 @@ public class RwsService implements RwsServiceImpl {
         map.put("dataSource",dataSource);
         map.put("crfId",crfId);
         long start = System.currentTimeMillis();
-        int count = AllDao.getInstance().getProjectDao().insertProCrfId(map);
-        //int count = projectMapper.insertProCrfId(map);
+        int count = projectMapper.insertProCrfId(map);
         long end = System.currentTimeMillis();
         logger.debug("insertProCrfId(map) mysql耗时"+(end-start)+"ms");
         return count;

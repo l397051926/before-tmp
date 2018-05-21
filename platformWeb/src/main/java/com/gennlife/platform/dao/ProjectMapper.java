@@ -261,8 +261,8 @@ public interface ProjectMapper {
 
     /**
      * 获取单病种的名称
-     * @param crfId
+     * @param
      * @return
      */
-    public String getCrfName(String crfId);
+    public String getCrfName(@Param("crf_id")String crf_id);
 }
