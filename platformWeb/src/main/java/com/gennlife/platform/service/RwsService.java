@@ -29,14 +29,20 @@ public class RwsService implements RwsServiceImpl {
     public String PreLiminary(JsonObject paramObj) {
         int counter = 0;
         ResultBean resultBean = new ResultBean();
+        boolean flag = paramObj.has("crfId");
         try {
+            //如果含有crfId，则传递index_name
+            if (flag) {
+                String crfId = paramObj.get("crfId").getAsString();
+                String index_name = projectMapper.getIndexNameByCrfID(crfId);
+            }
             String url = ConfigurationService.getUrlBean().getPreLiminaryUrl();
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
 
             JsonObject resultObj = (JsonObject) jsonParser.parse(result);
             if (resultObj.get("status").getAsString().equals("200")){
                 String projectId = paramObj.get("projectId").getAsString();
-                if (paramObj.has("crfId")){
+                if (flag){
                     String crfId = paramObj.get("crfId").getAsString();
                     //获取单病种对应的名称
                     String crfName = projectMapper.getCrfName(crfId);
