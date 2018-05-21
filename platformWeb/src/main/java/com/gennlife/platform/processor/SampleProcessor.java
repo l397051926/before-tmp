@@ -440,7 +440,7 @@ public class SampleProcessor {
         try {
             if(jsonObject.has("crfI")){
                 ResultBean resultBean = new ResultBean();
-                JsonObject data = new JsonObject();d
+                JsonObject data = new JsonObject();
                 data.addProperty("next", true);
                 data.addProperty("export", false);
                 data.addProperty("sub", 0);
