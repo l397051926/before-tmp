@@ -63,7 +63,7 @@ public class AuthorityUtil {
         //从request请求中获取传送的实体内容
         String param = ParamUtils.getParam(paramRe);
         JsonElement paramElement = jsonParser.parse(param);
-        if(param.contains("crfID")){
+        if(param.contains("crfId")){
             return param;
         }
 

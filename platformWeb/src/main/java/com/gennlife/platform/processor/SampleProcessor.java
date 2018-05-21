@@ -438,7 +438,7 @@ public class SampleProcessor {
     //导出项目
     public String importSampleCheck(JsonObject jsonObject, User user) {
         try {
-            if(jsonObject.has("crfID")){
+            if(jsonObject.has("crfI")){
                 ResultBean resultBean = new ResultBean();
                 JsonObject data = new JsonObject();
                 data.addProperty("next", true);
@@ -454,7 +454,7 @@ public class SampleProcessor {
                 JsonArray groups = jsonObject.get("groups").getAsJsonArray();
                 query.add("groups", groups);
             }
-            
+
 
             query.add("power", power);
             logger.info("原始搜索条件=" + gson.toJson(query));
