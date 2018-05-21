@@ -438,9 +438,9 @@ public class SampleProcessor {
     //导出项目
     public String importSampleCheck(JsonObject jsonObject, User user) {
         try {
-            if(jsonObject.has("crfI")){
+            if(jsonObject.has("crfId")){
                 ResultBean resultBean = new ResultBean();
-                JsonObject data = new JsonObject();d
+                JsonObject data = new JsonObject();
                 data.addProperty("next", true);
                 data.addProperty("export", false);
                 data.addProperty("sub", 0);
