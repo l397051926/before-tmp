@@ -365,10 +365,11 @@ public class ProjectProcessor {
      * @return
      */
     public String projectListNoPage(JsonObject paramObj, HttpServletRequest paramRe) {
-        String uid = null,crf_id = null;
+        String uid = null;
+        String crf_id = null;
         User user = (User) paramRe.getAttribute("currentUser");
-        boolean CRFFlag = false;
-        boolean crfImportFlag = true;
+        boolean CRFFlag = false;//是否为单病种
+        boolean crfImportFlag = true;//是否有导出权限
         Map<String, Object> conf = new HashMap<>();
         ResultBean resultBean = new ResultBean();
 
@@ -381,8 +382,8 @@ public class ProjectProcessor {
             }
             conf.put("uid",uid);
         } catch (Exception e) {
-            logger.error("请求参数出错", e);
-            return ParamUtils.errorParam("请求参数出错");
+            logger.error("请求参数出错，没有uid", e);
+            return ParamUtils.errorParam("请求参数出错，没有uid");
         }
         try {
             List<MyProjectList> list = AllDao.getInstance().getProjectDao().getProjectList(conf);
@@ -428,8 +429,8 @@ public class ProjectProcessor {
             resultBean.setData(paramList);
             return gson.toJson(resultBean);
         } catch (Exception e) {
-            logger.error("请求发生异常", e);
-            return ParamUtils.errorParam("请求发生异常");
+            logger.error("projectListNoPage项目列表获取有误", e);
+            return ParamUtils.errorParam("projectListNoPage项目列表获取有误");
         }
     }
 

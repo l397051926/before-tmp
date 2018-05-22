@@ -35,8 +35,8 @@ public class RwsService implements RwsServiceImpl {
         try {
             if (!flag){
                 paramObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
+                logger.info("emr的indexName" + ConfigUtils.getSearchIndexName());
             }
-            //String url = "http://192.168.1.130:9000/rws/pre/liminary";
             String url = ConfigurationService.getUrlBean().getPreLiminaryUrl();
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
 
@@ -48,8 +48,10 @@ public class RwsService implements RwsServiceImpl {
                     //获取单病种对应的名称
                     String crfName = projectMapper.getCrfName(crfId);
                     counter = insertProCrfId(projectId,"单病种-"+crfName,crfId);
+                    logger.info("插入数据源counter;"+counter);
                 } else {
                     counter = insertProCrfId(projectId,"EMR","");
+                    logger.info("插入数据源counter;"+counter);
                 }
             }
 
