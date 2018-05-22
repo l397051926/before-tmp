@@ -266,5 +266,6 @@ public interface ProjectMapper {
      */
     public String getCrfName(@Param("crf_id")String crf_id);
 
-    String getIndexNameByCrfID(String crfId);
+/*   
+    String getIndexNameByCrfID(@Param("crf_id")String crf_id);*/
 }

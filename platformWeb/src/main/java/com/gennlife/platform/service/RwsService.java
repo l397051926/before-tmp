@@ -4,6 +4,7 @@ import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.dao.ProjectMapper;
 import com.gennlife.platform.processor.RwsProcessor;
+import com.gennlife.platform.util.ConfigUtils;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
@@ -22,6 +23,7 @@ public class RwsService implements RwsServiceImpl {
     private static Logger logger = LoggerFactory.getLogger(RwsProcessor.class);
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
+
     @Autowired
     private ProjectMapper projectMapper;
 
@@ -31,11 +33,10 @@ public class RwsService implements RwsServiceImpl {
         ResultBean resultBean = new ResultBean();
         boolean flag = paramObj.has("crfId");
         try {
-            //如果含有crfId，则传递index_name
-            if (flag) {
-                String crfId = paramObj.get("crfId").getAsString();
-                String index_name = projectMapper.getIndexNameByCrfID(crfId);
+            if (!flag){
+                paramObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
             }
+            //String url = "http://192.168.1.130:9000/rws/pre/liminary";
             String url = ConfigurationService.getUrlBean().getPreLiminaryUrl();
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
 

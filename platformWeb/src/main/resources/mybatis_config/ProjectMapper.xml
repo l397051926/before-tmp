@@ -796,5 +796,13 @@
         ON gennlife_lab_crf.crf_id=c.crfId
         )
         WHERE crfId=#{crf_id}
+        limit 1
     </select>
+
+<!--    <select id="getIndexNameByCrfID" resultType="String">
+        SELECT index_name FROM
+        gennlife_lab_crf
+        WHERE crf_id=#{crf_id}
+        limit 1
+    </select>-->
 </mapper>
