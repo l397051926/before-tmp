@@ -744,7 +744,7 @@ public class CrfController {
         return resultStr;
     }
     //crfId patientInfo
-    @RequestMapping(value = "/getCaseToDetail",method = RequestMethod.GET,produces = "application/json:charset=UTF-8")
+    @RequestMapping(value = "/getCaseToDetail", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String getCaseToDetail(HttpServletRequest paramRe){
         Long start = System.currentTimeMillis();
