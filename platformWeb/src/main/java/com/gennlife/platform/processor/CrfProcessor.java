@@ -719,15 +719,14 @@ public class CrfProcessor {
 
     public String getCaseToDetail(JsonObject paramObj) {
         ResultBean resultBean = new ResultBean();
+        String result;
         try {
             String url = ConfigurationService.getUrlBean().getCaseToDetail();
-            String result = HttpRequestUtils.httpPost(url,gson.toJson(paramObj));
-            resultBean.setCode(0);
-            resultBean.setInfo(result);
+            result = HttpRequestUtils.httpPost(url,gson.toJson(paramObj));
         }catch (Exception e){
             return ParamUtils.errorParam("请求出错");
         }
-        return gson.toJson(resultBean);
+        return result;
 
     }
 }
