@@ -304,6 +304,19 @@ public class URLBean {
      */
     private String caseGeneErrorURL = null;
 
+    public String getCaseToDetail() {
+        return CaseToDetail;
+    }
+
+    public void setCaseToDetail(String caseToDetail) {
+        CaseToDetail = caseToDetail;
+    }
+
+    /**
+     *  crf 高级搜索调到详情页
+     */
+    private String CaseToDetail = null;
+
     public String getHighlight() {
         return highlight;
     }

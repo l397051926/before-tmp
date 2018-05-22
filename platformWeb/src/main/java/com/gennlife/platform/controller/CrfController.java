@@ -743,4 +743,21 @@ public class CrfController {
         logger.info("CRF导入校验 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+    //crfId patientInfo
+    @RequestMapping(value = "/getCaseToDetail", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String getCaseToDetail(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.getCaseToDetail(paramObj);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取 caseid 到详情页 耗时"+(System.currentTimeMillis()-start)+"ms");
+        return resultStr;
+    }
 }
