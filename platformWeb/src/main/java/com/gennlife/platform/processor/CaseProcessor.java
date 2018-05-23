@@ -656,7 +656,11 @@ public class CaseProcessor {
         try {
             String url = ConfigurationService.getUrlBean().getHighlight();
             logger.info("搜索详情高亮 url=" + url);
-            paramObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
+            if(paramObj.has("indexName")){
+                paramObj.remove("crfID");
+            }else{
+                paramObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
+            }
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
             logger.info("搜索详情高亮 SS返回结果： " + result);
             return result;
