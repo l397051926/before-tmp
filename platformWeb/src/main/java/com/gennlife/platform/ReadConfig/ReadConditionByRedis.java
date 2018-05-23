@@ -3,10 +3,7 @@ package com.gennlife.platform.ReadConfig;
 import com.gennlife.platform.util.FilesUtils;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.RedisUtil;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +20,6 @@ public class ReadConditionByRedis {
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
     //crf HashMap
-    private static Map<String, JsonObject> CrfSearchMap = new HashMap<>();
 
     public static void loadConfigurationInfo(){
         try {
@@ -39,8 +35,15 @@ public class ReadConditionByRedis {
                 JsonObject importTree = jsonObject.getAsJsonObject("import");
                 RedisUtil.setValue(crf_id,gson.toJson(advancedSearch));
             }
+            //读取 emrrws
+            String EmrRwsConfig = FilesUtils.readFile("/rws/emr_rws.json");
+            RedisUtil.setValue("emr_rws",EmrRwsConfig);
+            //读取 crf rws
+            String crf_rws_CVD = FilesUtils.readFile("/rws/crf_rws_CVD.json");
+            RedisUtil.setValue("crf_rws_CVD",crf_rws_CVD);
+
         }catch (Exception e){
-            logger.error("", e);
+            logger.error("读取配置文件 异常", e);
             throw new RuntimeException();
         }
     }
@@ -56,4 +59,29 @@ public class ReadConditionByRedis {
         }
         return new JsonObject();
     }
+
+    public static JsonArray getEmrRws(){
+        if(!RedisUtil.isExists("emr_rws")){
+            loadConfigurationInfo();
+        }
+        String data = RedisUtil.getValue("emr_rws");
+        if(data !=null){
+            JsonArray target = (JsonArray) jsonParser.parse(data);
+            return target;
+        }
+        return new JsonArray();
+    }
+
+    public static JsonArray getCrfRws(String crfId){
+        if(!RedisUtil.isExists("crf_rws_"+crfId)){
+            loadConfigurationInfo();
+        }
+        String data = RedisUtil.getValue("crf_rws_"+crfId);
+        if(data !=null){
+            JsonArray target = (JsonArray) jsonParser.parse(data);
+            return target;
+        }
+        return new JsonArray();
+    }
+
 }

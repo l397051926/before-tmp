@@ -210,8 +210,9 @@ public class CaseProcessor {
             }
             resultBean.setCode(1);
             resultBean.setData(allNew);
-        }  else if ("6".equals(status)) {//高级搜索,所有属性,带有搜索功能
+        }  else if ("6".equals(status)) {//crf 高级搜索数据
 //            JsonObject all = ConfigurationService.getCrfSearch(crf_id);
+            //获取数据
             JsonObject all = ReadConditionByRedis.getCrfSearch(crf_id);
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
