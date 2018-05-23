@@ -38,6 +38,7 @@ public class CaseProcessor {
         String keywords = null;
         String status = null;
         String crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
+        String emr_id =  ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
         Set<String> set = new HashSet<String>();
         ResultBean resultBean = new ResultBean();
         try {
@@ -57,8 +58,17 @@ public class CaseProcessor {
             for (JsonElement json : arrange) {
                 set.add(json.getAsString());
             }
-            if (paramObj.has("crf_id")) {
+            if (paramObj.has("crf_id") ) {
                 crf_id = paramObj.get("crf_id").getAsString();
+                if(StringUtils.isEmpty(crf_id)){
+                     crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
+                }
+            }
+            if(paramObj.has("crfId")){
+                crf_id = paramObj.get("crfId").getAsString();
+                if(StringUtils.isEmpty(crf_id)){
+                    crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
+                }
             }
         } catch (Exception e) {
             logger.error("", e);
@@ -175,7 +185,12 @@ public class CaseProcessor {
             resultBean.setCode(1);
             resultBean.setData(allNew);
         } else if ("5".equals(status)) {//高级搜索,所有属性,带有搜索功能
-            JsonObject all = ConfigurationService.getAdvancedSearch(crf_id);
+            JsonObject all =new JsonObject();
+            if(emr_id.equals(crf_id)){
+                 all = ConfigurationService.getAdvancedSearch(crf_id);
+            }else {
+                 all = ReadConditionByRedis.getCrfSearch(crf_id);
+            }
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                 String groupName = obj.getKey();

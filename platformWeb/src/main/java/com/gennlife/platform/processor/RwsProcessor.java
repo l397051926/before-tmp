@@ -100,7 +100,21 @@ public class RwsProcessor {
     }
 
     public String saveOrSearchActive(JsonObject paramObj) {
+
         try {
+            JsonArray tmpJsonArray = new JsonArray();
+            if(paramObj.has("crfId")){
+                String crfId = paramObj.get("crfId").getAsString();
+                if(StringUtils.isEmpty(crfId)){
+                    tmpJsonArray = ReadConditionByRedis.getEmrRws();
+                }else {
+                    tmpJsonArray = ReadConditionByRedis.getCrfRws(crfId);
+                }
+            }
+            JsonObject tmpObject = (JsonObject) tmpJsonArray.get(0);
+            JsonObject orderObject = tmpObject.get("resultOrderKey").getAsJsonObject();
+            paramObj.add("resultOrderKey",orderObject);
+            //返回排序json
             String url = ConfigurationService.getUrlBean().getSaveOrSearchActive();
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
             return result;
