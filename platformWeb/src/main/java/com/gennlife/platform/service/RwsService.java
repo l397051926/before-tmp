@@ -57,7 +57,7 @@ public class RwsService implements RwsServiceImpl {
 
             Map<String, Object> info = new HashMap<String, Object>();
             info.put("counter", counter);
-            info.put("result",result);
+            info.put("result",resultObj);
             resultBean.setCode(1);
             resultBean.setInfo(info);
         } catch (Exception e) {
