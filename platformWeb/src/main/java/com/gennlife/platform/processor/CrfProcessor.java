@@ -642,10 +642,18 @@ public class CrfProcessor {
             //orgId 医院，labId 科室
             orgId = user.getOrgID();
             labId = paramObj.get("labID").getAsString();
+            Power power = user.getPower();
+
             List<CRFLab> crfLabs = AllDao.getInstance().getSyResourceDao().getCrfIDByLab(labId,orgId);//获取科室对应的单病种id
             JSONArray jsonArray = new JSONArray();
             for (CRFLab crfLab:crfLabs) {
                 JsonObject jsonObject = new JsonObject();
+                boolean flag = getCRFFlag(power, user.getOrgID(), crfLab.getCrf_id(), "has_searchCRF");
+                if(flag){
+                    jsonObject.addProperty("isSearchCase",true);
+                }else {
+                    jsonObject.addProperty("isSearchCase",false);
+                }
                 jsonObject.addProperty("sid",crfLab.getCrf_id());
                 jsonObject.addProperty("slab_name",crfLab.getCrfName());
                 jsonObject.addProperty("indexName",crfLab.getIndex_name());

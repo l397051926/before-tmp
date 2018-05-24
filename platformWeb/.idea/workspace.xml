@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -43,16 +43,83 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SampleProcessor.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SampleProcessor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="33">
-              <caret line="434" column="49" lean-forward="true" selection-start-line="434" selection-start-column="49" selection-end-line="434" selection-end-column="49" />
+            <state relative-caret-position="396">
+              <caret line="445" column="48" lean-forward="false" selection-start-line="445" selection-start-column="48" selection-end-line="445" selection-end-column="48" />
               <folding>
                 <element signature="e#3309#3325#0" expanded="true" />
                 <element signature="e#3716#3732#0" expanded="true" />
                 <element signature="e#8400#8416#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RwsController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="581">
+              <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CrfController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="546">
+              <caret line="693" column="42" lean-forward="false" selection-start-line="693" selection-start-column="42" selection-end-line="693" selection-end-column="42" />
+              <folding>
+                <element signature="method#postSelectAttr#0;class#CrfController#0" expanded="false" />
+                <element signature="method#postSaveData#0;class#CrfController#0" expanded="false" />
+                <element signature="docComment;method#postDeleteSample#0;class#CrfController#0" expanded="false" />
+                <element signature="method#postProjectCrfList#0;class#CrfController#0" expanded="false" />
+                <element signature="method#getPatientInfo#0;class#CrfController#0" expanded="false" />
+                <element signature="method#getPatientVisitDetail#0;class#CrfController#0" expanded="false" />
+                <element signature="method#getPatientAllVisitDetail#0;class#CrfController#0" expanded="false" />
+                <element signature="method#getModelForTraceByCRFID#0;class#CrfController#0" expanded="false" />
+                <element signature="method#UploadFileForImportCRF#0;class#CrfController#0" expanded="false" />
+                <element signature="method#ImportCRFMap#0;class#CrfController#0" expanded="false" />
+                <element signature="method#CsvImportResult#0;class#CrfController#0" expanded="false" />
+                <element signature="method#InputSmartPrompt#0;class#CrfController#0" expanded="false" />
+                <element signature="method#ICD_10_Code#0;class#CrfController#0" expanded="false" />
+                <element signature="method#UploadImage#0;class#CrfController#0" expanded="false" />
+                <element signature="method#getImageUrl#0;class#CrfController#0" expanded="false" />
+                <element signature="method#ResearchNumber#0;class#CrfController#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CrfProcessor.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-13">
+              <caret line="635" column="7" lean-forward="true" selection-start-line="635" selection-start-column="7" selection-end-line="635" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RwsProcessor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="42" column="40" lean-forward="true" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RwsService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="30" column="27" lean-forward="false" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -88,8 +155,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getCrfProjectDiseaseItem</find>
-      <find>getCrfIDByLab</find>
       <find>user</find>
       <find>ImportCheck</find>
       <find>ipAndPort</find>
@@ -118,6 +183,8 @@
       <find>passwordCorrect</find>
       <find>SaveOrSearchActive</find>
       <find>filterPath</find>
+      <find>PreLiminary</find>
+      <find>getCRFFlag</find>
     </findStrings>
     <dirStrings>
       <dir>C:\lmx\clooud\Ark-UI_Service\platformWeb</dir>
@@ -184,7 +251,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" />
         <option value="$PROJECT_DIR$/src/main/resources/urlconf.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/rws/crf_rws_CVD.json" />
         <option value="$PROJECT_DIR$/src/main/resources/rws/emr_rws.json" />
@@ -192,6 +258,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java" />
       </list>
     </option>
   </component>
@@ -250,10 +317,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -389,6 +455,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -676,7 +743,7 @@
       <workItem from="1526893837231" duration="21599000" />
       <workItem from="1526992090630" duration="5085000" />
       <workItem from="1527039340300" duration="20537000" />
-      <workItem from="1527124328285" duration="1219000" />
+      <workItem from="1527124328285" duration="4589000" />
     </task>
     <task id="LOCAL-00003" summary="索引调整">
       <created>1526706816642</created>
@@ -790,7 +857,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527058783055</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="修改导出科室权限">
+      <created>1527125758466</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1527125758466</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -826,42 +900,42 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="648722000" />
+    <option name="totallyTimeSpent" value="652092000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57266605" sideWeight="0.5021322" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57266605" sideWeight="0.4978678" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40230992" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26701966" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44080848" sideWeight="0.4978678" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3012512" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57266605" sideWeight="0.4978678" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40230992" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26652452" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44151565" sideWeight="0.4978678" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3012512" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -947,7 +1021,8 @@
     <MESSAGE value="增加 rws 配置文件" />
     <MESSAGE value="调整 highlt" />
     <MESSAGE value="调整 rws 强相关配置读取" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整 rws 强相关配置读取" />
+    <MESSAGE value="修改导出科室权限" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改导出科室权限" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -969,12 +1044,6 @@
           <line>553</line>
           <properties />
           <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java</url>
-          <line>644</line>
-          <properties />
-          <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/parse/CaseSearchParser.java</url>
@@ -1013,7 +1082,7 @@
           <option name="timeStamp" value="62" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="65" />
+      <option name="time" value="66" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1045,17 +1114,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="35" column="23" lean-forward="true" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/ConfigurationService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5016">
           <caret line="67" column="26" lean-forward="false" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="26" />
+          <folding>
+            <element signature="e#2498#2499#0" expanded="false" />
+            <element signature="e#2528#2529#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1126,6 +1192,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
           <caret line="31" column="13" lean-forward="false" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1133,6 +1200,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1242,25 +1310,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="579">
-          <caret line="712" column="40" lean-forward="false" selection-start-line="712" selection-start-column="40" selection-end-line="712" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="719" column="23" lean-forward="false" selection-start-line="719" selection-start-column="23" selection-end-line="719" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CaseController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="845">
           <caret line="48" column="42" lean-forward="false" selection-start-line="48" selection-start-column="42" selection-end-line="48" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1314,13 +1368,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="118" column="32" lean-forward="false" selection-start-line="118" selection-start-column="32" selection-end-line="118" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
@@ -1341,13 +1388,6 @@
         <state relative-caret-position="807">
           <caret line="1582" column="34" lean-forward="true" selection-start-line="1582" selection-start-column="34" selection-end-line="1582" selection-end-column="34" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1379,6 +1419,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1390,15 +1431,72 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="581">
+          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="30" column="27" lean-forward="false" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="42" column="40" lean-forward="true" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="693" column="42" lean-forward="false" selection-start-line="693" selection-start-column="42" selection-end-line="693" selection-end-column="42" />
+          <folding>
+            <element signature="method#postSelectAttr#0;class#CrfController#0" expanded="false" />
+            <element signature="method#postSaveData#0;class#CrfController#0" expanded="false" />
+            <element signature="docComment;method#postDeleteSample#0;class#CrfController#0" expanded="false" />
+            <element signature="method#postProjectCrfList#0;class#CrfController#0" expanded="false" />
+            <element signature="method#getPatientInfo#0;class#CrfController#0" expanded="false" />
+            <element signature="method#getPatientVisitDetail#0;class#CrfController#0" expanded="false" />
+            <element signature="method#getPatientAllVisitDetail#0;class#CrfController#0" expanded="false" />
+            <element signature="method#getModelForTraceByCRFID#0;class#CrfController#0" expanded="false" />
+            <element signature="method#UploadFileForImportCRF#0;class#CrfController#0" expanded="false" />
+            <element signature="method#ImportCRFMap#0;class#CrfController#0" expanded="false" />
+            <element signature="method#CsvImportResult#0;class#CrfController#0" expanded="false" />
+            <element signature="method#InputSmartPrompt#0;class#CrfController#0" expanded="false" />
+            <element signature="method#ICD_10_Code#0;class#CrfController#0" expanded="false" />
+            <element signature="method#UploadImage#0;class#CrfController#0" expanded="false" />
+            <element signature="method#getImageUrl#0;class#CrfController#0" expanded="false" />
+            <element signature="method#ResearchNumber#0;class#CrfController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="434" column="49" lean-forward="true" selection-start-line="434" selection-start-column="49" selection-end-line="434" selection-end-column="49" />
+        <state relative-caret-position="396">
+          <caret line="445" column="48" lean-forward="false" selection-start-line="445" selection-start-column="48" selection-end-line="445" selection-end-column="48" />
           <folding>
             <element signature="e#3309#3325#0" expanded="true" />
             <element signature="e#3716#3732#0" expanded="true" />
             <element signature="e#8400#8416#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-13">
+          <caret line="635" column="7" lean-forward="true" selection-start-line="635" selection-start-column="7" selection-end-line="635" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
