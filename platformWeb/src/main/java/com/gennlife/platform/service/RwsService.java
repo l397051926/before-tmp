@@ -29,8 +29,9 @@ public class RwsService implements RwsServiceImpl {
 
     @Override
     public String PreLiminary(JsonObject paramObj) {
-        int counter = 0;
-        ResultBean resultBean = new ResultBean();
+        int counter;
+        String result;
+        JsonObject resultObj;
         boolean flag = paramObj.has("crfId");
         try {
             if (!flag){
@@ -38,9 +39,9 @@ public class RwsService implements RwsServiceImpl {
                 logger.info("emr的indexName" + ConfigUtils.getSearchIndexName());
             }
             String url = ConfigurationService.getUrlBean().getPreLiminaryUrl();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
 
-            JsonObject resultObj = (JsonObject) jsonParser.parse(result);
+            resultObj = (JsonObject) jsonParser.parse(result);
             if (resultObj.get("status").getAsString().equals("200")){
                 String projectId = paramObj.get("projectId").getAsString();
                 if (flag){
@@ -54,17 +55,11 @@ public class RwsService implements RwsServiceImpl {
                     logger.info("插入数据源counter;"+counter);
                 }
             }
-
-            Map<String, Object> info = new HashMap<String, Object>();
-            info.put("counter", counter);
-            info.put("result",resultObj);
-            resultBean.setCode(1);
-            resultBean.setInfo(info);
         } catch (Exception e) {
             logger.error("请求发生异常", e);
             return ParamUtils.errorParam("请求发生异常");
         }
-        return gson.toJson(resultBean);
+        return gson.toJson(resultObj);
     }
 
     //如果是crf项目，需要写入p_project的crfId字段中，然后存入对应名字到datasource

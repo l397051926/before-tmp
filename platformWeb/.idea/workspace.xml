@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,8 +44,8 @@
       <file leaf-file-name="RwsProcessor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
+            <state relative-caret-position="150">
+              <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -52,8 +53,8 @@
       <file leaf-file-name="RwsService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="744">
-              <caret line="61" column="35" selection-start-line="61" selection-start-column="31" selection-end-line="61" selection-end-column="35" />
+            <state relative-caret-position="258">
+              <caret line="60" column="9" lean-forward="true" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -110,7 +111,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="release_0.0.6.0_jshtgl" />
+        <entry key="$PROJECT_DIR$/.." value="wyy_Demo" />
       </map>
     </option>
   </component>
@@ -146,7 +147,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/JsonUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/ProjectProcessor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/update/组织导入模版.csv" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CommonProcessor.java" />
@@ -168,6 +168,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java" />
       </list>
     </option>
   </component>
@@ -219,8 +220,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -267,7 +269,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -456,7 +457,7 @@
         <item itemvalue="JUnit.RedisTest.getReadConditionByRedisTest" />
         <item itemvalue="Application.GStringUtils" />
         <item itemvalue="Application.demo" />
-        <item itemvalue="Application.GStringUtils" />
+        <item itemvalue="JUnit.RedisTest.deleteRedisKey" />
       </list>
     </recent_temporary>
   </component>
@@ -653,14 +654,14 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="652465000" />
+    <option name="totallyTimeSpent" value="652813000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="2" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5021322" side_tool="true" weight="0.57266605" />
+      <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" weight="0.30132452" />
       <window_info anchor="right" id="Maven Projects" order="9" weight="0.32995737" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
       <window_info id="Capture Tool" order="2" />
@@ -669,32 +670,58 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
       <window_info id="UI Designer" order="3" />
-      <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.4978678" weight="0.44080848" />
-      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Debug" order="5" weight="0.5182119" />
+      <window_info anchor="bottom" id="TODO" order="8" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.3012512" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info id="Image Layers" order="4" />
-      <window_info anchor="bottom" id="Java Enterprise" order="9" />
+      <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4978678" weight="0.57266605" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.40230992" />
-      <window_info anchor="bottom" id="Spring" order="11" weight="0.32916266" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32916266" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15960665" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.76612127" />
+      <window_info active="true" anchor="bottom" id="Run" order="4" visible="true" weight="0.26333907" />
+      <window_info anchor="bottom" id="Spring" order="12" weight="0.32916266" />
+      <window_info anchor="bottom" id="Terminal" order="13" weight="0.32916266" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15658094" />
       <window_info anchor="right" id="Bean Validation" order="7" weight="0.32995737" />
       <window_info id="Web" order="5" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.32916266" />
-      <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.3012512" />
       <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.40230992" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5021322" side_tool="true" weight="0.57266605" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15960665" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
+      <window_info anchor="bottom" id="Java Enterprise" order="9" />
+      <window_info anchor="right" id="Bean Validation" order="7" weight="0.32995737" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32916266" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="2" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
+      <window_info anchor="right" id="Maven Projects" order="9" weight="0.32995737" />
+      <window_info id="Web" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Spring" order="11" weight="0.32916266" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Application Servers" order="0" weight="0.32916266" />
+      <window_info id="Image Layers" order="4" />
       <window_info anchor="right" id="Coverage" order="10" side_tool="true" weight="0.32995737" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32995737" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4978678" weight="0.57266605" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Application Servers" order="0" weight="0.32916266" />
+      <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
+      <window_info id="UI Designer" order="3" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32916266" />
+      <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.4978678" weight="0.44080848" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info id="Designer" order="7" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Application Servers" order="0" weight="0.32916266" />
       <window_info id="Designer" order="7" />
       <window_info anchor="right" id="Palette" order="2" />
@@ -702,7 +729,7 @@
       <window_info id="Image Layers" order="4" />
       <window_info anchor="bottom" id="Run" order="3" weight="0.40230992" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
+      <window_info anchor="right" id="Coverage" order="10" side_tool="true" weight="0.32995737" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.32916266" />
@@ -713,18 +740,17 @@
       <window_info anchor="bottom" id="Messages" order="13" weight="0.3012512" />
       <window_info anchor="bottom" id="TODO" order="7" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="1" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26701966" />
       <window_info anchor="bottom" id="Java Enterprise" order="9" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4978678" weight="0.57266605" />
       <window_info anchor="right" id="Maven Projects" order="9" weight="0.32995737" />
-      <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26701966" />
       <window_info anchor="right" id="Database" order="3" weight="0.32995737" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info id="Web" order="5" side_tool="true" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Structure" order="1" weight="0.25" />
-      <window_info anchor="right" id="Coverage" order="10" side_tool="true" weight="0.32995737" />
+      <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32916266" />
       <window_info anchor="right" id="Bean Validation" order="7" weight="0.32995737" />
       <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.4978678" weight="0.3358999" />
@@ -853,6 +879,59 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="61" column="25" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/ConfigurationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="121" column="79" lean-forward="true" selection-start-line="121" selection-start-column="79" selection-end-line="121" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="694" lean-forward="true" selection-start-line="694" selection-end-line="694" />
+          <folding>
+            <element signature="method#postSelectAttr#0;class#CrfController#0" />
+            <element signature="method#postSaveData#0;class#CrfController#0" />
+            <element signature="docComment;method#postDeleteSample#0;class#CrfController#0" />
+            <element signature="method#postProjectCrfList#0;class#CrfController#0" />
+            <element signature="method#getPatientInfo#0;class#CrfController#0" />
+            <element signature="method#getPatientVisitDetail#0;class#CrfController#0" />
+            <element signature="method#getPatientAllVisitDetail#0;class#CrfController#0" />
+            <element signature="method#getModelForTraceByCRFID#0;class#CrfController#0" />
+            <element signature="method#UploadFileForImportCRF#0;class#CrfController#0" />
+            <element signature="method#ImportCRFMap#0;class#CrfController#0" />
+            <element signature="method#CsvImportResult#0;class#CrfController#0" />
+            <element signature="method#InputSmartPrompt#0;class#CrfController#0" />
+            <element signature="method#ICD_10_Code#0;class#CrfController#0" />
+            <element signature="method#UploadImage#0;class#CrfController#0" />
+            <element signature="method#getImageUrl#0;class#CrfController#0" />
+            <element signature="method#ResearchNumber#0;class#CrfController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="48" column="40" lean-forward="true" selection-start-line="48" selection-start-column="40" selection-end-line="48" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -1125,27 +1204,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="32" column="41" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="61" column="35" selection-start-line="61" selection-start-column="31" selection-end-line="61" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
@@ -1187,6 +1245,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-13">
           <caret line="635" column="7" lean-forward="true" selection-start-line="635" selection-start-column="7" selection-end-line="635" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="32" column="41" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="60" column="9" lean-forward="true" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="9" />
         </state>
       </provider>
     </entry>
