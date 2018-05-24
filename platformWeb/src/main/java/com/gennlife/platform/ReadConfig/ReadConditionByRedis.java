@@ -49,10 +49,10 @@ public class ReadConditionByRedis {
     }
 
     public static JsonObject getCrfSearch(String crf_id) {
-        if(!RedisUtil.isExists(crf_id)){
+        if(!RedisUtil.isExists("SEARCH_"+crf_id)){
             loadConfigurationInfo();
         }
-        String data = RedisUtil.getValue(crf_id);
+        String data = RedisUtil.getValue("SEARCH_"+crf_id);
         if (data != null) {
             JsonObject target = (JsonObject) jsonParser.parse(data);
             return target;
