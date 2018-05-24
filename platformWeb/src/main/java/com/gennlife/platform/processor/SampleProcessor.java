@@ -442,8 +442,8 @@ public class SampleProcessor {
             if(query.has("crfId")){
                 ResultBean resultBean = new ResultBean();
                 JsonObject data = new JsonObject();
-                data.addProperty("next", true);
-                data.addProperty("export", false);
+                data.addProperty("next", false);
+                data.addProperty("export", true);
                 data.addProperty("sub", 0);
                 resultBean.setCode(1);
                 resultBean.setData(data);
