@@ -440,9 +440,13 @@ public class SampleProcessor {
         try {
 
             JsonObject query = jsonObject.get("query").getAsJsonObject();
-            JsonArray groups = jsonObject.get("groups").getAsJsonArray();
             JsonObject power = jsonObject.getAsJsonObject("power");
-            query.add("groups", groups);
+            if(jsonObject.has("groups")){
+                JsonArray groups = jsonObject.get("groups").getAsJsonArray();
+                query.add("groups", groups);
+            }
+
+
             query.add("power", power);
             logger.info("原始搜索条件=" + gson.toJson(query));
 

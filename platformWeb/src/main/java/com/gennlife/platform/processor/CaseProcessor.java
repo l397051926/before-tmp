@@ -429,13 +429,22 @@ public class CaseProcessor {
             if("是".equals(user.getIfRoleAll())){  //全量处理
                 paramObj.remove("groups"); // 选择科室后，工号权限小时
                 Power power=new Power();
+//                Power power = user.getPower();
                 Resource resource=new Resource();
                 resource.setSid("hospital_all");
                 resource.setSlab_name("_all");
                 resource.setHas_search("有");
+
+                Resource resource1 = new Resource();
+                resource1.setSid("hospital_all");
+                resource1.setSlab_name("_all");
+                resource1.setHas_searchExport("有");
                 List<Resource> list=new LinkedList<>();
                 list.add(resource);
+                List<Resource> list1 =new LinkedList<>();
+                list.add(resource1);
                 power.setHas_search(list);
+                power.setHas_searchExport(list1);
                 paramObj.remove("power");
                 paramObj.add("power",new Gson().toJsonTree(power));
                 user.setIfRoleAll("否");
