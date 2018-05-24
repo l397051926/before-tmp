@@ -48,6 +48,43 @@ public class ReadConditionByRedis {
         }
     }
 
+    public static void loadCrfMapping(){
+        try{
+            String crf_mapping = FilesUtils.readFile("/rws/crf_mapping.json");
+            JsonObject jsonObject = (JsonObject) jsonParser.parse(crf_mapping);
+            for(Map.Entry<String,JsonElement> entry:jsonObject.entrySet()){
+                String key = entry.getKey();
+                String value = gson.toJson(entry.getValue());
+                RedisUtil.setValue("crf_"+key+"_mapping",value);
+            }
+            logger.info("crf_mapping 配置文件读取完毕");
+        }catch (Exception e ){
+            logger.error("crf_mapping 配置文件读取 异常", e);
+            throw new RuntimeException();
+        }
+    }
+
+    public static void loadCrfHitSort(){
+        try{
+            String crf_mapping = FilesUtils.readFile("/crf/crf_hit_sort.json");
+            JsonObject jsonObject = (JsonObject) jsonParser.parse(crf_mapping);
+            for(Map.Entry<String,JsonElement> entry:jsonObject.entrySet()){
+                String key = entry.getKey();
+                RedisUtil.setValue("crf_"+key+"_sort",entry.getValue().getAsString());
+            }
+            logger.info("crf_hit_sort 配置文件读取完毕");
+        }catch (Exception e ){
+            logger.error("crf_hit_sort 配置文件读取异常", e);
+            throw new RuntimeException();
+        }
+    }
+    //先放到 crf 查询那里吧
+    public static void getCrfMapping(String crfId){
+        if(!RedisUtil.isExists("crf_"+crfId+"_mapping")){
+            loadCrfMapping();
+        }
+    }
+
     public static JsonObject getCrfSearch(String crf_id) {
         if(!RedisUtil.isExists("SEARCH_"+crf_id)){
             loadConfigurationInfo();
@@ -84,4 +121,11 @@ public class ReadConditionByRedis {
         return new JsonArray();
     }
 
+    public static String getCrfHitSort(String crfId) {
+        if(!RedisUtil.isExists("crf_"+crfId+"_sort")){
+            loadConfigurationInfo();
+        }
+        String data = RedisUtil.getValue("crf_"+crfId+"_sort");
+        return data;
+    }
 }

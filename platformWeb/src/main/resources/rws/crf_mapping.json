@@ -1,0 +1,32 @@
+{
+  "liver_cancer":{"PATIENT_SN":"PATIENT_SN",
+    "DATE_OF_BIRTH":"BIRTH_DATE",
+    "GENDER":"GENDER",
+    "NATIONALITY":"ETHNIC"
+  },
+  "lymphoma":{"PATIENT_SN":"PATIENT_SN",
+    "DATE_OF_BIRTH":"BIRTH_DATE",
+    "GENDER":"GENDER",
+    "NATIONALITY":"ETHNIC"
+  },
+  "CEVD":{"NAME":"无",
+    "PATIENT_SN":"PATIENT_SN",
+    "INPATIENT_SN":"$.visits[*].medical_record_home_page[*].INPATIENT_SN",
+    "GENDER":"GENDER",
+    "AGE":"AGE",
+    "BIRTH_DATE":"BIRTH_DATE",
+    "ID_NUMBER":"无",
+    "HOME_ADDRESS":"无",
+    "PATIENT_CONTACT_1":"无",
+    "PATIENT_CONTACT_2":"无",
+    "HEIGHT":"无",
+    "WEIGHT":"无",
+    "WAISTLINE":"无"
+  },
+  "CVD":{
+    "PATIENT_SN":"PATIENT_SN",
+    "INPATIENT_SN":"INPATIENT_SN",
+    "GENDER":"GENDER",
+    "BIRTH_DATE":"BIRTH_DATE"
+  }
+}

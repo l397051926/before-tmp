@@ -1,5 +1,6 @@
 package com.gennlife.platform.processor;
 
+import com.gennlife.platform.ReadConfig.ReadConditionByRedis;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.bean.projectBean.MyProjectList;
@@ -735,6 +736,23 @@ public class CrfProcessor {
             return ParamUtils.errorParam("请求出错");
         }
         return result;
+
+    }
+
+    public String getCrfSort(JsonObject paramObj) {
+        ResultBean resultBean = new ResultBean();
+        String crfId = null;
+        try {
+            if(paramObj.has("crfId")){
+                crfId = paramObj.get("crfId").getAsString();
+            }
+            String dataSort = ReadConditionByRedis.getCrfHitSort(crfId);
+            resultBean.setCode(1);
+            resultBean.setData(dataSort);
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+        return gson.toJson(resultBean);
 
     }
 }

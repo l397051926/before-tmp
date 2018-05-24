@@ -36,7 +36,19 @@ public class RedisTest {
 
     @Test
     public void deleteRedisKey(){
-        String key = "CVD";
+        String key = "SEARCH_CVD";
         RedisUtil.deleteKey(key);
     }
+
+    @Test
+    public void loadCrfMapping(){
+        ReadConditionByRedis.loadCrfMapping();
+    }
+
+    @Test
+    public void loadCrfSort(){
+        ReadConditionByRedis.loadCrfHitSort();
+    }
+
+
 }
