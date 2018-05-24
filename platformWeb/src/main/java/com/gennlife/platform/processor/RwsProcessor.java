@@ -1,5 +1,6 @@
 package com.gennlife.platform.processor;
 
+import com.gennlife.platform.ReadConfig.ReadConditionByRedis;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.service.ArkService;
@@ -10,12 +11,14 @@ import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -97,7 +100,21 @@ public class RwsProcessor {
     }
 
     public String saveOrSearchActive(JsonObject paramObj) {
+
         try {
+            JsonArray tmpJsonArray = new JsonArray();
+            if(paramObj.has("crfId")){
+                String crfId = paramObj.get("crfId").getAsString();
+                if(StringUtils.isEmpty(crfId)){
+                    tmpJsonArray = ReadConditionByRedis.getEmrRws();
+                }else {
+                    tmpJsonArray = ReadConditionByRedis.getCrfRws(crfId);
+                }
+            }
+            JsonObject tmpObject = (JsonObject) tmpJsonArray.get(0);
+            JsonObject orderObject = tmpObject.get("resultOrderKey").getAsJsonObject();
+            paramObj.add("resultOrderKey",orderObject);
+            //返回排序json
             String url = ConfigurationService.getUrlBean().getSaveOrSearchActive();
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
             return result;
@@ -191,6 +208,32 @@ public class RwsProcessor {
             return result;
         } catch (Exception e) {
             logger.error("验证事件数据是否改变&有被依赖 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getRwsEventConfig(JsonObject paramObj) {
+        ResultBean resultBean = new ResultBean();
+        String crfId= null;
+        JsonArray resultArray = null;
+        try {
+            if(paramObj.has("crfId")){
+                crfId = paramObj.get("crfId").getAsString();
+            }
+            if(StringUtils.isEmpty(crfId)){
+                 resultArray = ReadConditionByRedis.getEmrRws();
+            }else {
+                resultArray = ReadConditionByRedis.getCrfRws(crfId);
+            }
+            JsonObject jsonObject= (JsonObject) resultArray.get(00);
+            jsonObject.remove("resultOrderKey");
+            JsonArray  array = new JsonArray();
+            array.add(jsonObject);
+            resultBean.setCode(1);
+            resultBean.setData(resultArray);
+            return gson.toJson(resultBean);
+        } catch (Exception e) {
+            logger.error("事件配置文件获取", e);
             return ParamUtils.errorParam("请求发生异常");
         }
     }

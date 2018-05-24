@@ -38,6 +38,7 @@ public class CaseProcessor {
         String keywords = null;
         String status = null;
         String crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
+        String emr_id =  ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
         Set<String> set = new HashSet<String>();
         ResultBean resultBean = new ResultBean();
         try {
@@ -57,8 +58,17 @@ public class CaseProcessor {
             for (JsonElement json : arrange) {
                 set.add(json.getAsString());
             }
-            if (paramObj.has("crf_id")) {
+            if (paramObj.has("crf_id") ) {
                 crf_id = paramObj.get("crf_id").getAsString();
+                if(StringUtils.isEmpty(crf_id)){
+                     crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
+                }
+            }
+            if(paramObj.has("crfId")){
+                crf_id = paramObj.get("crfId").getAsString();
+                if(StringUtils.isEmpty(crf_id)){
+                    crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
+                }
             }
         } catch (Exception e) {
             logger.error("", e);
@@ -175,7 +185,12 @@ public class CaseProcessor {
             resultBean.setCode(1);
             resultBean.setData(allNew);
         } else if ("5".equals(status)) {//高级搜索,所有属性,带有搜索功能
-            JsonObject all = ConfigurationService.getAdvancedSearch(crf_id);
+            JsonObject all =new JsonObject();
+            if(emr_id.equals(crf_id)){
+                 all = ConfigurationService.getAdvancedSearch(crf_id);
+            }else {
+                 all = ReadConditionByRedis.getCrfSearch(crf_id);
+            }
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                 String groupName = obj.getKey();
@@ -210,8 +225,9 @@ public class CaseProcessor {
             }
             resultBean.setCode(1);
             resultBean.setData(allNew);
-        }  else if ("6".equals(status)) {//高级搜索,所有属性,带有搜索功能
+        }  else if ("6".equals(status)) {//crf 高级搜索数据
 //            JsonObject all = ConfigurationService.getCrfSearch(crf_id);
+            //获取数据
             JsonObject all = ReadConditionByRedis.getCrfSearch(crf_id);
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
@@ -471,16 +487,23 @@ public class CaseProcessor {
         } else { // 角色,完成小组扩展
             if("是".equals(user.getIfRoleAll())){  //全量处理
                 paramObj.remove("groups"); // 选择科室后，工号权限小时
-//                Power power=new Power();
-                Power power = user.getPower();
+                Power power=new Power();
+//                Power power = user.getPower();
                 Resource resource=new Resource();
                 resource.setSid("hospital_all");
                 resource.setSlab_name("_all");
                 resource.setHas_search("有");
 
+                Resource resource1 = new Resource();
+                resource1.setSid("hospital_all");
+                resource1.setSlab_name("_all");
+                resource1.setHas_searchExport("有");
                 List<Resource> list=new LinkedList<>();
                 list.add(resource);
+                List<Resource> list1 =new LinkedList<>();
+                list.add(resource1);
                 power.setHas_search(list);
+                power.setHas_searchExport(list1);
                 paramObj.remove("power");
                 paramObj.add("power",new Gson().toJsonTree(power));
                 user.setIfRoleAll("否");
@@ -655,7 +678,11 @@ public class CaseProcessor {
         try {
             String url = ConfigurationService.getUrlBean().getHighlight();
             logger.info("搜索详情高亮 url=" + url);
-            paramObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
+            if(paramObj.has("indexName")){
+                paramObj.remove("crfID");
+            }else{
+                paramObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
+            }
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
             logger.info("搜索详情高亮 SS返回结果： " + result);
             return result;
