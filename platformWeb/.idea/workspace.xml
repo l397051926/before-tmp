@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="修改导出科室权限">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/crf/crf_hit_sort.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/rws/crf_mapping.json" />
+    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/init/RoleStartRunner.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/init/RoleStartRunner.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/ConfigurationService.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/ConfigurationService.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/gennlife/platform/RedisTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/gennlife/platform/RedisTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,8 +30,8 @@
       <file leaf-file-name="ReadConditionByRedis.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="60" column="30" lean-forward="true" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
+            <state relative-caret-position="179">
+              <caret line="126" column="9" lean-forward="true" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -57,8 +50,8 @@
       <file leaf-file-name="CrfController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="762" column="40" lean-forward="true" selection-start-line="762" selection-start-column="29" selection-end-line="762" selection-end-column="40" />
+            <state relative-caret-position="179">
+              <caret line="770" column="41" lean-forward="false" selection-start-line="770" selection-start-column="41" selection-end-line="770" selection-end-column="41" />
               <folding>
                 <element signature="method#postSelectAttr#0;class#CrfController#0" expanded="false" />
                 <element signature="method#postSaveData#0;class#CrfController#0" expanded="false" />
@@ -84,8 +77,8 @@
       <file leaf-file-name="CrfProcessor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="750" column="41" lean-forward="true" selection-start-line="750" selection-start-column="41" selection-end-line="750" selection-end-column="41" />
+            <state relative-caret-position="410">
+              <caret line="748" column="59" lean-forward="true" selection-start-line="748" selection-start-column="59" selection-end-line="748" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -262,8 +255,8 @@
         <option value="$PROJECT_DIR$/src/main/resources/crf/crf_hit_sort.json" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/gennlife/platform/RedisTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java" />
         <option value="$PROJECT_DIR$/src/main/resources/rws/crf_mapping.json" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java" />
       </list>
     </option>
   </component>
@@ -504,7 +497,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.RedisTest.loadCrfMapping">
+  <component name="RunManager" selected="Application.ArkUiServiceApplication">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HEIGHT" value="0" />
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
@@ -921,7 +914,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527125758466</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="增加两套配置文件 crfmapping  crf-hit-sort">
+      <created>1527154831885</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1527154831885</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -957,7 +957,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="664114000" />
+    <option name="totallyTimeSpent" value="665594000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
@@ -972,7 +972,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4340712" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4340712" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -1075,7 +1075,8 @@
     <MESSAGE value="调整 highlt" />
     <MESSAGE value="调整 rws 强相关配置读取" />
     <MESSAGE value="修改导出科室权限" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改导出科室权限" />
+    <MESSAGE value="增加两套配置文件 crfmapping  crf-hit-sort" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加两套配置文件 crfmapping  crf-hit-sort" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1128,8 +1129,20 @@
           <properties />
           <option name="timeStamp" value="62" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java</url>
+          <line>766</line>
+          <properties />
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java</url>
+          <line>742</line>
+          <properties />
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="71" />
+      <option name="time" value="74" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1474,39 +1487,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="750" column="41" lean-forward="true" selection-start-line="750" selection-start-column="41" selection-end-line="750" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="762" column="40" lean-forward="true" selection-start-line="762" selection-start-column="29" selection-end-line="762" selection-end-column="40" />
-          <folding>
-            <element signature="method#postSelectAttr#0;class#CrfController#0" expanded="false" />
-            <element signature="method#postSaveData#0;class#CrfController#0" expanded="false" />
-            <element signature="docComment;method#postDeleteSample#0;class#CrfController#0" expanded="false" />
-            <element signature="method#postProjectCrfList#0;class#CrfController#0" expanded="false" />
-            <element signature="method#getPatientInfo#0;class#CrfController#0" expanded="false" />
-            <element signature="method#getPatientVisitDetail#0;class#CrfController#0" expanded="false" />
-            <element signature="method#getPatientAllVisitDetail#0;class#CrfController#0" expanded="false" />
-            <element signature="method#getModelForTraceByCRFID#0;class#CrfController#0" expanded="false" />
-            <element signature="method#UploadFileForImportCRF#0;class#CrfController#0" expanded="false" />
-            <element signature="method#ImportCRFMap#0;class#CrfController#0" expanded="false" />
-            <element signature="method#CsvImportResult#0;class#CrfController#0" expanded="false" />
-            <element signature="method#InputSmartPrompt#0;class#CrfController#0" expanded="false" />
-            <element signature="method#ICD_10_Code#0;class#CrfController#0" expanded="false" />
-            <element signature="method#UploadImage#0;class#CrfController#0" expanded="false" />
-            <element signature="method#getImageUrl#0;class#CrfController#0" expanded="false" />
-            <element signature="method#ResearchNumber#0;class#CrfController#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/rws/crf_mapping.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="891">
@@ -1528,10 +1508,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="770" column="41" lean-forward="false" selection-start-line="770" selection-start-column="41" selection-end-line="770" selection-end-column="41" />
+          <folding>
+            <element signature="method#postSelectAttr#0;class#CrfController#0" expanded="false" />
+            <element signature="method#postSaveData#0;class#CrfController#0" expanded="false" />
+            <element signature="docComment;method#postDeleteSample#0;class#CrfController#0" expanded="false" />
+            <element signature="method#postProjectCrfList#0;class#CrfController#0" expanded="false" />
+            <element signature="method#getPatientInfo#0;class#CrfController#0" expanded="false" />
+            <element signature="method#getPatientVisitDetail#0;class#CrfController#0" expanded="false" />
+            <element signature="method#getPatientAllVisitDetail#0;class#CrfController#0" expanded="false" />
+            <element signature="method#getModelForTraceByCRFID#0;class#CrfController#0" expanded="false" />
+            <element signature="method#UploadFileForImportCRF#0;class#CrfController#0" expanded="false" />
+            <element signature="method#ImportCRFMap#0;class#CrfController#0" expanded="false" />
+            <element signature="method#CsvImportResult#0;class#CrfController#0" expanded="false" />
+            <element signature="method#InputSmartPrompt#0;class#CrfController#0" expanded="false" />
+            <element signature="method#ICD_10_Code#0;class#CrfController#0" expanded="false" />
+            <element signature="method#UploadImage#0;class#CrfController#0" expanded="false" />
+            <element signature="method#getImageUrl#0;class#CrfController#0" expanded="false" />
+            <element signature="method#ResearchNumber#0;class#CrfController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="748" column="59" lean-forward="true" selection-start-line="748" selection-start-column="59" selection-end-line="748" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="60" column="30" lean-forward="true" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
+        <state relative-caret-position="179">
+          <caret line="126" column="9" lean-forward="true" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="9" />
           <folding />
         </state>
       </provider>

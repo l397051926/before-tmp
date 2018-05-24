@@ -123,7 +123,7 @@ public class ReadConditionByRedis {
 
     public static String getCrfHitSort(String crfId) {
         if(!RedisUtil.isExists("crf_"+crfId+"_sort")){
-            loadConfigurationInfo();
+            loadCrfHitSort();
         }
         String data = RedisUtil.getValue("crf_"+crfId+"_sort");
         return data;
