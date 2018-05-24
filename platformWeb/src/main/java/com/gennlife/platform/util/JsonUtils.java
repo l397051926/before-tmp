@@ -51,7 +51,7 @@ public class JsonUtils {
         String projectDesp = jsonObject.get("projectDesp") != null ? jsonObject.get("projectDesp").getAsString() : "";
         String manager = jsonObject.get("manager") != null ? jsonObject.get("manager").getAsString() : "";
         String unit = jsonObject.get("unit") == null ? "" : jsonObject.get("unit").getAsString();
-        String disease = jsonObject.get("disease").getAsString();
+//        String disease = jsonObject.get("disease").getAsString();
         String registerNumber = jsonObject.get("registerNumber") == null ? "" : jsonObject.get("registerNumber").getAsString();
         String type = jsonObject.get("type").getAsString();
         createProject.setCreator(creator);
@@ -85,7 +85,7 @@ public class JsonUtils {
         createProject.setPlanNum(0);
         createProject.setManager(manager);
         createProject.setUnit(unit);
-        createProject.setDisease(disease);
+//        createProject.setDisease(disease);
         createProject.setRegisterNumber(registerNumber);
         createProject.setType(type);
         createProject.setCrfId("");
