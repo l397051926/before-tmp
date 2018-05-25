@@ -128,7 +128,7 @@ public interface SyUserMapper {
      * @param uid
      * @return
      */
-    List<SearchConditionBean> searchConditionList(String uid);
+    List<SearchConditionBean> searchConditionList(@Param("uid") String uid,@Param("crfId") String crfId);
 
     /**
      * 保存高级检索公式
@@ -216,7 +216,7 @@ public interface SyUserMapper {
      */
     int getUserByRoleIDCounter(Integer roleid);
 
-    int deleteSearchCondition(@Param("conditionIDs") Integer[] conditionIDs);
+    int deleteSearchCondition(@Param("conditionIDs") Integer[] conditionIDs,@Param("crfId") String crfId);
 
     /**
      * 更新科室的名称后，将科室下成员的个人信息，都更新了

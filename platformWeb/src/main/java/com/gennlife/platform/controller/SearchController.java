@@ -145,7 +145,8 @@ public class SearchController extends HttpServlet {
         String resultStr = null;
         try {
             String param = ParamUtils.getParam(paramRe);
-            JsonArray paramObj = (JsonArray) jsonParser.parse(param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+//            JsonArray paramObj = (JsonObject) jsonParser.parse(param);
             resultStr = processor.deleteSearchCondition(paramObj);
             logger.info("搜索条件删除 post 耗时:" + (System.currentTimeMillis() - start) + "ms");
         } catch (Exception e) {
