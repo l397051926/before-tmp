@@ -728,14 +728,27 @@ public class CrfProcessor {
 
     public String getCaseToDetail(JsonObject paramObj) {
         ResultBean resultBean = new ResultBean();
+        String crfId = null;
         String result;
+        JsonObject tmp = null;
         try {
+            if(paramObj.has("crfId")){
+                crfId = paramObj.get("crfId").getAsString();
+            }
             String url = ConfigurationService.getUrlBean().getCaseToDetail();
             result = HttpRequestUtils.httpPost(url,gson.toJson(paramObj));
+            tmp = (JsonObject) jsonParser.parse(result);
+            JsonObject retmp = tmp.getAsJsonObject("data");
+            if(!StringUtils.isEmpty(crfId)){
+                String crfName = AllDao.getInstance().getSyResourceDao().getCrfNameOne(crfId);
+                retmp.addProperty("lab",crfName);
+            }
+
+
         }catch (Exception e){
             return ParamUtils.errorParam("请求出错");
         }
-        return result;
+        return gson.toJson(tmp);
 
     }
 

@@ -109,4 +109,5 @@ public interface SyResourceMapper {
      */
     String getCrfIndexName(@Param("crf_id")String crf_id);
 
+    String getCrfNameOne(@Param("crfId") String crfId);
 }

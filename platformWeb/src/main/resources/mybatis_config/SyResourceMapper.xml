@@ -302,6 +302,12 @@
     WHERE crf_id=#{crf_id,jdbcType=VARCHAR}
   </select>
 
+  <select id="getCrfNameOne" resultType="String">
+    SELECT crfName
+    FROM gennlife_crf
+    WHERE crfId=#{crfId,jdbcType=VARCHAR}
+  </select>
+
   <select id="getSidsByRoleid" resultType="String">
     select  sid  FROM gennlife_role_resource
     WHERE roleid=#{roleid,jdbcType=VARCHAR}

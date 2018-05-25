@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SearchProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SearchProcessor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis_config/SyUserMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis_config/SyUserMapper.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyResourceMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyResourceMapper.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis_config/SyResourceMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis_config/SyResourceMapper.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,8 +32,8 @@
       <file leaf-file-name="CrfController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2121">
-              <caret line="770" column="41" lean-forward="false" selection-start-line="770" selection-start-column="41" selection-end-line="770" selection-end-column="41" />
+            <state relative-caret-position="230">
+              <caret line="754" column="39" lean-forward="true" selection-start-line="754" selection-start-column="39" selection-end-line="754" selection-end-column="39" />
               <folding>
                 <element signature="method#postSelectAttr#0;class#CrfController#0" expanded="false" />
                 <element signature="method#postSaveData#0;class#CrfController#0" expanded="false" />
@@ -55,140 +56,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SearchController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/SearchController.java">
+      <file leaf-file-name="CrfProcessor.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="129" column="34" lean-forward="false" selection-start-line="129" selection-start-column="34" selection-end-line="129" selection-end-column="34" />
+            <state relative-caret-position="116">
+              <caret line="737" column="0" lean-forward="false" selection-start-line="737" selection-start-column="0" selection-end-line="737" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SearchProcessor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SearchProcessor.java">
+      <file leaf-file-name="SyResourceMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyResourceMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="221" column="73" lean-forward="false" selection-start-line="221" selection-start-column="73" selection-end-line="221" selection-end-column="73" />
+            <state relative-caret-position="529">
+              <caret line="106" column="20" lean-forward="true" selection-start-line="106" selection-start-column="20" selection-end-line="106" selection-end-column="20" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SyUserMapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyUserMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="144" column="29" lean-forward="false" selection-start-line="144" selection-start-column="8" selection-end-line="144" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SyUserMapper.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis_config/SyUserMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="659">
-              <caret line="376" column="17" lean-forward="true" selection-start-line="376" selection-start-column="17" selection-end-line="376" selection-end-column="17" />
-              <folding>
-                <marker date="1527218498214" expanded="true" signature="2015:2166" ph="SELECT FROM gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="2275:2429" ph="SELECT FROM gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="2539:2693" ph="SELECT FROM gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="2790:2908" ph="SELECT uid F... gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="3021:3113" ph="SELECT uid F... gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="3224:3352" ph="SELECT FROM gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="3422:3524" ph="UPDATE gennlife_user SE... " />
-                <marker date="1527218498214" expanded="true" signature="3623:5431" ph="UPDATE gennl... gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="5551:5666" ph="SELECT FROM gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="5739:5882" ph="UPDATE gennlife_user SE... " />
-                <marker date="1527218498214" expanded="true" signature="5950:6047" ph="UPDATE gennlife_user SE... " />
-                <marker date="1527218498214" expanded="true" signature="6119:6215" ph="UPDATE gennlife_user S... " />
-                <marker date="1527218498214" expanded="true" signature="6278:6380" ph="UPDATE gennlife_user SE... " />
-                <marker date="1527218498214" expanded="true" signature="6448:6544" ph="UPDATE gennlife_user S... " />
-                <marker date="1527218498214" expanded="true" signature="6625:6722" ph="SELECT count... gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="6814:6913" ph="SELECT gennl... gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="7005:7104" ph="SELECT gennl... gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="7200:7281" ph="SELECT uid F... gennlife_user_group" />
-                <marker date="1527218498214" expanded="true" signature="7363:7496" ph="SELECT count... gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="8354:8554" ph="SELECT uid,p... gennlife_manage" />
-                <marker date="1527218498214" expanded="true" signature="8658:9065" ph="SELECT FROM gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="10105:10367" ph="SELECT FROM gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="10481:10710" ph="SELECT FROM gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="10790:10959" ph="SELECT count... gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="11843:12025" ph="select from searchConditionHistory" />
-                <marker date="1527218498214" expanded="true" signature="12184:12337" ph="select from searchConditionHistory" />
-                <marker date="1527218498214" expanded="true" signature="14010:14740" ph="UPDATE searc... searchConditionHistory" />
-                <marker date="1527218498214" expanded="true" signature="17461:17619" ph="SELECT FROM gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="17739:19486" ph="UPDATE gennl... gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="19590:19834" ph="SELECT FROM gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="20244:20419" ph="SELECT count... gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="20499:20616" ph="SELECT uid F... gennlife_manage" />
-                <marker date="1527218498214" expanded="true" signature="20664:20722" ph="DELETE FROM gennlife_user_vitaConfig... " />
-                <marker date="1527218498214" expanded="true" signature="20770:20846" ph="insert into gennlife_user_vitaConfig... " />
-                <marker date="1527218498214" expanded="true" signature="20920:20993" ph="SELECT dataA... gennlife_user_vitaConfig" />
-                <marker date="1527218498214" expanded="true" signature="21073:21151" ph="SELECT uid F... gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="21231:21286" ph="SELECT pwd F... gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="21375:21463" ph="SELECT failu... gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="21557:21647" ph="SELECT effec... gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="22076:22120" ph="select DISTI... gennlife_user_group" />
-                <marker date="1527218498214" expanded="true" signature="22664:22801" ph="update gennlife_user s... " />
-                <marker date="1527218498214" expanded="true" signature="23248:23539" ph="select a.uid... gennlife_user_group" />
-                <marker date="1527218498214" expanded="true" signature="23598:23874" ph="UPDATE gennl... gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="23961:24058" ph="SELECT count... gennlife_user" />
-                <marker date="1527218498214" expanded="true" signature="24155:24256" ph="SELECT count... gennlife_user" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrgMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis_config/OrgMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="188" column="51" lean-forward="false" selection-start-line="188" selection-start-column="42" selection-end-line="188" selection-end-column="51" />
-              <folding>
-                <marker date="1525262480462" expanded="true" signature="564:648" ph="select orgID... gennlife_org" />
-                <marker date="1525262480462" expanded="true" signature="1195:1343" ph="select orgNa... gennlife_org" />
-                <marker date="1525262480462" expanded="true" signature="2433:2575" ph="select from gennlife_lab" />
-                <marker date="1525262480462" expanded="true" signature="2701:2835" ph="select from gennlife_lab" />
-                <marker date="1525262480462" expanded="true" signature="3390:3501" ph="SELECT orgID... gennlife_org" />
-                <marker date="1525262480462" expanded="true" signature="3600:3686" ph="select max(l... gennlife_lab" />
-                <marker date="1525262480462" expanded="true" signature="3781:3917" ph="select lab_l... gennlife_lab" />
-                <marker date="1525262480462" expanded="true" signature="6041:6157" ph="SELECT DISTI... gennlife_lab" />
-                <marker date="1525262480462" expanded="true" signature="6554:6665" ph="select from gennlife_lab" />
-                <marker date="1525262480462" expanded="true" signature="6740:7185" ph="UPDATE gennlife_lab... " />
-                <marker date="1525262480462" expanded="true" signature="7309:7949" ph="UPDATE gennlife_lab... " />
-                <marker date="1525262480462" expanded="true" signature="8081:8218" ph="select from gennlife_lab" />
-                <marker date="1525262480462" expanded="true" signature="8321:8477" ph="select disti... gennlife_org_profession" />
-                <marker date="1525262480462" expanded="true" signature="8575:8787" ph="select from gennlife_lab" />
-                <marker date="1525262480462" expanded="true" signature="8903:9008" ph="select labID... gennlife_lab" />
-                <marker date="1525262480462" expanded="true" signature="9065:9338" ph="update gennlife_lab... " />
-                <marker date="1525262480462" expanded="true" signature="9445:9551" ph="select depar... gennlife_lab" />
-                <marker date="1525262480462" expanded="true" signature="9679:9796" ph="select from gennlife_lab" />
-                <marker date="1525262480462" expanded="true" signature="9906:10096" ph="SELECT DISTI... gennlife_lab" />
-                <marker date="1525262480462" expanded="true" signature="10204:10313" ph="select max(l... gennlife_lab" />
-                <marker date="1525262480462" expanded="true" signature="10416:10684" ph="SELECT FROM gennlife_lab" />
-                <marker date="1525262480462" expanded="true" signature="10795:11030" ph="SELECT FROM gennlife_lab" />
-                <marker date="1525262480462" expanded="true" signature="11133:11576" ph="SELECT FROM gennlife_lab" />
-                <marker date="1525262480462" expanded="true" signature="12190:12287" ph="select lab_n... gennlife_lab" />
-                <marker date="1525262480462" expanded="true" signature="12345:12668" ph="UPDATE gennlife_lab... " />
-                <marker date="1525262480462" expanded="true" signature="12759:12857" ph="select labID... gennlife_lab" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SearchConditionBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/searchConditionBean/SearchConditionBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-              <folding>
-                <element signature="e#426#427#0" expanded="true" />
-                <element signature="e#454#455#0" expanded="true" />
-                <element signature="e#496#497#0" expanded="true" />
-                <element signature="e#530#531#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -204,10 +87,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>crf_id</find>
-      <find>searchItemSetDefault</find>
-      <find>visits.diagnose</find>
-      <find>saveActiveIndex</find>
       <find>updatePwd</find>
       <find>passwordCorrect</find>
       <find>SaveOrSearchActive</find>
@@ -225,7 +104,6 @@
       <find>PatientDetail</find>
       <find>if</find>
       <find>&lt;if&gt;</find>
-      <find>&lt;if</find>
       <find>searchConditionList</find>
       <find>SearchConditionSql</find>
       <find>StoreSearchCondition</find>
@@ -234,6 +112,11 @@
       <find>deleteSearchCondition</find>
       <find>SearchConditionList</find>
       <find>updateSearchCondition</find>
+      <find>&lt;if</find>
+      <find>pat_9421ab7fd517e02bbc847f497ce22cd2</find>
+      <find>getCrfIndexName</find>
+      <find>getCrfNameOne</find>
+      <find>getCrfName</find>
     </findStrings>
     <dirStrings>
       <dir>C:\lmx\clooud\Ark-UI_Service\platformWeb</dir>
@@ -277,8 +160,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CommonProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/CRFLab.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/SyResourceMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyResourceMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java" />
@@ -295,7 +176,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/init/RoleStartRunner.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/crf/crf_hit_sort.json" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/gennlife/platform/RedisTest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/rws/crf_mapping.json" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java" />
@@ -304,6 +184,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyUserMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SearchProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/SyUserMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyResourceMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/SyResourceMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java" />
       </list>
     </option>
   </component>
@@ -837,7 +720,7 @@
       <workItem from="1527039340300" duration="20537000" />
       <workItem from="1527124328285" duration="4589000" />
       <workItem from="1527130277910" duration="366000" />
-      <workItem from="1527210835656" duration="8090000" />
+      <workItem from="1527210835656" duration="10988000" />
     </task>
     <task id="LOCAL-00003" summary="索引调整">
       <created>1526706816642</created>
@@ -979,7 +862,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527217254060</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="修改 条件保存问题">
+      <created>1527219149656</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1527219149656</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1015,7 +905,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="678470000" />
+    <option name="totallyTimeSpent" value="681368000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
@@ -1030,7 +920,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31857556" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40230992" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1136,7 +1026,8 @@
     <MESSAGE value="增加两套配置文件 crfmapping  crf-hit-sort" />
     <MESSAGE value="调整 获取 crf sort" />
     <MESSAGE value="条件保存 和配置文件修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="条件保存 和配置文件修改" />
+    <MESSAGE value="修改 条件保存问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改 条件保存问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1191,7 +1082,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java</url>
-          <line>742</line>
+          <line>755</line>
           <properties />
           <option name="timeStamp" value="73" />
         </line-breakpoint>
@@ -1214,7 +1105,7 @@
           <option name="timeStamp" value="85" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="87" />
+      <option name="time" value="90" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1232,20 +1123,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/FilesUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/RedisUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="31" column="13" lean-forward="false" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/LogUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -1509,14 +1386,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="748" column="59" lean-forward="false" selection-start-line="748" selection-start-column="59" selection-end-line="748" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/ConfigurationService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="33">
@@ -1554,31 +1423,6 @@
         <state relative-caret-position="647">
           <caret line="394" column="46" lean-forward="false" selection-start-line="394" selection-start-column="46" selection-end-line="394" selection-end-column="46" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2121">
-          <caret line="770" column="41" lean-forward="false" selection-start-line="770" selection-start-column="41" selection-end-line="770" selection-end-column="41" />
-          <folding>
-            <element signature="method#postSelectAttr#0;class#CrfController#0" expanded="false" />
-            <element signature="method#postSaveData#0;class#CrfController#0" expanded="false" />
-            <element signature="docComment;method#postDeleteSample#0;class#CrfController#0" expanded="false" />
-            <element signature="method#postProjectCrfList#0;class#CrfController#0" expanded="false" />
-            <element signature="method#getPatientInfo#0;class#CrfController#0" expanded="false" />
-            <element signature="method#getPatientVisitDetail#0;class#CrfController#0" expanded="false" />
-            <element signature="method#getPatientAllVisitDetail#0;class#CrfController#0" expanded="false" />
-            <element signature="method#getModelForTraceByCRFID#0;class#CrfController#0" expanded="false" />
-            <element signature="method#UploadFileForImportCRF#0;class#CrfController#0" expanded="false" />
-            <element signature="method#ImportCRFMap#0;class#CrfController#0" expanded="false" />
-            <element signature="method#CsvImportResult#0;class#CrfController#0" expanded="false" />
-            <element signature="method#InputSmartPrompt#0;class#CrfController#0" expanded="false" />
-            <element signature="method#ICD_10_Code#0;class#CrfController#0" expanded="false" />
-            <element signature="method#UploadImage#0;class#CrfController#0" expanded="false" />
-            <element signature="method#getImageUrl#0;class#CrfController#0" expanded="false" />
-            <element signature="method#ResearchNumber#0;class#CrfController#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1622,10 +1466,10 @@
         <state relative-caret-position="165">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding>
-            <element signature="e#426#427#0" expanded="true" />
-            <element signature="e#454#455#0" expanded="true" />
-            <element signature="e#496#497#0" expanded="true" />
-            <element signature="e#530#531#0" expanded="true" />
+            <element signature="e#426#427#0" expanded="false" />
+            <element signature="e#454#455#0" expanded="false" />
+            <element signature="e#496#497#0" expanded="false" />
+            <element signature="e#530#531#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1657,7 +1501,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis_config/SyUserMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="659">
-          <caret line="376" column="17" lean-forward="true" selection-start-line="376" selection-start-column="17" selection-end-line="376" selection-end-column="17" />
+          <caret line="376" column="17" lean-forward="false" selection-start-line="376" selection-start-column="17" selection-end-line="376" selection-end-column="17" />
           <folding>
             <marker date="1527218498214" expanded="true" signature="2015:2166" ph="SELECT FROM gennlife_user" />
             <marker date="1527218498214" expanded="true" signature="2275:2429" ph="SELECT FROM gennlife_user" />
@@ -1705,6 +1549,70 @@
             <marker date="1527218498214" expanded="true" signature="23961:24058" ph="SELECT count... gennlife_user" />
             <marker date="1527218498214" expanded="true" signature="24155:24256" ph="SELECT count... gennlife_user" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="754" column="39" lean-forward="true" selection-start-line="754" selection-start-column="39" selection-end-line="754" selection-end-column="39" />
+          <folding>
+            <element signature="method#postSelectAttr#0;class#CrfController#0" expanded="false" />
+            <element signature="method#postSaveData#0;class#CrfController#0" expanded="false" />
+            <element signature="docComment;method#postDeleteSample#0;class#CrfController#0" expanded="false" />
+            <element signature="method#postProjectCrfList#0;class#CrfController#0" expanded="false" />
+            <element signature="method#getPatientInfo#0;class#CrfController#0" expanded="false" />
+            <element signature="method#getPatientVisitDetail#0;class#CrfController#0" expanded="false" />
+            <element signature="method#getPatientAllVisitDetail#0;class#CrfController#0" expanded="false" />
+            <element signature="method#getModelForTraceByCRFID#0;class#CrfController#0" expanded="false" />
+            <element signature="method#UploadFileForImportCRF#0;class#CrfController#0" expanded="false" />
+            <element signature="method#ImportCRFMap#0;class#CrfController#0" expanded="false" />
+            <element signature="method#CsvImportResult#0;class#CrfController#0" expanded="false" />
+            <element signature="method#InputSmartPrompt#0;class#CrfController#0" expanded="false" />
+            <element signature="method#ICD_10_Code#0;class#CrfController#0" expanded="false" />
+            <element signature="method#UploadImage#0;class#CrfController#0" expanded="false" />
+            <element signature="method#getImageUrl#0;class#CrfController#0" expanded="false" />
+            <element signature="method#ResearchNumber#0;class#CrfController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis_config/SyResourceMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="307" column="41" lean-forward="true" selection-start-line="307" selection-start-column="41" selection-end-line="307" selection-end-column="41" />
+          <folding>
+            <marker date="1527232011319" expanded="true" signature="2087:2347" ph="select FROM gennlife_role_resource" />
+            <marker date="1527232011319" expanded="true" signature="2449:2687" ph="select FROM gennlife_role_resource" />
+            <marker date="1527232011319" expanded="true" signature="2787:2986" ph="select FROM gennlife_role_resource" />
+            <marker date="1527232011319" expanded="true" signature="3089:3372" ph="SELECT FROM gennlife_role_resource" />
+            <marker date="1527232011319" expanded="true" signature="5597:5703" ph="SELECT COUNT... gennlife_role_resource" />
+            <marker date="1527232011319" expanded="true" signature="8466:8599" ph="SELECT FROM gennlife_resource" />
+            <marker date="1527232011319" expanded="true" signature="8681:8928" ph="SELECT count... gennlife_role_resource" />
+            <marker date="1527232011319" expanded="true" signature="9033:9523" ph="UPDATE gennlife_resource sna... " />
+            <marker date="1527232011319" expanded="true" signature="10224:10385" ph="SELECT labID... gennlife_lab_crf" />
+            <marker date="1527232011319" expanded="true" signature="10463:10554" ph="SELECT count... gennlife_lab_crf" />
+            <marker date="1527232011319" expanded="true" signature="11038:11125" ph="SELECT index... gennlife_lab_crf" />
+            <marker date="1527232011319" expanded="true" signature="11193:11271" ph="SELECT index... gennlife_lab_crf" />
+            <marker date="1527232011319" expanded="true" signature="11341:11425" ph="select sid F... gennlife_role_resource" />
+            <marker date="1527232011319" expanded="true" signature="11533:11640" ph="SELECT FROM gennlife_resource" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyResourceMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="106" column="20" lean-forward="true" selection-start-line="106" selection-start-column="20" selection-end-line="106" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="737" column="0" lean-forward="false" selection-start-line="737" selection-start-column="0" selection-end-line="737" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
