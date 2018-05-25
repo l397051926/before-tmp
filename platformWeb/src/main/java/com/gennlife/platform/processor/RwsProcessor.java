@@ -238,6 +238,24 @@ public class RwsProcessor {
         }
     }
 
+    public String getLoadSearchDefinedEventListConfig(JsonObject paramObj) {
+        ResultBean resultBean = new ResultBean();
+        String crfId= null;
+        try {
+            if(paramObj.has("crfId")){
+                crfId = paramObj.get("crfId").getAsString();
+            }
+            String data = ReadConditionByRedis.getLoadSearchDefinedEventListConfig(crfId);
+            JsonObject target = (JsonObject) jsonParser.parse(data);
+            resultBean.setCode(1);
+            resultBean.setData(target);
+            return gson.toJson(resultBean);
+        } catch (Exception e) {
+            logger.error("事件配置文件获取", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
 
     /*        int counter = 0;
         try {

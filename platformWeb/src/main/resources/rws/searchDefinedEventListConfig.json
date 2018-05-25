@@ -1,0 +1,1298 @@
+{
+  "patient_info.patient_basicinfo": [
+  {
+    "id": "PATIENT_SN",
+    "name": "患者编号",
+    "type": "sumary"
+  },
+  {
+    "id": "INPATIENT_SN",
+    "name": "住院号",
+    "type": "sumary"
+  },
+  {
+    "id": "GENDER",
+    "name": "性别",
+    "type": "sumary"
+  },
+  {
+    "id": "BIRTH_DATE",
+    "name": "出生日期",
+    "type": "sumary"
+  }
+],
+  "visits.visit_info": [
+    {
+      "id": "AGE",
+      "name": "年龄（岁）",
+      "type": "sumary"
+    },
+    {
+      "id": "HEIGHT",
+      "name": "身高（cm）",
+      "type": "sumary"
+    },
+    {
+      "id": "WEIGHT",
+      "name": "体重（Kg）",
+      "type": "sumary"
+    },
+    {
+      "id": "WAISTLINE",
+      "name": "腰围（cm）",
+      "type": "sumary"
+    },
+    {
+      "id": "INPATIENT_DATE",
+      "name": "入院时间",
+      "type": "sumary"
+    },
+    {
+      "id": "DISCHARGE_DATE",
+      "name": "出院时间",
+      "type": "sumary"
+    }
+  ],
+  "visits.pasthx.hbp_history": [
+    {
+      "id": "HBP_YES_NO",
+      "name": "有无高血压史",
+      "type": "sumary"
+    }
+  ],
+  "visits.pasthx.hbp_history.hbp_hx_details": [
+    {
+      "id": "HBP_YEAR",
+      "name": "高血压史年限（年）",
+      "type": "sumary"
+    },
+    {
+      "id": "HIGHEST_SYSTOLIC",
+      "name": "最高收缩压（mmHg）",
+      "type": "sumary"
+    },
+    {
+      "id": "HIGHEST_DIASTOLIC",
+      "name": "最高舒张压（mmHg）",
+      "type": "sumary"
+    },
+    {
+      "id": "ANTIHYPERTENSIVE_THERAPY_YES_NO",
+      "name": "是否降压药物治疗",
+      "type": "sumary"
+    },
+    {
+      "id": "SYSTOLIC_AFTER_DRUG",
+      "name": "药物控制后收缩压（mmHg）",
+      "type": "sumary"
+    },
+    {
+      "id": "DIASTOLIC_AFTER_DRUG",
+      "name": "药物控制后舒张压（mmHg）",
+      "type": "sumary"
+    }
+  ],
+  "visits.pasthx.diabetes_history": [
+    {
+      "id": "DIABETES_YES_NO",
+      "name": "有无糖尿病史",
+      "type": "sumary"
+    }
+  ],
+  "visits.pasthx.diabetes_history.diabetes_hx_details": [
+    {
+      "id": "DIABETES_TYPE",
+      "name": "糖尿病类型",
+      "type": "sumary"
+    },
+    {
+      "id": "DIABETES_YEARS",
+      "name": "糖尿病时长（年）",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_HYPOGLYCEMIC_THERAPY",
+      "name": "是否降糖治疗",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_HYPOGLYCEMIC_DRUG",
+      "name": "口服降糖药物",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_INSULIN",
+      "name": "胰岛素",
+      "type": "sumary"
+    }
+  ],
+  "visits.pasthx.hyperlipoidemia_history": [
+    {
+      "id": "HYPERLIPOIDEMIA",
+      "name": "有无高脂血症",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_LIPID_LOWERING_THERAPY",
+      "name": "是否降脂治疗",
+      "type": "sumary"
+    }
+  ],
+  "visits.pasthx.cvd_history": [
+    {
+      "id": "HOS_CVD_YES_NO",
+      "name": "有无脑血管病",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CVD_TYPE",
+      "name": "脑血管病名称",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CVD_YEARS",
+      "name": "脑血管病年限（年）",
+      "type": "sumary"
+    }
+  ],
+  "visits.pasthx.hos_thyroid_disease_history": [
+    {
+      "id": "HOS_THYROID_DISEASE_YES_NO",
+      "name": "有无甲状腺疾病史",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_THYROID_DISEASE_YEARS",
+      "name": "甲状腺疾病史年限（年）",
+      "type": "sumary"
+    }
+  ],
+  "visits.pasthx.cardiogenic_vascular_history.heart_failure": [
+    {
+      "id": "HOS_HEART_FAILURE_HISTORY",
+      "name": "有无心力衰竭病史",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_HEART_FAILURE_YEARS",
+      "name": "心力衰竭病史年限（年）",
+      "type": "sumary"
+    }
+  ],
+  "visits.pasthx.cardiogenic_vascular_history.arrhythmia": [
+    {
+      "id": "HOS_ARRHYTHMIA_YES_NO",
+      "name": "有无心律失常",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_ARRHYTHMIA_TYPE",
+      "name": "心律失常类型",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_ARRHYTHMIA_YEARS",
+      "name": "心律失常病史年限（年）",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_ARRHYTHMIA_THERAPY_METHOD",
+      "name": "心律失常治疗方式",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_RADIOFREQUENCY_ABLATION_TIME",
+      "name": "射频消融术时间（日期）",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_PACEMAKER_IMPLANTATION_TIME",
+      "name": "植入起搏器时间（日期）",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_ICD_TIME",
+      "name": "植入埋藏式心内自动除颤器（ICD）时间（日期）",
+      "type": "sumary"
+    }
+  ],
+  "visits.pasthx.cardiogenic_vascular_history.valvular_disease": [
+    {
+      "id": "HOS_VALVULAR_HEART_DISEASE_YES_NO",
+      "name": "有无心脏瓣膜病",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_VALVULAR_HEART_DISEASE_YEARS",
+      "name": "心脏瓣膜病时限",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_VALVULAR_HEART_DISEASE_ETIOLOGY",
+      "name": "心脏瓣膜病病因",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_VALVULAR_HEART_DISEASE_TYPE",
+      "name": "心脏瓣膜病类型",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_VALVULAR_HEART_DISEASE_DEGREE",
+      "name": "心脏瓣膜病程度",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CARDIAC_VALVE_REPLACEMENT",
+      "name": "是否行心瓣膜置换/修补/成形术",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CARDIAC_VALVE_REPLACEMENT_TIME",
+      "name": "心瓣膜置换/修补/成形术时间（日期）",
+      "type": "sumary"
+    }
+  ],
+  "visits.pasthx.cardiogenic_vascular_history.coronary_heart_disease": [
+    {
+      "id": "HOS_CORONARY_HEART_DISEASE",
+      "name": "有无冠心病",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CORONARY_HEART_DISEASE_TIME",
+      "name": "冠心病年限（年）",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_MI_YES_NO",
+      "name": "有无心梗病史",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_MI_TIME_",
+      "name": "心梗病史年限（年）",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_MI_SITE",
+      "name": "心梗部位",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CORONARY_STENT",
+      "name": "是否行冠脉支架术",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CORONARY_STENT_TIME",
+      "name": "冠脉支架手术时间（日期）",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CORONARY_ARTERY_BYPASS",
+      "name": "是否行冠脉搭桥术",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CORONARY_ARTERY_BYPASS_TIME",
+      "name": "冠脉搭桥手术时间（日期）",
+      "type": "sumary"
+    }
+  ],
+  "visits.pasthx.cardiogenic_vascular_history.cardiomyopathy": [
+    {
+      "id": "HOS_CARDIOMYOPATHY_YES_NO",
+      "name": "有无心肌病史",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CARDIOMYOPATHY_YEARS",
+      "name": "心肌病时限（年）",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CARDIOMYOPATHY_TYPE",
+      "name": "心肌病类型",
+      "type": "sumary"
+    }
+  ],
+  "visits.pasthx.cardiogenic_vascular_history.congenital_heart_disease": [
+    {
+      "id": "HOS_CONGENITAL_HEART_DISEASE_YES_NO",
+      "name": "有无先天性心脏病",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CONGENITAL_HEART_DISEASE_TIME",
+      "name": "先天性心脏病时限（年）",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CONGENITAL_HEART_DISEASE_TYPE",
+      "name": "先天性心脏病类型",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CONGENITAL_HEART_DISEASE_THERAPY",
+      "name": "先天性心脏病治疗",
+      "type": "sumary"
+    }
+  ],
+  "visits.pasthx.cardiogenic_vascular_history.pvd": [
+    {
+      "id": "HOS_PVD_YES_NO",
+      "name": "有无周围血管病",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_PVD_TYPE",
+      "name": "周围血管病类型",
+      "type": "sumary"
+    }
+  ],
+  "visits.pasthx.cardiogenic_vascular_history.pulmonary_embolism": [
+    {
+      "id": "HOS_PULMONARY_EMBOLISM_YES_NO",
+      "name": "肺栓塞",
+      "type": "sumary"
+    }
+  ],
+  "visits.pasthx.hos_other_history": [
+    {
+      "id": "HOS_CANCER",
+      "name": "癌症",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CHEMOTHERAPY",
+      "name": "是否曾行化疗",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CARDIAOTOXICITY_DRUG_TIME",
+      "name": "化疗时间（日期）",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_RADIOTHERAPY",
+      "name": "是否曾行放疗",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_THROACIC_RADIOTHERAPY_TIME",
+      "name": "放疗时间（日期）",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CHRONIC_LIVER_DISEASE",
+      "name": "慢性肝病",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_ASTHMA",
+      "name": "哮喘",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CHRONIC_LUNG_DISEASE",
+      "name": "慢性肺病",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CHRONIC_PULMONARY_HEART_DISEASE_YES_NO",
+      "name": "慢性肺源性心脏病",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_OSAHS_YES_NO",
+      "name": "睡眠呼吸暂停综合症",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CHRONIC_RENAL_FAILURE",
+      "name": "慢性肾功能不全",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_PEPTIC_ULCER",
+      "name": "消化道溃疡",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_GESTATION",
+      "name": "妊娠状态",
+      "type": "sumary"
+    }
+  ],
+  "visits.fmlprsnhx.family_inheritance_history.fml_sudden_cardiac_death": [
+    {
+      "id": "HOS_SUDDEN_CARDIAC_DEATH_FAMILY",
+      "name": "心脏性猝死家族史",
+      "type": "sumary"
+    },
+    {
+      "id": "SCD_FAMILY_TYPE",
+      "name": "亲属类型",
+      "type": "sumary"
+    }
+  ],
+  "visits.fmlprsnhx.family_inheritance_history.fml_eo_chd": [
+    {
+      "id": "HOS_EO_CHD_FAMILY",
+      "name": "早发冠心病家族史",
+      "type": "sumary"
+    },
+    {
+      "id": "EO_CHD_FAMILY_TYPE",
+      "name": "亲属类型",
+      "type": "sumary"
+    }
+  ],
+  "visits.fmlprsnhx.family_inheritance_history.fml_cardiomyopathy": [
+    {
+      "id": "HOS_CARDIOMYOPATHY_FAMILY",
+      "name": "心肌病家族史",
+      "type": "sumary"
+    },
+    {
+      "id": "HOS_CARDIOMYOPATHY_FAMILY_TYPE",
+      "name": "心肌病家族史类型",
+      "type": "sumary"
+    },
+    {
+      "id": "CMP_FAMILY_TYPE",
+      "name": "亲属类型",
+      "type": "sumary"
+    }
+  ],
+  "visits.fmlprsnhx.personal_history.smoke_history": [
+    {
+      "id": "PAST_SMOKE_HISTORY_YES_NO",
+      "name": "有无吸烟史",
+      "type": "sumary"
+    },
+    {
+      "id": "SMOKE_RATE",
+      "name": "吸烟量（支/天）",
+      "type": "sumary"
+    },
+    {
+      "id": "SMOKE_YEARS",
+      "name": "吸烟时长（年）",
+      "type": "sumary"
+    },
+    {
+      "id": "SMOKE_QUIT_YES_NO",
+      "name": "是否戒烟",
+      "type": "sumary"
+    },
+    {
+      "id": "QUIT_YEARS",
+      "name": "戒烟时间（年）",
+      "type": "sumary"
+    }
+  ],
+  "visits.fmlprsnhx.personal_history.drink_history": [
+    {
+      "id": "DRINK_HISTORY_YES_NO",
+      "name": "有无饮酒史",
+      "type": "sumary"
+    },
+    {
+      "id": "DRINK_VOLUME",
+      "name": "饮酒量",
+      "type": "sumary"
+    },
+    {
+      "id": "DRINK_TIME",
+      "name": "饮酒时长（年）",
+      "type": "sumary"
+    },
+    {
+      "id": "QUIT_DRINK_YES_NO",
+      "name": "是否戒酒",
+      "type": "sumary"
+    },
+    {
+      "id": "QUIT_DRINK_TIME",
+      "name": "戒酒时间（年）",
+      "type": "sumary"
+    }
+  ],
+  "visits.admcndtn.hos_current_symptoms": [
+    {
+      "id": "SYSTOLIC_BP",
+      "name": "血压-收缩压（mmHg）",
+      "type": "sumary"
+    },
+    {
+      "id": "DIASTOLIC_BP",
+      "name": "血压-舒张压（mmHg）",
+      "type": "sumary"
+    },
+    {
+      "id": "HEART_RATE",
+      "name": "心率（次/分）",
+      "type": "sumary"
+    }
+  ],
+  "visits.admcndtn.diagnosis": [
+    {
+      "id": "HF_ETIOLOGICAL_DIAGNOSIS",
+      "name": "心衰病因诊断",
+      "type": "sumary"
+    },
+    {
+      "id": "HF_TYPE",
+      "name": "心衰类型",
+      "type": "sumary"
+    },
+    {
+      "id": "HF_NYHA_CLASS",
+      "name": "心衰NYHA分级",
+      "type": "sumary"
+    }
+  ],
+  "visits.labrslts": [
+    {
+      "id": "RBC_FIRST",
+      "name": "入院首次血常规_红细胞计数",
+      "type": "sumary"
+    },
+    {
+      "id": "HGB_FIRST",
+      "name": "入院首次血常规_血红蛋白",
+      "type": "sumary"
+    },
+    {
+      "id": "HCT_FIRST",
+      "name": "入院首次血常规_红细胞压积",
+      "type": "sumary"
+    },
+    {
+      "id": "HBA1C",
+      "name": "入院后糖化血红蛋白（%）",
+      "type": "sumary"
+    },
+    {
+      "id": "GLUCOSE_FIRST",
+      "name": "入院首次生化_血糖（mmol/l）",
+      "type": "sumary"
+    },
+    {
+      "id": "K_FIRST",
+      "name": "入院首次生化_钾",
+      "type": "sumary"
+    },
+    {
+      "id": "NA_FIRST",
+      "name": "入院首次生化_钠",
+      "type": "sumary"
+    },
+    {
+      "id": "ALT_FIRST",
+      "name": "入院首次生化_丙氨酸氨基转移酶",
+      "type": "sumary"
+    },
+    {
+      "id": "AST_FIRST",
+      "name": "入院首次生化_天门冬氨酸氨基转移酶",
+      "type": "sumary"
+    },
+    {
+      "id": "DBIL_FIRST",
+      "name": "入院首次生化_直接胆红素",
+      "type": "sumary"
+    },
+    {
+      "id": "IBIL_FIRST",
+      "name": "入院首次生化_间接胆红素",
+      "type": "sumary"
+    },
+    {
+      "id": "CHOL_FIRST",
+      "name": "入院首次生化_总胆固醇",
+      "type": "sumary"
+    },
+    {
+      "id": "HDL_FIRST",
+      "name": "入院首次生化_高密度脂蛋白",
+      "type": "sumary"
+    },
+    {
+      "id": "LDL_FIRST",
+      "name": "入院首次生化_低密度脂蛋白",
+      "type": "sumary"
+    },
+    {
+      "id": "TRIG_FIRST",
+      "name": "入院首次生化_甘油三酯",
+      "type": "sumary"
+    },
+    {
+      "id": "CR_FIRST",
+      "name": "入院首次生化_肌酐",
+      "type": "sumary"
+    },
+    {
+      "id": "UREA_FIRST",
+      "name": "入院首次生化_尿素",
+      "type": "sumary"
+    },
+    {
+      "id": "UA_FIRST",
+      "name": "入院首次生化_血尿酸",
+      "type": "sumary"
+    },
+    {
+      "id": "BNP_FIRST",
+      "name": "B型脑钠尿肽_首次",
+      "type": "sumary"
+    },
+    {
+      "id": "BNP_MAX",
+      "name": "B型脑钠尿肽_最高值",
+      "type": "sumary"
+    },
+    {
+      "id": "BNP_DISCHARGE",
+      "name": "B型脑钠尿肽_出院",
+      "type": "sumary"
+    },
+    {
+      "id": "CKMB_MAX",
+      "name": "心梗三项_肌酸激酶_MB同工酶_最高值",
+      "type": "sumary"
+    },
+    {
+      "id": "MYO_MAX",
+      "name": "心梗三项_肌红蛋白_最高值",
+      "type": "sumary"
+    },
+    {
+      "id": "HSTNI_FIRST",
+      "name": "心梗三项_超敏肌钙蛋白I_首次",
+      "type": "sumary"
+    },
+    {
+      "id": "HSTNI_MAX",
+      "name": "心梗三项_超敏肌钙蛋白I_最高值",
+      "type": "sumary"
+    },
+    {
+      "id": "HSTNI_DISCHARGE",
+      "name": "心梗三项_超敏肌钙蛋白I_出院",
+      "type": "sumary"
+    },
+    {
+      "id": "D_DIMER_MAX",
+      "name": "DIC系列_D-二聚体-最高值",
+      "type": "sumary"
+    },
+    {
+      "id": "FT3",
+      "name": "甲状腺功能-游离T3",
+      "type": "sumary"
+    },
+    {
+      "id": "FT4",
+      "name": "甲状腺功能-游离T4",
+      "type": "sumary"
+    },
+    {
+      "id": "TSH",
+      "name": "甲状腺功能-促甲状腺素",
+      "type": "sumary"
+    }
+  ],
+  "visits.testrslts.ecg": [
+    {
+      "id": "ECG_YES_NO",
+      "name": "有无心电图检查",
+      "type": "sumary"
+    }
+  ],
+  "visits.testrslts.ecg.report": [
+    {
+      "id": "ECG_LBBB",
+      "name": "有无左束支阻滞",
+      "type": "sumary"
+    },
+    {
+      "id": "ECG_QRS",
+      "name": "QRS波有无增宽",
+      "type": "sumary"
+    },
+    {
+      "id": "ECG_QRS_WIDTH",
+      "name": "QRS时程/宽度（ms）",
+      "type": "sumary"
+    },
+    {
+      "id": "ECG_LVH",
+      "name": "有无左心室肥厚",
+      "type": "sumary"
+    }
+  ],
+  "visits.testrslts.x_ray": [
+    {
+      "id": "X_RAY_YES_NO",
+      "name": "有无X线检查",
+      "type": "sumary"
+    }
+  ],
+  "visits.testrslts.x_ray.x_ray_report": [
+    {
+      "id": "PULMONARY_CONGESTION",
+      "name": "有无肺淤血",
+      "type": "sumary"
+    },
+    {
+      "id": "ENLAGED_CARDIAC_SHADOW_YES_NO",
+      "name": "有无心影增大",
+      "type": "sumary"
+    },
+    {
+      "id": "PLEURAL_EFFUSION_YES_NO",
+      "name": "有无胸腔积液",
+      "type": "sumary"
+    }
+  ],
+  "visits.testrslts.ultrasound": [
+    {
+      "id": "CARDIAC_DOPPLER_EXAMINATION_YES_NO",
+      "name": "有无心脏彩色多普勒检查",
+      "type": "sumary"
+    }
+  ],
+  "visits.testrslts.ultrasound.cardiac_doppler_examination_report": [
+    {
+      "id": "CARDIAC_WALL_MOTION_ABNORMALITY_YES_NO",
+      "name": "有无室壁运动异常",
+      "type": "sumary"
+    },
+    {
+      "id": "CARDIAC_VALVULAR_REFLUX_YES_NO",
+      "name": "有无瓣膜返流",
+      "type": "sumary"
+    },
+    {
+      "id": "CARDIAC_VALVULAR_REFLUX_TYPE_EXTENT",
+      "name": "返流类型及程度",
+      "type": "sumary"
+    },
+    {
+      "id": "CARDIAC_VALVULAR_STENOSIS_YES_NO",
+      "name": "有无瓣膜狭窄",
+      "type": "sumary"
+    },
+    {
+      "id": "CARDIAC_VALVULAR_STENOSIS_TYPE",
+      "name": "瓣膜狭窄类型",
+      "type": "sumary"
+    },
+    {
+      "id": "LEFT_VENTRICULAR_END_DIASTOLIC_DIMENSION",
+      "name": "左室舒张末内径（LVEDD）（mm）",
+      "type": "sumary"
+    },
+    {
+      "id": "INTERVENTRICULAR_SEPTAL_THICKNESS",
+      "name": "左室壁厚度（间隔）（mm）",
+      "type": "sumary"
+    },
+    {
+      "id": "LEFT_VENTRICULAR_POSTERIOR_WALL_THICKNESS",
+      "name": "左室壁厚度（后壁）（mm）",
+      "type": "sumary"
+    },
+    {
+      "id": "LEFT_ATRIUM_ANTERIOR_AND_POSTERIOR_DIAMETER",
+      "name": "左房前后径（mm）",
+      "type": "sumary"
+    },
+    {
+      "id": "LEFT_VENTRICULAR_EJECTION_FRACTION",
+      "name": "LVEF（%）",
+      "type": "sumary"
+    },
+    {
+      "id": "LVDF",
+      "name": "LV舒张功能E/A",
+      "type": "sumary"
+    },
+    {
+      "id": "PERICARDIAL_EFFUSION",
+      "name": "心包积液",
+      "type": "sumary"
+    },
+    {
+      "id": "THROMBUS_IN_CHAMBER_YES_NO",
+      "name": "有无心腔内血栓",
+      "type": "sumary"
+    },
+    {
+      "id": "THROMBUS_LOC",
+      "name": "血栓位置",
+      "type": "sumary"
+    }
+  ],
+  "visits.testrslts.coronary_angiography": [
+    {
+      "id": "CORONARY_ANGIOGRAPHY_YES_NO",
+      "name": "有无冠脉造影检查",
+      "type": "sumary"
+    }
+  ],
+  "visits.testrslts.coronary_angiography.coronary_angiography_report": [
+    {
+      "id": "CORONARY_PRODOMINANCE_TYPE",
+      "name": "优势型血管",
+      "type": "sumary"
+    },
+    {
+      "id": "CORONARY_STENOSIS_YES_NO",
+      "name": "冠脉有无狭窄",
+      "type": "sumary"
+    },
+    {
+      "id": "CORONARY_STENOSIS_SITE_EXTENT",
+      "name": "血管狭窄部位及程度",
+      "type": "sumary"
+    },
+    {
+      "id": "CORONARY_BIFURCATIONG_LESION_YES_NO",
+      "name": "分叉病变",
+      "type": "sumary"
+    },
+    {
+      "id": "CORONARY_OCCLUSION_YES_NO",
+      "name": "闭塞病变",
+      "type": "sumary"
+    },
+    {
+      "id": "CORONARY_INVOLVEMENT_NUMBER",
+      "name": "累及冠脉支数",
+      "type": "sumary"
+    }
+  ],
+  "visits.trxnotcm.drug_treatment": [
+    {
+      "id": "ALDOSTERONE_ANTAGONISTS_YES_NO",
+      "name": "有无醛固酮拮抗剂",
+      "type": "sumary"
+    },
+    {
+      "id": "ANGIOTENSIN_CONVERTING_ENZYME_INHIBITOR_YES_NO",
+      "name": "有无血管紧张素转换酶抑制剂",
+      "type": "sumary"
+    },
+    {
+      "id": "ANGIOTENSIN_Ⅱ_RECEPTOR_ANTAGONIST_YES_NO",
+      "name": "有无血管紧张素II受体拮抗剂",
+      "type": "sumary"
+    },
+    {
+      "id": "β_RECEPTOR_BLOCKER_YES_NO",
+      "name": "有无β阻滞剂",
+      "type": "sumary"
+    },
+    {
+      "id": "DIGOXIN_YES_NO",
+      "name": "有无地高辛",
+      "type": "sumary"
+    },
+    {
+      "id": "DIURETICS_YES_NO",
+      "name": "有无利尿剂",
+      "type": "sumary"
+    }
+  ],
+  "visits.trxnotcm.drug_treatment.aldosterone_antagonists": [
+    {
+      "id": "ALDOSTERONE_ANTAGONISTS_NAME",
+      "name": "醛固酮拮抗剂名称",
+      "type": "sumary"
+    },
+    {
+      "id": "ALDOSTERONE_ANTAGONISTS_DOSE",
+      "name": "醛固酮拮抗剂剂量",
+      "type": "sumary"
+    },
+    {
+      "id": "ALDOSTERONE_ANTAGONISTS_DOSE_UNIT",
+      "name": "醛固酮拮抗剂剂量单位",
+      "type": "sumary"
+    },
+    {
+      "id": "ALDOSTERONE_ANTAGONISTS_FREQ",
+      "name": "醛固酮拮抗剂使用频次",
+      "type": "sumary"
+    },
+    {
+      "id": "ALDOSTERONE_ANTAGONISTS_ROUTE",
+      "name": "醛固酮拮抗剂剂用药途径",
+      "type": "sumary"
+    },
+    {
+      "id": "AA_START_TIME",
+      "name": "用药起始时间",
+      "type": "sumary"
+    },
+    {
+      "id": "AA_DISCHARGE_MED_YES_NO",
+      "name": "是否出院带药",
+      "type": "sumary"
+    }
+  ],
+  "visits.trxnotcm.drug_treatment.acei": [
+    {
+      "id": "ANGIOTENSIN_CONVERTING_ENZYME_INHIBITOR_NAME1",
+      "name": "血管紧张素转化酶抑制剂名称",
+      "type": "sumary"
+    },
+    {
+      "id": "ANGIOTENSIN_CONVERTING_ENZYME_INHIBITOR_DOSE1",
+      "name": "血管紧张素转化酶抑制剂剂量",
+      "type": "sumary"
+    },
+    {
+      "id": "ACEI_DOSE_UNIT",
+      "name": "血管紧张素转化酶抑制剂剂量单位",
+      "type": "sumary"
+    },
+    {
+      "id": "ACEI_DOSE_FREQ",
+      "name": "血管紧张素转化酶抑制剂使用频次",
+      "type": "sumary"
+    },
+    {
+      "id": "ACEI_ROUTE",
+      "name": "血管紧张素转化酶抑制剂用药途径",
+      "type": "sumary"
+    },
+    {
+      "id": "ACEI_START_TIME",
+      "name": "用药起始时间",
+      "type": "sumary"
+    },
+    {
+      "id": "ACEI_DISCHARGE_MED_YES_NO",
+      "name": "是否出院带药",
+      "type": "sumary"
+    }],
+  "visits.trxnotcm.drug_treatment.arb": [
+    {
+      "id": "ANGIOTENSIN_Ⅱ_RECEPTOR_ANTAGONIST_NAME1",
+      "name": "血管紧张素II受体拮抗剂名称",
+      "type": "sumary"
+    },
+    {
+      "id": "ANGIOTENSIN_Ⅱ_RECEPTOR_ANTAGONIST_DOSE1",
+      "name": "血管紧张素II受体拮抗剂剂量",
+      "type": "sumary"
+    },
+    {
+      "id": "ARB_DOSE_UNIT",
+      "name": "血管紧张素II受体拮抗剂剂量单位",
+      "type": "sumary"
+    },
+    {
+      "id": "ARB_DOSE_FREQ",
+      "name": "血管紧张素II受体拮抗剂使用频次",
+      "type": "sumary"
+    },
+    {
+      "id": "ARB_ROUTE",
+      "name": "血管紧张素II受体拮抗剂用药途径",
+      "type": "sumary"
+    },
+    {
+      "id": "ARB_START_TIME",
+      "name": "用药起始时间",
+      "type": "sumary"
+    },
+    {
+      "id": "ARB_DISCHARGE_MED_YES_NO",
+      "name": "是否出院带药",
+      "type": "sumary"
+    }
+  ],
+  "visits.trxnotcm.drug_treatment.β_blocker": [
+    {
+      "id": "β_RECEPTOR_BLOCKER_NAME",
+      "name": "β阻滞剂名称",
+      "type": "sumary"
+    },
+    {
+      "id": "β_RECEPTOR_BLOCKER_DOSE",
+      "name": "β阻滞剂剂量",
+      "type": "sumary"
+    },
+    {
+      "id": "BB_DOSE_UNIT",
+      "name": "β阻滞剂剂量单位",
+      "type": "sumary"
+    },
+    {
+      "id": "BB_FREQ",
+      "name": "β阻滞剂使用频次",
+      "type": "sumary"
+    },
+    {
+      "id": "BB_ROUTE",
+      "name": "β阻滞剂用药途径",
+      "type": "sumary"
+    },
+    {
+      "id": "BB_START_TIME",
+      "name": "用药起始时间",
+      "type": "sumary"
+    },
+    {
+      "id": "BB_DISCHARGE_MED_YES_NO",
+      "name": "是否出院带药",
+      "type": "sumary"
+    }
+  ],
+  "visits.trxnotcm.drug_treatment.digoxin": [
+    {
+      "id": "DIGOXIN_DOSE",
+      "name": "地高辛剂量",
+      "type": "sumary"
+    },
+    {
+      "id": "DIGOXIN_DOSE_UNIT",
+      "name": "地高辛剂量单位",
+      "type": "sumary"
+    },
+    {
+      "id": "DIGOXIN_FREQ",
+      "name": "地高辛使用频次",
+      "type": "sumary"
+    },
+    {
+      "id": "DIGOXIN_ROUTE",
+      "name": "地高辛用药途径",
+      "type": "sumary"
+    },
+    {
+      "id": "DGX_START_TIME",
+      "name": "用药起始时间",
+      "type": "sumary"
+    },
+    {
+      "id": "DGX_DISCHARGE_MED_YES_NO",
+      "name": "是否出院带药",
+      "type": "sumary"
+    }
+  ],
+  "visits.trxnotcm.drug_treatment.diuretics": [
+    {
+      "id": "DIURETICS_NAME1",
+      "name": "利尿剂名称",
+      "type": "sumary"
+    },
+    {
+      "id": "DIURETICS_NAME2",
+      "name": "利尿剂剂量",
+      "type": "sumary"
+    },
+    {
+      "id": "DIURETICS_DOSE_UNIT",
+      "name": "利尿剂剂量单位",
+      "type": "sumary"
+    },
+    {
+      "id": "DIURETICS_FREQ",
+      "name": "利尿剂使用频次",
+      "type": "sumary"
+    },
+    {
+      "id": "DIURETICS_ROUTE",
+      "name": "利尿剂用药途径",
+      "type": "sumary"
+    },
+    {
+      "id": "DIURECTIS_START_TIME",
+      "name": "用药起始时间",
+      "type": "sumary"
+    },
+    {
+      "id": "DIURETICS_DISCHARGE_MED_YES_NO",
+      "name": "是否出院带药",
+      "type": "sumary"
+    },
+    {
+      "id": "INTRAVENOUS_INOTROPIC_AGENTS_YES_NO",
+      "name": "有无静脉应用正性肌力药物",
+      "type": "sumary"
+    },
+    {
+      "id": "INTRAVENOUS_INOTROPIC_AGENTS_NAME",
+      "name": "静脉应用正性肌力药物名称",
+      "type": "sumary"
+    }
+  ],
+  "visits.trxnotcm.drug_treatment.vasodilator": [
+    {
+      "id": "INTRAVENOUS_VASODILATOR_YES_NO",
+      "name": "有无静脉应用血管扩张剂",
+      "type": "sumary"
+    },
+    {
+      "id": "INTRAVENOUS_VASODILATOR_NAME",
+      "name": "静脉应用血管扩张剂名称",
+      "type": "sumary"
+    }
+  ],
+  "visits.trxnotcm.drug_treatment.antiarrythmic": [
+    {
+      "id": "ANTIARRYTHMIC_YES_NO",
+      "name": "有无抗心律失常药物",
+      "type": "sumary"
+    },
+    {
+      "id": "ANTIARRYTHMIC_TYPE",
+      "name": "抗心律失常药物类型",
+      "type": "sumary"
+    },
+    {
+      "id": "ANTIARRYTHMIC_NAME",
+      "name": "抗心律失常药物名称",
+      "type": "sumary"
+    }
+  ],
+  "visits.trxnotcm.drug_treatment.cbb": [
+    {
+      "id": "CALCIUM_CHANNEL_BLOCKER_YES_NO",
+      "name": "有无钙通道阻滞剂",
+      "type": "sumary"
+    },
+    {
+      "id": "CALCIUM_CHANNEL_BLOCKER_NAME",
+      "name": "钙通道阻滞剂名称",
+      "type": "sumary"
+    }
+  ],
+  "visits.trxnotcm.drug_treatment.lipid_lowering_agent": [
+    {
+      "id": "LIPID_LOWERING_AGENT_YES_NO",
+      "name": "有无降脂药",
+      "type": "sumary"
+    },
+    {
+      "id": "LIPID_LOWERING_AGENT_TYPE",
+      "name": "降脂药类别",
+      "type": "sumary"
+    }
+  ],
+  "visits.trxnotcm.drug_treatment.antiplatelet_drug": [
+    {
+      "id": "ANTIPLATELET_DRUG_YES_NO",
+      "name": "有无抗血小板药物",
+      "type": "sumary"
+    },
+    {
+      "id": "ANTIPLATELET_DRUG_NAME",
+      "name": "抗血小板药物名称",
+      "type": "sumary"
+    }
+  ],
+  "visits.trxnotcm.drug_treatment.rhbnp": [
+    {
+      "id": "RHBNP_YES_NO",
+      "name": "是否用重组人脑利钠肽 ",
+      "type": "sumary"
+    }
+  ],
+  "visits.trxnotcm.nonpharmaceutical_treatments.pacemaker_implantation": [
+    {
+      "id": "PACEMAKER_IMPLANTATION_YES_NO",
+      "name": "有无永久性起搏器置入术",
+      "type": "sumary"
+    },
+    {
+      "id": "PACEMAKER_IMPLANTATION_TIME",
+      "name": "植入时间",
+      "type": "sumary"
+    },
+    {
+      "id": "PACEMAKER_TYPE",
+      "name": "永久性起搏器（PPM）类型",
+      "type": "sumary"
+    }
+  ],
+  "visits.trxnotcm.nonpharmaceutical_treatments.crtd": [
+    {
+      "id": "CRTD_YES_NO",
+      "name": "是否行CRTD植入术",
+      "type": "sumary"
+    },
+    {
+      "id": "CRTD_TIME",
+      "name": "CRTD时间",
+      "type": "sumary"
+    }
+  ],
+  "visits.trxnotcm.nonpharmaceutical_treatments.icd": [
+    {
+      "id": "ICD_YES_NO",
+      "name": "是否植入心律转复除颤器（ICD）",
+      "type": "sumary"
+    },
+    {
+      "id": "ICD_TIME",
+      "name": "植入心律转复除颤器（ICD）时间",
+      "type": "sumary"
+    }
+  ],
+  "visits.trxnotcm.nonpharmaceutical_treatments.pci": [
+    {
+      "id": "PCI_YES_NO",
+      "name": "有无PCI术",
+      "type": "sumary"
+    },
+    {
+      "id": "PCI_TIME",
+      "name": "PCI术时间",
+      "type": "sumary"
+    }
+  ],
+  "visits.trxnotcm.nonpharmaceutical_treatments.iabp": [
+    {
+      "id": "IABP_YES_NO",
+      "name": "有无主动脉内球囊反搏术",
+      "type": "sumary"
+    },
+    {
+      "id": "IABP_TIME",
+      "name": "主动脉内球囊反搏术时间",
+      "type": "sumary"
+    },
+    {
+      "id": "IABP_STOP_TIME",
+      "name": "IABP停止时间",
+      "type": "sumary"
+    }
+  ],
+  "visits.trxnotcm.nonpharmaceutical_treatments.cabg": [
+    {
+      "id": "CABG_YES_NO",
+      "name": "有无冠状动脉旁路移植术",
+      "type": "sumary"
+    },
+    {
+      "id": "CABG_TIME",
+      "name": "冠状动脉旁路移植术时间",
+      "type": "sumary"
+    }
+  ],
+  "visits.trxnotcm.inpatient_outcome": [
+    {
+      "id": "DISCHARGE_STATUS",
+      "name": "出院时状态",
+      "type": "sumary"
+    }
+  ]}

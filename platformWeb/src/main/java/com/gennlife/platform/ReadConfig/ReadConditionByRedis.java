@@ -78,6 +78,25 @@ public class ReadConditionByRedis {
             throw new RuntimeException();
         }
     }
+    public static void loadSearchDefinedEventListConfig(){
+        try{
+            String crf_mapping = FilesUtils.readFile("/rws/searchDefinedEventListConfig.json");
+            RedisUtil.setValue("search_defined_CVD",crf_mapping);
+            logger.info("crf_hit_sort 配置文件读取完毕");
+        }catch (Exception e ){
+            logger.error("crf_hit_sort 配置文件读取异常", e);
+            throw new RuntimeException();
+        }
+    }
+    public static String getLoadSearchDefinedEventListConfig(String crf_id) {
+        if(!RedisUtil.isExists("search_defined_"+crf_id)){
+            loadSearchDefinedEventListConfig();
+        }
+        String data = RedisUtil.getValue("search_defined_"+crf_id);
+        return data;
+    }
+
+
     //先放到 crf 查询那里吧
     public static void getCrfMapping(String crfId){
         if(!RedisUtil.isExists("crf_"+crfId+"_mapping")){
