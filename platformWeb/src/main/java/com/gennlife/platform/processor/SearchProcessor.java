@@ -157,7 +157,7 @@ public class SearchProcessor {
         String crfId= null;
         try {
             uid = paramObj.get("uid").getAsString();
-            if(paramObj.has(crfId)){
+            if(paramObj.has("crfId")){
                 crfId = paramObj.get("crfId").getAsString();
             }else {
                 crfId = "EMR";

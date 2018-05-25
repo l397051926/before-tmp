@@ -372,7 +372,7 @@
             <if test="conditionList != null">
                 conditionList = #{conditionList,jdbcType=VARCHAR},
             </if>
-            <if test="conditionList != null">
+            <if test="crf_id != null">
                 crf_id = #{crfId,jdbcType=VARCHAR},
             </if>
         </set>
