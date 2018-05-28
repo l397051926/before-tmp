@@ -548,7 +548,7 @@ public class CrfProcessor {
             if(flag){
 //                String url = ConfigurationService.getUrlBean().getCRFSearchSampleList();
                 newParam.addProperty("indexName",index_name);
-                String url = "http://10.0.2.53:8989/search-server/search";
+                String url = ConfigurationService.getUrlBean().getCrfSearchURL();
                 logger.info("请求参数： "+newParam);
                 String result = HttpRequestUtils.httpPost(url, gson.toJson(newParam));
                 JsonObject searchResult = (JsonObject) jsonParser.parse(result);

@@ -10,6 +10,7 @@
         <property name="fsIpAndPort" value="${fileService.ipAndPort}"/>
         <!-- 搜索服务 -->
         <property name="caseSearchURL" value="http://${searchServer.ipAndPort}/search-server/search"/>
+        <property name="crfSearchURL" value="http://${searchServer.ipAndPort}/search-server/search"/>
         <property name="caseSuggestURL"
                   value="http://${searchServer.ipAndPort}/search-server/suggest?indexName=%s&amp;dicName=%s&amp;keywords=%s&amp;size=%s&amp;page=%s"/>
         <property name="caseSuggestURL2" value="http://${searchServer.ipAndPort}/search-server/suggest2"/>

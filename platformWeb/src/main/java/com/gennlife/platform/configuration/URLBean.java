@@ -131,6 +131,11 @@ public class URLBean {
      */
     private String fileStoreForCRFImport = null;
 
+    /**
+     * crf 高级搜索
+     */
+    private String crfSearchURL = null;
+
 
     /**
      * 修改密码的url前缀
@@ -1472,5 +1477,13 @@ public class URLBean {
 
     public void setEmailURL(String emailURL) {
         EmailURL = emailURL;
+    }
+
+    public String getCrfSearchURL() {
+        return crfSearchURL;
+    }
+
+    public void setCrfSearchURL(String crfSearchURL) {
+        this.crfSearchURL = crfSearchURL;
     }
 }

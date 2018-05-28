@@ -50,5 +50,11 @@ public class RedisTest {
         ReadConditionByRedis.loadCrfHitSort();
     }
 
+    @Test
+    public void readCrfMapping(){
+        String data = RedisUtil.getValue("crf_CVD_mapping");
+        System.out.println(data);
+    }
+
 
 }
