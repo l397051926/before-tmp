@@ -10,6 +10,16 @@ public class SearchConditionBean {
     private String logTime = null;
     private String conditionName = null;
     private String conditionList = null;
+    private String crfId = null;
+
+    public String getCrfId() {
+        return crfId;
+    }
+
+    public void setCrfId(String crfId) {
+        this.crfId = crfId;
+    }
+
     public Integer getConditionID() {
         return conditionID;
     }

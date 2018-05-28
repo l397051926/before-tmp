@@ -107,7 +107,13 @@ public class SearchProcessor {
         String conditionStr = null;
         String conditionName = null;
         String collectionList = null;
+        String crfId = null;
         try {
+            if(paramObj.has("crfId")){
+                crfId = paramObj.get("crfId").getAsString();
+            }else {
+                crfId = "EMR";
+            }
             uid = paramObj.get("uid").getAsString();
             conditionStr = paramObj.get("conditionStr").getAsString();
             conditionName = paramObj.get("conditionName").getAsString();
@@ -123,6 +129,7 @@ public class SearchProcessor {
             searchConditionBean.setConditionStr(conditionStr);
             searchConditionBean.setConditionName(conditionName);
             searchConditionBean.setConditionList(collectionList);
+            searchConditionBean.setCrfId(crfId);
             int counter = AllDao.getInstance().getSyUserDao().insertSearchCondition(searchConditionBean);
             if (counter == 1) {
                 ResultBean resultBean = new ResultBean();
@@ -147,14 +154,20 @@ public class SearchProcessor {
      */
     public String searchConditionList(JsonObject paramObj) {
         String uid = null;
+        String crfId= null;
         try {
             uid = paramObj.get("uid").getAsString();
+            if(paramObj.has("crfId")){
+                crfId = paramObj.get("crfId").getAsString();
+            }else {
+                crfId = "EMR";
+            }
         } catch (Exception e) {
             logger.error("", e);
             return ParamUtils.errorParam("请求参数异常");
         }
         try {
-            List<SearchConditionBean> list = AllDao.getInstance().getSyUserDao().searchConditionList(uid);
+            List<SearchConditionBean> list = AllDao.getInstance().getSyUserDao().searchConditionList(uid,crfId);
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
             resultBean.setData(list);
@@ -172,17 +185,23 @@ public class SearchProcessor {
         String conditionStr = null;
         String conditionName = null;
         Integer conditionID = null;
+        String crfId = null;
         try {
             uid = paramObj.get("uid").getAsString();
             conditionStr = paramObj.get("conditionStr").getAsString();
             conditionName = paramObj.get("conditionName").getAsString();
             conditionID = paramObj.get("conditionID").getAsInt();
+            if(paramObj.has("crfId")){
+                crfId = paramObj.get("crfId").getAsString();
+            }else {
+                crfId = "EMR";
+            }
         } catch (Exception e) {
             logger.error("", e);
             return ParamUtils.errorParam("请求参数异常");
         }
         try {
-            List<SearchConditionBean> list = AllDao.getInstance().getSyUserDao().searchConditionList(uid);
+            List<SearchConditionBean> list = AllDao.getInstance().getSyUserDao().searchConditionList(uid,crfId);
             boolean flag = false;
             for (SearchConditionBean searchConditionBean : list) {
                 if (searchConditionBean.getConditionID() != conditionID
@@ -199,6 +218,7 @@ public class SearchProcessor {
             searchConditionBean.setConditionStr(conditionStr);
             searchConditionBean.setConditionName(conditionName);
             searchConditionBean.setConditionID(conditionID);
+            searchConditionBean.setCrfId(crfId);
             int counter = AllDao.getInstance().getSyUserDao().updateSearchCondition(searchConditionBean);
             if (counter == 1) {
                 ResultBean resultBean = new ResultBean();
@@ -215,24 +235,54 @@ public class SearchProcessor {
 
     }
 
-    public String deleteSearchCondition(JsonArray paramObj) {
+//    public String deleteSearchCondition(JsonArray paramObj) {
+//        Integer[] conditionIDs = null;
+//        try {
+//            conditionIDs = new Integer[paramObj.size()];
+//            for (int index = 0; index < paramObj.size(); index++) {
+//                conditionIDs[index] = paramObj.get(index).getAsInt();
+//            }
+//        } catch (Exception e) {
+//            logger.error("", e);
+//            return ParamUtils.errorParam("参数错误");
+//        }
+//        int counter = AllDao.getInstance().getSyUserDao().deleteSearchCondition(conditionIDs);
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("success", counter);
+//        map.put("fail", paramObj.size() - counter);
+//        ResultBean re = new ResultBean();
+//        re.setCode(1);
+//        re.setData(map);
+//        return gson.toJson(re);
+//    }
+
+    public String deleteSearchCondition(JsonObject paramObj) {
+        String crfId;
         Integer[] conditionIDs = null;
+        JsonArray condArray = null;
         try {
-            conditionIDs = new Integer[paramObj.size()];
-            for (int index = 0; index < paramObj.size(); index++) {
-                conditionIDs[index] = paramObj.get(index).getAsInt();
+            if(paramObj.has("crfId")){
+                crfId = paramObj.get("crfId").getAsString();
+            }else {
+                crfId = "EMR";
             }
-        } catch (Exception e) {
-            logger.error("", e);
-            return ParamUtils.errorParam("参数错误");
-        }
-        int counter = AllDao.getInstance().getSyUserDao().deleteSearchCondition(conditionIDs);
+            condArray = paramObj.get("conditionIDs").getAsJsonArray();
+            conditionIDs = new Integer[condArray.size()];
+            for (int index = 0; index < condArray.size(); index++) {
+                conditionIDs[index] = condArray.get(index).getAsInt();
+            }
+
+        int counter = AllDao.getInstance().getSyUserDao().deleteSearchCondition(conditionIDs,crfId);
         Map<String, Object> map = new HashMap<>();
         map.put("success", counter);
-        map.put("fail", paramObj.size() - counter);
+        map.put("fail", condArray.size() - counter);
         ResultBean re = new ResultBean();
         re.setCode(1);
         re.setData(map);
         return gson.toJson(re);
+        } catch (Exception e) {
+            logger.error("", e);
+            return ParamUtils.errorParam("参数错误");
+        }
     }
 }

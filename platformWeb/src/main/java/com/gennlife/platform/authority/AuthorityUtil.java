@@ -60,9 +60,14 @@ public class AuthorityUtil {
     }
 
     public static String addTreatedAuthority(HttpServletRequest paramRe) {
-
+        //从request请求中获取传送的实体内容
         String param = ParamUtils.getParam(paramRe);
         JsonElement paramElement = jsonParser.parse(param);
+        if(param.contains("crfId")){
+            return param;
+        }
+
+        //从request域中获取当前用户
         Object object = paramRe.getAttribute("currentUser");
         if (object == null) {
             logger.error("paramRe里面无currentUser");
@@ -76,13 +81,19 @@ public class AuthorityUtil {
             }
         }
     }
+
     /**
      * 给详情页加上权限
-     * */
+     * @param paramRe  request请求
+     * @param paramObj 请求中的实体内容封装成jsonObject
+     * @return
+     */
     public static String addRolesToParam(HttpServletRequest paramRe, JsonObject paramObj) {
+        //从域中获取当前用户对象
         User user = (User) paramRe.getAttribute("currentUser");
         //List<Role> roles = user.getRoles();
         List<Group> groups = user.getGroups();
+        //获取当前对象的权限
         Power power = user.getPower();
         //paramObj.add("roles", gson.toJsonTree(roles));
         //从groups数组扩展权限
@@ -109,8 +120,10 @@ public class AuthorityUtil {
                     }
                     group.setMembers(members);
                 }*/
+
+        //分割url
         String[] urlArray = paramRe.getRequestURI().split("/");
-        if (isUrlArrayHasStr(urlArray, "detail")) {
+        if (isUrlArrayHasStr(urlArray, "detail")) {  //？
             power.setHas_searchExport(null);
         }
         power.setHas_traceCRF(null);
@@ -119,6 +132,10 @@ public class AuthorityUtil {
         power.setHas_deleteCRF(null);
         power.setHas_browseDetail(null);
         power.setHas_addBatchCRF(null);
+        power.setHas_searchCRF(null);
+        power.setHas_importCRF(null);
+
+        //添加小组与权限两个字段
         paramObj.add("groups", gson.toJsonTree(groups));
         paramObj.add("power", gson.toJsonTree(power));
         return CaseProcessor.transformSid(paramObj, user);
@@ -147,6 +164,8 @@ public class AuthorityUtil {
                 power.setHas_deleteCRF(null);
                 power.setHas_browseDetail(null);
                 power.setHas_addBatchCRF(null);
+                power.setHas_searchCRF(null);
+                power.setHas_importCRF(null);
                 paramObj.add("groups", gson.toJsonTree(groups));
                 paramObj.add("power", gson.toJsonTree(power));
                 return CaseProcessor.transformSid(paramObj, user);

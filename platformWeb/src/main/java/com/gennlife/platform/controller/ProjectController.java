@@ -1,5 +1,6 @@
 package com.gennlife.platform.controller;
 
+import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.ProjectProcessor;
@@ -50,20 +51,19 @@ public class ProjectController {
 
     /**
      * 请求uid对应的模版接口
-     *
-     * @param param
-     * @return
+     * @param param   {"uid":"","crf_id":""}或者{"uid":""}
+     * @return  对应的项目列表
      */
     @RequestMapping(value = "/ProjectListNoPage", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
-    String getProjectCrfList(@RequestParam("param") String param) {
+    String getProjectCrfList(@RequestParam("param") String param, HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
             logger.info("用户相关项目的列表不分页 参数=" + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.projectListNoPage(paramObj);
+            resultStr = processor.projectListNoPage(paramObj,paramRe);
         } catch (Exception e) {
             logger.error("用户相关项目的列表不分页", e);
             resultStr = ParamUtils.errorParam("出现异常");

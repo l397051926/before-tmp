@@ -1,32 +1,47 @@
 package com.gennlife.platform.processor;
 
+import com.gennlife.platform.ReadConfig.ReadConditionByRedis;
+import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.dao.AllDao;
+import com.gennlife.platform.service.ArkService;
 import com.gennlife.platform.service.ConfigurationService;
+import com.gennlife.platform.service.RwsService;
+import com.gennlife.platform.service.RwsServiceImpl;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by luoxupan on 25/10/2017.
  */
+
+@Component
 public class RwsProcessor {
     private static Logger logger = LoggerFactory.getLogger(RwsProcessor.class);
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
 
+    @Autowired
+    private RwsService rwsService;
+
+    //搜索结果导出到RWS项目空间
     public String PreLiminary(JsonObject paramObj){
-        try {
-            String url = ConfigurationService.getUrlBean().getPreLiminaryUrl();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
-            return result;
-        } catch (Exception e) {
-            logger.error("请求发生异常", e);
-            return ParamUtils.errorParam("请求发生异常");
-        }
+        String result = rwsService.PreLiminary(paramObj);
+        return result;
     }
 
     public String PreAggregation(JsonObject paramObj) {
@@ -85,7 +100,21 @@ public class RwsProcessor {
     }
 
     public String saveOrSearchActive(JsonObject paramObj) {
+
         try {
+            JsonArray tmpJsonArray = new JsonArray();
+            if(paramObj.has("crfId")){
+                String crfId = paramObj.get("crfId").getAsString();
+                if(StringUtils.isEmpty(crfId)){
+                    tmpJsonArray = ReadConditionByRedis.getEmrRws();
+                }else {
+                    tmpJsonArray = ReadConditionByRedis.getCrfRws(crfId);
+                }
+            }
+            JsonObject tmpObject = (JsonObject) tmpJsonArray.get(0);
+            JsonObject orderObject = tmpObject.get("resultOrderKey").getAsJsonObject();
+            paramObj.add("resultOrderKey",orderObject);
+            //返回排序json
             String url = ConfigurationService.getUrlBean().getSaveOrSearchActive();
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
             return result;
@@ -182,4 +211,89 @@ public class RwsProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String getRwsEventConfig(JsonObject paramObj) {
+        ResultBean resultBean = new ResultBean();
+        String crfId= null;
+        JsonArray resultArray = null;
+        try {
+            if(paramObj.has("crfId")){
+                crfId = paramObj.get("crfId").getAsString();
+            }
+            if(StringUtils.isEmpty(crfId)){
+                 resultArray = ReadConditionByRedis.getEmrRws();
+            }else {
+                resultArray = ReadConditionByRedis.getCrfRws(crfId);
+            }
+            JsonObject jsonObject= (JsonObject) resultArray.get(00);
+            jsonObject.remove("resultOrderKey");
+            JsonArray  array = new JsonArray();
+            array.add(jsonObject);
+            resultBean.setCode(1);
+            resultBean.setData(resultArray);
+            return gson.toJson(resultBean);
+        } catch (Exception e) {
+            logger.error("事件配置文件获取", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getLoadSearchDefinedEventListConfig(JsonObject paramObj) {
+        ResultBean resultBean = new ResultBean();
+        String crfId= null;
+        try {
+            if(paramObj.has("crfId")){
+                crfId = paramObj.get("crfId").getAsString();
+            }
+            String data = ReadConditionByRedis.getLoadSearchDefinedEventListConfig(crfId);
+            JsonObject target = (JsonObject) jsonParser.parse(data);
+            resultBean.setCode(1);
+            resultBean.setData(target);
+            return gson.toJson(resultBean);
+        } catch (Exception e) {
+            logger.error("事件配置文件获取", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+
+    /*        int counter = 0;
+        try {
+            String projectId = paramObj.get("projectId").getAsString();
+            if (paramObj.has("crfId")){
+                String crfId = paramObj.get("crfId").getAsString();
+                String dataSource = "单病种-"+ArkService.getDiseaseName(crfId);
+                counter = insertProCrfId(projectId,dataSource,crfId);
+            } else {
+                counter = insertProCrfId(projectId,"EMR","");
+            }
+
+            String url = ConfigurationService.getUrlBean().getPreLiminaryUrl();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+
+            Map<String, Object> info = new HashMap<String, Object>();
+            info.put("counter", counter);
+            info.put("result",result);
+            ResultBean resultBean = new ResultBean();
+            resultBean.setCode(1);
+            resultBean.setInfo(info);
+            return gson.toJson(resultBean);
+        } catch (Exception e) {
+            logger.error("请求发生异常", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }*/
+
+    //如果是crf项目，需要写入p_project的crfId字段中，然后存入对应名字到datasource
+/*    public int insertProCrfId(String projectID,String dataSource,String crfId){
+        Map<String,String> map = new HashMap<>();
+        map.put("projectID",projectID);
+        map.put("dataSource",dataSource);
+        map.put("crfId",crfId);
+        long start = System.currentTimeMillis();
+        int count = AllDao.getInstance().getProjectDao().insertProCrfId(map);
+
+        long end = System.currentTimeMillis();
+        logger.debug("insertProCrfId(map) mysql耗时"+(end-start)+"ms");
+        return count;
+    }*/
 }

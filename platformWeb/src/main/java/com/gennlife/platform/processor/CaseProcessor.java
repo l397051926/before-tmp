@@ -37,6 +37,7 @@ public class CaseProcessor {
         String keywords = null;
         String status = null;
         String crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
+        String emr_id =  ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
         Set<String> set = new HashSet<String>();
         ResultBean resultBean = new ResultBean();
         try {
@@ -47,16 +48,26 @@ public class CaseProcessor {
                     && !"1".equals(status)
                     && !"2".equals(status)
                     && !"3".equals(status)
-                    && !"4".equals(status)&& !"5".equals(status)) {
+                    && !"4".equals(status)
+                    && !"5".equals(status)
+                    && ! "6".equals(status)) {
                 return ParamUtils.errorParam("status参数出错");
             }
             JsonArray arrange = paramObj.get("arrange").getAsJsonArray();
             for (JsonElement json : arrange) {
                 set.add(json.getAsString());
             }
-//            都给了 crf_id 为什么 还要在重新获取 crf_id.... 迷
-            if (paramObj.has("crf_id")) {
+            if (paramObj.has("crf_id") ) {
                 crf_id = paramObj.get("crf_id").getAsString();
+                if(StringUtils.isEmpty(crf_id)){
+                     crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
+                }
+            }
+            if(paramObj.has("crfId")){
+                crf_id = paramObj.get("crfId").getAsString();
+                if(StringUtils.isEmpty(crf_id)){
+                    crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
+                }
             }
         } catch (Exception e) {
             logger.error("", e);
@@ -173,7 +184,12 @@ public class CaseProcessor {
             resultBean.setCode(1);
             resultBean.setData(allNew);
         } else if ("5".equals(status)) {//高级搜索,所有属性,带有搜索功能
-            JsonObject all = ConfigurationService.getAdvancedSearch(crf_id);
+            JsonObject all =new JsonObject();
+            if(emr_id.equals(crf_id)){
+                 all = ConfigurationService.getAdvancedSearch(crf_id);
+            }else {
+                 all = ReadConditionByRedis.getCrfSearch(crf_id);
+            }
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                 String groupName = obj.getKey();
@@ -196,6 +212,44 @@ public class CaseProcessor {
                         String filterPath = paramObj.get("filterPath").getAsString();
                         if (!StringUtils.isEmpty(filterPath)) {
                             if (groupName.startsWith(filterPath)) {
+                                allNew.add(groupName, newGroup);
+                            }
+                        } else {
+                            allNew.add(groupName, newGroup);
+                        }
+                    } else {
+                        allNew.add(groupName, newGroup);
+                    }
+                }
+            }
+            resultBean.setCode(1);
+            resultBean.setData(allNew);
+        }  else if ("6".equals(status)) {//crf 高级搜索数据
+//            JsonObject all = ConfigurationService.getCrfSearch(crf_id);
+            //获取数据
+            JsonObject all = ReadConditionByRedis.getCrfSearch(crf_id);
+            JsonObject allNew = new JsonObject();
+            for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
+                String groupName = obj.getKey();
+                JsonArray items = obj.getValue().getAsJsonArray();
+                JsonArray newGroup = new JsonArray();
+                for (JsonElement json : items) {
+                    JsonObject item = json.getAsJsonObject();
+                    String UIFieldName = item.get("UIFieldName").getAsString();
+                    if ("".equals(keywords) || UIFieldName.contains(keywords)) {
+                        JsonObject itemNew = (JsonObject) jsonParser.parse(gson.toJson(item));
+                        if (!"".equals(keywords)) {
+                            UIFieldName = UIFieldName.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
+                            itemNew.addProperty("UIFieldName", UIFieldName);
+                        }
+                        newGroup.add(itemNew);
+                    }
+                }
+                if (newGroup.size() > 0) {
+                    if (paramObj.has("filterPath")) {
+                        String filterPath = paramObj.get("filterPath").getAsString();
+                        if (!StringUtils.isEmpty(filterPath)) {
+                            if (groupName.equals(filterPath)) {
                                 allNew.add(groupName, newGroup);
                             }
                         } else {
@@ -398,9 +452,13 @@ public class CaseProcessor {
         return transformSid(paramObj, user);
 
     }
+
     /**
      * sid前端选择科室 ,传给搜索
-     * */
+     * @param paramObj 对请求中的实体内容添加了group和power两个字段的jsonObject
+     * @param user     当前登陆的用户对象
+     * @return
+     */
     public static String transformSid(JsonObject paramObj, User user) {
         if (paramObj.has("sid") && paramObj.has("power")) {
             String sid = paramObj.get("sid").getAsString();
@@ -619,7 +677,11 @@ public class CaseProcessor {
         try {
             String url = ConfigurationService.getUrlBean().getHighlight();
             logger.info("搜索详情高亮 url=" + url);
-            paramObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
+            if(paramObj.has("indexName")){
+                paramObj.remove("crfID");
+            }else{
+                paramObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
+            }
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
             logger.info("搜索详情高亮 SS返回结果： " + result);
             return result;

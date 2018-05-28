@@ -438,8 +438,17 @@ public class SampleProcessor {
     //导出项目
     public String importSampleCheck(JsonObject jsonObject, User user) {
         try {
-
             JsonObject query = jsonObject.get("query").getAsJsonObject();
+            if(query.has("crfId")){
+                ResultBean resultBean = new ResultBean();
+                JsonObject data = new JsonObject();
+                data.addProperty("next", true);
+                data.addProperty("export", false);
+                data.addProperty("sub", 0);
+                resultBean.setCode(1);
+                resultBean.setData(data);
+                return gson.toJson(resultBean);
+            }
             JsonObject power = jsonObject.getAsJsonObject("power");
             if(jsonObject.has("groups")){
                 JsonArray groups = jsonObject.get("groups").getAsJsonArray();

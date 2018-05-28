@@ -40,6 +40,24 @@ public class MyProjectList {
     private String startTime = "";
     private String endTime = "";
     private String center = "";
+    private String dataSource = "";
+    private String crfId = "";
+
+    public String getCrfId() {
+        return crfId;
+    }
+
+    public void setCrfId(String crfId) {
+        this.crfId = crfId;
+    }
+
+    public String getDataSource() {
+        return dataSource;
+    }
+
+    public void setDataSource(String dataSource) {
+        this.dataSource = dataSource;
+    }
 
     public String getCenter() {
         return center;
@@ -203,4 +221,6 @@ public class MyProjectList {
     public void setSetCount(int setCount) {
         this.setCount = setCount;
     }
+
+
 }

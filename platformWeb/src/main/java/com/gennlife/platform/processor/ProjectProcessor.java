@@ -63,13 +63,17 @@ public class ProjectProcessor {
             for (MyProjectList myProjectList : list) {
                 String projectID = myProjectList.getProjectID();
                 String creator = myProjectList.getCreator();
+
                 if (creator != null) {
                     User user = AllDao.getInstance().getSyUserDao().getUserByUid(creator);
                     if (user != null) {
                         myProjectList.setCreatorName(user.getUname() + "");
                     }
-
                 }
+                if (StringUtils.isEmpty(myProjectList.getDataSource())){
+                    myProjectList.setDataSource("-");
+                }
+
                 confMap.put("projectID", projectID);
                 confMap.put("startIndex", 0);
                 confMap.put("maxNum", 5);
@@ -80,6 +84,7 @@ public class ProjectProcessor {
                 }
                 myProjectList.setLogs(logList);
             }
+
             Long start3 = System.currentTimeMillis();
             logger.debug("填充日志 mysql耗时:" + (start3 - start2) + "ms");
             Map<String, Integer> info = new HashMap<String, Integer>();
@@ -356,39 +361,76 @@ public class ProjectProcessor {
 
     /**
      * 用户相关项目的列表不分页
-     *
      * @param paramObj
      * @return
      */
-    public String projectListNoPage(JsonObject paramObj) {
+    public String projectListNoPage(JsonObject paramObj, HttpServletRequest paramRe) {
         String uid = null;
+        String crf_id = null;
+        User user = (User) paramRe.getAttribute("currentUser");
+        boolean CRFFlag = false;//是否为单病种
+        boolean crfImportFlag = true;//是否有导出权限
+        Map<String, Object> conf = new HashMap<>();
+        ResultBean resultBean = new ResultBean();
+
         try {
             uid = paramObj.get("uid").getAsString();
+            CRFFlag = paramObj.has("crfId");//是否含有crfId
+            if (CRFFlag){
+                crf_id = paramObj.get("crfId").getAsString();
+                crfImportFlag = CrfProcessor.getCRFFlag(user.getPower(),user.getOrgID(),crf_id,"has_importCRF");
+            }
+            conf.put("uid",uid);
         } catch (Exception e) {
-            logger.error("请求参数出错", e);
-            return ParamUtils.errorParam("请求参数出错");
+            logger.error("请求参数出错，没有uid", e);
+            return ParamUtils.errorParam("请求参数出错，没有uid");
         }
-        Map<String, Object> conf = new HashMap<>();
-        conf.put("uid", uid);
         try {
             List<MyProjectList> list = AllDao.getInstance().getProjectDao().getProjectList(conf);
-            //getSyUserDao().getProjectList(conf);
             List<JsonObject> paramList = new LinkedList<>();
-            for (MyProjectList myProjectList : list) {
-                JsonObject newParamObj = new JsonObject();
-                String projectID = myProjectList.getProjectID();
-                String projectName = myProjectList.getProjectName();
-                newParamObj.addProperty("projectID", projectID);
-                newParamObj.addProperty("projectName", projectName);
-                paramList.add(newParamObj);
+            if(!crfImportFlag){
+                return ParamUtils.errorParam("没有导出权限");
             }
-            ResultBean resultBean = new ResultBean();
+            if (CRFFlag) {
+                for (MyProjectList myProjectList : list) {
+                    //获取项目的数据源
+                    String dataSource = myProjectList.getDataSource();
+                    String pro_crfId = myProjectList.getCrfId();
+                    //含有crf_id字段，同时项目病种相同，或者项目为空 可导入
+                    if (pro_crfId.equals(crf_id) || StringUtils.isEmpty(dataSource)) {
+                        JsonObject newParamObj = new JsonObject();
+                        String projectID = myProjectList.getProjectID();
+                        String projectName = myProjectList.getProjectName();
+
+                        newParamObj.addProperty("projectID", projectID);
+                        newParamObj.addProperty("projectName", projectName);
+                        newParamObj.addProperty("dataSource",myProjectList.getDataSource());
+                        paramList.add(newParamObj);
+                    }
+                }
+            } else {
+                //emr项目，导入datasource为空或者emr的项目
+                for (MyProjectList myProjectList : list) {
+                    //获取项目的数据源
+                    String dataSource = myProjectList.getDataSource();
+                    if (dataSource.equals("EMR")||StringUtils.isEmpty(dataSource)){
+                        JsonObject newParamObj = new JsonObject();
+                        String projectID = myProjectList.getProjectID();
+                        String projectName = myProjectList.getProjectName();
+
+                        newParamObj.addProperty("projectID", projectID);
+                        newParamObj.addProperty("projectName", projectName);
+                        newParamObj.addProperty("dataSource",dataSource);
+                        paramList.add(newParamObj);
+                    }
+                }
+            }
             resultBean.setCode(1);
             resultBean.setData(paramList);
             return gson.toJson(resultBean);
         } catch (Exception e) {
-            logger.error("请求发生异常", e);
-            return ParamUtils.errorParam("请求发生异常");
+            logger.error("projectListNoPage项目列表获取有误", e);
+            return ParamUtils.errorParam("projectListNoPage项目列表获取有误");
         }
     }
 
@@ -890,6 +932,5 @@ public class ProjectProcessor {
         String content = HttpRequestUtils.httpGetForCS(url);
         logger.info("aTool 结果:" + content);
         return content;
-
     }
 }

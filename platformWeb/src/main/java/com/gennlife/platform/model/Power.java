@@ -26,6 +26,45 @@ public class Power {
     private Set<Resource> has_browseDetail = new TreeSet<>(comparator);
     private Set<Resource> has_addBatchCRF = new TreeSet<>(comparator);
 
+    private Set<Resource> has_searchCRF = new TreeSet<>(comparator);
+    private Set<Resource> has_importCRF = new TreeSet<>(comparator);
+
+    public Set<Resource> getHas_searchCRF() {
+        return has_searchCRF;
+    }
+
+    public void setHas_searchCRF(Set<Resource> has_searchCRF) {
+        this.has_searchCRF.clear();
+        if (has_searchCRF != null) {
+            for (Resource resource : has_searchCRF) {
+                if ( resource.getHas_searchCRF().equals("有"))
+                    addInHasSearchExport(resource);
+            }
+        }
+    }
+
+    public void addInHassearchCRF(Resource resource) {
+        this.has_searchCRF.add(resource.ResourcePowerleftOne("has_searchCRF"));
+    }
+
+
+    public Set<Resource> getHas_importCRF() {
+        return has_importCRF;
+    }
+
+    public void setHas_importCRF(Set<Resource> has_importCRF) {
+        this.has_importCRF.clear();
+        if (has_importCRF != null) {
+            for (Resource resource : has_importCRF) {
+                if ( resource.getHas_importCRF().equals("有"))
+                    addInHasSearchExport(resource);
+            }
+        }
+    }
+    public void addInHasimportCRF(Resource resource) {
+        this.has_importCRF.add(resource.ResourcePowerleftOne("has_importCRF"));
+    }
+
     public Set<Resource> getHas_search() {
         return has_search;
     }
@@ -182,6 +221,10 @@ public class Power {
         power.setHas_searchExport(has_searchExport);
         power.setHas_deleteCRF(has_deleteCRF);
         power.setHas_traceCRF(has_traceCRF);
+
+        power.setHas_searchCRF(has_searchCRF);
+        power.setHas_importCRF(has_importCRF);
+
         return power;
     }
 

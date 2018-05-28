@@ -6,7 +6,16 @@ package com.gennlife.platform.model;
 public class CRFLab {
     private String labID;
     private String crf_id;
-    private String crf_name;
+    private String crfName;
+    private String index_name;
+
+    public String getIndex_name() {
+        return index_name;
+    }
+
+    public void setIndex_name(String index_name) {
+        this.index_name = index_name;
+    }
 
     public String getLabID() {
         return labID;
@@ -24,11 +33,11 @@ public class CRFLab {
         this.crf_id = crf_id;
     }
 
-    public String getCrf_name() {
-        return crf_name;
+    public String getCrfName() {
+        return crfName;
     }
 
-    public void setCrf_name(String crf_name) {
-        this.crf_name = crf_name;
+    public void setCrfName(String crfName) {
+        this.crfName = crfName;
     }
 }

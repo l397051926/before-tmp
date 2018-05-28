@@ -54,9 +54,8 @@ public class SampleController {
     }
 
     @RequestMapping(value = "/ImportCheck", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public
     @ResponseBody
-    String ImportCheck(HttpServletRequest paramRe) {
+    public String ImportCheck(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {

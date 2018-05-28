@@ -209,7 +209,7 @@ public class CrfController {
         return resultStr;
     }
 
-
+    //将搜索到的病例导入crf接口
     @RequestMapping(value = "/AutoMap", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
@@ -362,7 +362,7 @@ public class CrfController {
         return resultStr;
     }
 
-
+    //导入CRF导入配置
     @RequestMapping(value = "/ImportCRFMap", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
@@ -387,6 +387,7 @@ public class CrfController {
         return resultStr;
     }
 
+    //查询导入状态
     @RequestMapping(value = "/CsvImportResult", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
@@ -634,18 +635,20 @@ public class CrfController {
         logger.info("获取研究序列号 耗时 " + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-
+    /*高級搜索*/
     @RequestMapping(value = "/SearchCase", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String postSearchCase(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
+        JsonObject paramObj = null;
         try {
-            String paramNew = AuthorityUtil.addSearchCaseAuthority(paramRe);
+            String param = ParamUtils.getParam(paramRe);
+            paramObj = (JsonObject) jsonParser.parse(param);
             User user = (User) paramRe.getAttribute("currentUser");
-            logger.info("crf 搜索 参数形式=" + paramNew);
-            resultStr = processor.searchCase(paramNew, user);
+            logger.info("crf 搜索 参数形式=" + param);
+            resultStr = processor.searchCase(paramObj, user);
         } catch (Exception e) {
             logger.error("crf单病种 搜索", e);
             resultStr = ParamUtils.errorParam("出现异常");
@@ -654,7 +657,8 @@ public class CrfController {
         //logger.info("病历搜索 结果=" + resultStr);
         return resultStr;
     }
-    @RequestMapping(value = "/SearchItemSet", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    /*搜索結果列表*/
+    @RequestMapping(value = "/SearchItemSet", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String postSearchItemSet(HttpServletRequest paramRe) {
@@ -677,5 +681,101 @@ public class CrfController {
         logger.info("CRF搜索结果列表展示的集合 post 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+    //获取病种资源
+    @RequestMapping(value = "/getCrfProjectDiseaseItem",method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String getCrfProjectDiseaseItem(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = jsonParser.parse(param).getAsJsonObject();
+            User user = (User) paramRe.getAttribute("currentUser");
+            resultStr = processor.getCrfProjectDiseaseItem(paramObj,user);
+
+        }catch (Exception e){
+            logger.error("CRF病种列表获取失败",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("CRF 病种列表获取 get 耗时：" + (System.currentTimeMillis()-start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/highlight",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String crfHighlight(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = jsonParser.parse(param).getAsJsonObject();
+            User user = (User) paramRe.getAttribute("currentUser");
+            resultStr = processor.searchHighlight(paramObj);
+
+        }catch (Exception e){
+            logger.error("CRF搜索详情高亮",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("CRF搜索详情高亮 get 耗时：" + (System.currentTimeMillis()-start) + "ms");
+        return resultStr;
+    }
+
+    /**
+     * 检查是否有导出权限
+     * @param paramRe
+     * @return
+     */
+    @RequestMapping(value = "/ImportCheck", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String ImportCheck(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            User user = (User) paramRe.getAttribute("currentUser");
+            logger.info("接口: /crf/ImportCheck 处理后的请求： param = " + param);
+            resultStr = processor.importCRFCheck(paramObj, user);
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("CRF导入校验 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+    //crfId patientInfo
+    @RequestMapping(value = "/getCaseToDetail", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String getCaseToDetail(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.getCaseToDetail(paramObj);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取 caseid 到详情页 耗时"+(System.currentTimeMillis()-start)+"ms");
+        return resultStr;
+    }
+    @RequestMapping(value = "/getCrfSort", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String getCrfSort(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.getCrfSort(paramObj);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取 详情页排序 sort 耗时"+(System.currentTimeMillis()-start)+"ms");
+        return resultStr;
+    }
+
 
 }

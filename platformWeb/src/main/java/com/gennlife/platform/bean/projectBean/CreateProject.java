@@ -26,6 +26,26 @@ public class CreateProject {
     private String registerNumber;
     private int isdelete = 0;
 
+    //病种的名字和数据源
+    private String dataSource;
+    private String crfId;
+
+    public String getCrfId() {
+        return crfId;
+    }
+
+    public void setCrfId(String crfId) {
+        this.crfId = crfId;
+    }
+
+    public String getDataSource() {
+        return dataSource;
+    }
+
+    public void setDataSource(String dataSource) {
+        this.dataSource = dataSource;
+    }
+
     public String getRegisterNumber() {
         return registerNumber;
     }

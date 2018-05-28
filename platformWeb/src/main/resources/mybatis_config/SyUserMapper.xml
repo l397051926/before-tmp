@@ -292,15 +292,17 @@
         <result column="logTime" property="logTime" jdbcType="VARCHAR"/>
         <result column="conditionName" property="conditionName" jdbcType="VARCHAR"/>
         <result column="conditionList" property="conditionList" jdbcType="VARCHAR"/>
+        <result column="crf_id" property="crfId" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="SearchConditionSql">
-		id,uid,conditionText,logTime,conditionName,conditionList
+		id,uid,conditionText,logTime,conditionName,conditionList,crf_id
 	</sql>
     <select id="searchConditionList" parameterType="map" resultMap="SearchConditionBean">
         select
         <include refid="SearchConditionSql"/>
         from searchConditionHistory
-        <where>uid=#{uid} order by logTime desc</where>
+        where uid=#{uid} and crf_id = #{crfId,jdbcType=VARCHAR}
+        order by logTime desc
     </select>
     <select id="findSearchConditionByName"
             resultType="com.gennlife.platform.bean.searchConditionBean.SearchConditionBean">
@@ -328,6 +330,9 @@
             <if test="conditionList != null">
                 conditionList,
             </if>
+            <if test="crfId != null">
+                crf_id,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="uid != null">
@@ -344,6 +349,9 @@
             </if>
             <if test="conditionList != null">
                 #{conditionList,jdbcType=VARCHAR},
+            </if>
+            <if test="crfId != null">
+                #{crfId,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -363,6 +371,9 @@
             </if>
             <if test="conditionList != null">
                 conditionList = #{conditionList,jdbcType=VARCHAR},
+            </if>
+            <if test="crf_id != null">
+                crf_id = #{crfId,jdbcType=VARCHAR},
             </if>
         </set>
         WHERE id = #{conditionID,jdbcType=INTEGER}

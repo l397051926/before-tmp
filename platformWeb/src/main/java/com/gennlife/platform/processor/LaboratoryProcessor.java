@@ -1885,4 +1885,21 @@ public class LaboratoryProcessor {
 
 
     }
+
+    public String deleteRedisKey(JsonObject paramObj, User user) {
+
+        ResultBean result = null;
+        String key = null;
+        try{
+            key = paramObj.get("key").getAsString();
+            result =new ResultBean();
+            RedisUtil.deleteKey(key);
+            result.setCode(1);
+            result.setInfo("删除成功");
+        }catch(Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("判断当前科室名称是否存在操作失败");
+        }
+        return gson.toJson(result);
+    }
 }

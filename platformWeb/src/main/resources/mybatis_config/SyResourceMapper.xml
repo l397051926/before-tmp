@@ -19,10 +19,12 @@
     <result column="has_addBatchCRF" property="has_addBatchCRF" jdbcType="VARCHAR" />
     <result column="has_deleteCRF" property="has_deleteCRF" jdbcType="VARCHAR" />
     <result column="stype_role" property="stype_role" jdbcType="VARCHAR" />
+    <result column="has_searchCRF" property="has_searchCRF" jdbcType="VARCHAR"/>
+    <result column="has_importCRF" property="has_importCRF" jdbcType="VARCHAR"/>
   </resultMap>
   <sql id="resourceProperty">
     gennlife_resource.sid,sname,sdesc,stype,slab_type,slab_name,sorgID,has_search,has_searchExport,has_traceCRF,has_addCRF,
-    has_editCRF,has_browseDetail,has_addBatchCRF,has_deleteCRF,stype_role
+    has_editCRF,has_browseDetail,has_addBatchCRF,has_deleteCRF,stype_role,has_searchCRF,has_importCRF
   </sql>
   
   <select id="getResources" resultMap="com.gennlife.platform.model.Resource"  parameterType="map">
@@ -95,6 +97,12 @@
       <if test="has_addBatchCRF != null" >
         has_addBatchCRF,
       </if>
+      <if test="has_searchCRF != null" >
+        has_searchCRF,
+      </if>
+      <if test="has_importCRF != null" >
+        has_importCRF,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       #{roleid,jdbcType=INTEGER},
@@ -123,6 +131,12 @@
       </if>
       <if test="has_addBatchCRF != null" >
         #{has_addBatchCRF,jdbcType=VARCHAR},
+      </if>
+      <if test="has_searchCRF != null" >
+        #{has_searchCRF,jdbcType=VARCHAR},
+      </if>
+      <if test="has_importCRF != null" >
+        #{has_importCRF,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -241,36 +255,57 @@
     WHERE sid = #{sid,jdbcType=VARCHAR} and sorgID = #{sorgID,jdbcType=VARCHAR}
   </update>
 
-
   <resultMap id="com.gennlife.platform.model.CRFLab" type="com.gennlife.platform.model.CRFLab">
     <result column="gennlife_lab_crf.labID" property="labID" jdbcType="VARCHAR" />
     <result column="gennlife_lab_crf.crf_id" property="crf_id" jdbcType="VARCHAR" />
     <result column="gennlife_lab_crf.crf_name" property="crf_name" jdbcType="VARCHAR" />
+    <result column="gennlife_lab_crf.index_name" property="index_name" jdbcType="VARCHAR" />
   </resultMap>
+
   <sql id="CRFLabProperty">
-    gennlife_lab_crf.labID,gennlife_lab_crf.crf_id,gennlife_lab_crf.crf_name
+    gennlife_lab_crf.labID,gennlife_lab_crf.crf_id,gennlife_lab_crf.crf_name,gennlife_lab_crf.index_name
   </sql>
+
   <select id="getCrfIDByLab" resultType="com.gennlife.platform.model.CRFLab">
-    SELECT
-    <include refid="CRFLabProperty"/>
-    FROM gennlife_lab_crf
-    WHERE labID=#{labID} AND orgID = #{orgID}
+    SELECT labID,crf_id,crfName,index_name
+    FROM (
+    gennlife_lab_crf lc
+    INNER JOIN
+    gennlife_crf c
+    ON lc.crf_id = c.crfId
+    ) WHERE labID=#{labID}
   </select>
   <select id="isExistsCrfID" resultType="java.lang.Integer">
     SELECT
     count(1)
     FROM gennlife_lab_crf
-    WHERE labID=#{labID} AND orgID = #{orgID} and crf_id=#{crf_id}
+    WHERE labID=#{labID} and crf_id=#{crf_id}
   </select>
 
   <select id="getCrfIDListByLab" resultType="com.gennlife.platform.model.CRFLab">
-    SELECT
-    <include refid="CRFLabProperty"/>
-    FROM gennlife_lab_crf
-    WHERE crf_id != "" AND  orgID = #{orgID} AND labID in
+    SELECT labID,crf_id,crfName,index_name
+    FROM (
+    gennlife_lab_crf lc
+    LEFT JOIN
+    gennlife_crf c
+    ON lc.crf_id = c.crfId
+    )
+    WHERE crf_id != "" AND labID in
     <foreach collection="labIDs" item="item" index="index" open="(" separator="," close=")">
       #{item,jdbcType=VARCHAR}
     </foreach>
+  </select>
+
+  <select id="getCrfIndexName" resultType="String">
+    SELECT index_name
+    FROM gennlife_lab_crf
+    WHERE crf_id=#{crf_id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getCrfNameOne" resultType="String">
+    SELECT crfName
+    FROM gennlife_crf
+    WHERE crfId=#{crfId,jdbcType=VARCHAR}
   </select>
 
   <select id="getSidsByRoleid" resultType="String">

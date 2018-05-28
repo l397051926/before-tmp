@@ -11,6 +11,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +26,8 @@ public class RwsController {
     private Logger logger = LoggerFactory.getLogger(RwsController.class);
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
-    private RwsProcessor processor = new RwsProcessor();
+    @Autowired
+    private RwsProcessor processor;
     private CaseProcessor caseProcessor = new CaseProcessor();
 
     @RequestMapping(value = "/PreLiminary", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
@@ -324,4 +326,46 @@ public class RwsController {
         logger.info("验证事件数据是否改变&有被依赖 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/getRwsEventConfig", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getRwsEventConfig(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("事件配置文件获取 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.getRwsEventConfig(paramObj);
+        } catch (Exception e) {
+            logger.error("事件配置文件获取 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("事件配置文件获取 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/getLoadSearchDefinedEventListConfig", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getLoadSearchDefinedEventListConfig(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("获取配置文件LoadSearch 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.getLoadSearchDefinedEventListConfig(paramObj);
+        } catch (Exception e) {
+            logger.error("事件配置文件获取获取配置文件LoadSearch 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取配置文件LoadSearch  接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+
+
+
 }

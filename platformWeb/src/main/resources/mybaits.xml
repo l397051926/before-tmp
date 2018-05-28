@@ -3,12 +3,12 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <bean name="allDao" class="com.gennlife.platform.dao.AllDao">
-        <property name="syUserDao" ref="syUserDao" />
-        <property name="syRoleDao" ref="syRoleDao" />
-        <property name="syResourceDao" ref="syResourceDao" />
-        <property name="orgDao" ref="orgDao" />
-        <property name="projectDao" ref="projectDao" />
-        <property name="groupDao" ref="groupDao" />
+        <property name="syUserDao" ref="syUserDao"/>
+        <property name="syRoleDao" ref="syRoleDao"/>
+        <property name="syResourceDao" ref="syResourceDao"/>
+        <property name="orgDao" ref="orgDao"/>
+        <property name="projectDao" ref="projectDao"/>
+        <property name="groupDao" ref="groupDao"/>
     </bean>
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <property name="driverClassName">
@@ -23,17 +23,17 @@
         <property name="password">
             <value>${ui.datasource.password}</value>
         </property>
-        <property name="initialSize" value="1" />
-        <property name="minIdle" value="1" />
+        <property name="initialSize" value="1"/>
+        <property name="minIdle" value="1"/>
     </bean>
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" primary="true">
-        <property name="dataSource" ref="dataSource" />
-        <property name="configLocation" value="classpath:mybatis_config/Configuration.xml" />
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis_config/Configuration.xml"/>
     </bean>
     <!-- 映射接口 basePackage指定要扫描的包，此包及其子包之下的映射器接口 都会被搜索到 -->
     <bean class="org.mybatis.spring.annotation.MapperScannerPostProcessor">
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-        <property name="basePackage" value="com.gennlife.platform.dao" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="com.gennlife.platform.dao"/>
     </bean>
 </beans>

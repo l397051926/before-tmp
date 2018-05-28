@@ -1,16 +1,20 @@
 package com.gennlife.platform.processor;
 
+import com.gennlife.platform.ReadConfig.ReadConditionByRedis;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.bean.projectBean.MyProjectList;
 import com.gennlife.platform.dao.AllDao;
+import com.gennlife.platform.model.CRFLab;
 import com.gennlife.platform.model.Power;
 import com.gennlife.platform.model.Resource;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.parse.CaseSearchParser;
+import com.gennlife.platform.service.ArkService;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.*;
 import com.google.gson.*;
+import net.minidev.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -80,9 +84,11 @@ public class CrfProcessor {
      */
     public static boolean getCRFFlag(Power power, String orgID, String crf_id, String key) {
         boolean flag = false;
+        //sId 与 labId 均为科室Id
         Set<String> validLabID = new HashSet<>();
         JsonObject powerObj = (JsonObject) jsonParser.parse(gson.toJson(power));
         JsonArray array = powerObj.getAsJsonArray(key);
+        //得到该权限下的所有科室id
         for (JsonElement item : array) {
             JsonObject itemObj = item.getAsJsonObject();
             String sid = itemObj.get("sid").getAsString();
@@ -128,7 +134,6 @@ public class CrfProcessor {
         }
     }
 
-
     public String deleteSample(JsonObject paramObj, String orgID, User user) {
         try {
             Power power = user.getPower();
@@ -157,7 +162,9 @@ public class CrfProcessor {
             boolean flag3 = getCRFFlag(power, user.getOrgID(), crf_id, "has_addCRF");
             boolean flag4 = getCRFFlag(power, user.getOrgID(), crf_id, "has_editCRF");
             boolean flag5 = getCRFFlag(power, user.getOrgID(), crf_id, "has_addBatchCRF");
-            boolean flag = flag1 || flag2 || flag3 || flag4 || flag5;
+            boolean flag6 = getCRFFlag(power, user.getOrgID(), crf_id, "has_searchCRF");
+            boolean flag7 = getCRFFlag(power, user.getOrgID(), crf_id, "has_importCRF");
+            boolean flag = flag1 || flag2 || flag3 || flag4 || flag5 || flag6 || flag7;
             if (flag) {
                 String url = ConfigurationService.getUrlBean().getCRFSearchSampleList();
                 //10.0.0.152:9885/crf/SearchSampleList
@@ -250,13 +257,18 @@ public class CrfProcessor {
      */
 
     public String PatientInfo(String paramObj) {
+        String keyWords = null;
         try {
-
+            JsonObject paramObject = (JsonObject) jsonParser.parse(paramObj);
+            if(paramObject.has("keyWords")){
+                keyWords = paramObject.get("key").getAsString();
+            }
             String url = ConfigurationService.getUrlBean().getCRFGetPatientInfo() + "?param=";
             String param = URLEncoder.encode(paramObj, "utf-8");
             url = url + param;
             logger.info("request url:" + url);
             String result = HttpRequestUtils.httpGet(url);
+//            result = result.replaceAll(keyWords,"<span style='color:red'>" + keyWords + "</span>");
             return result;
         } catch (Exception e) {
             logger.error("请求发生异常", e);
@@ -270,12 +282,18 @@ public class CrfProcessor {
     * @return
     */
     public String PatientVisitDetail(String paramObj) {
+        String keyWords = null;
         try {
+            JsonObject paramObject = (JsonObject) jsonParser.parse(paramObj);
+            if(paramObject.has("keyWords")){
+                keyWords = paramObject.get("key").getAsString();
+            }
             String url = ConfigurationService.getUrlBean().getCRFPatientVisitDetail() + "?param=";
             String param = URLEncoder.encode(paramObj, "utf-8");
             url = url + param;
             logger.info("request url:" + url);
             String result = HttpRequestUtils.httpGet(url);
+//            result = result.replaceAll(keyWords,"<span style='color:red'>" + keyWords + "</span>");
             return result;
         } catch (Exception e) {
             logger.error("请求发生异常", e);
@@ -515,93 +533,50 @@ public class CrfProcessor {
         }
     }
 
-    public String searchCase(String newParam, User user) {
-        return searchCaseWithAddQuery(newParam, user, null);
-    }
-
-    public String searchCaseWithAddQuery(String newParam, User user, String addQuery) {
-        if (newParam == null) {
-            logger.error("searchCase缺失参数");
-            return ParamUtils.errorSessionLosParam();
-        }
-        String param = transformSid(newParam, user);
-        JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-        if (paramObj.has("code") && paramObj.get("code").getAsInt() == 0) {
-            return param;
-        }
-        CaseSearchParser caseSearchParser = new CaseSearchParser(param);
-        if (!StringUtils.isEmpty(addQuery)) {
-            caseSearchParser.addQuery(addQuery);
-        }
-        try {
-            String searchResultStr = caseSearchParser.parser();
-            if (StringUtils.isEmpty(searchResultStr)) {
-                logger.error("search empty " + caseSearchParser.getQuery());
-                return ParamUtils.errorParam("搜索无结果");
+    public String searchCase(JsonObject newParam, User user) {
+        String crf_id = null;
+        String index_name = null;
+        ResultBean resultBean = new ResultBean();
+        try{
+            crf_id = newParam.get("crfID").getAsString();
+            index_name = AllDao.getInstance().getSyResourceDao().getCrfIndexName(crf_id);
+            if(StringUtils.isEmpty(index_name)){
+                return ParamUtils.errorParam("没有此病种索引数据");
             }
-            JsonObject searchResult = (JsonObject) jsonParser.parse(searchResultStr);
-            JsonObject result = new JsonObject();
-            result.addProperty("code", 1);
-            result.add("data", searchResult);
-            return gson.toJson(result);
-        } catch (Exception e) {
-            logger.error("error", e);
-            return ParamUtils.errorParam("搜索失败");
-        }
-    }
-    /**
-     * 搜索接口，sid 转化
-     *
-     * @param param
-     * @return
-     */
-    public static String transformSid(String param, User user) {
-        JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-        return transformSid(paramObj, user);
-
-    }
-
-    /**
-     * sid前端选择科室 ,传给搜索
-     * */
-    public static String transformSid(JsonObject paramObj, User user) {
-        if (paramObj.has("sid") && paramObj.has("power")) {
-            String sid = paramObj.get("sid").getAsString();
-            paramObj.remove("groups"); // 选择科室后，工号权限小时
-            paramObj.remove("sid");
-            JsonObject power = paramObj.getAsJsonObject("power");
-            JsonArray has_searchArray = power.getAsJsonArray("has_search");
-            JsonArray newHas_searchArray = new JsonArray();
-            for (JsonElement item : has_searchArray) {
-                JsonObject has_searchObj = item.getAsJsonObject();
-                String tmpSid = has_searchObj.get("sid").getAsString();
-                if (tmpSid.equals(sid)) {
-                    newHas_searchArray.add(has_searchObj);
-                }
+            Power power = user.getPower();
+            boolean flag = getCRFFlag(power, user.getOrgID(), crf_id, "has_searchCRF");
+            if(flag){
+//                String url = ConfigurationService.getUrlBean().getCRFSearchSampleList();
+                newParam.addProperty("indexName",index_name);
+                String url = ConfigurationService.getUrlBean().getCrfSearchURL();
+                logger.info("请求参数： "+newParam);
+                String result = HttpRequestUtils.httpPost(url, gson.toJson(newParam));
+                JsonObject searchResult = (JsonObject) jsonParser.parse(result);
+                resultBean.setCode(1);
+                resultBean.setData(searchResult);
+            }else {
+                return ParamUtils.errorParam("没有搜索权限");
             }
-            if (newHas_searchArray.size() == 0) {
-                return ParamUtils.errorParam("无搜索权限");
-            } else {
-                power.add("has_search", newHas_searchArray);
-            }
-            paramObj.add("power", power);
-            //logger.info("通过sid转化后，搜索请求参数 = " + gson.toJson(paramObj));
-            return gson.toJson(paramObj);
-        } else { // 角色,完成小组扩展
-            return gson.toJson(paramObj);
+
+            return gson.toJson(resultBean);
+
+        }catch (Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("出现异常");
         }
 
     }
 
-    public String searchItemSet(JsonObject paramObj) {
+       public String searchItemSet(JsonObject paramObj) {
         String param = null;
         String searchKey = null;
         String keywords = null;
         String status = null;
-        String crf_id = null;
+        String crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
         Set<String> set = new HashSet<String>();
         ResultBean resultBean = new ResultBean();
         try {
+
             //searchKey = paramObj.get("searchKey").getAsString();//病历搜索的关键词
             keywords = paramObj.get("keywords").getAsString();//属性搜索的关键词
 //            status = paramObj.get("status").getAsString();
@@ -616,7 +591,7 @@ public class CrfProcessor {
             logger.error("", e);
             return ParamUtils.errorParam("请求参数出错");
         }
-        JsonObject all = ConfigurationService.getAdvancedSearch(crf_id);
+        JsonObject all = ConfigurationService.getCrfSearch(crf_id);
         JsonObject allNew = new JsonObject();
         for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
             String groupName = obj.getKey();
@@ -652,5 +627,145 @@ public class CrfProcessor {
         resultBean.setCode(1);
         resultBean.setData(allNew);
         return gson.toJson(resultBean);
+    }
+
+    /**
+     * 获取 crf name
+     * @param paramObj
+     * @param user
+     * @return
+     */
+    public String getCrfProjectDiseaseItem(JsonObject paramObj, User user) {
+        String orgId = null;
+        String labId = null;
+        ResultBean resultBean = new ResultBean();
+        try {
+            //orgId 医院，labId 科室
+            orgId = user.getOrgID();
+            labId = paramObj.get("labID").getAsString();
+            Power power = user.getPower();
+
+            List<CRFLab> crfLabs = AllDao.getInstance().getSyResourceDao().getCrfIDByLab(labId,orgId);//获取科室对应的单病种id
+            JSONArray jsonArray = new JSONArray();
+            for (CRFLab crfLab:crfLabs) {
+                JsonObject jsonObject = new JsonObject();
+                boolean flag = getCRFFlag(power, user.getOrgID(), crfLab.getCrf_id(), "has_searchCRF");
+                if(flag){
+                    jsonObject.addProperty("isSearchCase",true);
+                }else {
+                    jsonObject.addProperty("isSearchCase",false);
+                }
+                jsonObject.addProperty("sid",crfLab.getCrf_id());
+                jsonObject.addProperty("slab_name",crfLab.getCrfName());
+                jsonObject.addProperty("indexName",crfLab.getIndex_name());
+                jsonArray.add(jsonObject);
+            }
+            resultBean.setCode(1);
+            resultBean.setData(jsonArray);
+
+        }catch (Exception e){
+            logger.error("error",e);
+            return ParamUtils.errorParam("获取病种列表失败");
+        }
+
+        return gson.toJson(resultBean);
+    }
+
+    /**
+     *  是否有CRF导出权限
+     * @param paramObj   参数实体
+     * @param user       当前用户
+     * @return
+     */
+    public String importCRFCheck(JsonObject paramObj, User user) {
+        String crf_id = null;
+        ResultBean resultBean = new ResultBean();
+        try{
+            crf_id = paramObj.get("crfID").getAsString();
+            Power power = user.getPower();
+            //判断是否有权限
+            boolean flag = getCRFFlag(power, user.getOrgID(), crf_id, "has_importCRF");
+            if(flag){
+                String url = ConfigurationService.getUrlBean().getCRFSearchSampleList();
+                logger.info("请求参数： "+paramObj);
+                String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+                resultBean.setCode(1);
+                resultBean.setData(result);
+            }else {
+                return ParamUtils.errorParam("没有导出权限");
+            }
+            return gson.toJson(resultBean);
+
+        }catch (Exception e){
+            logger.error("",e);
+            return ParamUtils.errorParam("出现异常");
+        }
+    }
+
+
+    public String searchHighlight(JsonObject paramObj) {
+        String crfID = null;
+        try {
+            if(paramObj.has("crfID")){
+                crfID = paramObj.get("crfID").getAsString();
+            }
+            /*
+            获取 indexName；
+            * */
+
+            String url = ConfigurationService.getUrlBean().getHighlight();
+            logger.info("CRF搜索详情高亮 url=" + url);
+            paramObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            logger.info("CRF搜索详情高亮 SS返回结果： " + result);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+
+
+    }
+
+    public String getCaseToDetail(JsonObject paramObj) {
+        ResultBean resultBean = new ResultBean();
+        String crfId = null;
+        String result;
+        JsonObject tmp = null;
+        try {
+            if(paramObj.has("crfId")){
+                crfId = paramObj.get("crfId").getAsString();
+            }
+            String url = ConfigurationService.getUrlBean().getCaseToDetail();
+            result = HttpRequestUtils.httpPost(url,gson.toJson(paramObj));
+            tmp = (JsonObject) jsonParser.parse(result);
+            JsonObject retmp = tmp.getAsJsonObject("data");
+            if(!StringUtils.isEmpty(crfId)){
+                String crfName = AllDao.getInstance().getSyResourceDao().getCrfNameOne(crfId);
+                retmp.addProperty("lab",crfName);
+            }
+
+
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+        return gson.toJson(tmp);
+
+    }
+
+    public String getCrfSort(JsonObject paramObj) {
+        ResultBean resultBean = new ResultBean();
+        String crfId = null;
+        try {
+            if(paramObj.has("crfId")){
+                crfId = paramObj.get("crfId").getAsString();
+            }
+            String dataSort = ReadConditionByRedis.getCrfHitSort(crfId);
+            resultBean.setCode(1);
+            resultBean.setData(dataSort);
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+        return gson.toJson(resultBean);
+
     }
 }

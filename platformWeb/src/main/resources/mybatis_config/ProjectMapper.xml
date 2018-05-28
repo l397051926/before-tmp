@@ -56,7 +56,13 @@
                 manager,
             </if>
             <if test="isdelete != null" >
-                isdelete
+                isdelete,
+            </if>
+            <if test="dataSource != null" >
+                dataSource,
+            </if>
+            <if test="crfId != null" >
+                crfId
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -113,7 +119,13 @@
                 #{manager,jdbcType=VARCHAR},
             </if>
             <if test="isdelete != null" >
-                #{isdelete,jdbcType=INTEGER}
+                #{isdelete,jdbcType=INTEGER},
+            </if>
+            <if test="dataSource != null" >
+                #{dataSource,jdbcType=VARCHAR},
+            </if>
+            <if test="crfId != null" >
+                #{crfId,jdbcType=VARCHAR}
             </if>
         </trim>
     </insert>
@@ -185,7 +197,7 @@
 
     <insert id="insertProjectMember" parameterType="map" >
         insert into userInfoDB.pro_user
-        (uid,projectID,role) values (#{uid,,jdbcType=VARCHAR},#{projectID},2);
+        (uid,projectID,role) values (#{uid,jdbcType=VARCHAR},#{projectID},2);
     </insert>
 
     <resultMap id="com.gennlife.platform.bean.projectBean.ProLog" type="com.gennlife.platform.bean.projectBean.ProLog">
@@ -603,7 +615,7 @@
     </resultMap>
 
     <sql id="MyProjectListSelect">
-        creator,p.projectID,projectName,date_format(createTime,"%Y-%m-%d") AS cTime,date_format(startTime,"%Y-%m-%d") AS startTime,date_format(endTime,"%Y-%m-%d") AS endTime,members,planNum,projectDesp,setCount,projectEngName,unit,manager,type,disease,registerNumber,center
+        creator,p.projectID,projectName,date_format(createTime,"%Y-%m-%d") AS cTime,date_format(startTime,"%Y-%m-%d") AS startTime,date_format(endTime,"%Y-%m-%d") AS endTime,members,planNum,projectDesp,setCount,projectEngName,unit,manager,type,disease,registerNumber,center,dataSource,crfId
     </sql>
 
     <select id="baiscInfo" resultMap="com.gennlife.platform.bean.projectBean.MyProjectList"
@@ -748,7 +760,7 @@
         and isdelete!=1
     </update>
     <update id="autoDeleteSetCountOne">
-         UPDATE
+        UPDATE
         userInfoDB.p_project
         SET setCount = setCount - 1
         WHERE  projectID = #{projectID}
@@ -769,4 +781,28 @@
         set puisdelete=1
         where projectID = #{projectID}
     </update>
+
+    <update id="insertProCrfId" parameterType="map" >
+        update userInfoDB.p_project
+        set dataSource = #{dataSource,jdbcType=VARCHAR},crfId = #{crfId,jdbcType=VARCHAR}
+        where projectID = #{projectID,jdbcType=VARCHAR}
+    </update>
+
+    <select id="getCrfName" resultType="String">
+        SELECT crfName FROM (
+        gennlife_lab_crf
+        INNER JOIN
+        gennlife_crf c
+        ON gennlife_lab_crf.crf_id=c.crfId
+        )
+        WHERE crfId=#{crf_id}
+        limit 1
+    </select>
+
+<!--    <select id="getIndexNameByCrfID" resultType="String">
+        SELECT index_name FROM
+        gennlife_lab_crf
+        WHERE crf_id=#{crf_id}
+        limit 1
+    </select>-->
 </mapper>
