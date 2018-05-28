@@ -1,5 +1,6 @@
 package com.gennlife.platform.processor;
 
+import com.gennlife.platform.ReadConfig.ReadConditionByRedis;
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.conf.SystemDefault;
