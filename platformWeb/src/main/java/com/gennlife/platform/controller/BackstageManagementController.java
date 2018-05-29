@@ -458,6 +458,28 @@ public class BackstageManagementController {
         return resultStr;
     }
 
+    @RequestMapping(value = "/GetResourceTree", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String GetResourceTreePost(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("GetResourceTree post方式 参数= " + param);
+            User user = (User) paramRe.getAttribute("currentUser");
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.getResourceTree(paramObj, user);
+        } catch (DataIntegrityViolationException e) {
+            resultStr = DataIntegrityViolationExceptionMsg();
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("根据资源类型获取资源树 post 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
     @RequestMapping(value = "/UserInfo", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody

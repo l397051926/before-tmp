@@ -1255,8 +1255,8 @@ public class LaboratoryProcessor {
         String roleid = null;
         String key = null;
         JsonArray labIds = null;
-        if(paramObj.has("key")){
-            key=paramObj.get("key").getAsString();
+        if(paramObj.has("keywords")){
+            key=paramObj.get("keywords").getAsString();
         }
         if(paramObj.has("roleid")){
             JsonElement jsonElement=paramObj.get("roleid");
