@@ -36,7 +36,7 @@ public class LaboratoryProcessor {
     public String orgMapData(User user,String key,String isParentLab,String isLabCast,String lab_id) {
         String orgID = user.getOrgID();
         //通过科室数据，初始化的数据结构
-        Organization organization = getOrganization(orgID,key,isParentLab,isLabCast,lab_id);
+        Organization organization = getOrganization(orgID,key,isParentLab,isLabCast,lab_id,null);
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(1);
         if(StringUtils.isEmpty(organization.getLabs())){
@@ -247,7 +247,7 @@ public class LaboratoryProcessor {
             }
         }
     }
-    public static Organization getOrganization(String orgID,String key,String isParentLab,String isLabCast,String lab_id) {
+    public static Organization getOrganization(String orgID,String key,String isParentLab,String isLabCast,String lab_id,JsonArray labIds) {
         Organization organization = AllDao.getInstance().getOrgDao().getOrganization(orgID);
         List<Lab> labs =null;
         Integer maxLevel =null;
@@ -259,6 +259,17 @@ public class LaboratoryProcessor {
 //            maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevelBylabId(key,orgID);
 //        }
         labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
+        if(labIds != null){
+            int size = labIds.size()==0?0:labIds.size();
+            for(int i=0;i<size;i++){
+                String tmp = labIds.get(i).getAsString();
+                for(Lab lab:labs){
+                    if(tmp.equals(lab.getLabID())){
+                        lab.setChecked("true");
+                    }
+                }
+            }
+        }
         maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
         Set<Lab> resultlabs=new HashSet<>();
         if(!StringUtils.isEmpty(key)){
@@ -1243,6 +1254,7 @@ public class LaboratoryProcessor {
         String type = null;
         String roleid = null;
         String key = null;
+        JsonArray labIds = null;
         if(paramObj.has("key")){
             key=paramObj.get("key").getAsString();
         }
@@ -1251,6 +1263,9 @@ public class LaboratoryProcessor {
             if(jsonElement.isJsonPrimitive()){
                 roleid=jsonElement.getAsString();
             }
+        }
+        if(paramObj.has("labId")){
+             labIds = paramObj.get("labId").getAsJsonArray();
         }
         try {
             if(paramObj.has("type")) {
@@ -1267,7 +1282,7 @@ public class LaboratoryProcessor {
             if(StringUtils.isEmpty(key)){
                 organization = getOrganization(user.getOrgID(),roleid);
             }else {
-                organization = getOrganization(user.getOrgID(),key,"true",null,null);
+                organization = getOrganization(user.getOrgID(),key,"true",null,null,labIds);
             }
 //            organization.setLabs(injectResource(organization,organization.getLabs(), list));
             //去掉本科室
