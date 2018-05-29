@@ -101,4 +101,10 @@ public interface SyResourceMapper {
     List<String> getSidsByRoleid(@Param("roleid") String roleid);
 
     LabResource getLabResourcesBySid(@Param("sid") String sid);
+
+    /**
+     *获取全部资源
+     * @return
+     */
+    List<LabResource> getLabResources();
 }

@@ -287,4 +287,13 @@
     sid = #{sid}
   </select>
 
+  <select id="getLabResources" resultType="com.gennlife.platform.model.LabResource">
+    SELECT
+    <include refid="labResourceProperty"/>
+    FROM
+    gennlife_resource
+  </select>
+
+
+
 </mapper>
