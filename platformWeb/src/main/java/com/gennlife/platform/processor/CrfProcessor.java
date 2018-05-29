@@ -551,9 +551,14 @@ public class CrfProcessor {
                 String url = ConfigurationService.getUrlBean().getCrfSearchURL();
                 logger.info("请求参数： "+newParam);
                 String result = HttpRequestUtils.httpPost(url, gson.toJson(newParam));
-                JsonObject searchResult = (JsonObject) jsonParser.parse(result);
-                resultBean.setCode(1);
-                resultBean.setData(searchResult);
+                if(StringUtils.isEmpty(result)){
+                    resultBean.setCode(1);
+                    resultBean.setData("没有搜索到数据");
+                }else {
+                    JsonObject searchResult = (JsonObject) jsonParser.parse(result);
+                    resultBean.setCode(1);
+                    resultBean.setData(searchResult);
+                }
             }else {
                 return ParamUtils.errorParam("没有搜索权限");
             }
