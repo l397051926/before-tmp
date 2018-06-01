@@ -308,6 +308,18 @@ public class URLBean {
      * 基因数组校验接口
      */
     private String caseGeneErrorURL = null;
+    /**
+     * 构建全部索引接口
+     */
+    private String buildIndexForAll = null;
+
+    public String getBuildIndexForAll() {
+        return buildIndexForAll;
+    }
+
+    public void setBuildIndexForAll(String buildIndexForAll) {
+        this.buildIndexForAll = buildIndexForAll;
+    }
 
     public String getCaseToDetail() {
         return CaseToDetail;

@@ -771,6 +771,18 @@ public class CrfProcessor {
             return ParamUtils.errorParam("请求出错");
         }
         return gson.toJson(resultBean);
+    }
 
+    public String buildIndexForAll(JsonObject paramObj) {
+        ResultBean resultBean = new ResultBean();
+        try {
+            String url = ConfigurationService.getUrlBean().getBuildIndexForAll();
+            HttpRequestUtils.httpPost(url,gson.toJson(paramObj));
+            resultBean.setData("构建开始");
+            resultBean.setCode(1);
+        }catch (Exception e){
+            return ParamUtils.errorParam("请求出错");
+        }
+        return gson.toJson(resultBean);
     }
 }
