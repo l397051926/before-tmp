@@ -799,6 +799,11 @@
         limit 1
     </select>
 
+    <select id="getDataSource" resultType="String">
+        SELECT dataSource FROM p_project
+        WHERE projectID = #{projectID,jdbcType=VARCHAR}
+    </select>
+
 <!--    <select id="getIndexNameByCrfID" resultType="String">
         SELECT index_name FROM
         gennlife_lab_crf

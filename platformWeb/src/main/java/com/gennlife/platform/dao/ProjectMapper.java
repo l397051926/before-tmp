@@ -266,6 +266,13 @@ public interface ProjectMapper {
      */
     public String getCrfName(@Param("crf_id")String crf_id);
 
+    /**
+     * 获取数据源的名称
+     * @param
+     * @return
+     */
+    String getDataSource(@Param("projectID") String projectID);
+
 /*   
     String getIndexNameByCrfID(@Param("crf_id")String crf_id);*/
 }
