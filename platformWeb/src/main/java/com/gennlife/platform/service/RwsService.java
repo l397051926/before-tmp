@@ -15,6 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,27 +32,42 @@ public class RwsService implements RwsServiceImpl {
     @Override
     public String PreLiminary(JsonObject paramObj) {
         int counter;
-        String result;
-        JsonObject resultObj;
+        String result = null, crfId = null, crfName = null, projectId = null, dataSource = null;
+        JsonObject resultObj = null;
         boolean flag = paramObj.has("crfId");
         try {
+            projectId = paramObj.get("projectId").getAsString();
+            dataSource = projectMapper.getDataSource(projectId);
+            logger.info("=====数据源dataSource: "+dataSource);
             if (!flag){
                 paramObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
                 logger.info("emr的indexName" + ConfigUtils.getSearchIndexName());
+            } else {
+                crfId = paramObj.get("crfId").getAsString();
+                //获取单病种对应的名称
+                crfName = projectMapper.getCrfName(crfId);
+                if (!StringUtils.isEmpty(dataSource)){
+                    //如果有值，去掉单病种-
+                    dataSource = dataSource.substring(4);
+                    logger.info("crf-dataSource:"+dataSource);
+                }
             }
-            String url = ConfigurationService.getUrlBean().getPreLiminaryUrl();
-            result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
 
-            resultObj = (JsonObject) jsonParser.parse(result);
-            if (resultObj.get("status").getAsString().equals("200")){
-                String projectId = paramObj.get("projectId").getAsString();
-                if (flag){
-                    String crfId = paramObj.get("crfId").getAsString();
-                    //获取单病种对应的名称
-                    String crfName = projectMapper.getCrfName(crfId);
+            //是否可以透传
+            if (StringUtils.isEmpty(dataSource) || dataSource.equals(crfName)) {
+                String url = ConfigurationService.getUrlBean().getPreLiminaryUrl();
+                result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+                resultObj = (JsonObject) jsonParser.parse(result);
+                //getResult(result,flag,projectId,crfName,crfId,resultObj);
+                if (resultObj.get("status").getAsString().equals("200")){
                     counter = insertProCrfId(projectId,"单病种-"+crfName,crfId);
                     logger.info("插入数据源counter;"+counter);
-                } else {
+                }
+            } else if (StringUtils.isEmpty(dataSource) || dataSource.equals("EMR")){
+                String url = ConfigurationService.getUrlBean().getPreLiminaryUrl();
+                result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+                resultObj = (JsonObject) jsonParser.parse(result);
+                if (resultObj.get("status").getAsString().equals("200")){
                     counter = insertProCrfId(projectId,"EMR","");
                     logger.info("插入数据源counter;"+counter);
                 }
@@ -73,5 +90,18 @@ public class RwsService implements RwsServiceImpl {
         long end = System.currentTimeMillis();
         logger.debug("insertProCrfId(map) mysql耗时"+(end-start)+"ms");
         return count;
+    }
+
+    public void getResult(String result,boolean flag,String projectId,String crfName,String crfId,JsonObject resultObj){
+        int counter = 0;
+        if (resultObj.get("status").getAsString().equals("200")){
+            if (flag){
+                counter = insertProCrfId(projectId,"单病种-"+crfName,crfId);
+                logger.info("插入数据源counter;"+counter);
+            } else {
+                counter = insertProCrfId(projectId,"EMR","");
+                logger.info("插入数据源counter;"+counter);
+            }
+        }
     }
 }
