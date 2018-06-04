@@ -21,9 +21,9 @@ public class ReadConditionByRedis {
     private static Gson gson = GsonUtil.getGson();
     //crf HashMap
 
-    public static void loadConfigurationInfo(){
+    public static void loadCrfConfiguration(String crfId){
         try {
-            String allCRFDiseases = FilesUtils.readFile("/crf/angiocardiopathy.json");
+            String allCRFDiseases = FilesUtils.readFile("/crf/"+crfId+".json");
             JsonObject allCRFConfig = (JsonObject) jsonParser.parse(allCRFDiseases);
             for (Map.Entry<String, JsonElement> item : allCRFConfig.entrySet()) {
                 String crf_id = item.getKey();
@@ -35,12 +35,20 @@ public class ReadConditionByRedis {
                 JsonObject importTree = jsonObject.getAsJsonObject("import");
                 RedisUtil.setValue(crf_id,gson.toJson(advancedSearch));
             }
+        }catch (Exception e){
+            logger.error("读取配置文件 异常", e);
+            throw new RuntimeException();
+        }
+    }
+
+    public static void loadConfigurationInfo(String crfId){
+        try {
             //读取 emrrws
             String EmrRwsConfig = FilesUtils.readFile("/rws/emr_rws.json");
             RedisUtil.setValue("emr_rws",EmrRwsConfig);
             //读取 crf rws
-            String crf_rws_CVD = FilesUtils.readFile("/rws/crf_rws_CVD.json");
-            RedisUtil.setValue("crf_rws_CVD",crf_rws_CVD);
+            String crf_rws= FilesUtils.readFile("/rws/crf_rws_"+crfId+".json");
+            RedisUtil.setValue("crf_rws_"+crfId,crf_rws);
 
         }catch (Exception e){
             logger.error("读取配置文件 异常", e);
@@ -78,10 +86,10 @@ public class ReadConditionByRedis {
             throw new RuntimeException();
         }
     }
-    public static void loadSearchDefinedEventListConfig(){
+    public static void loadSearchDefinedEventListConfig(String crfId){
         try{
-            String crf_mapping = FilesUtils.readFile("/rws/searchDefinedEventListConfig.json");
-            RedisUtil.setValue("search_defined_CVD",crf_mapping);
+            String search_defined = FilesUtils.readFile("/rws/searchDefinedEventListConfig"+crfId+".json");
+            RedisUtil.setValue("search_defined_"+crfId,search_defined);
             logger.info("crf_hit_sort 配置文件读取完毕");
         }catch (Exception e ){
             logger.error("crf_hit_sort 配置文件读取异常", e);
@@ -90,7 +98,7 @@ public class ReadConditionByRedis {
     }
     public static String getLoadSearchDefinedEventListConfig(String crf_id) {
         if(!RedisUtil.isExists("search_defined_"+crf_id)){
-            loadSearchDefinedEventListConfig();
+            loadSearchDefinedEventListConfig(crf_id);
         }
         String data = RedisUtil.getValue("search_defined_"+crf_id);
         return data;
@@ -106,7 +114,7 @@ public class ReadConditionByRedis {
 
     public static JsonObject getCrfSearch(String crf_id) {
         if(!RedisUtil.isExists("SEARCH_"+crf_id)){
-            loadConfigurationInfo();
+            loadCrfConfiguration(crf_id);
         }
         String data = RedisUtil.getValue("SEARCH_"+crf_id);
         if (data != null) {
@@ -118,7 +126,7 @@ public class ReadConditionByRedis {
 
     public static JsonArray getEmrRws(){
         if(!RedisUtil.isExists("emr_rws")){
-            loadConfigurationInfo();
+            loadConfigurationInfo("CVD");
         }
         String data = RedisUtil.getValue("emr_rws");
         if(data !=null){
@@ -130,7 +138,7 @@ public class ReadConditionByRedis {
 
     public static JsonArray getCrfRws(String crfId){
         if(!RedisUtil.isExists("crf_rws_"+crfId)){
-            loadConfigurationInfo();
+            loadConfigurationInfo(crfId);
         }
         String data = RedisUtil.getValue("crf_rws_"+crfId);
         if(data !=null){

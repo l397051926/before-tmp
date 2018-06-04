@@ -776,6 +776,22 @@ public class CrfController {
         logger.info("获取 详情页排序 sort 耗时"+(System.currentTimeMillis()-start)+"ms");
         return resultStr;
     }
+    @RequestMapping(value = "/buildIndexForAll", method = RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String buildIndexForAll(HttpServletRequest paramRe){
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.buildIndexForAll(paramObj);
+        }catch (Exception e){
+            logger.error("",e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取 详情页排序 sort 耗时"+(System.currentTimeMillis()-start)+"ms");
+        return resultStr;
+    }
 
 
 }

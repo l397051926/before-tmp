@@ -176,6 +176,7 @@
         <property name="CRFImportResult" value="http://${crf.ipAndPort}/auto/CsvImportResult"></property>
         <property name="CRFIsExistPatient" value="http://${crf.ipAndPort}/crf/IsExistPatient"></property>
         <property name="CrfCsvImportDetail" value="http://${crf.ipAndPort}/crf/CsvImportDetail"/>
+        <property name="buildIndexForAll" value="http://${crf.ipAndPort}/crf/buildIndexAll"/>
         <!--R 服务接口-->
         <property name="RRun" value="http://${rService.ipAndPort}/r_run"/>
         <property name="RStop" value="http://${rService.ipAndPort}/r_stop"/>
