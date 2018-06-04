@@ -539,7 +539,8 @@ public class CrfProcessor {
         ResultBean resultBean = new ResultBean();
         try{
             crf_id = newParam.get("crfID").getAsString();
-            index_name = AllDao.getInstance().getSyResourceDao().getCrfIndexName(crf_id);
+//            index_name = AllDao.getInstance().getSyResourceDao().getCrfIndexName(crf_id);
+            index_name = newParam.get("indexName").getAsString();
             if(StringUtils.isEmpty(index_name)){
                 return ParamUtils.errorParam("没有此病种索引数据");
             }
@@ -547,7 +548,7 @@ public class CrfProcessor {
             boolean flag = getCRFFlag(power, user.getOrgID(), crf_id, "has_searchCRF");
             if(flag){
 //                String url = ConfigurationService.getUrlBean().getCRFSearchSampleList();
-                newParam.addProperty("indexName",index_name);
+//                newParam.addProperty("indexName",index_name);
                 String url = ConfigurationService.getUrlBean().getCrfSearchURL();
                 logger.info("请求参数： "+newParam);
                 String result = HttpRequestUtils.httpPost(url, gson.toJson(newParam));
