@@ -1,5 +1,7 @@
 package com.gennlife.platform.service;
 
+import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.dao.ProjectMapper;
 import com.gennlife.platform.processor.RwsProcessor;
 import com.gennlife.platform.util.ConfigUtils;
@@ -13,8 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,31 +30,24 @@ public class RwsService implements RwsServiceImpl {
     @Override
     public String PreLiminary(JsonObject paramObj) {
         int counter;
-        String result = null, crfId = null, crfName = null, projectId = null;
+        String result;
         JsonObject resultObj;
         boolean flag = paramObj.has("crfId");
         try {
             if (!flag){
                 paramObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
                 logger.info("emr的indexName" + ConfigUtils.getSearchIndexName());
-            } else {
-                crfId = paramObj.get("crfId").getAsString();
-                //获取单病种对应的名称
-                crfName = projectMapper.getCrfName(crfId);
             }
-
-            projectId = paramObj.get("projectId").getAsString();
-            //判断数据库中的数据源是否为空，非空则不能再次加入
-            String dataSource = projectMapper.getDataSource(projectId).substring(4);
-            logger.info("数据源dataSource: "+dataSource);
-            if (StringUtils.isEmpty(dataSource) || dataSource.equals(crfName)) {
-                String url = ConfigurationService.getUrlBean().getPreLiminaryUrl();
-                result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
-            }
+            String url = ConfigurationService.getUrlBean().getPreLiminaryUrl();
+            result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
 
             resultObj = (JsonObject) jsonParser.parse(result);
             if (resultObj.get("status").getAsString().equals("200")){
+                String projectId = paramObj.get("projectId").getAsString();
                 if (flag){
+                    String crfId = paramObj.get("crfId").getAsString();
+                    //获取单病种对应的名称
+                    String crfName = projectMapper.getCrfName(crfId);
                     counter = insertProCrfId(projectId,"单病种-"+crfName,crfId);
                     logger.info("插入数据源counter;"+counter);
                 } else {
