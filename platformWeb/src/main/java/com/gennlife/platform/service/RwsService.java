@@ -1,7 +1,5 @@
 package com.gennlife.platform.service;
 
-import com.gennlife.platform.bean.ResultBean;
-import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.dao.ProjectMapper;
 import com.gennlife.platform.processor.RwsProcessor;
 import com.gennlife.platform.util.ConfigUtils;
@@ -33,7 +31,7 @@ public class RwsService implements RwsServiceImpl {
     public String PreLiminary(JsonObject paramObj) {
         int counter;
         String result = null;
-        JsonObject resultObj;
+        JsonObject resultObj = new JsonObject();
         boolean flag = paramObj.has("crfId");
         try {
             String crfName = null, crfId = null;
@@ -47,7 +45,7 @@ public class RwsService implements RwsServiceImpl {
             } else {
                 crfId = paramObj.get("crfId").getAsString();
                 crfName = projectMapper.getCrfName(crfId);
-                if (!StringUtils.isEmpty(dataSource)){
+                if (!StringUtils.isEmpty(dataSource) && !dataSource.equals("EMR")){
                     //去掉单病种-
                     dataSource = dataSource.substring(4);
                 }
@@ -56,17 +54,25 @@ public class RwsService implements RwsServiceImpl {
 
             if (flag){
                 if (StringUtils.isEmpty(dataSource) || dataSource.equals(crfName)){
+                    logger.info("单病种透传rws："+ dataSource);
                     String url = ConfigurationService.getUrlBean().getPreLiminaryUrl();
                     result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
                 } else {
-                    return "-1";
+                    logger.info("当前请求：" +crfName+ ", DB：" + dataSource+"----没有透传");
+                    resultObj.addProperty("code","0");
+                    resultObj.addProperty("info","所选项目状态有更新，请重新选择");
+                    return gson.toJson(resultObj);
                 }
             } else {
                 if (StringUtils.isEmpty(dataSource) || dataSource.equals("EMR")){
+                    logger.info("EMR透传："+dataSource);
                     String url = ConfigurationService.getUrlBean().getPreLiminaryUrl();
                     result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
                 } else {
-                    return "-1";
+                    logger.info("当前请求：EMR" + ", DB：" + dataSource+"----没有透传");
+                    resultObj.addProperty("code","0");
+                    resultObj.addProperty("info","所选项目状态有更新，请重新选择");
+                    return gson.toJson(resultObj);
                 }
             }
 
