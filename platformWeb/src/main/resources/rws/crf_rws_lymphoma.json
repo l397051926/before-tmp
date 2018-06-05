@@ -1,11 +1,11 @@
-[{
+{
   "children": [
     {
       "collapse": false,
       "data": {
         "dataType": "string",
         "indexFieldName": "visits.visitinfo",
-        "serchFieldName": "就诊.病史"
+        "srchFieldName": "就诊.病史"
       },
       "expand": false,
       "icon": "image/tnode-docs.png",
@@ -18,7 +18,7 @@
       "data": {
         "dataType": "string",
         "indexFieldName": "visits.check",
-        "serchFieldName": "就诊.查体"
+        "srchFieldName": "就诊.查体"
       },
       "expand": false,
       "icon": "image/tnode-docs.png",
@@ -31,7 +31,7 @@
       "data": {
         "dataType": "string",
         "indexFieldName": "visits.test",
-        "serchFieldName": "就诊.检验"
+        "srchFieldName": "就诊.检验"
       },
       "expand": false,
       "icon": "image/tnode-docs.png",
@@ -46,7 +46,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.inspect.path_report",
-            "serchFieldName": "就诊.检查.病理诊断报告"
+            "srchFieldName": "就诊.检查.病理诊断报告"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -59,7 +59,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.inspect.gene_abnml_report",
-            "serchFieldName": "就诊.检查.基因异常检查报告"
+            "srchFieldName": "就诊.检查.基因异常检查报告"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -71,7 +71,7 @@
       "data": {
         "dataType": "string",
         "indexFieldName": "visits.inspect",
-        "serchFieldName": "就诊.检查"
+        "srchFieldName": "就诊.检查"
       },
       "iconClose": "image/tnode-folder-close.png",
       "iconOpen": "image/tnode-folder-open.png",
@@ -84,7 +84,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.diagnosis.tumor_diagnosis_l",
-            "serchFieldName": "就诊.诊断.肿瘤诊断-淋巴瘤"
+            "srchFieldName": "就诊.诊断.肿瘤诊断-淋巴瘤"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -97,7 +97,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.diagnosis.ps_info",
-            "serchFieldName": "就诊.诊断.体力状况评分"
+            "srchFieldName": "就诊.诊断.体力状况评分"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -110,7 +110,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.diagnosis.pi_info",
-            "serchFieldName": "就诊.诊断.预后指数评分"
+            "srchFieldName": "就诊.诊断.预后指数评分"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -122,7 +122,7 @@
       "data": {
         "dataType": "string",
         "indexFieldName": "visits.diagnosis",
-        "serchFieldName": "就诊.诊断"
+        "srchFieldName": "就诊.诊断"
       },
       "iconClose": "image/tnode-folder-close.png",
       "iconOpen": "image/tnode-folder-open.png",
@@ -133,7 +133,7 @@
       "data": {
         "dataType": "string",
         "indexFieldName": "visits.treatment",
-        "serchFieldName": "就诊.治疗"
+        "srchFieldName": "就诊.治疗"
       },
       "expand": false,
       "icon": "image/tnode-docs.png",
@@ -148,7 +148,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.prog_indx.ips_score",
-            "serchFieldName": "就诊.预后指数.IPS评分"
+            "srchFieldName": "就诊.预后指数.IPS评分"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -161,7 +161,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.prog_indx.ipi",
-            "serchFieldName": "就诊.预后指数.IPI"
+            "srchFieldName": "就诊.预后指数.IPI"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -174,7 +174,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.prog_indx.aaipi",
-            "serchFieldName": "就诊.预后指数.aaIPI"
+            "srchFieldName": "就诊.预后指数.aaIPI"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -187,7 +187,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.prog_indx.ripi",
-            "serchFieldName": "就诊.预后指数.R-IPI"
+            "srchFieldName": "就诊.预后指数.R-IPI"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -200,7 +200,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.prog_indx.nccnipi",
-            "serchFieldName": "就诊.预后指数.NCCN-IPI"
+            "srchFieldName": "就诊.预后指数.NCCN-IPI"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -213,7 +213,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.prog_indx.flipi1",
-            "serchFieldName": "就诊.预后指数.FLIPI-1"
+            "srchFieldName": "就诊.预后指数.FLIPI-1"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -226,7 +226,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.prog_indx.flipi2",
-            "serchFieldName": "就诊.预后指数.FLIPI-2"
+            "srchFieldName": "就诊.预后指数.FLIPI-2"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -239,7 +239,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.prog_indx.mipi",
-            "serchFieldName": "就诊.预后指数.MIPI"
+            "srchFieldName": "就诊.预后指数.MIPI"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -252,7 +252,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.prog_indx.smipi",
-            "serchFieldName": "就诊.预后指数.s-MIPI"
+            "srchFieldName": "就诊.预后指数.s-MIPI"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -265,7 +265,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.prog_indx.rai",
-            "serchFieldName": "就诊.预后指数.Rai分期"
+            "srchFieldName": "就诊.预后指数.Rai分期"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -278,7 +278,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.prog_indx.binet",
-            "serchFieldName": "就诊.预后指数.Binet分期"
+            "srchFieldName": "就诊.预后指数.Binet分期"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -291,7 +291,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.prog_indx.cll",
-            "serchFieldName": "就诊.预后指数.CLL预后积分"
+            "srchFieldName": "就诊.预后指数.CLL预后积分"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -304,7 +304,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.prog_indx.ielsg",
-            "serchFieldName": "就诊.预后指数.IELSG评分"
+            "srchFieldName": "就诊.预后指数.IELSG评分"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -317,7 +317,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.prog_indx.dshnhl",
-            "serchFieldName": "就诊.预后指数.DSHNHL中枢复发预测模型"
+            "srchFieldName": "就诊.预后指数.DSHNHL中枢复发预测模型"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -329,7 +329,7 @@
       "data": {
         "dataType": "string",
         "indexFieldName": "visits.prog_indx",
-        "serchFieldName": "就诊.预后指数"
+        "srchFieldName": "就诊.预后指数"
       },
       "iconClose": "image/tnode-folder-close.png",
       "iconOpen": "image/tnode-folder-open.png",
@@ -342,7 +342,7 @@
           "data": {
             "dataType": "string",
             "indexFieldName": "visits.surv_stat.survival_situation",
-            "serchFieldName": "就诊.生存情况.生存情况"
+            "srchFieldName": "就诊.生存情况.生存情况"
           },
           "expand": false,
           "icon": "image/tnode-docs.png",
@@ -354,7 +354,7 @@
       "data": {
         "dataType": "string",
         "indexFieldName": "visits.surv_stat",
-        "serchFieldName": "就诊.生存情况"
+        "srchFieldName": "就诊.生存情况"
       },
       "iconClose": "image/tnode-folder-close.png",
       "iconOpen": "image/tnode-folder-open.png",
@@ -364,7 +364,7 @@
   "data": {
     "dataType": "string",
     "indexFieldName": "visits",
-    "serchFieldName": "就诊"
+    "srchFieldName": "就诊"
   },
   "iconClose": "image/tnode-folder-close.png",
   "iconOpen": "image/tnode-folder-open.png",
@@ -439,4 +439,4 @@
     "visits.prog_indx.dshnhl": "SCORE_DATE_DSHNHL",
     "visits.prog_indx.mipi.mipi_f": ""
   }
-}]
+}
