@@ -225,7 +225,7 @@ public class RwsProcessor {
             }else {
                 resultArray = ReadConditionByRedis.getCrfRws(crfId);
             }
-            JsonObject jsonObject= (JsonObject) resultArray.get(00);
+            JsonObject jsonObject= (JsonObject) resultArray.get(0);
             jsonObject.remove("resultOrderKey");
             JsonArray  array = new JsonArray();
             array.add(jsonObject);

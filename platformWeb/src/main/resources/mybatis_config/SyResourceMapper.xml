@@ -298,7 +298,7 @@
 
   <select id="getCrfIndexName" resultType="String">
     SELECT index_name
-    FROM gennlife_lab_crf
+    FROM gennlife_crf
     WHERE crf_id=#{crf_id,jdbcType=VARCHAR}
   </select>
 
