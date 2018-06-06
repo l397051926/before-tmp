@@ -61,6 +61,7 @@ public class RwsProcessor {
             if(paramObj.has("crfId")){
                 crfId = paramObj.get("crfId").getAsString();
                 ReadConditionByRedis.getCrfMapping(crfId);
+                logger.info("crf 映射 rws 映射成功！！！"+crfId);
             }
             String url = ConfigurationService.getUrlBean().getPreFindForProjectData();
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));

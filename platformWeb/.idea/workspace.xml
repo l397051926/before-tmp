@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -37,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReadConditionByRedis.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ReadConditionByRedis.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="108" column="23" lean-forward="false" selection-start-line="108" selection-start-column="23" selection-end-line="108" selection-end-column="23" />
+            <state relative-caret-position="-463">
+              <caret line="67" column="58" lean-forward="false" selection-start-line="67" selection-start-column="58" selection-end-line="67" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -57,11 +58,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RwsProcessor.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RwsProcessor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="494">
-              <caret line="62" column="45" lean-forward="true" selection-start-line="62" selection-start-column="45" selection-end-line="62" selection-end-column="45" />
+              <caret line="62" column="46" lean-forward="false" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -232,7 +233,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" />
         <option value="$PROJECT_DIR$/src/main/resources/urlconf.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/ParamUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/resources/crf/crf_hit_sort.json" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java" />
@@ -241,6 +241,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/ConfigurationService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/bootstrap.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java" />
       </list>
     </option>
   </component>
@@ -705,7 +706,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528247284715</updated>
-      <workItem from="1528247332342" duration="5123000" />
+      <workItem from="1528247332342" duration="5284000" />
     </task>
     <task id="LOCAL-00009" summary="调整 配置文件丢失 导致开启时出现的bug">
       <created>1528266766012</created>
@@ -714,7 +715,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528266766012</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="调整 crf 映射rws 映射问题">
+      <created>1528269683881</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1528269683881</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -750,7 +758,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="777035000" />
+    <option name="totallyTimeSpent" value="777196000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
@@ -862,7 +870,8 @@
     <MESSAGE value="调整 rws 首页配置文件" />
     <MESSAGE value="调整配置文件" />
     <MESSAGE value="调整 配置文件丢失 导致开启时出现的bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整 配置文件丢失 导致开启时出现的bug" />
+    <MESSAGE value="调整 crf 映射rws 映射问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整 crf 映射rws 映射问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1253,18 +1262,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="108" column="23" lean-forward="false" selection-start-line="108" selection-start-column="23" selection-end-line="108" selection-end-column="23" />
+        <state relative-caret-position="494">
+          <caret line="62" column="46" lean-forward="false" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="62" column="45" lean-forward="true" selection-start-line="62" selection-start-column="45" selection-end-line="62" selection-end-column="45" />
+        <state relative-caret-position="-463">
+          <caret line="67" column="58" lean-forward="false" selection-start-line="67" selection-start-column="58" selection-end-line="67" selection-end-column="58" />
           <folding />
         </state>
       </provider>

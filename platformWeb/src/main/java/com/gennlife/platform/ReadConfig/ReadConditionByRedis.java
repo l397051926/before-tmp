@@ -65,7 +65,7 @@ public class ReadConditionByRedis {
                 String value = gson.toJson(entry.getValue());
                 RedisUtil.setValue("crf_"+key+"_mapping",value);
             }
-            logger.info("crf_mapping 配置文件读取完毕");
+            logger.info("crf_mapping 配置文件读取完毕"+crf_mapping);
         }catch (Exception e ){
             logger.error("crf_mapping 配置文件读取 异常", e);
             throw new RuntimeException();
@@ -110,6 +110,7 @@ public class ReadConditionByRedis {
         if(!RedisUtil.isExists("crf_"+crfId+"_mapping")){
             loadCrfMapping();
         }
+
     }
 
     public static JsonObject getCrfSearch(String crf_id) {
@@ -121,6 +122,7 @@ public class ReadConditionByRedis {
             JsonObject target = (JsonObject) jsonParser.parse(data);
             return target;
         }
+        logger.info("crf 映射rws 映射成功 + "+ data);
         return new JsonObject();
     }
 
