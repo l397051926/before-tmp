@@ -56,7 +56,12 @@ public class RwsProcessor {
     }
 
     public String PreFindForProjectData(JsonObject paramObj) {
+        String crfId = null;
         try {
+            if(paramObj.has("crfId")){
+                crfId = paramObj.get("crfId").getAsString();
+                ReadConditionByRedis.getCrfMapping(crfId);
+            }
             String url = ConfigurationService.getUrlBean().getPreFindForProjectData();
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
             return result;
