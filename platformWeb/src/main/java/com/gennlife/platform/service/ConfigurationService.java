@@ -81,9 +81,9 @@ public class ConfigurationService implements InitializingBean{
         //处理emr 高级搜索case 文件
         disposeCaseFile(allDiseasesObj);
         //处理crf json
-        String allCRFDiseases = FilesUtils.readFile("/crf/angiocardiopathy.json");
-        JsonObject allCRFConfig = (JsonObject) jsonParser.parse(allCRFDiseases);
-        disposeCRFCaseFile(allCRFConfig);
+//        String allCRFDiseases = FilesUtils.readFile("/crf/angiocardiopathy.json");
+//        JsonObject allCRFConfig = (JsonObject) jsonParser.parse(allCRFDiseases);
+//        disposeCRFCaseFile(allCRFConfig);
 
 
         String resourceStr = FilesUtils.readFile("/resourceConfig.json");
