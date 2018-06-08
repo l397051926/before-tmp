@@ -37,7 +37,6 @@ public class ReadConditionByRedis {
             }
         }catch (Exception e){
             logger.error("读取配置文件 异常", e);
-            throw new RuntimeException();
         }
     }
 
@@ -52,7 +51,6 @@ public class ReadConditionByRedis {
 
         }catch (Exception e){
             logger.error("读取配置文件 异常", e);
-            throw new RuntimeException();
         }
     }
 
@@ -68,7 +66,6 @@ public class ReadConditionByRedis {
             logger.info("crf_mapping 配置文件读取完毕"+crf_mapping);
         }catch (Exception e ){
             logger.error("crf_mapping 配置文件读取 异常", e);
-            throw new RuntimeException();
         }
     }
 
@@ -83,7 +80,6 @@ public class ReadConditionByRedis {
             logger.info("crf_hit_sort 配置文件读取完毕");
         }catch (Exception e ){
             logger.error("crf_hit_sort 配置文件读取异常", e);
-            throw new RuntimeException();
         }
     }
     public static void loadSearchDefinedEventListConfig(String crfId){
@@ -93,7 +89,6 @@ public class ReadConditionByRedis {
             logger.info("crf_hit_sort 配置文件读取完毕");
         }catch (Exception e ){
             logger.error("crf_hit_sort 配置文件读取异常", e);
-            throw new RuntimeException();
         }
     }
     public static String getLoadSearchDefinedEventListConfig(String crf_id) {
