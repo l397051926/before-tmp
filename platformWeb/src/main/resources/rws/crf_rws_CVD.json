@@ -1,809 +1,799 @@
-[
-  {
-    "name": "就诊",
-    "iconOpen": "image/tnode-folder-open.png",
-    "iconClose": "image/tnode-folder-close.png",
-    "resultOrderKey": {
-      "visits.visitinfo": "INPATIENT_DATE",
-      "visits.pasthx.hbp_history": "INPATIENT_DATE",
-      "visits.pasthx.diabetes_history": "INPATIENT_DATE",
-      "visits.pasthx.hyperlipoidemia_history": "INPATIENT_DATE",
-      "visits.pasthx.cvd_history": "INPATIENT_DATE",
-      "visits.pasthx.hos_thyroid_disease_history": "INPATIENT_DATE",
-      "visits.pasthx.cardiogenic_vascular_history.heart_failure": "INPATIENT_DATE",
-      "visits.pasthx.cardiogenic_vascular_history.arrhythmia": "INPATIENT_DATE",
-      "visits.pasthx.cardiogenic_vascular_history.valvular_disease": "INPATIENT_DATE",
-      "visits.pasthx.cardiogenic_vascular_history.coronary_heart_disease": "INPATIENT_DATE",
-      "visits.pasthx.cardiogenic_vascular_history.cardiomyopathy": "INPATIENT_DATE",
-      "visits.pasthx.cardiogenic_vascular_history.congenital_heart_disease": "INPATIENT_DATE",
-      "visits.pasthx.cardiogenic_vascular_history.pvd": "INPATIENT_DATE",
-      "visits.pasthx.cardiogenic_vascular_history.pulmonary_embolism": "INPATIENT_DATE",
-      "visits.pasthx.hos_other_history": "INPATIENT_DATE",
-      "visits.fmlprsnhx.family_inheritance_history.fml_sudden_cardiac_death": "INPATIENT_DATE",
-      "visits.fmlprsnhx.family_inheritance_history.fml_eo_chd": "INPATIENT_DATE",
-      "visits.fmlprsnhx.family_inheritance_history.fml_cardiomyopathy": "INPATIENT_DATE",
-      "visits.fmlprsnhx.personal_history.smoke_history": "INPATIENT_DATE",
-      "visits.fmlprsnhx.personal_history.drink_history": "INPATIENT_DATE",
-      "visits.admcndtn.hos_current_symptoms": "INPATIENT_DATE",
-      "visits.admcndtn.diagnosis": "INPATIENT_DATE",
-      "visits.labrslts": "INPATIENT_DATE",
-      "visits.testrslts.ecg": "INPATIENT_DATE",
-      "visits.testrslts.x_ray": "INPATIENT_DATE",
-      "visits.testrslts.ultrasound": "INPATIENT_DATE",
-      "visits.testrslts.coronary_angiography": "INPATIENT_DATE",
-      "visits.trxnotcm.drug_treatment": "INPATIENT_DATE",
-      "visits.trxnotcm.drug_treatment.aldosterone_antagonists": "AA_START_TIME",
-      "visits.trxnotcm.drug_treatment.acei": "ACEI_START_TIME",
-      "visits.trxnotcm.drug_treatment.arb": "ARB_START_TIME",
-      "visits.trxnotcm.drug_treatment.arb": "BB_START_TIME",
-      "visits.trxnotcm.drug_treatment.digoxin": "DGX_START_TIME",
-      "visits.trxnotcm.drug_treatment.diuretics": "DIURECTIS_START_TIME",
-      "visits.trxnotcm.drug_treatment.inotropic": "INPATIENT_DATE",
-      "visits.trxnotcm.drug_treatment.vasodilator": "INPATIENT_DATE",
-      "visits.trxnotcm.drug_treatment.antiarrythmic": "INPATIENT_DATE",
-      "visits.trxnotcm.drug_treatment.cbb": "INPATIENT_DATE",
-      "visits.trxnotcm.drug_treatment.lipid_lowering_agent": "INPATIENT_DATE",
-      "visits.trxnotcm.drug_treatment.antiplatelet_drug": "INPATIENT_DATE",
-      "visits.trxnotcm.drug_treatment.rhbnp": "INPATIENT_DATE",
-      "visits.trxnotcm.nonpharmaceutical_treatments.pacemaker_implantation": "PACEMAKER_IMPLANTATION_TIME",
-      "visits.trxnotcm.nonpharmaceutical_treatments.crtd": "CRTD_TIME",
-      "visits.trxnotcm.nonpharmaceutical_treatments.icd": "ICD_TIME",
-      "visits.trxnotcm.nonpharmaceutical_treatments.pci": "PCI_TIME",
-      "visits.trxnotcm.nonpharmaceutical_treatments.iabp": "IABP_TIME",
-      "visits.trxnotcm.nonpharmaceutical_treatments.cabg": "CABG_TIME",
-      "visits.trxnotcm.inpatient_outcome": "DISCHARGE_DATE"
-    },
-    "children": [
-      {
-        "name": "<span class='u-noFoldIcon-treeNode'>就诊信息</span>",
-        "open": true,
-        "expand": false,
-        "collapse": false,
-        "icon": "image/tnode-docs.png",
-        "isSrchItem": true,
-        "data": {
-          "dataType": "string",
-          "dataMap": [
-            
-          ],
-          "srchFieldName": "就诊.就诊信息",
-          "indexFieldName": "visits.visitinfo"
-        }
-      },
-      {
-        "name": "既往史",
-        "iconOpen": "image/tnode-folder-open.png",
-        "iconClose": "image/tnode-folder-close.png",
-        "data": {
-          "dataType": "string",
-          "srchFieldName": "就诊.既往史",
-          "indexFieldName": "visits.pasthx"
-        },
-        "children": [
-          {
-            "name": "<span class='u-noFoldIcon-treeNode'>既往史.高血压史</span>",
-            "open": true,
-            "expand": false,
-            "collapse": false,
-            "icon": "image/tnode-docs.png",
-            "isSrchItem": true,
-            "data": {
-              "dataType": "string",
-              "srchFieldName": "就诊.既往史.高血压史",
-              "indexFieldName": "visits.pasthx.hbp_history"
-            }
-          },
-          {
-            "name": "<span class='u-noFoldIcon-treeNode'>既往史.糖尿病史</span>",
-            "open": true,
-            "expand": false,
-            "collapse": false,
-            "icon": "image/tnode-docs.png",
-            "isSrchItem": true,
-            "data": {
-              "dataType": "string",
-              "srchFieldName": "就诊.既往史.糖尿病史",
-              "indexFieldName": "visits.pasthx.diabetes_history"
-            }
-          },
-          {
-            "name": "<span class='u-noFoldIcon-treeNode'>既往史.高脂血症史</span>",
-            "open": true,
-            "expand": false,
-            "collapse": false,
-            "icon": "image/tnode-docs.png",
-            "isSrchItem": true,
-            "data": {
-              "dataType": "string",
-              "srchFieldName": "就诊.既往史.高脂血症史",
-              "indexFieldName": "visits.pasthx.hyperlipoidemia_history"
-            }
-          },
-          {
-            "name": "<span class='u-noFoldIcon-treeNode'>既往史.脑血管疾病史</span>",
-            "open": true,
-            "expand": false,
-            "collapse": false,
-            "icon": "image/tnode-docs.png",
-            "isSrchItem": true,
-            "data": {
-              "dataType": "string",
-              "srchFieldName": "就诊.既往史.脑血管疾病史",
-              "indexFieldName": "visits.pasthx.cvd_history"
-            }
-          },
-          {
-            "name": "<span class='u-noFoldIcon-treeNode'>既往史.甲状腺疾病史</span>",
-            "open": true,
-            "expand": false,
-            "collapse": false,
-            "icon": "image/tnode-docs.png",
-            "isSrchItem": true,
-            "data": {
-              "dataType": "string",
-              "srchFieldName": "就诊.既往史.甲状腺疾病史",
-              "indexFieldName": "visits.pasthx.hos_thyroid_disease_history"
-            }
-          },
-          {
-            "name": "心源性或其他血管源性疾病",
-            "iconOpen": "image/tnode-folder-open.png",
-            "iconClose": "image/tnode-folder-close.png",
-            "data": {
-              "dataType": "string",
-              "srchFieldName": "就诊.既往史.心源性或其他血管源性疾病",
-              "indexFieldName": "visits.pasthx.cardiogenic_vascular_history"
-            },
-            "children": [
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>心源性或其他血管源性疾病.心力衰竭</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.既往史.心源性或其他血管源性疾病.心力衰竭",
-                  "indexFieldName": "visits.pasthx.cardiogenic_vascular_history.heart_failure"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>心源性或其他血管源性疾病.心律失常</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "array",
-                  "srchFieldName": "就诊.既往史.心源性或其他血管源性疾病.心律失常",
-                  "indexFieldName": "visits.pasthx.cardiogenic_vascular_history.arrhythmia"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>心源性或其他血管源性疾病.心脏瓣膜病</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.既往史.心源性或其他血管源性疾病.心脏瓣膜病",
-                  "indexFieldName": "visits.pasthx.cardiogenic_vascular_history.valvular_disease"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>心源性或其他血管源性疾病.冠心病</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.既往史.心源性或其他血管源性疾病.冠心病",
-                  "indexFieldName": "visits.pasthx.cardiogenic_vascular_history.coronary_heart_disease"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>心源性或其他血管源性疾病.心肌病</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.既往史.心源性或其他血管源性疾病.心肌病",
-                  "indexFieldName": "visits.pasthx.cardiogenic_vascular_history.cardiomyopathy"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>心源性或其他血管源性疾病.先天性心脏病</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "array",
-                  "srchFieldName": "就诊.既往史.心源性或其他血管源性疾病.先天性心脏病",
-                  "indexFieldName": "visits.pasthx.cardiogenic_vascular_history.congenital_heart_disease"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>心源性或其他血管源性疾病.周围血管病</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.既往史.心源性或其他血管源性疾病.周围血管病",
-                  "indexFieldName": "visits.pasthx.cardiogenic_vascular_history.pvd"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>心源性或其他血管源性疾病.肺栓塞</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.既往史.心源性或其他血管源性疾病.肺栓塞",
-                  "indexFieldName": "visits.pasthx.cardiogenic_vascular_history.pulmonary_embolism"
-                }
-              }
-            ]
-          },
-          {
-            "name": "<span class='u-noFoldIcon-treeNode'>既往史.其他病史</span>",
-            "open": true,
-            "expand": false,
-            "collapse": false,
-            "icon": "image/tnode-docs.png",
-            "isSrchItem": true,
-            "data": {
-              "dataType": "string",
-              "srchFieldName": "就诊.既往史.其他病史",
-              "indexFieldName": "visits.pasthx.hos_other_history"
-            }
-          }
-        ]
-      },
-      {
-        "name": "家族史及个人史",
-        "iconOpen": "image/tnode-folder-open.png",
-        "iconClose": "image/tnode-folder-close.png",
-        "data": {
-          "dataType": "string",
-          "srchFieldName": "就诊.家族史及个人史",
-          "indexFieldName": "visits.fmlprsnhx"
-        },
-        "children": [
-          {
-            "name": "家族史",
-            "iconOpen": "image/tnode-folder-open.png",
-            "iconClose": "image/tnode-folder-close.png",
-            "data": {
-              "dataType": "string",
-              "srchFieldName": "就诊.家族史及个人史.家族史",
-              "indexFieldName": "visits.fmlprsnhx.family_inheritance_history"
-            },
-            "children": [
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>家族史.心脏性猝死</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.家族史及个人史.家族史.心脏性猝死",
-                  "indexFieldName": "visits.fmlprsnhx.family_inheritance_history.fml_sudden_cardiac_death"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>家族史.早发冠心病</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.家族史及个人史.家族史.早发冠心病",
-                  "indexFieldName": "visits.fmlprsnhx.family_inheritance_history.fml_eo_chd"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>家族史.心肌病</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.家族史及个人史.家族史.心肌病",
-                  "indexFieldName": "visits.fmlprsnhx.family_inheritance_history.fml_cardiomyopathy"
-                }
-              }
-            ]
-          },
-          {
-            "name": "个人史",
-            "iconOpen": "image/tnode-folder-open.png",
-            "iconClose": "image/tnode-folder-close.png",
-            "data": {
-              "dataType": "string",
-              "srchFieldName": "就诊.家族史及个人史.个人史",
-              "indexFieldName": "visits.fmlprsnhx.personal_history"
-            },
-            "children": [
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>个人史.吸烟史</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.家族史及个人史.个人史.吸烟史",
-                  "indexFieldName": "visits.fmlprsnhx.personal_history.smoke_history"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>家族史.饮酒史</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.家族史及个人史.家族史.饮酒史",
-                  "indexFieldName": "visits.fmlprsnhx.personal_history.drink_history"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "name": "入院情况",
-        "iconOpen": "image/tnode-folder-open.png",
-        "iconClose": "image/tnode-folder-close.png",
-        "data": {
-          "dataType": "string",
-          "srchFieldName": "就诊.入院情况",
-          "indexFieldName": "visits.admcndtn"
-        },
-        "children": [
-          {
-            "name": "<span class='u-noFoldIcon-treeNode'>入院情况.入院时症状及体征</span>",
-            "open": true,
-            "expand": false,
-            "collapse": false,
-            "icon": "image/tnode-docs.png",
-            "isSrchItem": true,
-            "data": {
-              "dataType": "string",
-              "srchFieldName": "就诊.入院情况.入院时症状及体征",
-              "indexFieldName": "visits.admcndtn.hos_current_symptoms"
-            }
-          },
-          {
-            "name": "<span class='u-noFoldIcon-treeNode'>入院情况.诊断</span>",
-            "open": true,
-            "expand": false,
-            "collapse": false,
-            "icon": "image/tnode-docs.png",
-            "isSrchItem": true,
-            "data": {
-              "dataType": "string",
-              "srchFieldName": "就诊.入院情况.诊断",
-              "indexFieldName": "visits.admcndtn.diagnosis"
-            }
-          }
-        ]
-      },
-      {
-        "name": "<span class='u-noFoldIcon-treeNode'>实验室检验</span>",
-        "open": true,
-        "expand": false,
-        "collapse": false,
-        "icon": "image/tnode-docs.png",
-        "isSrchItem": true,
-        "data": {
-          "dataType": "string",
-          "dataMap": [
-            
-          ],
-          "srchFieldName": "就诊.实验室检验",
-          "indexFieldName": "visits.labrslts"
-        }
-      },
-      {
-        "name": "检查",
-        "iconOpen": "image/tnode-folder-open.png",
-        "iconClose": "image/tnode-folder-close.png",
-        "data": {
-          "dataType": "string",
-          "srchFieldName": "就诊.检查",
-          "indexFieldName": "visits.testrslts"
-        },
-        "children": [
-          {
-            "name": "<span class='u-noFoldIcon-treeNode'>检查.心电图诊断</span>",
-            "open": true,
-            "expand": false,
-            "collapse": false,
-            "icon": "image/tnode-docs.png",
-            "isSrchItem": true,
-            "data": {
-              "dataType": "string",
-              "srchFieldName": "就诊.检查.心电图诊断",
-              "indexFieldName": "visits.testrslts.ecg"
-            }
-          },
-          {
-            "name": "<span class='u-noFoldIcon-treeNode'>检查.X影像诊断</span>",
-            "open": true,
-            "expand": false,
-            "collapse": false,
-            "icon": "image/tnode-docs.png",
-            "isSrchItem": true,
-            "data": {
-              "dataType": "string",
-              "srchFieldName": "就诊.检查.X影像诊断",
-              "indexFieldName": "visits.testrslts.x_ray"
-            }
-          },
-          {
-            "name": "<span class='u-noFoldIcon-treeNode'>检查.超声检查</span>",
-            "open": true,
-            "expand": false,
-            "collapse": false,
-            "icon": "image/tnode-docs.png",
-            "isSrchItem": true,
-            "data": {
-              "dataType": "string",
-              "srchFieldName": "就诊.检查.超声检查",
-              "indexFieldName": "visits.testrslts.ultrasound"
-            }
-          },
-          {
-            "name": "<span class='u-noFoldIcon-treeNode'>检查.冠脉造影检查</span>",
-            "open": true,
-            "expand": false,
-            "collapse": false,
-            "icon": "image/tnode-docs.png",
-            "isSrchItem": true,
-            "data": {
-              "dataType": "string",
-              "srchFieldName": "就诊.检查.冠脉造影检查",
-              "indexFieldName": "visits.testrslts.coronary_angiography"
-            }
-          }
-        ]
-      },
-      {
-        "name": "治疗及结局",
-        "iconOpen": "image/tnode-folder-open.png",
-        "iconClose": "image/tnode-folder-close.png",
-        "data": {
-          "dataType": "string",
-          "srchFieldName": "就诊.治疗及结局",
-          "indexFieldName": "visits.trxnotcm"
-        },
-        "children": [
-          {
-            "name": "<span class='u-noFoldIcon-treeNode'>治疗及结局.药物治疗</span>",
-            "open": true,
-            "expand": false,
-            "collapse": false,
-            "icon": "image/tnode-docs.png",
-            "isSrchItem": true,
-            "data": {
-              "dataType": "string",
-              "srchFieldName": "就诊.治疗及结局.药物治疗",
-              "indexFieldName": "visits.trxnotcm.drug_treatment"
-            }
-          },
-          {
-            "name": "药物治疗",
-            "iconOpen": "image/tnode-folder-open.png",
-            "iconClose": "image/tnode-folder-close.png",
-            "data": {
-              "dataType": "string",
-              "srchFieldName": "就诊.治疗及结局.药物治疗",
-              "indexFieldName": "visits.trxnotcm.drug_treatment"
-            },
-            "children": [
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>药物治疗.醛固酮拮抗剂</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.治疗及结局.药物治疗.醛固酮拮抗剂",
-                  "indexFieldName": "visits.trxnotcm.drug_treatment.aldosterone_antagonists"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>药物治疗.血管紧张素转化酶抑制剂</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.治疗及结局.药物治疗.血管紧张素转化酶抑制剂",
-                  "indexFieldName": "visits.trxnotcm.drug_treatment.acei"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>药物治疗.血管紧张素II受体拮抗剂</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.治疗及结局.药物治疗.血管紧张素II受体拮抗剂",
-                  "indexFieldName": "visits.trxnotcm.drug_treatment.arb"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>药物治疗.β阻滞剂</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.治疗及结局.药物治疗.β阻滞剂",
-                  "indexFieldName": "visits.trxnotcm.drug_treatment.β_blocker"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>药物治疗.地高辛</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.治疗及结局.药物治疗.地高辛",
-                  "indexFieldName": "visits.trxnotcm.drug_treatment.digoxin"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>药物治疗.利尿剂</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.治疗及结局.药物治疗.利尿剂",
-                  "indexFieldName": "visits.trxnotcm.drug_treatment.diuretics"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>药物治疗.正性肌力药物</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "array",
-                  "srchFieldName": "就诊.治疗及结局.药物治疗.正性肌力药物",
-                  "indexFieldName": "visits.trxnotcm.drug_treatment.inotropic"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>药物治疗.血管扩张剂</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "array",
-                  "srchFieldName": "就诊.治疗及结局.药物治疗.血管扩张剂",
-                  "indexFieldName": "visits.trxnotcm.drug_treatment.vasodilator"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>药物治疗.抗心律失常药</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.治疗及结局.药物治疗.抗心律失常药",
-                  "indexFieldName": "visits.trxnotcm.drug_treatment.antiarrythmic"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>药物治疗.钙通道阻滞剂</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "array",
-                  "srchFieldName": "就诊.治疗及结局.药物治疗.钙通道阻滞剂",
-                  "indexFieldName": "visits.trxnotcm.drug_treatment.cbb"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>药物治疗.降脂药</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.治疗及结局.药物治疗.降脂药",
-                  "indexFieldName": "visits.trxnotcm.drug_treatment.lipid_lowering_agent"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>药物治疗.抗血小板药物</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "array",
-                  "srchFieldName": "就诊.治疗及结局.药物治疗.抗血小板药物",
-                  "indexFieldName": "visits.trxnotcm.drug_treatment.antiplatelet_drug"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>药物治疗.重组人脑利钠肽</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.治疗及结局.药物治疗.重组人脑利钠肽",
-                  "indexFieldName": "visits.trxnotcm.drug_treatment.rhbnp"
-                }
-              }
-            ]
-          },
-          {
-            "name": "非药物治疗",
-            "iconOpen": "image/tnode-folder-open.png",
-            "iconClose": "image/tnode-folder-close.png",
-            "data": {
-              "dataType": "string",
-              "srchFieldName": "就诊.治疗及结局.非药物治疗",
-              "indexFieldName": "visits.trxnotcm.nonpharmaceutical_treatments"
-            },
-            "children": [
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>非药物治疗.永久性起搏器置入</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.治疗及结局.非药物治疗.永久性起搏器置入",
-                  "indexFieldName": "visits.trxnotcm.nonpharmaceutical_treatments.pacemaker_implantation"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>非药物治疗.CRTD</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.治疗及结局.非药物治疗.CRTD",
-                  "indexFieldName": "visits.trxnotcm.nonpharmaceutical_treatments.crtd"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>非药物治疗.ICD</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.治疗及结局.非药物治疗.ICD",
-                  "indexFieldName": "visits.trxnotcm.nonpharmaceutical_treatments.icd"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>非药物治疗.PCI</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.治疗及结局.非药物治疗.PCI",
-                  "indexFieldName": "visits.trxnotcm.nonpharmaceutical_treatments.pci"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>非药物治疗.IABP</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.治疗及结局.非药物治疗.IABP",
-                  "indexFieldName": "visits.trxnotcm.nonpharmaceutical_treatments.iabp"
-                }
-              },
-              {
-                "name": "<span class='u-noFoldIcon-treeNode'>非药物治疗.CABG</span>",
-                "open": true,
-                "expand": false,
-                "collapse": false,
-                "icon": "image/tnode-docs.png",
-                "isSrchItem": true,
-                "data": {
-                  "dataType": "string",
-                  "srchFieldName": "就诊.治疗及结局.非药物治疗.CABG",
-                  "indexFieldName": "visits.trxnotcm.nonpharmaceutical_treatments.cabg"
-                }
-              }
-            ]
-          },
-          {
-            "name": "<span class='u-noFoldIcon-treeNode'>治疗及结局.住院结局</span>",
-            "open": true,
-            "expand": false,
-            "collapse": false,
-            "icon": "image/tnode-docs.png",
-            "isSrchItem": true,
-            "data": {
-              "dataType": "string",
-              "srchFieldName": "就诊.治疗及结局.住院结局",
-              "indexFieldName": "visits.trxnotcm.inpatient_outcome"
-            }
-          }
-        ]
-      }
-    ]
-  }
-]
+[{
+	"name": "就诊",
+	"iconOpen": "image/tnode-folder-open.png",
+	"iconClose": "image/tnode-folder-close.png",
+	"resultOrderKey": {
+		"visits.visitinfo": "visits.visitinfo.INPATIENT_DATE",
+		"visits.pasthx.hbp_history": "visits.visitinfo.INPATIENT_DATE",
+		"visits.pasthx.hbp_history.hbp_hx_details": "visits.visitinfo.INPATIENT_DATE",
+		"visits.pasthx.diabetes_history": "visits.visitinfo.INPATIENT_DATE",
+		"visits.pasthx.diabetes_history.diabetes_hx_details": "visits.visitinfo.INPATIENT_DATE",
+		"visits.pasthx.hyperlipoidemia_history": "visits.visitinfo.INPATIENT_DATE",
+		"visits.pasthx.cvd_history": "visits.visitinfo.INPATIENT_DATE",
+		"visits.pasthx.hos_thyroid_disease_history": "visits.visitinfo.INPATIENT_DATE",
+		"visits.pasthx.cardiogenic_vascular_history.heart_failure": "visits.visitinfo.INPATIENT_DATE",
+		"visits.pasthx.cardiogenic_vascular_history.arrhythmia": "visits.visitinfo.INPATIENT_DATE",
+		"visits.pasthx.cardiogenic_vascular_history.valvular_disease": "visits.visitinfo.INPATIENT_DATE",
+		"visits.pasthx.cardiogenic_vascular_history.coronary_heart_disease": "visits.visitinfo.INPATIENT_DATE",
+		"visits.pasthx.cardiogenic_vascular_history.cardiomyopathy": "visits.visitinfo.INPATIENT_DATE",
+		"visits.pasthx.cardiogenic_vascular_history.congenital_heart_disease": "visits.visitinfo.INPATIENT_DATE",
+		"visits.pasthx.cardiogenic_vascular_history.pvd": "visits.visitinfo.INPATIENT_DATE",
+		"visits.pasthx.cardiogenic_vascular_history.pulmonary_embolism": "visits.visitinfo.INPATIENT_DATE",
+		"visits.pasthx.hos_other_history": "visits.visitinfo.INPATIENT_DATE",
+		"visits.fmlprsnhx.family_inheritance_history.fml_sudden_cardiac_death": "visits.visitinfo.INPATIENT_DATE",
+		"visits.fmlprsnhx.family_inheritance_history.fml_eo_chd": "visits.visitinfo.INPATIENT_DATE",
+		"visits.fmlprsnhx.family_inheritance_history.fml_cardiomyopathy": "visits.visitinfo.INPATIENT_DATE",
+		"visits.fmlprsnhx.personal_history.smoke_history": "visits.visitinfo.INPATIENT_DATE",
+		"visits.fmlprsnhx.personal_history.drink_history": "visits.visitinfo.INPATIENT_DATE",
+		"visits.admcndtn.hos_current_symptoms": "visits.visitinfo.INPATIENT_DATE",
+		"visits.admcndtn.diagnosis": "visits.visitinfo.INPATIENT_DATE",
+		"visits.labrslts": "visits.visitinfo.INPATIENT_DATE",
+		"visits.testrslts.ecg": "visits.visitinfo.INPATIENT_DATE",
+		"visits.testrslts.ecg.report": "visits.visitinfo.INPATIENT_DATE",
+		"visits.testrslts.x_ray": "visits.visitinfo.INPATIENT_DATE",
+		"visits.testrslts.x_ray.x_ray_report": "visits.visitinfo.INPATIENT_DATE",
+		"visits.testrslts.ultrasound": "visits.visitinfo.INPATIENT_DATE",
+		"visits.testrslts.ultrasound.cardiac_doppler_examination_report": "visits.visitinfo.INPATIENT_DATE",
+		"visits.testrslts.coronary_angiography": "visits.visitinfo.INPATIENT_DATE",
+		"visits.testrslts.coronary_angiography.coronary_angiography_report": "visits.visitinfo.INPATIENT_DATE",
+		"visits.trxnotcm.drug_treatment": "visits.visitinfo.INPATIENT_DATE",
+		"visits.trxnotcm.drug_treatment.aldosterone_antagonists": "visits.trxnotcm.drug_treatment.aldosterone_antagonists.AA_START_TIME",
+		"visits.trxnotcm.drug_treatment.acei": "visits.trxnotcm.drug_treatment.aldosterone_antagonists.ACEI_START_TIME",
+		"visits.trxnotcm.drug_treatment.arb": "visits.trxnotcm.drug_treatment.aldosterone_antagonists.ARB_START_TIME",
+		"visits.trxnotcm.drug_treatment.β_blocker": "visits.trxnotcm.drug_treatment.aldosterone_antagonists.BB_START_TIME",
+		"visits.trxnotcm.drug_treatment.digoxin": "visits.trxnotcm.drug_treatment.aldosterone_antagonists.DGX_START_TIME",
+		"visits.trxnotcm.drug_treatment.diuretics": "visits.trxnotcm.drug_treatment.aldosterone_antagonists.DIURECTIS_START_TIME",
+		"visits.trxnotcm.drug_treatment.inotropic": "visits.visitinfo.INPATIENT_DATE",
+		"visits.trxnotcm.drug_treatment.vasodilator": "visits.visitinfo.INPATIENT_DATE",
+		"visits.trxnotcm.drug_treatment.antiarrythmic": "visits.visitinfo.INPATIENT_DATE",
+		"visits.trxnotcm.drug_treatment.cbb": "visits.visitinfo.INPATIENT_DATE",
+		"visits.trxnotcm.drug_treatment.lipid_lowering_agent": "visits.visitinfo.INPATIENT_DATE",
+		"visits.trxnotcm.drug_treatment.antiplatelet_drug": "visits.visitinfo.INPATIENT_DATE",
+		"visits.trxnotcm.drug_treatment.rhbnp": "visits.visitinfo.INPATIENT_DATE",
+		"visits.trxnotcm.nonpharmaceutical_treatments.pacemaker_implantation": "visits.trxnotcm.nonpharmaceutical_treatments.pacemaker_implantation.PACEMAKER_IMPLANTATION_TIME",
+		"visits.trxnotcm.nonpharmaceutical_treatments.crtd": "visits.trxnotcm.nonpharmaceutical_treatments.crtd.CRTD_TIME",
+		"visits.trxnotcm.nonpharmaceutical_treatments.icd": "visits.trxnotcm.nonpharmaceutical_treatments.icd.ICD_TIME",
+		"visits.trxnotcm.nonpharmaceutical_treatments.pci": "visits.trxnotcm.nonpharmaceutical_treatments.pci.PCI_TIME",
+		"visits.trxnotcm.nonpharmaceutical_treatments.iabp": "visits.trxnotcm.nonpharmaceutical_treatments.iabp.IABP_TIME",
+		"visits.trxnotcm.nonpharmaceutical_treatments.cabg": "visits.trxnotcm.nonpharmaceutical_treatments.cabg.CABG_TIME",
+		"visits.trxnotcm.inpatient_outcome": "visits.trxnotcm.inpatient_outcome.DISCHARGE_DATE"
+
+	},
+	"children": [{
+			"name": "<span class='u-noFoldIcon-treeNode'>就诊信息</span>",
+			"open": true,
+			"expand": false,
+			"collapse": false,
+			"icon": "image/tnode-docs.png",
+			"isSrchItem": true,
+			"data": {
+				"dataType": "string",
+				"dataMap": [],
+				"srchFieldName": "就诊.就诊信息",
+				"indexFieldName": "visits.visitinfo"
+			}
+		},
+		{
+			"name": "既往史",
+			"iconOpen": "image/tnode-folder-open.png",
+			"iconClose": "image/tnode-folder-close.png",
+			"data": {
+				"dataType": "string",
+				"srchFieldName": "就诊.既往史",
+				"indexFieldName": "visits.pasthx"
+			},
+			"children": [{
+					"name": "<span class='u-noFoldIcon-treeNode'>既往史.高血压史</span>",
+					"open": true,
+					"expand": false,
+					"collapse": false,
+					"icon": "image/tnode-docs.png",
+					"isSrchItem": true,
+					"data": {
+						"dataType": "string",
+						"srchFieldName": "就诊.既往史.高血压史",
+						"indexFieldName": "visits.pasthx.hbp_history"
+					}
+				},
+				{
+					"name": "<span class='u-noFoldIcon-treeNode'>既往史.糖尿病史</span>",
+					"open": true,
+					"expand": false,
+					"collapse": false,
+					"icon": "image/tnode-docs.png",
+					"isSrchItem": true,
+					"data": {
+						"dataType": "string",
+						"srchFieldName": "就诊.既往史.糖尿病史",
+						"indexFieldName": "visits.pasthx.diabetes_history"
+					}
+				},
+				{
+					"name": "<span class='u-noFoldIcon-treeNode'>既往史.高脂血症史</span>",
+					"open": true,
+					"expand": false,
+					"collapse": false,
+					"icon": "image/tnode-docs.png",
+					"isSrchItem": true,
+					"data": {
+						"dataType": "string",
+						"srchFieldName": "就诊.既往史.高脂血症史",
+						"indexFieldName": "visits.pasthx.hyperlipoidemia_history"
+					}
+				},
+				{
+					"name": "<span class='u-noFoldIcon-treeNode'>既往史.脑血管疾病史</span>",
+					"open": true,
+					"expand": false,
+					"collapse": false,
+					"icon": "image/tnode-docs.png",
+					"isSrchItem": true,
+					"data": {
+						"dataType": "string",
+						"srchFieldName": "就诊.既往史.脑血管疾病史",
+						"indexFieldName": "visits.pasthx.cvd_history"
+					}
+				},
+				{
+					"name": "<span class='u-noFoldIcon-treeNode'>既往史.甲状腺疾病史</span>",
+					"open": true,
+					"expand": false,
+					"collapse": false,
+					"icon": "image/tnode-docs.png",
+					"isSrchItem": true,
+					"data": {
+						"dataType": "string",
+						"srchFieldName": "就诊.既往史.甲状腺疾病史",
+						"indexFieldName": "visits.pasthx.hos_thyroid_disease_history"
+					}
+				},
+				{
+					"name": "心源性或其他血管源性疾病",
+					"iconOpen": "image/tnode-folder-open.png",
+					"iconClose": "image/tnode-folder-close.png",
+					"data": {
+						"dataType": "string",
+						"srchFieldName": "就诊.既往史.心源性或其他血管源性疾病",
+						"indexFieldName": "visits.pasthx.cardiogenic_vascular_history"
+					},
+					"children": [{
+							"name": "<span class='u-noFoldIcon-treeNode'>心源性或其他血管源性疾病.心力衰竭</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.既往史.心源性或其他血管源性疾病.心力衰竭",
+								"indexFieldName": "visits.pasthx.cardiogenic_vascular_history.heart_failure"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>心源性或其他血管源性疾病.心律失常</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "array",
+								"srchFieldName": "就诊.既往史.心源性或其他血管源性疾病.心律失常",
+								"indexFieldName": "visits.pasthx.cardiogenic_vascular_history.arrhythmia"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>心源性或其他血管源性疾病.心脏瓣膜病</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.既往史.心源性或其他血管源性疾病.心脏瓣膜病",
+								"indexFieldName": "visits.pasthx.cardiogenic_vascular_history.valvular_disease"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>心源性或其他血管源性疾病.冠心病</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.既往史.心源性或其他血管源性疾病.冠心病",
+								"indexFieldName": "visits.pasthx.cardiogenic_vascular_history.coronary_heart_disease"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>心源性或其他血管源性疾病.心肌病</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.既往史.心源性或其他血管源性疾病.心肌病",
+								"indexFieldName": "visits.pasthx.cardiogenic_vascular_history.cardiomyopathy"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>心源性或其他血管源性疾病.先天性心脏病</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "array",
+								"srchFieldName": "就诊.既往史.心源性或其他血管源性疾病.先天性心脏病",
+								"indexFieldName": "visits.pasthx.cardiogenic_vascular_history.congenital_heart_disease"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>心源性或其他血管源性疾病.周围血管病</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.既往史.心源性或其他血管源性疾病.周围血管病",
+								"indexFieldName": "visits.pasthx.cardiogenic_vascular_history.pvd"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>心源性或其他血管源性疾病.肺栓塞</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.既往史.心源性或其他血管源性疾病.肺栓塞",
+								"indexFieldName": "visits.pasthx.cardiogenic_vascular_history.pulmonary_embolism"
+							}
+						}
+					]
+				},
+				{
+					"name": "<span class='u-noFoldIcon-treeNode'>既往史.其他病史</span>",
+					"open": true,
+					"expand": false,
+					"collapse": false,
+					"icon": "image/tnode-docs.png",
+					"isSrchItem": true,
+					"data": {
+						"dataType": "string",
+						"srchFieldName": "就诊.既往史.其他病史",
+						"indexFieldName": "visits.pasthx.hos_other_history"
+					}
+				}
+			]
+		},
+		{
+			"name": "家族史及个人史",
+			"iconOpen": "image/tnode-folder-open.png",
+			"iconClose": "image/tnode-folder-close.png",
+			"data": {
+				"dataType": "string",
+				"srchFieldName": "就诊.家族史及个人史",
+				"indexFieldName": "visits.fmlprsnhx"
+			},
+			"children": [{
+					"name": "家族史",
+					"iconOpen": "image/tnode-folder-open.png",
+					"iconClose": "image/tnode-folder-close.png",
+					"data": {
+						"dataType": "string",
+						"srchFieldName": "就诊.家族史及个人史.家族史",
+						"indexFieldName": "visits.fmlprsnhx.family_inheritance_history"
+					},
+					"children": [{
+							"name": "<span class='u-noFoldIcon-treeNode'>家族史.心脏性猝死</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.家族史及个人史.家族史.心脏性猝死",
+								"indexFieldName": "visits.fmlprsnhx.family_inheritance_history.fml_sudden_cardiac_death"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>家族史.早发冠心病</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.家族史及个人史.家族史.早发冠心病",
+								"indexFieldName": "visits.fmlprsnhx.family_inheritance_history.fml_eo_chd"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>家族史.心肌病</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.家族史及个人史.家族史.心肌病",
+								"indexFieldName": "visits.fmlprsnhx.family_inheritance_history.fml_cardiomyopathy"
+							}
+						}
+					]
+				},
+				{
+					"name": "个人史",
+					"iconOpen": "image/tnode-folder-open.png",
+					"iconClose": "image/tnode-folder-close.png",
+					"data": {
+						"dataType": "string",
+						"srchFieldName": "就诊.家族史及个人史.个人史",
+						"indexFieldName": "visits.fmlprsnhx.personal_history"
+					},
+					"children": [{
+							"name": "<span class='u-noFoldIcon-treeNode'>个人史.吸烟史</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.家族史及个人史.个人史.吸烟史",
+								"indexFieldName": "visits.fmlprsnhx.personal_history.smoke_history"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>家族史.饮酒史</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.家族史及个人史.家族史.饮酒史",
+								"indexFieldName": "visits.fmlprsnhx.personal_history.drink_history"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "入院情况",
+			"iconOpen": "image/tnode-folder-open.png",
+			"iconClose": "image/tnode-folder-close.png",
+			"data": {
+				"dataType": "string",
+				"srchFieldName": "就诊.入院情况",
+				"indexFieldName": "visits.admcndtn"
+			},
+			"children": [{
+					"name": "<span class='u-noFoldIcon-treeNode'>入院情况.入院时症状及体征</span>",
+					"open": true,
+					"expand": false,
+					"collapse": false,
+					"icon": "image/tnode-docs.png",
+					"isSrchItem": true,
+					"data": {
+						"dataType": "string",
+						"srchFieldName": "就诊.入院情况.入院时症状及体征",
+						"indexFieldName": "visits.admcndtn.hos_current_symptoms"
+					}
+				},
+				{
+					"name": "<span class='u-noFoldIcon-treeNode'>入院情况.诊断</span>",
+					"open": true,
+					"expand": false,
+					"collapse": false,
+					"icon": "image/tnode-docs.png",
+					"isSrchItem": true,
+					"data": {
+						"dataType": "string",
+						"srchFieldName": "就诊.入院情况.诊断",
+						"indexFieldName": "visits.admcndtn.diagnosis"
+					}
+				}
+			]
+		},
+		{
+			"name": "<span class='u-noFoldIcon-treeNode'>实验室检验</span>",
+			"open": true,
+			"expand": false,
+			"collapse": false,
+			"icon": "image/tnode-docs.png",
+			"isSrchItem": true,
+			"data": {
+				"dataType": "string",
+				"dataMap": [],
+				"srchFieldName": "就诊.实验室检验",
+				"indexFieldName": "visits.labrslts"
+			}
+		},
+		{
+			"name": "检查",
+			"iconOpen": "image/tnode-folder-open.png",
+			"iconClose": "image/tnode-folder-close.png",
+			"data": {
+				"dataType": "string",
+				"srchFieldName": "就诊.检查",
+				"indexFieldName": "visits.testrslts"
+			},
+			"children": [{
+					"name": "<span class='u-noFoldIcon-treeNode'>检查.心电图诊断</span>",
+					"open": true,
+					"expand": false,
+					"collapse": false,
+					"icon": "image/tnode-docs.png",
+					"isSrchItem": true,
+					"data": {
+						"dataType": "string",
+						"srchFieldName": "就诊.检查.心电图诊断",
+						"indexFieldName": "visits.testrslts.ecg"
+					}
+				},
+				{
+					"name": "<span class='u-noFoldIcon-treeNode'>检查.X影像诊断</span>",
+					"open": true,
+					"expand": false,
+					"collapse": false,
+					"icon": "image/tnode-docs.png",
+					"isSrchItem": true,
+					"data": {
+						"dataType": "string",
+						"srchFieldName": "就诊.检查.X影像诊断",
+						"indexFieldName": "visits.testrslts.x_ray"
+					}
+				},
+				{
+					"name": "<span class='u-noFoldIcon-treeNode'>检查.超声检查</span>",
+					"open": true,
+					"expand": false,
+					"collapse": false,
+					"icon": "image/tnode-docs.png",
+					"isSrchItem": true,
+					"data": {
+						"dataType": "string",
+						"srchFieldName": "就诊.检查.超声检查",
+						"indexFieldName": "visits.testrslts.ultrasound"
+					}
+				},
+				{
+					"name": "<span class='u-noFoldIcon-treeNode'>检查.冠脉造影检查</span>",
+					"open": true,
+					"expand": false,
+					"collapse": false,
+					"icon": "image/tnode-docs.png",
+					"isSrchItem": true,
+					"data": {
+						"dataType": "string",
+						"srchFieldName": "就诊.检查.冠脉造影检查",
+						"indexFieldName": "visits.testrslts.coronary_angiography"
+					}
+				}
+			]
+		},
+		{
+			"name": "治疗及结局",
+			"iconOpen": "image/tnode-folder-open.png",
+			"iconClose": "image/tnode-folder-close.png",
+			"data": {
+				"dataType": "string",
+				"srchFieldName": "就诊.治疗及结局",
+				"indexFieldName": "visits.trxnotcm"
+			},
+			"children": [{
+					"name": "<span class='u-noFoldIcon-treeNode'>治疗及结局.药物治疗</span>",
+					"open": true,
+					"expand": false,
+					"collapse": false,
+					"icon": "image/tnode-docs.png",
+					"isSrchItem": true,
+					"data": {
+						"dataType": "string",
+						"srchFieldName": "就诊.治疗及结局.药物治疗",
+						"indexFieldName": "visits.trxnotcm.drug_treatment"
+					}
+				},
+				{
+					"name": "药物治疗",
+					"iconOpen": "image/tnode-folder-open.png",
+					"iconClose": "image/tnode-folder-close.png",
+					"data": {
+						"dataType": "string",
+						"srchFieldName": "就诊.治疗及结局.药物治疗",
+						"indexFieldName": "visits.trxnotcm.drug_treatment"
+					},
+					"children": [{
+							"name": "<span class='u-noFoldIcon-treeNode'>药物治疗.醛固酮拮抗剂</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.治疗及结局.药物治疗.醛固酮拮抗剂",
+								"indexFieldName": "visits.trxnotcm.drug_treatment.aldosterone_antagonists"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>药物治疗.血管紧张素转化酶抑制剂</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.治疗及结局.药物治疗.血管紧张素转化酶抑制剂",
+								"indexFieldName": "visits.trxnotcm.drug_treatment.acei"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>药物治疗.血管紧张素II受体拮抗剂</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.治疗及结局.药物治疗.血管紧张素II受体拮抗剂",
+								"indexFieldName": "visits.trxnotcm.drug_treatment.arb"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>药物治疗.β阻滞剂</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.治疗及结局.药物治疗.β阻滞剂",
+								"indexFieldName": "visits.trxnotcm.drug_treatment.β_blocker"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>药物治疗.地高辛</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.治疗及结局.药物治疗.地高辛",
+								"indexFieldName": "visits.trxnotcm.drug_treatment.digoxin"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>药物治疗.利尿剂</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.治疗及结局.药物治疗.利尿剂",
+								"indexFieldName": "visits.trxnotcm.drug_treatment.diuretics"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>药物治疗.正性肌力药物</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "array",
+								"srchFieldName": "就诊.治疗及结局.药物治疗.正性肌力药物",
+								"indexFieldName": "visits.trxnotcm.drug_treatment.inotropic"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>药物治疗.血管扩张剂</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "array",
+								"srchFieldName": "就诊.治疗及结局.药物治疗.血管扩张剂",
+								"indexFieldName": "visits.trxnotcm.drug_treatment.vasodilator"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>药物治疗.抗心律失常药</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.治疗及结局.药物治疗.抗心律失常药",
+								"indexFieldName": "visits.trxnotcm.drug_treatment.antiarrythmic"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>药物治疗.钙通道阻滞剂</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "array",
+								"srchFieldName": "就诊.治疗及结局.药物治疗.钙通道阻滞剂",
+								"indexFieldName": "visits.trxnotcm.drug_treatment.cbb"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>药物治疗.降脂药</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.治疗及结局.药物治疗.降脂药",
+								"indexFieldName": "visits.trxnotcm.drug_treatment.lipid_lowering_agent"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>药物治疗.抗血小板药物</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "array",
+								"srchFieldName": "就诊.治疗及结局.药物治疗.抗血小板药物",
+								"indexFieldName": "visits.trxnotcm.drug_treatment.antiplatelet_drug"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>药物治疗.重组人脑利钠肽</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.治疗及结局.药物治疗.重组人脑利钠肽",
+								"indexFieldName": "visits.trxnotcm.drug_treatment.rhbnp"
+							}
+						}
+					]
+				},
+				{
+					"name": "非药物治疗",
+					"iconOpen": "image/tnode-folder-open.png",
+					"iconClose": "image/tnode-folder-close.png",
+					"data": {
+						"dataType": "string",
+						"srchFieldName": "就诊.治疗及结局.非药物治疗",
+						"indexFieldName": "visits.trxnotcm.nonpharmaceutical_treatments"
+					},
+					"children": [{
+							"name": "<span class='u-noFoldIcon-treeNode'>非药物治疗.永久性起搏器置入</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.治疗及结局.非药物治疗.永久性起搏器置入",
+								"indexFieldName": "visits.trxnotcm.nonpharmaceutical_treatments.pacemaker_implantation"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>非药物治疗.CRTD</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.治疗及结局.非药物治疗.CRTD",
+								"indexFieldName": "visits.trxnotcm.nonpharmaceutical_treatments.crtd"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>非药物治疗.ICD</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.治疗及结局.非药物治疗.ICD",
+								"indexFieldName": "visits.trxnotcm.nonpharmaceutical_treatments.icd"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>非药物治疗.PCI</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.治疗及结局.非药物治疗.PCI",
+								"indexFieldName": "visits.trxnotcm.nonpharmaceutical_treatments.pci"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>非药物治疗.IABP</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.治疗及结局.非药物治疗.IABP",
+								"indexFieldName": "visits.trxnotcm.nonpharmaceutical_treatments.iabp"
+							}
+						},
+						{
+							"name": "<span class='u-noFoldIcon-treeNode'>非药物治疗.CABG</span>",
+							"open": true,
+							"expand": false,
+							"collapse": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"data": {
+								"dataType": "string",
+								"srchFieldName": "就诊.治疗及结局.非药物治疗.CABG",
+								"indexFieldName": "visits.trxnotcm.nonpharmaceutical_treatments.cabg"
+							}
+						}
+					]
+				},
+				{
+					"name": "<span class='u-noFoldIcon-treeNode'>治疗及结局.住院结局</span>",
+					"open": true,
+					"expand": false,
+					"collapse": false,
+					"icon": "image/tnode-docs.png",
+					"isSrchItem": true,
+					"data": {
+						"dataType": "string",
+						"srchFieldName": "就诊.治疗及结局.住院结局",
+						"indexFieldName": "visits.trxnotcm.inpatient_outcome"
+					}
+				}
+			]
+		}
+	]
+}]
