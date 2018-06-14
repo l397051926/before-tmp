@@ -161,7 +161,7 @@ public class CommonController implements InitializingBean {
         logger.info("DownloadFileForExplainCRFImport: " + crfId + " : " + fileName);
         processor.downLoadFile(file, response, fileName,false);
     }
-    @RequestMapping(value = "/DownloadDetailImage",method = { RequestMethod.POST,RequestMethod.GET } )
+    @RequestMapping(value = "/DownloadDetailImage",method = { RequestMethod.POST,RequestMethod.GET }, produces = "application/json;charset=UTF-8")
     public void DownloadDetailImage( HttpServletRequest paramRe, HttpServletResponse response) throws IOException {
         Long start = System.currentTimeMillis();
         paramRe.setCharacterEncoding("utf-8");//注意编码
