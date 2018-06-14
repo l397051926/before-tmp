@@ -181,7 +181,7 @@ public class CommonController implements InitializingBean {
                 svg = tmparrg[tmparrg.length-1];
             }
         }
-        response.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("UTF-8");
         ServletOutputStream out = response.getOutputStream();
         logger.info("svg: "+svg);
         if (null != type && null != svg){
@@ -201,7 +201,7 @@ public class CommonController implements InitializingBean {
                 ext = "svg";
             }
             response.addHeader("Content-Disposition", "attachment; filename=chart."+ext);
-            response.addHeader("Content-Type", type);
+            response.addHeader("Content-Type", type+";charset=UTF-8");
             if (null != t){
                 TranscoderInput input = new TranscoderInput(new StringReader(svg));
                 TranscoderOutput output = new TranscoderOutput(out);
