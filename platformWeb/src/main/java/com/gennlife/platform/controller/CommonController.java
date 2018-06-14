@@ -183,6 +183,7 @@ public class CommonController implements InitializingBean {
         }
         response.setCharacterEncoding("utf-8");
         ServletOutputStream out = response.getOutputStream();
+        logger.info("svg: "+svg);
         if (null != type && null != svg){
             svg = svg.replaceAll(":rect", "rect");
             String ext = "";
