@@ -111,7 +111,7 @@ public class RwsProcessor {
             JsonArray tmpJsonArray = new JsonArray();
             if(paramObj.has("crfId")){
                 String crfId = paramObj.get("crfId").getAsString();
-                if(StringUtils.isEmpty(crfId)){
+                if("EMR".equals(crfId) || StringUtils.isEmpty(crfId) ){
                     tmpJsonArray = ReadConditionByRedis.getEmrRws();
                 }else {
                     tmpJsonArray = ReadConditionByRedis.getCrfRws(crfId);
