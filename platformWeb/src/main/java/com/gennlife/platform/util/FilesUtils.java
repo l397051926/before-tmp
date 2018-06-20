@@ -34,6 +34,18 @@ public class FilesUtils {
         return data;
     }
 
+    public static String readCrfFile(String fileName) throws IOException {
+        BufferedReader br;
+        br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName), "utf-8"));
+        String onLine = null;
+        StringBuffer str = new StringBuffer();
+        while ((onLine = br.readLine()) != null) {
+            str.append(onLine.trim());
+        }
+        String ss = str.toString();
+        return ss;
+    }
+
 
     public static void makeDirectory(String s) throws IOException {
         File file = new File(s);

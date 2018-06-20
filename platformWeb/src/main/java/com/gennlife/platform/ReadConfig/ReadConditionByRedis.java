@@ -24,6 +24,7 @@ public class ReadConditionByRedis {
     public static void loadCrfConfiguration(String crfId){
         try {
             String allCRFDiseases = FilesUtils.readFile("/crf/"+crfId+".json");
+//            String allCRFDiseases = FilesUtils.readCrfFile("src/main/resources/crf/"+crfId+".json");
             JsonObject allCRFConfig = (JsonObject) jsonParser.parse(allCRFDiseases);
             for (Map.Entry<String, JsonElement> item : allCRFConfig.entrySet()) {
                 String crf_id = item.getKey();
