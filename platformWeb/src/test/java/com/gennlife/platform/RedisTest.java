@@ -37,7 +37,8 @@ public class RedisTest {
     @Test
     public void deleteRedisKey(){
 //        String key = "SEARCH_CVD";
-        String key = "crf_rws_lymphoma";
+//        String key = "crf_rws_lymphoma";
+        String key = "SEARCH_lymphoma_release_1.0";
         RedisUtil.deleteKey(key);
     }
 
