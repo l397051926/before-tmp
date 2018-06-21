@@ -661,6 +661,7 @@ public class BackstageManagementController {
         String resultStr = null;
         try {
             String param = ParamUtils.getParam(paramRe);
+            logger.info("password : "+ param);
             User user = (User) paramRe.getAttribute("currentUser");
             resultStr = processor.passwordCorrect(user, param);
         } catch (Exception e) {
@@ -679,6 +680,7 @@ public class BackstageManagementController {
         String resultStr = null;
         try {
             String param = ParamUtils.getParam(paramRe);
+            logger.info("update pwd : "+param);
             User user = (User) paramRe.getAttribute("currentUser");
             resultStr = processor.updatePwdByUid(user, param);
         } catch (Exception e) {

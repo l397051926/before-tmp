@@ -346,6 +346,7 @@ public class CrfProcessor {
         try {
             String param = gson.toJson(paramObj);
             String url = ConfigurationService.getUrlBean().getCRFUpLoadDataForCheck();
+//            String url = "http://localhost:8090/crf/UpLoadDataForCheck";
             logger.info("request url:" + url);
             String result = HttpRequestUtils.httpPost(url, param);
             return result;
