@@ -238,6 +238,9 @@ public class CaseProcessor {
                 String groupName = obj.getKey();
                 JsonArray items = obj.getValue().getAsJsonArray();
                 JsonArray newGroup = new JsonArray();
+                if("就诊.手术".equals(groupName)){
+                    continue;
+                }
                 for (JsonElement json : items) {
                     JsonObject item = json.getAsJsonObject();
                     String UIFieldName = item.get("UIFieldName").getAsString();
