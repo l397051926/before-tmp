@@ -195,6 +195,10 @@ public class CaseProcessor {
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                 String groupName = obj.getKey();
                 JsonArray items = obj.getValue().getAsJsonArray();
+                //去掉 rws 就诊手术
+                if("就诊.手术".equals(groupName)){
+                    continue;
+                }
                 JsonArray newGroup = new JsonArray();
                 for (JsonElement json : items) {
                     JsonObject item = json.getAsJsonObject();
