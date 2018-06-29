@@ -30,25 +30,25 @@
       <file leaf-file-name="crf_rws_lymphoma_release_1.0.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma_release_1.0.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="29" column="45" lean-forward="false" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+            <state relative-caret-position="462">
+              <caret line="42" column="37" lean-forward="true" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
               <folding>
                 <element signature="e#835#981#0" expanded="false" />
-                <element signature="e#1786#1889#0" expanded="false" />
-                <element signature="e#2055#7121#0" expanded="false" />
-                <element signature="e#6752#7115#0" expanded="false" />
-                <element signature="e#7158#7260#0" expanded="false" />
-                <element signature="e#7438#7851#0" expanded="false" />
-                <element signature="e#7860#8262#0" expanded="false" />
-                <element signature="e#8286#8418#0" expanded="false" />
-                <element signature="e#8622#9053#0" expanded="false" />
-                <element signature="e#9069#9209#0" expanded="false" />
-                <element signature="e#11015#11378#0" expanded="false" />
-                <element signature="e#11392#11499#0" expanded="false" />
-                <element signature="e#12525#12923#0" expanded="false" />
-                <element signature="e#13265#13669#0" expanded="false" />
-                <element signature="e#13685#13814#0" expanded="false" />
-                <element signature="e#15901#16309#0" expanded="false" />
+                <element signature="e#1785#1888#0" expanded="false" />
+                <element signature="e#2054#7120#0" expanded="false" />
+                <element signature="e#6751#7114#0" expanded="false" />
+                <element signature="e#7157#7259#0" expanded="false" />
+                <element signature="e#7437#7850#0" expanded="false" />
+                <element signature="e#7859#8261#0" expanded="false" />
+                <element signature="e#8285#8417#0" expanded="false" />
+                <element signature="e#8621#9052#0" expanded="false" />
+                <element signature="e#9068#9208#0" expanded="false" />
+                <element signature="e#11014#11377#0" expanded="false" />
+                <element signature="e#11391#11498#0" expanded="false" />
+                <element signature="e#12524#12922#0" expanded="false" />
+                <element signature="e#13264#13668#0" expanded="false" />
+                <element signature="e#13684#13813#0" expanded="false" />
+                <element signature="e#15900#16308#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -699,13 +699,6 @@
     <configuration />
   </component>
   <component name="TaskManager">
-    <task id="LOCAL-00001" summary="调整 rws 首页配置文件">
-      <created>1528184188881</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1528184188881</updated>
-    </task>
     <task id="LOCAL-00002" summary="调整配置文件">
       <created>1528185128461</created>
       <option name="number" value="00002" />
@@ -781,7 +774,7 @@
       <workItem from="1530095521250" duration="1343000" />
       <workItem from="1530148245658" duration="4697000" />
       <workItem from="1530234422542" duration="1270000" />
-      <workItem from="1530256478690" duration="4799000" />
+      <workItem from="1530256478690" duration="4926000" />
     </task>
     <task id="LOCAL-00009" summary="调整 配置文件丢失 导致开启时出现的bug">
       <created>1528266766012</created>
@@ -1070,7 +1063,14 @@
       <option name="project" value="LOCAL" />
       <updated>1530261328878</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="淋巴流 默认不展开">
+      <created>1530261607751</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1530261607752</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1106,7 +1106,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="907636000" />
+    <option name="totallyTimeSpent" value="907763000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
@@ -1597,25 +1597,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma_release_1.0.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="29" column="45" lean-forward="false" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+        <state relative-caret-position="462">
+          <caret line="42" column="37" lean-forward="true" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
           <folding>
             <element signature="e#835#981#0" expanded="false" />
-            <element signature="e#1786#1889#0" expanded="false" />
-            <element signature="e#2055#7121#0" expanded="false" />
-            <element signature="e#6752#7115#0" expanded="false" />
-            <element signature="e#7158#7260#0" expanded="false" />
-            <element signature="e#7438#7851#0" expanded="false" />
-            <element signature="e#7860#8262#0" expanded="false" />
-            <element signature="e#8286#8418#0" expanded="false" />
-            <element signature="e#8622#9053#0" expanded="false" />
-            <element signature="e#9069#9209#0" expanded="false" />
-            <element signature="e#11015#11378#0" expanded="false" />
-            <element signature="e#11392#11499#0" expanded="false" />
-            <element signature="e#12525#12923#0" expanded="false" />
-            <element signature="e#13265#13669#0" expanded="false" />
-            <element signature="e#13685#13814#0" expanded="false" />
-            <element signature="e#15901#16309#0" expanded="false" />
+            <element signature="e#1785#1888#0" expanded="false" />
+            <element signature="e#2054#7120#0" expanded="false" />
+            <element signature="e#6751#7114#0" expanded="false" />
+            <element signature="e#7157#7259#0" expanded="false" />
+            <element signature="e#7437#7850#0" expanded="false" />
+            <element signature="e#7859#8261#0" expanded="false" />
+            <element signature="e#8285#8417#0" expanded="false" />
+            <element signature="e#8621#9052#0" expanded="false" />
+            <element signature="e#9068#9208#0" expanded="false" />
+            <element signature="e#11014#11377#0" expanded="false" />
+            <element signature="e#11391#11498#0" expanded="false" />
+            <element signature="e#12524#12922#0" expanded="false" />
+            <element signature="e#13264#13668#0" expanded="false" />
+            <element signature="e#13684#13813#0" expanded="false" />
+            <element signature="e#15900#16308#0" expanded="false" />
           </folding>
         </state>
       </provider>
