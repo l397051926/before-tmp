@@ -32,14 +32,18 @@
 								"open": true
 							}
 						],
+						"collapse": false,
 						"data": {
 							"dataType": "string",
 							"indexFieldName": "visits.medical_history.chemotherapy_history",
 							"srchFieldName": "就诊.病史.化疗史"
 						},
+						"expand": false,
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"name": "化疗史"
+						"isSrchItem": true,
+						"name": "化疗史",
+						"open": true
 					}
 				],
 				"data": {
@@ -67,14 +71,18 @@
 						"open": true
 					}
 				],
+				"collapse": false,
 				"data": {
 					"dataType": "string",
 					"indexFieldName": "visits.check",
 					"srchFieldName": "就诊.查体"
 				},
+				"expand": false,
 				"iconClose": "image/tnode-folder-close.png",
 				"iconOpen": "image/tnode-folder-open.png",
-				"name": "查体"
+				"isSrchItem": true,
+				"name": "查体",
+				"open": true
 			},
 			{
 				"children": [
@@ -261,6 +269,7 @@
 						"open": true
 					}
 				],
+				"collapse": false,
 				"data": {
 					"dataType": "string",
 					"indexFieldName": "visits.test",
@@ -268,7 +277,8 @@
 				},
 				"iconClose": "image/tnode-folder-close.png",
 				"iconOpen": "image/tnode-folder-open.png",
-				"name": "检验"
+				"name": "检验",
+				"open": true
 			},
 			{
 				"children": [
