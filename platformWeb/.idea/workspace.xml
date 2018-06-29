@@ -30,9 +30,10 @@
       <file leaf-file-name="crf_rws_lymphoma_release_1.0.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma_release_1.0.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="42" column="37" lean-forward="true" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
+            <state relative-caret-position="748">
+              <caret line="783" column="0" lean-forward="false" selection-start-line="783" selection-start-column="0" selection-end-line="783" selection-end-column="0" />
               <folding>
+                <element signature="e#391#819#0" expanded="false" />
                 <element signature="e#835#981#0" expanded="false" />
                 <element signature="e#1785#1888#0" expanded="false" />
                 <element signature="e#2054#7120#0" expanded="false" />
@@ -45,10 +46,9 @@
                 <element signature="e#9068#9208#0" expanded="false" />
                 <element signature="e#11014#11377#0" expanded="false" />
                 <element signature="e#11391#11498#0" expanded="false" />
-                <element signature="e#12524#12922#0" expanded="false" />
-                <element signature="e#13264#13668#0" expanded="false" />
-                <element signature="e#13684#13813#0" expanded="false" />
-                <element signature="e#15900#16308#0" expanded="false" />
+                <element signature="e#13158#13562#0" expanded="false" />
+                <element signature="e#13578#13707#0" expanded="false" />
+                <element signature="e#15734#16142#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -75,8 +75,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Passw</find>
-      <find>upl</find>
       <find>CRFUpLoadDataForCheck</find>
       <find>UpLoadData</find>
       <find>url</find>
@@ -103,8 +101,10 @@
       <find>基因异常</find>
       <find>治疗</find>
       <find>预后指数</find>
-      <find>IPI</find>
       <find>检验</find>
+      <find>IPS</find>
+      <find>IPI</find>
+      <find>ipi</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;open&quot;: false</replace>
@@ -699,13 +699,6 @@
     <configuration />
   </component>
   <component name="TaskManager">
-    <task id="LOCAL-00002" summary="调整配置文件">
-      <created>1528185128461</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1528185128461</updated>
-    </task>
     <task id="LOCAL-00003" summary="调整配置文件">
       <created>1528188994123</created>
       <option name="number" value="00003" />
@@ -774,7 +767,7 @@
       <workItem from="1530095521250" duration="1343000" />
       <workItem from="1530148245658" duration="4697000" />
       <workItem from="1530234422542" duration="1270000" />
-      <workItem from="1530256478690" duration="4926000" />
+      <workItem from="1530256478690" duration="5216000" />
     </task>
     <task id="LOCAL-00009" summary="调整 配置文件丢失 导致开启时出现的bug">
       <created>1528266766012</created>
@@ -1070,7 +1063,14 @@
       <option name="project" value="LOCAL" />
       <updated>1530261607752</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="淋巴流 默认不展开">
+      <created>1530261732215</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1530261732215</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1106,7 +1106,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="907763000" />
+    <option name="totallyTimeSpent" value="908053000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
@@ -1597,9 +1597,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma_release_1.0.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="42" column="37" lean-forward="true" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
+        <state relative-caret-position="748">
+          <caret line="783" column="0" lean-forward="false" selection-start-line="783" selection-start-column="0" selection-end-line="783" selection-end-column="0" />
           <folding>
+            <element signature="e#391#819#0" expanded="false" />
             <element signature="e#835#981#0" expanded="false" />
             <element signature="e#1785#1888#0" expanded="false" />
             <element signature="e#2054#7120#0" expanded="false" />
@@ -1612,10 +1613,9 @@
             <element signature="e#9068#9208#0" expanded="false" />
             <element signature="e#11014#11377#0" expanded="false" />
             <element signature="e#11391#11498#0" expanded="false" />
-            <element signature="e#12524#12922#0" expanded="false" />
-            <element signature="e#13264#13668#0" expanded="false" />
-            <element signature="e#13684#13813#0" expanded="false" />
-            <element signature="e#15900#16308#0" expanded="false" />
+            <element signature="e#13158#13562#0" expanded="false" />
+            <element signature="e#13578#13707#0" expanded="false" />
+            <element signature="e#15734#16142#0" expanded="false" />
           </folding>
         </state>
       </provider>
