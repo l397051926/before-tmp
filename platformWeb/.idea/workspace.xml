@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="淋巴流 默认不展开">
+    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma_release_1.0.json" afterPath="$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma_release_1.0.json" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/rws/crf_rws_CVD.json" afterPath="$PROJECT_DIR$/src/main/resources/rws/crf_rws_CVD.json" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,37 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="crf_rws_lymphoma_release_1.0.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma_release_1.0.json">
+      <file leaf-file-name="crf_rws_CVD.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/rws/crf_rws_CVD.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="340" column="42" lean-forward="true" selection-start-line="340" selection-start-column="42" selection-end-line="340" selection-end-column="42" />
-              <folding>
-                <element signature="e#391#819#0" expanded="false" />
-                <element signature="e#835#981#0" expanded="false" />
-                <element signature="e#1785#1888#0" expanded="false" />
-                <element signature="e#2054#7120#0" expanded="false" />
-                <element signature="e#6751#7114#0" expanded="false" />
-                <element signature="e#7157#7259#0" expanded="false" />
-                <element signature="e#7437#7850#0" expanded="false" />
-                <element signature="e#7859#8261#0" expanded="false" />
-                <element signature="e#8285#8417#0" expanded="false" />
-                <element signature="e#9048#9188#0" expanded="false" />
-                <element signature="e#10974#11337#0" expanded="false" />
-                <element signature="e#11351#11458#0" expanded="false" />
-                <element signature="e#13118#13522#0" expanded="false" />
-                <element signature="e#13538#13667#0" expanded="false" />
-                <element signature="e#15694#16102#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="emr_rws.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/rws/emr_rws.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="0" column="10056" lean-forward="true" selection-start-line="0" selection-start-column="10056" selection-end-line="0" selection-end-column="10056" />
+            <state relative-caret-position="187">
+              <caret line="677" column="0" lean-forward="false" selection-start-line="677" selection-start-column="0" selection-end-line="677" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -74,9 +48,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>CRFUpLoadDataForCheck</find>
-      <find>UpLoadData</find>
-      <find>url</find>
       <find>AtoolURL</find>
       <find>getu</find>
       <find>get</find>
@@ -104,6 +75,9 @@
       <find>IPS</find>
       <find>IPI</find>
       <find>ipi</find>
+      <find>基因</find>
+      <find>心电图</find>
+      <find>药物治疗</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;open&quot;: false</replace>
@@ -175,7 +149,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/gennlife/platform/RedisTest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/crf/lymphoma_release_1.0.json" />
-        <option value="$PROJECT_DIR$/src/main/resources/rws/crf_rws_CVD.json" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/rws/emr_rws.json.bak" />
@@ -183,6 +156,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma_release_1.0.json.bak" />
         <option value="$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma_release_1.0.json" />
+        <option value="$PROJECT_DIR$/src/main/resources/rws/crf_rws_CVD.json" />
       </list>
     </option>
   </component>
@@ -698,13 +672,6 @@
     <configuration />
   </component>
   <component name="TaskManager">
-    <task id="LOCAL-00004" summary="调整配置文件">
-      <created>1528191004552</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1528191004552</updated>
-    </task>
     <task id="LOCAL-00005" summary="调整配置文件">
       <created>1528191851991</created>
       <option name="number" value="00005" />
@@ -759,7 +726,7 @@
       <workItem from="1530095521250" duration="1343000" />
       <workItem from="1530148245658" duration="4697000" />
       <workItem from="1530234422542" duration="1270000" />
-      <workItem from="1530256478690" duration="5445000" />
+      <workItem from="1530256478690" duration="7219000" />
     </task>
     <task id="LOCAL-00009" summary="调整 配置文件丢失 导致开启时出现的bug">
       <created>1528266766012</created>
@@ -1069,7 +1036,14 @@
       <option name="project" value="LOCAL" />
       <updated>1530262024534</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="淋巴流 默认不展开  --解决">
+      <created>1530262255067</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1530262255067</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1105,7 +1079,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="908282000" />
+    <option name="totallyTimeSpent" value="910056000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
@@ -1233,7 +1207,8 @@
     <MESSAGE value="修改淋巴瘤上方 配置文件" />
     <MESSAGE value="淋巴流 配置文件修改" />
     <MESSAGE value="淋巴流 默认不展开" />
-    <option name="LAST_COMMIT_MESSAGE" value="淋巴流 默认不展开" />
+    <MESSAGE value="淋巴流 默认不展开  --解决" />
+    <option name="LAST_COMMIT_MESSAGE" value="淋巴流 默认不展开  --解决" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1449,13 +1424,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/rws/crf_rws_CVD.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2967">
-          <caret line="877" column="55" lean-forward="false" selection-start-line="877" selection-start-column="55" selection-end-line="877" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/ParamUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4323">
@@ -1586,18 +1554,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/rws/emr_rws.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="0" column="10056" lean-forward="true" selection-start-line="0" selection-start-column="10056" selection-end-line="0" selection-end-column="10056" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma_release_1.0.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="340" column="42" lean-forward="true" selection-start-line="340" selection-start-column="42" selection-end-line="340" selection-end-column="42" />
+        <state relative-caret-position="187">
+          <caret line="324" column="34" lean-forward="true" selection-start-line="324" selection-start-column="34" selection-end-line="324" selection-end-column="34" />
           <folding>
             <element signature="e#391#819#0" expanded="false" />
             <element signature="e#835#981#0" expanded="false" />
@@ -1615,6 +1575,22 @@
             <element signature="e#13538#13667#0" expanded="false" />
             <element signature="e#15694#16102#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/rws/emr_rws.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="0" column="10056" lean-forward="true" selection-start-line="0" selection-start-column="10056" selection-end-line="0" selection-end-column="10056" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/rws/crf_rws_CVD.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="677" column="0" lean-forward="false" selection-start-line="677" selection-start-column="0" selection-end-line="677" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
