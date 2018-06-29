@@ -56,6 +56,21 @@
 				"name": "病史"
 			},
 			{
+				"children": [
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.check.vital_signs",
+							"srchFieldName": "就诊.查体.生命体征"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>生命体征</span>",
+						"open": true
+					}
+				],
 				"data": {
 					"dataType": "string",
 					"indexFieldName": "visits.check",
@@ -63,7 +78,7 @@
 				},
 				"iconClose": "image/tnode-folder-close.png",
 				"iconOpen": "image/tnode-folder-open.png",
-				"name": "<span class='u-noFoldIcon-treeNode'>查体</span>"
+				"name": "<span class='u-noFoldIcon-treeNode'>查体</span>",
 			},
 			{
 				"children": [
