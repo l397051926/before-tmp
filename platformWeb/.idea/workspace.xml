@@ -30,8 +30,20 @@
       <file leaf-file-name="crf_rws_lymphoma_release_1.0.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma_release_1.0.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+            <state relative-caret-position="389">
+              <caret line="67" column="13" lean-forward="true" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+              <folding>
+                <element signature="e#1517#1620#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="emr_rws.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/rws/emr_rws.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="0" column="10056" lean-forward="true" selection-start-line="0" selection-start-column="10056" selection-end-line="0" selection-end-column="10056" />
               <folding />
             </state>
           </provider>
@@ -48,7 +60,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ModelForTraceByCRFID</find>
       <find>SearchSampleList</find>
       <find>getRoleByroleid</find>
       <find>passwordCorrect</find>
@@ -78,6 +89,7 @@
       <find>getCaseLab_result_item</find>
       <find>caseLab_result_item</find>
       <find>&quot;open&quot;: true</find>
+      <find>查体</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;open&quot;: false</replace>
@@ -754,7 +766,7 @@
       <workItem from="1530095521250" duration="1343000" />
       <workItem from="1530148245658" duration="4697000" />
       <workItem from="1530234422542" duration="1270000" />
-      <workItem from="1530256478690" duration="167000" />
+      <workItem from="1530256478690" duration="1891000" />
     </task>
     <task id="LOCAL-00009" summary="调整 配置文件丢失 导致开启时出现的bug">
       <created>1528266766012</created>
@@ -973,7 +985,21 @@
       <option name="project" value="LOCAL" />
       <updated>1530101532620</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="淋巴流 默认不展开">
+      <created>1530256664384</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1530256664384</updated>
+    </task>
+    <task id="LOCAL-00041" summary="淋巴流 默认不展开">
+      <created>1530257977702</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1530257977702</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1009,7 +1035,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="903004000" />
+    <option name="totallyTimeSpent" value="904728000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1176" extended-state="6" />
@@ -1136,7 +1162,8 @@
     <MESSAGE value="rws 聚合搜索" />
     <MESSAGE value="修改淋巴瘤上方 配置文件" />
     <MESSAGE value="淋巴流 配置文件修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="淋巴流 配置文件修改" />
+    <MESSAGE value="淋巴流 默认不展开" />
+    <option name="LAST_COMMIT_MESSAGE" value="淋巴流 默认不展开" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1489,11 +1516,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/rws/emr_rws.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="0" column="10056" lean-forward="true" selection-start-line="0" selection-start-column="10056" selection-end-line="0" selection-end-column="10056" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma_release_1.0.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
-          <folding />
+        <state relative-caret-position="389">
+          <caret line="67" column="13" lean-forward="true" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+          <folding>
+            <element signature="e#1517#1620#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
