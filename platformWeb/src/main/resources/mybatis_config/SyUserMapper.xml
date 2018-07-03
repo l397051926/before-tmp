@@ -78,6 +78,9 @@
             <if test="uemail != null">
                 uemail = #{uemail,jdbcType=VARCHAR},
             </if>
+            <if test="unumber != null">
+                unumber = #{unumber,jdbcType=VARCHAR},
+            </if>
             <if test="uposition != null">
                 uposition = #{uposition,jdbcType=VARCHAR},
             </if>
