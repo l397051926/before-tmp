@@ -37,10 +37,12 @@ public class RwsService implements RwsServiceImpl {
             String crfName = null, crfId = null;
             String projectId = paramObj.get("projectId").getAsString();
             String dataSource = projectMapper.getDataSource(projectId);
-
+            //获取病原名字  EMR  淋巴瘤 心血管
             //不是单病种需要获取indexName
             if (!flag){
                 paramObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
+                crfId = "EMR";
+                crfName = "EMR";
                 logger.info("emr的indexName" + ConfigUtils.getSearchIndexName());
             } else {
                 crfId = paramObj.get("crfId").getAsString();
@@ -51,7 +53,8 @@ public class RwsService implements RwsServiceImpl {
                 }
             }
             logger.info("dataSource: "+dataSource);
-
+            paramObj.addProperty("crfId",crfId);
+            paramObj.addProperty("crfName",crfName);
             if (flag){
                 if (StringUtils.isEmpty(dataSource) || dataSource.equals(crfName)){
                     logger.info("单病种透传rws："+ dataSource);
