@@ -33,39 +33,39 @@ public class LaboratoryProcessor {
      * @param user
      * @return
      */
-    public String orgMapData(User user,String key,String isParentLab,String isLabCast,String lab_id) {
+    public String orgMapData(User user, String key, String isParentLab, String isLabCast, String lab_id) {
         String orgID = user.getOrgID();
         //通过科室数据，初始化的数据结构
-        Organization organization = getOrganization(orgID,key,isParentLab,isLabCast,lab_id,null);
+        Organization organization = getOrganization(orgID, key, isParentLab, isLabCast, lab_id, null);
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(1);
-        if(StringUtils.isEmpty(organization.getLabs())){
+        if (StringUtils.isEmpty(organization.getLabs())) {
             System.out.println("aaa");
         }
-        if(organization.isEmpty()){
+        if (organization.isEmpty()) {
             resultBean.setData(new Organization());
-        }else {
+        } else {
             resultBean.setData(organization);
         }
         return gson.toJson(resultBean);
     }
 
-    public static List<Lab> generateLabTree(List<Lab> labs, String key, int maxLevel,String isParentLab,String lab_id) {
+    public static List<Lab> generateLabTree(List<Lab> labs, String key, int maxLevel, String isParentLab, String lab_id) {
         List<Lab> result = new LinkedList<>();
 
         if (labs != null) {
             for (Lab lab : labs) {
-                if("true".equals(isParentLab) && "一线临床类".equals(lab.getDepart_name())){
+                if ("true".equals(isParentLab) && "一线临床类".equals(lab.getDepart_name())) {
                     continue;
                 }
-                if(lab.getLabID().equals(lab_id)){
+                if (lab.getLabID().equals(lab_id)) {
                     continue;
                 }
                 if (lab.getLab_parent().equals(key)) {
                     lab.setOrgID(null);
                     result.add(lab);
                     if (maxLevel >= lab.getLab_level()) {
-                        List<Lab> subLabs = generateLabTree(labs, lab.getLabID(), maxLevel,isParentLab,lab_id);
+                        List<Lab> subLabs = generateLabTree(labs, lab.getLabID(), maxLevel, isParentLab, lab_id);
                         if (subLabs != null && subLabs.size() > 0) {
                             lab.setSubLabs(subLabs);
                         }
@@ -92,13 +92,13 @@ public class LaboratoryProcessor {
             uid = paramObj.get("uid").getAsString();
             lab_parent = paramObj.get("lab_parent").getAsString();
             lab_name = paramObj.get("lab_name").getAsString();
-            if(paramObj.has("depart_name")){
+            if (paramObj.has("depart_name")) {
                 depart_name = paramObj.get("depart_name").getAsString();
             }
             if (paramObj.has("lab_leader")) {
                 lab_leader = paramObj.get("lab_leader").getAsString();
             }
-            if(!("行政管理类".equals(depart_name)||"业务管理类".equals(depart_name)||"一线临床类".equals(depart_name))){
+            if (!("行政管理类".equals(depart_name) || "业务管理类".equals(depart_name) || "一线临床类".equals(depart_name))) {
                 return ParamUtils.errorParam("请求参数有错误");
             }
         } catch (Exception e) {
@@ -107,8 +107,8 @@ public class LaboratoryProcessor {
         }
         User user = UserProcessor.getUserByUids(uid);
         String orgID = user.getOrgID();
-        if(orgID.equals(lab_parent) && "一线临床类".equals(depart_name)){
-            return  ParamUtils.errorParam("科室类别不符合要求");
+        if (orgID.equals(lab_parent) && "一线临床类".equals(depart_name)) {
+            return ParamUtils.errorParam("科室类别不符合要求");
         }
         Organization organization = null;
         Map<String, Object> map = new HashMap<>();
@@ -168,8 +168,8 @@ public class LaboratoryProcessor {
     }
 
     public static void addResource(Lab lab) {
-        if("一线临床类".equals(lab.getDepart_name()) || "行政管理类".equals(lab.getDepart_name()) ){
-            return ;
+        if ("一线临床类".equals(lab.getDepart_name()) || "行政管理类".equals(lab.getDepart_name())) {
+            return;
         }
         LabResource labResource = new LabResource();
         labResource.setSorgID(lab.getOrgID());
@@ -181,8 +181,8 @@ public class LaboratoryProcessor {
         labResource.setSname(lab.getLab_name() + "资源");
         labResource.setSlab_name(lab.getLab_name());
         labResource.setStype_role("0"); // 初始化的是普通科室
-        LabResource labResourceTmp=AllDao.getInstance().getSyResourceDao().getLabResourcesBySid(labResource.getSid());
-        if(labResourceTmp !=null){
+        LabResource labResourceTmp = AllDao.getInstance().getSyResourceDao().getLabResourcesBySid(labResource.getSid());
+        if (labResourceTmp != null) {
             return;
         }
         AllDao.getInstance().getSyResourceDao().insertOneResource(labResource);
@@ -200,8 +200,8 @@ public class LaboratoryProcessor {
     public static Organization getOrganization(String orgID) {
 
         Organization organization = AllDao.getInstance().getOrgDao().getOrganization(orgID);
-        List<Lab> labs =null;
-        Integer maxLevel =null;
+        List<Lab> labs = null;
+        Integer maxLevel = null;
 
         labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
         maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
@@ -209,48 +209,49 @@ public class LaboratoryProcessor {
         if (maxLevel == null) {
             return organization;
         }
-        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,null,null);
+        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel, null, null);
         organization.setLabs(treeLabs);
         return organization;
     }
 
-    public static Organization getOrganization(String orgID,String roleid) {
+    public static Organization getOrganization(String orgID, String roleid) {
 
         Organization organization = AllDao.getInstance().getOrgDao().getOrganization(orgID);
-        List<Lab> labs =null;
-        Integer maxLevel =null;
+        List<Lab> labs = null;
+        Integer maxLevel = null;
 
         labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
         maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
-        if(!StringUtils.isEmpty(roleid)){
-            List<String> sids=AllDao.getInstance().getSyResourceDao().getSidsByRoleid(roleid);
-            for(Lab lab :labs){
-                if(sids.contains(lab.getLabID())){
+        if (!StringUtils.isEmpty(roleid)) {
+            List<String> sids = AllDao.getInstance().getSyResourceDao().getSidsByRoleid(roleid);
+            for (Lab lab : labs) {
+                if (sids.contains(lab.getLabID())) {
                     lab.setChecked("true");
-                    setLabChecked(labs,lab.getLab_parent());
+                    setLabChecked(labs, lab.getLab_parent());
                 }
             }
         }
         if (maxLevel == null) {
             return organization;
         }
-        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,"true",null);
+        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel, "true", null);
         organization.setLabs(treeLabs);
         return organization;
     }
 
-    public static void setLabChecked(List<Lab> labs,String labID){
-        for (Lab lab :labs){
-            if(labID.equals(lab.getLabID())){
+    public static void setLabChecked(List<Lab> labs, String labID) {
+        for (Lab lab : labs) {
+            if (labID.equals(lab.getLabID())) {
                 lab.setChecked("true");
-                setLabChecked(labs,lab.getLab_parent());
+                setLabChecked(labs, lab.getLab_parent());
             }
         }
     }
-    public static Organization getOrganization(String orgID,String key,String isParentLab,String isLabCast,String lab_id,JsonArray labIds) {
+
+    public static Organization getOrganization(String orgID, String key, String isParentLab, String isLabCast, String lab_id, JsonArray labIds) {
         Organization organization = AllDao.getInstance().getOrgDao().getOrganization(orgID);
-        List<Lab> labs =null;
-        Integer maxLevel =null;
+        List<Lab> labs = null;
+        Integer maxLevel = null;
 //        if(key==null){
 //            labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
 //            maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
@@ -259,71 +260,71 @@ public class LaboratoryProcessor {
 //            maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevelBylabId(key,orgID);
 //        }
         labs = AllDao.getInstance().getOrgDao().getLabs(orgID);
-        if(labIds != null){
-            int size = labIds.size()==0?0:labIds.size();
-            for(int i=0;i<size;i++){
+        if (labIds != null) {
+            int size = labIds.size() == 0 ? 0 : labIds.size();
+            for (int i = 0; i < size; i++) {
                 String tmp = labIds.get(i).getAsString();
-                for(Lab lab:labs){
-                    if(tmp.equals(lab.getLabID())){
+                for (Lab lab : labs) {
+                    if (tmp.equals(lab.getLabID())) {
                         lab.setChecked("true");
                     }
                 }
             }
         }
         maxLevel = AllDao.getInstance().getOrgDao().getMaxlabLevel(orgID);
-        Set<Lab> resultlabs=new HashSet<>();
-        if(!StringUtils.isEmpty(key)){
-            if("true".equals(isLabCast)){//是否高亮
-                spellLabCast(labs,key,resultlabs,key,orgID);
-            }else{
-                spellLab(labs,key,resultlabs,key,orgID,isParentLab);
+        Set<Lab> resultlabs = new HashSet<>();
+        if (!StringUtils.isEmpty(key)) {
+            if ("true".equals(isLabCast)) {//是否高亮
+                spellLabCast(labs, key, resultlabs, key, orgID);
+            } else {
+                spellLab(labs, key, resultlabs, key, orgID, isParentLab);
             }
-            labs =new LinkedList<>(resultlabs);
+            labs = new LinkedList<>(resultlabs);
 
         }
         if (maxLevel == null) {
             return organization;
         }
-        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel,isParentLab,lab_id);
+        List<Lab> treeLabs = generateLabTree(labs, orgID, maxLevel, isParentLab, lab_id);
 //        if(!StringUtils.isEmpty(key) && "true".equals(isParentLab)){
 //            resultlabs.clear();
 //            spellLabCast(treeLabs,key,resultlabs,key,orgID);
 //            treeLabs =new LinkedList<>(resultlabs);
 //        }
 
-        if(treeLabs.size()==0){//若一个没搜到 默认清空
+        if (treeLabs.size() == 0) {//若一个没搜到 默认清空
             organization.setEmpty(true);
         }
         organization.setLabs(treeLabs);
         return organization;
     }
 
-    public static void spellLab(List<Lab> labs,String key,Set<Lab> resultlabs,String key1,String orgID,String isParentLab){
+    public static void spellLab(List<Lab> labs, String key, Set<Lab> resultlabs, String key1, String orgID, String isParentLab) {
 
-        for(Lab lab :labs){
-            String lab_name=lab.getLab_name();
-            if(lab_name.contains(key) || lab.getLabID().equals(key)){
-                if("true".equals(isParentLab) && "一线临床类".equals(lab.getDepart_name())) continue;
-                if(!resultlabs.contains(lab)){
-                    lab.setLab_name(lab_name.replaceAll(key1,"<span style='color:red'>" + key1 + "</span>"));
+        for (Lab lab : labs) {
+            String lab_name = lab.getLab_name();
+            if (lab_name.contains(key) || lab.getLabID().equals(key)) {
+                if ("true".equals(isParentLab) && "一线临床类".equals(lab.getDepart_name())) continue;
+                if (!resultlabs.contains(lab)) {
+                    lab.setLab_name(lab_name.replaceAll(key1, "<span style='color:red'>" + key1 + "</span>"));
                     resultlabs.add(lab);
-                    if(lab.getLab_parent()!=null && !(orgID.equals(lab.getLab_parent()) )){
-                        spellLab(labs,lab.getLab_parent(),resultlabs,key1,orgID,isParentLab);
+                    if (lab.getLab_parent() != null && !(orgID.equals(lab.getLab_parent()))) {
+                        spellLab(labs, lab.getLab_parent(), resultlabs, key1, orgID, isParentLab);
                     }
                 }
             }
         }
     }
 
-    public static void spellLabCast(List<Lab> labs,String key,Set<Lab> resultlabs,String key1,String orgID){
+    public static void spellLabCast(List<Lab> labs, String key, Set<Lab> resultlabs, String key1, String orgID) {
 
-        for(Lab lab :labs){
-            String lab_name=lab.getLab_name();
-            if(lab_name.contains(key) || lab.getLabID().contains(key)){
-                if(!resultlabs.contains(lab)){
+        for (Lab lab : labs) {
+            String lab_name = lab.getLab_name();
+            if (lab_name.contains(key) || lab.getLabID().contains(key)) {
+                if (!resultlabs.contains(lab)) {
                     resultlabs.add(lab);
-                    if(lab.getLab_parent()!=null && !(orgID.equals(lab.getLab_parent()) )){
-                        spellLabCast(labs,lab.getLab_parent(),resultlabs,key1,orgID);
+                    if (lab.getLab_parent() != null && !(orgID.equals(lab.getLab_parent()))) {
+                        spellLabCast(labs, lab.getLab_parent(), resultlabs, key1, orgID);
                     }
                 }
             }
@@ -345,8 +346,8 @@ public class LaboratoryProcessor {
             logger.error("", e);
             return ParamUtils.errorParam("请求参数有错误");
         }
-        Set<String> tempLabIdList =new HashSet<>();
-        getAllDeleteLabids(tempLabIdList,labIDsList);
+        Set<String> tempLabIdList = new HashSet<>();
+        getAllDeleteLabids(tempLabIdList, labIDsList);
         String[] labIDs = tempLabIdList.toArray(new String[tempLabIdList.size()]);
         String orgID = user.getOrgID();
         String orgName = user.getOrg_name();
@@ -367,7 +368,7 @@ public class LaboratoryProcessor {
         }
         alllab = new TreeSet<>(AllDao.getInstance().getSyResourceDao().selectDeleteLabsReource(labIDs));
         labIDs = alllab.toArray(new String[alllab.size()]);
-        if(labIDs.length!=0) {
+        if (labIDs.length != 0) {
             // 同步删除资源
             AllDao.getInstance().getSyResourceDao().deleteLabsReource(labIDs);
             AllDao.getInstance().getSyResourceDao().deleteRoleItem(labIDs);
@@ -385,13 +386,13 @@ public class LaboratoryProcessor {
     }
 
     private void getAllDeleteLabids(Set<String> tempLabIdList, List<String> labIDsList) {
-        if(labIDsList.size()==0){
+        if (labIDsList.size() == 0) {
             return;
         }
-        for (String labId : labIDsList){
+        for (String labId : labIDsList) {
             tempLabIdList.add(labId);
-            List<String> labIds=AllDao.getInstance().getOrgDao().getLabIdByParentId(labId);
-            getAllDeleteLabids(tempLabIdList,labIds);
+            List<String> labIds = AllDao.getInstance().getOrgDao().getLabIdByParentId(labId);
+            getAllDeleteLabids(tempLabIdList, labIds);
         }
     }
 
@@ -448,14 +449,14 @@ public class LaboratoryProcessor {
         String lab_leader = "";
         String lab_leaderName = "";
         String lab_parent = null;
-        String depart_name="";
-        String parent_depart_name="";
-        boolean isResourceopen=false; //判断是否增加 lab_resources
+        String depart_name = "";
+        String parent_depart_name = "";
+        boolean isResourceopen = false; //判断是否增加 lab_resources
         try {
             labID = paramObj.get("labID").getAsString();
             lab_name = paramObj.get("lab_name").getAsString();
-            if(paramObj.has("depart_name")){
-                depart_name=paramObj.get("depart_name").getAsString();
+            if (paramObj.has("depart_name")) {
+                depart_name = paramObj.get("depart_name").getAsString();
             }
             if (paramObj.has("lab_leader")) {
                 lab_leader = paramObj.get("lab_leader").getAsString();
@@ -471,11 +472,11 @@ public class LaboratoryProcessor {
         Map<String, Object> map = new HashMap<>();
         Lab labNow = new Lab();//当前科室 labNow
         Lab lab = AllDao.getInstance().getOrgDao().getLabBylabID(labID);//要修改的科室
-        if(lab_parent.equals(user.getOrgID())){
-            parent_depart_name="行政管理类";
-        }else {
+        if (lab_parent.equals(user.getOrgID())) {
+            parent_depart_name = "行政管理类";
+        } else {
             Lab parentLab = AllDao.getInstance().getOrgDao().getLabBylabID(lab_parent);
-            parent_depart_name=parentLab.getDepart_name();
+            parent_depart_name = parentLab.getDepart_name();
         }
         if (lab == null) {
             return ParamUtils.errorParam(labID + "无此科室");
@@ -502,10 +503,10 @@ public class LaboratoryProcessor {
             6.修改前 是临床  修改后是业务  增加 lab_resource 修改后上级可以为 行政 或者业务*/
 
         //如果现在不是一线临床类  原来不是一线临床类 则随着更新
-        if("业务管理类".equals(lab.getDepart_name()) && "业务管理类".equals(depart_name)){
-            if("一线临床类".equals(parent_depart_name)){
+        if ("业务管理类".equals(lab.getDepart_name()) && "业务管理类".equals(depart_name)) {
+            if ("一线临床类".equals(parent_depart_name)) {
                 return ParamUtils.errorParam("上下级科室类别不符-更新失败");
-            }else{
+            } else {
                 LabResource labResource = new LabResource();
                 labResource.setSorgID(lab.getOrgID());
                 labResource.setSdesc(lab_name + "病例数据资源");
@@ -518,44 +519,44 @@ public class LaboratoryProcessor {
                 // logger.info("update "+gson.toJson(labResource));
                 AllDao.getInstance().getSyResourceDao().updateResource(labResource);
             }
-        }else if("业务管理类".equals(lab.getDepart_name()) && "行政管理类".equals(depart_name)){
-            if(!"行政管理类".equals(parent_depart_name)){
+        } else if ("业务管理类".equals(lab.getDepart_name()) && "行政管理类".equals(depart_name)) {
+            if (!"行政管理类".equals(parent_depart_name)) {
                 return ParamUtils.errorParam("上下级科室类别不符-更新失败");
-            }else {
+            } else {
                 AllDao.getInstance().getSyResourceDao().deleteLabsReource(new String[]{lab.getLabID()});
             }
-        }else if("业务管理类".equals(lab.getDepart_name()) && "一线临床类".equals(depart_name)){
-            if(!"业务管理类".equals(parent_depart_name)){
+        } else if ("业务管理类".equals(lab.getDepart_name()) && "一线临床类".equals(depart_name)) {
+            if (!"业务管理类".equals(parent_depart_name)) {
                 return ParamUtils.errorParam("上下级科室类别不符-更新失败");
-            }else {
+            } else {
                 AllDao.getInstance().getSyResourceDao().deleteLabsReource(new String[]{lab.getLabID()});
             }
-        }else if("行政管理类".equals(lab.getDepart_name()) && "行政管理类".equals(depart_name)){
-            if(!"行政管理类".equals(parent_depart_name)){
+        } else if ("行政管理类".equals(lab.getDepart_name()) && "行政管理类".equals(depart_name)) {
+            if (!"行政管理类".equals(parent_depart_name)) {
                 return ParamUtils.errorParam("上下级科室类别不符-更新失败");
             }
-        }else if("行政管理类".equals(lab.getDepart_name()) && "业务管理类".equals(depart_name)){
-            if("一线临床类".equals(parent_depart_name)){
+        } else if ("行政管理类".equals(lab.getDepart_name()) && "业务管理类".equals(depart_name)) {
+            if ("一线临床类".equals(parent_depart_name)) {
                 return ParamUtils.errorParam("上下级科室类别不符-更新失败");
-            }else {
-                isResourceopen=true;
+            } else {
+                isResourceopen = true;
             }
-        }else if("行政管理类".equals(lab.getDepart_name()) && "一线临床类".equals(depart_name)){
-            if(!"业务管理类".equals(parent_depart_name)){
-                return ParamUtils.errorParam("上下级科室类别不符-更新失败");
-            }
-        }else if("一线临床类".equals(lab.getDepart_name()) && "行政管理类".equals(depart_name)){
-            if(!"行政管理类".equals(parent_depart_name)){
+        } else if ("行政管理类".equals(lab.getDepart_name()) && "一线临床类".equals(depart_name)) {
+            if (!"业务管理类".equals(parent_depart_name)) {
                 return ParamUtils.errorParam("上下级科室类别不符-更新失败");
             }
-        }else if("一线临床类".equals(lab.getDepart_name()) && "业务管理类".equals(depart_name)){
-            if("一线临床类".equals(parent_depart_name)){
+        } else if ("一线临床类".equals(lab.getDepart_name()) && "行政管理类".equals(depart_name)) {
+            if (!"行政管理类".equals(parent_depart_name)) {
                 return ParamUtils.errorParam("上下级科室类别不符-更新失败");
-            }else {
-                isResourceopen=true;
             }
-        }else if("一线临床类".equals(lab.getDepart_name()) && "一线临床类".equals(depart_name)){
-            if(!"业务管理类".equals(parent_depart_name)){
+        } else if ("一线临床类".equals(lab.getDepart_name()) && "业务管理类".equals(depart_name)) {
+            if ("一线临床类".equals(parent_depart_name)) {
+                return ParamUtils.errorParam("上下级科室类别不符-更新失败");
+            } else {
+                isResourceopen = true;
+            }
+        } else if ("一线临床类".equals(lab.getDepart_name()) && "一线临床类".equals(depart_name)) {
+            if (!"业务管理类".equals(parent_depart_name)) {
                 return ParamUtils.errorParam("上下级科室类别不符-更新失败");
             }
         }
@@ -568,15 +569,15 @@ public class LaboratoryProcessor {
         }
 
         //根据下级 约束当前科室
-        List<Lab> juniorLabs = AllDao.getInstance().getOrgDao().getLabsByparentID(orgID,labID);
-        for(Lab labTmp : juniorLabs){
-            if("行政管理类".equals(labTmp.getDepart_name()) && !"行政管理类".equals(depart_name)){
+        List<Lab> juniorLabs = AllDao.getInstance().getOrgDao().getLabsByparentID(orgID, labID);
+        for (Lab labTmp : juniorLabs) {
+            if ("行政管理类".equals(labTmp.getDepart_name()) && !"行政管理类".equals(depart_name)) {
                 return ParamUtils.errorParam("上下级科室类别不符-更新失败");
             }
-            if("业务管理类".equals(labTmp.getDepart_name()) && "一线临床类".equals(depart_name) ){
+            if ("业务管理类".equals(labTmp.getDepart_name()) && "一线临床类".equals(depart_name)) {
                 return ParamUtils.errorParam("上下级科室类别不符-更新失败");
             }
-            if("一线临床类".equals(labTmp.getDepart_name()) && !"业务管理类".equals(depart_name) ){
+            if ("一线临床类".equals(labTmp.getDepart_name()) && !"业务管理类".equals(depart_name)) {
                 return ParamUtils.errorParam("上下级科室类别不符-更新失败");
             }
         }
@@ -597,8 +598,8 @@ public class LaboratoryProcessor {
         map.put("lab_leader", lab_leader);
         map.put("lab_leaderName", lab_leaderName);
         map.put("lab_parent", lab_parent);
-        map.put("depart_name",depart_name);//-增加 depart_name
-        if(isResourceopen){//同期增加 lab_resource
+        map.put("depart_name", depart_name);//-增加 depart_name
+        if (isResourceopen) {//同期增加 lab_resource
             labNow.setDepart_name(depart_name);
             labNow.setLab_leader(lab_leader);
             labNow.setLab_name(lab_name);
@@ -683,15 +684,15 @@ public class LaboratoryProcessor {
             Map<String, Object> map = new HashMap<>();
             map.put("orgID", usr.getOrgID());
             map.put("uid", usr.getUid());
-            String effective=usr.getEffective_time();
-            String failure=usr.getFailure_time();
-            if("禁用".equals(usr.getStatus())){
+            String effective = usr.getEffective_time();
+            String failure = usr.getFailure_time();
+            if ("禁用".equals(usr.getStatus())) {
                 usr.setStatus_now("当前不可用");
             }
-            if("定期有效".equals(usr.getStatus())){
-                if(StringUtils.isEmpty(effective) || StringUtils.isEmpty(failure)){
+            if ("定期有效".equals(usr.getStatus())) {
+                if (StringUtils.isEmpty(effective) || StringUtils.isEmpty(failure)) {
                     usr.setStatus_now("当前不可用");
-                }else {
+                } else {
                     if (LogUtils.decideDate(effective, failure)) {
                         usr.setStatus_now("当前可用");
                     } else {
@@ -699,7 +700,7 @@ public class LaboratoryProcessor {
                     }
                 }
             }
-            if("长期有效".equals(usr.getStatus())){
+            if ("长期有效".equals(usr.getStatus())) {
                 usr.setStatus_now("当前可用");
             }
             List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(map);
@@ -742,26 +743,26 @@ public class LaboratoryProcessor {
         String name = adduser.getUname();
         String unumber = adduser.getUnumber();
         String lab_name = adduser.getLab_name();
-        String efftime=adduser.getEffective_time();
-        String failtime=adduser.getFailure_time();
-        String status =adduser.getStatus();
-        if(StringUtils.isEmpty(status)){
+        String efftime = adduser.getEffective_time();
+        String failtime = adduser.getFailure_time();
+        String status = adduser.getStatus();
+        if (StringUtils.isEmpty(status)) {
             resultBean.addProperty("code", 0);
             resultBean.addProperty("info", "账号有效期不能为空");
             return resultBean;
         }
 
-        if("定期有效".equals(status)){
-            if(StringUtils.isEmpty(efftime) || StringUtils.isEmpty(failtime)){
+        if ("定期有效".equals(status)) {
+            if (StringUtils.isEmpty(efftime) || StringUtils.isEmpty(failtime)) {
                 resultBean.addProperty("code", 0);
                 resultBean.addProperty("info", "时间不能为空");
                 return resultBean;
             }
-            if(!StringUtils.isEmpty(efftime) && !StringUtils.isEmpty(failtime)){
+            if (!StringUtils.isEmpty(efftime) && !StringUtils.isEmpty(failtime)) {
                 try {
-                    Date etime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(efftime);
-                    Date ftime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(failtime);
-                    if(etime.after(ftime)){
+                    Date etime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(efftime);
+                    Date ftime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(failtime);
+                    if (etime.after(ftime)) {
                         resultBean.addProperty("code", 0);
                         resultBean.addProperty("info", "日期格式不对，失效时间在生效时间前");
                         return resultBean;
@@ -773,7 +774,7 @@ public class LaboratoryProcessor {
                 }
             }
         }
-        if("长期有效".equals(status) || "禁用".equals(status)){
+        if ("长期有效".equals(status) || "禁用".equals(status)) {
             adduser.setEffective_time(null);
             adduser.setFailure_time(null);
         }
@@ -1255,20 +1256,20 @@ public class LaboratoryProcessor {
         String roleid = null;
         String key = null;
         JsonArray labIds = null;
-        if(paramObj.has("keywords")){
-            key=paramObj.get("keywords").getAsString();
+        if (paramObj.has("keywords")) {
+            key = paramObj.get("keywords").getAsString();
         }
-        if(paramObj.has("roleid")){
-            JsonElement jsonElement=paramObj.get("roleid");
-            if(jsonElement.isJsonPrimitive()){
-                roleid=jsonElement.getAsString();
+        if (paramObj.has("roleid")) {
+            JsonElement jsonElement = paramObj.get("roleid");
+            if (jsonElement.isJsonPrimitive()) {
+                roleid = jsonElement.getAsString();
             }
         }
-        if(paramObj.has("labId")){
-             labIds = paramObj.get("labId").getAsJsonArray();
+        if (paramObj.has("labId")) {
+            labIds = paramObj.get("labId").getAsJsonArray();
         }
         try {
-            if(paramObj.has("type")) {
+            if (paramObj.has("type")) {
                 type = paramObj.get("type").getAsString();
             }
         } catch (Exception e) {
@@ -1278,11 +1279,11 @@ public class LaboratoryProcessor {
 
 
         if (list != null && list.size() > 0) {
-            Organization organization=null;
-            if(StringUtils.isEmpty(key)){
-                organization = getOrganization(user.getOrgID(),roleid);
-            }else {
-                organization = getOrganization(user.getOrgID(),key,"true",null,null,labIds);
+            Organization organization = null;
+            if (StringUtils.isEmpty(key)) {
+                organization = getOrganization(user.getOrgID(), roleid);
+            } else {
+                organization = getOrganization(user.getOrgID(), key, "true", null, null, labIds);
             }
 //            organization.setLabs(injectResource(organization,organization.getLabs(), list));
             //去掉本科室
@@ -1297,14 +1298,14 @@ public class LaboratoryProcessor {
 //                }
 //            }
             List<Object> objlist = gson.fromJson(gson.toJson(organization.getLabs()), LinkedList.class);
-            if(objlist.size()==0){
+            if (objlist.size() == 0) {
                 organization.setEmpty(true);
             }
             ResultBean re = new ResultBean();
             re.setCode(1);
-            if(organization.isEmpty()){
+            if (organization.isEmpty()) {
                 re.setData(new Organization());
-            }else{
+            } else {
                 re.setData(organization);
             }
             return gson.toJson(re);
@@ -1313,7 +1314,7 @@ public class LaboratoryProcessor {
         }
     }
 
-    private Object injectResource(Organization organization,Object labs, List<LabResource> list) {
+    private Object injectResource(Organization organization, Object labs, List<LabResource> list) {
         List<Object> objlist = gson.fromJson(gson.toJson(labs), LinkedList.class);
         List<Lab> labList = new LinkedList<>();
         for (Object obj : objlist) {
@@ -1325,7 +1326,7 @@ public class LaboratoryProcessor {
                 labList.add(lab);
             }
             if (lab.getSubLabs() != null) {
-                Object subLab = injectResource(organization,lab.getSubLabs(), list);
+                Object subLab = injectResource(organization, lab.getSubLabs(), list);
                 lab.setSubLabs(subLab);
             }
         }
@@ -1697,15 +1698,15 @@ public class LaboratoryProcessor {
             } else {
                 re.setInfo(false);
             }
-            SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String failTime = AllDao.getInstance().getSyUserDao().getFailureTimeByUid(uid);
             String effecTime = AllDao.getInstance().getSyUserDao().getEffectiveTimeByUid(uid);
-            Date date=new Date();
-            if(!("长期有效".equals(user.getStatus()))){
-                if("禁用".equals(user.getStatus())){
+            Date date = new Date();
+            if (!("长期有效".equals(user.getStatus()))) {
+                if ("禁用".equals(user.getStatus())) {
                     return "false";
                 }
-                if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
+                if (date.after(time.parse(failTime)) || date.before(time.parse(effecTime))) {
                     return "false";
                 }
             }
@@ -1715,34 +1716,35 @@ public class LaboratoryProcessor {
         }
         return gson.toJson(re);
     }
+
     //判断lab名字是否存在
     public String isExistLabName(JsonObject paramObj) {
         ResultBean re = null;
-        try{
-            re =new ResultBean();
-            String labName=paramObj.get("lab_name").getAsString();
-            if(StringUtils.isEmpty(labName)){
+        try {
+            re = new ResultBean();
+            String labName = paramObj.get("lab_name").getAsString();
+            if (StringUtils.isEmpty(labName)) {
                 return ParamUtils.errorParam(labName + "科室名字不能为空");
             }
-            Lab lab=AllDao.getInstance().getOrgDao().getLabByOnelabName(labName);
-            if(lab!=null){
+            Lab lab = AllDao.getInstance().getOrgDao().getLabByOnelabName(labName);
+            if (lab != null) {
                 re.setCode(0);
                 re.setInfo("科室名称不可用");
-            }else{
+            } else {
                 re.setCode(1);
                 re.setInfo("名称可用");
             }
 
-        }catch(Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             return ParamUtils.errorParam("判断当前科室名称是否存在操作失败");
         }
         return gson.toJson(re);
     }
 
     public void addAllRole() {
-        Role roleAll=AllDao.getInstance().getSyRoleDao().getRoleByRole("全院科室成员");
-        if(roleAll==null) {
+        Role roleAll = AllDao.getInstance().getSyRoleDao().getRoleByRole("全院科室成员");
+        if (roleAll == null) {
 
             roleAll = new Role();
             Role roleLab = AllDao.getInstance().getSyRoleDao().getRoleByroleid(1);
@@ -1751,13 +1753,13 @@ public class LaboratoryProcessor {
             roleAll.setRole_type("0");
             roleAll.setDesctext("全院科室资源");
             roleAll.setRole_privilege("1");
-            Integer  i=AllDao.getInstance().getSyRoleDao().insertUserRole(roleAll);
-            roleAll=AllDao.getInstance().getSyRoleDao().getRoleByRole("全院科室成员");
+            Integer i = AllDao.getInstance().getSyRoleDao().insertUserRole(roleAll);
+            roleAll = AllDao.getInstance().getSyRoleDao().getRoleByRole("全院科室成员");
             logger.info("全院科室成员 角色创建成功");
             //增加 功能 resource
-            Resource resource=new Resource();
+            Resource resource = new Resource();
             resource.setRoleid(roleAll.getRoleid());
-            resource.setSid(roleAll.getOrgID()+"-all");
+            resource.setSid(roleAll.getOrgID() + "-all");
             resource.setSorgID(roleAll.getOrgID());
             resource.setHas_search("有");
             resource.setHas_searchExport("有");
@@ -1780,23 +1782,23 @@ public class LaboratoryProcessor {
 
     public String isExistRoleName(JsonObject paramObj) {
         ResultBean re = null;
-        try{
-            re =new ResultBean();
-            String roleName=paramObj.get("role_name").getAsString();
-            if(StringUtils.isEmpty(roleName)){
+        try {
+            re = new ResultBean();
+            String roleName = paramObj.get("role_name").getAsString();
+            if (StringUtils.isEmpty(roleName)) {
                 return ParamUtils.errorParam(roleName + "角色名字不能为空");
             }
-            Role role=AllDao.getInstance().getSyRoleDao().getRoleByRole(roleName);
-            if(role!=null){
+            Role role = AllDao.getInstance().getSyRoleDao().getRoleByRole(roleName);
+            if (role != null) {
                 re.setCode(0);
                 re.setInfo("角色名称不可用");
-            }else{
+            } else {
                 re.setCode(1);
                 re.setInfo("名称可用");
             }
 
-        }catch(Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             return ParamUtils.errorParam("判断当前科室名称是否存在操作失败");
         }
         return gson.toJson(re);
@@ -1832,21 +1834,21 @@ public class LaboratoryProcessor {
                 labs = AllDao.getInstance().getOrgDao().searchLabByOrgIDNoLimit(key, user.getOrgID());
             }
         } else {
-            List<Lab> labAll=AllDao.getInstance().getOrgDao().getLabs(user.getOrgID());
+            List<Lab> labAll = AllDao.getInstance().getOrgDao().getLabs(user.getOrgID());
             //labID 集合
             List<String> list = new LinkedList<>();
             list.add(labID);
-            getLabIDs(labAll,list,labID);
-            String labids[] =  list.toArray(new String[list.size()]);
+            getLabIDs(labAll, list, labID);
+            String labids[] = list.toArray(new String[list.size()]);
             if (offset != null && limit != null) {
 //                labs = AllDao.getInstance().getOrgDao().getLabsBypartId(labids,key,user.getOrgID(),offset,limit);
-                labs = AllDao.getInstance().getOrgDao().getLabsBypartIdNoLimit(labids,key,user.getOrgID());
+                labs = AllDao.getInstance().getOrgDao().getLabsBypartIdNoLimit(labids, key, user.getOrgID());
             } else {
-                labs = AllDao.getInstance().getOrgDao().getLabsBypartIdNoLimit(labids,key,user.getOrgID());
+                labs = AllDao.getInstance().getOrgDao().getLabsBypartIdNoLimit(labids, key, user.getOrgID());
             }
         }
 
-        for(Lab lab :labs){
+        for (Lab lab : labs) {
             String pname = AllDao.getInstance().getOrgDao().getlabnameBylabID(lab.getLab_parent());
             lab.setParentLabName(pname);
         }
@@ -1855,11 +1857,11 @@ public class LaboratoryProcessor {
         return gson.toJson(re);
     }
 
-    public void getLabIDs(List<Lab> labs,List<String> list,String labID){
-        for(Lab lab : labs){
-            if(labID.equals(lab.getLab_parent())){
+    public void getLabIDs(List<Lab> labs, List<String> list, String labID) {
+        for (Lab lab : labs) {
+            if (labID.equals(lab.getLab_parent())) {
                 list.add(lab.getLabID());
-                getLabIDs(labs,list,lab.getLabID());
+                getLabIDs(labs, list, lab.getLabID());
             }
         }
     }
@@ -1871,23 +1873,23 @@ public class LaboratoryProcessor {
             re = new ResultBean();
             String uid = user.getUid();
 
-            SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String failTime = AllDao.getInstance().getSyUserDao().getFailureTimeByUid(uid);
             String effecTime = AllDao.getInstance().getSyUserDao().getEffectiveTimeByUid(uid);
-            Date date=new Date();
-            if(!("长期有效".equals(user.getStatus()))){
-                if("禁用".equals(user.getStatus())){
+            Date date = new Date();
+            if (!("长期有效".equals(user.getStatus()))) {
+                if ("禁用".equals(user.getStatus())) {
                     isAccountLose = false;
                 }
-                if(date.after(time.parse(failTime)) ||date.before(time.parse(effecTime))){
+                if (date.after(time.parse(failTime)) || date.before(time.parse(effecTime))) {
                     isAccountLose = false;
                 }
             }
 
-            if(isAccountLose){
+            if (isAccountLose) {
                 re.setCode(1);
                 re.setInfo("false");
-            }else {
+            } else {
                 re.setCode(0);
                 re.setInfo("账户失效，请联系管理员");
             }
@@ -1905,16 +1907,91 @@ public class LaboratoryProcessor {
 
         ResultBean result = null;
         String key = null;
-        try{
+        try {
             key = paramObj.get("key").getAsString();
-            result =new ResultBean();
+            result = new ResultBean();
             RedisUtil.deleteKey(key);
             result.setCode(1);
             result.setInfo("删除成功");
-        }catch(Exception e){
-            logger.error("",e);
+        } catch (Exception e) {
+            logger.error("", e);
             return ParamUtils.errorParam("判断当前科室名称是否存在操作失败");
         }
         return gson.toJson(result);
+    }
+
+    public String getStaffInfoForRws(JsonObject paramObj, User user) {
+        String labID = null;
+        String key = null;
+        String limitStr = null;
+        Integer offset = null;
+        Integer limit = null;
+        String projectId = null;
+        try {
+            projectId = paramObj.get("projectId").getAsString();
+            labID = paramObj.get("labID").getAsString();
+            key = paramObj.get("key").getAsString();
+            if (paramObj.has("limit")) {
+                limitStr = paramObj.get("limit").getAsString();
+                int[] ls = ParamUtils.parseLimit(limitStr);
+                offset = (ls[0] - 1) * ls[1];
+                limit = ls[1];
+            }
+        } catch (Exception e) {
+            return ParamUtils.errorParam("参数错误");
+        }
+        String url = "";
+        String projectUser = HttpRequestUtils.httpPost(url,projectId);
+        JsonArray proArray = (JsonArray) jsonParser.parse(projectUser);
+
+        List<String> uidList = new ArrayList<>();
+        for(JsonElement element : proArray){
+            if(element.isJsonObject()){
+                JsonObject obj = element.getAsJsonObject();
+                String uid = obj.get("uid").getAsString();
+                uidList.add(uid);
+            }
+        }
+
+        List<User> users = null;
+        ResultBean re = new ResultBean();
+        re.setCode(1);
+
+        if (offset != null && limit != null) {
+            users = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDRws(key, offset, limit, user.getOrgID(),uidList);
+
+        } else {
+            users = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDNoLimitRws(key, user.getOrgID(),uidList);
+        }
+        Long counter = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDCounter(key, user.getOrgID());
+        Map<String, Object> info = new HashMap<>();
+        info.put("count", counter);
+        re.setInfo(info);
+
+        re.setData(users);
+        return gson.toJson(re);
+
+//        for (User usr : users) {
+//            Map<String, Object> map = new HashMap<>();
+//            map.put("orgID", usr.getOrgID());
+//            map.put("uid", usr.getUid());
+//            List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(map);
+//            if (rolesList != null) {
+//                for (Role role : rolesList) {
+//                    StringBuffer stringBuffer = new StringBuffer();
+//                    List<Resource> reList = AllDao.getInstance().getSyResourceDao().getResourceByRoleID(user.getOrgID(), role.getRoleid(), 0, 3000);
+//                    if (reList != null) {
+//                        for (Resource resource : reList) {
+//                            stringBuffer.append(resource.getSdesc()).append(",");
+//                        }
+//                    }
+//                    if (stringBuffer.toString().length() > 1) {
+//                        role.setResourceDesc(stringBuffer.toString().substring(0, stringBuffer.toString().length() - 1));
+//                    }
+//                }
+//            }
+//            usr.setRoles(rolesList);
+//        }
+
     }
 }

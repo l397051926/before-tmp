@@ -690,5 +690,37 @@
         <where> gennlife_user.unumber=#{unumber}</where>
     </select>
 
+    <select id="searchUsersByOrgIDRws" resultType="com.gennlife.platform.model.User">
+        SELECT
+        <include refid="userProperty"/>
+        FROM gennlife_user
+        WHERE
+        (uname LIKE CONCAT(CONCAT('%', #{skey}), '%') OR unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
+        AND
+        orgID = #{orgID}
+        AND
+        uid not IN
+        <foreach collection="uidList" item="id" index="index"
+                 open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+        LIMIT #{offset},#{limit}
+    </select>
+
+    <select id="searchUsersByOrgIDNoLimitRws" resultType="com.gennlife.platform.model.User">
+        SELECT
+        <include refid="userProperty"/>
+        FROM gennlife_user
+        WHERE
+        (uname LIKE CONCAT(CONCAT('%', #{skey}), '%') OR unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
+        AND
+        orgID = #{orgID}
+        AND
+        uid not IN
+        <foreach collection="uidList" item="id" index="index"
+                 open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
 
 </mapper>
