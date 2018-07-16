@@ -14,7 +14,7 @@ public class URLBean {
     private String fsIpAndPort;
     /**
      * 详情页通用接口
-     * */
+     */
     private String caseDetailCommonUrl;
 
     public String getCaseAdmission_records() {
@@ -330,7 +330,7 @@ public class URLBean {
     }
 
     /**
-     *  crf 高级搜索调到详情页
+     * crf 高级搜索调到详情页
      */
     private String CaseToDetail = null;
 
@@ -417,7 +417,7 @@ public class URLBean {
     private String CRFSearchSampleList = null;
 
     /*
-    *  病人基本信息查询
+     *  病人基本信息查询
      */
     private String CRFGetPatientInfo = null;
 
@@ -496,6 +496,321 @@ public class URLBean {
     private String CheckActiveIsOnlyOne = null;
     private String CheckActiveDataIsChange = null;
     private String DependenceChange = null;
+    private String ContResultUrl = null;
+    private String ContResultForPatientUrl = null;
+    private String PatientGroupCondition = null;
+    private String ResearchVariableUrl = null;
+    private String SaveGroupCondition = null;
+    private String DeletePatientSet = null;
+    private String ContrasAnalyList = null;
+    private String PatientList = null;
+    private String PatientSet = null;
+    private String PatientSetList = null;
+    private String SearchCondition = null;
+    private String SavePatientSet = null;
+    private String UpdatePatientSet = null;
+    private String ProjectByCrfId = null;
+    private String deleteProject = null;
+    private String Project = null;
+    private String ProjectList = null;
+    private String saveProject = null;
+    private String UpdateProject = null;
+    private String DeletePatientGroup = null;
+    private String ExportGroupDataPatient = null;
+    private String ActiveIndexList = null;
+    private String PatientGroup = null;
+    private String PatientGroupList = null;
+    private String PatientListForGroup = null;
+    private String InsertGroupDataPatient = null;
+    private String SaveActiveIndex = null;
+    private String SaveGroupAndPatient = null;
+    private String SavePatientGroup = null;
+    private String UpdatePatientGroup = null;
+    private String OperLogsList = null;
+    private String DeleteProjectMember = null;
+    private String ProjectMember = null;
+    private String SaveProjectMember = null;
+    private String UpdateProjectMember = null;
+
+    public String getUpdateProjectMember() {
+        return UpdateProjectMember;
+    }
+
+    public void setUpdateProjectMember(String updateProjectMember) {
+        UpdateProjectMember = updateProjectMember;
+    }
+
+    public String getSaveProjectMember() {
+        return SaveProjectMember;
+    }
+
+    public void setSaveProjectMember(String saveProjectMember) {
+        SaveProjectMember = saveProjectMember;
+    }
+
+    public String getProjectMember() {
+        return ProjectMember;
+    }
+
+    public void setProjectMember(String projectMember) {
+        ProjectMember = projectMember;
+    }
+
+    public String getDeleteProjectMember() {
+        return DeleteProjectMember;
+    }
+
+    public void setDeleteProjectMember(String deleteProjectMember) {
+        DeleteProjectMember = deleteProjectMember;
+    }
+
+    public String getOperLogsList() {
+        return OperLogsList;
+    }
+
+    public void setOperLogsList(String operLogsList) {
+        OperLogsList = operLogsList;
+    }
+
+    public String getUpdatePatientGroup() {
+        return UpdatePatientGroup;
+    }
+
+    public void setUpdatePatientGroup(String updatePatientGroup) {
+        UpdatePatientGroup = updatePatientGroup;
+    }
+
+    public String getSavePatientGroup() {
+        return SavePatientGroup;
+    }
+
+    public void setSavePatientGroup(String savePatientGroup) {
+        SavePatientGroup = savePatientGroup;
+    }
+
+    public String getSaveGroupAndPatient() {
+        return SaveGroupAndPatient;
+    }
+
+    public void setSaveGroupAndPatient(String saveGroupAndPatient) {
+        SaveGroupAndPatient = saveGroupAndPatient;
+    }
+
+    public String getSaveActiveIndex() {
+        return SaveActiveIndex;
+    }
+
+    public void setSaveActiveIndex(String saveActiveIndex) {
+        SaveActiveIndex = saveActiveIndex;
+    }
+
+    public String getInsertGroupDataPatient() {
+        return InsertGroupDataPatient;
+    }
+
+    public void setInsertGroupDataPatient(String insertGroupDataPatient) {
+        InsertGroupDataPatient = insertGroupDataPatient;
+    }
+
+    public String getPatientListForGroup() {
+        return PatientListForGroup;
+    }
+
+    public void setPatientListForGroup(String patientListForGroup) {
+        PatientListForGroup = patientListForGroup;
+    }
+
+    public String getPatientGroupList() {
+        return PatientGroupList;
+    }
+
+    public void setPatientGroupList(String patientGroupList) {
+        PatientGroupList = patientGroupList;
+    }
+
+    public String getPatientGroup() {
+        return PatientGroup;
+    }
+
+    public void setPatientGroup(String patientGroup) {
+        PatientGroup = patientGroup;
+    }
+
+    public String getActiveIndexList() {
+        return ActiveIndexList;
+    }
+
+    public void setActiveIndexList(String activeIndexList) {
+        ActiveIndexList = activeIndexList;
+    }
+
+    public String getExportGroupDataPatient() {
+        return ExportGroupDataPatient;
+    }
+
+    public void setExportGroupDataPatient(String exportGroupDataPatient) {
+        ExportGroupDataPatient = exportGroupDataPatient;
+    }
+
+    public String getDeletePatientGroup() {
+        return DeletePatientGroup;
+    }
+
+    public void setDeletePatientGroup(String deletePatientGroup) {
+        DeletePatientGroup = deletePatientGroup;
+    }
+
+    public String getUpdateProject() {
+        return UpdateProject;
+    }
+
+    public void setUpdateProject(String updateProject) {
+        UpdateProject = updateProject;
+    }
+
+    public String getSaveProject() {
+        return saveProject;
+    }
+
+    public void setSaveProject(String saveProject) {
+        this.saveProject = saveProject;
+    }
+
+    public String getProjectList() {
+        return ProjectList;
+    }
+
+    public void setProjectList(String projectList) {
+        ProjectList = projectList;
+    }
+
+    public String getProject() {
+        return Project;
+    }
+
+    public void setProject(String project) {
+        Project = project;
+    }
+
+    public String getDeleteProject() {
+        return deleteProject;
+    }
+
+    public void setDeleteProject(String deleteProject) {
+        this.deleteProject = deleteProject;
+    }
+
+    public String getProjectByCrfId() {
+        return ProjectByCrfId;
+    }
+
+    public void setProjectByCrfId(String projectByCrfId) {
+        ProjectByCrfId = projectByCrfId;
+    }
+
+    public String getUpdatePatientSet() {
+        return UpdatePatientSet;
+    }
+
+    public void setUpdatePatientSet(String updatePatientSet) {
+        UpdatePatientSet = updatePatientSet;
+    }
+
+    public String getSavePatientSet() {
+        return SavePatientSet;
+    }
+
+    public void setSavePatientSet(String savePatientSet) {
+        SavePatientSet = savePatientSet;
+    }
+
+    public String getSearchCondition() {
+        return SearchCondition;
+    }
+
+    public void setSearchCondition(String searchCondition) {
+        SearchCondition = searchCondition;
+    }
+
+    public String getPatientSetList() {
+        return PatientSetList;
+    }
+
+    public void setPatientSetList(String patientSetList) {
+        PatientSetList = patientSetList;
+    }
+
+    public String getPatientSet() {
+        return PatientSet;
+    }
+
+    public void setPatientSet(String patientSet) {
+        PatientSet = patientSet;
+    }
+
+    public String getPatientList() {
+        return PatientList;
+    }
+
+    public void setPatientList(String patientList) {
+        PatientList = patientList;
+    }
+
+    public String getContrasAnalyList() {
+        return ContrasAnalyList;
+    }
+
+    public void setContrasAnalyList(String contrasAnalyList) {
+        ContrasAnalyList = contrasAnalyList;
+    }
+
+    public String getDeletePatientSet() {
+        return DeletePatientSet;
+    }
+
+    public void setDeletePatientSet(String deletePatientSet) {
+        DeletePatientSet = deletePatientSet;
+    }
+
+    public String getSaveGroupCondition() {
+        return SaveGroupCondition;
+    }
+
+    public void setSaveGroupCondition(String saveGroupCondition) {
+        SaveGroupCondition = saveGroupCondition;
+    }
+
+    public String getResearchVariableUrl() {
+        return ResearchVariableUrl;
+    }
+
+    public void setResearchVariableUrl(String researchVariableUrl) {
+        ResearchVariableUrl = researchVariableUrl;
+    }
+
+    public String getPatientGroupCondition() {
+        return PatientGroupCondition;
+    }
+
+    public void setPatientGroupCondition(String patientGroupCondition) {
+        PatientGroupCondition = patientGroupCondition;
+    }
+
+    public String getContResultForPatientUrl() {
+        return ContResultForPatientUrl;
+    }
+
+    public void setContResultForPatientUrl(String contResultForPatientUrl) {
+        ContResultForPatientUrl = contResultForPatientUrl;
+    }
+
+    public String getContResultUrl() {
+        return ContResultUrl;
+    }
+
+    public void setContResultUrl(String contResultUrl) {
+        ContResultUrl = contResultUrl;
+    }
 
     public String getDependenceChange() {
         return DependenceChange;
@@ -665,8 +980,8 @@ public class URLBean {
     }
 
     /*
-        *溯源页病人详细信息
-         */
+     *溯源页病人详细信息
+     */
     private String CRFPatientVisitDetail = null;
 
     public String getCRFPatientAllVisitsDetail() {
@@ -678,8 +993,8 @@ public class URLBean {
     }
 
     /*
-        *溯源查看全部病人详细信息
-         */
+     *溯源查看全部病人详细信息
+     */
     private String CRFPatientAllVisitsDetail = null;
 
     public String getSampleImportIURL() {

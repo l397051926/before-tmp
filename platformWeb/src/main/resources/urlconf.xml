@@ -209,5 +209,41 @@
         <property name="CheckActiveIsOnlyOne" value="http://${rws.ipAndPort}/rws-service/rws/activeIsExists"/>
         <property name="CheckActiveDataIsChange" value="http://${rws.ipAndPort}/rws-service/rws/activeIsChange"/>
         <property name="DependenceChange" value="http://${rws.ipAndPort}/rws-service/rws/dependenceChange"/>
+        <!--rws 重构接口 转发-->
+        <property name="ContResultUrl" value="http://${rws.ipAndPort}/rws-service/rws/cort/getContResult"/>
+        <property name="ContResultForPatientUrl" value="http://${rws.ipAndPort}/rws-service/rws/cort/getContResultForPatient"/>
+        <property name="PatientGroupCondition" value="http://${rws.ipAndPort}/rws-service/rws/cort/getPatientGroupCondition"/>
+        <property name="ResearchVariableUrl" value="http://${rws.ipAndPort}/rws-service/rws/cort/getResearchVariable"/>
+        <property name="SaveGroupCondition" value="http://${rws.ipAndPort}/rws-service/rws/cort/saveGroupCondition"/>
+        <property name="DeletePatientSet" value="http://${rws.ipAndPort}/rws-service/rws/patientSet/deletePatientSet"/>
+        <property name="ContrasAnalyList" value="http://${rws.ipAndPort}/rws-service/rws/patientSet/getContrasAnalyList"/>
+        <property name="PatientList" value="http://${rws.ipAndPort}/rws-service/rws/patientSet/getPatientList"/>
+        <property name="PatientSet" value="http://${rws.ipAndPort}/rws-service/rws/patientSet/getPatientSet"/>
+        <property name="PatientSetList" value="http://${rws.ipAndPort}/rws-service/rws/patientSet/getPatientSetList"/>
+        <property name="SearchCondition" value="http://${rws.ipAndPort}/rws-service/rws/patientSet/getSearchCondition"/>
+        <property name="SavePatientSet" value="http://${rws.ipAndPort}/rws-service/rws/patientSet/savePatientSet"/>
+        <property name="UpdatePatientSet" value="http://${rws.ipAndPort}/rws-service/rws/patientSet/updatePatientSet"/>
+        <property name="ProjectByCrfId" value="http://${rws.ipAndPort}/rws-service/rws/preLiminary/getProjectByCrfId"/>
+        <property name="deleteProject" value="http://${rws.ipAndPort}/rws-service/rws/project/deleteProject"/>
+        <property name="Project" value="http://${rws.ipAndPort}/rws-service/rws/project/getProject"/>
+        <property name="ProjectList" value="http://${rws.ipAndPort}/rws-service/rws/project/getProjectList"/>
+        <property name="saveProject" value="http://${rws.ipAndPort}/rws-service/rws/project/saveProject"/>
+        <property name="UpdateProject" value="http://${rws.ipAndPort}/rws-service/rws/project/updateProject"/>
+        <property name="DeletePatientGroup" value="http://${rws.ipAndPort}/rws-service/rws/patientGroup/deletePatientGroup"/>
+        <property name="ExportGroupDataPatient" value="http://${rws.ipAndPort}/rws-service/rws/patientGroup/exportGroupDataPatient"/>
+        <property name="ActiveIndexList" value="http://${rws.ipAndPort}/rws-service/rws/patientGroup/getActiveIndexList"/>
+        <property name="PatientGroup" value="http://${rws.ipAndPort}/rws-service/rws/patientGroup/getPatientGroup"/>
+        <property name="PatientGroupList" value="http://${rws.ipAndPort}/rws-service/rws/patientGroup/getPatientGroupList"/>
+        <property name="PatientListForGroup" value="http://${rws.ipAndPort}/rws-service/rws/patientGroup/getPatientList"/>
+        <property name="InsertGroupDataPatient" value="http://${rws.ipAndPort}/rws-service/rws/patientGroup/insertGroupDataPatient"/>
+        <property name="SaveActiveIndex" value="http://${rws.ipAndPort}/rws-service/rws/patientGroup/saveActiveIndex"/>
+        <property name="SaveGroupAndPatient" value="http://${rws.ipAndPort}/rws-service/rws/patientGroup/saveGroupAndPatient"/>
+        <property name="SavePatientGroup" value="http://${rws.ipAndPort}/rws-service/rws/patientGroup/savePatientGroup"/>
+        <property name="UpdatePatientGroup" value="http://${rws.ipAndPort}/rws-service/rws/patientGroup/updatePatientGroup"/>
+        <property name="OperLogsList" value="http://${rws.ipAndPort}/rws-service/rws/project/getOperLogsList"/>
+        <property name="DeleteProjectMember" value="http://${rws.ipAndPort}/rws-service/rws/projectMember/deleteProjectMember"/>
+        <property name="ProjectMember" value="http://${rws.ipAndPort}/rws-service/rws/projectMember/getProjectMember"/>
+        <property name="SaveProjectMember" value="http://${rws.ipAndPort}/rws-service/rws/projectMember/saveProjectMember"/>
+        <property name="UpdateProjectMember" value="http://${rws.ipAndPort}/rws-service/rws/projectMember/updateProjectMember"/>
     </bean>
 </beans>
