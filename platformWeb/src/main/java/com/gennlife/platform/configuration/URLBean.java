@@ -174,6 +174,10 @@ public class URLBean {
     private String removeSynonym = null;
     private String saveRelatedPhrasesSelectionBehavior = null;
 
+    /**
+     * 获取组学信息url
+     */
+    private String getGennomics = null;
 
     /**
      * 样本详情接口
@@ -1459,5 +1463,14 @@ public class URLBean {
 
     public void setEmailURL(String emailURL) {
         EmailURL = emailURL;
+    }
+
+
+    public String getGetGennomics() {
+        return getGennomics;
+    }
+
+    public void setGetGennomics(String getGennomics) {
+        this.getGennomics = getGennomics;
     }
 }

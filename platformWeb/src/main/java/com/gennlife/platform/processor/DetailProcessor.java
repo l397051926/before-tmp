@@ -35,6 +35,18 @@ public class DetailProcessor {
 
     }
 
+    public String getGennomicsList(String param) {
+        try {
+//            String url = "http://10.0.0.152:8111/PatientDetail/getGennomics";
+            String url = ConfigurationService.getUrlBean().getGetGennomics();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+
+    }
+
     /**
      * 遗传性疾病
      * 透传,无逻辑
