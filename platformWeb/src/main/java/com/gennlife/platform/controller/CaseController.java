@@ -7,6 +7,7 @@ import com.gennlife.platform.processor.IntelligentProcessor;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by chen-song on 16/5/13.
@@ -28,7 +30,7 @@ public class CaseController {
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
     @Autowired
-    private  IntelligentProcessor intelligentProcessor;
+    private IntelligentProcessor intelligentProcessor;
     private CaseProcessor processor = new CaseProcessor();
 
     @RequestMapping(value = "/SearchItemSet", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -58,12 +60,20 @@ public class CaseController {
     @RequestMapping(value = "/SearchItemSet", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
-    String getSearchItemSet(@RequestParam("param") String param) {
+    String getSearchItemSet(String arrange,String searchKey,Integer status,String keywords,String filterPath,String crfId) {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-            logger.info("搜索结果列表展示的集合 get方式 参数=" + param);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            JsonArray array =new JsonArray();
+            JsonObject paramObj = new JsonObject();
+            paramObj.add("arrange",array);
+            paramObj.addProperty("searchKey",searchKey);
+            paramObj.addProperty("status",status);
+            paramObj.addProperty("keywords",keywords);
+            paramObj.addProperty("filterPath",filterPath);
+            paramObj.addProperty("crfId",crfId);
+            logger.info("搜索结果列表展示的集合 get方式 参数=" + paramObj);
+//            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
             resultStr = processor.searchItemSet(paramObj);
             logger.info("搜索结果列表展示的集合: " + resultStr);
         } catch (Exception e) {
@@ -71,6 +81,7 @@ public class CaseController {
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("搜索结果列表展示的集合 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+
         return resultStr;
     }
 
@@ -411,6 +422,7 @@ public class CaseController {
         JsonObject paramObj = jsonParser.parse(param).getAsJsonObject();
         return intelligentProcessor.inspectReport(paramObj);
     }
+
     //智能提示 根据id 获取相关信息
     @RequestMapping(value = "/intelligent/inspect_report/info", produces = "application/json;charset=UTF-8")
     public
@@ -421,7 +433,8 @@ public class CaseController {
 
     @ExceptionHandler(value = Exception.class)
     @ResponseStatus(value = HttpStatus.OK)
-    public @ResponseBody String handleException(Exception exception) {
+    public @ResponseBody
+    String handleException(Exception exception) {
         logger.error("系统异常!", exception);
         return ParamUtils.errorParam("出现异常");
     }
@@ -436,14 +449,15 @@ public class CaseController {
             String param = ParamUtils.getParam(paramRe);
             User user = (User) paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.searchSynonyms(paramObj,user);
-        }  catch (Exception e) {
+            resultStr = processor.searchSynonyms(paramObj, user);
+        } catch (Exception e) {
             logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("同义词 高级搜索 POST 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
     @RequestMapping(value = "/addSynonym", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
@@ -454,8 +468,8 @@ public class CaseController {
             String param = ParamUtils.getParam(paramRe);
             User user = (User) paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.addSynonym(paramObj,user);
-        }  catch (Exception e) {
+            resultStr = processor.addSynonym(paramObj, user);
+        } catch (Exception e) {
             logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
@@ -473,14 +487,15 @@ public class CaseController {
             String param = ParamUtils.getParam(paramRe);
             User user = (User) paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.removeSynonym(paramObj,user);
-        }  catch (Exception e) {
+            resultStr = processor.removeSynonym(paramObj, user);
+        } catch (Exception e) {
             logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("同义词 删除 高级搜索 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
     @RequestMapping(value = "/saveRelatedPhrasesSelectionBehavior", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
@@ -491,8 +506,8 @@ public class CaseController {
             String param = ParamUtils.getParam(paramRe);
             User user = (User) paramRe.getAttribute("currentUser");
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.saveRelatedPhrasesSelectionBehavior(paramObj,user);
-        }  catch (Exception e) {
+            resultStr = processor.saveRelatedPhrasesSelectionBehavior(paramObj, user);
+        } catch (Exception e) {
             logger.error("", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
