@@ -29,7 +29,7 @@ import java.util.Set;
 /**
  * Created by chen-song on 16/9/21.
  */
-//@WebFilter(urlPatterns = "/*")
+@WebFilter(urlPatterns = "/*")
 public class SessionFilter implements Filter {
     private static Logger logger = LoggerFactory.getLogger(SessionFilter.class);
     private static View view = new View();
@@ -148,6 +148,7 @@ public class SessionFilter implements Filter {
         adminSet.add("/bsma/DeleteAllOrg");
         adminSet.add("/common/UploadFileForImportLab");
         adminSet.add("/common/UploadFileForImportStaff");
-        adminSet.add("/case/SearchItemSet");
+        okSet.add("/case/SearchItemSet");
+        okSet.add("/case/SearchItemSetT");
     }
 }
