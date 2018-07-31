@@ -51,7 +51,8 @@ public class CaseProcessor {
                     && !"3".equals(status)
                     && !"4".equals(status)
                     && !"5".equals(status)
-                    && ! "6".equals(status)) {
+                    && ! "6".equals(status)
+                    && ! "7".equals(status)) {
                 return ParamUtils.errorParam("status参数出错");
             }
             JsonArray arrange = paramObj.get("arrange").getAsJsonArray();
@@ -236,6 +237,50 @@ public class CaseProcessor {
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                 String groupName = obj.getKey();
+                JsonArray items = obj.getValue().getAsJsonArray();
+                JsonArray newGroup = new JsonArray();
+                if("就诊.手术".equals(groupName)){
+                    continue;
+                }
+                for (JsonElement json : items) {
+                    JsonObject item = json.getAsJsonObject();
+                    String UIFieldName = item.get("UIFieldName").getAsString();
+                    if ("".equals(keywords) || UIFieldName.contains(keywords)) {
+                        JsonObject itemNew = (JsonObject) jsonParser.parse(gson.toJson(item));
+                        if (!"".equals(keywords)) {
+                            UIFieldName = UIFieldName.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
+                            itemNew.addProperty("UIFieldName", UIFieldName);
+                        }
+                        newGroup.add(itemNew);
+                    }
+                }
+                if (newGroup.size() > 0) {
+                    if (paramObj.has("filterPath")) {
+                        String filterPath = paramObj.get("filterPath").getAsString();
+                        if (!StringUtils.isEmpty(filterPath)) {
+                            if (groupName.equals(filterPath)) {
+                                allNew.add(groupName, newGroup);
+                            }
+                        } else {
+                            allNew.add(groupName, newGroup);
+                        }
+                    } else {
+                        allNew.add(groupName, newGroup);
+                    }
+                }
+            }
+            resultBean.setCode(1);
+            resultBean.setData(allNew);
+        }else if  ("7".equals(status)) {//rws 检索结果列表
+//            JsonObject all = ConfigurationService.getCrfSearch(crf_id);
+            //获取数据
+            JsonObject all = ReadConditionByRedis.getCrfSearch(crf_id);
+            JsonObject allNew = new JsonObject();
+            for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
+                String groupName = obj.getKey();
+                if(!groupName.startsWith("就诊")){
+                    continue;
+                }
                 JsonArray items = obj.getValue().getAsJsonArray();
                 JsonArray newGroup = new JsonArray();
                 if("就诊.手术".equals(groupName)){

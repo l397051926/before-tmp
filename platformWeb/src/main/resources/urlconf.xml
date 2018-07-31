@@ -193,22 +193,22 @@
         <property name="CSBaseline" value="http://${apache.ipAndPort}/baseline"/>
 
         <!-- RWS服务接口 -->
-        <property name="PreLiminaryUrl" value="http://${rws.ipAndPort}/rws-service/rws/pre/liminary"/>
-        <property name="PreAggregationUrl" value="http://${rws.ipAndPort}/rws-service/rws/pre/aggregation"/>
-        <property name="PreFindForProjectData" value="http://${rws.ipAndPort}/rws-service/rws/pre/findForProjectData"/>
-        <property name="FindByProjectId" value="http://${rws.ipAndPort}/rws-service/rws/findByProjectId"/>
-        <property name="GetAllActiveOrIndex" value="http://${rws.ipAndPort}/rws-service/rws/getAllActiveOrIndex"/>
-        <property name="GetSavedActivityData" value="http://${rws.ipAndPort}/rws-service/rws/getActive"/>
-        <property name="SaveOrSearchActive" value="http://${rws.ipAndPort}/rws-service/rws/saveActiveIndex"/>
-        <property name="ClacResultSearch" value="http://${rws.ipAndPort}/rws-service/search/clacResultSearch"/>
+        <property name="PreLiminaryUrl" value="http://localhost:9000/rws/pre/liminary"/>
+        <property name="PreAggregationUrl" value="http://localhost:9000/rws/pre/aggregation"/>
+        <property name="PreFindForProjectData" value="http://localhost:9000/rws/pre/findForProjectData"/>
+        <property name="FindByProjectId" value="http://localhost:9000/rws/findByProjectId"/>
+        <property name="GetAllActiveOrIndex" value="http://localhost:9000/rws/getAllActiveOrIndex"/>
+        <property name="GetSavedActivityData" value="http://localhost:9000/rws/getActive"/>
+        <property name="SaveOrSearchActive" value="http://localhost:9000/rws/saveActiveIndex"/>
+        <property name="ClacResultSearch" value="http://localhost:9000/search/clacResultSearch"/>
         <property name="ClacIndexResultSearch"
-                  value="http://${rws.ipAndPort}/rws-service/search/clacIndexResultSearch"/>
+                  value="http://localhost:9000/search/clacIndexResultSearch"/>
         <property name="GetCalcTotalByActiveId"
-                  value="http://${rws.ipAndPort}/rws-service/search/getCalcTotalByActiveId"/>
-        <property name="FindTotalForImport" value="http://${rws.ipAndPort}/rws-service/rws/pre/findTotalForImport"/>
-        <property name="DeleteByActiveId" value="http://${rws.ipAndPort}/rws-service/rws/deleteByActiveId"/>
-        <property name="CheckActiveIsOnlyOne" value="http://${rws.ipAndPort}/rws-service/rws/activeIsExists"/>
-        <property name="CheckActiveDataIsChange" value="http://${rws.ipAndPort}/rws-service/rws/activeIsChange"/>
-        <property name="DependenceChange" value="http://${rws.ipAndPort}/rws-service/rws/dependenceChange"/>
+                  value="http://localhost:9000/search/getCalcTotalByActiveId"/>
+        <property name="FindTotalForImport" value="http://localhost:9000/rws/pre/findTotalForImport"/>
+        <property name="DeleteByActiveId" value="http://localhost:9000/rws/deleteByActiveId"/>
+        <property name="CheckActiveIsOnlyOne" value="http://localhost:9000/rws/activeIsExists"/>
+        <property name="CheckActiveDataIsChange" value="http://localhost:9000/rws/activeIsChange"/>
+        <property name="DependenceChange" value="http://localhost:9000/rws/dependenceChange"/>
     </bean>
 </beans>

@@ -150,5 +150,21 @@ public class SessionFilter implements Filter {
         adminSet.add("/common/UploadFileForImportStaff");
         okSet.add("/case/SearchItemSet");
         okSet.add("/case/SearchItemSetT");
+        okSet.add("/rws/PreAggregation");
+        okSet.add("/rws/PreFindForProjectData");
+        okSet.add("/rws/dependenceChange");
+        okSet.add("/rws/FindByProjectId");
+        okSet.add("/rws/GetAllActiveOrIndex");
+        okSet.add("/rws/GetSavedActivityData");
+        okSet.add("/rws/SaveOrSearchActive");
+        okSet.add("/rws/ClacResultSearch");
+        okSet.add("/rws/ClacIndexResultSearch");
+        okSet.add("/rws/getCalcTotalByActiveId");
+        okSet.add("/rws/FindTotalForImport");
+        okSet.add("/rws/DeleteByActiveId");
+        okSet.add("/rws/checkActiveIsOnlyOne");
+        okSet.add("/rws/activeIsChange");
+        okSet.add("/rws/getRwsEventConfig");
+        okSet.add("/rws/getLoadSearchDefinedEventListConfig");
     }
 }
