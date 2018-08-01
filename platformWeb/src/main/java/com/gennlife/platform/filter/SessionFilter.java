@@ -166,5 +166,6 @@ public class SessionFilter implements Filter {
         okSet.add("/rws/activeIsChange");
         okSet.add("/rws/getRwsEventConfig");
         okSet.add("/rws/getLoadSearchDefinedEventListConfig");
+        okSet.add("/case/SearchItemSetForRws");
     }
 }

@@ -272,9 +272,12 @@ public class CaseProcessor {
             resultBean.setCode(1);
             resultBean.setData(allNew);
         }else if  ("7".equals(status)) {//rws 检索结果列表
-//            JsonObject all = ConfigurationService.getCrfSearch(crf_id);
-            //获取数据
-            JsonObject all = ReadConditionByRedis.getCrfSearch(crf_id);
+            JsonObject all =new JsonObject();
+            if(emr_id.equals(crf_id)){
+                all = ConfigurationService.getAdvancedSearch(crf_id);
+            }else {
+                all = ReadConditionByRedis.getCrfSearch(crf_id);
+            }
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                 String groupName = obj.getKey();
@@ -850,5 +853,105 @@ public class CaseProcessor {
         } catch (Exception e) {
             return ParamUtils.errorParam("请求出错");
         }
+    }
+
+    public String searchItemSetForUi(JsonObject paramObj) {
+            String param = null;
+            String searchKey = null;
+            String keywords = null;
+            String status = null;
+            String crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
+            String emr_id =  ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
+            Set<String> set = new HashSet<String>();
+            ResultBean resultBean = new ResultBean();
+            try {
+                //searchKey = paramObj.get("searchKey").getAsString();//病历搜索的关键词
+                keywords = paramObj.get("keywords").getAsString();//属性搜索的关键词
+                status = paramObj.get("status").getAsString();
+                if (!"0".equals(status)) {
+                    return ParamUtils.errorParam("status参数出错");
+                }
+                JsonArray arrange = paramObj.get("arrange").getAsJsonArray();
+                for (JsonElement json : arrange) {
+                    set.add(json.getAsString());
+                }
+                if (paramObj.has("crf_id") ) {
+                    crf_id = paramObj.get("crf_id").getAsString();
+                    if(StringUtils.isEmpty(crf_id)){
+                        crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
+                    }
+                }
+                if(paramObj.has("crfId")){
+                    crf_id = paramObj.get("crfId").getAsString();
+                    if(StringUtils.isEmpty(crf_id)){
+                        crf_id = ((SystemDefault) SpringContextUtil.getBean("systemDefault")).getSearchItemSetDefault();
+                    }
+                }
+            } catch (Exception e) {
+                logger.error("", e);
+                return ParamUtils.errorParam("请求参数出错");
+            }
+
+           if ("0".equals(status)) {//高级搜索,所有属性,带有搜索功能
+                JsonObject all =new JsonObject();
+                if(emr_id.equals(crf_id)){
+                    all = ConfigurationService.getAdvancedSearch(crf_id);
+                }else {
+                    all = ReadConditionByRedis.getCrfSearch(crf_id);
+                }
+                JsonObject allNew = new JsonObject();
+                for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
+                    String groupName = obj.getKey();
+                    JsonArray items = obj.getValue().getAsJsonArray();
+                    String keyWordsTmp = keywords;
+                    //去掉 rws 就诊手术
+                    if("就诊.手术".equals(groupName)){
+                        continue;
+                    }
+                    if( !StringUtils.isEmpty(keywords) && !keywords.contains(groupName) ){
+                        continue;
+                    }
+                    if( !StringUtils.isEmpty(keywords) && keywords.equals(groupName) ){
+                        keyWordsTmp="";
+                    }
+                    JsonArray newGroup = new JsonArray();
+                    for (JsonElement json : items) {
+                        JsonObject item = json.getAsJsonObject();
+                        String UIFieldName = item.get("srchFieldName").getAsString();
+                        if ("".equals(keyWordsTmp) || UIFieldName.equals(keyWordsTmp)) {
+                            JsonObject itemNew = (JsonObject) jsonParser.parse(gson.toJson(item));
+                            if (!"".equals(keyWordsTmp)) {
+                                UIFieldName = UIFieldName.replaceAll(keyWordsTmp, "<span style='color:red'>" + keyWordsTmp + "</span>");
+                                itemNew.addProperty("UIFieldName", UIFieldName);
+                            }
+                            newGroup.add(itemNew);
+                        }
+                    }
+                    if (newGroup.size() > 0) {
+                        if (paramObj.has("filterPath")) {
+                            String filterPath = paramObj.get("filterPath").getAsString();
+                            if (!StringUtils.isEmpty(filterPath)) {
+                                if (groupName.startsWith(filterPath)) {
+                                    allNew.add(groupName, newGroup);
+                                }
+                            } else {
+                                allNew.add(groupName, newGroup);
+                            }
+                        } else {
+                            allNew.add(groupName, newGroup);
+                        }
+                    }
+                }
+                resultBean.setCode(1);
+                resultBean.setData(allNew);
+            }
+            return gson.toJson(resultBean);
+        }
+
+    public static void main(String[] args) {
+        String a = "就诊.就诊基本信息";
+        String b = "就诊.就诊基本信息";
+        System.out.println(!a.contains(b));
+        System.out.println("equ"+!a.equals(b));
     }
 }
