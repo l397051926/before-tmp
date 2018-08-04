@@ -656,6 +656,7 @@ public class CaseProcessor {
             caseSearchParser.addQuery(addQuery);
         }
         try {
+            //去es里搜索数据
             String searchResultStr = caseSearchParser.parser();
             if (StringUtils.isEmpty(searchResultStr)) {
                 logger.error("search empty " + caseSearchParser.getQuery());
@@ -948,10 +949,5 @@ public class CaseProcessor {
             return gson.toJson(resultBean);
         }
 
-    public static void main(String[] args) {
-        String a = "就诊.就诊基本信息";
-        String b = "就诊.就诊基本信息";
-        System.out.println(!a.contains(b));
-        System.out.println("equ"+!a.equals(b));
-    }
+
 }

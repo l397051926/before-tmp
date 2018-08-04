@@ -116,6 +116,8 @@ public class RwsProcessor {
                 }else {
                     tmpJsonArray = ReadConditionByRedis.getCrfRws(crfId);
                 }
+            }else{
+                tmpJsonArray = ReadConditionByRedis.getEmrRws();
             }
             JsonObject tmpObject = (JsonObject) tmpJsonArray.get(0);
             JsonObject orderObject = tmpObject.get("resultOrderKey").getAsJsonObject();
