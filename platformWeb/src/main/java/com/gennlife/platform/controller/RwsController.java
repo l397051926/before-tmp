@@ -375,7 +375,7 @@ public class RwsController {
             String param = ParamUtils.getParam(paramRe);
             logger.info("修改指标事件名称 参数 = " + param);
             JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-            resultStr = processor.checkActiveIsOnlyOne(paramObj);
+            resultStr = processor.editActiveName(paramObj);
         } catch (Exception e) {
             logger.error("修改指标事件名称 接口", e);
             resultStr = ParamUtils.errorParam("出现异常");
