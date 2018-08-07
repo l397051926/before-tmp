@@ -364,7 +364,7 @@ public class RwsController {
         logger.info("获取配置文件LoadSearch  接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-    @RequestMapping(value = "/cort/getContResult", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/cort/getContResult", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getContResult(HttpServletRequest paramRe) {
@@ -382,7 +382,7 @@ public class RwsController {
         logger.info("获取图形列表 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-    @RequestMapping(value = "/cort/getContResultForPatient", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/cort/getContResultForPatient", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getContResultForPatient(HttpServletRequest paramRe) {
@@ -401,7 +401,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/cort/getPatientGroupCondition", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/cort/getPatientGroupCondition", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getPatientGroupCondition(HttpServletRequest paramRe) {
@@ -421,7 +421,7 @@ public class RwsController {
     }
 
 
-    @RequestMapping(value = "/cort/getResearchVariable", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/cort/getResearchVariable", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getResearchVariable(HttpServletRequest paramRe) {
@@ -440,7 +440,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/cort/saveGroupCondition", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/cort/saveGroupCondition", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String saveGroupCondition(HttpServletRequest paramRe) {
@@ -458,7 +458,7 @@ public class RwsController {
         logger.info("村粗分组条件 对比分析页面 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-    @RequestMapping(value = "/patientSet/deletePatientSet", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/patientSet/deletePatientSet", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String deletePatientSet(HttpServletRequest paramRe) {
@@ -477,7 +477,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/patientSet/getContrasAnalyList", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/patientSet/getContrasAnalyList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getContrasAnalyList(HttpServletRequest paramRe) {
@@ -496,7 +496,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/patientSet/getPatientList", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/patientSet/getPatientList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getPatientList(HttpServletRequest paramRe) {
@@ -515,7 +515,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/patientSet/getPatientSet", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/patientSet/getPatientSet", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getPatientSet(HttpServletRequest paramRe) {
@@ -534,7 +534,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/patientSet/getPatientSetList", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/patientSet/getPatientSetList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getPatientSetList(HttpServletRequest paramRe) {
@@ -553,7 +553,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/patientSet/getSearchCondition", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/patientSet/getSearchCondition", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getSearchCondition(HttpServletRequest paramRe) {
@@ -572,7 +572,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/patientSet/savePatientSet", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/patientSet/savePatientSet", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String savePatientSet(HttpServletRequest paramRe) {
@@ -591,7 +591,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/patientSet/updatePatientSet", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/patientSet/updatePatientSet", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String updatePatientSet(HttpServletRequest paramRe) {
@@ -610,7 +610,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/preLiminary/getProjectByCrfId", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/preLiminary/getProjectByCrfId", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getProjectByCrfId(HttpServletRequest paramRe) {
@@ -628,7 +628,7 @@ public class RwsController {
         logger.info("查看用户是否有项目 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-    @RequestMapping(value = "/project/deleteProject", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/project/deleteProject", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String deleteProject(HttpServletRequest paramRe) {
@@ -646,7 +646,7 @@ public class RwsController {
         logger.info("删除项目信息 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-    @RequestMapping(value = "/project/getProject", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/project/getProject", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getProject(HttpServletRequest paramRe) {
@@ -665,7 +665,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/project/getProjectList", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/project/getProjectList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getProjectListgetProject(HttpServletRequest paramRe) {
@@ -684,7 +684,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/project/saveProject", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/project/saveProject", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String saveProject(HttpServletRequest paramRe) {
@@ -703,7 +703,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/project/updateProject", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/project/updateProject", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String updateProject(HttpServletRequest paramRe) {
@@ -722,7 +722,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/patientGroup/deletePatientGroup", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/patientGroup/deletePatientGroup", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String deletePatientGroup(HttpServletRequest paramRe) {
@@ -741,7 +741,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/patientGroup/exportGroupDataPatient", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/patientGroup/exportGroupDataPatient", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String exportGroupDataPatient(HttpServletRequest paramRe) {
@@ -760,7 +760,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/patientGroup/getActiveIndexList", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/patientGroup/getActiveIndexList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getActiveIndexList(HttpServletRequest paramRe) {
@@ -779,7 +779,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/patientGroup/getPatientGroup", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/patientGroup/getPatientGroup", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getPatientGroup(HttpServletRequest paramRe) {
@@ -798,7 +798,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/patientGroup/getPatientGroupList", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/patientGroup/getPatientGroupList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getPatientGroupList(HttpServletRequest paramRe) {
@@ -817,7 +817,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/patientGroup/getPatientList", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/patientGroup/getPatientList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getPatientListForGroup(HttpServletRequest paramRe) {
@@ -836,7 +836,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/patientGroup/insertGroupDataPatient", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/patientGroup/insertGroupDataPatient", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String insertGroupDataPatient(HttpServletRequest paramRe) {
@@ -855,7 +855,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/patientGroup/saveActiveIndex", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/patientGroup/saveActiveIndex", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String saveActiveIndex(HttpServletRequest paramRe) {
@@ -873,7 +873,7 @@ public class RwsController {
         logger.info("保存分组详情筛选条件 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-    @RequestMapping(value = "/patientGroup/saveGroupAndPatient", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/patientGroup/saveGroupAndPatient", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String saveGroupAndPatient(HttpServletRequest paramRe) {
@@ -891,7 +891,7 @@ public class RwsController {
         logger.info("拖拽 添加保存患者分组信息 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-    @RequestMapping(value = "/patientGroup/savePatientGroup", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/patientGroup/savePatientGroup", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String savePatientGroup(HttpServletRequest paramRe) {
@@ -909,7 +909,7 @@ public class RwsController {
         logger.info("新增患者分组信息接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-    @RequestMapping(value = "/patientGroup/updatePatientGroup", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/patientGroup/updatePatientGroup", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String updatePatientGroup(HttpServletRequest paramRe) {
@@ -928,7 +928,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/project/getOperLogsList", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/project/getOperLogsList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getOperLogsList(HttpServletRequest paramRe) {
@@ -948,7 +948,7 @@ public class RwsController {
     }
 
 
-    @RequestMapping(value = "/projectMember/deleteProjectMember", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/projectMember/deleteProjectMember", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String deleteProjectMember(HttpServletRequest paramRe) {
@@ -968,7 +968,7 @@ public class RwsController {
     }
 
 
-    @RequestMapping(value = "/projectMember/getProjectMember", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/projectMember/getProjectMember", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getProjectMember(HttpServletRequest paramRe) {
@@ -988,7 +988,7 @@ public class RwsController {
     }
 
 
-    @RequestMapping(value = "/projectMember/getProjectMemberList", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/projectMember/getProjectMemberList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getProjectMemberList(HttpServletRequest paramRe) {
@@ -1007,7 +1007,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/projectMember/saveProjectMember", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/projectMember/saveProjectMember", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String saveProjectMember(HttpServletRequest paramRe) {
@@ -1026,7 +1026,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/projectMember/updateProjectMember", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/projectMember/updateProjectMember", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String updateProjectMember(HttpServletRequest paramRe) {
