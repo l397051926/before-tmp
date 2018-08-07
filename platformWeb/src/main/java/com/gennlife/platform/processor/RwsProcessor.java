@@ -658,4 +658,15 @@ public class RwsProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String getScientific() {
+        try {
+            String url = ConfigurationService.getUrlBean().getScientific();
+            String result = HttpRequestUtils.httpGet(url);
+            return result;
+        } catch (Exception e) {
+            logger.error("获取科研类型 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }

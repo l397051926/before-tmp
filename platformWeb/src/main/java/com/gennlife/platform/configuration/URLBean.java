@@ -532,6 +532,16 @@ public class URLBean {
     private String SaveProjectMember = null;
     private String UpdateProjectMember = null;
 
+    private String Scientific = null;
+
+    public String getScientific() {
+        return Scientific;
+    }
+
+    public void setScientific(String scientific) {
+        Scientific = scientific;
+    }
+
     public String getUpdateProjectMember() {
         return UpdateProjectMember;
     }

@@ -646,6 +646,23 @@ public class RwsController {
         logger.info("删除项目信息 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/project/getScientific", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getScientific(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            resultStr = processor.getScientific();
+        } catch (Exception e) {
+            logger.error("获取科研类型 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取科研类型 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
     @RequestMapping(value = "/project/getProject", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody

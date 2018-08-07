@@ -245,5 +245,6 @@
         <property name="ProjectMember" value="http://${rws.ipAndPort}/rws-service/rws/projectMember/getProjectMember"/>
         <property name="SaveProjectMember" value="http://${rws.ipAndPort}/rws-service/rws/projectMember/saveProjectMember"/>
         <property name="UpdateProjectMember" value="http://${rws.ipAndPort}/rws-service/rws/projectMember/updateProjectMember"/>
+        <property name="Scientific" value="http://${rws.ipAndPort}/rws-service/rws/project/getScientific"/>
     </bean>
 </beans>
