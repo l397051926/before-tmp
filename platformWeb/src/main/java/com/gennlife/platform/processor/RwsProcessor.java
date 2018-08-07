@@ -264,6 +264,17 @@ public class RwsProcessor {
         }
     }
 
+    public String editActiveName(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getEditActiveName();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("修改指标事件名称 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
 
     /*        int counter = 0;
         try {

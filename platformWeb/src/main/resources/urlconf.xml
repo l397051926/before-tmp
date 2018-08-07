@@ -210,5 +210,6 @@
         <property name="CheckActiveIsOnlyOne" value="http://localhost:9000/rws/activeIsExists"/>
         <property name="CheckActiveDataIsChange" value="http://localhost:9000/rws/activeIsChange"/>
         <property name="DependenceChange" value="http://localhost:9000/rws/dependenceChange"/>
+        <property name="EditActiveName" value="http://localhost:9000/rws/editActiveName"/>
     </bean>
 </beans>

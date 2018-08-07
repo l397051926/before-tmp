@@ -500,6 +500,15 @@ public class URLBean {
     private String CheckActiveIsOnlyOne = null;
     private String CheckActiveDataIsChange = null;
     private String DependenceChange = null;
+    private String EditActiveName =null;
+
+    public String getEditActiveName() {
+        return EditActiveName;
+    }
+
+    public void setEditActiveName(String editActiveName) {
+        EditActiveName = editActiveName;
+    }
 
     public String getDependenceChange() {
         return DependenceChange;
