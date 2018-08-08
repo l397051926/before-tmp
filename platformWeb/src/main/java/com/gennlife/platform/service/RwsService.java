@@ -34,13 +34,14 @@ public class RwsService implements RwsServiceImpl {
         JsonObject resultObj = new JsonObject();
         boolean flag = paramObj.has("crfId");
         try {
-            String crfName = null, crfId = null;
+            String crfName = "", crfId = "";
             String projectId = paramObj.get("projectId").getAsString();
             String dataSource = projectMapper.getDataSource(projectId);
 
             //不是单病种需要获取indexName
             if (!flag){
                 paramObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
+                crfName="EMR";
                 logger.info("emr的indexName" + ConfigUtils.getSearchIndexName());
             } else {
                 crfId = paramObj.get("crfId").getAsString();
@@ -51,6 +52,8 @@ public class RwsService implements RwsServiceImpl {
                 }
             }
             logger.info("dataSource: "+dataSource);
+            paramObj.addProperty("crfName",crfName);
+            paramObj.addProperty("crfId",crfId);
 
             if (flag){
                 if (StringUtils.isEmpty(dataSource) || dataSource.equals(crfName)){
@@ -76,16 +79,6 @@ public class RwsService implements RwsServiceImpl {
                 }
             }
 
-            resultObj = (JsonObject) jsonParser.parse(result);
-            if (resultObj.get("status").getAsString().equals("200")){
-                if (flag){
-                    counter = insertProCrfId(projectId,"单病种-"+crfName,crfId);
-                    logger.info("插入数据源counter;"+counter);
-                } else {
-                    counter = insertProCrfId(projectId,"EMR","");
-                    logger.info("插入数据源counter;"+counter);
-                }
-            }
         } catch (Exception e) {
             logger.error("请求发生异常", e);
             return ParamUtils.errorParam("请求发生异常");
