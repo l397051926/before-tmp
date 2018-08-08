@@ -223,7 +223,7 @@
         <property name="SearchCondition" value="http://${rws.ipAndPort}/rws-service/rws/patientSet/getSearchCondition"/>
         <property name="SavePatientSet" value="http://${rws.ipAndPort}/rws-service/rws/patientSet/savePatientSet"/>
         <property name="UpdatePatientSet" value="http://${rws.ipAndPort}/rws-service/rws/patientSet/updatePatientSet"/>
-        <property name="ProjectByCrfId" value="http://${rws.ipAndPort}/rws-service/rws/preLiminary/getProjectByCrfId"/>
+        <property name="ProjectByCrfId" value="http://${rws.ipAndPort}/rws-service/rws/pre/getProjectByCrfId"/>
         <property name="deleteProject" value="http://${rws.ipAndPort}/rws-service/rws/project/deleteProject"/>
         <property name="Project" value="http://${rws.ipAndPort}/rws-service/rws/project/getProject"/>
         <property name="ProjectList" value="http://${rws.ipAndPort}/rws-service/rws/project/getProjectList"/>

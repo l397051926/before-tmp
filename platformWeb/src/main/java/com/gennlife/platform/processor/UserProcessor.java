@@ -204,6 +204,7 @@ public class UserProcessor {
             confMap.put("uid", user.getUid());
             List<Admin> adminList = AllDao.getInstance().getSyUserDao().getAdmins(confMap);
             user.setAdministrators(adminList);
+            //获取角色名字
             List<Role> rolesList = AllDao.getInstance().getSyRoleDao().getRoles(confMap);
             //转换全院 方式
 //            rolesList=transforAllRole(rolesList);
