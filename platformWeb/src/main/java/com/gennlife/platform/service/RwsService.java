@@ -78,6 +78,7 @@ public class RwsService implements RwsServiceImpl {
                     return gson.toJson(resultObj);
                 }
             }
+            resultObj = (JsonObject) jsonParser.parse(result);
 
         } catch (Exception e) {
             logger.error("请求发生异常", e);
