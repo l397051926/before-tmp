@@ -52,7 +52,8 @@ public class CaseProcessor {
                     && !"4".equals(status)
                     && !"5".equals(status)
                     && !"6".equals(status)
-                    && !"7".equals(status)) {
+                    && !"7".equals(status)
+                    && !"8".equals(status)) {
                 return ParamUtils.errorParam("status参数出错");
             }
             JsonArray arrange = paramObj.get("arrange").getAsJsonArray();
@@ -306,6 +307,67 @@ public class CaseProcessor {
                         String filterPath = paramObj.get("filterPath").getAsString();
                         if (!StringUtils.isEmpty(filterPath)) {
                             if (groupName.equals(filterPath)) {
+                                allNew.add(groupName, newGroup);
+                            }
+                        } else {
+                            allNew.add(groupName, newGroup);
+                        }
+                    } else {
+                        allNew.add(groupName, newGroup);
+                    }
+                }
+            }
+            resultBean.setCode(1);
+            resultBean.setData(allNew);
+        } else if ("8".equals(status)) {//高级搜索,所有属性,带有搜索功能
+            JsonObject all = new JsonObject();
+            if (emr_id.equals(crf_id)) {
+                all = ConfigurationService.getAdvancedSearch(crf_id);
+            } else {
+                all = ReadConditionByRedis.getCrfSearch(crf_id);
+            }
+            JsonObject allNew = new JsonObject();
+            for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
+                String groupName = obj.getKey();
+                JsonArray items = obj.getValue().getAsJsonArray();
+                //去掉 rws 就诊手术
+                if ("就诊.手术".equals(groupName)) {
+                    continue;
+                }
+                JsonArray newGroup = new JsonArray();
+                Set<String> releateSet = new HashSet<>();
+                for (JsonElement json : items) {
+                    JsonObject item = json.getAsJsonObject();
+                    String UIFieldName = item.get("UIFieldName").getAsString();
+                    if ("".equals(keywords) || UIFieldName.contains(keywords)) {
+                        JsonObject itemNew = (JsonObject) jsonParser.parse(gson.toJson(item));
+                        if (itemNew.has("relatedItems")) {
+                            JsonArray releatedArray = itemNew.getAsJsonArray("relatedItems");
+                            for (JsonElement array : releatedArray) {
+                                JsonObject releatedObj = array.getAsJsonObject();
+                                if (!"".equals(keywords)) {
+                                    UIFieldName = UIFieldName.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
+                                    releatedObj.addProperty("UIFieldName", UIFieldName);
+                                }
+                                if (!releateSet.contains(releatedObj.get("srchFieldName").getAsString())) {
+                                    newGroup.add(releatedObj);
+                                    releateSet.add(releatedObj.get("srchFieldName").getAsString());
+                                }
+                            }
+                            itemNew.remove("relatedItems");
+                        }
+                        if (!"".equals(keywords)) {
+                            UIFieldName = UIFieldName.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
+                            itemNew.addProperty("UIFieldName", UIFieldName);
+                        }
+                        newGroup.add(itemNew);
+                    }
+                }
+                if (newGroup.size() > 0) {
+                    if (paramObj.has("filterPath")) {
+                        String filterPath = paramObj.get("filterPath").getAsString();
+                        if (!StringUtils.isEmpty(filterPath)) {
+                            if (groupName.startsWith(filterPath)) {
                                 allNew.add(groupName, newGroup);
                             }
                         } else {
@@ -919,11 +981,30 @@ public class CaseProcessor {
                     keyWordsTmp = "";
                 }
                 JsonArray newGroup = new JsonArray();
+                Set<String> releateSet = new HashSet<>();
                 for (JsonElement json : items) {
                     JsonObject item = json.getAsJsonObject();
+                    JsonObject itemNew = (JsonObject) jsonParser.parse(gson.toJson(item));
+                    if (itemNew.has("relatedItems")) {
+                        JsonArray releatedArray = itemNew.getAsJsonArray("relatedItems");
+                        for (JsonElement array : releatedArray) {
+                            JsonObject releatedObj = array.getAsJsonObject();
+                            String UIFieldName = releatedObj.get("srchFieldName").getAsString();
+                            if ("".equals(keyWordsTmp) || UIFieldName.equals(keyWordsTmp)) {
+                                if (!"".equals(keywords)) {
+                                    UIFieldName = UIFieldName.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
+                                    releatedObj.addProperty("UIFieldName", UIFieldName);
+                                }
+                                if (!releateSet.contains(releatedObj.get("srchFieldName").getAsString())) {
+                                    newGroup.add(releatedObj);
+                                    releateSet.add(releatedObj.get("srchFieldName").getAsString());
+                                }
+                            }
+                        }
+                    }
                     String UIFieldName = item.get("srchFieldName").getAsString();
                     if ("".equals(keyWordsTmp) || UIFieldName.equals(keyWordsTmp)) {
-                        JsonObject itemNew = (JsonObject) jsonParser.parse(gson.toJson(item));
+                        itemNew.remove("relatedItems");
                         if (!"".equals(keyWordsTmp)) {
                             UIFieldName = UIFieldName.replaceAll(keyWordsTmp, "<span style='color:red'>" + keyWordsTmp + "</span>");
                             itemNew.addProperty("UIFieldName", UIFieldName);
@@ -952,11 +1033,5 @@ public class CaseProcessor {
         return gson.toJson(resultBean);
     }
 
-    public static void main(String[] args) {
-        String a = "就诊.检验报告";
-        String b = "就诊.检验报告.检验子项";
-        boolean x = b.startsWith(a);
-        System.out.println(x);
-    }
 
 }
