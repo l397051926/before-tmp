@@ -290,11 +290,27 @@ public class CaseProcessor {
                 if ("就诊.手术".equals(groupName)) {
                     continue;
                 }
+                Set<String> releateSet = new HashSet<>();
                 for (JsonElement json : items) {
                     JsonObject item = json.getAsJsonObject();
                     String UIFieldName = item.get("UIFieldName").getAsString();
                     if ("".equals(keywords) || UIFieldName.contains(keywords)) {
                         JsonObject itemNew = (JsonObject) jsonParser.parse(gson.toJson(item));
+                        if (itemNew.has("relatedItems")) {
+                            JsonArray releatedArray = itemNew.getAsJsonArray("relatedItems");
+                            for (JsonElement array : releatedArray) {
+                                JsonObject releatedObj = array.getAsJsonObject();
+                                if (!"".equals(keywords)) {
+                                    UIFieldName = UIFieldName.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
+                                    releatedObj.addProperty("UIFieldName", UIFieldName);
+                                }
+                                if (!releateSet.contains(releatedObj.get("srchFieldName").getAsString())) {
+                                    newGroup.add(releatedObj);
+                                    releateSet.add(releatedObj.get("srchFieldName").getAsString());
+                                }
+                            }
+                            itemNew.remove("relatedItems");
+                        }
                         if (!"".equals(keywords)) {
                             UIFieldName = UIFieldName.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
                             itemNew.addProperty("UIFieldName", UIFieldName);
