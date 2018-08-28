@@ -133,7 +133,7 @@ public class SessionFilter implements Filter {
         adminSet.add("/bsma/OrgMapData");
         adminSet.add("/bsma/DeleteOrg");
         adminSet.add("/bsma/UpdateOrg");
-        adminSet.add("/bsma/GetStaffInfo");
+//        adminSet.add("/bsma/GetStaffInfo");
         adminSet.add("/bsma/AddStaff");
         adminSet.add("/bsma/DeleteStaff");
         adminSet.add("/bsma/GetProfessionList");

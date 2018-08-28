@@ -1008,7 +1008,7 @@ public class CaseProcessor {
                             String UIFieldName = releatedObj.get("srchFieldName").getAsString();
                             if ("".equals(keyWordsTmp) || UIFieldName.equals(keyWordsTmp)) {
                                 if (!"".equals(keywords)) {
-//                                    UIFieldName = UIFieldName.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
+                                    UIFieldName = UIFieldName.replaceAll(keywords, keywords );
                                     releatedObj.addProperty("UIFieldName", UIFieldName);
                                 }
                                 if (!releateSet.contains(releatedObj.get("srchFieldName").getAsString())) {
@@ -1022,7 +1022,7 @@ public class CaseProcessor {
                     if ("".equals(keyWordsTmp) || UIFieldName.equals(keyWordsTmp)) {
                         itemNew.remove("relatedItems");
                         if (!"".equals(keyWordsTmp)) {
-//                            UIFieldName = UIFieldName.replaceAll(keyWordsTmp,  keyWordsTmp + "</span>");
+                            UIFieldName = UIFieldName.replaceAll(keyWordsTmp,  keyWordsTmp);
                             itemNew.addProperty("UIFieldName", UIFieldName);
                         }
                         newGroup.add(itemNew);
