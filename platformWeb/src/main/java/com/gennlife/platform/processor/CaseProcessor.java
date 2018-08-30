@@ -300,9 +300,13 @@ public class CaseProcessor {
                             JsonArray releatedArray = itemNew.getAsJsonArray("relatedItems");
                             for (JsonElement array : releatedArray) {
                                 JsonObject releatedObj = array.getAsJsonObject();
+                                String UIFieldNameItem = releatedObj.get("UIFieldName").getAsString();
+                                if(!UIFieldNameItem.contains(keywords)){
+                                    continue;
+                                }
                                 if (!"".equals(keywords)) {
-                                    UIFieldName = UIFieldName.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
-                                    releatedObj.addProperty("UIFieldName", UIFieldName);
+                                    UIFieldNameItem = UIFieldNameItem.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
+                                    releatedObj.addProperty("UIFieldName", UIFieldNameItem);
                                 }
                                 if (!releateSet.contains(releatedObj.get("srchFieldName").getAsString())) {
                                     newGroup.add(releatedObj);
@@ -361,13 +365,13 @@ public class CaseProcessor {
                             JsonArray releatedArray = itemNew.getAsJsonArray("relatedItems");
                             for (JsonElement array : releatedArray) {
                                 JsonObject releatedObj = array.getAsJsonObject();
-                                if (!"".equals(keywords)) {
-                                    UIFieldName = UIFieldName.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
-                                    releatedObj.addProperty("UIFieldName", UIFieldName);
+                                String UIFieldNameItem = releatedObj.get("UIFieldName").getAsString();
+                                if(!UIFieldNameItem.contains(keywords)){
+                                    continue;
                                 }
-                                if (!releateSet.contains(releatedObj.get("srchFieldName").getAsString())) {
-                                    newGroup.add(releatedObj);
-                                    releateSet.add(releatedObj.get("srchFieldName").getAsString());
+                                if (!"".equals(keywords)) {
+                                    UIFieldNameItem = UIFieldNameItem.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
+                                    releatedObj.addProperty("UIFieldName", UIFieldNameItem);
                                 }
                             }
                             itemNew.remove("relatedItems");
