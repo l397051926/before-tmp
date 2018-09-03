@@ -373,6 +373,10 @@ public class CaseProcessor {
                                     UIFieldNameItem = UIFieldNameItem.replaceAll(keywords, "<span style='color:red'>" + keywords + "</span>");
                                     releatedObj.addProperty("UIFieldName", UIFieldNameItem);
                                 }
+                                if (!releateSet.contains(releatedObj.get("srchFieldName").getAsString())) {
+                                    newGroup.add(releatedObj);
+                                    releateSet.add(releatedObj.get("srchFieldName").getAsString());
+                                }
                             }
                             itemNew.remove("relatedItems");
                         }
@@ -387,7 +391,7 @@ public class CaseProcessor {
                     if (paramObj.has("filterPath")) {
                         String filterPath = paramObj.get("filterPath").getAsString();
                         if (!StringUtils.isEmpty(filterPath)) {
-                            if (groupName.startsWith(filterPath)) {
+                            if (groupName.equals(filterPath)) {
                                 allNew.add(groupName, newGroup);
                             }
                         } else {
