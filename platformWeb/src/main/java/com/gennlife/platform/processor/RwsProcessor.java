@@ -228,7 +228,7 @@ public class RwsProcessor {
             if(paramObj.has("crfId")){
                 crfId = paramObj.get("crfId").getAsString();
             }
-            if(StringUtils.isEmpty(crfId)){
+            if(StringUtils.isEmpty(crfId) || "EMR".equals(crfId)){
                  resultArray = ReadConditionByRedis.getEmrRws();
             }else {
                 resultArray = ReadConditionByRedis.getCrfRws(crfId);
