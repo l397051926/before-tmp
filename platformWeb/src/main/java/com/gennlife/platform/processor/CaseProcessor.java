@@ -4,6 +4,8 @@ import com.gennlife.platform.ReadConfig.ReadConditionByRedis;
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.conf.SystemDefault;
+import com.gennlife.platform.dao.AllDao;
+import com.gennlife.platform.model.Lab;
 import com.gennlife.platform.model.Power;
 import com.gennlife.platform.model.Resource;
 import com.gennlife.platform.model.User;
@@ -599,6 +601,8 @@ public class CaseProcessor {
             return ParamUtils.errorSessionLosParam();
         }
         String param = transformSid(newParam, user);
+        //处理本科室 及 搜索科室及以下子科室
+        param = addPowerContainSun(param,user);
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
         if (paramObj.has("code") && paramObj.get("code").getAsInt() == 0) {
             return param;
@@ -623,6 +627,72 @@ public class CaseProcessor {
             return ParamUtils.errorParam("搜索失败");
         }
     }
+
+    private String addPowerContainSun(String newParam, User user) {
+        JsonObject paramObj = (JsonObject) jsonParser.parse(newParam);
+        Set<String> hasSet = new HashSet<>();
+        JsonObject power = paramObj.getAsJsonObject("power");
+        paramObj.remove("groups");//干掉组
+        JsonArray hasSearch = power.getAsJsonArray("has_search");
+        JsonObject role = new JsonObject();
+
+        role.addProperty("sid",user.getLabID());
+        role.addProperty("slab_name",user.getLab_name());
+        role.addProperty("has_search","有");
+        //全员角色
+        if(newParam.contains("hospital_all")) return newParam;
+
+        //如果为医院 就全员搜索吧
+        if(user.getLabID().equals(user.getOrgID())){
+            JsonObject all = new JsonObject();
+            all.addProperty("sid","hospital_all");
+            all.addProperty("slab_name","_all");
+            all.addProperty("has_search","有");
+            hasSearch.add(role);
+            return gson.toJson(paramObj);
+        }
+        hasSearch.add(role);
+        hasSet.add(user.getLabID());
+        JsonArray newHaseSearch = new JsonArray();
+        for (JsonElement element : hasSearch){
+            JsonObject tmpElement = element.getAsJsonObject();
+            String sid = tmpElement.get("sid").getAsString();
+            if (hasSet.contains(sid)){
+                hasSearch.remove(element);
+            }
+            addPower(newHaseSearch,user.getOrgID(),sid,hasSet);
+            if(hasSearch.size()==0)break;
+
+        }
+        newHaseSearch.add(role);
+        power.add("has_search",newHaseSearch);
+
+        return gson.toJson(paramObj);
+    }
+    //递归 增加子属性
+    private void addPower(JsonArray hasSearch, String orgID, String sid,Set<String> hasSet) {
+        if(!StringUtils.isEmpty(sid)){
+            List<Lab>  labs =  AllDao.getInstance().getOrgDao().getLabsByparentID(orgID,sid);
+            for (Lab lab :labs){
+                JsonObject role = getRole(lab);
+                if(!hasSet.contains(lab.getLabID())){
+                    hasSearch.add(role);
+                }
+                addPower(hasSearch,orgID,lab.getLabID(),hasSet);
+            }
+
+        }
+
+    }
+    /*临时获取 条件*/
+    private JsonObject getRole(Lab lab) {
+        JsonObject tmpObj = new JsonObject();
+        tmpObj.addProperty("sid",lab.getLabID());
+        tmpObj.addProperty("slab_name",lab.getLab_name());
+        tmpObj.addProperty("has_search","有");
+        return tmpObj;
+    }
+
 
     public String searchCaseByCurrentDept(String newParam, User user) {
         return searchCaseWithAddQuery(newParam, user, AuthorityUtil.getCurrentDeptQuery(user));

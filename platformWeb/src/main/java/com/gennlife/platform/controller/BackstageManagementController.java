@@ -868,6 +868,27 @@ public class BackstageManagementController {
         return resultStr;
     }
 
+    @RequestMapping(value = "/getStaffInfoForRWS", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getStaffInfoForRWS(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            User user = (User) paramRe.getAttribute("currentUser");
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.getStaffInfoForRws(paramObj, user);
+        } catch (DataIntegrityViolationException e) {
+            resultStr = DataIntegrityViolationExceptionMsg();
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取人员信息 针对rws get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
 
 
 
