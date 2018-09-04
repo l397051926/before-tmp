@@ -539,6 +539,17 @@ public class URLBean {
     private String Scientific = null;
     private String GroupTypeList = null;
 
+    private String ProjectMemberList = null;
+
+    public String getProjectMemberList() {
+        return ProjectMemberList;
+    }
+
+    public void setProjectMemberList(String projectMemberList) {
+        ProjectMemberList = projectMemberList;
+    }
+
+
     public String getGroupTypeList() {
         return GroupTypeList;
     }

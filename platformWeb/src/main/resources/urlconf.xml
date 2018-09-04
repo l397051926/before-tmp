@@ -248,6 +248,7 @@
         <property name="UpdateProjectMember" value="http://${rws.ipAndPort}/rws-service/rws/projectMember/updateProjectMember"/>
         <property name="Scientific" value="http://${rws.ipAndPort}/rws-service/rws/project/getScientific"/>
         <property name="GroupTypeList" value="http://${rws.ipAndPort}/rws-service/rws/patientGroup/getGroupTypeList"/>
+        <property name="ProjectMemberList" value="http://${rws.ipAndPort}/rws-service/rws/projectMember/getProjectMemberList"/>
 
     </bean>
 </beans>

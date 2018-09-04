@@ -628,7 +628,7 @@ public class RwsProcessor {
 
     public String getProjectMemberList(JsonObject paramObj) {
         try {
-            String url = ConfigurationService.getUrlBean().getProjectMember();
+            String url = ConfigurationService.getUrlBean().getProjectMemberList();
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
             return result;
         } catch (Exception e) {
