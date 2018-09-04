@@ -669,4 +669,15 @@ public class RwsProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String getGroupTypeList(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getGroupTypeList();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取分组类型列表 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }
