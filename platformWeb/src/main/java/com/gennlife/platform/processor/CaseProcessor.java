@@ -654,15 +654,15 @@ public class CaseProcessor {
         hasSearch.add(role);
         hasSet.add(user.getLabID());
         JsonArray newHaseSearch = new JsonArray();
-        for (JsonElement element : hasSearch){
-            JsonObject tmpElement = element.getAsJsonObject();
+        int size = hasSearch==null?0:hasSearch.size();
+        for (int i = 0; i < size; i++) {
+            JsonObject tmpElement = hasSearch.get(i).getAsJsonObject();
             String sid = tmpElement.get("sid").getAsString();
             if (hasSet.contains(sid)){
-                hasSearch.remove(element);
+                hasSearch.remove(i);
             }
             addPower(newHaseSearch,user.getOrgID(),sid,hasSet);
             if(hasSearch.size()==0)break;
-
         }
         newHaseSearch.add(role);
         power.add("has_search",newHaseSearch);
