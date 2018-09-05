@@ -540,6 +540,15 @@ public class URLBean {
     private String GroupTypeList = null;
 
     private String ProjectMemberList = null;
+    private String groupAggregation = null;
+
+    public String getGroupAggregation() {
+        return groupAggregation;
+    }
+
+    public void setGroupAggregation(String groupAggregation) {
+        this.groupAggregation = groupAggregation;
+    }
 
     public String getProjectMemberList() {
         return ProjectMemberList;

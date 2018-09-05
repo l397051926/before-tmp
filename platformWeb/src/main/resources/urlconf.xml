@@ -249,6 +249,7 @@
         <property name="Scientific" value="http://${rws.ipAndPort}/rws-service/rws/project/getScientific"/>
         <property name="GroupTypeList" value="http://${rws.ipAndPort}/rws-service/rws/patientGroup/getGroupTypeList"/>
         <property name="ProjectMemberList" value="http://${rws.ipAndPort}/rws-service/rws/projectMember/getProjectMemberList"/>
+        <property name="groupAggregation" value="http://${rws.ipAndPort}/rws-service/rws/patientGroup/groupAggregation"/>
 
     </bean>
 </beans>

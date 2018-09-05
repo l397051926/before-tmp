@@ -680,4 +680,15 @@ public class RwsProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String groupAggregation(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getGroupAggregation();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("分组圆形统计图展示 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }

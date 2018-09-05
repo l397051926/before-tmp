@@ -1081,6 +1081,25 @@ public class RwsController {
         return resultStr;
     }
 
+    @RequestMapping(value = "/patientGroup/groupAggregation", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String groupAggregation(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("分组圆形统计图展示 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.groupAggregation(paramObj);
+        } catch (Exception e) {
+            logger.error("分组圆形统计图展示 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("分组圆形统计图展示 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
 
 
 
