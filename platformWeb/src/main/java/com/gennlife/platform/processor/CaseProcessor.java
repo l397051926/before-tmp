@@ -6,6 +6,7 @@ import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.Lab;
+import com.gennlife.platform.model.LabResource;
 import com.gennlife.platform.model.Power;
 import com.gennlife.platform.model.Resource;
 import com.gennlife.platform.model.User;
@@ -487,6 +488,10 @@ public class CaseProcessor {
             if (newHas_searchArray.size() == 0) {
                 return ParamUtils.errorParam("无搜索权限");
             } else {
+                List<LabResource> listResource = AllDao.getInstance().getSyResourceDao().getLabResources();
+                List<LabResource> tmpResource = new ArrayList<>();
+                getResource(listResource,sid,tmpResource);
+                getPower(tmpResource,newHas_searchArray);//增加子权限
                 power.add("has_search", newHas_searchArray);
             }
             paramObj.add("power", power);
@@ -518,6 +523,27 @@ public class CaseProcessor {
                 user.setIfRoleAll("否");
             }
             return gson.toJson(paramObj);
+        }
+
+    }
+    public static void getResource(List<LabResource> listResource, String sid, List<LabResource> tmpList){
+
+        for (LabResource labResource :listResource){
+            if(labResource.getSlab_parent().equals(sid)){
+                tmpList.add(labResource);
+                getResource(listResource,labResource.getSlab_name(),tmpList);
+            }
+        }
+
+    }
+    public static void
+    getPower(List<LabResource> labResourceList, JsonArray jsonArray){
+        for(LabResource labResource:labResourceList){
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("sid",labResource.getSid());
+            jsonObject.addProperty("slab_name",labResource.getSlab_name());
+            jsonObject.addProperty("has_search","有");
+            jsonArray.add(jsonObject);
         }
 
     }

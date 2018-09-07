@@ -110,4 +110,9 @@ public interface SyResourceMapper {
     String getCrfIndexName(@Param("crf_id")String crf_id);
 
     String getCrfNameOne(@Param("crfId") String crfId);
+    /**
+     *获取全部资源
+     * @return
+     */
+    List<LabResource> getLabResources();
 }

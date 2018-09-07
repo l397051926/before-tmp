@@ -1834,7 +1834,7 @@ public class LaboratoryProcessor {
                 labs = AllDao.getInstance().getOrgDao().searchLabByOrgIDNoLimit(key, user.getOrgID());
             }
         } else {
-            List<Lab> labAll = AllDao.getInstance().getOrgDao().getLabs(user.getOrgID());
+            List<Lab> labAll=AllDao.getInstance().getOrgDao().getLabs(user.getOrgID());
             //labID 集合
             List<String> list = new LinkedList<>();
             list.add(labID);
