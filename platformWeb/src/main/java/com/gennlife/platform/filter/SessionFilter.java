@@ -150,5 +150,6 @@ public class SessionFilter implements Filter {
         adminSet.add("/common/UploadFileForImportStaff");
         okSet.add("/case/SearchItemSet");
         okSet.add("/case/SearchItemSetT");
+        okSet.add("/crf/buildIndexForAll");
     }
 }
