@@ -1,0 +1,836 @@
+{
+  "patient_info.patient_basicinfo": [
+    {
+      "name": "患者编号",
+      "id": "PATIENT_SN",
+      "type": "sumary"
+    },
+    {
+      "name": "录入人",
+      "id": "CRC_INFO",
+      "type": "sumary"
+    },
+    {
+      "name": "出生日期",
+      "id": "DATE_OF_BIRTH",
+      "type": "sumary"
+    },
+    {
+      "name": "性别",
+      "id": "GENDER",
+      "type": "sumary"
+    },
+    {
+      "name": "民族",
+      "id": "NATIONALITY",
+      "type": "sumary"
+    }
+  ],
+  "visits.visitinfo": [
+    {
+      "name": "就诊类型",
+      "id": "VISIT_TYPE",
+      "type": "sumary"
+    },
+    {
+      "name": "就诊科室",
+      "id": "VISIT_DEPT",
+      "type": "sumary"
+    },
+    {
+      "name": "入院（就诊）日期",
+      "id": "VISIT_START_TIME",
+      "type": "sumary"
+    },
+    {
+      "name": "出院日期",
+      "id": "VISIT_DISCHARGE_TIME",
+      "type": "sumary"
+    }
+  ],
+  "visits.test": [
+    {
+      "name": "有无血常规",
+      "id": "BR_YN",
+      "type": "sumary"
+    },
+    {
+      "name": "有无肝肾功能检验",
+      "id": "LKF_YN",
+      "type": "sumary"
+    },
+    {
+      "name": "有无HBV免疫学检验",
+      "id": "HBV_I_YN",
+      "type": "sumary"
+    },
+    {
+      "name": "有无HBV-DNA检验",
+      "id": "HBV_DNA_YN",
+      "type": "sumary"
+    },
+    {
+      "name": "有无HCV检验",
+      "id": "HCV_YN",
+      "type": "sumary"
+    },
+    {
+      "name": "有无凝血功能检验",
+      "id": "CF_YN",
+      "type": "sumary"
+    },
+    {
+      "name": "有无肿瘤标志物检验",
+      "id": "TM_YN",
+      "type": "sumary"
+    }
+  ],
+  "visits.test.blood_routine": [
+    {
+      "name": "报告日期",
+      "id": "BR_TEST_DATE",
+      "type": "sumary"
+    },
+    {
+      "name": "红细胞计数（10^12/L）",
+      "id": "RBC_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "红细胞计数参考值范围",
+      "id": "RBC_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "血红蛋白（g/L）",
+      "id": "HB_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "血红蛋白参考值范围",
+      "id": "HB_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "血小板计数（10^9/L）",
+      "id": "PLT_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "血小板计数参考值范围",
+      "id": "PLT_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "白细胞计数（10^9/L）",
+      "id": "WBC_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "白细胞计数参考值范围",
+      "id": "WBC_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "中性粒细胞计数（10^9/L）",
+      "id": "N_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "中性粒细胞计数参考值范围",
+      "id": "NV_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "中性粒细胞百分比（%）",
+      "id": "N_RATIO",
+      "type": "sumary"
+    },
+    {
+      "name": "中性粒细胞百分比参考值范围",
+      "id": "NR_REF",
+      "type": "sumary"
+    }
+  ],
+  "visits.test.liver_and_kidney_function": [
+    {
+      "name": "报告日期",
+      "id": "LKF_TEST_DATE",
+      "type": "sumary"
+    },
+    {
+      "name": "总胆红素（μmol/L）",
+      "id": "TBIL_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "总胆红素参考值范围",
+      "id": "TBIL_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "直接胆红素（μmol/L）",
+      "id": "DBIL_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "直接胆红素参考值范围",
+      "id": "DBIL_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "谷丙转氨酶（U/L）",
+      "id": "ALT_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "谷丙转氨酶参考值范围",
+      "id": "ALT_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "谷草转氨酶（U/L）",
+      "id": "AST_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "谷草转氨酶参考值范围",
+      "id": "AST_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "乳酸脱氢酶（LDH）（U/L）",
+      "id": "LDH_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "乳酸脱氢酶参考值范围",
+      "id": "LDH_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "总蛋白（g/L）",
+      "id": "TP_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "总蛋白参考值范围",
+      "id": "TP_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "白蛋白（g/L）",
+      "id": "ALB_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "白蛋白参考值范围",
+      "id": "ALB_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "尿素（mmol/L）",
+      "id": "UREA_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "尿素参考值范围",
+      "id": "UREA_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "肌酐（μmol/L）",
+      "id": "CREATININE_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "肌酐参考值范围",
+      "id": "CR_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "尿酸（μmol/L）",
+      "id": "UA_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "尿酸参考值范围",
+      "id": "UA_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "血糖（mmol/L）",
+      "id": "BG_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "血糖参考值范围",
+      "id": "BG_REF",
+      "type": "sumary"
+    }
+  ],
+  "visits.test.hbv_immunology_quant": [
+    {
+      "name": "报告日期",
+      "id": "HBVI_QUANT_TEST_DATE",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒表面抗体结果",
+      "id": "HBSAB_QUANT_VAL",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒表面抗体单位",
+      "id": "HBSAB_QUANT_UNIT",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒表面抗体参考值范围",
+      "id": "HBSAB_QUANT_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒表面抗原结果",
+      "id": "HBSAG_QUANT_VAL",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒表面抗原单位",
+      "id": "HBSAG_QUANT_UNIT",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒表面抗原参考值范围",
+      "id": "HBSAG_QUANT_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒e抗原结果",
+      "id": "HBEAG_QUANT_VAL",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒e抗原单位",
+      "id": "HBEAG_QUANT_UNIT",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒e抗原参考值范围",
+      "id": "HBEAG_QUANT_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒e抗体结果",
+      "id": "HBEAB_QUANT_VAL",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒e抗体单位",
+      "id": "HBEAB_QUANT_UNIT",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒e抗体参考值范围",
+      "id": "HBEAB_QUANT_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒核心抗体结果",
+      "id": "HBCAB_QUANT_VAL",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒核心抗体单位",
+      "id": "HBCAB_QUANT_UNIT",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒核心抗体参考值范围",
+      "id": "HBCAB_QUANT_REF",
+      "type": "sumary"
+    }
+  ],
+  "visits.test.hbv_immunology_qual": [
+    {
+      "name": "报告日期",
+      "id": "HBVI_QUAL_TEST_DATE",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒表面抗体结果",
+      "id": "HBSAB_QUAL_VAL",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒表面抗原结果",
+      "id": "HBSAG_QUAL_VAL",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒e抗原结果",
+      "id": "HBEAG_QUAL_VAL",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒e抗体结果",
+      "id": "HBEAB_QUAL_VAL",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝病毒核心抗体结果",
+      "id": "HBCAB_QUAL_VAL",
+      "type": "sumary"
+    }
+  ],
+  "visits.test.hbv_dna": [
+    {
+      "name": "报告日期",
+      "id": "HBVD_TEST_DATE",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝DNA定量（IU/ml）",
+      "id": "HBVDNA_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "乙肝DNA定量参考值范围",
+      "id": "HBVDNA_REF",
+      "type": "sumary"
+    }
+  ],
+  "visits.test.hcv": [
+    {
+      "name": "报告日期",
+      "id": "HCV_TEST_DATE",
+      "type": "sumary"
+    },
+    {
+      "name": "HCV抗体结果",
+      "id": "HCVAB",
+      "type": "sumary"
+    },
+    {
+      "name": "HCV抗体单位",
+      "id": "HCVAB_UNIT",
+      "type": "sumary"
+    },
+    {
+      "name": "HCV抗体参考值范围（定量）",
+      "id": "HCVAB_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "HCV核心抗原",
+      "id": "HCV_CAG",
+      "type": "sumary"
+    }
+  ],
+  "visits.test.coagulation_function": [
+    {
+      "name": "报告日期",
+      "id": "CF_TEST_DATE",
+      "type": "sumary"
+    },
+    {
+      "name": "凝血酶原时间（PT）（s）",
+      "id": "PT_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "PT参考值范围",
+      "id": "PT_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "凝血酶时间（TT）（s）",
+      "id": "TT_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "TT参考值范围",
+      "id": "TT_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "活化部分凝血活酶时间（APTT）（s）",
+      "id": "APTT_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "APTT参考值范围",
+      "id": "APTT_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "国际标准化比值（INR）",
+      "id": "INR_VALUE",
+      "type": "sumary"
+    },
+    {
+      "name": "INR参考值范围",
+      "id": "INR_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "纤维蛋白原（g/L）",
+      "id": "FBG",
+      "type": "sumary"
+    },
+    {
+      "name": "纤维蛋白原参考值范围",
+      "id": "FBG_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "D-二聚体",
+      "id": "DDIMER",
+      "type": "sumary"
+    },
+    {
+      "name": "D-二聚体单位",
+      "id": "DDIMER_UNIT",
+      "type": "sumary"
+    },
+    {
+      "name": "D-二聚体参考值范围",
+      "id": "DDIMER_REF",
+      "type": "sumary"
+    }
+  ],
+  "visits.test.tumor_markers": [
+    {
+      "name": "报告日期",
+      "id": "TM_TEST_DATE",
+      "type": "sumary"
+    },
+    {
+      "name": "AFP（ug/L）",
+      "id": "AFP",
+      "type": "sumary"
+    },
+    {
+      "name": "AFP参考值范围",
+      "id": "AFP_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "CA19-9（U/ml）",
+      "id": "CA19_9",
+      "type": "sumary"
+    },
+    {
+      "name": "CA19-9参考值范围",
+      "id": "CA19_9_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "CEA（ug/L）",
+      "id": "CEA",
+      "type": "sumary"
+    },
+    {
+      "name": "CEA参考值范围",
+      "id": "CEA_REF",
+      "type": "sumary"
+    },
+    {
+      "name": "铁蛋白（ug/L）",
+      "id": "FERR",
+      "type": "sumary"
+    },
+    {
+      "name": "铁蛋白参考值范围",
+      "id": "FERR_REF",
+      "type": "sumary"
+    }
+  ],
+  "visits.inspect": [
+    {
+      "name": "既往检查是否诊断肝癌",
+      "id": "PAST_LC_DX_YN",
+      "type": "sumary"
+    }
+  ],
+  "visits.inspect.prev_exm": [
+    {
+      "name": "检查方式",
+      "id": "PLC_EXM",
+      "type": "sumary"
+    },
+    {
+      "name": "诊断内容",
+      "id": "PLC_CONTENT",
+      "type": "sumary"
+    },
+    {
+      "name": "诊断时间",
+      "id": "PLC_DATE",
+      "type": "sumary"
+    }
+  ],
+  "visits.inspect.path_report": [
+    {
+      "name": "有无病理诊断报告",
+      "id": "PATH_REPORT_YN",
+      "type": "sumary"
+    }
+  ],
+  "visits.inspect.path_report.lc_path_rprt_details": [
+    {
+      "name": "报告时间",
+      "id": "PATH_REPORT_TIME",
+      "type": "sumary"
+    },
+    {
+      "name": "是否为针吸/穿刺活检",
+      "id": "ASPR_OR_PNCTR_YN",
+      "type": "sumary"
+    },
+    {
+      "name": "肝癌病理类型",
+      "id": "HCC_TYPE",
+      "type": "sumary"
+    },
+    {
+      "name": "分化程度（数字）",
+      "id": "DIFF_NUM",
+      "type": "sumary"
+    },
+    {
+      "name": "分化程度（文本）",
+      "id": "DIFF_TEXT",
+      "type": "sumary"
+    },
+    {
+      "name": "有无脉管瘤栓",
+      "id": "TUMOR_THROMBOSIS_YN",
+      "type": "sumary"
+    },
+    {
+      "name": "有无微血管侵犯",
+      "id": "MCRVSC_INVSN_YN",
+      "type": "sumary"
+    },
+    {
+      "name": "MVI风险分级",
+      "id": "MVI_GRADE",
+      "type": "sumary"
+    },
+    {
+      "name": "有无肝硬化",
+      "id": "CIRRHOSIS_YN",
+      "type": "sumary"
+    },
+    {
+      "name": "有无卫星结节",
+      "id": "STLT_YN",
+      "type": "sumary"
+    },
+    {
+      "name": "切缘情况",
+      "id": "EDGE_STATUS",
+      "type": "sumary"
+    }
+  ],
+  "visits.inspect.path_report.other_pr_details": [
+    {
+      "name": "报告时间",
+      "id": "PATH_REPORT_TIME",
+      "type": "sumary"
+    },
+    {
+      "name": "病理报告临床诊断",
+      "id": "PATH_REPORT_CDX",
+      "type": "sumary"
+    },
+    {
+      "name": "病理诊断原文",
+      "id": "PATH_DX_ORGN",
+      "type": "sumary"
+    }
+  ],
+  "visits.dx": [
+    {
+      "name": "有无肝癌诊断",
+      "id": "HCC_DX_YN",
+      "type": "sumary"
+    },
+    {
+      "name": "有无其他肝脏疾病诊断",
+      "id": "OTHER_LIVER_DX_YN",
+      "type": "sumary"
+    }
+  ],
+  "visits.dx.hcc_dx_details": [
+    {
+      "name": "诊断日期",
+      "id": "HCC_DX_DATE",
+      "type": "sumary"
+    },
+    {
+      "name": "诊断名称",
+      "id": "HCC_DX_NAME",
+      "type": "sumary"
+    },
+    {
+      "name": "BCLC分期",
+      "id": "HCC_DX_BCLC",
+      "type": "sumary"
+    },
+    {
+      "name": "Child-Pugh分级",
+      "id": "HCC_DX_CPC",
+      "type": "sumary"
+    },
+    {
+      "name": "有无转移",
+      "id": "HCC_DX_MET_YN",
+      "type": "sumary"
+    },
+    {
+      "name": "有无复发",
+      "id": "HCC_DX_RCRNT_YN",
+      "type": "sumary"
+    }
+  ],
+  "visits.dx.ps_info": [
+    {
+      "name": "评分日期",
+      "id": "PS_DATE",
+      "type": "sumary"
+    },
+    {
+      "name": "体力状况评分类型",
+      "id": "PS_NAME",
+      "type": "sumary"
+    },
+    {
+      "name": "体力状况评分分数",
+      "id": "PS_SCORE",
+      "type": "sumary"
+    }
+  ],
+  "visits.dx.other_liver_dx_details": [
+    {
+      "name": "疾病名称",
+      "id": "OLD_NAME",
+      "type": "sumary"
+    },
+    {
+      "name": "诊断日期",
+      "id": "OLD_DATE",
+      "type": "sumary"
+    },
+    {
+      "name": "病史时间（年）",
+      "id": "OLD_DURATION",
+      "type": "sumary"
+    }
+  ],
+  "visits.xpsr_rf": [
+    {
+      "name": "有无饮酒史",
+      "id": "ALCOHOL_HX_YN",
+      "type": "sumary"
+    },
+    {
+      "name": "有无吸烟史",
+      "id": "SMOKE_HX_YN",
+      "type": "sumary"
+    }
+  ],
+  "visits.treatment": [
+    {
+      "name": "有无肝脏手术治疗",
+      "id": "LIVER_OPRT_YN",
+      "type": "sumary"
+    },
+    {
+      "name": "有无肝脏介入治疗",
+      "id": "LIVR_NTVXN_YN",
+      "type": "sumary"
+    },
+    {
+      "name": "有无放疗",
+      "id": "RTX_YN",
+      "type": "sumary"
+    },
+    {
+      "name": "有无化疗及靶向治疗",
+      "id": "CHEMO_TRGT_YN",
+      "type": "sumary"
+    }
+  ],
+  "visits.treatment.lvop_details": [
+    {
+      "name": "手术日期",
+      "id": "LVOP_DATE",
+      "type": "sumary"
+    },
+    {
+      "name": "手术类型",
+      "id": "LVOP_TYPE",
+      "type": "sumary"
+    }
+  ],
+  "visits.treatment.lvnv_details": [
+    {
+      "name": "介入治疗日期",
+      "id": "LVNV_DATE",
+      "type": "sumary"
+    },
+    {
+      "name": "介入治疗类型",
+      "id": "LVNV_TYPE",
+      "type": "sumary"
+    }
+  ],
+  "visits.treatment.rtx_details": [
+    {
+      "name": "放疗部位",
+      "id": "RTX_SITE",
+      "type": "sumary"
+    },
+    {
+      "name": "是否立体定向放疗",
+      "id": "SBRT_YN",
+      "type": "sumary"
+    }
+  ],
+  "visits.treatment.cmtgt_details": [
+    {
+      "name": "治疗开始日期",
+      "id": "CMTGT_START_DATE",
+      "type": "sumary"
+    },
+    {
+      "name": "治疗结束日期",
+      "id": "CMTGT_END_DATE",
+      "type": "sumary"
+    },
+    {
+      "name": "药物名称",
+      "id": "CMTGT_DRUG_NAME",
+      "type": "sumary"
+    },
+    {
+      "name": "方案名称",
+      "id": "CMTGT_PROTOCOL_NAME",
+      "type": "sumary"
+    }
+  ],
+  "visits.surv_stat.survival_situation": [
+    {
+      "name": "生存状态",
+      "id": "SURVIVAL_STATE",
+      "type": "sumary"
+    },
+    {
+      "name": "死亡日期",
+      "id": "DEATH_DATE",
+      "type": "sumary"
+    }
+  ]
+}
