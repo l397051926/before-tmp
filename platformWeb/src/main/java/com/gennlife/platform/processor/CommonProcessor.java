@@ -64,7 +64,12 @@ public class CommonProcessor {
         try {
             byte[] bytes = file.getBytes();
             String string = new String(bytes, "GBK");
-            if (ChineseToEnglish.isMessyCode(string)) return ParamUtils.errorParam("上传文件无法解析或解析失败");
+            if (ChineseToEnglish.isMessyCode(string)) {
+                string = new String(bytes,"UTF-8");
+                if(ChineseToEnglish.isMessyCode(string)){
+                    return ParamUtils.errorParam("上传文件无法解析或解析失败");
+                }
+            }
             logger.info("uploadFileForImportStaff=\n" + string);
             String[] strings = string.split("\n");
             List<String> list = new LinkedList();
@@ -86,7 +91,10 @@ public class CommonProcessor {
             //logger.info("GBK "+string);
             //logger.info("default "+new String(bytes));
             if (ChineseToEnglish.isMessyCode(string)) {
-                return ParamUtils.errorParam("上传文件无法解析或解析失败");
+                string = new String(bytes,"UTF-8");
+                if(ChineseToEnglish.isMessyCode(string)){
+                    return ParamUtils.errorParam("上传文件无法解析或解析失败");
+                }
             }
             logger.info("uploadFileForImportLab=" + string);
             String[] strings = string.split("\n");
