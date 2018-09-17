@@ -1100,6 +1100,25 @@ public class RwsController {
         return resultStr;
     }
 
+    @RequestMapping(value = "/project/checkName", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String checkName(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("验证名字是否重复 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.checkName(paramObj);
+        } catch (Exception e) {
+            logger.error("验证名字是否重复 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("验证名字是否重复 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
 
 
 

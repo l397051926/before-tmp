@@ -541,6 +541,15 @@ public class URLBean {
 
     private String ProjectMemberList = null;
     private String groupAggregation = null;
+    private String checkName = null;
+
+    public String getCheckName() {
+        return checkName;
+    }
+
+    public void setCheckName(String checkName) {
+        this.checkName = checkName;
+    }
 
     public String getGroupAggregation() {
         return groupAggregation;

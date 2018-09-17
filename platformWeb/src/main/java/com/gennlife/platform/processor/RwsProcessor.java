@@ -691,4 +691,15 @@ public class RwsProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String checkName(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getCheckName();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("验证名字是否重复 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }
