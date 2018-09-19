@@ -760,7 +760,9 @@ public class CaseProcessor {
             }else{
                 paramObj.addProperty("indexName", ConfigUtils.getSearchIndexName());
             }
+            long starTime = System.currentTimeMillis();
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            logger.info("搜索高亮消耗时间： "+(System.currentTimeMillis()-starTime));
             logger.info("搜索详情高亮 SS返回结果： " + result);
             return result;
         } catch (Exception e) {
