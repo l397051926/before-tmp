@@ -661,10 +661,14 @@ public class CaseProcessor {
         paramObj.remove("groups");//干掉组
         JsonArray hasSearch = power.getAsJsonArray("has_search");
         JsonObject role = new JsonObject();
-
-        role.addProperty("sid",user.getLabID());
-        role.addProperty("slab_name",user.getLab_name());
-        role.addProperty("has_search","有");
+        //如果 hasSearch不为空 就不加自己的科室
+        int hasSize = hasSearch==null?0:hasSearch.size();
+        if (hasSize<1){
+            role.addProperty("sid",user.getLabID());
+            role.addProperty("slab_name",user.getLab_name());
+            role.addProperty("has_search","有");
+            hasSearch.add(role);
+        }
         //全员角色
         if(newParam.contains("hospital_all")) return newParam;
 
@@ -677,7 +681,6 @@ public class CaseProcessor {
             hasSearch.add(role);
             return gson.toJson(paramObj);
         }
-        hasSearch.add(role);
         hasSet.add(user.getLabID());
         JsonArray newHaseSearch = new JsonArray();
         int size = hasSearch==null?0:hasSearch.size();
@@ -685,9 +688,13 @@ public class CaseProcessor {
             JsonObject tmpElement = hasSearch.get(i).getAsJsonObject();
             String sid = tmpElement.get("sid").getAsString();
             if (hasSet.contains(sid)){
+                hasSet.remove(sid);
                 hasSearch.remove(i);
+                i--;
+                size--;
             }
             addPower(newHaseSearch,user.getOrgID(),sid,hasSet);
+            newHaseSearch.add(tmpElement);
             if(hasSearch.size()==0)break;
         }
         newHaseSearch.add(role);
