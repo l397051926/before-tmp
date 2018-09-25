@@ -697,7 +697,9 @@ public class CaseProcessor {
             newHaseSearch.add(tmpElement);
             if(hasSearch.size()==0)break;
         }
-        newHaseSearch.add(role);
+        if(role.entrySet().size()>0){
+            newHaseSearch.add(role);
+        }
         power.add("has_search",newHaseSearch);
 
         return gson.toJson(paramObj);
