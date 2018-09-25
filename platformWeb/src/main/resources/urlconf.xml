@@ -210,6 +210,7 @@
         <property name="CheckActiveIsOnlyOne" value="http://${rws.ipAndPort}/rws-service/rws/activeIsExists"/>
         <property name="CheckActiveDataIsChange" value="http://${rws.ipAndPort}/rws-service/rws/activeIsChange"/>
         <property name="DependenceChange" value="http://${rws.ipAndPort}/rws-service/rws/dependenceChange"/>
+        <property name="EditActiveName" value="http://${rws.ipAndPort}/rws-service/rws/editActiveName"/>
         <!--rws 重构接口 转发-->
         <property name="ContResultUrl" value="http://${rws.ipAndPort}/rws-service/rws/cort/getContResult"/>
         <property name="ContResultForPatientUrl" value="http://${rws.ipAndPort}/rws-service/rws/cort/getContResultForPatient"/>

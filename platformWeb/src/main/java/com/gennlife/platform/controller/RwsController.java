@@ -1119,6 +1119,24 @@ public class RwsController {
         return resultStr;
     }
 
+    @RequestMapping(value = "/editActiveName", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String editActiveName(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("修改指标事件名称 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.editActiveName(paramObj);
+        } catch (Exception e) {
+            logger.error("修改指标事件名称 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("修改指标事件名称 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 
 
 
