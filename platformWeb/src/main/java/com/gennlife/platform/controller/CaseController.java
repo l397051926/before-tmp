@@ -104,6 +104,25 @@ public class CaseController {
         return resultStr;
     }
 
+    @RequestMapping(value = "/SearchItemSetForRws", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getSearchItemSetForRws(@RequestParam("param") String param) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            logger.info("搜索结果列表展示的集合 get方式 参数=" + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.searchItemSetForUi(paramObj);
+            logger.info("搜索结果列表展示的集合: " + resultStr);
+        } catch (Exception e) {
+            logger.error("搜索结果列表展示的集合", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("搜索结果列表展示的集合 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
     @RequestMapping(value = "/SearchTermSuggest", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody

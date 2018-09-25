@@ -210,5 +210,6 @@
         <property name="CheckActiveIsOnlyOne" value="http://${rws.ipAndPort}/rws-service/rws/activeIsExists"/>
         <property name="CheckActiveDataIsChange" value="http://${rws.ipAndPort}/rws-service/rws/activeIsChange"/>
         <property name="DependenceChange" value="http://${rws.ipAndPort}/rws-service/rws/dependenceChange"/>
+        <property name="EditActiveName" value="http://${rws.ipAndPort}/rws-service/rws/editActiveName"/>
     </bean>
 </beans>

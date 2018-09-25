@@ -116,6 +116,8 @@ public class RwsProcessor {
                 }else {
                     tmpJsonArray = ReadConditionByRedis.getCrfRws(crfId);
                 }
+            }else{
+                tmpJsonArray = ReadConditionByRedis.getEmrRws();
             }
             JsonObject tmpObject = (JsonObject) tmpJsonArray.get(0);
             JsonObject orderObject = tmpObject.get("resultOrderKey").getAsJsonObject();
@@ -226,7 +228,7 @@ public class RwsProcessor {
             if(paramObj.has("crfId")){
                 crfId = paramObj.get("crfId").getAsString();
             }
-            if(StringUtils.isEmpty(crfId)){
+            if(StringUtils.isEmpty(crfId) || "EMR".equals(crfId)){
                  resultArray = ReadConditionByRedis.getEmrRws();
             }else {
                 resultArray = ReadConditionByRedis.getCrfRws(crfId);
@@ -258,6 +260,17 @@ public class RwsProcessor {
             return gson.toJson(resultBean);
         } catch (Exception e) {
             logger.error("事件配置文件获取", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String editActiveName(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getEditActiveName();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("修改指标事件名称 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
     }
