@@ -482,6 +482,8 @@ public class URLBean {
 
     private String TripleTestTableUrl = null;
 
+    private String getPatienSn = null;
+
     /**
      * RWS
      */
@@ -1518,5 +1520,13 @@ public class URLBean {
 
     public void setGetGennomics(String getGennomics) {
         this.getGennomics = getGennomics;
+    }
+
+    public String getGetPatienSn() {
+        return getPatienSn;
+    }
+
+    public void setGetPatienSn(String getPatienSn) {
+        this.getPatienSn = getPatienSn;
     }
 }

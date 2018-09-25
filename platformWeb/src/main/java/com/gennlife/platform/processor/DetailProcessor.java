@@ -623,4 +623,15 @@ public class DetailProcessor {
             logger.error("", e);
         }
     }
+
+    public String getPatienSn(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getGetPatienSn();
+            logger.info("getPatienSn url=" + url);
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("获取基本信息 ");
+        }
+    }
 }
