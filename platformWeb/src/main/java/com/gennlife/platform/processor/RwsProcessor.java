@@ -715,4 +715,15 @@ public class RwsProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String getGroupParentData(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getGroupParentData();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("分区筛选数据展示 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }

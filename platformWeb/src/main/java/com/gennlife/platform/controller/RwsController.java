@@ -1138,6 +1138,25 @@ public class RwsController {
         return resultStr;
     }
 
+    @RequestMapping(value = "/getGroupParentData", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getGroupParentData(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("获取分组要筛选的数据 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.getGroupParentData(paramObj);
+        } catch (Exception e) {
+            logger.error("获取分组要筛选的数据 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取分组要筛选的数据 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
 
 
 }

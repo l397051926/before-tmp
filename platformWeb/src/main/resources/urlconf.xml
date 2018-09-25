@@ -252,5 +252,6 @@
         <property name="ProjectMemberList" value="http://${rws.ipAndPort}/rws-service/rws/projectMember/getProjectMemberList"/>
         <property name="groupAggregation" value="http://${rws.ipAndPort}/rws-service/rws/patientGroup/groupAggregation"/>
         <property name="checkName" value="http://${rws.ipAndPort}/rws-service/rws/project/checkName"/>
+        <property name="groupParentData" value="http://${rws.ipAndPort}/rws-service/rws/patientGroup/getGroupParentData"/>
     </bean>
 </beans>
