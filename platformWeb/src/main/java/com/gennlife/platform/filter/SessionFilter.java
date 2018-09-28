@@ -124,6 +124,7 @@ public class SessionFilter implements Filter {
 
     static {
         okSet.add("/user/Info");
+        okSet.add("/detail/get_patien_sn");
         okSet.add("/user/Login");
         okSet.add("/base/Login");
         okSet.add("/user/SendEmailForChangePWD");
@@ -169,5 +170,6 @@ public class SessionFilter implements Filter {
         okSet.add("/rws/editActiveName");
         okSet.add("/case/SearchItemSetForRws");
         okSet.add("/crf/buildIndexForAll");
+
     }
 }
