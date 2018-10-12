@@ -623,4 +623,15 @@ public class DetailProcessor {
             logger.error("", e);
         }
     }
+
+    public String applyOutGoing(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getApplyOutGoing();
+            logger.info("applyOutGoing url=" + url);
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
 }

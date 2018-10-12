@@ -482,6 +482,8 @@ public class URLBean {
 
     private String TripleTestTableUrl = null;
 
+    private String applyOutGoing = null;
+
     /**
      * RWS
      */
@@ -1518,5 +1520,13 @@ public class URLBean {
 
     public void setGetGennomics(String getGennomics) {
         this.getGennomics = getGennomics;
+    }
+
+    public String getApplyOutGoing() {
+        return applyOutGoing;
+    }
+
+    public void setApplyOutGoing(String applyOutGoing) {
+        this.applyOutGoing = applyOutGoing;
     }
 }

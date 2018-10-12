@@ -814,4 +814,22 @@ public class DetailController {
         logger.info("详情页患者基础信息接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/applyOutGoing", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String applyOutGoing(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("等处？ get方式 参数=" + param);
+            resultStr = processor.applyOutGoing(param);
+        } catch (Exception e) {
+            logger.error("等处？", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("等处？ get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }
