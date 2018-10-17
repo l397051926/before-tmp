@@ -2,6 +2,7 @@ package com.gennlife.platform.processor;
 
 
 import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.bean.conf.OrgBean;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.dao.OrgMapper;
 import com.gennlife.platform.dao.SyUserMapper;
@@ -1808,11 +1809,15 @@ public class LaboratoryProcessor {
         String labID = null;
         String key = null;
         String limitStr = null;
+        List<Lab> labs = null;
+        String parentID = null;//左侧树形结构选中的科室
         Integer offset = null;
         Integer limit = null;
+
         try {
             labID = paramObj.get("labID").getAsString();
             key = paramObj.get("key").getAsString();
+            parentID = paramObj.get("parentID").getAsString();
             if (paramObj.has("limit")) {
                 limitStr = paramObj.get("limit").getAsString();
                 int[] ls = ParamUtils.parseLimit(limitStr);
@@ -1822,37 +1827,54 @@ public class LaboratoryProcessor {
         } catch (Exception e) {
             return ParamUtils.errorParam("参数错误");
         }
-        List<Lab> labs = null;
-        ResultBean re = new ResultBean();
-        re.setCode(1);
-        if ("".equals(labID)) {
-            if (offset != null && limit != null) {
-//                labs = AllDao.getInstance().getOrgDao().getLabsByOrgID(key, offset, limit, user.getOrgID());
-                labs = AllDao.getInstance().getOrgDao().searchLabByOrgIDNoLimit(key, user.getOrgID());
 
-            } else {
-                labs = AllDao.getInstance().getOrgDao().searchLabByOrgIDNoLimit(key, user.getOrgID());
-            }
+//        if ("".equals(labID)) {
+//            if (offset != null && limit != null) {
+////                labs = AllDao.getInstance().getOrgDao().getLabsByOrgID(key, offset, limit, user.getOrgID());
+//                labs = AllDao.getInstance().getOrgDao().searchLabByOrgIDNoLimit(key, user.getOrgID());
+//
+//            } else {
+//                labs = AllDao.getInstance().getOrgDao().searchLabByOrgIDNoLimit(key, user.getOrgID());
+//            }
+//        } else {
+//            List<Lab> labAll=AllDao.getInstance().getOrgDao().getLabs(user.getOrgID());
+//            //labID 集合
+//            List<String> list = new LinkedList<>();
+//            list.add(labID);
+//            getLabIDs(labAll, list, labID);
+//            String labids[] = list.toArray(new String[list.size()]);
+//            if (offset != null && limit != null) {
+////                labs = AllDao.getInstance().getOrgDao().getLabsBypartId(labids,key,user.getOrgID(),offset,limit);
+//                labs = AllDao.getInstance().getOrgDao().getLabsBypartIdNoLimit(labids, key, user.getOrgID());
+//            } else {
+//                labs = AllDao.getInstance().getOrgDao().getLabsBypartIdNoLimit(labids, key, user.getOrgID());
+//            }
+//        }
+
+        //没有选中科室查询
+        if ("".equals(parentID)) {
+            labs = AllDao.getInstance().getOrgDao().searchLabByOrgIDNoLimit(key, user.getOrgID());
+         //选中科室查询
         } else {
-            List<Lab> labAll=AllDao.getInstance().getOrgDao().getLabs(user.getOrgID());
-            //labID 集合
-            List<String> list = new LinkedList<>();
-            list.add(labID);
-            getLabIDs(labAll, list, labID);
-            String labids[] = list.toArray(new String[list.size()]);
-            if (offset != null && limit != null) {
-//                labs = AllDao.getInstance().getOrgDao().getLabsBypartId(labids,key,user.getOrgID(),offset,limit);
-                labs = AllDao.getInstance().getOrgDao().getLabsBypartIdNoLimit(labids, key, user.getOrgID());
-            } else {
-                labs = AllDao.getInstance().getOrgDao().getLabsBypartIdNoLimit(labids, key, user.getOrgID());
-            }
+            labs = AllDao.getInstance().getOrgDao().searchLabByOrgIDAndParentIDNoLimit(parentID, key, user.getOrgID());
         }
 
+        //查找科室的上级科室名称
+        OrgBean orgBean = (OrgBean) SpringContextUtil.getBean("OrgBean");
+        String orgID = orgBean.getOrgID();
         for (Lab lab : labs) {
-            String pname = AllDao.getInstance().getOrgDao().getlabnameBylabID(lab.getLab_parent());
+            String pname = "";
+            if(lab.getLab_parent().equals(orgID)){
+                pname = orgBean.getOrgName();
+            }else {
+                pname = AllDao.getInstance().getOrgDao().getlabnameBylabID(lab.getLab_parent());
+            }
             lab.setParentLabName(pname);
         }
 
+        //返回结果
+        ResultBean re = new ResultBean();
+        re.setCode(1);
         re.setData(labs);
         return gson.toJson(re);
     }

@@ -36,7 +36,10 @@ public class Resource implements Comparable<Resource> {
 
     private String stype_role;
 
-    public Resource(String has_searchCRF,String has_importCRF,Integer roleid, String sid, String sname, String sdesc, String stype, String slab_type, String slab_name, String sorgID, String has_search, String has_searchExport, String has_traceCRF, String has_addCRF, String has_editCRF, String has_deleteCRF, String has_browseDetail, String has_addBatchCRF, String stype_role) {
+    //新增敏感信息检索功能
+    private String has_sensitiveInfo;
+
+    public Resource(String has_searchCRF,String has_importCRF,Integer roleid, String sid, String sname, String sdesc, String stype, String slab_type, String slab_name, String sorgID, String has_search, String has_searchExport, String has_traceCRF, String has_addCRF, String has_editCRF, String has_deleteCRF, String has_browseDetail, String has_addBatchCRF, String stype_role, String has_sensitiveInfo) {
         this.roleid = roleid;
         this.sid = sid;
         this.sname = sname;
@@ -54,12 +57,21 @@ public class Resource implements Comparable<Resource> {
         this.has_browseDetail = has_browseDetail;
         this.has_addBatchCRF = has_addBatchCRF;
         this.stype_role = stype_role;
-        this.has_searchCRF=has_searchCRF;
-        this.has_importCRF=has_importCRF;
+        this.has_searchCRF = has_searchCRF;
+        this.has_importCRF = has_importCRF;
+        this.has_sensitiveInfo = has_sensitiveInfo;
     }
 
     public Resource() {
 
+    }
+
+    public String getHas_sensitiveInfo() {
+        return has_sensitiveInfo;
+    }
+
+    public void setHas_sensitiveInfo(String has_sensitiveInfo) {
+        this.has_sensitiveInfo = has_sensitiveInfo;
     }
 
     public String getHas_searchCRF() {
@@ -237,6 +249,7 @@ public class Resource implements Comparable<Resource> {
         sb.append(", stype_role='").append(stype_role).append('\'');
         sb.append(", sorgID='").append(sorgID).append('\'');
         sb.append(", slab_type='").append(slab_type).append('\'');
+        sb.append(", has_sensitiveInfo='").append(has_sensitiveInfo).append('\'');
         sb.append('}');
         return sb.toString();
     }
@@ -264,6 +277,8 @@ public class Resource implements Comparable<Resource> {
         String has_searchCRF=this.has_searchCRF;
         String has_importCRF=this.has_importCRF;
 
+        String has_sensitiveInfo = this.has_sensitiveInfo;
+
         if (!"HAS_SEARCH".equals(key)) has_search = null;
         if (!"HAS_SEARCHEXPORT".equals(key)) has_searchExport = null;
 
@@ -277,8 +292,8 @@ public class Resource implements Comparable<Resource> {
         if (!"HAS_SEARCHCRF".equals(key)) has_searchCRF = null;
         if (!"HAS_IMPORTCRF".equals(key)) has_importCRF = null;
 
-        return new Resource(has_searchCRF,has_importCRF,roleid, sid, sname, sdesc, stype, slab_type, slab_name, sorgID, has_search, has_searchExport, has_traceCRF, has_addCRF, has_editCRF, has_deleteCRF, has_browseDetail, has_addBatchCRF, stype_role);
+        if (!"HAS_SENSITIVEINFO".equals(key)) has_sensitiveInfo = null;
+
+        return new Resource(has_searchCRF,has_importCRF,roleid, sid, sname, sdesc, stype, slab_type, slab_name, sorgID, has_search, has_searchExport, has_traceCRF, has_addCRF, has_editCRF, has_deleteCRF, has_browseDetail, has_addBatchCRF, stype_role, has_sensitiveInfo);
     }
-
-
 }

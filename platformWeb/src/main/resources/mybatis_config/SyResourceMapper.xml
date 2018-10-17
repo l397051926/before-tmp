@@ -103,6 +103,9 @@
       <if test="has_importCRF != null" >
         has_importCRF,
       </if>
+      <if test="has_sensitiveInfo != null" >
+        has_sensitiveInfo,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       #{roleid,jdbcType=INTEGER},
@@ -137,6 +140,9 @@
       </if>
       <if test="has_importCRF != null" >
         #{has_importCRF,jdbcType=VARCHAR},
+      </if>
+      <if test="has_sensitiveInfo != null" >
+        #{has_sensitiveInfo,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>

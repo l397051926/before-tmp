@@ -181,6 +181,8 @@ public interface OrgMapper {
 
     List<Lab> getLabsBypartIdNoLimit(@Param("labIDs") String[] labIDs, @Param("skey") String key, @Param("orgID") String orgID);
 
+    List<Lab> searchLabByOrgIDAndParentIDNoLimit(@Param("parentID") String parentID, @Param("skey") String key, @Param("orgID") String orgID);
+
     /**
      * 跟据 labid 获取 labname
      * @param labID
@@ -196,4 +198,6 @@ public interface OrgMapper {
      * @return
      */
     List<String> getLabIdByParentId(@Param("labId") String labId);
+
+
 }
