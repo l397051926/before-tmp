@@ -15,16 +15,17 @@
     <result column="has_traceCRF" property="has_traceCRF" jdbcType="VARCHAR" />
     <result column="has_addCRF" property="has_addCRF" jdbcType="VARCHAR" />
     <result column="has_editCRF" property="has_editCRF" jdbcType="VARCHAR" />
+    <result column="has_deleteCRF" property="has_deleteCRF" jdbcType="VARCHAR" />
     <result column="has_browseDetail" property="has_browseDetail" jdbcType="VARCHAR" />
     <result column="has_addBatchCRF" property="has_addBatchCRF" jdbcType="VARCHAR" />
-    <result column="has_deleteCRF" property="has_deleteCRF" jdbcType="VARCHAR" />
-    <result column="stype_role" property="stype_role" jdbcType="VARCHAR" />
     <result column="has_searchCRF" property="has_searchCRF" jdbcType="VARCHAR"/>
     <result column="has_importCRF" property="has_importCRF" jdbcType="VARCHAR"/>
+    <result column="has_sensitiveInfo" property="has_sensitiveInfo" jdbcType="VARCHAR"/>
+    <result column="stype_role" property="stype_role" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="resourceProperty">
     gennlife_resource.sid,sname,sdesc,stype,slab_type,slab_name,sorgID,has_search,has_searchExport,has_traceCRF,has_addCRF,
-    has_editCRF,has_browseDetail,has_addBatchCRF,has_deleteCRF,stype_role,has_searchCRF,has_importCRF
+    has_editCRF,has_deleteCRF,has_browseDetail,has_addBatchCRF,has_searchCRF,has_importCRF,has_sensitiveInfo,stype_role
   </sql>
   
   <select id="getResources" resultMap="com.gennlife.platform.model.Resource"  parameterType="map">
@@ -103,6 +104,9 @@
       <if test="has_importCRF != null" >
         has_importCRF,
       </if>
+      <if test="has_sensitiveInfo != null" >
+        has_sensitiveInfo,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       #{roleid,jdbcType=INTEGER},
@@ -137,6 +141,9 @@
       </if>
       <if test="has_importCRF != null" >
         #{has_importCRF,jdbcType=VARCHAR},
+      </if>
+      <if test="has_sensitiveInfo != null" >
+        #{has_sensitiveInfo,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>

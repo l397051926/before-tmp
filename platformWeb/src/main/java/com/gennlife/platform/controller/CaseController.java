@@ -398,7 +398,7 @@ public class CaseController {
     }
 
     /**
-     * 我的zens
+     * 我的诊室
      */
     @RequestMapping(value = "/myclinicSearchCase", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public

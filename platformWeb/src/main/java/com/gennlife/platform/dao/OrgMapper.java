@@ -181,6 +181,9 @@ public interface OrgMapper {
 
     List<Lab> getLabsBypartIdNoLimit(@Param("labIDs") String[] labIDs, @Param("skey") String key, @Param("orgID") String orgID);
 
+    //查询指定科室底下满足条件的科室
+    List<Lab> searchLabByOrgIDAndParentIDNoLimit(@Param("parentIDs") String[] parentID, @Param("skey") String key, @Param("orgID") String orgID);
+
     /**
      * 跟据 labid 获取 labname
      * @param labID
@@ -196,4 +199,6 @@ public interface OrgMapper {
      * @return
      */
     List<String> getLabIdByParentId(@Param("labId") String labId);
+
+
 }
