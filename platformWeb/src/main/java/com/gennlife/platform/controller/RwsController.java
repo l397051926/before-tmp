@@ -148,7 +148,7 @@ public class RwsController {
             resultStr = processor.getSavedActivityData(paramObj);
         } catch (Exception e) {
             logger.error("获取后台保存的 事件/指标", e);
-            resultStr = ParamUtils.errorParam("出现异常");
+            resultStr = ParamUtils.errorParam("出现异常 ");
         }
         logger.info("获取后台保存的 事件/指标 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
