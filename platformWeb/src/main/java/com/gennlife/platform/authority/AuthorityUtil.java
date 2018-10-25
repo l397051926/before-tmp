@@ -134,6 +134,7 @@ public class AuthorityUtil {
         power.setHas_addBatchCRF(null);
         power.setHas_searchCRF(null);
         power.setHas_importCRF(null);
+        power.setHas_sensitiveInfo(null);
 
         //添加小组与权限两个字段
         paramObj.add("groups", gson.toJsonTree(groups));
@@ -166,6 +167,7 @@ public class AuthorityUtil {
                 power.setHas_addBatchCRF(null);
                 power.setHas_searchCRF(null);
                 power.setHas_importCRF(null);
+                //power.setHas_sensitiveInfo(null);
                 paramObj.add("groups", gson.toJsonTree(groups));
                 paramObj.add("power", gson.toJsonTree(power));
                 return CaseProcessor.transformSid(paramObj, user);
@@ -191,10 +193,10 @@ public class AuthorityUtil {
     }
 
     public static String getCurrentDeptQuery(User user) {
-//        List<String> depts = AllDao.getInstance().getSyRoleDao().getSlabNameMappingByLabName(user.getLab_name(), user.getOrgID());
+        // 获取用户所在科室的下层一线临床类科室
         List<String> depts = AllDao.getInstance().getSyRoleDao().getlabMappingByLabName(user.getLab_name(), user.getOrgID());
         if (depts == null) depts = new LinkedList<>();
-        if(!StringUtils.isEmpty(user.getLab_name()))depts.add(user.getLab_name());
+        if(!StringUtils.isEmpty(user.getLab_name()))depts.add(user.getLab_name());//用户当前所属的科室
         if(depts.size()==0)return null;
         return "[患者基本信息.历次就诊科室] 包含 " + StringUtils.collectionToDelimitedString(depts, ",");
     }

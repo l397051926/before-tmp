@@ -29,6 +29,32 @@ public class Power {
     private Set<Resource> has_searchCRF = new TreeSet<>(comparator);
     private Set<Resource> has_importCRF = new TreeSet<>(comparator);
 
+    //新增敏感信息检索权限
+    private Set<Resource> has_sensitiveInfo = new TreeSet<>(comparator);
+
+    public Set<Resource> getHas_sensitiveInfo() {
+        return has_sensitiveInfo;
+    }
+
+    public void setHas_sensitiveInfo(Set<Resource> has_sensitiveInfo) {
+        try {
+            this.has_sensitiveInfo.clear();
+            if (has_sensitiveInfo != null) {
+                for (Resource resource : has_sensitiveInfo) {
+                    if ( "有".equals(resource.getHas_sensitiveInfo())) {
+                        addInHasSensitiveInfo(resource);
+                    }
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void addInHasSensitiveInfo(Resource resource) {
+        this.has_sensitiveInfo.add(resource.ResourcePowerleftOne("has_sensitiveInfo"));
+    }
+
     public Set<Resource> getHas_searchCRF() {
         return has_searchCRF;
     }
@@ -225,6 +251,7 @@ public class Power {
         power.setHas_searchCRF(has_searchCRF);
         power.setHas_importCRF(has_importCRF);
 
+        power.setHas_sensitiveInfo(has_sensitiveInfo);
         return power;
     }
 

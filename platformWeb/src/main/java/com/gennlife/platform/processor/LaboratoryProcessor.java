@@ -1856,7 +1856,8 @@ public class LaboratoryProcessor {
             labs = AllDao.getInstance().getOrgDao().searchLabByOrgIDNoLimit(key, user.getOrgID());
          //选中科室查询
         } else {
-            labs = AllDao.getInstance().getOrgDao().searchLabByOrgIDAndParentIDNoLimit(parentID, key, user.getOrgID());
+            String[] parentIDs = parentID.split(",");
+            labs = AllDao.getInstance().getOrgDao().searchLabByOrgIDAndParentIDNoLimit(parentIDs, key, user.getOrgID());
         }
 
         //查找科室的上级科室名称
