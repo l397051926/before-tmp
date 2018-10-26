@@ -5,9 +5,10 @@
     <list id="4b11a754-6dc8-4825-b3d8-536ab7787a48" name="Revert &quot;还原&quot;" comment="Revert &quot;还原&quot;&#10;&#10;This reverts commit 3fa7789" />
     <list id="3462fc3e-38a1-48e0-93d1-51172f435daf" name="Revert &quot;add 我的诊室&quot;-2" comment="Revert &quot;add 我的诊室&quot;&#10;&#10;This reverts commit 5ae7b4e" />
     <list id="6639628f-73af-43b6-831a-4ae8fee9920d" name="Revert &quot;add 我的诊室&quot;" comment="Revert &quot;add 我的诊室&quot;&#10;&#10;This reverts commit 5ae7b4e" />
-    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="处理代码">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/crf/lymphoma_release.json" />
+    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/crf/lymphoma.json" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/crf/lymphoma_release.json" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,28 +31,7 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="lymphoma_release.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/crf/lymphoma_release.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="25" lean-forward="false" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lymphoma_release_1.0.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/crf/lymphoma_release_1.0.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="2" lean-forward="true" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -6258,13 +6238,6 @@
       <workItem from="1535329811389" duration="8292000" />
       <workItem from="1537842826224" duration="4127000" />
     </task>
-    <task id="LOCAL-00025" summary="中文乱码">
-      <created>1528970404425</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1528970404425</updated>
-    </task>
     <task id="LOCAL-00026" summary="调整配置文件">
       <created>1529400112191</created>
       <option name="number" value="00026" />
@@ -6601,7 +6574,14 @@
       <option name="project" value="LOCAL" />
       <updated>1540536021797</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="淋巴瘤配置文件">
+      <created>1540555599814</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1540555599815</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -6637,11 +6617,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1109094000" />
+    <option name="totallyTimeSpent" value="1109197000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-434" width="1936" height="1176" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32723773" sideWeight="0.5074627" order="13" side_tool="true" content_ui="tabs" />
@@ -6663,7 +6642,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4292589" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2563966" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2563966" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -6784,7 +6763,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整rws配置文件 淋巴瘤" />
     <MESSAGE value="中文乱码" />
     <MESSAGE value="调整配置文件" />
     <MESSAGE value="调整淋巴瘤配置文件" />
@@ -6809,7 +6787,8 @@
     <MESSAGE value="还原" />
     <MESSAGE value="Revert &quot;添加权限过滤&quot;&#10;&#10;This reverts commit dea3e26" />
     <MESSAGE value="处理代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="处理代码" />
+    <MESSAGE value="淋巴瘤配置文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="淋巴瘤配置文件" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -7245,18 +7224,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/crf/lymphoma_release_1.0.json">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/crf/lymphoma.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="2" lean-forward="true" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="25" />
+        <state relative-caret-position="54">
+          <caret line="0" column="254" lean-forward="false" selection-start-line="0" selection-start-column="254" selection-end-line="0" selection-end-column="254" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/crf/lymphoma_release.json">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/crf/lymphoma_release_1.0.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="25" lean-forward="false" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
+          <caret line="0" column="2" lean-forward="true" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="25" />
           <folding />
         </state>
       </provider>
