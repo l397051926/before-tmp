@@ -288,23 +288,6 @@
         orgID = #{orgID}
     </select>
 
-    <select id="searchLabByOrgIDAndParentIDNoLimit" resultType="com.gennlife.platform.model.Lab">
-        SELECT
-        <include refid="labProperty"/>
-        FROM gennlife_lab
-        WHERE
-        (lab_name LIKE CONCAT(CONCAT('%',#{skey}),'%')
-        OR
-        depart_name LIKE CONCAT(CONCAT('%',#{skey}),'%'))
-        AND
-        lab_parent in
-        <foreach collection="parentIDs" item = "item" index = "index" open = "(" separator="," close=")">
-          #{item,jdbcType=VARCHAR}
-        </foreach>
-        AND
-        orgID = #{orgID}
-    </select>
-
     <select id="getLabsBypartId" resultType="com.gennlife.platform.model.Lab">
         SELECT
         <include refid="labProperty" />

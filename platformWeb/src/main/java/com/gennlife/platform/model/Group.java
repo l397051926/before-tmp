@@ -24,20 +24,10 @@ public class Group {
     //新增 crf 搜索 导入权限
     private String has_searchCRF;
     private String has_importCRF;
-    //新增 敏感信息检索权限
-    private String has_sensitiveInfo;
-
     @SerializedName("groupID")
     private String gid;
     private Object members;
 
-    public String getHas_sensitiveInfo() {
-        return has_sensitiveInfo;
-    }
-
-    public void setHas_sensitiveInfo(String has_sensitiveInfo) {
-        this.has_sensitiveInfo = has_sensitiveInfo;
-    }
 
     public String getHas_searchCRF() {
         return has_searchCRF;

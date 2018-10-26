@@ -15,7 +15,7 @@
             <value>${ui.datasource.driverClassName}</value>
         </property>
         <property name="url">
-            <value>jdbc:mysql://10.0.2.162:3306/userInfoDB?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true</value>
+            <value>${ui.datasource.url}&amp;autoReconnect=true</value>
         </property>
         <property name="username">
             <value>${ui.datasource.username}</value>

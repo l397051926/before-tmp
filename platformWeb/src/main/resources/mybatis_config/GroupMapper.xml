@@ -12,13 +12,12 @@
         <result column="gennlife_group.has_searchExport" property="has_searchExport" jdbcType="VARCHAR" />
         <result column="gennlife_group.has_traceCRF" property="has_traceCRF" jdbcType="VARCHAR" />
         <result column="gennlife_group.has_addCRF" property="has_addCRF" jdbcType="VARCHAR" />
-        <result column="gennlife_group.has_editCRF" property="has_editCRF" jdbcType="VARCHAR" />
         <result column="gennlife_group.has_deleteCRF" property="has_deleteCRF" jdbcType="VARCHAR" />
-        <result column="gennlife_group.has_browseDetail" property="has_browseDetail" jdbcType="VARCHAR" />
         <result column="gennlife_group.has_addBatchCRF" property="has_addBatchCRF" jdbcType="VARCHAR" />
         <result column="gennlife_group.has_searchCRF" property="has_searchCRF" jdbcType="VARCHAR" />
         <result column="gennlife_group.has_importCRF" property="has_importCRF" jdbcType="VARCHAR" />
-        <result column="gennlife_group.has_sensitiveInfo" property="has_sensitiveInfo" jdbcType="VARCHAR"/>
+        <result column="gennlife_group.has_editCRF" property="has_editCRF" jdbcType="VARCHAR" />
+        <result column="gennlife_group.has_browseDetail" property="has_browseDetail" jdbcType="VARCHAR" />
     </resultMap>
 
     <sql id="GroupColumn">
@@ -32,16 +31,15 @@
         gennlife_group.has_searchExport,
         gennlife_group.has_traceCRF,
         gennlife_group.has_addCRF,
-        gennlife_group.has_editCRF,
         gennlife_group.has_deleteCRF,
-        gennlife_group.has_browseDetail,
         gennlife_group.has_addBatchCRF,
+        gennlife_group.has_browseDetail,
+        gennlife_group.has_editCRF,
         gennlife_group.has_searchCRF,
-        gennlife_group.has_importCRF,
-        gennlife_group.has_sensitiveInfo
+        gennlife_group.has_importCRF
     </sql>
     <select id="getGroupsBySearchName" parameterType="map" resultMap="Group">
-        SELEC T
+        SELECT
         <include refid="GroupColumn"/>
         FROM gennlife_group
         WHERE
@@ -122,6 +120,11 @@
 
         AND gennlife_user_group.orgID = #{orgID}
     </select>
+
+
+
+
+
     <insert id="insertOneGroup" parameterType="com.gennlife.platform.model.Group">
         insert into userInfoDB.gennlife_group
         <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -174,9 +177,6 @@
             <if test="has_importCRF != null" >
                 has_importCRF,
             </if>
-            <if test="has_sensitiveInfo != null" >
-                has_sensitiveInfo,
-            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="orgID != null" >
@@ -227,9 +227,6 @@
             <if test="has_importCRF != null" >
                 #{has_importCRF,jdbcType=VARCHAR},
             </if>
-            <if test="has_sensitiveInfo != null" >
-                #{has_sensitiveInfo,jdbcType=VARCHAR},
-            </if>
         </trim>
     </insert>
     <insert id="insertOneGroupRelationUid" parameterType="map">
@@ -272,9 +269,6 @@
             </if>
             <if test="has_importCRF != null" >
                 has_importCRF=#{has_importCRF},
-            </if>
-            <if test="has_sensitiveInfo != null" >
-                has_sensitiveInfo=#{has_sensitiveInfo},
             </if>
         </set>
         <where> gid=#{gid}</where>

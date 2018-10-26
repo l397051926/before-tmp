@@ -9,14 +9,12 @@ import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.*;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
-import java.io.StringReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -255,7 +253,7 @@ public class UserProcessor {
             resultGroup.setMembers(newUserList);
             Long start6 = System.currentTimeMillis();
             //System.out.println("设置组成员="+(start6-start5)+"ms");
-
+            //
             Power frontEndPower = power.deepCopy();
             user.setFrontEndPower(frontEndPower);//前端可视化
             try {
@@ -318,6 +316,7 @@ public class UserProcessor {
         LinkedList<Resource> list = new LinkedList<>();
         list.addAll(power.getHas_search());
         list.addAll(power.getHas_searchExport());
+        ;
         list.addAll(power.getHas_addBatchCRF());
         list.addAll(power.getHas_addCRF());
         list.addAll(power.getHas_browseDetail());
@@ -326,7 +325,6 @@ public class UserProcessor {
         list.addAll(power.getHas_editCRF());
         list.addAll(power.getHas_searchCRF());
         list.addAll(power.getHas_importCRF());
-        list.addAll(power.getHas_sensitiveInfo());
         role.setResources(list);
         result.add(role);
         return result;
@@ -510,11 +508,6 @@ public class UserProcessor {
                 power.addInHasSearchExport(resource);
             }
         }
-        if ("有".equals(resource.getHas_sensitiveInfo())) {
-            if (!isExistResource(power.getHas_sensitiveInfo(), resource)) {
-                power.addInHasSensitiveInfo(resource);
-            }
-        }
         return power;
     }
 
@@ -567,11 +560,6 @@ public class UserProcessor {
         if ("有".equals(resource.getHas_importCRF())) {
             if (!isExistResource(power.getHas_importCRF(), resource)) {
                 power.addInHasimportCRF(resource);
-            }
-        }
-        if ("有".equals(resource.getHas_sensitiveInfo())) {
-            if (!isExistResource(power.getHas_sensitiveInfo(), resource)) {
-                power.addInHasSensitiveInfo(resource);
             }
         }
         return power;
@@ -634,12 +622,6 @@ public class UserProcessor {
         if ("有".equals(resource.getHas_importCRF()) && "有".equals(group.getHas_importCRF())) {
             if (!isExistResource(power.getHas_importCRF(), resource)) {
                 power.addInHasimportCRF(resource);
-            }
-
-        }
-        if ("有".equals(resource.getHas_sensitiveInfo()) && "有".equals(group.getHas_sensitiveInfo())) {
-            if (!isExistResource(power.getHas_sensitiveInfo(), resource)) {
-                power.addInHasSensitiveInfo(resource);
             }
 
         }
@@ -941,16 +923,4 @@ public class UserProcessor {
         return gson.toJson(re);
     }
 
-//    public static User getUserFromPrinciple(){
-//        Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-//        logger.info("从principle中得到权限: " + authorities.toString());
-//
-//        String userInfo = authorities.toString();
-//        //改成正确的json格式
-//        userInfo = userInfo.substring(userInfo.indexOf('[')+1,userInfo.lastIndexOf(']'));
-//        logger.info("principle中的user的json格式："+userInfo);
-//
-//        User user = gson.fromJson(new JsonReader(new StringReader(userInfo)),User.class);
-//        return user;
-//    }
 }

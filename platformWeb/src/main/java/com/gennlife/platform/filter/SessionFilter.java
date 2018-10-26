@@ -124,13 +124,13 @@ public class SessionFilter implements Filter {
 
     static {
         okSet.add("/user/Info");
+        okSet.add("/detail/get_patien_sn");
         okSet.add("/user/Login");
         okSet.add("/base/Login");
         okSet.add("/user/SendEmailForChangePWD");
         okSet.add("/user/ExistEmail");
         okSet.add("/user/SetRedis");
         okSet.add("/user/UpdatePWD");
-        okSet.add("/detail/get_patien_sn");
         adminSet.add("/bsma/OrgMapData");
         adminSet.add("/bsma/DeleteOrg");
         adminSet.add("/bsma/UpdateOrg");
@@ -170,5 +170,6 @@ public class SessionFilter implements Filter {
         okSet.add("/rws/editActiveName");
         okSet.add("/case/SearchItemSetForRws");
         okSet.add("/crf/buildIndexForAll");
+
     }
 }

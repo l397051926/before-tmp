@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class Role {
     private Integer roleid;
-    private String role;//角色名字
+    private String role;
     private String orgID;
     private String desctext;
     private String creator;
@@ -17,7 +17,7 @@ public class Role {
     private String ctime;
     private Object resources;
     private Object users;
-    private Object staff;//角色相关的用户
+    private Object staff;
 
     private String role_privilege;
 
