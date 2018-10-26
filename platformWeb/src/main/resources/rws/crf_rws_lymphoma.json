@@ -1,0 +1,402 @@
+{
+	"code": 1,
+	"data": [
+		{
+			"children": [
+				{
+					"collapse": false,
+					"data": {
+						"dataType": "string",
+						"indexFieldName": "patient_info.patient_basicinfo",
+						"srchFieldName": "患者基本信息.人口学资料"
+					},
+					"expand": false,
+					"icon": "image/tnode-docs.png",
+					"isSrchItem": true,
+					"name": "<span class='u-noFoldIcon-treeNode'>人口学资料</span>",
+					"open": true
+				},
+				{
+					"children": [
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.initial_dx.id_tumor_diagnosis_l",
+								"srchFieldName": "患者基本信息.淋巴瘤确诊.诊断详情"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>诊断详情</span>",
+							"open": true
+						},
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.initial_dx.id_ps_info",
+								"srchFieldName": "患者基本信息.淋巴瘤确诊.体力状况评分"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>体力状况评分</span>",
+							"open": true
+						},
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.initial_dx.id_pi_info",
+								"srchFieldName": "患者基本信息.淋巴瘤确诊.预后指数评分"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>预后指数评分</span>",
+							"open": true
+						}
+					],
+					"data": {
+						"dataType": "string",
+						"indexFieldName": "patient_info.initial_dx",
+						"srchFieldName": "患者基本信息.淋巴瘤确诊"
+					},
+					"iconClose": "image/tnode-folder-close.png",
+					"iconOpen": "image/tnode-folder-open.png",
+					"name": "淋巴瘤确诊"
+				},
+				{
+					"children": [
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.id_pathology.id_immunohistochemical_results",
+								"srchFieldName": "患者基本信息.确诊病理.免疫组化结果"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>免疫组化结果</span>",
+							"open": true
+						},
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.id_pathology.id_ihc_bg",
+								"srchFieldName": "患者基本信息.确诊病理.免疫组化结果-背景细胞"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>免疫组化结果-背景细胞</span>",
+							"open": true
+						},
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.id_pathology.id_gene_chrom_abnml",
+								"srchFieldName": "患者基本信息.确诊病理.基因及染色体异常"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>基因及染色体异常</span>",
+							"open": true
+						}
+					],
+					"data": {
+						"dataType": "string",
+						"indexFieldName": "patient_info.id_pathology",
+						"srchFieldName": "患者基本信息.确诊病理"
+					},
+					"iconClose": "image/tnode-folder-close.png",
+					"iconOpen": "image/tnode-folder-open.png",
+					"name": "确诊病理"
+				},
+				{
+					"children": [
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.id_lab_test_results.id_blood_routine",
+								"srchFieldName": "患者基本信息.确诊时检验.血常规"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>血常规</span>",
+							"open": true
+						},
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.id_lab_test_results.id_liver_and_kidney_function",
+								"srchFieldName": "患者基本信息.确诊时检验.肝肾功能"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>肝肾功能</span>",
+							"open": true
+						},
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.id_lab_test_results.id_myocard_markers",
+								"srchFieldName": "患者基本信息.确诊时检验.心肌标志物"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>心肌标志物</span>",
+							"open": true
+						},
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.id_lab_test_results.id_thyroid_function",
+								"srchFieldName": "患者基本信息.确诊时检验.甲状腺功能"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>甲状腺功能</span>",
+							"open": true
+						},
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.id_lab_test_results.id_ebv_immunology",
+								"srchFieldName": "患者基本信息.确诊时检验.EBV免疫学"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>EBV免疫学</span>",
+							"open": true
+						},
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.id_lab_test_results.id_ebv_dna",
+								"srchFieldName": "患者基本信息.确诊时检验.EBV-DNA"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>EBV-DNA</span>",
+							"open": true
+						},
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.id_lab_test_results.id_hbv_immunology_quant",
+								"srchFieldName": "患者基本信息.确诊时检验.HBV免疫学（定量）"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>HBV免疫学（定量）</span>",
+							"open": true
+						},
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.id_lab_test_results.id_hbv_immunology_qual",
+								"srchFieldName": "患者基本信息.确诊时检验.HBV免疫学（定性）"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>HBV免疫学（定性）</span>",
+							"open": true
+						},
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.id_lab_test_results.id_hbv_dna",
+								"srchFieldName": "患者基本信息.确诊时检验.HBV-DNA"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>HBV-DNA</span>",
+							"open": true
+						},
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.id_lab_test_results.id_hcv",
+								"srchFieldName": "患者基本信息.确诊时检验.HCV"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>HCV</span>",
+							"open": true
+						},
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.id_lab_test_results.id_other_virus",
+								"srchFieldName": "患者基本信息.确诊时检验.HIV免疫学"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>HIV免疫学</span>",
+							"open": true
+						},
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.id_lab_test_results.id_syphilis_immuno",
+								"srchFieldName": "患者基本信息.确诊时检验.梅毒免疫学"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>梅毒免疫学</span>",
+							"open": true
+						},
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.id_lab_test_results.id_coagulation_function",
+								"srchFieldName": "患者基本信息.确诊时检验.凝血功能"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>凝血功能</span>",
+							"open": true
+						},
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.id_lab_test_results.id_24h_urinary_protein",
+								"srchFieldName": "患者基本信息.确诊时检验.24h尿蛋白定量"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>24h尿蛋白定量</span>",
+							"open": true
+						}
+					],
+					"data": {
+						"dataType": "string",
+						"indexFieldName": "patient_info.id_lab_test_results",
+						"srchFieldName": "患者基本信息.确诊时检验"
+					},
+					"iconClose": "image/tnode-folder-close.png",
+					"iconOpen": "image/tnode-folder-open.png",
+					"name": "确诊时检验"
+				},
+				{
+					"children": [
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.treatment_summary.first_chemo_summary",
+								"srchFieldName": "患者基本信息.治疗概要.首次我院化疗就诊"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>首次我院化疗就诊</span>",
+							"open": true
+						},
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.treatment_summary.initial_ctx",
+								"srchFieldName": "患者基本信息.治疗概要.首次化疗"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>首次化疗</span>",
+							"open": true
+						}
+					],
+					"data": {
+						"dataType": "string",
+						"indexFieldName": "patient_info.treatment_summary",
+						"srchFieldName": "患者基本信息.治疗概要"
+					},
+					"iconClose": "image/tnode-folder-close.png",
+					"iconOpen": "image/tnode-folder-open.png",
+					"name": "治疗概要"
+				},
+				{
+					"collapse": false,
+					"data": {
+						"dataType": "string",
+						"indexFieldName": "patient_info.survival_status",
+						"srchFieldName": "患者基本信息.生存状况"
+					},
+					"expand": false,
+					"icon": "image/tnode-docs.png",
+					"isSrchItem": true,
+					"name": "<span class='u-noFoldIcon-treeNode'>生存状况</span>",
+					"open": true
+				},
+				{
+					"children": [
+						{
+							"collapse": false,
+							"data": {
+								"dataType": "string",
+								"indexFieldName": "patient_info.response_relapse_info.first_relapse_detail",
+								"srchFieldName": "患者基本信息.疗效评估及复发情况.首次复发诊断"
+							},
+							"expand": false,
+							"icon": "image/tnode-docs.png",
+							"isSrchItem": true,
+							"name": "<span class='u-noFoldIcon-treeNode'>首次复发诊断</span>",
+							"open": true
+						}
+					],
+					"data": {
+						"dataType": "string",
+						"indexFieldName": "patient_info.response_relapse_info",
+						"srchFieldName": "患者基本信息.疗效评估及复发情况"
+					},
+					"iconClose": "image/tnode-folder-close.png",
+					"iconOpen": "image/tnode-folder-open.png",
+					"name": "疗效评估及复发情况"
+				}
+			],
+			"data": {
+				"dataType": "string",
+				"indexFieldName": "patient_info",
+				"srchFieldName": "患者基本信息"
+			},
+			"iconClose": "image/tnode-folder-close.png",
+			"iconOpen": "image/tnode-folder-open.png",
+			"name": "患者基本信息"
+		}
+	]
+}
