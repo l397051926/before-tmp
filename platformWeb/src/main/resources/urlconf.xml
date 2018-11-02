@@ -92,6 +92,8 @@
                   value="http://${fileService.ipAndPort}/FileService/PatientDetail/chemotherapy_info"></property>
         <property name="PatientDetailThumbnail"
                   value="http://${fileService.ipAndPort}/FileService/PatientDetail/thumbnail?url="></property>
+        <property name="applyOutGoing"
+                  value="http://${fileService.ipAndPort}/FileService/part3/applyOutGoing"></property>
         <property name="getPatienSn"
                   value="http://${fileService.ipAndPort}/FileService/PatientDetail/get_patien_sn"></property>
         <!--vitaBoard 服务-->
