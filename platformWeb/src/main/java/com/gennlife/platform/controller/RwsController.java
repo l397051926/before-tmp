@@ -30,7 +30,7 @@ public class RwsController {
     private RwsProcessor processor;
     private CaseProcessor caseProcessor = new CaseProcessor();
 
-    @RequestMapping(value = "/PreLiminary", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/PreLiminary", method = {RequestMethod.GET,RequestMethod.POST}, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String postSampleImport(HttpServletRequest paramRe) {
