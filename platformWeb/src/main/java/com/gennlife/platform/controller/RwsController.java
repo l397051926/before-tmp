@@ -1174,7 +1174,7 @@ public class RwsController {
         logger.info("获取分组要筛选的数据 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
-    @RequestMapping(value = "/patientGroup/saveResearchVariable", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/cort/saveResearchVariable", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String saveResearchVariable(HttpServletRequest paramRe) {
