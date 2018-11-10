@@ -43,7 +43,7 @@ public class RwsController {
             if (paramsObj.has("sid")) {
                 sid = paramsObj.get("sid").getAsString();
             }
-            String paramNew = AuthorityUtil.addTreatedAuthority(paramRe);
+            String paramNew = AuthorityUtil.addTreatedAuthority(paramRe,paramsObj);
             JsonObject paramObj = (JsonObject) jsonParser.parse(paramNew);
             paramObj.addProperty("sid", sid);
 
