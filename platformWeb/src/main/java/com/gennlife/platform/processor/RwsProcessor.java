@@ -726,4 +726,15 @@ public class RwsProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String getAllResearchVariable(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getAllResearchVariable();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取全部研究变量 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }

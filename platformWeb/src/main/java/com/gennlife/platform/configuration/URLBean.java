@@ -552,6 +552,15 @@ public class URLBean {
     private String groupAggregation = null;
     private String checkName = null;
     private String groupParentData = null;
+    private String allResearchVariable = null;
+
+    public String getAllResearchVariable() {
+        return allResearchVariable;
+    }
+
+    public void setAllResearchVariable(String allResearchVariable) {
+        this.allResearchVariable = allResearchVariable;
+    }
 
     public String getGroupParentData() {
         return groupParentData;

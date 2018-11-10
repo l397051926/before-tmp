@@ -439,6 +439,24 @@ public class RwsController {
         logger.info("获取研究变量参数 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+    @RequestMapping(value = "/cort/getAllResearchVariable", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getAllResearchVariable(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("获取全部研究变量参数 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.getAllResearchVariable(paramObj);
+        } catch (Exception e) {
+            logger.error("获取全部研究变量参数 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取全部研究变量参数 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 
     @RequestMapping(value = "/cort/saveGroupCondition", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
