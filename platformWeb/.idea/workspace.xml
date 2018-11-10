@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="crfId 为空 变为 EMR">
+    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="增加获取全部研究变量接口">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java" />
@@ -30,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="RwsController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RwsController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="447" column="13" lean-forward="true" selection-start-line="447" selection-start-column="13" selection-end-line="447" selection-end-column="13" />
+            <state relative-caret-position="314">
+              <caret line="1186" column="48" lean-forward="true" selection-start-line="1186" selection-start-column="48" selection-end-line="1186" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -43,8 +43,8 @@
       <file leaf-file-name="RwsProcessor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="735" column="34" lean-forward="false" selection-start-line="735" selection-start-column="34" selection-end-line="735" selection-end-column="34" />
+            <state relative-caret-position="-145">
+              <caret line="731" column="66" lean-forward="true" selection-start-line="731" selection-start-column="66" selection-end-line="731" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -63,25 +63,27 @@
       <file leaf-file-name="URLBean.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="554" column="38" lean-forward="false" selection-start-line="554" selection-start-column="19" selection-end-line="554" selection-end-column="38" />
+            <state relative-caret-position="449">
+              <caret line="555" column="39" lean-forward="false" selection-start-line="555" selection-start-column="19" selection-end-line="555" selection-end-column="39" />
               <folding>
-                <element signature="e#12189#12190#0" expanded="true" />
-                <element signature="e#12231#12232#0" expanded="true" />
-                <element signature="e#12301#12302#0" expanded="true" />
-                <element signature="e#12363#12364#0" expanded="true" />
-                <element signature="e#12405#12406#0" expanded="true" />
-                <element signature="e#12443#12444#0" expanded="true" />
+                <element signature="e#12238#12239#0" expanded="true" />
+                <element signature="e#12281#12282#0" expanded="true" />
+                <element signature="e#12463#12464#0" expanded="true" />
+                <element signature="e#12505#12506#0" expanded="true" />
+                <element signature="e#12575#12576#0" expanded="true" />
+                <element signature="e#12637#12638#0" expanded="true" />
+                <element signature="e#12679#12680#0" expanded="true" />
+                <element signature="e#12717#12718#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urlconf.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="urlconf.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/urlconf.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="432">
-              <caret line="257" column="8" lean-forward="true" selection-start-line="257" selection-start-column="8" selection-end-line="257" selection-end-column="8" />
+              <caret line="257" column="11" lean-forward="true" selection-start-line="257" selection-start-column="11" selection-end-line="257" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -98,8 +100,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>batik</find>
-      <find>getActive</find>
       <find>getGetSavedActivityData</find>
       <find>caseDetailPatientBasicFigureURL</find>
       <find>PatientBasicFigure</find>
@@ -128,6 +128,8 @@
       <find>getAllResearchVariable</find>
       <find>cort</find>
       <find>groupParentData</find>
+      <find>allResearchVariable</find>
+      <find>saveResearchVariable</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;open&quot;: false</replace>
@@ -206,10 +208,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" />
         <option value="$PROJECT_DIR$/src/main/resources/urlconf.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java" />
       </list>
     </option>
   </component>
@@ -711,13 +713,6 @@
       <workItem from="1534296847724" duration="577000" />
       <workItem from="1535329811389" duration="8292000" />
     </task>
-    <task id="LOCAL-00024" summary="调整rws配置文件 淋巴瘤">
-      <created>1528965166767</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1528965166767</updated>
-    </task>
     <task id="LOCAL-00025" summary="中文乱码">
       <created>1528970404425</created>
       <option name="number" value="00025" />
@@ -1054,7 +1049,14 @@
       <option name="project" value="LOCAL" />
       <updated>1541843629837</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="增加获取全部研究变量接口">
+      <created>1541855965489</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1541855965489</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1090,7 +1092,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1108259000" />
+    <option name="totallyTimeSpent" value="1109377000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1235,7 +1237,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整rws配置文件 淋巴瘤" />
     <MESSAGE value="中文乱码" />
     <MESSAGE value="调整配置文件" />
     <MESSAGE value="调整淋巴瘤配置文件" />
@@ -1260,7 +1261,8 @@
     <MESSAGE value="调整 分组筛选 接口缺少参数" />
     <MESSAGE value="导出数据接口调整" />
     <MESSAGE value="crfId 为空 变为 EMR" />
-    <option name="LAST_COMMIT_MESSAGE" value="crfId 为空 变为 EMR" />
+    <MESSAGE value="增加获取全部研究变量接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加获取全部研究变量接口" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1667,41 +1669,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="1186" column="48" lean-forward="true" selection-start-line="1186" selection-start-column="48" selection-end-line="1186" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="554" column="38" lean-forward="false" selection-start-line="554" selection-start-column="19" selection-end-line="554" selection-end-column="38" />
+        <state relative-caret-position="449">
+          <caret line="555" column="39" lean-forward="false" selection-start-line="555" selection-start-column="19" selection-end-line="555" selection-end-column="39" />
           <folding>
-            <element signature="e#12189#12190#0" expanded="true" />
-            <element signature="e#12231#12232#0" expanded="true" />
-            <element signature="e#12301#12302#0" expanded="true" />
-            <element signature="e#12363#12364#0" expanded="true" />
-            <element signature="e#12405#12406#0" expanded="true" />
-            <element signature="e#12443#12444#0" expanded="true" />
+            <element signature="e#12238#12239#0" expanded="true" />
+            <element signature="e#12281#12282#0" expanded="true" />
+            <element signature="e#12463#12464#0" expanded="true" />
+            <element signature="e#12505#12506#0" expanded="true" />
+            <element signature="e#12575#12576#0" expanded="true" />
+            <element signature="e#12637#12638#0" expanded="true" />
+            <element signature="e#12679#12680#0" expanded="true" />
+            <element signature="e#12717#12718#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-145">
+          <caret line="731" column="66" lean-forward="true" selection-start-line="731" selection-start-column="66" selection-end-line="731" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/urlconf.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
-          <caret line="257" column="8" lean-forward="true" selection-start-line="257" selection-start-column="8" selection-end-line="257" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="735" column="34" lean-forward="false" selection-start-line="735" selection-start-column="34" selection-end-line="735" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="447" column="13" lean-forward="true" selection-start-line="447" selection-start-column="13" selection-end-line="447" selection-end-column="13" />
+          <caret line="257" column="11" lean-forward="true" selection-start-line="257" selection-start-column="11" selection-end-line="257" selection-end-column="11" />
           <folding />
         </state>
       </provider>

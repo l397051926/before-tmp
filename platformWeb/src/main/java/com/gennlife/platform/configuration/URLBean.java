@@ -553,6 +553,15 @@ public class URLBean {
     private String checkName = null;
     private String groupParentData = null;
     private String allResearchVariable = null;
+    private String saveResearchVariable = null;
+
+    public String getSaveResearchVariable() {
+        return saveResearchVariable;
+    }
+
+    public void setSaveResearchVariable(String saveResearchVariable) {
+        this.saveResearchVariable = saveResearchVariable;
+    }
 
     public String getAllResearchVariable() {
         return allResearchVariable;
@@ -1900,4 +1909,6 @@ public class URLBean {
     public void setGetGennomics(String getGennomics) {
         this.getGennomics = getGennomics;
     }
+
+
 }
