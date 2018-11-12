@@ -15,9 +15,11 @@ import com.gennlife.platform.parse.CaseSuggestParser;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.*;
 import com.google.gson.*;
+import net.minidev.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
+import sun.text.resources.cldr.ia.FormatData_ia;
 
 import java.util.*;
 
@@ -839,10 +841,17 @@ public class CaseProcessor {
         if(role.entrySet().size()>0){
             newHaseSearch.add(role);
         }
-        power.add("has_search",newHaseSearch);
-
+        Iterator<JsonElement> it = newHaseSearch.iterator();
+        while (it.hasNext()) {
+            JsonElement next = it.next();
+            if (next.isJsonNull() || (next.isJsonObject() && next.getAsJsonObject().entrySet().size() == 0)) {
+                it.remove();
+            }
+        }
+        power.add("has_search", newHaseSearch);
         return gson.toJson(paramObj);
     }
+
     //递归 增加子属性
     private void addPower(JsonArray hasSearch, String orgID, String sid,Set<String> hasSet) {
         if(!StringUtils.isEmpty(sid)){
