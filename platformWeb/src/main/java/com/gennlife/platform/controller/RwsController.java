@@ -1157,6 +1157,25 @@ public class RwsController {
         return resultStr;
     }
 
+    @RequestMapping(value = "/cort/patientGroup/deleteResearchVariable", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String deleteResearchVariable(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("删除研究变量 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.deleteResearchVariable(paramObj);
+        } catch (Exception e) {
+            logger.error("删除研究变量 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("删除研究变量 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
 
 
 }

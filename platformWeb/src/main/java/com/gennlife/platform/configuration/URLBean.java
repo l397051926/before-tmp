@@ -552,6 +552,15 @@ public class URLBean {
     private String groupAggregation = null;
     private String checkName = null;
     private String groupParentData = null;
+    private String deleteResearchVariable = null;
+
+    public String getDeleteResearchVariable() {
+        return deleteResearchVariable;
+    }
+
+    public void setDeleteResearchVariable(String deleteResearchVariable) {
+        this.deleteResearchVariable = deleteResearchVariable;
+    }
 
     public String getGroupParentData() {
         return groupParentData;

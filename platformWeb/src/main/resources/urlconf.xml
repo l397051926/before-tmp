@@ -213,6 +213,7 @@
         <property name="EditActiveName" value="http://${rws.ipAndPort}/rws-service/rws/editActiveName"/>
         <!--rws 重构接口 转发-->
         <property name="ContResultUrl" value="http://${rws.ipAndPort}/rws-service/rws/cort/getContResult"/>
+        <property name="deleteResearchVariable" value="http://${rws.ipAndPort}/rws-service/rws/cort/deleteResearchVariable"/>
         <property name="ContResultForPatientUrl" value="http://${rws.ipAndPort}/rws-service/rws/cort/getContResultForPatient"/>
         <property name="PatientGroupCondition" value="http://${rws.ipAndPort}/rws-service/rws/cort/getPatientGroupCondition"/>
         <property name="ResearchVariableUrl" value="http://${rws.ipAndPort}/rws-service/rws/cort/getResearchVariable"/>

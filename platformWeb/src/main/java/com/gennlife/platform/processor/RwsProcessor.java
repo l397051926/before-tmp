@@ -726,4 +726,15 @@ public class RwsProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String deleteResearchVariable(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getDeleteResearchVariable();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("删除研究变量 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }
