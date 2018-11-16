@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import net.minidev.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -67,6 +68,27 @@ public class AuthorityUtil {
             return param;
         }
 
+        //从request域中获取当前用户
+        Object object = paramRe.getAttribute("currentUser");
+        if (object == null) {
+            logger.error("paramRe里面无currentUser");
+            return ParamUtils.errorSessionLosParam();
+        } else {
+            if (paramElement.isJsonObject()) {
+                JsonObject paramObj = paramElement.getAsJsonObject();
+                return addRolesToParam(paramRe, paramObj);
+            } else {
+                return paramElement.isJsonArray() ? gson.toJson(paramElement) : null;
+            }
+        }
+    }
+
+    public static String addTreatedAuthority(HttpServletRequest paramRe,JsonElement paramElement) {
+        //从request请求中获取传送的实体内容
+        String param = ParamUtils.getParam(paramRe);
+        if(param.contains("crfId")){
+            return param;
+        }
         //从request域中获取当前用户
         Object object = paramRe.getAttribute("currentUser");
         if (object == null) {

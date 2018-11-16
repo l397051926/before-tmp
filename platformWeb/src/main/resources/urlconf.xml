@@ -254,5 +254,7 @@
         <property name="groupAggregation" value="http://${rws.ipAndPort}/rws-service/rws/patientGroup/groupAggregation"/>
         <property name="checkName" value="http://${rws.ipAndPort}/rws-service/rws/project/checkName"/>
         <property name="groupParentData" value="http://${rws.ipAndPort}/rws-service/rws/patientGroup/getGroupParentData"/>
+        <property name="allResearchVariable" value="http://${rws.ipAndPort}/rws-service/rws/cort/getAllResearchVariable"/>
+        <property name="saveResearchVariable" value="http://${rws.ipAndPort}/rws-service/rws/cort/saveResearchVariable"/>
     </bean>
 </beans>

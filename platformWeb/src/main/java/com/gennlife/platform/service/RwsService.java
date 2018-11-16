@@ -52,6 +52,9 @@ public class RwsService implements RwsServiceImpl {
                 }
             }
             logger.info("dataSource: "+dataSource);
+            if(StringUtils.isEmpty(crfId)){
+                crfId = "EMR";
+            }
             paramObj.addProperty("crfName",crfName);
             paramObj.addProperty("crfId",crfId);
 

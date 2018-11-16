@@ -43,7 +43,7 @@ public class RwsController {
             if (paramsObj.has("sid")) {
                 sid = paramsObj.get("sid").getAsString();
             }
-            String paramNew = AuthorityUtil.addTreatedAuthority(paramRe);
+            String paramNew = AuthorityUtil.addTreatedAuthority(paramRe,paramsObj);
             JsonObject paramObj = (JsonObject) jsonParser.parse(paramNew);
             paramObj.addProperty("sid", sid);
 
@@ -437,6 +437,24 @@ public class RwsController {
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("获取研究变量参数 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+    @RequestMapping(value = "/cort/getAllResearchVariable", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getAllResearchVariable(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("获取全部研究变量参数 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.getAllResearchVariable(paramObj);
+        } catch (Exception e) {
+            logger.error("获取全部研究变量参数 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取全部研究变量参数 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
@@ -1154,6 +1172,24 @@ public class RwsController {
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("获取分组要筛选的数据 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+    @RequestMapping(value = "/cort/saveResearchVariable", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String saveResearchVariable(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("获取分组要筛选的数据 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.saveResearchVariable(paramObj);
+        } catch (Exception e) {
+            logger.error("保存研究变量用户条件 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("保存研究变量用户条件 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 

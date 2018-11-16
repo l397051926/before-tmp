@@ -552,6 +552,8 @@ public class URLBean {
     private String groupAggregation = null;
     private String checkName = null;
     private String groupParentData = null;
+    private String allResearchVariable = null;
+    private String saveResearchVariable = null;
     private String deleteResearchVariable = null;
 
     public String getDeleteResearchVariable() {
@@ -560,6 +562,22 @@ public class URLBean {
 
     public void setDeleteResearchVariable(String deleteResearchVariable) {
         this.deleteResearchVariable = deleteResearchVariable;
+    }
+
+    public String getSaveResearchVariable() {
+        return saveResearchVariable;
+    }
+
+    public void setSaveResearchVariable(String saveResearchVariable) {
+        this.saveResearchVariable = saveResearchVariable;
+    }
+
+    public String getAllResearchVariable() {
+        return allResearchVariable;
+    }
+
+    public void setAllResearchVariable(String allResearchVariable) {
+        this.allResearchVariable = allResearchVariable;
     }
 
     public String getGroupParentData() {
