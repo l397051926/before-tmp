@@ -1193,7 +1193,7 @@ public class RwsController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/cort/patientGroup/deleteResearchVariable", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/cort/deleteResearchVariable", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String deleteResearchVariable(HttpServletRequest paramRe) {
