@@ -102,7 +102,7 @@ public interface SyUserMapper {
      * @param orgID
      * @return
      */
-    List<User> searchUsersByOrgID(@Param("skey") String key, @Param("offset") int offset, @Param("limit") int limit, @Param("orgID") String orgID);
+    List<User> searchUsersByOrgID(@Param("skey") String key, @Param("offset") int offset, @Param("limit") int limit, @Param("orgID") String orgID,@Param("uids") List<String> uids);
 
     /**
      * 按照科室搜索计数

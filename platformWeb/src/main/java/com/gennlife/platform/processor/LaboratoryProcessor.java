@@ -6,9 +6,11 @@ import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.dao.OrgMapper;
 import com.gennlife.platform.dao.SyUserMapper;
 import com.gennlife.platform.model.*;
+import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.*;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import net.minidev.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -626,9 +628,13 @@ public class LaboratoryProcessor {
         String limitStr = null;
         Integer offset = null;
         Integer limit = null;
+        String projectId = null;
         try {
             labID = paramObj.get("labID").getAsString();
             key = paramObj.get("key").getAsString();
+            if(paramObj.has("projectId")){
+                projectId = paramObj.get("projectId").getAsString();
+            }
             if (paramObj.has("limit")) {
                 limitStr = paramObj.get("limit").getAsString();
                 int[] ls = ParamUtils.parseLimit(limitStr);
@@ -638,12 +644,31 @@ public class LaboratoryProcessor {
         } catch (Exception e) {
             return ParamUtils.errorParam("参数错误");
         }
+
+        /*获取 rws 的用户列表*/
+        List<String> uids = null;
+        if(!StringUtils.isEmpty(projectId)){
+            uids = new ArrayList<>();
+            JSONObject param = new JSONObject();
+            param.put("page",1);
+            param.put("pageSize",Integer.MAX_VALUE-1);
+            param.put("projectId",projectId);
+//            String url = ConfigurationService.getUrlBean().getProjectMemberList();
+            String url = "http://10.0.5.94:9001/rws-service/rws/projectMember/getProjectMemberList";
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(param));
+            JsonObject object = jsonParser.parse(result).getAsJsonObject();
+            JsonObject data = object.getAsJsonObject("data");
+            JsonArray  value = data.getAsJsonArray("value");
+            for (JsonElement element : value){
+                uids.add(element.getAsJsonObject().get("uid").getAsString());
+            }
+        }
         List<User> users = null;
         ResultBean re = new ResultBean();
         re.setCode(1);
         if ("".equals(labID)) {
             if (offset != null && limit != null) {
-                users = AllDao.getInstance().getSyUserDao().searchUsersByOrgID(key, offset, limit, user.getOrgID());
+                users = AllDao.getInstance().getSyUserDao().searchUsersByOrgID(key, offset, limit, user.getOrgID(),uids);
 
             } else {
                 users = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDNoLimit(key, user.getOrgID());

@@ -267,6 +267,12 @@
         (uname LIKE CONCAT(CONCAT('%', #{skey}), '%') OR unumber LIKE CONCAT(CONCAT('%', #{skey}), '%'))
         AND
         orgID = #{orgID}
+        <if test="uids != null">
+            AND uid NOT IN
+            <foreach collection="uids" item="item" index="index" open="(" separator="," close=")">
+                #{item,jdbcType=VARCHAR}
+            </foreach>
+        </if>
         LIMIT #{offset},#{limit}
     </select>
 
