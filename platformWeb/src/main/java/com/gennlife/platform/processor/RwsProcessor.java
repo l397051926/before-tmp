@@ -39,7 +39,7 @@ public class RwsProcessor {
     private RwsService rwsService;
 
     //搜索结果导出到RWS项目空间
-    public String PreLiminary(JsonObject paramObj){
+    public String PreLiminary(JsonObject paramObj) {
         String result = rwsService.PreLiminary(paramObj);
         return result;
     }
@@ -58,10 +58,10 @@ public class RwsProcessor {
     public String PreFindForProjectData(JsonObject paramObj) {
         String crfId = null;
         try {
-            if(paramObj.has("crfId")){
+            if (paramObj.has("crfId")) {
                 crfId = paramObj.get("crfId").getAsString();
                 ReadConditionByRedis.getCrfMapping(crfId);
-                logger.info("crf 映射 rws 映射成功！！！"+crfId);
+                logger.info("crf 映射 rws 映射成功！！！" + crfId);
             }
             String url = ConfigurationService.getUrlBean().getPreFindForProjectData();
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
@@ -109,11 +109,11 @@ public class RwsProcessor {
 
         try {
             JsonArray tmpJsonArray = new JsonArray();
-            if(paramObj.has("crfId")){
+            if (paramObj.has("crfId")) {
                 String crfId = paramObj.get("crfId").getAsString();
-                if("EMR".equals(crfId) || StringUtils.isEmpty(crfId) ){
+                if ("EMR".equals(crfId) || StringUtils.isEmpty(crfId)) {
                     tmpJsonArray = ReadConditionByRedis.getEmrRws();
-                }else {
+                } else {
                     tmpJsonArray = ReadConditionByRedis.getCrfRws(crfId);
                 }
             }else{
@@ -121,7 +121,7 @@ public class RwsProcessor {
             }
             JsonObject tmpObject = (JsonObject) tmpJsonArray.get(0);
             JsonObject orderObject = tmpObject.get("resultOrderKey").getAsJsonObject();
-            paramObj.add("resultOrderKey",orderObject);
+            paramObj.add("resultOrderKey", orderObject);
             //返回排序json
             String url = ConfigurationService.getUrlBean().getSaveOrSearchActive();
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
@@ -222,10 +222,10 @@ public class RwsProcessor {
 
     public String getRwsEventConfig(JsonObject paramObj) {
         ResultBean resultBean = new ResultBean();
-        String crfId= null;
+        String crfId = null;
         JsonArray resultArray = null;
         try {
-            if(paramObj.has("crfId")){
+            if (paramObj.has("crfId")) {
                 crfId = paramObj.get("crfId").getAsString();
             }
             if(StringUtils.isEmpty(crfId) || "EMR".equals(crfId)){
@@ -233,9 +233,9 @@ public class RwsProcessor {
             }else {
                 resultArray = ReadConditionByRedis.getCrfRws(crfId);
             }
-            JsonObject jsonObject= (JsonObject) resultArray.get(0);
+            JsonObject jsonObject = (JsonObject) resultArray.get(0);
             jsonObject.remove("resultOrderKey");
-            JsonArray  array = new JsonArray();
+            JsonArray array = new JsonArray();
             array.add(jsonObject);
             resultBean.setCode(1);
             resultBean.setData(resultArray);
@@ -248,9 +248,9 @@ public class RwsProcessor {
 
     public String getLoadSearchDefinedEventListConfig(JsonObject paramObj) {
         ResultBean resultBean = new ResultBean();
-        String crfId= null;
+        String crfId = null;
         try {
-            if(paramObj.has("crfId")){
+            if (paramObj.has("crfId")) {
                 crfId = paramObj.get("crfId").getAsString();
             }
             String data = ReadConditionByRedis.getLoadSearchDefinedEventListConfig(crfId);
@@ -275,44 +275,488 @@ public class RwsProcessor {
         }
     }
 
-
-    /*        int counter = 0;
+    public String getContResult(JsonObject paramObj) {
         try {
-            String projectId = paramObj.get("projectId").getAsString();
-            if (paramObj.has("crfId")){
-                String crfId = paramObj.get("crfId").getAsString();
-                String dataSource = "单病种-"+ArkService.getDiseaseName(crfId);
-                counter = insertProCrfId(projectId,dataSource,crfId);
-            } else {
-                counter = insertProCrfId(projectId,"EMR","");
-            }
-
-            String url = ConfigurationService.getUrlBean().getPreLiminaryUrl();
+            String url = ConfigurationService.getUrlBean().getContResultUrl();
             String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
-
-            Map<String, Object> info = new HashMap<String, Object>();
-            info.put("counter", counter);
-            info.put("result",result);
-            ResultBean resultBean = new ResultBean();
-            resultBean.setCode(1);
-            resultBean.setInfo(info);
-            return gson.toJson(resultBean);
+            return result;
         } catch (Exception e) {
-            logger.error("请求发生异常", e);
+            logger.error("获取图形列表 ", e);
             return ParamUtils.errorParam("请求发生异常");
-        }*/
+        }
+    }
 
-    //如果是crf项目，需要写入p_project的crfId字段中，然后存入对应名字到datasource
-/*    public int insertProCrfId(String projectID,String dataSource,String crfId){
-        Map<String,String> map = new HashMap<>();
-        map.put("projectID",projectID);
-        map.put("dataSource",dataSource);
-        map.put("crfId",crfId);
-        long start = System.currentTimeMillis();
-        int count = AllDao.getInstance().getProjectDao().insertProCrfId(map);
+    public String getContResultForPatient(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getContResultForPatientUrl();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取计算结果列表 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 
-        long end = System.currentTimeMillis();
-        logger.debug("insertProCrfId(map) mysql耗时"+(end-start)+"ms");
-        return count;
-    }*/
+    public String getPatientGroupCondition(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getPatientGroupCondition();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取对比分析页面搜索条件 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getResearchVariable(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getResearchVariableUrl();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取研究变量参数 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String saveGroupCondition(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getSaveGroupCondition();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("存储分组信息 对比分析页面 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String deletePatientSet(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getDeletePatientSet();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("删除患者集信息 对比分析页面 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getContrasAnalyList(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getContrasAnalyList();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取研究变量创建情况 对比分析页面 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getPatientList(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getPatientList();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取研究变量创建情况 对比分析页面 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+
+    public String getPatientSet(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getPatientSet();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取患者集信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getPatientSetList(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getPatientSetList();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("或者患者集列表 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getSearchCondition(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getSearchCondition();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取患者集搜索条件 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String savePatientSet(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getSavePatientSet();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("创建患者集信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String updatePatientSet(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getUpdatePatientSet();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("修改患者集信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getProjectByCrfId(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getProjectByCrfId();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("查看用户是否有项目 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String deleteProject(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getDeleteProject();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("删除项目信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getProject(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getProject();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取项目信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getProjectList(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getProjectList();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取项目列表信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String saveProject(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getSaveProject();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("创建项目 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String updateProject(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getUpdateProject();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("修改项目信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String deletePatientGroup(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getDeletePatientGroup();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("删除项目分组信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String exportGroupDataPatient(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getExportGroupDataPatient();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("进一步筛选患者分组信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getActiveIndexList(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getActiveIndexList();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取筛选条件 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getPatientGroup(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getPatientGroup();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取患者分组信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getPatientGroupList(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getPatientGroupList();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取患者分组列表信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getPatientListForGroup(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getPatientListForGroup();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取患者列表 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String insertGroupDataPatient(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getInsertGroupDataPatient();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("进一步筛选患者分组信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String saveActiveIndex(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getSaveActiveIndex();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("保存分组详情筛选条件 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String saveGroupAndPatient(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getSaveGroupAndPatient();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("拖拽 添加保存患者分组信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String savePatientGroup(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getSavePatientGroup();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("新增患者分组信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String updatePatientGroup(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getUpdatePatientGroup();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("编辑项目分组信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getOperLogsList(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getOperLogsList();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取项目日志信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String deleteProjectMember(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getDeleteProjectMember();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("删除项目成员信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getProjectMember(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getProjectMember();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取项目成员信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getProjectMemberList(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getProjectMemberList();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取项目成员列表信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String saveProjectMember(JsonObject paramObj) {
+         try {
+            String url = ConfigurationService.getUrlBean().getSaveProjectMember();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("创建项目成员信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String updateProjectMember(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getUpdateProjectMember();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("修改项目成员信息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getScientific() {
+        try {
+            String url = ConfigurationService.getUrlBean().getScientific();
+            String result = HttpRequestUtils.httpGet(url);
+            return result;
+        } catch (Exception e) {
+            logger.error("获取科研类型 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getGroupTypeList(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getGroupTypeList();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取分组类型列表 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String groupAggregation(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getGroupAggregation();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("分组圆形统计图展示 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String checkName(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getCheckName();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("验证名字是否重复 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getGroupParentData(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getGroupParentData();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("分区筛选数据展示 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String getAllResearchVariable(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getAllResearchVariable();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取全部研究变量 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String saveResearchVariable(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getSaveResearchVariable();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("保存研究变量接口 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String deleteResearchVariable(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getDeleteResearchVariable();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("删除研究变量 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }
