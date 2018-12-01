@@ -260,5 +260,6 @@
         <property name="groupParentData" value="http://${rws.ipAndPort}/rws-service/rws/patientGroup/getGroupParentData"/>
         <property name="allResearchVariable" value="http://${rws.ipAndPort}/rws-service/rws/cort/getAllResearchVariable"/>
         <property name="saveResearchVariable" value="http://${rws.ipAndPort}/rws-service/rws/cort/saveResearchVariable"/>
+        <property name="projectAggregation" value="http://${rws.ipAndPort}/rws-service/rws/project/projectAggregation"/>
     </bean>
 </beans>

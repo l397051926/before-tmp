@@ -559,6 +559,15 @@ public class URLBean {
     private String allResearchVariable = null;
     private String saveResearchVariable = null;
     private String deleteResearchVariable = null;
+    private String projectAggregation = null;
+
+    public String getProjectAggregation() {
+        return projectAggregation;
+    }
+
+    public void setProjectAggregation(String projectAggregation) {
+        this.projectAggregation = projectAggregation;
+    }
 
     public String getDeleteResearchVariable() {
         return deleteResearchVariable;
