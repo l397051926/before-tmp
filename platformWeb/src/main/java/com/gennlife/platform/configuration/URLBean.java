@@ -560,6 +560,15 @@ public class URLBean {
     private String saveResearchVariable = null;
     private String deleteResearchVariable = null;
     private String projectAggregation = null;
+    private String projectPowerExamine = null;
+
+    public String getProjectPowerExamine() {
+        return projectPowerExamine;
+    }
+
+    public void setProjectPowerExamine(String projectPowerExamine) {
+        this.projectPowerExamine = projectPowerExamine;
+    }
 
     public String getProjectAggregation() {
         return projectAggregation;

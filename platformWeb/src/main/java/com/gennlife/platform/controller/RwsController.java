@@ -1231,6 +1231,24 @@ public class RwsController {
         return resultStr;
     }
 
+    @RequestMapping(value = "/project/projectPowerExamine", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String projectPowerExamine(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("获取项目统计列表 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.projectPowerExamine(paramObj);
+        } catch (Exception e) {
+            logger.error("权限校验 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("权限校验 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 
 
 }

@@ -770,4 +770,15 @@ public class RwsProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String projectPowerExamine(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getProjectPowerExamine();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("权限校验 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }
