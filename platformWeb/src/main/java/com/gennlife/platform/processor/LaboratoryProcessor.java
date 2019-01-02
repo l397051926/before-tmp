@@ -653,8 +653,8 @@ public class LaboratoryProcessor {
             param.put("page",1);
             param.put("pageSize",Integer.MAX_VALUE-1);
             param.put("projectId",projectId);
-//            String url = ConfigurationService.getUrlBean().getProjectMemberList();
-            String url = "http://10.0.5.94:9001/rws-service/rws/projectMember/getProjectMemberList";
+            String url = ConfigurationService.getUrlBean().getProjectMemberList();
+//            String url = "http://10.0.5.94:9001/rws-service/rws/projectMember/getProjectMemberList";
             String result = HttpRequestUtils.httpPost(url, gson.toJson(param));
             JsonObject object = jsonParser.parse(result).getAsJsonObject();
             JsonObject data = object.getAsJsonObject("data");
