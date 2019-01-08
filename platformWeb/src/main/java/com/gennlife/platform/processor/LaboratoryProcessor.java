@@ -1987,7 +1987,7 @@ public class LaboratoryProcessor {
         } else {
             users = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDNoLimitRws(key, user.getOrgID(),uidList);
         }
-        Long counter = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDCounter(key, user.getOrgID());
+        Long counter = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDCounter(key, user.getOrgID(),null);
         Map<String, Object> info = new HashMap<>();
         info.put("count", counter);
         re.setInfo(info);
