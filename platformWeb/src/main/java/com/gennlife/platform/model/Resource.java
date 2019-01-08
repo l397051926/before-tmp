@@ -281,4 +281,13 @@ public class Resource implements Comparable<Resource> {
     }
 
 
+    public static Resource getLabId(User user) {
+        Resource resource = new Resource();
+        resource.setSid(user.getLabID());
+        resource.setSlab_name(user.getLab_name());
+        resource.setSorgID(user.getOrgID());
+        resource.setHas_search("有");
+        resource.setHas_searchExport("有");
+        return resource;
+    }
 }

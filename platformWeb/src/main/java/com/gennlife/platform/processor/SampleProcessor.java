@@ -231,7 +231,9 @@ public class SampleProcessor {
         try {
             if (paramObj.has("crf_id") && paramObj.get("crf_id").isJsonPrimitive()) {
                 crf_id = paramObj.get("crf_id").getAsString();
-            } else return ParamUtils.errorParam("crf_id 参数错误");
+            } else {
+                return ParamUtils.errorParam("crf_id 参数错误");
+            }
         } catch (Exception e) {
             logger.error("", e);
             return ParamUtils.errorParam("参数错误");
@@ -439,6 +441,7 @@ public class SampleProcessor {
     public String importSampleCheck(JsonObject jsonObject, User user) {
         try {
             JsonObject query = jsonObject.get("query").getAsJsonObject();
+            /*----  判定 是否有 crf 导出权限*/
             if(query.has("crfId")){
                 ResultBean resultBean = new ResultBean();
                 JsonObject data = new JsonObject();
@@ -449,18 +452,17 @@ public class SampleProcessor {
                 resultBean.setData(data);
                 return gson.toJson(resultBean);
             }
+            /*处理权限吧*/
             JsonObject power = jsonObject.getAsJsonObject("power");
             if(jsonObject.has("groups")){
                 JsonArray groups = jsonObject.get("groups").getAsJsonArray();
                 query.add("groups", groups);
             }
-
-
             query.add("power", power);
             logger.info("原始搜索条件=" + gson.toJson(query));
 
             boolean next = true; // 表示全成功 执行下一步 导出任务
-            boolean export = false;
+            boolean export = false; // 表示给出提示
             int sub = 0; // 没有导出权限病例个数
              if (query.has("sid")) {
                 next = false;
@@ -474,7 +476,8 @@ public class SampleProcessor {
                     }
                 }
             } else {
-                 String withSid = CaseProcessor.transformSidForImport(gson.toJson(query), user);
+//                 String withSid = CaseProcessor.transformSidForImport(gson.toJson(query), user);
+                 String withSid= CaseProcessor.getRelallyPower(gson.toJson(query),user);
                  JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
                  if (queryNew.has("code") && queryNew.get("code").getAsInt() == 0) {
                      return gson.toJson(queryNew);

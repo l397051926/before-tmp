@@ -5,21 +5,15 @@ import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.dao.AllDao;
-import com.gennlife.platform.model.Lab;
-import com.gennlife.platform.model.LabResource;
-import com.gennlife.platform.model.Power;
-import com.gennlife.platform.model.Resource;
-import com.gennlife.platform.model.User;
+import com.gennlife.platform.model.*;
 import com.gennlife.platform.parse.CaseSearchParser;
 import com.gennlife.platform.parse.CaseSuggestParser;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.*;
 import com.google.gson.*;
-import net.minidev.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
-import sun.text.resources.cldr.ia.FormatData_ia;
 
 import java.util.*;
 
@@ -1175,4 +1169,70 @@ public class CaseProcessor {
     }
 
 
+    public static String getRelallyPower(String param, User user) {
+        JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+        paramObj.remove("groups");
+        JsonObject powers = paramObj.getAsJsonObject("power");
+        Power power = user.getPower();
+        Set<Resource> hasSearch =   power.getHas_search();
+        hasSearch.add(Resource.getLabId(user));
+        Set<Resource> hasExport = power.getHas_searchExport();
+        hasExport.add(Resource.getLabId(user));
+        Set<SearchPower> hasSearchPower = getAllSearchPower(hasSearch,user.getOrgID());
+        Set<SearchPower> hasExportPower = getAllSearchPower(hasExport,user.getOrgID());
+        JsonObject object = new JsonObject();
+        powers.add("has_search", gson.toJsonTree(hasSearchPower));
+        powers.add("has_searchExport", gson.toJsonTree(hasExportPower));
+        paramObj.add("power", powers);
+        logger.info("通过sid转化后，搜索请求参数 = " + gson.toJson(paramObj));
+            return gson.toJson(paramObj);
+    }
+
+    private static Set<SearchPower> getAllSearchPower(Set<Resource> hasSearch,String orgId) {
+        Set<SearchPower> searchPowers = new HashSet<>();
+        Set<String> hasRepetition = new HashSet<>();
+        for (Resource resource : hasSearch){
+            if(resource.getSid().equals(orgId)){
+                searchPowers.clear();
+                searchPowers.add(SearchPower.getAllSearchPower());
+                break;
+            }
+            if(ALL_SID.equals(resource.getSid())){
+                searchPowers.clear();
+                searchPowers.add(SearchPower.getAllSearchPower());
+                break;
+            }
+            transforSearchPower(searchPowers,hasRepetition,resource,orgId);
+        }
+        return searchPowers;
+    }
+
+    private static void transforSearchPower(Set<SearchPower> searchPowers, Set<String> hasRepetition, Resource resource,String orgId) {
+        if(hasRepetition.contains(resource.getSlab_name())){
+            return;
+        }
+        SearchPower searchPower = new SearchPower(resource.getSid(),resource.getSlab_name(),SEARCH_POWER_HAVE);
+        searchPowers.add(searchPower);
+        hasRepetition.add(resource.getSlab_name());
+        List<Lab> labs = AllDao.getInstance().getOrgDao().getLabsByparentID(orgId,resource.getSid());
+        for (Lab lab : labs){
+            transforSearchPowerLabs(searchPowers,hasRepetition,lab);
+        }
+    }
+
+    private static void transforSearchPowerLabs(Set<SearchPower>  searchPowers, Set<String> hasRepetition, Lab lab) {
+        if(hasRepetition.contains(lab.getLab_name())){
+            return;
+        }
+        SearchPower searchPower = new SearchPower(lab.getLabID(),lab.getLab_name(),SEARCH_POWER_HAVE);
+        searchPowers.add(searchPower);
+        hasRepetition.add(lab.getLab_name());
+        List<Lab> labs = AllDao.getInstance().getOrgDao().getLabsByparentID(lab.getOrgID(),lab.getLabID());
+        for (Lab tmpLab : labs){
+            transforSearchPowerLabs(searchPowers,hasRepetition,tmpLab);
+        }
+    }
+
+    private static final String SEARCH_POWER_HAVE = "有";
+    private static final String ALL_SID = "hospital_all";
 }
