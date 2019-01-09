@@ -17,6 +17,12 @@ public class SearchPower {
     public SearchPower() {
     }
 
+    public SearchPower(String sid, String slab_name) {
+        this.sid = sid;
+        this.slab_name = slab_name;
+        this.has_search = POWER_HAVE;
+    }
+
     public SearchPower(String sid, String slab_name, String has_search) {
         this.sid = sid;
         this.slab_name = slab_name;

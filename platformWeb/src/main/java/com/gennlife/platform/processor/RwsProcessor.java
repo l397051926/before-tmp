@@ -3,6 +3,7 @@ package com.gennlife.platform.processor;
 import com.gennlife.platform.ReadConfig.ReadConditionByRedis;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.dao.AllDao;
+import com.gennlife.platform.model.User;
 import com.gennlife.platform.service.ArkService;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.service.RwsService;
@@ -39,8 +40,8 @@ public class RwsProcessor {
     private RwsService rwsService;
 
     //搜索结果导出到RWS项目空间
-    public String PreLiminary(JsonObject paramObj) {
-        String result = rwsService.PreLiminary(paramObj);
+    public String PreLiminary(JsonObject paramObj, User user) {
+        String result = rwsService.PreLiminary(paramObj,user);
         return result;
     }
 

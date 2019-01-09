@@ -1,6 +1,8 @@
 package com.gennlife.platform.service;
 
+import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.dao.ProjectMapper;
+import com.gennlife.platform.model.*;
 import com.gennlife.platform.processor.RwsProcessor;
 import com.gennlife.platform.util.ConfigUtils;
 import com.gennlife.platform.util.GsonUtil;
@@ -15,8 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class RwsService implements RwsServiceImpl {
@@ -28,11 +29,28 @@ public class RwsService implements RwsServiceImpl {
     private ProjectMapper projectMapper;
 
     @Override
-    public String PreLiminary(JsonObject paramObj) {
+    public String PreLiminary(JsonObject paramObj,User user) {
         int counter;
         String result = null;
         JsonObject resultObj = new JsonObject();
         boolean flag = paramObj.has("crfId");
+        //处理power
+        String sid = "";
+        Set<SearchPower> searchPowers = new HashSet<>();
+        if(paramObj.has("sid")){
+            sid = paramObj.get("sid").getAsString();
+            Lab lab = AllDao.getInstance().getOrgDao().getLabBylabID(sid);
+            SearchPower searchPower = new SearchPower(lab.getLabID(),lab.getLab_name());
+            searchPowers.add(searchPower);
+        }else {
+            Power power = user.getPower();
+            Set<Resource> hasExport = power.getHas_searchExport();
+            for (Resource resource : hasExport){
+                SearchPower searchPower = new SearchPower(resource.getSid(),resource.getSlab_name());
+                searchPowers.add(searchPower);
+            }
+        }
+        paramObj.add("power",gson.toJsonTree(searchPowers));
         try {
             String crfName = "", crfId = "";
             String projectId = paramObj.get("projectId").getAsString();

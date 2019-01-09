@@ -37,18 +37,11 @@ public class RwsController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-//            String paramNew = AuthorityUtil.addSearchCaseAuthority(paramRe);
-            String sid = "";
-            JsonObject paramsObj = (JsonObject) jsonParser.parse(ParamUtils.getParam(paramRe));
-            if (paramsObj.has("sid")) {
-                sid = paramsObj.get("sid").getAsString();
-            }
-            String paramNew = AuthorityUtil.addTreatedAuthority(paramRe,paramsObj);
-            JsonObject paramObj = (JsonObject) jsonParser.parse(paramNew);
-            paramObj.addProperty("sid", sid);
-
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            User user = (User) paramRe.getAttribute("currentUser");
             logger.info("搜索结果导出到RWS项目空间 get方式 参数=" + gson.toJson(paramObj));
-            resultStr = processor.PreLiminary(paramObj);
+            resultStr = processor.PreLiminary(paramObj,user);
         } catch (Exception e) {
             logger.error("搜索结果导出到RWS项目空间", e);
             resultStr = ParamUtils.errorParam("出现异常");
