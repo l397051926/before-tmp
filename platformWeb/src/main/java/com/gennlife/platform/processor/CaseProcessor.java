@@ -648,7 +648,7 @@ public class CaseProcessor {
                 List<Resource> list = new LinkedList<>();
                 list.add(resource);
                 List<Resource> list1 = new LinkedList<>();
-                list.add(resource1);
+                list1.add(resource1);
                 power.setHas_search(list);
                 power.setHas_searchExport(list1);
                 paramObj.remove("power");
