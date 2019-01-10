@@ -467,7 +467,7 @@ public class SampleProcessor {
                 String querySid = query.get("sid").getAsString();
                 for (JsonElement ele : power.getAsJsonArray("has_searchExport")) {
                     JsonObject obj = ele.getAsJsonObject();
-                    if (obj.get("sid").getAsString().equals(querySid)) {
+                    if (obj.get("sid").getAsString().equals(querySid) || "hospital_all".equals(obj.get("sid").getAsString()) ) {
                         next = true;
                         export = true;
                         break;
