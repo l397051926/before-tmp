@@ -39,8 +39,46 @@
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"isSrchItem": true,
 						"name": "化疗史"
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.medical_history.radiotherapy_history",
+							"srchFieldName": "就诊.病史.放疗史"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>放疗史</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.medical_history.autologous_hsct_hx",
+							"srchFieldName": "就诊.病史.自体造血干细胞移植史"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>自体造血干细胞移植史</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.medical_history.drug_allergy_hx",
+							"srchFieldName": "就诊.病史.药物过敏史"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>药物过敏史</span>",
+						"open": true
 					}
 				],
 				"data": {
@@ -66,6 +104,57 @@
 						"isSrchItem": true,
 						"name": "<span class='u-noFoldIcon-treeNode'>生命体征</span>",
 						"open": true
+					},
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.check.physical_examination.pe_skin_mucosa",
+									"srchFieldName": "就诊.查体.体格检查.皮肤黏膜"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>皮肤黏膜</span>",
+								"open": true
+							},
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.check.physical_examination.pe_spn_xtrmt",
+									"srchFieldName": "就诊.查体.体格检查.脊柱四肢"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>脊柱四肢</span>",
+								"open": true
+							},
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.check.physical_examination.pe_ns",
+									"srchFieldName": "就诊.查体.体格检查.神经系统"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>神经系统</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.check.physical_examination",
+							"srchFieldName": "就诊.查体.体格检查"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "体格检查"
 					}
 				],
 				"data": {
@@ -75,7 +164,6 @@
 				},
 				"iconClose": "image/tnode-folder-close.png",
 				"iconOpen": "image/tnode-folder-open.png",
-				"isSrchItem": true,
 				"name": "查体"
 			},
 			{
@@ -263,7 +351,6 @@
 						"open": true
 					}
 				],
-				"collapse": false,
 				"data": {
 					"dataType": "string",
 					"indexFieldName": "visits.test",
@@ -275,6 +362,44 @@
 			},
 			{
 				"children": [
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.inspect.cardiac_examination.ucg",
+									"srchFieldName": "就诊.检查.心脏检查.心脏彩超"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>心脏彩超</span>",
+								"open": true
+							},
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.inspect.cardiac_examination.12lead_ecg",
+									"srchFieldName": "就诊.检查.心脏检查.12导联心电图"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>12导联心电图</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.inspect.cardiac_examination",
+							"srchFieldName": "就诊.检查.心脏检查"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "心脏检查"
+					},
 					{
 						"children": [
 							{
@@ -311,7 +436,6 @@
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"isSrchItem": true,
 						"name": "病理诊断报告"
 					},
 					{
@@ -337,8 +461,20 @@
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"isSrchItem": true,
 						"name": "基因异常检查报告"
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.inspect.bone_marrow_ab",
+							"srchFieldName": "就诊.检查.骨髓穿刺活检"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>骨髓穿刺活检</span>",
+						"open": true
 					}
 				],
 				"data": {
@@ -363,6 +499,19 @@
 						"icon": "image/tnode-docs.png",
 						"isSrchItem": true,
 						"name": "<span class='u-noFoldIcon-treeNode'>肿瘤诊断-淋巴瘤</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.diagnosis.tumor_diagnosis",
+							"srchFieldName": "就诊.诊断.肿瘤诊断-其他"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>肿瘤诊断-其他</span>",
 						"open": true
 					},
 					{
@@ -407,6 +556,19 @@
 						"collapse": false,
 						"data": {
 							"dataType": "string",
+							"indexFieldName": "visits.treatment.medication_information",
+							"srchFieldName": "就诊.治疗.化疗药用药信息"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>化疗药用药信息</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
 							"indexFieldName": "visits.treatment.chemo_sum",
 							"srchFieldName": "就诊.治疗.化疗小结"
 						},
@@ -424,7 +586,6 @@
 				},
 				"iconClose": "image/tnode-folder-close.png",
 				"iconOpen": "image/tnode-folder-open.png",
-				"isSrchItem": true,
 				"name": "治疗"
 			},
 			{
@@ -452,7 +613,6 @@
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"isSrchItem": true,
 						"name": "IPS评分"
 					},
 					{
@@ -478,7 +638,6 @@
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"isSrchItem": true,
 						"name": "IPI"
 					},
 					{
@@ -504,7 +663,6 @@
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"isSrchItem": true,
 						"name": "aaIPI"
 					},
 					{
@@ -543,7 +701,6 @@
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"isSrchItem": true,
 						"name": "NCCN-IPI"
 					},
 					{
@@ -569,7 +726,6 @@
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"isSrchItem": true,
 						"name": "FLIPI-1"
 					},
 					{
@@ -595,7 +751,6 @@
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"isSrchItem": true,
 						"name": "FLIPI-2"
 					},
 					{
@@ -621,7 +776,6 @@
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"isSrchItem": true,
 						"name": "MIPI"
 					},
 					{
@@ -647,7 +801,6 @@
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"isSrchItem": true,
 						"name": "s-MIPI"
 					},
 					{
@@ -673,7 +826,6 @@
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"isSrchItem": true,
 						"name": "Rai分期"
 					},
 					{
@@ -699,7 +851,6 @@
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"isSrchItem": true,
 						"name": "Binet分期"
 					},
 					{
@@ -725,7 +876,6 @@
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"isSrchItem": true,
 						"name": "CLL预后积分"
 					},
 					{
@@ -751,7 +901,6 @@
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"isSrchItem": true,
 						"name": "IELSG评分"
 					},
 					{
@@ -777,7 +926,6 @@
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"isSrchItem": true,
 						"name": "DSHNHL中枢复发预测模型"
 					}
 				],
@@ -825,74 +973,76 @@
 		"iconOpen": "image/tnode-folder-open.png",
 		"name": "就诊",
 		"resultOrderKey": {
-			"patient_info.survival_status": "patient_info.survival_status.LAST_VISIT_DATE",
-			"visits.diagnosis.tumor_diagnosis_l": "visits.diagnosis.tumor_diagnosis_l.VISIT_START_TIME",
-			"visits.prog_indx.flipi1.flipi1_rf": "visits.prog_indx.flipi1.flipi1_rf.SCORE_DATE_FLIPI1",
-			"visits.test.liver_and_kidney_function": "visits.test.liver_and_kidney_function.LKF_TEST_DATE",
-			"visits.prog_indx.aaipi": "visits.prog_indx.aaipi.aaipi_rf.SCORE_DATE_AAIPI",
-			"visits.visitinfo": "visits.visitinfo.VISIT_START_TIME",
-			"visits.surv_stat.survival_situation": "visits.surv_stat.survival_situation.VISIT_DISCHARGE_TIME",
-			"patient_info.initial_dx.id_pi_info": "patient_info.initial_dx.id_pi_info.ID_DATE",
-			"patient_info.id_pathology": "patient_info.id_pathology.ID_PATH_REPORT_TIME",
-			"visits.inspect.gene_abnml_report.gene_chrom_abnml": "visits.inspect.gene_abnml_report.gene_chrom_abnml.GAR_REPORT_TIME",
-			"visits.inspect.path_report.ihc_bg": "visits.inspect.path_report.ihc_bg.PATH_REPORT_TIME",
-			"visits.test.hbv_immunology_quant": "visits.test.hbv_immunology_quant.HBVI_QUANT_TEST_DATE",
-			"visits.inspect.path_report": "visits.inspect.path_report.ihc_bg.PATH_REPORT_TIME",
-			"visits.check.vital_signs": "visits.check.vital_signs.PE_DATE",
-			"visits.prog_indx.smipi": "visits.prog_indx.smipi.smipi_f.SCORE_DATE_SMIPI",
-			"visits.prog_indx.binet": "visits.prog_indx.binet.SCORE_DATE_BINET",
-			"visits.test.ebv_dna": "visits.test.ebv_dna.EBVD_TEST_DATE",
-			"visits.prog_indx.nccnipi.nccn_ipi_f": "visits.prog_indx.nccnipi.nccn_ipi_f.SCORE_DATE_NCCNIPI",
-			"visits.prog_indx.ips_score.scoring_factors": "visits.prog_indx.ips_score.scoring_factors.SCORE_DATE_IPS",
-			"visits.prog_indx.aaipi.aaipi_rf": "visits.prog_indx.aaipi.aaipi_rf.SCORE_DATE_AAIPI",
-			"visits.test.thyroid_function": "visits.test.thyroid_function.TF_TEST_DATE",
-			"visits.prog_indx.smipi.smipi_f": "visits.prog_indx.smipi.smipi_f.SCORE_DATE_SMIPI",
-			"visits.prog_indx.nccnipi": "visits.prog_indx.nccnipi.nccn_ipi_f.SCORE_DATE_NCCNIPI",
-			"visits.prog_indx.ielsg.ielsg_f": "visits.prog_indx.ielsg.ielsg_f.SCORE_DATE_IELSG",
-			"visits.prog_indx.flipi2.flipi2_rf": "visits.prog_indx.flipi2.flipi2_rf.SCORE_DATE_FLIPI2",
-			"patient_info.response_relapse_info.first_relapse_detail": "patient_info.response_relapse_info.first_relapse_detail.RELAPSE_DX_TIME",
-			"visits.inspect.gene_abnml_report": "visits.inspect.gene_abnml_report.gene_chrom_abnml.GAR_REPORT_TIME",
-			"visits.test.myocard_markers": "visits.test.myocard_markers.MCM_TEST_DATE",
-			"patient_info.treatment_summary.initial_ctx": "patient_info.treatment_summary.initial_ctx.IC_START_DATE",
-			"visits.test": "visits.visitinfo.VISIT_START_TIME",
-			"visits.prog_indx.ips_score": "visits.prog_indx.ips_score.scoring_factors.SCORE_DATE_IPS",
-			"visits.diagnosis.ps_info": "visits.diagnosis.ps_info.VISIT_START_TIME",
-			"visits.treatment.chemo_sum": "visits.treatment.chemo_sum.CHEMO_SUM_VISIT_DATE",
-			"patient_info.initial_dx.id_tumor_diagnosis_l": "patient_info.initial_dx.id_tumor_diagnosis_l.ID_DATE",
-			"visits.test.24h_urinary_protein": "visits.test.24h_urinary_protein.24HUP_TEST_DATE",
-			"visits.treatment": "visits.treatment.VISIT_START_TIME",
-			"visits.prog_indx.cll.cll_f": "visits.prog_indx.cll.cll_f.CORE_DATE_CLL",
-			"visits.prog_indx.ielsg": "visits.prog_indx.ielsg.ielsg_f.SCORE_DATE_IELSG",
-			"visits.test.other_virus": "visits.test.other_virus.OV_TEST_DATE",
-			"visits.prog_indx.cll": "visits.prog_indx.cll.cll_f.CORE_DATE_CLL",
-			"visits.prog_indx.ipi": "visits.prog_indx.ipi.ipi_rf.SCORE_DATE_IPI",
-			"visits.inspect.path_report.immunohistochemical_results": "visits.inspect.path_report.immunohistochemical_results.PATH_REPORT_TIME",
-			"visits.prog_indx.ripi": "visits.prog_indx.ripi.SCORE_DATE_RIPI",
-			"visits.test.coagulation_function": "visits.test.coagulation_function.CF_TEST_DATE",
-			"visits.test.blood_routine": "visits.test.blood_routine.BR_TEST_DATE",
-			"visits.prog_indx.rai": "visits.prog_indx.rai.rai_f.SCORE_DATE_RAI",
-			"visits.prog_indx.ipi.ipi_rf": "visits.prog_indx.ipi.ipi_rf.SCORE_DATE_IPI",
-			"visits.prog_indx.binet.binet_f": "visits.prog_indx.binet.binet_f.SCORE_DATE_BINET",
-			"visits.prog_indx.dshnhl.dshnhl_f": "visits.prog_indx.dshnhl.dshnhl_f.SCORE_DATE_DSHNHL",
-			"visits.test.hbv_dna": "visits.test.hbv_dna.HBVD_TEST_DATE",
-			"visits.test.hbv_immunology_qual": "visits.test.hbv_immunology_qual.HBVI_QUAL_TEST_DATE",
-			"visits.diagnosis.pi_info": "visits.diagnosis.pi_info.VISIT_START_TIME",
-			"patient_info.initial_dx.id_ps_info": "patient_info.initial_dx.id_ps_info.ID_DATE",
-			"patient_info.initial_dx": "patient_info.initial_dx.id_ps_info.ID_DATE",
-			"visits.test.syphilis_immuno": "visits.test.syphilis_immuno.SYIM_TEST_DATE",
-			"visits.prog_indx.flipi1": "visits.prog_indx.flipi1.flipi1_rf.SCORE_DATE_FLIPI1",
-			"patient_info.treatment_summary.first_chemo_summary": "patient_info.treatment_summary.first_chemo_summary.CHEMO_VISIT_START_TIME",
-			"visits.check": "visits.check.vital_signs.PE_DATE",
-			"visits.test.ebv_immunology": "visits.test.ebv_immunology.EBVI_TEST_DATE",
-			"visits.medical_history.chemotherapy_history": "visits.medical_history.chemotherapy_history.chemo_details.CHEMO_HX_START_DATE",
-			"visits.prog_indx.flipi2": "visits.prog_indx.flipi2.flipi2_rf.SCORE_DATE_FLIPI2",
-			"visits.medical_history.chemotherapy_history.chemo_details": "visits.medical_history.chemotherapy_history.chemo_details.CHEMO_HX_START_DATE",
-			"visits.prog_indx.mipi": "visits.prog_indx.mipi.mipi_f.SCORE_DATE_MIPI",
-			"visits.test.hcv": "visits.test.hcv.HCV_TEST_DATE",
-			"visits.prog_indx.rai.rai_f": "visits.prog_indx.rai.rai_f.SCORE_DATE_RAI",
-			"patient_info.response_relapse_info": "patient_info.response_relapse_info.first_relapse_detail.RELAPSE_DX_TIME",
-			"visits.prog_indx.dshnhl": "visits.prog_indx.dshnhl.dshnhl_f.SCORE_DATE_DSHNHL",
-			"visits.prog_indx.mipi.mipi_f": "visits.prog_indx.mipi.mipi_f.SCORE_DATE_MIPI"
+			"visits.visitinfo": "visits.visitinfoVISIT_START_TIME",
+			"visits.medical_history.chemotherapy_history": "visits.medical_history.chemotherapy_history.chemo_detailsCHEMO_HX_START_DATE",
+			"visits.medical_history.chemotherapy_history.chemo_details": "visits.medical_history.chemotherapy_history.chemo_detailsCHEMO_HX_START_DATE",
+			"visits.medical_history.radiotherapy_history": "visits.visitinfoVISIT_START_TIME",
+			"visits.medical_history.autologous_hsct_hx": "visits.medical_history.autologous_hsct_hxAHSCT_DATE",
+			"visits.medical_history.drug_allergy_hx": "visits.visitinfoVISIT_START_TIME",
+			"visits.check": "visits.checkPE_DATE",
+			"visits.check.vital_signs": "visits.checkPE_DATE",
+			"visits.check.physical_examination": "visits.visitinfoVISIT_START_TIME",
+			"visits.check.physical_examination.pe_skin_mucosa": "visits.visitinfoVISIT_START_TIME",
+			"visits.check.physical_examination.pe_spn_xtrmt": "visits.visitinfoVISIT_START_TIME",
+			"visits.check.physical_examination.pe_ns": "visits.visitinfoVISIT_START_TIME",
+			"visits.test": "visits.visitinfoVISIT_START_TIME",
+			"visits.test.blood_routine": "visits.test.blood_routineBR_TEST_DATE",
+			"visits.test.liver_and_kidney_function": "visits.test.liver_and_kidney_functionLKF_TEST_DATE",
+			"visits.test.myocard_markers": "visits.test.myocard_markersMCM_TEST_DATE",
+			"visits.test.thyroid_function": "visits.test.thyroid_functionTF_TEST_DATE",
+			"visits.test.ebv_immunology": "visits.test.ebv_immunologyEBVI_TEST_DATE",
+			"visits.test.ebv_dna": "visits.test.ebv_dnaEBVD_TEST_DATE",
+			"visits.test.hbv_immunology_quant": "visits.test.hbv_immunology_quantHBVI_QUANT_TEST_DATE",
+			"visits.test.hbv_immunology_qual": "visits.test.hbv_immunology_qualHBVI_QUAL_TEST_DATE",
+			"visits.test.hbv_dna": "visits.test.hbv_dnaHBVD_TEST_DATE",
+			"visits.test.hcv": "visits.test.hcvHCV_TEST_DATE",
+			"visits.test.other_virus": "visits.test.other_virusOV_TEST_DATE",
+			"visits.test.syphilis_immuno": "visits.test.syphilis_immunoSYIM_TEST_DATE",
+			"visits.test.coagulation_function": "visits.test.coagulation_functionCF_TEST_DATE",
+			"visits.test.24h_urinary_protein": "visits.test.24h_urinary_protein24HUP_TEST_DATE",
+			"visits.inspect.cardiac_examination.ucg": "visits.inspect.cardiac_examination.ucgUCG_CHECK_DATE",
+			"visits.inspect.cardiac_examination.12lead_ecg": "visits.inspect.cardiac_examination.12lead_ecg12LEAD_ECG_CHECK_DATE",
+			"visits.inspect.path_report": "visits.inspect.path_reportPATH_REPORT_TIME",
+			"visits.inspect.path_report.immunohistochemical_results": "visits.inspect.path_reportPATH_REPORT_TIME",
+			"visits.inspect.path_report.ihc_bg": "visits.inspect.path_reportPATH_REPORT_TIME",
+			"visits.inspect.gene_abnml_report": "visits.inspect.gene_abnml_reportGAR_REPORT_TIME",
+			"visits.inspect.gene_abnml_report.gene_chrom_abnml": "visits.inspect.gene_abnml_reportGAR_REPORT_TIME",
+			"visits.inspect.bone_marrow_ab": "visits.inspect.bone_marrow_abBMA_DATE",
+			"visits.diagnosis.tumor_diagnosis_l": "visits.visitinfoVISIT_START_TIME",
+			"visits.diagnosis.tumor_diagnosis": "visits.visitinfoVISIT_START_TIME",
+			"visits.diagnosis.ps_info": "visits.visitinfoVISIT_START_TIME",
+			"visits.diagnosis.pi_info": "visits.visitinfoVISIT_START_TIME",
+			"visits.treatment": "visits.visitinfoVISIT_START_TIME",
+			"visits.treatment.medication_information": "visits.treatment.medication_informationDRUG_START_DATE",
+			"visits.treatment.chemo_sum": "visits.treatment.chemo_sumCHEMO_SUM_VISIT_DATE",
+			"visits.prog_indx.ips_score": "visits.prog_indx.ips_scoreSCORE_DATE_IPS",
+			"visits.prog_indx.ips_score.scoring_factors": "visits.prog_indx.ips_scoreSCORE_DATE_IPS",
+			"visits.prog_indx.ipi": "visits.prog_indx.ipiSCORE_DATE_IPI",
+			"visits.prog_indx.ipi.ipi_rf": "visits.prog_indx.ipiSCORE_DATE_IPI",
+			"visits.prog_indx.aaipi": "visits.prog_indx.aaipiSCORE_DATE_AAIPI",
+			"visits.prog_indx.aaipi.aaipi_rf": "visits.prog_indx.aaipiSCORE_DATE_AAIPI",
+			"visits.prog_indx.ripi": "visits.prog_indx.ripiSCORE_DATE_RIPI",
+			"visits.prog_indx.nccnipi": "visits.prog_indx.nccnipiSCORE_DATE_NCCNIPI",
+			"visits.prog_indx.nccnipi.nccn_ipi_f": "visits.prog_indx.nccnipiSCORE_DATE_NCCNIPI",
+			"visits.prog_indx.flipi1": "visits.prog_indx.flipi1SCORE_DATE_FLIPI1",
+			"visits.prog_indx.flipi1.flipi1_rf": "visits.prog_indx.flipi1SCORE_DATE_FLIPI1",
+			"visits.prog_indx.flipi2": "visits.prog_indx.flipi2SCORE_DATE_FLIPI2",
+			"visits.prog_indx.flipi2.flipi2_rf": "visits.prog_indx.flipi2SCORE_DATE_FLIPI2",
+			"visits.prog_indx.mipi": "visits.prog_indx.mipiSCORE_DATE_MIPI",
+			"visits.prog_indx.mipi.mipi_f": "visits.prog_indx.mipiSCORE_DATE_MIPI",
+			"visits.prog_indx.smipi": "visits.prog_indx.smipiSCORE_DATE_SMIPI",
+			"visits.prog_indx.smipi.smipi_f": "visits.prog_indx.smipiSCORE_DATE_SMIPI",
+			"visits.prog_indx.rai": "visits.prog_indx.raiSCORE_DATE_RAI",
+			"visits.prog_indx.rai.rai_f": "visits.prog_indx.raiSCORE_DATE_RAI",
+			"visits.prog_indx.binet": "visits.prog_indx.binetSCORE_DATE_BINET",
+			"visits.prog_indx.binet.binet_f": "visits.prog_indx.binetSCORE_DATE_BINET",
+			"visits.prog_indx.cll": "visits.prog_indx.cllSCORE_DATE_CLL",
+			"visits.prog_indx.cll.cll_f": "visits.prog_indx.cllSCORE_DATE_CLL",
+			"visits.prog_indx.ielsg": "visits.prog_indx.ielsgSCORE_DATE_IELSG",
+			"visits.prog_indx.ielsg.ielsg_f": "visits.prog_indx.ielsgSCORE_DATE_IELSG",
+			"visits.prog_indx.dshnhl": "visits.prog_indx.dshnhlSCORE_DATE_DSHNHL",
+			"visits.prog_indx.dshnhl.dshnhl_f": "visits.prog_indx.dshnhlSCORE_DATE_DSHNHL",
+			"visits.surv_stat.survival_situation": "visits.visitinfoVISIT_DISCHARGE_TIME"
 		}
 	}
 ]
