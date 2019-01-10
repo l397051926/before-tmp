@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma.json" afterPath="$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma.json" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/rws/searchDefinedEventListConfiglymphoma.json" afterPath="$PROJECT_DIR$/src/main/resources/rws/searchDefinedEventListConfiglymphoma.json" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/urlconf.xml" afterPath="$PROJECT_DIR$/src/main/resources/urlconf.xml" />
     </list>
@@ -29,21 +28,63 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="urlconf.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/urlconf.xml">
+      <file leaf-file-name="RwsController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="772">
-              <caret line="219" column="87" lean-forward="false" selection-start-line="219" selection-start-column="87" selection-end-line="219" selection-end-column="87" />
+            <state relative-caret-position="237">
+              <caret line="358" column="49" lean-forward="false" selection-start-line="358" selection-start-column="49" selection-end-line="358" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="crf_rws_lymphoma.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma.json">
+      <file leaf-file-name="SampleProcessor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="182" column="22" lean-forward="true" selection-start-line="182" selection-start-column="22" selection-end-line="182" selection-end-column="22" />
+            <state relative-caret-position="-735">
+              <caret line="451" column="49" lean-forward="false" selection-start-line="451" selection-start-column="49" selection-end-line="451" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RwsProcessor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="237">
+              <caret line="255" column="90" lean-forward="false" selection-start-line="255" selection-start-column="90" selection-end-line="255" selection-end-column="90" />
+              <folding>
+                <marker date="1547124586471" expanded="true" signature="1450:1481" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SampleController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/SampleController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="318">
+              <caret line="65" column="53" lean-forward="true" selection-start-line="65" selection-start-column="53" selection-end-line="65" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReadConditionByRedis.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="337">
+              <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="searchDefinedEventListConfiglymphoma.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/rws/searchDefinedEventListConfiglymphoma.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="907">
+              <caret line="0" column="42893" lean-forward="false" selection-start-line="0" selection-start-column="42893" selection-end-line="0" selection-end-column="42893" />
               <folding />
             </state>
           </provider>
@@ -87,9 +128,9 @@
       <find>getRwsEventConfig</find>
       <find>power</find>
       <find>pop</find>
-      <find>getLoadSearchDefinedEventListConfig</find>
-      <find>ImportCheck</find>
       <find>标本信息</find>
+      <find>ImportCheck</find>
+      <find>getLoadSearchDefinedEventListConfig</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;open&quot;: false</replace>
@@ -162,7 +203,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyUserMapper.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/SyUserMapper.xml" />
@@ -170,9 +210,10 @@
         <option value="$PROJECT_DIR$/src/main/resources/crf/lymphoma.json" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/rws/searchDefinedEventListConfiglymphoma.json" />
         <option value="$PROJECT_DIR$/src/main/resources/urlconf.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma.json" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/rws/searchDefinedEventListConfiglymphoma.json" />
       </list>
     </option>
   </component>
@@ -698,13 +739,6 @@
       <workItem from="1546659302757" duration="624000" />
       <workItem from="1546670951819" duration="11223000" />
     </task>
-    <task id="LOCAL-00033" summary="调整 rws 计算 的配置文件">
-      <created>1529898233098</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1529898233099</updated>
-    </task>
     <task id="LOCAL-00034" summary="rws 聚合搜索">
       <created>1529916376498</created>
       <option name="number" value="00034" />
@@ -1041,7 +1075,14 @@
       <option name="project" value="LOCAL" />
       <updated>1547110802899</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="调整淋巴瘤 配置文件">
+      <created>1547123073239</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1547123073239</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1077,7 +1118,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1148363000" />
+    <option name="totallyTimeSpent" value="1149898000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-434" width="1936" height="1176" extended-state="6" />
@@ -1213,7 +1254,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="淋巴流 默认不展开" />
     <MESSAGE value="淋巴流 默认不展开  --解决" />
     <MESSAGE value="心血管配置文件修改" />
     <MESSAGE value="修改 用户id 不能保存问题" />
@@ -1238,7 +1278,8 @@
     <MESSAGE value="淋巴瘤 配置文件 增加默认勾选" />
     <MESSAGE value="调整导出 权限问题" />
     <MESSAGE value="选择科室 导出权限问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="选择科室 导出权限问题" />
+    <MESSAGE value="调整淋巴瘤 配置文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整淋巴瘤 配置文件" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1298,13 +1339,13 @@
           <option name="timeStamp" value="143" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java</url>
-          <line>95</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java</url>
+          <line>256</line>
           <properties />
-          <option name="timeStamp" value="147" />
+          <option name="timeStamp" value="148" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="148" />
+      <option name="time" value="149" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1314,6 +1355,39 @@
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>JsonArray array = (JsonArray) jsonParser.parse(data);
+JsonObject object = new JsonObject();
+for(JsonElement element : array){
+    JsonObject o1 = element.getAsJsonObject();
+    for (Map.Entry&lt;String,JsonElement&gt; map : o1.entrySet()){
+        object.add(map.getKey(),map.getValue());
+    }
+}
+object</expression-string>
+        <language-id>JAVA</language-id>
+        <custom-info>net.minidev.json.JSONArray,com.google.gson.JsonElement</custom-info>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>JsonArray array = (JsonArray) jsonParser.parse(data);
+JsonObject object = new JsonObject();
+for(JsonElement element : array){
+    JsonObject o1 = element.getAsJsonObject();
+    for (Map.Entry&lt;String,JsonElement&gt; map : o1.entrySet()){
+        object.add(map.getKey(),map.getValue());
+    }
+}</expression-string>
+        <language-id>JAVA</language-id>
+        <custom-info>net.minidev.json.JSONArray,com.google.gson.JsonElement</custom-info>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>JsonArray array = (JsonArray) jsonParser.parse(data);</expression-string>
+        <language-id>JAVA</language-id>
+        <custom-info>net.minidev.json.JSONArray</custom-info>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>obj.get(&quot;sid&quot;)</expression-string>
         <language-id>JAVA</language-id>
@@ -1603,39 +1677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="661">
-          <caret line="50" column="38" lean-forward="true" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/rws/searchDefinedEventListConfiglymphoma_release_1.0.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="0" column="441" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="26745" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="96" column="53" lean-forward="true" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="42" column="41" lean-forward="true" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
-          <folding>
-            <marker date="1547109515037" expanded="true" signature="1450:1481" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -1668,22 +1709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/SampleController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="476" column="96" lean-forward="true" selection-start-line="476" selection-start-column="96" selection-end-line="476" selection-end-column="96" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
@@ -1700,14 +1725,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/rws/searchDefinedEventListConfiglymphoma.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="907">
-          <caret line="0" column="43216" lean-forward="false" selection-start-line="0" selection-start-column="43216" selection-end-line="0" selection-end-column="43216" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/urlconf.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="772">
@@ -1720,6 +1737,64 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="182" column="22" lean-forward="true" selection-start-line="182" selection-start-column="22" selection-end-line="182" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/rws/searchDefinedEventListConfiglymphoma_release_1.0.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="0" column="1201" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="26745" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-735">
+          <caret line="451" column="49" lean-forward="false" selection-start-line="451" selection-start-column="49" selection-end-line="451" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/SampleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="65" column="53" lean-forward="true" selection-start-line="65" selection-start-column="53" selection-end-line="65" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="358" column="49" lean-forward="false" selection-start-line="358" selection-start-column="49" selection-end-line="358" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="255" column="90" lean-forward="false" selection-start-line="255" selection-start-column="90" selection-end-line="255" selection-end-column="90" />
+          <folding>
+            <marker date="1547124586471" expanded="true" signature="1450:1481" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/rws/searchDefinedEventListConfiglymphoma.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="907">
+          <caret line="0" column="42893" lean-forward="false" selection-start-line="0" selection-start-column="42893" selection-end-line="0" selection-end-column="42893" />
           <folding />
         </state>
       </provider>
