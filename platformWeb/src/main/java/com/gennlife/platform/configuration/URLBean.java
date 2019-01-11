@@ -568,6 +568,37 @@ public class URLBean {
     private String restart = null;
     private String inputDelete = null;
 
+
+    //消息中心 对应接口
+    private String msgUpdate = null;
+    private String msgUpdateAll = null;
+    private String msgQuery = null;
+
+
+    public String getMsgQuery() {
+        return msgQuery;
+    }
+
+    public void setMsgQuery(String msgQuery) {
+        this.msgQuery = msgQuery;
+    }
+
+    public String getMsgUpdateAll() {
+        return msgUpdateAll;
+    }
+
+    public void setMsgUpdateAll(String msgUpdateAll) {
+        this.msgUpdateAll = msgUpdateAll;
+    }
+
+    public String getMsgUpdate() {
+        return msgUpdate;
+    }
+
+    public void setMsgUpdate(String msgUpdate) {
+        this.msgUpdate = msgUpdate;
+    }
+
     public String getInputDelete() {
         return inputDelete;
     }
