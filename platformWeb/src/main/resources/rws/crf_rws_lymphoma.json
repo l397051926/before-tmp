@@ -1,402 +1,1048 @@
-{
-	"code": 1,
-	"data": [
-		{
-			"children": [
-				{
-					"collapse": false,
-					"data": {
-						"dataType": "string",
-						"indexFieldName": "patient_info.patient_basicinfo",
-						"srchFieldName": "患者基本信息.人口学资料"
-					},
-					"expand": false,
-					"icon": "image/tnode-docs.png",
-					"isSrchItem": true,
-					"name": "<span class='u-noFoldIcon-treeNode'>人口学资料</span>",
-					"open": true
+[
+	{
+		"children": [
+			{
+				"collapse": false,
+				"data": {
+					"dataType": "string",
+					"indexFieldName": "visits.visitinfo",
+					"srchFieldName": "就诊.就诊基本信息"
 				},
-				{
-					"children": [
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.initial_dx.id_tumor_diagnosis_l",
-								"srchFieldName": "患者基本信息.淋巴瘤确诊.诊断详情"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>诊断详情</span>",
-							"open": true
-						},
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.initial_dx.id_ps_info",
-								"srchFieldName": "患者基本信息.淋巴瘤确诊.体力状况评分"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>体力状况评分</span>",
-							"open": true
-						},
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.initial_dx.id_pi_info",
-								"srchFieldName": "患者基本信息.淋巴瘤确诊.预后指数评分"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>预后指数评分</span>",
-							"open": true
-						}
-					],
-					"data": {
-						"dataType": "string",
-						"indexFieldName": "patient_info.initial_dx",
-						"srchFieldName": "患者基本信息.淋巴瘤确诊"
-					},
-					"iconClose": "image/tnode-folder-close.png",
-					"iconOpen": "image/tnode-folder-open.png",
-					"name": "淋巴瘤确诊"
-				},
-				{
-					"children": [
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.id_pathology.id_immunohistochemical_results",
-								"srchFieldName": "患者基本信息.确诊病理.免疫组化结果"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>免疫组化结果</span>",
-							"open": true
-						},
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.id_pathology.id_ihc_bg",
-								"srchFieldName": "患者基本信息.确诊病理.免疫组化结果-背景细胞"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>免疫组化结果-背景细胞</span>",
-							"open": true
-						},
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.id_pathology.id_gene_chrom_abnml",
-								"srchFieldName": "患者基本信息.确诊病理.基因及染色体异常"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>基因及染色体异常</span>",
-							"open": true
-						}
-					],
-					"data": {
-						"dataType": "string",
-						"indexFieldName": "patient_info.id_pathology",
-						"srchFieldName": "患者基本信息.确诊病理"
-					},
-					"iconClose": "image/tnode-folder-close.png",
-					"iconOpen": "image/tnode-folder-open.png",
-					"name": "确诊病理"
-				},
-				{
-					"children": [
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.id_lab_test_results.id_blood_routine",
-								"srchFieldName": "患者基本信息.确诊时检验.血常规"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>血常规</span>",
-							"open": true
-						},
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.id_lab_test_results.id_liver_and_kidney_function",
-								"srchFieldName": "患者基本信息.确诊时检验.肝肾功能"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>肝肾功能</span>",
-							"open": true
-						},
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.id_lab_test_results.id_myocard_markers",
-								"srchFieldName": "患者基本信息.确诊时检验.心肌标志物"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>心肌标志物</span>",
-							"open": true
-						},
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.id_lab_test_results.id_thyroid_function",
-								"srchFieldName": "患者基本信息.确诊时检验.甲状腺功能"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>甲状腺功能</span>",
-							"open": true
-						},
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.id_lab_test_results.id_ebv_immunology",
-								"srchFieldName": "患者基本信息.确诊时检验.EBV免疫学"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>EBV免疫学</span>",
-							"open": true
-						},
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.id_lab_test_results.id_ebv_dna",
-								"srchFieldName": "患者基本信息.确诊时检验.EBV-DNA"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>EBV-DNA</span>",
-							"open": true
-						},
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.id_lab_test_results.id_hbv_immunology_quant",
-								"srchFieldName": "患者基本信息.确诊时检验.HBV免疫学（定量）"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>HBV免疫学（定量）</span>",
-							"open": true
-						},
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.id_lab_test_results.id_hbv_immunology_qual",
-								"srchFieldName": "患者基本信息.确诊时检验.HBV免疫学（定性）"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>HBV免疫学（定性）</span>",
-							"open": true
-						},
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.id_lab_test_results.id_hbv_dna",
-								"srchFieldName": "患者基本信息.确诊时检验.HBV-DNA"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>HBV-DNA</span>",
-							"open": true
-						},
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.id_lab_test_results.id_hcv",
-								"srchFieldName": "患者基本信息.确诊时检验.HCV"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>HCV</span>",
-							"open": true
-						},
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.id_lab_test_results.id_other_virus",
-								"srchFieldName": "患者基本信息.确诊时检验.HIV免疫学"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>HIV免疫学</span>",
-							"open": true
-						},
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.id_lab_test_results.id_syphilis_immuno",
-								"srchFieldName": "患者基本信息.确诊时检验.梅毒免疫学"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>梅毒免疫学</span>",
-							"open": true
-						},
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.id_lab_test_results.id_coagulation_function",
-								"srchFieldName": "患者基本信息.确诊时检验.凝血功能"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>凝血功能</span>",
-							"open": true
-						},
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.id_lab_test_results.id_24h_urinary_protein",
-								"srchFieldName": "患者基本信息.确诊时检验.24h尿蛋白定量"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>24h尿蛋白定量</span>",
-							"open": true
-						}
-					],
-					"data": {
-						"dataType": "string",
-						"indexFieldName": "patient_info.id_lab_test_results",
-						"srchFieldName": "患者基本信息.确诊时检验"
-					},
-					"iconClose": "image/tnode-folder-close.png",
-					"iconOpen": "image/tnode-folder-open.png",
-					"name": "确诊时检验"
-				},
-				{
-					"children": [
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.treatment_summary.first_chemo_summary",
-								"srchFieldName": "患者基本信息.治疗概要.首次我院化疗就诊"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>首次我院化疗就诊</span>",
-							"open": true
-						},
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.treatment_summary.initial_ctx",
-								"srchFieldName": "患者基本信息.治疗概要.首次化疗"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>首次化疗</span>",
-							"open": true
-						}
-					],
-					"data": {
-						"dataType": "string",
-						"indexFieldName": "patient_info.treatment_summary",
-						"srchFieldName": "患者基本信息.治疗概要"
-					},
-					"iconClose": "image/tnode-folder-close.png",
-					"iconOpen": "image/tnode-folder-open.png",
-					"name": "治疗概要"
-				},
-				{
-					"collapse": false,
-					"data": {
-						"dataType": "string",
-						"indexFieldName": "patient_info.survival_status",
-						"srchFieldName": "患者基本信息.生存状况"
-					},
-					"expand": false,
-					"icon": "image/tnode-docs.png",
-					"isSrchItem": true,
-					"name": "<span class='u-noFoldIcon-treeNode'>生存状况</span>",
-					"open": true
-				},
-				{
-					"children": [
-						{
-							"collapse": false,
-							"data": {
-								"dataType": "string",
-								"indexFieldName": "patient_info.response_relapse_info.first_relapse_detail",
-								"srchFieldName": "患者基本信息.疗效评估及复发情况.首次复发诊断"
-							},
-							"expand": false,
-							"icon": "image/tnode-docs.png",
-							"isSrchItem": true,
-							"name": "<span class='u-noFoldIcon-treeNode'>首次复发诊断</span>",
-							"open": true
-						}
-					],
-					"data": {
-						"dataType": "string",
-						"indexFieldName": "patient_info.response_relapse_info",
-						"srchFieldName": "患者基本信息.疗效评估及复发情况"
-					},
-					"iconClose": "image/tnode-folder-close.png",
-					"iconOpen": "image/tnode-folder-open.png",
-					"name": "疗效评估及复发情况"
-				}
-			],
-			"data": {
-				"dataType": "string",
-				"indexFieldName": "patient_info",
-				"srchFieldName": "患者基本信息"
+				"expand": false,
+				"icon": "image/tnode-docs.png",
+				"isSrchItem": true,
+				"name": "<span class='u-noFoldIcon-treeNode'>就诊基本信息</span>",
+				"open": true
 			},
-			"iconClose": "image/tnode-folder-close.png",
-			"iconOpen": "image/tnode-folder-open.png",
-			"name": "患者基本信息"
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.medical_history.chemotherapy_history.chemo_details",
+									"srchFieldName": "就诊.病史.化疗史.化疗史详情"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>化疗史详情</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.medical_history.chemotherapy_history",
+							"srchFieldName": "就诊.病史.化疗史"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "化疗史"
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.medical_history.radiotherapy_history",
+							"srchFieldName": "就诊.病史.放疗史"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>放疗史</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.medical_history.autologous_hsct_hx",
+							"srchFieldName": "就诊.病史.自体造血干细胞移植史"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>自体造血干细胞移植史</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.medical_history.drug_allergy_hx",
+							"srchFieldName": "就诊.病史.药物过敏史"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>药物过敏史</span>",
+						"open": true
+					}
+				],
+				"data": {
+					"dataType": "string",
+					"indexFieldName": "visits.medical_history",
+					"srchFieldName": "就诊.病史"
+				},
+				"iconClose": "image/tnode-folder-close.png",
+				"iconOpen": "image/tnode-folder-open.png",
+				"name": "病史"
+			},
+			{
+				"children": [
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.check.vital_signs",
+							"srchFieldName": "就诊.查体.生命体征"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>生命体征</span>",
+						"open": true
+					},
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.check.physical_examination.pe_skin_mucosa",
+									"srchFieldName": "就诊.查体.体格检查.皮肤黏膜"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>皮肤黏膜</span>",
+								"open": true
+							},
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.check.physical_examination.pe_spn_xtrmt",
+									"srchFieldName": "就诊.查体.体格检查.脊柱四肢"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>脊柱四肢</span>",
+								"open": true
+							},
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.check.physical_examination.pe_ns",
+									"srchFieldName": "就诊.查体.体格检查.神经系统"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>神经系统</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.check.physical_examination",
+							"srchFieldName": "就诊.查体.体格检查"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "体格检查"
+					}
+				],
+				"data": {
+					"dataType": "string",
+					"indexFieldName": "visits.check",
+					"srchFieldName": "就诊.查体"
+				},
+				"iconClose": "image/tnode-folder-close.png",
+				"iconOpen": "image/tnode-folder-open.png",
+				"name": "查体"
+			},
+			{
+				"children": [
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.test.blood_routine",
+							"srchFieldName": "就诊.检验.血常规"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>血常规</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.test.liver_and_kidney_function",
+							"srchFieldName": "就诊.检验.肝肾功能"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>肝肾功能</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.test.myocard_markers",
+							"srchFieldName": "就诊.检验.心肌标志物"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>心肌标志物</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.test.thyroid_function",
+							"srchFieldName": "就诊.检验.甲状腺功能"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>甲状腺功能</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.test.ebv_immunology",
+							"srchFieldName": "就诊.检验.EBV免疫学"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>EBV免疫学</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.test.ebv_dna",
+							"srchFieldName": "就诊.检验.EBV-DNA"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>EBV-DNA</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.test.hbv_immunology_quant",
+							"srchFieldName": "就诊.检验.HBV免疫学（定量）"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>HBV免疫学（定量）</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.test.hbv_immunology_qual",
+							"srchFieldName": "就诊.检验.HBV免疫学（定性）"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>HBV免疫学（定性）</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.test.hbv_dna",
+							"srchFieldName": "就诊.检验.HBV-DNA"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>HBV-DNA</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.test.hcv",
+							"srchFieldName": "就诊.检验.HCV"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>HCV</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.test.other_virus",
+							"srchFieldName": "就诊.检验.HIV免疫学"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>HIV免疫学</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.test.syphilis_immuno",
+							"srchFieldName": "就诊.检验.梅毒免疫学"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>梅毒免疫学</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.test.coagulation_function",
+							"srchFieldName": "就诊.检验.凝血功能"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>凝血功能</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.test.24h_urinary_protein",
+							"srchFieldName": "就诊.检验.24h尿蛋白定量"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>24h尿蛋白定量</span>",
+						"open": true
+					}
+				],
+				"data": {
+					"dataType": "string",
+					"indexFieldName": "visits.test",
+					"srchFieldName": "就诊.检验"
+				},
+				"iconClose": "image/tnode-folder-close.png",
+				"iconOpen": "image/tnode-folder-open.png",
+				"name": "检验"
+			},
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.inspect.cardiac_examination.ucg",
+									"srchFieldName": "就诊.检查.心脏检查.心脏彩超"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>心脏彩超</span>",
+								"open": true
+							},
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.inspect.cardiac_examination.12lead_ecg",
+									"srchFieldName": "就诊.检查.心脏检查.12导联心电图"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>12导联心电图</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.inspect.cardiac_examination",
+							"srchFieldName": "就诊.检查.心脏检查"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "心脏检查"
+					},
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.inspect.path_report.immunohistochemical_results",
+									"srchFieldName": "就诊.检查.病理诊断报告.免疫组化结果"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>免疫组化结果</span>",
+								"open": true
+							},
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.inspect.path_report.ihc_bg",
+									"srchFieldName": "就诊.检查.病理诊断报告.免疫组化结果-背景细胞"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>免疫组化结果-背景细胞</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.inspect.path_report",
+							"srchFieldName": "就诊.检查.病理诊断报告"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "病理诊断报告"
+					},
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.inspect.gene_abnml_report.gene_chrom_abnml",
+									"srchFieldName": "就诊.检查.基因异常检查报告.基因及染色体异常"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>基因及染色体异常</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.inspect.gene_abnml_report",
+							"srchFieldName": "就诊.检查.基因异常检查报告"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "基因异常检查报告"
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.inspect.bone_marrow_ab",
+							"srchFieldName": "就诊.检查.骨髓穿刺活检"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>骨髓穿刺活检</span>",
+						"open": true
+					}
+				],
+				"data": {
+					"dataType": "string",
+					"indexFieldName": "visits.inspect",
+					"srchFieldName": "就诊.检查"
+				},
+				"iconClose": "image/tnode-folder-close.png",
+				"iconOpen": "image/tnode-folder-open.png",
+				"name": "检查"
+			},
+			{
+				"children": [
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.diagnosis.tumor_diagnosis_l",
+							"srchFieldName": "就诊.诊断.肿瘤诊断-淋巴瘤"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>肿瘤诊断-淋巴瘤</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.diagnosis.tumor_diagnosis",
+							"srchFieldName": "就诊.诊断.肿瘤诊断-其他"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>肿瘤诊断-其他</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.diagnosis.ps_info",
+							"srchFieldName": "就诊.诊断.体力状况评分"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>体力状况评分</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.diagnosis.pi_info",
+							"srchFieldName": "就诊.诊断.预后指数评分"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>预后指数评分</span>",
+						"open": true
+					}
+				],
+				"data": {
+					"dataType": "string",
+					"indexFieldName": "visits.diagnosis",
+					"srchFieldName": "就诊.诊断"
+				},
+				"iconClose": "image/tnode-folder-close.png",
+				"iconOpen": "image/tnode-folder-open.png",
+				"name": "诊断"
+			},
+			{
+				"children": [
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.treatment.medication_information",
+							"srchFieldName": "就诊.治疗.化疗药用药信息"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>化疗药用药信息</span>",
+						"open": true
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.treatment.chemo_sum",
+							"srchFieldName": "就诊.治疗.化疗小结"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>化疗小结</span>",
+						"open": true
+					}
+				],
+				"data": {
+					"dataType": "string",
+					"indexFieldName": "visits.treatment",
+					"srchFieldName": "就诊.治疗"
+				},
+				"iconClose": "image/tnode-folder-close.png",
+				"iconOpen": "image/tnode-folder-open.png",
+				"name": "治疗"
+			},
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.prog_indx.ips_score.scoring_factors",
+									"srchFieldName": "就诊.预后指数.IPS评分.评分因素"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>评分因素</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.prog_indx.ips_score",
+							"srchFieldName": "就诊.预后指数.IPS评分"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "IPS评分"
+					},
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.prog_indx.ipi.ipi_rf",
+									"srchFieldName": "就诊.预后指数.IPI.危险因素"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>危险因素</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.prog_indx.ipi",
+							"srchFieldName": "就诊.预后指数.IPI"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "IPI"
+					},
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.prog_indx.aaipi.aaipi_rf",
+									"srchFieldName": "就诊.预后指数.aaIPI.危险因素"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>危险因素</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.prog_indx.aaipi",
+							"srchFieldName": "就诊.预后指数.aaIPI"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "aaIPI"
+					},
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.prog_indx.ripi",
+							"srchFieldName": "就诊.预后指数.R-IPI"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>R-IPI</span>",
+						"open": true
+					},
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.prog_indx.nccnipi.nccn_ipi_f",
+									"srchFieldName": "就诊.预后指数.NCCN-IPI.评分因素"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>评分因素</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.prog_indx.nccnipi",
+							"srchFieldName": "就诊.预后指数.NCCN-IPI"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "NCCN-IPI"
+					},
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.prog_indx.flipi1.flipi1_rf",
+									"srchFieldName": "就诊.预后指数.FLIPI-1.风险因子"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>风险因子</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.prog_indx.flipi1",
+							"srchFieldName": "就诊.预后指数.FLIPI-1"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "FLIPI-1"
+					},
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.prog_indx.flipi2.flipi2_rf",
+									"srchFieldName": "就诊.预后指数.FLIPI-2.风险因子"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>风险因子</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.prog_indx.flipi2",
+							"srchFieldName": "就诊.预后指数.FLIPI-2"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "FLIPI-2"
+					},
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.prog_indx.mipi.mipi_f",
+									"srchFieldName": "就诊.预后指数.MIPI.评分因素"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>评分因素</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.prog_indx.mipi",
+							"srchFieldName": "就诊.预后指数.MIPI"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "MIPI"
+					},
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.prog_indx.smipi.smipi_f",
+									"srchFieldName": "就诊.预后指数.s-MIPI.评分因素"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>评分因素</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.prog_indx.smipi",
+							"srchFieldName": "就诊.预后指数.s-MIPI"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "s-MIPI"
+					},
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.prog_indx.rai.rai_f",
+									"srchFieldName": "就诊.预后指数.Rai分期.分期因素"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>分期因素</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.prog_indx.rai",
+							"srchFieldName": "就诊.预后指数.Rai分期"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "Rai分期"
+					},
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.prog_indx.binet.binet_f",
+									"srchFieldName": "就诊.预后指数.Binet分期.分期因素"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>分期因素</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.prog_indx.binet",
+							"srchFieldName": "就诊.预后指数.Binet分期"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "Binet分期"
+					},
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.prog_indx.cll.cll_f",
+									"srchFieldName": "就诊.预后指数.CLL预后积分.评分因素"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>评分因素</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.prog_indx.cll",
+							"srchFieldName": "就诊.预后指数.CLL预后积分"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "CLL预后积分"
+					},
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.prog_indx.ielsg.ielsg_f",
+									"srchFieldName": "就诊.预后指数.IELSG评分.评分因素"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>评分因素</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.prog_indx.ielsg",
+							"srchFieldName": "就诊.预后指数.IELSG评分"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "IELSG评分"
+					},
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.prog_indx.dshnhl.dshnhl_f",
+									"srchFieldName": "就诊.预后指数.DSHNHL中枢复发预测模型.评分因素"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>评分因素</span>",
+								"open": true
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.prog_indx.dshnhl",
+							"srchFieldName": "就诊.预后指数.DSHNHL中枢复发预测模型"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "DSHNHL中枢复发预测模型"
+					}
+				],
+				"data": {
+					"dataType": "string",
+					"indexFieldName": "visits.prog_indx",
+					"srchFieldName": "就诊.预后指数"
+				},
+				"iconClose": "image/tnode-folder-close.png",
+				"iconOpen": "image/tnode-folder-open.png",
+				"name": "预后指数"
+			},
+			{
+				"children": [
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.surv_stat.survival_situation",
+							"srchFieldName": "就诊.生存情况.生存情况"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>生存情况</span>",
+						"open": true
+					}
+				],
+				"data": {
+					"dataType": "string",
+					"indexFieldName": "visits.surv_stat",
+					"srchFieldName": "就诊.生存情况"
+				},
+				"iconClose": "image/tnode-folder-close.png",
+				"iconOpen": "image/tnode-folder-open.png",
+				"name": "生存情况"
+			}
+		],
+		"data": {
+			"dataType": "string",
+			"indexFieldName": "visits",
+			"srchFieldName": "就诊"
+		},
+		"iconClose": "image/tnode-folder-close.png",
+		"iconOpen": "image/tnode-folder-open.png",
+		"name": "就诊",
+		"resultOrderKey": {
+			"visits.visitinfo": "visits.visitinfo.VISIT_START_TIME",
+			"visits.medical_history.chemotherapy_history": "visits.medical_history.chemotherapy_history.chemo_details.CHEMO_HX_START_DATE",
+			"visits.medical_history.chemotherapy_history.chemo_details": "visits.medical_history.chemotherapy_history.chemo_details.CHEMO_HX_START_DATE",
+			"visits.medical_history.radiotherapy_history": "visits.visitinfo.VISIT_START_TIME",
+			"visits.medical_history.autologous_hsct_hx": "visits.medical_history.autologous_hsct_hx.AHSCT_DATE",
+			"visits.medical_history.drug_allergy_hx": "visits.visitinfo.VISIT_START_TIME",
+			"visits.check": "visits.check.PE_DATE",
+			"visits.check.vital_signs": "visits.check.PE_DATE",
+			"visits.check.physical_examination": "visits.visitinfo.VISIT_START_TIME",
+			"visits.check.physical_examination.pe_skin_mucosa": "visits.visitinfo.VISIT_START_TIME",
+			"visits.check.physical_examination.pe_spn_xtrmt": "visits.visitinfo.VISIT_START_TIME",
+			"visits.check.physical_examination.pe_ns": "visits.visitinfo.VISIT_START_TIME",
+			"visits.test": "visits.visitinfo.VISIT_START_TIME",
+			"visits.test.blood_routine": "visits.test.blood_routine.BR_TEST_DATE",
+			"visits.test.liver_and_kidney_function": "visits.test.liver_and_kidney_function.LKF_TEST_DATE",
+			"visits.test.myocard_markers": "visits.test.myocard_markers.MCM_TEST_DATE",
+			"visits.test.thyroid_function": "visits.test.thyroid_function.TF_TEST_DATE",
+			"visits.test.ebv_immunology": "visits.test.ebv_immunology.EBVI_TEST_DATE",
+			"visits.test.ebv_dna": "visits.test.ebv_dna.EBVD_TEST_DATE",
+			"visits.test.hbv_immunology_quant": "visits.test.hbv_immunology_quant.HBVI_QUANT_TEST_DATE",
+			"visits.test.hbv_immunology_qual": "visits.test.hbv_immunology_qual.HBVI_QUAL_TEST_DATE",
+			"visits.test.hbv_dna": "visits.test.hbv_dna.HBVD_TEST_DATE",
+			"visits.test.hcv": "visits.test.hcv.HCV_TEST_DATE",
+			"visits.test.other_virus": "visits.test.other_virus.OV_TEST_DATE",
+			"visits.test.syphilis_immuno": "visits.test.syphilis_immuno.SYIM_TEST_DATE",
+			"visits.test.coagulation_function": "visits.test.coagulation_function.CF_TEST_DATE",
+			"visits.test.24h_urinary_protein": "visits.test.24h_urinary_protein.24HUP_TEST_DATE",
+			"visits.inspect.cardiac_examination.ucg": "visits.inspect.cardiac_examination.ucg.UCG_CHECK_DATE",
+			"visits.inspect.cardiac_examination.12lead_ecg": "visits.inspect.cardiac_examination.12lead_ecg.12LEAD_ECG_CHECK_DATE",
+			"visits.inspect.path_report": "visits.inspect.path_report.PATH_REPORT_TIME",
+			"visits.inspect.path_report.immunohistochemical_results": "visits.inspect.path_report.PATH_REPORT_TIME",
+			"visits.inspect.path_report.ihc_bg": "visits.inspect.path_report.PATH_REPORT_TIME",
+			"visits.inspect.gene_abnml_report": "visits.inspect.gene_abnml_report.GAR_REPORT_TIME",
+			"visits.inspect.gene_abnml_report.gene_chrom_abnml": "visits.inspect.gene_abnml_report.GAR_REPORT_TIME",
+			"visits.inspect.bone_marrow_ab": "visits.inspect.bone_marrow_ab.BMA_DATE",
+			"visits.diagnosis.tumor_diagnosis_l": "visits.visitinfo.VISIT_START_TIME",
+			"visits.diagnosis.tumor_diagnosis": "visits.visitinfo.VISIT_START_TIME",
+			"visits.diagnosis.ps_info": "visits.visitinfo.VISIT_START_TIME",
+			"visits.diagnosis.pi_info": "visits.visitinfo.VISIT_START_TIME",
+			"visits.treatment": "visits.visitinfo.VISIT_START_TIME",
+			"visits.treatment.medication_information": "visits.treatment.medication_information.DRUG_START_DATE",
+			"visits.treatment.chemo_sum": "visits.treatment.chemo_sum.CHEMO_SUM_VISIT_DATE",
+			"visits.prog_indx.ips_score": "visits.prog_indx.ips_score.SCORE_DATE_IPS",
+			"visits.prog_indx.ips_score.scoring_factors": "visits.prog_indx.ips_score.SCORE_DATE_IPS",
+			"visits.prog_indx.ipi": "visits.prog_indx.ipi.SCORE_DATE_IPI",
+			"visits.prog_indx.ipi.ipi_rf": "visits.prog_indx.ipi.SCORE_DATE_IPI",
+			"visits.prog_indx.aaipi": "visits.prog_indx.aaipi.SCORE_DATE_AAIPI",
+			"visits.prog_indx.aaipi.aaipi_rf": "visits.prog_indx.aaipi.SCORE_DATE_AAIPI",
+			"visits.prog_indx.ripi": "visits.prog_indx.ripi.SCORE_DATE_RIPI",
+			"visits.prog_indx.nccnipi": "visits.prog_indx.nccnipi.SCORE_DATE_NCCNIPI",
+			"visits.prog_indx.nccnipi.nccn_ipi_f": "visits.prog_indx.nccnipi.SCORE_DATE_NCCNIPI",
+			"visits.prog_indx.flipi1": "visits.prog_indx.flipi1.SCORE_DATE_FLIPI1",
+			"visits.prog_indx.flipi1.flipi1_rf": "visits.prog_indx.flipi1.SCORE_DATE_FLIPI1",
+			"visits.prog_indx.flipi2": "visits.prog_indx.flipi2.SCORE_DATE_FLIPI2",
+			"visits.prog_indx.flipi2.flipi2_rf": "visits.prog_indx.flipi2.SCORE_DATE_FLIPI2",
+			"visits.prog_indx.mipi": "visits.prog_indx.mipi.SCORE_DATE_MIPI",
+			"visits.prog_indx.mipi.mipi_f": "visits.prog_indx.mipi.SCORE_DATE_MIPI",
+			"visits.prog_indx.smipi": "visits.prog_indx.smipi.SCORE_DATE_SMIPI",
+			"visits.prog_indx.smipi.smipi_f": "visits.prog_indx.smipi.SCORE_DATE_SMIPI",
+			"visits.prog_indx.rai": "visits.prog_indx.rai.SCORE_DATE_RAI",
+			"visits.prog_indx.rai.rai_f": "visits.prog_indx.rai.SCORE_DATE_RAI",
+			"visits.prog_indx.binet": "visits.prog_indx.binet.SCORE_DATE_BINET",
+			"visits.prog_indx.binet.binet_f": "visits.prog_indx.binet.SCORE_DATE_BINET",
+			"visits.prog_indx.cll": "visits.prog_indx.cll.SCORE_DATE_CLL",
+			"visits.prog_indx.cll.cll_f": "visits.prog_indx.cll.SCORE_DATE_CLL",
+			"visits.prog_indx.ielsg": "visits.prog_indx.ielsg.SCORE_DATE_IELSG",
+			"visits.prog_indx.ielsg.ielsg_f": "visits.prog_indx.ielsg.SCORE_DATE_IELSG",
+			"visits.prog_indx.dshnhl": "visits.prog_indx.dshnhl.SCORE_DATE_DSHNHL",
+			"visits.prog_indx.dshnhl.dshnhl_f": "visits.prog_indx.dshnhl.SCORE_DATE_DSHNHL",
+			"visits.surv_stat.survival_situation": "visits.visitinfo.VISIT_DISCHARGE_TIME"
 		}
-	]
-}
+	}
+]
