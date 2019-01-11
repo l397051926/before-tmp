@@ -262,5 +262,10 @@
         <property name="saveResearchVariable" value="http://${rws.ipAndPort}/rws-service/rws/cort/saveResearchVariable"/>
         <property name="projectAggregation" value="http://${rws.ipAndPort}/rws-service/rws/project/projectAggregation"/>
         <property name="projectPowerExamine" value="http://${rws.ipAndPort}/rws-service/rws/project/projectPowerExamine"/>
+        <property name="eligible" value="http://${rws.ipAndPort}/rws-service/rws/project/eligible"/>
+        <property name="inputInfo" value="http://${rws.ipAndPort}/rws-service/rws/inputs/inputInfo"/>
+        <property name="cancel" value="http://${rws.ipAndPort}/rws-service/rws/inputs/cancel"/>
+        <property name="restart" value="http://${rws.ipAndPort}/rws-service/rws/inputs/restart"/>
+        <property name="inputDelete" value="http://${rws.ipAndPort}/rws-service/rws/inputs/delete"/>
     </bean>
 </beans>

@@ -562,6 +562,52 @@ public class URLBean {
     private String projectAggregation = null;
     private String projectPowerExamine = null;
 
+    private String eligible = null;
+    private String inputInfo = null;
+    private String cancel = null;
+    private String restart = null;
+    private String inputDelete = null;
+
+    public String getInputDelete() {
+        return inputDelete;
+    }
+
+    public void setInputDelete(String inputDelete) {
+        this.inputDelete = inputDelete;
+    }
+
+    public String getRestart() {
+        return restart;
+    }
+
+    public void setRestart(String restart) {
+        this.restart = restart;
+    }
+
+    public String getCancel() {
+        return cancel;
+    }
+
+    public void setCancel(String cancel) {
+        this.cancel = cancel;
+    }
+
+    public String getInputInfo() {
+        return inputInfo;
+    }
+
+    public void setInputInfo(String inputInfo) {
+        this.inputInfo = inputInfo;
+    }
+
+    public String getEligible() {
+        return eligible;
+    }
+
+    public void setEligible(String eligible) {
+        this.eligible = eligible;
+    }
+
     public String getProjectPowerExamine() {
         return projectPowerExamine;
     }

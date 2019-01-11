@@ -782,4 +782,60 @@ public class RwsProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String eligible(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getEligible();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("判断用户是否有资格进入跳转到项目 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String inputInfo(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getInputInfo();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取导入数据任务列表 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String cancel(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getCancel();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("取消导出接口 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+
+    public String restart(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getRestart();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("重启导出数据接口 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String inputDelete(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getInputDelete();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("删除任务接口 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }
