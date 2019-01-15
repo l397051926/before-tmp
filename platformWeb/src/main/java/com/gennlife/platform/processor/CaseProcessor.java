@@ -279,12 +279,12 @@ public class CaseProcessor {
             resultBean.setData(allNew);
         } else if ("7".equals(status)) {//rws 检索结果列表
             JsonObject all = new JsonObject();
-            if (emr_id.equals(crf_id) ||"EMR".equals(crf_id)) {
-                all = ConfigurationService.getAdvancedSearch(crf_id);
-            } else {
-                all = ReadConditionByRedis.getCrfSearch(crf_id);
-            }
-//            all = ReadConditionByRedis.getCrfSearch(crf_id);
+//            if (emr_id.equals(crf_id) ||"EMR".equals(crf_id)) {
+//                all = ConfigurationService.getAdvancedSearch(crf_id);
+//            } else {
+//                all = ReadConditionByRedis.getCrfSearch(crf_id);
+//            }
+            all = ReadConditionByRedis.getCrfSearch(crf_id);
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                 String groupName = obj.getKey();
@@ -347,12 +347,12 @@ public class CaseProcessor {
             resultBean.setData(allNew);
         } else if ("8".equals(status)) {//高级搜索,所有属性,带有搜索功能
             JsonObject all = new JsonObject();
-            if (emr_id.equals(crf_id) ||"EMR".equals(crf_id)) {
-                all = ConfigurationService.getAdvancedSearch(crf_id);
-            } else {
-                all = ReadConditionByRedis.getCrfSearch(crf_id);
-            }
-//            all = ReadConditionByRedis.getCrfSearch(crf_id);
+//            if (emr_id.equals(crf_id) ||"EMR".equals(crf_id)) {
+//                all = ConfigurationService.getAdvancedSearch(crf_id);
+//            } else {
+//                all = ReadConditionByRedis.getCrfSearch(crf_id);
+//            }
+            all = ReadConditionByRedis.getCrfSearch(crf_id);
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                 String groupName = obj.getKey();
@@ -1099,12 +1099,12 @@ public class CaseProcessor {
 
         if ("0".equals(status)) {//高级搜索,所有属性,带有搜索功能
             JsonObject all = new JsonObject();
-            if (emr_id.equals(crf_id) ||"EMR".equals(crf_id)) {
-                all = ConfigurationService.getAdvancedSearch(crf_id);
-            } else {
-                all = ReadConditionByRedis.getCrfSearch(crf_id);
-            }
-//            all = ReadConditionByRedis.getCrfSearch(crf_id);
+//            if (emr_id.equals(crf_id) ||"EMR".equals(crf_id)) {
+//                all = ConfigurationService.getAdvancedSearch(crf_id);
+//            } else {
+//                all = ReadConditionByRedis.getCrfSearch(crf_id);
+//            }
+            all = ReadConditionByRedis.getCrfSearch(crf_id);
             JsonObject allNew = new JsonObject();
             for (Map.Entry<String, JsonElement> obj : all.entrySet()) {
                 String groupName = obj.getKey();
