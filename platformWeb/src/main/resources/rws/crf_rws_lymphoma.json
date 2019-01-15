@@ -256,12 +256,12 @@
 						"data": {
 							"dataType": "string",
 							"indexFieldName": "visits.test.ebv_dna",
-							"srchFieldName": "就诊.检验.EBV-DNA"
+							"srchFieldName": "就诊.检验.EBV_DNA"
 						},
 						"expand": false,
 						"icon": "image/tnode-docs.png",
 						"isSrchItem": true,
-						"name": "<span class='u-noFoldIcon-treeNode'>EBV-DNA</span>",
+						"name": "<span class='u-noFoldIcon-treeNode'>EBV_DNA</span>",
 						"open": true,
 						"isSelect": "true"
 					},
@@ -298,12 +298,12 @@
 						"data": {
 							"dataType": "string",
 							"indexFieldName": "visits.test.hbv_dna",
-							"srchFieldName": "就诊.检验.HBV-DNA"
+							"srchFieldName": "就诊.检验.HBV_DNA"
 						},
 						"expand": false,
 						"icon": "image/tnode-docs.png",
 						"isSrchItem": true,
-						"name": "<span class='u-noFoldIcon-treeNode'>HBV-DNA</span>",
+						"name": "<span class='u-noFoldIcon-treeNode'>HBV_DNA</span>",
 						"open": true,
 						"isSelect": "true"
 					},
@@ -367,7 +367,7 @@
 						"collapse": false,
 						"data": {
 							"dataType": "string",
-							"indexFieldName": "visits.test.24h_urinary_protein",
+							"indexFieldName": "visits.test.test_24h_urinary_protein",
 							"srchFieldName": "就诊.检验.24h尿蛋白定量"
 						},
 						"expand": false,
@@ -410,7 +410,7 @@
 								"collapse": false,
 								"data": {
 									"dataType": "string",
-									"indexFieldName": "visits.inspect.cardiac_examination.12lead_ecg",
+									"indexFieldName": "visits.inspect.cardiac_examination.inspect_12lead_ecg",
 									"srchFieldName": "就诊.检查.心脏检查.12导联心电图"
 								},
 								"expand": false,
@@ -452,12 +452,12 @@
 								"data": {
 									"dataType": "string",
 									"indexFieldName": "visits.inspect.path_report.ihc_bg",
-									"srchFieldName": "就诊.检查.病理诊断报告.免疫组化结果-背景细胞"
+									"srchFieldName": "就诊.检查.病理诊断报告.免疫组化结果_背景细胞"
 								},
 								"expand": false,
 								"icon": "image/tnode-docs.png",
 								"isSrchItem": true,
-								"name": "<span class='u-noFoldIcon-treeNode'>免疫组化结果-背景细胞</span>",
+								"name": "<span class='u-noFoldIcon-treeNode'>免疫组化结果_背景细胞</span>",
 								"open": true,
 								"isSelect": "true"
 							}
@@ -531,12 +531,12 @@
 						"data": {
 							"dataType": "string",
 							"indexFieldName": "visits.diagnosis.tumor_diagnosis_l",
-							"srchFieldName": "就诊.诊断.肿瘤诊断-淋巴瘤"
+							"srchFieldName": "就诊.诊断.肿瘤诊断_淋巴瘤"
 						},
 						"expand": false,
 						"icon": "image/tnode-docs.png",
 						"isSrchItem": true,
-						"name": "<span class='u-noFoldIcon-treeNode'>肿瘤诊断-淋巴瘤</span>",
+						"name": "<span class='u-noFoldIcon-treeNode'>肿瘤诊断_淋巴瘤</span>",
 						"open": true,
 						"isSelect": "true"
 					},
@@ -545,12 +545,12 @@
 						"data": {
 							"dataType": "string",
 							"indexFieldName": "visits.diagnosis.tumor_diagnosis",
-							"srchFieldName": "就诊.诊断.肿瘤诊断-其他"
+							"srchFieldName": "就诊.诊断.肿瘤诊断_其他"
 						},
 						"expand": false,
 						"icon": "image/tnode-docs.png",
 						"isSrchItem": true,
-						"name": "<span class='u-noFoldIcon-treeNode'>肿瘤诊断-其他</span>",
+						"name": "<span class='u-noFoldIcon-treeNode'>肿瘤诊断_其他</span>",
 						"open": true,
 						"isSelect": "true"
 					},
@@ -722,12 +722,12 @@
 						"data": {
 							"dataType": "string",
 							"indexFieldName": "visits.prog_indx.ripi",
-							"srchFieldName": "就诊.预后指数.R-IPI"
+							"srchFieldName": "就诊.预后指数.R_IPI"
 						},
 						"expand": false,
 						"icon": "image/tnode-docs.png",
 						"isSrchItem": true,
-						"name": "<span class='u-noFoldIcon-treeNode'>R-IPI</span>",
+						"name": "<span class='u-noFoldIcon-treeNode'>R_IPI</span>",
 						"open": true,
 						"isSelect": "true"
 					},
@@ -738,7 +738,7 @@
 								"data": {
 									"dataType": "string",
 									"indexFieldName": "visits.prog_indx.nccnipi.nccn_ipi_f",
-									"srchFieldName": "就诊.预后指数.NCCN-IPI.评分因素"
+									"srchFieldName": "就诊.预后指数.NCCN_IPI.评分因素"
 								},
 								"expand": false,
 								"icon": "image/tnode-docs.png",
@@ -751,11 +751,11 @@
 						"data": {
 							"dataType": "string",
 							"indexFieldName": "visits.prog_indx.nccnipi",
-							"srchFieldName": "就诊.预后指数.NCCN-IPI"
+							"srchFieldName": "就诊.预后指数.NCCN_IPI"
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"name": "NCCN-IPI",
+						"name": "NCCN_IPI",
 						"isSelect": "true"
 					},
 					{
@@ -765,7 +765,7 @@
 								"data": {
 									"dataType": "string",
 									"indexFieldName": "visits.prog_indx.flipi1.flipi1_rf",
-									"srchFieldName": "就诊.预后指数.FLIPI-1.风险因子"
+									"srchFieldName": "就诊.预后指数.FLIPI_1.风险因子"
 								},
 								"expand": false,
 								"icon": "image/tnode-docs.png",
@@ -778,11 +778,11 @@
 						"data": {
 							"dataType": "string",
 							"indexFieldName": "visits.prog_indx.flipi1",
-							"srchFieldName": "就诊.预后指数.FLIPI-1"
+							"srchFieldName": "就诊.预后指数.FLIPI_1"
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"name": "FLIPI-1",
+						"name": "FLIPI_1",
 						"isSelect": "true"
 					},
 					{
@@ -792,7 +792,7 @@
 								"data": {
 									"dataType": "string",
 									"indexFieldName": "visits.prog_indx.flipi2.flipi2_rf",
-									"srchFieldName": "就诊.预后指数.FLIPI-2.风险因子"
+									"srchFieldName": "就诊.预后指数.FLIPI_2.风险因子"
 								},
 								"expand": false,
 								"icon": "image/tnode-docs.png",
@@ -805,11 +805,11 @@
 						"data": {
 							"dataType": "string",
 							"indexFieldName": "visits.prog_indx.flipi2",
-							"srchFieldName": "就诊.预后指数.FLIPI-2"
+							"srchFieldName": "就诊.预后指数.FLIPI_2"
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"name": "FLIPI-2",
+						"name": "FLIPI_2",
 						"isSelect": "true"
 					},
 					{
@@ -846,7 +846,7 @@
 								"data": {
 									"dataType": "string",
 									"indexFieldName": "visits.prog_indx.smipi.smipi_f",
-									"srchFieldName": "就诊.预后指数.s-MIPI.评分因素"
+									"srchFieldName": "就诊.预后指数.s_MIPI.评分因素"
 								},
 								"expand": false,
 								"icon": "image/tnode-docs.png",
@@ -859,11 +859,11 @@
 						"data": {
 							"dataType": "string",
 							"indexFieldName": "visits.prog_indx.smipi",
-							"srchFieldName": "就诊.预后指数.s-MIPI"
+							"srchFieldName": "就诊.预后指数.s_MIPI"
 						},
 						"iconClose": "image/tnode-folder-close.png",
 						"iconOpen": "image/tnode-folder-open.png",
-						"name": "s-MIPI",
+						"name": "s_MIPI",
 						"isSelect": "true"
 					},
 					{
@@ -973,6 +973,33 @@
 						"iconOpen": "image/tnode-folder-open.png",
 						"name": "IELSG评分",
 						"isSelect": "true"
+					},
+					{
+						"children": [
+							{
+								"collapse": false,
+								"data": {
+									"dataType": "string",
+									"indexFieldName": "visits.prog_indx.dshnhl.dshnhl_f",
+									"srchFieldName": "就诊.预后指数.DSHNHL中枢复发预测模型.评分因素"
+								},
+								"expand": false,
+								"icon": "image/tnode-docs.png",
+								"isSrchItem": true,
+								"name": "<span class='u-noFoldIcon-treeNode'>评分因素</span>",
+								"open": true,
+								"isSelect": "true"
+							}
+						],
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.prog_indx.dshnhl",
+							"srchFieldName": "就诊.预后指数.DSHNHL中枢复发预测模型"
+						},
+						"iconClose": "image/tnode-folder-close.png",
+						"iconOpen": "image/tnode-folder-open.png",
+						"name": "DSHNHL中枢复发预测模型",
+						"isSelect": "true"
 					}
 				],
 				"data": {
@@ -983,6 +1010,33 @@
 				"iconClose": "image/tnode-folder-close.png",
 				"iconOpen": "image/tnode-folder-open.png",
 				"name": "预后指数",
+				"isSelect": "true"
+			},
+			{
+				"children": [
+					{
+						"collapse": false,
+						"data": {
+							"dataType": "string",
+							"indexFieldName": "visits.surv_stat.survival_situation",
+							"srchFieldName": "就诊.生存情况.生存情况"
+						},
+						"expand": false,
+						"icon": "image/tnode-docs.png",
+						"isSrchItem": true,
+						"name": "<span class='u-noFoldIcon-treeNode'>生存情况</span>",
+						"open": true,
+						"isSelect": "true"
+					}
+				],
+				"data": {
+					"dataType": "string",
+					"indexFieldName": "visits.surv_stat",
+					"srchFieldName": "就诊.生存情况"
+				},
+				"iconClose": "image/tnode-folder-close.png",
+				"iconOpen": "image/tnode-folder-open.png",
+				"name": "生存情况",
 				"isSelect": "true"
 			}
 		],
@@ -1023,9 +1077,9 @@
 			"visits.test.other_virus": "visits.test.other_virus.OV_TEST_DATE",
 			"visits.test.syphilis_immuno": "visits.test.syphilis_immuno.SYIM_TEST_DATE",
 			"visits.test.coagulation_function": "visits.test.coagulation_function.CF_TEST_DATE",
-			"visits.test.24h_urinary_protein": "visits.test.24h_urinary_protein.24HUP_TEST_DATE",
+			"visits.test.test_24h_urinary_protein": "visits.test.test_24h_urinary_protein.TEST_24HUP_TEST_DATE",
 			"visits.inspect.cardiac_examination.ucg": "visits.inspect.cardiac_examination.ucg.UCG_CHECK_DATE",
-			"visits.inspect.cardiac_examination.12lead_ecg": "visits.inspect.cardiac_examination.12lead_ecg.12LEAD_ECG_CHECK_DATE",
+			"visits.inspect.cardiac_examination.inspect_12lead_ecg": "visits.inspect.cardiac_examination.inspect_12lead_ecg.INSPECT_12LEAD_ECG_CHECK_DATE",
 			"visits.inspect.path_report": "visits.inspect.path_report.PATH_REPORT_TIME",
 			"visits.inspect.path_report.immunohistochemical_results": "visits.inspect.path_report.PATH_REPORT_TIME",
 			"visits.inspect.path_report.ihc_bg": "visits.inspect.path_report.PATH_REPORT_TIME",
