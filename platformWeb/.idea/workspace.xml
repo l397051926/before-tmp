@@ -4,6 +4,7 @@
     <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="修改配置文件">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/crf/lymphoma.json" afterPath="$PROJECT_DIR$/src/main/resources/crf/lymphoma.json" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma.json" afterPath="$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma.json" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/urlconf.xml" afterPath="$PROJECT_DIR$/src/main/resources/urlconf.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -27,7 +28,28 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="crf_rws_lymphoma.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="566">
+              <caret line="100" column="29" lean-forward="true" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="lymphoma.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/crf/lymphoma.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="367">
+              <caret line="0" column="337349" lean-forward="false" selection-start-line="0" selection-start-column="337349" selection-end-line="0" selection-end-column="337349" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -38,7 +60,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>project</find>
       <find>projectAggregation</find>
       <find>10.0.5.94</find>
       <find>6384</find>
@@ -68,6 +89,7 @@
       <find>visits.medical_history.hx_path</find>
       <find>12</find>
       <find>pop</find>
+      <find>病史</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;open&quot;: false</replace>
@@ -146,10 +168,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/resources/crf/liver_cancer.json" />
-        <option value="$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma.json" />
         <option value="$PROJECT_DIR$/src/main/resources/rws/searchDefinedEventListConfiglymphoma.json" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/resources/urlconf.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma.json" />
         <option value="$PROJECT_DIR$/src/main/resources/crf/lymphoma.json" />
       </list>
     </option>
@@ -184,8 +206,8 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1542" />
-    <option name="y" value="-437" />
+    <option name="x" value="1910" />
+    <option name="y" value="-314" />
     <option name="width" value="1380" />
     <option name="height" value="744" />
   </component>
@@ -685,13 +707,6 @@
       <workItem from="1546670951819" duration="11223000" />
       <workItem from="1547539398952" duration="1218000" />
     </task>
-    <task id="LOCAL-00036" summary="rws 聚合搜索">
-      <created>1529933038030</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1529933038030</updated>
-    </task>
     <task id="LOCAL-00037" summary="修改淋巴瘤上方 配置文件">
       <created>1529981822318</created>
       <option name="number" value="00037" />
@@ -1028,7 +1043,14 @@
       <option name="project" value="LOCAL" />
       <updated>1547545894353</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="修改配置文件">
+      <created>1547602493355</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1547602493355</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1064,10 +1086,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1161261000" />
+    <option name="totallyTimeSpent" value="1162048000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-434" width="1936" height="1176" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1083,7 +1106,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22228146" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22228146" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1220,9 +1243,9 @@
     <MESSAGE value="调整导出 权限问题" />
     <MESSAGE value="选择科室 导出权限问题" />
     <MESSAGE value="调整淋巴瘤 配置文件" />
-    <MESSAGE value="修改配置文件" />
     <MESSAGE value="调整 rws 配置文件从uiService 获取" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整 rws 配置文件从uiService 获取" />
+    <MESSAGE value="修改配置文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改配置文件" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1684,13 +1707,6 @@ for(JsonElement element : array){
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1403">
-          <caret line="1081" column="153" lean-forward="false" selection-start-line="1081" selection-start-column="153" selection-end-line="1081" selection-end-column="153" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/rws/searchDefinedEventListConfiglymphoma.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="505">
@@ -1721,10 +1737,18 @@ for(JsonElement element : array){
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="100" column="29" lean-forward="true" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/crf/lymphoma.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="880">
-          <caret line="0" column="297327" lean-forward="false" selection-start-line="0" selection-start-column="297327" selection-end-line="0" selection-end-column="297327" />
+        <state relative-caret-position="367">
+          <caret line="0" column="337349" lean-forward="false" selection-start-line="0" selection-start-column="337349" selection-end-line="0" selection-end-column="337349" />
           <folding />
         </state>
       </provider>
