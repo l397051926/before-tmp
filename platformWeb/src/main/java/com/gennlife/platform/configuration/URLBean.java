@@ -506,6 +506,82 @@ public class URLBean {
     private String DependenceChange = null;
     private String EditActiveName =null;
 
+    /**
+     * file export
+     */
+    private String exportCreateTask = null;
+    private String exportTaskInfo = null;
+    private String exportTaskSaveInfo = null;
+    private String exportTaskCancel = null;
+    private String exportTaskRetry = null;
+    private String exportTaskDelete = null;
+    private String exportTaskDownload = null;
+    private String exportTaskList = null;
+
+    public String getExportTaskList() {
+        return exportTaskList;
+    }
+
+    public void setExportTaskList(String exportTaskList) {
+        this.exportTaskList = exportTaskList;
+    }
+
+    public String getExportTaskDownload() {
+        return exportTaskDownload;
+    }
+
+    public void setExportTaskDownload(String exportTaskDownload) {
+        this.exportTaskDownload = exportTaskDownload;
+    }
+
+    public String getExportTaskDelete() {
+        return exportTaskDelete;
+    }
+
+    public void setExportTaskDelete(String exportTaskDelete) {
+        this.exportTaskDelete = exportTaskDelete;
+    }
+
+    public String getExportTaskRetry() {
+        return exportTaskRetry;
+    }
+
+    public void setExportTaskRetry(String exportTaskRetry) {
+        this.exportTaskRetry = exportTaskRetry;
+    }
+
+    public String getExportTaskCancel() {
+        return exportTaskCancel;
+    }
+
+    public void setExportTaskCancel(String exportTaskCancel) {
+        this.exportTaskCancel = exportTaskCancel;
+    }
+
+    public String getExportTaskSaveInfo() {
+        return exportTaskSaveInfo;
+    }
+
+    public void setExportTaskSaveInfo(String exportTaskSaveInfo) {
+        this.exportTaskSaveInfo = exportTaskSaveInfo;
+    }
+
+    public String getExportTaskInfo() {
+        return exportTaskInfo;
+    }
+
+    public void setExportTaskInfo(String exportTaskInfo) {
+        this.exportTaskInfo = exportTaskInfo;
+    }
+
+    public String getExportCreateTask() {
+        return exportCreateTask;
+    }
+
+    public void setExportCreateTask(String exportCreateTask) {
+        this.exportCreateTask = exportCreateTask;
+    }
+
     public String getEditActiveName() {
         return EditActiveName;
     }

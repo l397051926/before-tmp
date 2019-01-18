@@ -1,5 +1,6 @@
 package com.gennlife.platform.processor;
 
+import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.DataFormatConversion;
 import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
@@ -94,4 +95,92 @@ public class FileProcessor {
     }
 
 
+    public String createTask(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getExportCreateTask();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("创建导出任务", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String exportTaskInfo(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getExportTaskInfo();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取导出任务基本信息", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String exportTaskSaveInfo(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getExportTaskSaveInfo();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("保存导出任务基本信息", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String exportTaskCancel(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getExportTaskCancel();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("取消导出任务", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String exportTaskRetry(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getExportTaskRetry();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("重试导出任务", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+
+    public String exportTaskDelete(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getExportTaskDelete();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("删除导出任务记录", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String exportTaskDownload(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getExportTaskDownload();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("删除导出任务记录", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    public String exportTaskList(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getExportTaskList();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取导出任务列表", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }

@@ -142,6 +142,16 @@
         <property name="fileStoreForCRFImport"
                   value="http://${fileService.ipAndPort}/FileService/PatientDetail/UploadCsvFile"></property>
 
+        <!--file export fileservice接口-->
+        <property name="exportCreateTask" value="http://${fileService.ipAndPort}/FileService/Projects/Export/Task/Create"></property>
+        <property name="exportTaskInfo" value="http://${fileService.ipAndPort}/FileService/Projects/Export/Task/Info"></property>
+        <property name="exportTaskSaveInfo" value="http://${fileService.ipAndPort}/FileService/Projects/Export/Task/SaveInfo"></property>
+        <property name="exportTaskCancel" value="http://${fileService.ipAndPort}/FileService/Projects/Export/Task/Cancel"></property>
+        <property name="exportTaskRetry" value="http://${fileService.ipAndPort}/FileService/Projects/Export/Task/Retry"></property>
+        <property name="exportTaskDelete" value="http://${fileService.ipAndPort}/FileService/Projects/Export/Task/Delete"></property>
+        <property name="exportTaskDownload" value="http://${fileService.ipAndPort}/FileService/Projects/Export/Task/Download"></property>
+        <property name="exportTaskList" value="http://${fileService.ipAndPort}/FileService/Projects/Export/Task/List"></property>
+
 
         <!--知识库服务 接口 -->
         <property name="knowledgeURL" value="http://${knowledge.ipAndPort}/knowledge/graph"/>
@@ -195,6 +205,9 @@
         <property name="EmailSendURL" value="http://${webui.ipAndPort}/uranus/verify_email.html?token="></property>
         <property name="EmailURL" value="http://${webui.ipAndPort}"></property>
         <property name="CSBaseline" value="http://${apache.ipAndPort}/baseline"/>
+
+
+
 
         <!-- RWS服务接口 -->
         <property name="PreLiminaryUrl" value="http://${rws.ipAndPort}/rws-service/rws/pre/liminary"/>
