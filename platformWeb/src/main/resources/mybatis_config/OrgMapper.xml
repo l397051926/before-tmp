@@ -348,6 +348,16 @@
         lab_parent = #{labId}
     </select>
 
+    <select id="getLabIdByParentIds" resultType="java.lang.String">
+        select
+        labID
+        FROM
+        gennlife_lab
+        WHERE
+        lab_parent = #{labId}
+        And (depart_name = '行政管理类' OR depart_name = '业务管理类')
+    </select>
+
 
 
 </mapper>

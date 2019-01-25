@@ -115,4 +115,6 @@ public interface SyResourceMapper {
      * @return
      */
     List<LabResource> getLabResources();
+
+    List<Resource> getResourcesBySids(@Param("orgID") String orgID, @Param("sids") List<String> sids, @Param("roleid") Integer roleid);
 }
