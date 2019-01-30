@@ -9,6 +9,7 @@ import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
@@ -35,22 +36,24 @@ public class RwsService implements RwsServiceImpl {
         JsonObject resultObj = new JsonObject();
         boolean flag = paramObj.has("crfId");
         //处理power
-        String sid = "";
-        Set<SearchPower> searchPowers = new HashSet<>();
-        if(paramObj.has("sid")){
-            sid = paramObj.get("sid").getAsString();
-            Lab lab = AllDao.getInstance().getOrgDao().getLabBylabID(sid);
-            SearchPower searchPower = new SearchPower(lab.getLabID(),lab.getLab_name());
-            searchPowers.add(searchPower);
-        }else {
-            Power power = user.getPower();
-            Set<Resource> hasExport = power.getHas_searchExport();
-            for (Resource resource : hasExport){
-                SearchPower searchPower = new SearchPower(resource.getSid(),resource.getSlab_name());
-                searchPowers.add(searchPower);
-            }
-        }
-        paramObj.add("power",gson.toJsonTree(searchPowers));
+//        String sid = "";
+//        Set<SearchPower> searchPowers = new HashSet<>();
+//        if(paramObj.has("sid")){
+//            sid = paramObj.get("sid").getAsString();
+//            Lab lab = AllDao.getInstance().getOrgDao().getLabBylabID(sid);
+//            SearchPower searchPower = new SearchPower(lab.getLabID(),lab.getLab_name());
+//            searchPowers.add(searchPower);
+//        }else {
+//            Power power = user.getPower();
+//            Set<Resource> hasExport = power.getHas_searchExport();
+//            for (Resource resource : hasExport){
+//                SearchPower searchPower = new SearchPower(resource.getSid(),resource.getSlab_name());
+//                searchPowers.add(searchPower);
+//            }
+//        }
+//        paramObj.add("power",gson.toJsonTree(searchPowers));
+        JsonArray array = paramObj.getAsJsonObject("power").getAsJsonArray("has_searchExport");
+        paramObj.add("power",array);
         try {
             String crfName = "", crfId = "";
             String projectId = paramObj.get("projectId").getAsString();

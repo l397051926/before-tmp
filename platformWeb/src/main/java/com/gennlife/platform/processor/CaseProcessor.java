@@ -618,6 +618,15 @@ public class CaseProcessor {
                     newHas_searchArray.add(has_searchObj);
                 }
             }
+            JsonArray has_searchExport = power.getAsJsonArray("has_searchExport");
+            JsonArray newHas_searchExport = new JsonArray();
+            for (JsonElement item : has_searchExport) {
+                JsonObject has_searchObj = item.getAsJsonObject();
+                String tmpSid = has_searchObj.get("sid").getAsString();
+                if (tmpSid.equals(sid)) {
+                    newHas_searchExport.add(has_searchObj);
+                }
+            }
             if (newHas_searchArray.size() == 0) {
                 return ParamUtils.errorParam("无搜索权限");
             } else {
@@ -625,7 +634,11 @@ public class CaseProcessor {
                 List<LabResource> tmpResource = new ArrayList<>();
                 getResource(listResource,sid,tmpResource);
                 getPower(tmpResource,newHas_searchArray);//增加子权限
+                List<LabResource> tmpExportResource = new ArrayList<>();
+                getResource(listResource,sid,tmpExportResource);
+                getPower(tmpExportResource,newHas_searchExport);
                 power.add("has_search", newHas_searchArray);
+                power.add("has_searchExport",newHas_searchExport);
             }
             paramObj.add("power", power);
             //logger.info("通过sid转化后，搜索请求参数 = " + gson.toJson(paramObj));
