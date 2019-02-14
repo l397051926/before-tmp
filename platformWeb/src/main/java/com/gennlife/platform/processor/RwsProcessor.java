@@ -838,4 +838,15 @@ public class RwsProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String judgeTaskStatus(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getJudgeTaskStatus();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("判断任务状态接口 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }

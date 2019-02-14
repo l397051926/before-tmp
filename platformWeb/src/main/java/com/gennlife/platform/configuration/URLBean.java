@@ -643,13 +643,20 @@ public class URLBean {
     private String cancel = null;
     private String restart = null;
     private String inputDelete = null;
-
+    private String judgeTaskStatus = null;
 
     //消息中心 对应接口
     private String msgUpdate = null;
     private String msgUpdateAll = null;
     private String msgQuery = null;
 
+    public String getJudgeTaskStatus() {
+        return judgeTaskStatus;
+    }
+
+    public void setJudgeTaskStatus(String judgeTaskStatus) {
+        this.judgeTaskStatus = judgeTaskStatus;
+    }
 
     public String getMsgQuery() {
         return msgQuery;

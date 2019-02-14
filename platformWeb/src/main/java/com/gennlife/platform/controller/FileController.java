@@ -145,7 +145,7 @@ public class FileController {
         return resultStr;
     }
 
-    @RequestMapping(value = "Projects/Export/Task/Info", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/Projects/Export/Task/Info", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String exportTaskInfo(HttpServletRequest paramRe) {

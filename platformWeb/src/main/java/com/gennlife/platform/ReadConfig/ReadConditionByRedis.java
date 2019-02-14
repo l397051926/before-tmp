@@ -27,6 +27,7 @@ public class ReadConditionByRedis {
             ConfigUtils configUtils = ApplicationContextHelper.getBean(ConfigUtils.class);
             String allCRFDiseases = configUtils.getRemoteUtfFile("/crf/"+crfId+".json");
             if(StringUtils.isEmpty(allCRFDiseases)){
+                LOGGER.warn("没有从配置中心获取到配置文件  改为从本地获取文件");
                 allCRFDiseases = FilesUtils.readFile("/crf/"+crfId+".json");
             }
 //            String allCRFDiseases = FilesUtils.readCrfFile("src/main/resources/crf/"+crfId+".json");
@@ -80,6 +81,7 @@ public class ReadConditionByRedis {
             ConfigUtils configUtils = ApplicationContextHelper.getBean(ConfigUtils.class);
             String crf_mapping = configUtils.getRemoteUtfFile("crf/crf_hit_sort.json");
             if(StringUtils.isEmpty(crf_mapping)){
+                LOGGER.warn("没有从配置中心获取到配置文件  改为从本地获取文件");
                 crf_mapping = FilesUtils.readFile("/crf/crf_hit_sort.json");
             }
             JsonObject jsonObject = (JsonObject) jsonParser.parse(crf_mapping);

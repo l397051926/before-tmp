@@ -1338,5 +1338,24 @@ public class RwsController {
         return resultStr;
     }
 
+    @RequestMapping(value = "/inputs/judgeTaskStatus", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String judgeTaskStatus(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("判断任务状态接口 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.judgeTaskStatus(paramObj);
+        } catch (Exception e) {
+            logger.error("判断任务状态接口 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("判断任务状态接口 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
 
 }

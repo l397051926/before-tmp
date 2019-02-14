@@ -280,6 +280,7 @@
         <property name="cancel" value="http://${rws.ipAndPort}/rws-service/rws/inputs/cancel"/>
         <property name="restart" value="http://${rws.ipAndPort}/rws-service/rws/inputs/restart"/>
         <property name="inputDelete" value="http://${rws.ipAndPort}/rws-service/rws/inputs/delete"/>
+        <property name="judgeTaskStatus" value="http://${rws.ipAndPort}/rws-service/rws/inputs/judgeTaskStatus"/>
 
         <!--消息中心接口展示-->
         <property name="msgUpdate" value="http://${msg.ipAndPort}/mc-server/update"/>
