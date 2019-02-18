@@ -637,6 +637,7 @@ public class URLBean {
     private String deleteResearchVariable = null;
     private String projectAggregation = null;
     private String projectPowerExamine = null;
+    private String groupIdPath = null;
 
     private String eligible = null;
     private String inputInfo = null;
@@ -649,6 +650,14 @@ public class URLBean {
     private String msgUpdate = null;
     private String msgUpdateAll = null;
     private String msgQuery = null;
+
+    public String getGroupIdPath() {
+        return groupIdPath;
+    }
+
+    public void setGroupIdPath(String groupIdPath) {
+        this.groupIdPath = groupIdPath;
+    }
 
     public String getJudgeTaskStatus() {
         return judgeTaskStatus;

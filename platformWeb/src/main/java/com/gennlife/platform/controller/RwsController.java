@@ -1357,5 +1357,24 @@ public class RwsController {
         return resultStr;
     }
 
+    @RequestMapping(value = "/patientGroup/getGroupIdPath", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getGroupIdPath(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("判断任务状态接口 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.getGroupIdPath(paramObj);
+        } catch (Exception e) {
+            logger.error("获取项目下所有分组路径 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取项目下所有分组路径 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
 
 }
