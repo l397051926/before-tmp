@@ -329,6 +329,19 @@
     gennlife_resource
   </select>
 
+  <select id="getResourcesBySids" resultMap="com.gennlife.platform.model.Resource" >
+    select
+    <include refid="resourceProperty" />
+    FROM
+    gennlife_role_resource,gennlife_resource
+    where
+    gennlife_resource.sorgID=#{orgID}
+    AND gennlife_resource.sid IN
+    <foreach collection="sids" item="item" index="index" open="(" separator="," close=")">
+      #{item,jdbcType=VARCHAR}
+    </foreach>
+    AND gennlife_role_resource.roleid = #{roleid}
+  </select>
 
 
 </mapper>

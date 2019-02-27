@@ -468,12 +468,14 @@ public class UserProcessor {
                 user.setIfRoleAll("是");
                 role.setResources(reList);
             }else  if ("1".equals(role.getRole_type())) {
-                List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResourcesBySid(user.getOrgID(), user.getLabID(), role.getRoleid());
+                List<String> labIDs = getAllLabIds(user.getLabID());
+//                List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResourcesBySid(user.getOrgID(), user.getLabID(), role.getRoleid());
+                List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResourcesBySids(user.getOrgID(), labIDs, role.getRoleid());
                 List<Resource> reList = new LinkedList<>();
                 for (Resource resource : resourcesList) {
                     reList.add(resource);
                     power = addResourceToPower(power, resource);
-                    break;//保留一个就行了
+//                    break;//保留一个就行了   -- 都要！
                 }
                 role.setResources(reList);
             } else {
@@ -496,6 +498,22 @@ public class UserProcessor {
             }
         }
         return power;
+    }
+
+    private static List<String> getAllLabIds(String labID) {
+        List<String> labIds =  AllDao.getInstance().getOrgDao().getLabIdByParentIds(labID);
+        labIds.add(labID);
+        List<String> labs = new ArrayList<>();
+        getAllLabIdByIds(labIds,labs);
+        return labs;
+    }
+
+    private static void getAllLabIdByIds(List<String> labIds, List<String> labs) {
+        for (String lab : labIds){
+            labs.add(lab);
+            List<String> tmpLabs = AllDao.getInstance().getOrgDao().getLabIdByParentIds(lab);
+            getAllLabIdByIds(tmpLabs,labs);
+        }
     }
 
     private static Power addResourceToPowerForAll(Power power, Resource resource) {
