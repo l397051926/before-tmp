@@ -153,7 +153,7 @@ public class UserController {
             }else{
                 xml = service.call();
             }
-            LogUtils.BussnissLog("校验token返回值,xml="+xml);
+            LogUtils.BussnissLog("校验token后，用友系统返回值,xml="+xml);
             Document document = DocumentHelper.parseText(xml);
             String errorCode = service.getRootTextByKey(document,"errcode");
             if(!org.apache.commons.lang.StringUtils.equals(errorCode,yySuccessCode)){
