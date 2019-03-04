@@ -226,7 +226,7 @@ public class UserController {
                 session.setAttribute("ark-uiservice",sessionID);
                 session.setAttribute("userinfo",gson.toJson(user));
                 paramRe.setAttribute("userinfo",gson.toJson(user));
-                response.setHeader("location", ssoSuccessUrl+"?aa=8881&o1r=12312");
+                response.setHeader("location", ssoSuccessUrl);
                 //view.viewString(resultStr, response);
             } else {
                 String error = ParamUtils.errorParam("用户不存在");
