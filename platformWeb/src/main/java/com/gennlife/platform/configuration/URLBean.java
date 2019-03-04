@@ -568,6 +568,17 @@ public class URLBean {
     private Integer isMock = 1;
     private String ssoSuccessUrl = null;
     private String ssoFailUrl = null;
+    private String ssoSysmark = null;
+
+    public String getSsoSysmark() {
+
+        return ssoSysmark;
+    }
+
+    public void setSsoSysmark(String ssoSysmark) {
+
+        this.ssoSysmark = ssoSysmark;
+    }
 
     public String getYyssoUrl() {
 

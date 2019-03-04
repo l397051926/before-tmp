@@ -265,6 +265,7 @@
         <!-- 对接郑州中心 统一门户 -->
         <property name="yyssoUrl" value="${yongyou_ssoUrl}" />
         <property name="isMock" value="${sso_isMock}" />
+        <property name="ssoSysmark" value="${sso_sysmark}" />
         <property name="ssoSuccessUrl" value="${sso_success_url}" />
         <property name="ssoFailUrl" value="${sso_fail_url}" />
     </bean>

@@ -126,9 +126,14 @@ public class UserController {
         Integer isMock = ConfigurationService.getUrlBean().getIsMock();
         String ssoSuccessUrl = ConfigurationService.getUrlBean().getSsoSuccessUrl();
         String ssoFailUrl = ConfigurationService.getUrlBean().getSsoFailUrl();
+        String ssoSysmark = ConfigurationService.getUrlBean().getSsoSysmark();
+        LogUtils.BussnissLog("yyssoUrl="+yyssoUrl+",isMock="+isMock+",ssoSuccessUrl="+ssoSuccessUrl+",ssoFailUrl="+ssoFailUrl+",ssoSysmark="+ssoSysmark);
         try {
             if(isMock == null){
                 throw new Exception("isMock 参数未配置");
+            }
+            if(ssoSysmark == null){
+                throw new Exception("系统标识未配置");
             }
             if(org.apache.commons.lang.StringUtils.isEmpty(yyssoUrl)){
                 throw new Exception("yyssoUrl 参数未配置");
@@ -140,9 +145,8 @@ public class UserController {
                 throw new Exception("ssoFailUrl 参数未配置");
             }
             String token = paramRe.getParameter("token");
-            String sysmark = paramRe.getParameter("sysmark");
-            LogUtils.BussnissLog("配置的token验证服务地址 url="+yyssoUrl+",门户系统请求的参数：token="+token+", sysmark="+sysmark);
-            CallService service = new CallService(yyssoUrl,token,sysmark);
+            LogUtils.BussnissLog("门户系统请求的参数：token="+token);
+            CallService service = new CallService(yyssoUrl,token,ssoSysmark);
             String xml = null;
             if(isMock == null || isMock == 1){
                 xml = service.mockCall();
