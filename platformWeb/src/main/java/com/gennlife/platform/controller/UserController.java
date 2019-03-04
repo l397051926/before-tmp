@@ -225,11 +225,8 @@ public class UserController {
                 }
                 resultBean.setCode(1);
                 resultBean.setData(user);
-                resultStr = gson.toJson(resultBean);
+                //resultStr = gson.toJson(resultBean);
                 response.setStatus(302);
-                session.setAttribute("ark-uiservice",sessionID);
-                session.setAttribute("userinfo",gson.toJson(user));
-                paramRe.setAttribute("userinfo",gson.toJson(user));
                 response.setHeader("location", ssoSuccessUrl);
                 //view.viewString(resultStr, response);
             } else {
