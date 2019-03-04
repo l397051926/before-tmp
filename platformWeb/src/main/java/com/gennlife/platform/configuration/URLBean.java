@@ -562,6 +562,53 @@ public class URLBean {
     private String projectAggregation = null;
     private String projectPowerExamine = null;
 
+
+    /**用友单点登陆校验地址*/
+    private String yyssoUrl = null;
+    private Integer isMock = 1;
+    private String ssoSuccessUrl = null;
+    private String ssoFailUrl = null;
+
+    public String getYyssoUrl() {
+
+        return yyssoUrl;
+    }
+
+    public void setYyssoUrl(String yyssoUrl) {
+
+        this.yyssoUrl = yyssoUrl;
+    }
+
+    public Integer getIsMock() {
+
+        return isMock;
+    }
+
+    public void setIsMock(Integer isMock) {
+
+        this.isMock = isMock;
+    }
+
+    public String getSsoSuccessUrl() {
+
+        return ssoSuccessUrl;
+    }
+
+    public void setSsoSuccessUrl(String ssoSuccessUrl) {
+
+        this.ssoSuccessUrl = ssoSuccessUrl;
+    }
+
+    public String getSsoFailUrl() {
+
+        return ssoFailUrl;
+    }
+
+    public void setSsoFailUrl(String ssoFailUrl) {
+
+        this.ssoFailUrl = ssoFailUrl;
+    }
+
     public String getProjectPowerExamine() {
         return projectPowerExamine;
     }

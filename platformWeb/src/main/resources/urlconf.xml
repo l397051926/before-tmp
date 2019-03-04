@@ -262,5 +262,10 @@
         <property name="saveResearchVariable" value="http://${rws.ipAndPort}/rws-service/rws/cort/saveResearchVariable"/>
         <property name="projectAggregation" value="http://${rws.ipAndPort}/rws-service/rws/project/projectAggregation"/>
         <property name="projectPowerExamine" value="http://${rws.ipAndPort}/rws-service/rws/project/projectPowerExamine"/>
+        <!-- 对接郑州中心 统一门户 -->
+        <property name="yyssoUrl" value="${yongyou_ssoUrl}" />
+        <property name="isMock" value="${sso_isMock}" />
+        <property name="ssoSuccessUrl" value="${sso_success_url}" />
+        <property name="ssoFailUrl" value="${sso_fail_url}" />
     </bean>
 </beans>

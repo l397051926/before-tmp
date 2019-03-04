@@ -124,6 +124,7 @@ public class SessionFilter implements Filter {
 
     static {
         okSet.add("/user/Info");
+        okSet.add("/user/ssoLogin");
         okSet.add("/detail/get_patien_sn");
         okSet.add("/user/Login");
         okSet.add("/base/Login");

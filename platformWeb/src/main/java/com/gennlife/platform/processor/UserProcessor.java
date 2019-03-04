@@ -64,7 +64,36 @@ public class UserProcessor {
         }
     }
 
+    /**
+     * 用于郑大一附单点登陆
+     * @param unumber
+     * @return
+     * @throws IOException
+     */
+    public User ssoLogin(String unumber) {
 
+        User user = null;
+        long start = System.currentTimeMillis();
+        try {
+
+            user = AllDao.getInstance().getSyUserDao().selectUserByUnumber(unumber);//从数据库获取用户信息
+            logger.info("登录时数据库查询User耗时: " + (System.currentTimeMillis() - start) + "ms");
+            //  System.out.println(user);
+            if (user == null) {
+                return null;
+            } else {
+                long s = System.currentTimeMillis();
+                user = getUserByUids(user.getUid());
+                long e = System.currentTimeMillis();
+                logger.info("登录时加载权限信息耗时 " + (e - s) + " ms");
+                return user;
+            }
+
+        } catch (Exception e) {
+            logger.error("", e);
+            return null;
+        }
+    }
     public ResultBean update(String param) throws IOException {
         synchronized (FileUploadUtil.Lock) {
             boolean flag = true;
