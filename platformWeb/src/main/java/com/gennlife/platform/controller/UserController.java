@@ -158,13 +158,13 @@ public class UserController {
             String errorCode = service.getRootTextByKey(document,"errcode");
             if(!org.apache.commons.lang.StringUtils.equals(errorCode,yySuccessCode)){
                 String errmsg = service.getRootTextByKey(document, "errmsg");
-                throw new Exception(errmsg);
+                throw new Exception("门户系统的错误提示："+errmsg+",详细问题请联系系统管理员");
             }
             String passWord = service.getPassWord(document);
             String userName = service.getElementTextBykey(document,"username");
             LogUtils.BussnissLog("获取到的信息：errorCode="+errorCode+",passWord="+passWord+",userName="+userName);
             if(org.apache.commons.lang.StringUtils.isEmpty(userName)){
-                throw new Exception("检验token后，返回的用户名未空");
+                throw new Exception("检验token后，门户系统返回的用户名未空");
             }
             String number = EncoderUtils.decode(userName);
             User user = processor.ssoLogin(number);
@@ -230,7 +230,7 @@ public class UserController {
                 response.setHeader("location", ssoSuccessUrl);
                 //view.viewString(resultStr, response);
             } else {
-                String error = ParamUtils.errorParam("用户不存在");
+                String error = ParamUtils.errorParam("您的账户没有权限访问本系统，详细问题请联系系统管理员******");
                 response.setStatus(302);
                 response.setHeader("location", ssoFailUrl+"&error="+error);
                 view.viewString(error, response);
