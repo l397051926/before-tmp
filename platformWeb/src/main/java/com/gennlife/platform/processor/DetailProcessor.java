@@ -1,5 +1,6 @@
 package com.gennlife.platform.processor;
 
+import com.gennlife.platform.ReadConfig.ReadConditionByRedis;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
@@ -651,6 +652,15 @@ public class DetailProcessor {
             String url = ConfigurationService.getUrlBean().getTripleTestTable();
             logger.info("getPatienSn url=" + url);
             String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("获取基本信息 ");
+        }
+    }
+
+    public String getSchemaData() {
+        try {
+            String result = ReadConditionByRedis.getDetailSchemaData();
             return result;
         } catch (Exception e) {
             return ParamUtils.errorParam("获取基本信息 ");
