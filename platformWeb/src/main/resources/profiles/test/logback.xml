@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- 文件输出格式 -->
+    <!--<property name="PATTERN" value="{&quot;timestmp&quot; : &quot;%-12(%d{yyyy-MM-dd HH:mm:ss.SSS})&quot; , &quot;loglevel&quot; : &quot;%-5level&quot; ,&quot;thread&quot; : &quot;[%thread] %c [%L]&quot;,&quot;msg&quot;:&quot;%msg&quot;}%n"/>-->
+    <property name="PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n"/>
+    <!-- test文件路径 -->
+    <property name="FILE_PATH" value="logs"/>
+
+    <appender name="SystemLog" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <root>
+        <appender-ref ref="SystemLog"/>
+    </root>
+</configuration>

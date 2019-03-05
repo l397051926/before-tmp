@@ -486,6 +486,8 @@ public class URLBean {
 
     private String getPatienSn = null;
 
+    private String tripleTestTable = null;
+
     /**
      * RWS
      */
@@ -2013,5 +2015,13 @@ public class URLBean {
 
     public void setGetPatienSn(String getPatienSn) {
         this.getPatienSn = getPatienSn;
+    }
+
+    public String getTripleTestTable() {
+        return tripleTestTable;
+    }
+
+    public void setTripleTestTable(String tripleTestTable) {
+        this.tripleTestTable = tripleTestTable;
     }
 }

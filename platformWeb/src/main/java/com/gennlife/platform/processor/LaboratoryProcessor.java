@@ -669,11 +669,10 @@ public class LaboratoryProcessor {
         if ("".equals(labID)) {
             if (offset != null && limit != null) {
                 users = AllDao.getInstance().getSyUserDao().searchUsersByOrgID(key, offset, limit, user.getOrgID(),uids);
-
             } else {
                 users = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDNoLimit(key, user.getOrgID());
             }
-            Long counter = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDCounter(key, user.getOrgID());
+            Long counter = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDCounter(key, user.getOrgID(),uids);
             Map<String, Object> info = new HashMap<>();
             info.put("count", counter);
             re.setInfo(info);
@@ -1988,7 +1987,7 @@ public class LaboratoryProcessor {
         } else {
             users = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDNoLimitRws(key, user.getOrgID(),uidList);
         }
-        Long counter = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDCounter(key, user.getOrgID());
+        Long counter = AllDao.getInstance().getSyUserDao().searchUsersByOrgIDCounter(key, user.getOrgID(),null);
         Map<String, Object> info = new HashMap<>();
         info.put("count", counter);
         re.setInfo(info);
