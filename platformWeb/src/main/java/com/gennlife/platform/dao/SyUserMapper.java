@@ -126,7 +126,7 @@ public interface SyUserMapper {
      * @param orgID
      * @return
      */
-    Long searchUsersByOrgIDCounter(@Param("skey") String key, @Param("orgID") String orgID);
+    Long searchUsersByOrgIDCounter(@Param("skey") String key, @Param("orgID") String orgID,@Param("uids") List<String> uids);
 
     /**
      * 获取保存的高级检索公式

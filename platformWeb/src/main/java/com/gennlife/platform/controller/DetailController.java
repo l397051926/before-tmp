@@ -850,4 +850,38 @@ public class DetailController {
         logger.info("获取患者基本信息 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/newTripleTestTable", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String tripleTestTable(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("新三测单渲染 get方式 参数=" + param);
+            resultStr = processor.tripleTestTable(param);
+        } catch (Exception e) {
+            logger.error("新三测单渲染", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("新三测单渲染 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/getSchemaData", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getSchemaData(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            resultStr = processor.getSchemaData();
+        } catch (Exception e) {
+            logger.error("获取患者基本信息", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("获取患者基本信息 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }
