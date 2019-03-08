@@ -3,10 +3,16 @@ package com.gennlife.platform.controller;
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.dao.AllDao;
-import com.gennlife.platform.model.*;
+import com.gennlife.platform.model.Group;
+import com.gennlife.platform.model.Power;
+import com.gennlife.platform.model.Resource;
+import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.UserProcessor;
 import com.gennlife.platform.service.ConfigurationService;
-import com.gennlife.platform.util.*;
+import com.gennlife.platform.util.GsonUtil;
+import com.gennlife.platform.util.LogUtils;
+import com.gennlife.platform.util.ParamUtils;
+import com.gennlife.platform.util.RedisUtil;
 import com.gennlife.platform.view.View;
 import com.gennlife.yy.sso.CallService;
 import com.google.gson.*;
@@ -127,6 +133,7 @@ public class UserController {
         String ssoSuccessUrl = ConfigurationService.getUrlBean().getSsoSuccessUrl();
         String ssoFailUrl = ConfigurationService.getUrlBean().getSsoFailUrl();
         String ssoSysmark = ConfigurationService.getUrlBean().getSsoSysmark();
+        Base64.Encoder encoder = Base64.getEncoder();
         LogUtils.BussnissLog("yyssoUrl="+yyssoUrl+",isMock="+isMock+",ssoSuccessUrl="+ssoSuccessUrl+",ssoFailUrl="+ssoFailUrl+",ssoSysmark="+ssoSysmark);
         try {
             if(isMock == null){
@@ -186,18 +193,19 @@ public class UserController {
                 if ("定期有效".equals(status)) {
                     if (StringUtils.isEmpty(failTime) || StringUtils.isEmpty(effectiveTtime)) {
                         String error = ParamUtils.errorParam("没有权限登陆");
-                        response.setStatus(302);
-                        response.setHeader("location", ssoFailUrl+"&error="+error);
 
-                        view.viewString(ParamUtils.errorParam("没有权限登陆"), response);
+                        response.setStatus(302);
+                        response.setHeader("location", ssoFailUrl+"&error="+encoder.encodeToString(error.getBytes()));
+
+                        view.viewString(encoder.encodeToString(error.getBytes()), response);
                         return;
                     }
                     if (date.after(time.parse(failTime)) || date.before(time.parse(effectiveTtime))) {
                         String error = ParamUtils.errorParam("时间失效，没有权限登陆");
                         response.setStatus(302);
-                        response.setHeader("location", ssoFailUrl+"&error="+error);
+                        response.setHeader("location", ssoFailUrl+"&error="+encoder.encodeToString(error.getBytes()));
 
-                        view.viewString(error, response);
+                        view.viewString(encoder.encodeToString(error.getBytes()), response);
                         return;
                     }
                 }
@@ -218,8 +226,8 @@ public class UserController {
                     if (!RedisUtil.setUserOnLine(user, sessionID)) {
                         String error = ParamUtils.errorParam("登陆失败");
                         response.setStatus(302);
-                        response.setHeader("location", ssoFailUrl+"&error="+error);
-                        view.viewString(error, response);
+                        response.setHeader("location", ssoFailUrl+"&error="+encoder.encodeToString(error.getBytes()));
+                        view.viewString(encoder.encodeToString(error.getBytes()), response);
                         return;
                     }
                 }
@@ -230,18 +238,18 @@ public class UserController {
                 response.setHeader("location", ssoSuccessUrl);
                 //view.viewString(resultStr, response);
             } else {
-                String error = ParamUtils.errorParam("您的账户没有权限访问本系统，详细问题请联系系统管理员******");
+                String error = ParamUtils.errorParam("您好"+number+"，您的账户没有权限访问本系统，详细问题请联系系统管理员******");
                 response.setStatus(302);
-                response.setHeader("location", ssoFailUrl+"&error="+error);
-                view.viewString(error, response);
+                response.setHeader("location", ssoFailUrl+"&error="+encoder.encodeToString(error.getBytes()));
+                view.viewString(encoder.encodeToString(error.getBytes()), response);
                 return;
             }
 
         } catch (Exception e) {
             String error = ParamUtils.errorParam("异常信息：<br/>" + e);
             response.setStatus(302);
-            response.setHeader("location", ssoFailUrl+"&error="+error);
-            view.viewString(error, response);
+            response.setHeader("location", ssoFailUrl+"&error="+encoder.encodeToString(error.getBytes()));
+            view.viewString(encoder.encodeToString(error.getBytes()), response);
         }
     }
     //获取用户信息
