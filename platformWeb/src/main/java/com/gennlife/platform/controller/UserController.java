@@ -186,7 +186,7 @@ public class UserController {
                 if ("禁用".equals(status)) {
                     String error = ParamUtils.errorParam("没有权限登陆");
                     response.setStatus(302);
-                    response.setHeader("location", ssoFailUrl+"&error="+error);
+                    response.setHeader("location", ssoFailUrl+"error="+error);
                     view.viewString(error, response);
                     return;
                 }
@@ -195,7 +195,7 @@ public class UserController {
                         String error = ParamUtils.errorParam("没有权限登陆");
 
                         response.setStatus(302);
-                        response.setHeader("location", ssoFailUrl+"&error="+encoder.encodeToString(error.getBytes()));
+                        response.setHeader("location", ssoFailUrl+"error="+encoder.encodeToString(error.getBytes()));
 
                         view.viewString(encoder.encodeToString(error.getBytes()), response);
                         return;
@@ -203,7 +203,7 @@ public class UserController {
                     if (date.after(time.parse(failTime)) || date.before(time.parse(effectiveTtime))) {
                         String error = ParamUtils.errorParam("时间失效，没有权限登陆");
                         response.setStatus(302);
-                        response.setHeader("location", ssoFailUrl+"&error="+encoder.encodeToString(error.getBytes()));
+                        response.setHeader("location", ssoFailUrl+"error="+encoder.encodeToString(error.getBytes()));
 
                         view.viewString(encoder.encodeToString(error.getBytes()), response);
                         return;
@@ -211,10 +211,10 @@ public class UserController {
                 }
                 HttpSession session = paramRe.getSession(true);
                 String sessionID = session.getId();
-                Cookie cookie = new Cookie("JSESSIONID",sessionID);
+                /*Cookie cookie = new Cookie("JSESSIONID",sessionID);
                 cookie.setPath("/uranus");
                 response.addCookie(cookie);
-                LogUtils.BussnissLogError("模拟登陆的sessionID="+sessionID);
+                LogUtils.BussnissLogError("模拟登陆的sessionID="+sessionID);*/
                 String uid = null;
                 try {
                     uid = RedisUtil.getValue(sessionID);
@@ -226,7 +226,7 @@ public class UserController {
                     if (!RedisUtil.setUserOnLine(user, sessionID)) {
                         String error = ParamUtils.errorParam("登陆失败");
                         response.setStatus(302);
-                        response.setHeader("location", ssoFailUrl+"&error="+encoder.encodeToString(error.getBytes()));
+                        response.setHeader("location", ssoFailUrl+"error="+encoder.encodeToString(error.getBytes()));
                         view.viewString(encoder.encodeToString(error.getBytes()), response);
                         return;
                     }
@@ -240,7 +240,7 @@ public class UserController {
             } else {
                 String error = ParamUtils.errorParam("您好"+number+"，您的账户没有权限访问本系统，详细问题请联系系统管理员******");
                 response.setStatus(302);
-                response.setHeader("location", ssoFailUrl+"&error="+encoder.encodeToString(error.getBytes()));
+                response.setHeader("location", ssoFailUrl+"error="+encoder.encodeToString(error.getBytes()));
                 view.viewString(encoder.encodeToString(error.getBytes()), response);
                 return;
             }
@@ -248,7 +248,7 @@ public class UserController {
         } catch (Exception e) {
             String error = ParamUtils.errorParam("异常信息：<br/>" + e);
             response.setStatus(302);
-            response.setHeader("location", ssoFailUrl+"&error="+encoder.encodeToString(error.getBytes()));
+            response.setHeader("location", ssoFailUrl+"error="+encoder.encodeToString(error.getBytes()));
             view.viewString(encoder.encodeToString(error.getBytes()), response);
         }
     }
