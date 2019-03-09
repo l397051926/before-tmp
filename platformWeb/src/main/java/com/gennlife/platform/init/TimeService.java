@@ -20,12 +20,12 @@ public class TimeService {
     private Logger LOG = LoggerFactory.getLogger(TimeService.class);
 
 
-    /**
-     * 定时清理_tmp 数据的数据 半夜十二点 清理
-     */
-    @Scheduled(cron = "0/3 * * * * ?")
-    public void reSubmitTask(){
-        AllDao.getInstance().getOrgDao().seleteA();
-        LOG.info("------执行了 稳定查询数据库 每 5秒");
-    }
+//    /**
+//     * 测试线程
+//     */
+//    @Scheduled(cron = "0/3 * * * * ?")
+//    public void reSubmitTask(){
+//        AllDao.getInstance().getOrgDao().seleteA();
+//        LOG.info("------执行了 稳定查询数据库 每 5秒");
+//    }
 }
