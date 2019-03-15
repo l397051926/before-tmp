@@ -122,6 +122,16 @@ public class ParamUtils {
         return gson.toJson(json);
 
     }
+    public static String errorParamWithRedirect(String info,String redirectUrl) {
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(getErrorCode());
+        resultBean.setInfo(info);
+        JsonObject json = gson.toJsonTree(resultBean).getAsJsonObject();
+        json.addProperty("success", false);
+        json.addProperty("errorRedirectUrl", redirectUrl);
+        return gson.toJson(json);
+
+    }
 
     public static String errorAuthorityParam() {
         ResultBean resultBean = new ResultBean();

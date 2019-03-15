@@ -32,6 +32,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -133,7 +134,7 @@ public class UserController {
         String ssoSuccessUrl = ConfigurationService.getUrlBean().getSsoSuccessUrl();
         String ssoFailUrl = ConfigurationService.getUrlBean().getSsoFailUrl();
         String ssoSysmark = ConfigurationService.getUrlBean().getSsoSysmark();
-        Base64.Encoder encoder = Base64.getEncoder();
+        String ssoErrorRedirectUrl = ConfigurationService.getUrlBean().getSsoErrorRedirectUrl();
         LogUtils.BussnissLog("yyssoUrl="+yyssoUrl+",isMock="+isMock+",ssoSuccessUrl="+ssoSuccessUrl+",ssoFailUrl="+ssoFailUrl+",ssoSysmark="+ssoSysmark);
         try {
             if(isMock == null){
@@ -183,38 +184,20 @@ public class UserController {
                 String failTime = user.getFailure_time();
                 String effectiveTtime = user.getEffective_time();
                 Date date = new Date();
+                boolean isError = false;
                 if ("禁用".equals(status)) {
-                    String error = ParamUtils.errorParam("没有权限登陆");
-                    response.setStatus(302);
-                    response.setHeader("location", ssoFailUrl+"error="+error);
-                    view.viewString(error, response);
-                    return;
+                    throw new Exception("您好"+number+"，您的账户没有权限访问本系统(被禁用)，详细问题请联系系统管理员******");
                 }
                 if ("定期有效".equals(status)) {
                     if (StringUtils.isEmpty(failTime) || StringUtils.isEmpty(effectiveTtime)) {
-                        String error = ParamUtils.errorParam("没有权限登陆");
-
-                        response.setStatus(302);
-                        response.setHeader("location", ssoFailUrl+"error="+encoder.encodeToString(error.getBytes()));
-
-                        view.viewString(encoder.encodeToString(error.getBytes()), response);
-                        return;
+                        throw new Exception("您好"+number+"，您的账户没有权限访问本系统(账户失效)，详细问题请联系系统管理员******");
                     }
                     if (date.after(time.parse(failTime)) || date.before(time.parse(effectiveTtime))) {
-                        String error = ParamUtils.errorParam("时间失效，没有权限登陆");
-                        response.setStatus(302);
-                        response.setHeader("location", ssoFailUrl+"error="+encoder.encodeToString(error.getBytes()));
-
-                        view.viewString(encoder.encodeToString(error.getBytes()), response);
-                        return;
+                        throw new Exception("您好"+number+"，您的账户没有权限访问本系统(账户失效)，详细问题请联系系统管理员******");
                     }
                 }
                 HttpSession session = paramRe.getSession(true);
                 String sessionID = session.getId();
-                /*Cookie cookie = new Cookie("JSESSIONID",sessionID);
-                cookie.setPath("/uranus");
-                response.addCookie(cookie);
-                LogUtils.BussnissLogError("模拟登陆的sessionID="+sessionID);*/
                 String uid = null;
                 try {
                     uid = RedisUtil.getValue(sessionID);
@@ -224,34 +207,29 @@ public class UserController {
                 if (!user.getUid().equals(uid)) {
                     RedisUtil.userLogout(sessionID);
                     if (!RedisUtil.setUserOnLine(user, sessionID)) {
-                        String error = ParamUtils.errorParam("登陆失败");
-                        response.setStatus(302);
-                        response.setHeader("location", ssoFailUrl+"error="+encoder.encodeToString(error.getBytes()));
-                        view.viewString(encoder.encodeToString(error.getBytes()), response);
-                        return;
+                        throw new Exception("您好"+number+"，您的账户没有权限访问本系统，详细问题请联系系统管理员******");
                     }
                 }
                 resultBean.setCode(1);
                 resultBean.setData(user);
-                //resultStr = gson.toJson(resultBean);
                 response.setStatus(302);
                 response.setHeader("location", ssoSuccessUrl);
-                //view.viewString(resultStr, response);
             } else {
-                String error = ParamUtils.errorParam("您好"+number+"，您的账户没有权限访问本系统，详细问题请联系系统管理员******");
-                response.setStatus(302);
-                response.setHeader("location", ssoFailUrl+"error="+encoder.encodeToString(error.getBytes()));
-                view.viewString(encoder.encodeToString(error.getBytes()), response);
-                return;
+                throw new Exception("您好"+number+"，您的账户没有权限访问本系统，详细问题请联系系统管理员******");
             }
 
         } catch (Exception e) {
-            String error = ParamUtils.errorParam("异常信息：<br/>" + e);
-            response.setStatus(302);
-            response.setHeader("location", ssoFailUrl+"error="+encoder.encodeToString(error.getBytes()));
-            view.viewString(encoder.encodeToString(error.getBytes()), response);
+            buildError(e.getMessage(),response, ssoFailUrl, ssoErrorRedirectUrl);
         }
     }
+
+    private void buildError(String message,HttpServletResponse response, String ssoFailUrl, String ssoErrorRedirectUrl) {
+        String error = org.apache.commons.lang.StringUtils.isEmpty(ssoErrorRedirectUrl)? ParamUtils.errorParam(message):ParamUtils.errorParamWithRedirect(message,ssoErrorRedirectUrl);
+        response.setStatus(302);
+        Base64.Encoder encoder = Base64.getEncoder();
+        response.setHeader("location", ssoFailUrl+"error="+ encoder.encodeToString(error.getBytes(Charset.forName("UTF-8"))));
+    }
+
     //获取用户信息
     @RequestMapping(value = "/getUserInfo", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public void getUserInfo(HttpServletRequest paramRe, HttpServletResponse response) {

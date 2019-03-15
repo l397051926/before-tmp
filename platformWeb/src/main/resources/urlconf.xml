@@ -266,6 +266,7 @@
         <property name="yyssoUrl" value="${yongyou_ssoUrl}" />
         <property name="isMock" value="${sso_isMock}" />
         <property name="ssoSysmark" value="${sso_sysmark}" />
+        <property name="ssoErrorRedirectUrl" value="${sso_error_redirect_url}" />
         <property name="ssoSuccessUrl" value="${sso_success_url}" />
         <property name="ssoFailUrl" value="${sso_fail_url}" />
     </bean>

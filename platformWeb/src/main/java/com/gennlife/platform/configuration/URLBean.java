@@ -571,6 +571,17 @@ public class URLBean {
     private String ssoSuccessUrl = null;
     private String ssoFailUrl = null;
     private String ssoSysmark = null;
+    private String ssoErrorRedirectUrl = null;
+
+    public String getSsoErrorRedirectUrl() {
+
+        return ssoErrorRedirectUrl;
+    }
+
+    public void setSsoErrorRedirectUrl(String ssoErrorRedirectUrl) {
+
+        this.ssoErrorRedirectUrl = ssoErrorRedirectUrl;
+    }
 
     public String getSsoSysmark() {
 
