@@ -147,6 +147,7 @@
         <property name="exportTaskInfo" value="http://${fileService.ipAndPort}/FileService/Projects/Export/Task/Info"></property>
         <property name="exportTaskSaveInfo" value="http://${fileService.ipAndPort}/FileService/Projects/Export/Task/SaveInfo"></property>
         <property name="exportTaskCancel" value="http://${fileService.ipAndPort}/FileService/Projects/Export/Task/Cancel"></property>
+        <property name="exportTaskStart" value="http://${fileService.ipAndPort}/FileService/Projects/Export/Task/Start"></property>
         <property name="exportTaskRetry" value="http://${fileService.ipAndPort}/FileService/Projects/Export/Task/Retry"></property>
         <property name="exportTaskDelete" value="http://${fileService.ipAndPort}/FileService/Projects/Export/Task/Delete"></property>
         <property name="exportTaskDownload" value="http://${fileService.ipAndPort}/FileService/Projects/Export/Task/Download"></property>

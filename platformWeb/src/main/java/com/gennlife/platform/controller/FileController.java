@@ -183,6 +183,25 @@ public class FileController {
         return resultStr;
     }
 
+    @RequestMapping(value = "/Projects/Export/Task/Start", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String exportTaskStart(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("开始导出任务 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.exportTaskStart(paramObj);
+        } catch (Exception e) {
+            logger.error("开始导出任务", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("开始导出任务 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
     @RequestMapping(value = "/Projects/Export/Task/Cancel", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody

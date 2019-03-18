@@ -517,6 +517,15 @@ public class URLBean {
     private String exportTaskDelete = null;
     private String exportTaskDownload = null;
     private String exportTaskList = null;
+    private String exportTaskStart = null;
+
+    public String getExportTaskStart() {
+        return exportTaskStart;
+    }
+
+    public void setExportTaskStart(String exportTaskStart) {
+        this.exportTaskStart = exportTaskStart;
+    }
 
     public String getExportTaskList() {
         return exportTaskList;
