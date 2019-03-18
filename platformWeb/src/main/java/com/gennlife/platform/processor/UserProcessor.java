@@ -503,7 +503,6 @@ public class UserProcessor {
     private static List<String> getAllLabIds(String labID) {
         List<String> labIds =  AllDao.getInstance().getOrgDao().getLabIdByParentIds(labID);
         labIds.add(labID);
-        labIds.add(labID);
         List<String> labs = new ArrayList<>();
         getAllLabIdByIds(labIds,labs);
         return labs;
