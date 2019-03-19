@@ -134,6 +134,7 @@ public class UserController {
         String ssoSuccessUrl = ConfigurationService.getUrlBean().getSsoSuccessUrl();
         String ssoFailUrl = ConfigurationService.getUrlBean().getSsoFailUrl();
         String ssoSysmark = ConfigurationService.getUrlBean().getSsoSysmark();
+        String ssoSuccessUrlTemp = ConfigurationService.getUrlBean().getSsoSuccessUrlTemp();
         String ssoErrorRedirectUrl = ConfigurationService.getUrlBean().getSsoErrorRedirectUrl();
         LogUtils.BussnissLog("yyssoUrl="+yyssoUrl+",isMock="+isMock+",ssoSuccessUrl="+ssoSuccessUrl+",ssoFailUrl="+ssoFailUrl+",ssoSysmark="+ssoSysmark);
         try {
@@ -153,6 +154,8 @@ public class UserController {
                 throw new Exception("ssoFailUrl 参数未配置");
             }
             String token = paramRe.getParameter("token");
+            String vitarkFlag = paramRe.getParameter("vitarkFlag");
+            vitarkFlag = vitarkFlag == null? "1":"0";
             LogUtils.BussnissLog("门户系统请求的参数：token="+token);
             CallService service = new CallService(yyssoUrl,token,ssoSysmark);
             String xml = null;
@@ -213,7 +216,11 @@ public class UserController {
                 resultBean.setCode(1);
                 resultBean.setData(user);
                 response.setStatus(302);
-                response.setHeader("location", ssoSuccessUrl);
+                if(org.apache.commons.lang.StringUtils.equals(vitarkFlag,"1")){
+                    response.setHeader("location", ssoSuccessUrlTemp+"?token="+token);
+                }else{
+                    response.setHeader("location", ssoSuccessUrl);
+                }
             } else {
                 throw new Exception("您好"+number+"，您的账户没有权限访问本系统，详细问题请联系系统管理员******");
             }
