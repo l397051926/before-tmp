@@ -2,14 +2,14 @@ package com.gennlife.platform.service;
 
 import com.gennlife.platform.bean.etl.EtlDatacount;
 import com.gennlife.platform.dao.EtlDatacountMapper;
+import com.gennlife.platform.util.TimeUtils;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 /**
@@ -25,17 +25,22 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
 
     @Override
     public JsonObject getAllEtlDatacount(){
-        List<EtlDatacount> etlDatacountList =  etlDatacountMapper.getAllEtlDataCount();
+
+//        List<EtlDatacount> etlDatacountList =  etlDatacountMapper.getAllEtlDataCount();
+        List<EtlDatacount> etlDatacountList =  etlDatacountMapper.getAllDataByJoin();
+
         JsonObject result = new JsonObject();
         JsonObject patAndVis =  getPatientInfoAndVisitInfo(etlDatacountList);
         //获取右下角
         JsonArray allDataCount = getAllDataCount(etlDatacountList,patAndVis);
         //获取查体报告
-        JsonObject inspectionCha = getInspectionCha(etlDatacountList);
-        //统计上面信息
-        JsonObject dataCount = getElectronicDocument(etlDatacountList);
+        JsonArray inspectionCha = getInspectionCha(etlDatacountList);
 
-        JsonObject statistics = getStatistics(patAndVis,dataCount);
+        Map<String,List<EtlDatacount>> dataEtlDatacounts = getDataEtlDataCounts();
+        JsonObject sevenEtlDataCounts = getSevenEtlDataCounts(dataEtlDatacounts);
+        //统计上面信息
+        JsonObject dataCount = getElectronicDocumentByValue(etlDatacountList);
+        JsonObject statistics = getStatistics(patAndVis,dataCount,sevenEtlDataCounts);
 
         result.add("statistics",statistics);
         result.add("checkDistribution",inspectionCha);
@@ -43,20 +48,55 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         return result;
     }
 
-    private JsonObject getStatistics(JsonObject patAndVis, JsonObject dataCount) {
+    private JsonObject getSevenEtlDataCounts(Map<String, List<EtlDatacount>> dataEtlDatacounts) {
+        JsonArray dates = new JsonArray();
+        JsonArray inspectionData = new JsonArray();
+        JsonArray inspectionChaData = new JsonArray();
+        JsonArray auditData = new JsonArray();
+
+        for (Map.Entry<String,List<EtlDatacount>> entry : dataEtlDatacounts.entrySet()){
+            String date = entry.getKey();
+            dates.add(date);
+            JsonObject dataCount = getElectronicDocumentByValues(entry.getValue());
+            inspectionData.add(dataCount.get("insCount").getAsInt());
+            inspectionChaData.add(dataCount.get("insChaCount").getAsInt());
+            auditData.add(dataCount.get("OperaCount").getAsInt());
+        }
+        JsonObject result = new JsonObject();
+        result.add("date",dates);
+        result.add("inspectionData",inspectionData);
+        result.add("inspectionChaData",inspectionChaData);
+        result.add("auditData",auditData);
+        return result;
+    }
+
+    private JsonObject getStatistics(JsonObject patAndVis, JsonObject dataCount, JsonObject dataEtlDatacounts) {
         JsonObject result = new JsonObject();
         JsonObject patientInfo = new JsonObject();
         patientInfo.addProperty("pnum",patAndVis.get("patCounts").getAsInt());
         patientInfo.add("buckets",patAndVis.get("patientInfo").getAsJsonArray());
+        addTitle(patientInfo,"患者总人数");
+
         JsonObject visitInfo = new JsonObject();
         visitInfo.addProperty("pnum",patAndVis.get("visitCounts").getAsInt());
         visitInfo.add("buckets",patAndVis.get("visitInfo").getAsJsonArray());
+        addTitle(visitInfo,"就诊总人数");
+
         JsonObject inspectionReports = new JsonObject();
         inspectionReports.addProperty("pnum",dataCount.get("insCount").getAsInt());
+        addCountBuckets(inspectionReports,dataEtlDatacounts,"inspectionData");
+        addTitle(inspectionReports,"检验报告总数量");
+
         JsonObject inspectionChaReports = new JsonObject();
         inspectionChaReports.addProperty("pnum",dataCount.get("insChaCount").getAsInt());
+        addCountBuckets(inspectionChaReports,dataEtlDatacounts,"inspectionChaData");
+        addTitle(inspectionChaReports,"检查报告总数量");
+
         JsonObject auditReports = new JsonObject();
         auditReports.addProperty("pnum",dataCount.get("OperaCount").getAsInt());
+        addCountBuckets(auditReports,dataEtlDatacounts,"auditData");
+        addTitle(auditReports,"电子文档总数量");
+
         result.add("patientInfo",patientInfo);
         result.add("visitInfo",visitInfo);
         result.add("inspectionReports",inspectionReports);
@@ -65,7 +105,44 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         return result;
     }
 
-    public JsonObject getElectronicDocument(List<EtlDatacount> etlDatacounts){
+    private void addTitle(JsonObject patientInfo, String title) {
+        patientInfo.addProperty("title",title);
+    }
+
+    private void addCountBuckets(JsonObject inspectionReports, JsonObject dataEtlDatacounts, String inspectionData) {
+        JsonObject buckets = new JsonObject();
+        buckets.add("x",dataEtlDatacounts.get("date"));
+        buckets.add("data",dataEtlDatacounts.get(inspectionData));
+        inspectionReports.add("buckets",buckets);
+    }
+
+    public JsonObject getElectronicDocumentByValue(List<EtlDatacount> etlDatacounts){
+        Integer operaCount = 0 ;
+        Integer insCount = 0;
+        Integer insChaCount = 0;
+        for (EtlDatacount etlDatacount : etlDatacounts){
+            String type = etlDatacount.getStatisticsType();
+            if(StringUtils.isEmpty(type)) continue;
+            switch (type){
+                case "电子文档" :
+                    operaCount = operaCount + etlDatacount.getValue();
+                    break;
+                case "检验" :
+                    insCount = insCount + etlDatacount.getValue();
+                    break;
+                case "检查" :
+                    insChaCount = insChaCount +  etlDatacount.getValue();
+                    break;
+            }
+        }
+        JsonObject result = new JsonObject();
+        result.addProperty("OperaCount",operaCount);
+        result.addProperty("insCount",insCount);
+        result.addProperty("insChaCount",insChaCount);
+        return result;
+    }
+
+    public JsonObject getElectronicDocumentByValues(List<EtlDatacount> etlDatacounts){
         Integer operaCount = 0 ;
         Integer insCount = 0;
         Integer insChaCount = 0;
@@ -96,6 +173,7 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         addPatAndVis(result,patAndVis);
         int size = etlDatacounts.size();
         int num = 3;
+        //TODO 增加个 map 进行排序 在按排序在重新插入就可以了， 在根据配置表 配置 走顺序 若map 为空 则 value为0
         for (int i = 0; i < size; i++) {
             EtlDatacount etlDatacount = etlDatacounts.get(i);
             String code = etlDatacount.getCode();
@@ -105,26 +183,24 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
             JsonObject object = new JsonObject();
             object.addProperty("key",num);
             object.addProperty("textType",etlDatacount.getDisplayName());
-            object.addProperty("dataVolume",etlDatacount.getValues());
+            object.addProperty("dataVolume",etlDatacount.getValue());
             result.add(object);
             ++num;
         }
         return result;
     }
 
-    public JsonObject getInspectionCha(List<EtlDatacount> etlDatacounts){
-        JsonObject result = new JsonObject();
-        JsonArray yAxis = new JsonArray();
-        JsonArray series = new JsonArray();
+    public JsonArray getInspectionCha(List<EtlDatacount> etlDatacounts){
+        JsonArray result = new JsonArray();
         for (EtlDatacount etlDatacount : etlDatacounts){
             String type = etlDatacount.getStatisticsType();
             if("检查".equals(type)){
-                yAxis.add(etlDatacount.getDisplayName());
-                series.add(etlDatacount.getValues());
+                JsonObject object = new JsonObject();
+                object.addProperty("x",etlDatacount.getDisplayName());
+                object.addProperty("y",etlDatacount.getValue());
+                result.add(object);
             }
         }
-        result.add("yAxis",yAxis);
-        result.add("series",series);
         return result;
     }
 
@@ -165,7 +241,7 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
 
     private int getPatCounts(JsonArray array, Integer counts, EtlDatacount etlDatacount) {
         JsonObject obj = new JsonObject();
-        Integer value = etlDatacount.getValues();
+        Integer value = etlDatacount.getValue();
         counts = counts + value;
         obj.addProperty("textType",etlDatacount.getDisplayName());
         obj.addProperty("dataVolume",value);
@@ -187,5 +263,21 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         visitInfo.add("visit_info_in");
         visitInfo.add("visit_info_other");
         return visitInfo;
+    }
+
+    public Map<String,List<EtlDatacount>> getDataEtlDataCounts() {
+        Map<String,List<EtlDatacount>> result = new LinkedHashMap<>();
+        String sevenParseDate  = TimeUtils.getPastDate(8);
+        Date dates = TimeUtils.strToDateLong(sevenParseDate);
+        List<EtlDatacount> savenParseDates = etlDatacountMapper.getSevenParseDates(dates);
+        for (EtlDatacount etlDatacount : savenParseDates){
+            Date date = etlDatacount.getUpdateTime();
+            String ymdDate = TimeUtils.getYMDDateStr(date);
+            if(!result.containsKey(ymdDate)){
+                result.put(ymdDate,new ArrayList<>());
+            }
+            result.get(ymdDate).add(etlDatacount);
+        }
+        return result;
     }
 }

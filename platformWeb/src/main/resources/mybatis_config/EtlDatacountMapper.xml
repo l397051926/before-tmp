@@ -3,20 +3,41 @@
 <mapper namespace="com.gennlife.platform.dao.EtlDatacountMapper">
     <resultMap id="BaseResultMap"
                type="com.gennlife.platform.bean.etl.EtlDatacount">
-        <id column="code" property="code" jdbcType="VARCHAR"/>
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
         <result column="values" property="values" jdbcType="INTEGER"/>
         <result column="up_time" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="display_name" property="displayName" jdbcType="VARCHAR"/>
         <result column="statistics_type" property="statisticsType" jdbcType="VARCHAR"/>
-        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="value" property="value" jdbcType="INTEGER"/>
     </resultMap>
     <sql id="Base_Column_List">
-        code, `values`, up_time, display_name, statistics_type, sort
+        id,code, `values`, up_time, display_name, statistics_type,
     </sql>
 
     <select id="getAllEtlDataCount" resultMap="BaseResultMap" parameterType="String">
         SELECT  <include refid="Base_Column_List" />
         FROM etl_datacount
-        order by sort
+    </select>
+
+    <select id="getAllDataByJoin" resultMap="BaseResultMap" parameterType="String">
+        SELECT
+            e1.`code`,
+            SUM(e1.values) AS value ,
+            e1.display_name,
+            e1.statistics_type
+        FROM
+            etl_datacount AS e1
+        GROUP BY
+            e1.`code`,
+            e1.display_name,
+            e1.statistics_type
+    </select>
+
+    <select id="getSevenParseDates" resultMap="BaseResultMap" parameterType="Date">
+        SELECT  *
+        FROM `etl_datacount`
+        where up_time &gt; #{date}
+        ORDER BY up_time
     </select>
 </mapper>

@@ -37,7 +37,7 @@ public class EtlController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-            JsonObject data = etlDatacountService.getAllEtlDatacount();;
+            JsonObject data = etlDatacountService.getAllEtlDatacount();
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
             resultBean.setData(data);

@@ -8,12 +8,13 @@ import java.util.Date;
  * @desc
  **/
 public class EtlDatacount {
+    private Integer id;
     private String code;
     private Integer values;
     private Date updateTime;
     private String displayName;
     private String statisticsType;
-    private Integer sort;
+    private Integer value;
 
     public String getCode() {
         return code;
@@ -55,11 +56,19 @@ public class EtlDatacount {
         this.statisticsType = statisticsType;
     }
 
-    public Integer getSort() {
-        return sort;
+    public Integer getId() {
+        return id;
     }
 
-    public void setSort(Integer sort) {
-        this.sort = sort;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getValue() {
+        return value;
+    }
+
+    public void setValue(Integer value) {
+        this.value = value;
     }
 }

@@ -5,6 +5,7 @@ import com.gennlife.platform.model.InspectReportIntellModel;
 import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.Mapper;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,4 +16,8 @@ import java.util.List;
 @Mapper("EtlDatacountDao")
 public interface EtlDatacountMapper {
     List<EtlDatacount> getAllEtlDataCount();
+
+    List<EtlDatacount> getAllDataByJoin();
+
+    List<EtlDatacount> getSevenParseDates(@Param("date") Date date);
 }
