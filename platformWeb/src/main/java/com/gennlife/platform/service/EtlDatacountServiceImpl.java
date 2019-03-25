@@ -267,22 +267,6 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         return counts;
     }
 
-    private  List<String> getPatientInfoList( ){
-        List<String> patientInfo = new ArrayList<>();
-        patientInfo.add("patient_info_man");
-        patientInfo.add("patient_info_women");
-        patientInfo.add("patient_info_other");
-        return patientInfo;
-    }
-
-    private List<String> getVisitInfoList(){
-        List<String> visitInfo = new ArrayList<>();
-        visitInfo.add("visit_info_out");
-        visitInfo.add("visit_info_in");
-        visitInfo.add("visit_info_other");
-        return visitInfo;
-    }
-
     public Map<String,List<EtlDatacount>> getDataEtlDataCounts() {
         Map<String,List<EtlDatacount>> result = new LinkedHashMap<>();
         String sevenParseDate  = TimeUtils.getPastDate(8);
@@ -297,5 +281,21 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
             result.get(ymdDate).add(etlDatacount);
         }
         return result;
+    }
+
+    private  List<String> getPatientInfoList( ){
+        List<String> patientInfo = new ArrayList<>();
+        patientInfo.add("patient_info_man");
+        patientInfo.add("patient_info_women");
+        patientInfo.add("patient_info_other");
+        return patientInfo;
+    }
+
+    private List<String> getVisitInfoList(){
+        List<String> visitInfo = new ArrayList<>();
+        visitInfo.add("visit_info_out");
+        visitInfo.add("visit_info_in");
+        visitInfo.add("visit_info_other");
+        return visitInfo;
     }
 }
