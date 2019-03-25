@@ -1,10 +1,10 @@
 package com.gennlife.platform.service;
 
+import com.gennlife.platform.ReadConfig.ReadConditionByRedis;
 import com.gennlife.platform.bean.etl.EtlDatacount;
 import com.gennlife.platform.dao.EtlDatacountMapper;
 import com.gennlife.platform.util.TimeUtils;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -23,18 +23,23 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
     @Autowired
     private EtlDatacountMapper etlDatacountMapper;
 
+    private static JsonParser jsonParser = new JsonParser();
+
     @Override
     public JsonObject getAllEtlDatacount(){
 
 //        List<EtlDatacount> etlDatacountList =  etlDatacountMapper.getAllEtlDataCount();
         List<EtlDatacount> etlDatacountList =  etlDatacountMapper.getAllDataByJoin();
 
+        JsonObject config = (JsonObject) jsonParser.parse(ReadConditionByRedis.getEtlDataCountConfig());
+        JsonArray sort = config.getAsJsonArray("sort");
+
         JsonObject result = new JsonObject();
         JsonObject patAndVis =  getPatientInfoAndVisitInfo(etlDatacountList);
         //获取右下角
-        JsonArray allDataCount = getAllDataCount(etlDatacountList,patAndVis);
+        JsonArray allDataCount = getAllDataCount(etlDatacountList,patAndVis,sort);
         //获取查体报告
-        JsonArray inspectionCha = getInspectionCha(etlDatacountList);
+        JsonArray inspectionCha = getInspectionCha(etlDatacountList,sort);
 
         Map<String,List<EtlDatacount>> dataEtlDatacounts = getDataEtlDataCounts();
         JsonObject sevenEtlDataCounts = getSevenEtlDataCounts(dataEtlDatacounts);
@@ -168,12 +173,12 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         return result;
     }
 
-    public JsonArray getAllDataCount(List<EtlDatacount> etlDatacounts,JsonObject patAndVis){
+    public JsonArray getAllDataCount(List<EtlDatacount> etlDatacounts,JsonObject patAndVis,JsonArray sort){
         JsonArray result = new JsonArray();
         addPatAndVis(result,patAndVis);
         int size = etlDatacounts.size();
         int num = 3;
-        //TODO 增加个 map 进行排序 在按排序在重新插入就可以了， 在根据配置表 配置 走顺序 若map 为空 则 value为0
+        Map<String,JsonObject> sortMap = new HashMap<>();
         for (int i = 0; i < size; i++) {
             EtlDatacount etlDatacount = etlDatacounts.get(i);
             String code = etlDatacount.getCode();
@@ -181,25 +186,38 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
                 continue;
             }
             JsonObject object = new JsonObject();
-            object.addProperty("key",num);
             object.addProperty("textType",etlDatacount.getDisplayName());
             object.addProperty("dataVolume",etlDatacount.getValue());
+            sortMap.put(code,object);
+        }
+        for (JsonElement element : sort){
+            String key = element.getAsString();
+            JsonObject object = sortMap.get(key);
+            if(object == null ) continue;
+            object.addProperty("key",num);
             result.add(object);
-            ++num;
+            num++;
         }
         return result;
     }
 
-    public JsonArray getInspectionCha(List<EtlDatacount> etlDatacounts){
+    public JsonArray getInspectionCha(List<EtlDatacount> etlDatacounts, JsonArray sort){
         JsonArray result = new JsonArray();
+        Map<String,EtlDatacount> sortMap = new HashMap<>();
         for (EtlDatacount etlDatacount : etlDatacounts){
             String type = etlDatacount.getStatisticsType();
             if("检查".equals(type)){
-                JsonObject object = new JsonObject();
-                object.addProperty("x",etlDatacount.getDisplayName());
-                object.addProperty("y",etlDatacount.getValue());
-                result.add(object);
+                sortMap.put(etlDatacount.getCode(),etlDatacount);
             }
+        }
+        for (JsonElement element : sort){
+            String key = element.getAsString();
+            EtlDatacount etlDatacount = sortMap.get(key);
+            if(etlDatacount == null) continue;
+            JsonObject object = new JsonObject();
+            object.addProperty("x",etlDatacount.getDisplayName());
+            object.addProperty("y",etlDatacount.getValue());
+            result.add(object);
         }
         return result;
     }

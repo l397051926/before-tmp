@@ -92,6 +92,16 @@ public class ReadConditionByRedis {
             logger.error("detail_schema 配置文件读取异常", e);
         }
     }
+
+    private static void loadEtlDataCountConfig() {
+        try{
+            String crf_mapping = FilesUtils.readFile("/etl/etl_data_count_config.json");
+            RedisUtil.setValue("etl_data_count",crf_mapping);
+            logger.info("detail_schema 配置文件读取完毕");
+        }catch (Exception e ){
+            logger.error("detail_schema 配置文件读取异常", e);
+        }
+    }
     public static void loadSearchDefinedEventListConfig(String crfId){
         try{
             String search_defined = FilesUtils.readFile("/rws/searchDefinedEventListConfig"+crfId+".json");
@@ -170,5 +180,14 @@ public class ReadConditionByRedis {
         String data = RedisUtil.getValue("detail_schema");
         return data;
     }
+
+    public static String getEtlDataCountConfig() {
+        if(!RedisUtil.isExists("etl_data_count")){
+            loadEtlDataCountConfig();
+        }
+        String data = RedisUtil.getValue("etl_data_count");
+        return data;
+    }
+
 
 }
