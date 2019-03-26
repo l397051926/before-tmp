@@ -7,6 +7,7 @@ import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import net.minidev.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,7 @@ public class EtlController {
     private static final Logger LOGGER = LoggerFactory.getLogger(EtlController.class);
     private static View view = new View();
     private static Gson gson = GsonUtil.getGson();
+    private static JsonParser jsonParser = new JsonParser();
     @Autowired
     private EtlDatacountService etlDatacountService;
 
@@ -51,4 +53,21 @@ public class EtlController {
         view.viewString(resultStr, response);
     }
 
+    @RequestMapping(value = "/getEtlStatisticsTable", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getEtlStatisticsTable(@RequestBody String param) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr =etlDatacountService.getEtlStatisticsTable(paramObj);
+            LOGGER.info("二级关联属性post 耗时:" + (System.currentTimeMillis() - start) + "ms");
+        } catch (Exception e) {
+            LOGGER.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        LOGGER.info("二级关联属性post 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }

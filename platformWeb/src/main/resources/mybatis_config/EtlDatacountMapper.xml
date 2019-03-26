@@ -40,4 +40,15 @@
         where up_time &gt; #{date}
         ORDER BY up_time
     </select>
+
+    <select id="getStatisticsTableParseDates" resultMap="BaseResultMap" parameterType="Date">
+        SELECT  *
+        FROM `etl_datacount`
+        where up_time &gt; #{date}
+        and code in
+        <foreach collection="codes" item="item" index="index" close=")" open="(" separator="," >
+            #{item}
+        </foreach>
+        ORDER BY up_time
+    </select>
 </mapper>

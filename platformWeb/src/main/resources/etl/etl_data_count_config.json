@@ -1,5 +1,5 @@
 {
-  "sort":[
+  "sort": [
     "patient_info_man",
     "patient_info_women",
     "patient_info_other",
@@ -46,6 +46,234 @@
     "transfusion_request",
     "chinese_medicine_prescription",
     "order_implemet_records",
+    "invasive_records"
+  ],
+  "catalogue": [{
+    "id": "patient_info",
+    "name": "患者基本信息"
+  },
+    {
+      "id": "visit_info",
+      "name": "就诊基本信息"
+    },
+    {
+      "id": "inspectionReports",
+      "name": "检验报告总数量"
+    },
+    {
+      "id": "inspectionChaReports",
+      "name": "检查报告总数量"
+    },
+    {
+      "id": "auditReports",
+      "name": "电子文档总数量"
+    },
+    {
+      "id": "diagnose",
+      "name": "诊断"
+    },
+    {
+      "id": "medical_record_home_page",
+      "name": "病案首页"
+    },
+    {
+      "id": "operation_records",
+      "name": "手术记录"
+    },
+    {
+      "id": "operation_pre_summary",
+      "name": "术前小结"
+    },
+    {
+      "id": "operation_pre_conference_records",
+      "name": "术前讨论记录"
+    },
+    {
+      "id": "operation_post_course_records",
+      "name": "术后病程记录"
+    },
+    {
+      "id": "medicine_order",
+      "name": "药品医嘱"
+    },
+    {
+      "id": "inspection_reports",
+      "name": "检验报告"
+    },
+    {
+      "id": "ct_reports",
+      "name": "CT"
+    },
+    {
+      "id": "ect_reports",
+      "name": "ECT"
+    },
+    {
+      "id": "xray_image_reports",
+      "name": "X线"
+    },
+    {
+      "id": "mr_reports",
+      "name": "MR"
+    },
+    {
+      "id": "microscopic_exam_reports",
+      "name": "镜检"
+    },
+    {
+      "id": "other_imaging_exam_diagnosis_reports",
+      "name": "其他影像学"
+    },
+    {
+      "id": "pathology_reports",
+      "name": "病理"
+    },
+    {
+      "id": "ultrasonic_diagnosis_reports",
+      "name": "超声"
+    },
+    {
+      "id": "admissions_records",
+      "name": "入院记录"
+    },
+    {
+      "id": "discharge_records",
+      "name": "出院记录"
+    },
+    {
+      "id": "first_course_records",
+      "name": "首次病程记录"
+    },
+    {
+      "id": "attending_physician_rounds_records",
+      "name": "上级医师查房记录"
+    },
+    {
+      "id": "course_records",
+      "name": "日常病程记录"
+    },
+    {
+      "id": "consultation_opinion_records",
+      "name": "会诊意见记录"
+    },
+    {
+      "id": "death_discuss_records",
+      "name": "死亡病例讨论记录"
+    },
+    {
+      "id": "death_records",
+      "name": "死亡记录"
+    },
+    {
+      "id": "difficulty_case_records",
+      "name": "疑难病例讨论记录"
+    },
+    {
+      "id": "rescue_records",
+      "name": "抢救记录"
+    },
+    {
+      "id": "stage_summary",
+      "name": "阶段小结"
+    },
+    {
+      "id": "transferred_in_records",
+      "name": "转入记录"
+    },
+    {
+      "id": "transferred_out_records",
+      "name": "转出记录"
+    },
+    {
+      "id": "icu_record",
+      "name": "病重（病危）患者护理记录"
+    },
+    {
+      "id": "transfusion_records",
+      "name": "输血记录"
+    },
+    {
+      "id": "triple_test_table",
+      "name": "三测单"
+    },
+    {
+      "id": "orders",
+      "name": "医嘱"
+    },
+    {
+      "id": "examination_request",
+      "name": "检查申请"
+    },
+    {
+      "id": "inspect_request",
+      "name": "检验申请"
+    },
+    {
+      "id": "pathology_request",
+      "name": "病理申请"
+    },
+    {
+      "id": "operation_request",
+      "name": "手术申请"
+    },
+    {
+      "id": "transfusion_request",
+      "name": "输血申请"
+    },
+    {
+      "id": "chinese_medicine_prescription",
+      "name": "中药处方"
+    },
+    {
+      "id": "order_implemet_records",
+      "name": "医嘱处理记录"
+    },
+    {
+      "id": "invasive_records",
+      "name": "有创诊疗操作记录"
+    }
+  ],
+  "patient_info": [
+    "patient_info_man",
+    "patient_info_women",
+    "patient_info_other"
+  ],
+  "visit_info": [
+    "visit_info_out",
+    "visit_info_in",
+    "visit_info_other"
+  ],
+  "inspectionReports": [
+    "inspection_reports"
+  ],
+  "inspectionChaReports": [
+    "ct_reports",
+    "ect_reports",
+    "xray_image_reports",
+    "mr_reports",
+    "microscopic_exam_reports",
+    "other_imaging_exam_diagnosis_reports",
+    "pathology_reports",
+    "ultrasonic_diagnosis_reports"
+  ],
+  "auditReports": [
+    "operation_records",
+    "operation_pre_summary",
+    "operation_pre_conference_records",
+    "operation_post_course_records",
+    "admissions_records",
+    "discharge_records",
+    "first_course_records",
+    "attending_physician_rounds_records",
+    "course_records",
+    "consultation_opinion_records",
+    "death_discuss_records",
+    "death_records",
+    "difficulty_case_records",
+    "rescue_records",
+    "stage_summary",
+    "transferred_in_records",
+    "transferred_out_records",
     "invasive_records"
   ]
 }

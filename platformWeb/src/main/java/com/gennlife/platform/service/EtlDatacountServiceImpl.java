@@ -1,10 +1,15 @@
 package com.gennlife.platform.service;
 
 import com.gennlife.platform.ReadConfig.ReadConditionByRedis;
+import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.etl.EtlDatacount;
 import com.gennlife.platform.dao.EtlDatacountMapper;
+import com.gennlife.platform.enums.EtlStatusTypeEnum;
+import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.TimeUtils;
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
+import com.sun.tools.javac.jvm.Code;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -22,18 +27,17 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
 
     @Autowired
     private EtlDatacountMapper etlDatacountMapper;
-
+    private static Gson gson = GsonUtil.getGson();
     private static JsonParser jsonParser = new JsonParser();
 
     @Override
     public JsonObject getAllEtlDatacount(){
 
-//        List<EtlDatacount> etlDatacountList =  etlDatacountMapper.getAllEtlDataCount();
         List<EtlDatacount> etlDatacountList =  etlDatacountMapper.getAllDataByJoin();
 
         JsonObject config = (JsonObject) jsonParser.parse(ReadConditionByRedis.getEtlDataCountConfig());
         JsonArray sort = config.getAsJsonArray("sort");
-
+        JsonArray catalogue = config.getAsJsonArray("catalogue");
         JsonObject result = new JsonObject();
         JsonObject patAndVis =  getPatientInfoAndVisitInfo(etlDatacountList);
         //获取右下角
@@ -50,7 +54,111 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         result.add("statistics",statistics);
         result.add("checkDistribution",inspectionCha);
         result.add("bigDataDistribution",allDataCount);
+        result.add("catalogue",catalogue);
         return result;
+    }
+
+    @Override
+    public String getEtlStatisticsTable(JsonObject paramObj) {
+        ResultBean resultBean = new ResultBean();
+        JsonObject config = (JsonObject) jsonParser.parse(ReadConditionByRedis.getEtlDataCountConfig());
+
+        Integer statusType = paramObj.get("statusType").getAsInt();
+        JsonArray codes = paramObj.getAsJsonArray("codes");
+
+        Integer days = EtlStatusTypeEnum.getEtlStatusType(statusType).getVal();
+        String sevenParseDate  = TimeUtils.getPastDate(days);
+        Date dates = TimeUtils.strToDateLong(sevenParseDate);
+
+        List<String> codeSqls = new ArrayList<>();
+        for (JsonElement element : codes){
+            JsonObject  codeIds  = element.getAsJsonObject();
+            String code = codeIds.get("id").getAsString();
+            if(config.has(code)){
+                JsonArray arryas = config.getAsJsonArray(code);
+                codeSqls.addAll(gson.fromJson(arryas,new TypeToken<List<String>>(){}.getType()));
+            }else {
+                codeSqls.add(code);
+            }
+        }
+
+        if(codeSqls.size() == 0 ){
+            resultBean.setCode(0);
+            resultBean.setData(new JsonArray());
+            return gson.toJson(resultBean);
+        }
+
+        List<EtlDatacount> savenParseDates = etlDatacountMapper.getStatisticsTableParseDates(dates,codeSqls);
+        Map<String,List<EtlDatacount>> result = new LinkedHashMap<>();
+        statisticsTableByTime(savenParseDates, result);
+        JsonArray data = transforEtlStatisticsTableResult(result,codes,config);
+        
+        resultBean.setCode(1);
+        resultBean.setData(data);
+        return gson.toJson(resultBean);
+    }
+
+    private JsonArray transforEtlStatisticsTableResult(Map<String, List<EtlDatacount>> result, JsonArray codes, JsonObject config) {
+        JsonArray res = new JsonArray();
+        for (JsonElement element : codes){
+            JsonObject data = new JsonObject();
+            JsonObject object = element.getAsJsonObject();
+            String code = object.get("id").getAsString();
+            JsonArray buckets = new JsonArray();
+            for (Map.Entry<String,List<EtlDatacount>> entry : result.entrySet()){
+                String date = entry.getKey();
+                Integer value = 0;
+                if(config.has(code)){
+                    JsonArray arryas = config.getAsJsonArray(code);
+                    List<String> tmpList = gson.fromJson(arryas,new TypeToken<List<String>>(){}.getType());
+                    value = getEtlStaisticsVal(tmpList,entry.getValue());
+                }else {
+                    value = getEtlStaisticsVal(code,entry.getValue());
+                }
+                JsonObject obj = new JsonObject();
+                obj.addProperty("x",date);
+                obj.addProperty("y",value);
+                buckets.add(obj);
+            }
+            data.addProperty("id",code);
+            data.addProperty("title",object.get("name").getAsString());
+            data.add("buckets",buckets);
+            res.add(data);
+        }
+        return res;
+    }
+
+    private Integer getEtlStaisticsVal(List<String> tmpList, List<EtlDatacount> etlDatacounts) {
+        Integer  result = 0;
+        for (EtlDatacount etlDatacount : etlDatacounts){
+            String code =  etlDatacount.getCode();
+            if(tmpList.contains(code)){
+                result = result + etlDatacount.getValues();
+            }
+        }
+        return result;
+    }
+    private Integer getEtlStaisticsVal(String target, List<EtlDatacount> etlDatacounts) {
+        Integer  result = 0;
+        for (EtlDatacount etlDatacount : etlDatacounts){
+            String code =  etlDatacount.getCode();
+            if(target.equals(code)){
+                result = result + etlDatacount.getValues();
+                break;
+            }
+        }
+        return result;
+    }
+
+    private void statisticsTableByTime(List<EtlDatacount> savenParseDates, Map<String, List<EtlDatacount>> result) {
+        for (EtlDatacount etlDatacount : savenParseDates){
+            Date date = etlDatacount.getUpdateTime();
+            String ymdDate = TimeUtils.getYMDDateStr(date);
+            if(!result.containsKey(ymdDate)){
+                result.put(ymdDate,new ArrayList<>());
+            }
+            result.get(ymdDate).add(etlDatacount);
+        }
     }
 
     private JsonObject getSevenEtlDataCounts(Map<String, List<EtlDatacount>> dataEtlDatacounts) {
@@ -125,7 +233,7 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         inspectionReports.add("buckets",dataEtlDatacounts.get(inspectionData));
     }
 
-    public JsonObject getElectronicDocumentByValue(List<EtlDatacount> etlDatacounts){
+    private JsonObject getElectronicDocumentByValue(List<EtlDatacount> etlDatacounts){
         Integer operaCount = 0 ;
         Integer insCount = 0;
         Integer insChaCount = 0;
@@ -151,7 +259,7 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         return result;
     }
 
-    public JsonObject getElectronicDocumentByValues(List<EtlDatacount> etlDatacounts){
+    private JsonObject getElectronicDocumentByValues(List<EtlDatacount> etlDatacounts){
         Integer operaCount = 0 ;
         Integer insCount = 0;
         Integer insChaCount = 0;
@@ -177,7 +285,7 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         return result;
     }
 
-    public JsonArray getAllDataCount(List<EtlDatacount> etlDatacounts,JsonObject patAndVis,JsonArray sort){
+    private JsonArray getAllDataCount(List<EtlDatacount> etlDatacounts,JsonObject patAndVis,JsonArray sort){
         JsonArray result = new JsonArray();
         addPatAndVis(result,patAndVis);
         int size = etlDatacounts.size();
@@ -205,7 +313,7 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         return result;
     }
 
-    public JsonArray getInspectionCha(List<EtlDatacount> etlDatacounts, JsonArray sort){
+    private JsonArray getInspectionCha(List<EtlDatacount> etlDatacounts, JsonArray sort){
         JsonArray result = new JsonArray();
         Map<String,EtlDatacount> sortMap = new HashMap<>();
         for (EtlDatacount etlDatacount : etlDatacounts){
@@ -226,7 +334,7 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         return result;
     }
 
-    public JsonObject getPatientInfoAndVisitInfo(List<EtlDatacount> etlDatacounts){
+    private JsonObject getPatientInfoAndVisitInfo(List<EtlDatacount> etlDatacounts){
         JsonArray patientInfo = new JsonArray();
         JsonArray visitInfo = new JsonArray();
         Integer patCounts = 0;
@@ -271,19 +379,12 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         return counts;
     }
 
-    public Map<String,List<EtlDatacount>> getDataEtlDataCounts() {
+    private Map<String,List<EtlDatacount>> getDataEtlDataCounts() {
         Map<String,List<EtlDatacount>> result = new LinkedHashMap<>();
         String sevenParseDate  = TimeUtils.getPastDate(8);
         Date dates = TimeUtils.strToDateLong(sevenParseDate);
         List<EtlDatacount> savenParseDates = etlDatacountMapper.getSevenParseDates(dates);
-        for (EtlDatacount etlDatacount : savenParseDates){
-            Date date = etlDatacount.getUpdateTime();
-            String ymdDate = TimeUtils.getYMDDateStr(date);
-            if(!result.containsKey(ymdDate)){
-                result.put(ymdDate,new ArrayList<>());
-            }
-            result.get(ymdDate).add(etlDatacount);
-        }
+        statisticsTableByTime(savenParseDates, result);
         return result;
     }
 

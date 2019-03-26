@@ -20,4 +20,6 @@ public interface EtlDatacountMapper {
     List<EtlDatacount> getAllDataByJoin();
 
     List<EtlDatacount> getSevenParseDates(@Param("date") Date date);
+
+    List<EtlDatacount> getStatisticsTableParseDates(@Param("date") Date date, @Param("codes") List<String> codes);
 }

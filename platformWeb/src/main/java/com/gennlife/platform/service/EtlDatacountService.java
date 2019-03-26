@@ -10,4 +10,6 @@ import com.google.gson.JsonObject;
 public interface EtlDatacountService {
 
     public JsonObject getAllEtlDatacount();
+
+    String getEtlStatisticsTable(JsonObject paramObj);
 }
