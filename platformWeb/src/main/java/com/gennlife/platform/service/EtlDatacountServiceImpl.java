@@ -54,21 +54,28 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
     }
 
     private JsonObject getSevenEtlDataCounts(Map<String, List<EtlDatacount>> dataEtlDatacounts) {
-        JsonArray dates = new JsonArray();
+
         JsonArray inspectionData = new JsonArray();
         JsonArray inspectionChaData = new JsonArray();
         JsonArray auditData = new JsonArray();
 
         for (Map.Entry<String,List<EtlDatacount>> entry : dataEtlDatacounts.entrySet()){
             String date = entry.getKey();
-            dates.add(date);
             JsonObject dataCount = getElectronicDocumentByValues(entry.getValue());
-            inspectionData.add(dataCount.get("insCount").getAsInt());
-            inspectionChaData.add(dataCount.get("insChaCount").getAsInt());
-            auditData.add(dataCount.get("OperaCount").getAsInt());
+            JsonObject insObj = new JsonObject();
+            JsonObject insChaObj = new JsonObject();
+            JsonObject auditObj = new JsonObject();
+            insObj.addProperty("x",date);
+            insObj.addProperty("y",dataCount.get("insCount").getAsInt());
+            inspectionData.add(insObj);
+            insChaObj.addProperty("x",date);
+            insChaObj.addProperty("y",dataCount.get("insChaCount").getAsInt());
+            inspectionChaData.add(insChaObj);
+            auditObj.addProperty("x",date);
+            auditObj.addProperty("y",dataCount.get("OperaCount").getAsInt());
+            auditData.add(auditObj);
         }
         JsonObject result = new JsonObject();
-        result.add("date",dates);
         result.add("inspectionData",inspectionData);
         result.add("inspectionChaData",inspectionChaData);
         result.add("auditData",auditData);
@@ -115,10 +122,7 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
     }
 
     private void addCountBuckets(JsonObject inspectionReports, JsonObject dataEtlDatacounts, String inspectionData) {
-        JsonObject buckets = new JsonObject();
-        buckets.add("x",dataEtlDatacounts.get("date"));
-        buckets.add("data",dataEtlDatacounts.get(inspectionData));
-        inspectionReports.add("buckets",buckets);
+        inspectionReports.add("buckets",dataEtlDatacounts.get(inspectionData));
     }
 
     public JsonObject getElectronicDocumentByValue(List<EtlDatacount> etlDatacounts){

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="调整权限功能">
+    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountServiceImpl.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -32,7 +31,17 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/EtlController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="179">
-              <caret line="30" column="26" lean-forward="true" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
+              <caret line="39" column="55" lean-forward="false" selection-start-line="39" selection-start-column="55" selection-end-line="39" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EtlDatacountService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="297">
+              <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -41,16 +50,11 @@
       <file leaf-file-name="EtlDatacountServiceImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="557">
-              <caret line="257" column="5" lean-forward="true" selection-start-line="257" selection-start-column="5" selection-end-line="257" selection-end-column="5" />
+            <state relative-caret-position="104">
+              <caret line="98" column="78" lean-forward="false" selection-start-line="98" selection-start-column="78" selection-end-line="98" selection-end-column="78" />
               <folding>
                 <element signature="docComment;class#EtlDatacountServiceImpl#0" expanded="false" />
-                <element signature="method#getAllEtlDatacount#0;class#EtlDatacountServiceImpl#0" expanded="false" />
-                <element signature="method#getSevenEtlDataCounts#0;class#EtlDatacountServiceImpl#0" expanded="false" />
-                <element signature="method#getStatistics#0;class#EtlDatacountServiceImpl#0" expanded="false" />
-                <element signature="method#addCountBuckets#0;class#EtlDatacountServiceImpl#0" expanded="false" />
                 <element signature="method#getElectronicDocumentByValue#0;class#EtlDatacountServiceImpl#0" expanded="false" />
-                <element signature="method#getElectronicDocumentByValues#0;class#EtlDatacountServiceImpl#0" expanded="false" />
                 <element signature="method#getAllDataCount#0;class#EtlDatacountServiceImpl#0" expanded="false" />
                 <element signature="method#getInspectionCha#0;class#EtlDatacountServiceImpl#0" expanded="false" />
                 <element signature="method#getPatientInfoAndVisitInfo#0;class#EtlDatacountServiceImpl#0" expanded="false" />
@@ -60,94 +64,6 @@
                 <element signature="method#getPatientInfoList#0;class#EtlDatacountServiceImpl#0" expanded="false" />
                 <element signature="method#getVisitInfoList#0;class#EtlDatacountServiceImpl#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/FileController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
-              <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EtlDatacountMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis_config/EtlDatacountMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="26" column="28" lean-forward="true" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
-              <folding>
-                <element signature="e#1672#1676#0" expanded="true" />
-                <marker date="1553498854405" expanded="true" signature="1052:1123" ph="SELECT * FRO... gennlife_gene_img" />
-                <marker date="1553498854405" expanded="true" signature="1231:1503" ph="SELECT e1.`c... " />
-                <marker date="1553498854405" expanded="true" signature="1611:1684" ph="SELECT FROM etl_datacount" />
-                <marker date="1553498854405" expanded="true" signature="1611:1709" ph="SELECT * FRO... etl_datacount" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EtlDatacountMapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/EtlDatacountMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="21" column="41" lean-forward="false" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TimeUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/TimeUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="773">
-              <caret line="89" column="5" lean-forward="true" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="etl_data_count_config.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/etl/etl_data_count_config.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReadConditionByRedis.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="692">
-              <caret line="188" column="0" lean-forward="false" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BaseController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-22">
-              <caret line="0" column="20" lean-forward="true" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SessionFilter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="153" column="41" lean-forward="true" selection-start-line="153" selection-start-column="41" selection-end-line="153" selection-end-column="41" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -164,7 +80,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getRwsEventConfig</find>
       <find>power</find>
       <find>标本信息</find>
       <find>ImportCheck</find>
@@ -194,6 +109,7 @@
       <find>getvalues</find>
       <find>getAllDataByJoin</find>
       <find>getSevenParseDates</find>
+      <find>dataEtlDatacounts</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;open&quot;: false</replace>
@@ -329,10 +245,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1358" />
-    <option name="y" value="-434" />
-    <option name="width" value="1936" />
-    <option name="height" value="1176" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -450,17 +366,6 @@
               <item name="gennlife" type="462c0819:PsiDirectoryNode" />
               <item name="platform" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="platformWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="gennlife" type="462c0819:PsiDirectoryNode" />
-              <item name="platform" type="462c0819:PsiDirectoryNode" />
-              <item name="filter" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="platform" type="b2602c69:ProjectViewProjectNode" />
@@ -869,14 +774,7 @@
       <workItem from="1547539398952" duration="1218000" />
       <workItem from="1551843690100" duration="7119000" />
       <workItem from="1551945389891" duration="9357000" />
-      <workItem from="1553478554542" duration="17194000" />
-    </task>
-    <task id="LOCAL-00044" summary="淋巴流 默认不展开">
-      <created>1530259609247</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1530259609247</updated>
+      <workItem from="1553478554542" duration="19689000" />
     </task>
     <task id="LOCAL-00045" summary="淋巴流 默认不展开">
       <created>1530259904566</created>
@@ -1214,7 +1112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1553508131485</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="调整权限 以及代码功能">
+      <created>1553510567684</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1553510567684</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1250,33 +1155,33 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1222714000" />
+    <option name="totallyTimeSpent" value="1225209000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-434" width="1936" height="1176" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32723773" sideWeight="0.5074627" order="13" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46801707" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.66414523" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41000962" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23869105" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32784185" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42833608" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6213292" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8691049" sideWeight="0.49253732" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1673774" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2375189" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1372,7 +1277,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="增加修改活动名称功能" />
     <MESSAGE value="树级回显功能" />
     <MESSAGE value="调整rws 回显树形结构" />
     <MESSAGE value="分组 筛选 数据源 数据" />
@@ -1397,7 +1301,8 @@
     <MESSAGE value="增加etl 数据统计接口 给郑州中心临时使用功能" />
     <MESSAGE value="增加视图统计功能" />
     <MESSAGE value="调整 增加排序功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整 增加排序功能" />
+    <MESSAGE value="调整权限 以及代码功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整权限 以及代码功能" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2026,14 +1931,6 @@ for(JsonElement element : array){
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/etl/EtlDatacount.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -2068,7 +1965,7 @@ for(JsonElement element : array){
         <state relative-caret-position="773">
           <caret line="89" column="5" lean-forward="true" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2118,7 +2015,7 @@ for(JsonElement element : array){
         <state relative-caret-position="395">
           <caret line="26" column="28" lean-forward="true" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
           <folding>
-            <element signature="e#1672#1676#0" expanded="true" />
+            <element signature="e#1672#1676#0" expanded="false" />
             <marker date="1553498854405" expanded="true" signature="1052:1123" ph="SELECT * FRO... gennlife_gene_img" />
             <marker date="1553498854405" expanded="true" signature="1231:1503" ph="SELECT e1.`c... " />
             <marker date="1553498854405" expanded="true" signature="1611:1684" ph="SELECT FROM etl_datacount" />
@@ -2138,23 +2035,26 @@ for(JsonElement element : array){
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/EtlController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
-          <caret line="30" column="26" lean-forward="true" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
+          <caret line="39" column="55" lean-forward="false" selection-start-line="39" selection-start-column="55" selection-end-line="39" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="557">
-          <caret line="257" column="5" lean-forward="true" selection-start-line="257" selection-start-column="5" selection-end-line="257" selection-end-column="5" />
+        <state relative-caret-position="104">
+          <caret line="98" column="78" lean-forward="false" selection-start-line="98" selection-start-column="78" selection-end-line="98" selection-end-column="78" />
           <folding>
             <element signature="docComment;class#EtlDatacountServiceImpl#0" expanded="false" />
-            <element signature="method#getAllEtlDatacount#0;class#EtlDatacountServiceImpl#0" expanded="false" />
-            <element signature="method#getSevenEtlDataCounts#0;class#EtlDatacountServiceImpl#0" expanded="false" />
-            <element signature="method#getStatistics#0;class#EtlDatacountServiceImpl#0" expanded="false" />
-            <element signature="method#addCountBuckets#0;class#EtlDatacountServiceImpl#0" expanded="false" />
             <element signature="method#getElectronicDocumentByValue#0;class#EtlDatacountServiceImpl#0" expanded="false" />
-            <element signature="method#getElectronicDocumentByValues#0;class#EtlDatacountServiceImpl#0" expanded="false" />
             <element signature="method#getAllDataCount#0;class#EtlDatacountServiceImpl#0" expanded="false" />
             <element signature="method#getInspectionCha#0;class#EtlDatacountServiceImpl#0" expanded="false" />
             <element signature="method#getPatientInfoAndVisitInfo#0;class#EtlDatacountServiceImpl#0" expanded="false" />
