@@ -10,6 +10,7 @@ import com.gennlife.platform.util.TimeUtils;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.sun.tools.javac.jvm.Code;
+import org.apache.ibatis.executor.ReuseExecutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -46,9 +47,9 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         JsonArray inspectionCha = getInspectionCha(etlDatacountList,sort);
 
         Map<String,List<EtlDatacount>> dataEtlDatacounts = getDataEtlDataCounts();
-        JsonObject sevenEtlDataCounts = getSevenEtlDataCounts(dataEtlDatacounts);
+        JsonObject sevenEtlDataCounts = getSevenEtlDataCounts(dataEtlDatacounts,config);
         //统计上面信息
-        JsonObject dataCount = getElectronicDocumentByValue(etlDatacountList);
+        JsonObject dataCount = getElectronicDocumentByValue(etlDatacountList,config);
         JsonObject statistics = getStatistics(patAndVis,dataCount,sevenEtlDataCounts);
 
         result.add("statistics",statistics);
@@ -155,7 +156,7 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         }
     }
 
-    private JsonObject getSevenEtlDataCounts(Map<String, List<EtlDatacount>> dataEtlDatacounts) {
+    private JsonObject getSevenEtlDataCounts(Map<String, List<EtlDatacount>> dataEtlDatacounts,JsonObject config) {
 
         JsonArray inspectionData = new JsonArray();
         JsonArray inspectionChaData = new JsonArray();
@@ -163,7 +164,7 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
 
         for (Map.Entry<String,List<EtlDatacount>> entry : dataEtlDatacounts.entrySet()){
             String date = entry.getKey();
-            JsonObject dataCount = getElectronicDocumentByValues(entry.getValue());
+            JsonObject dataCount = getElectronicDocumentByValues(entry.getValue(),config);
             JsonObject insObj = new JsonObject();
             JsonObject insChaObj = new JsonObject();
             JsonObject auditObj = new JsonObject();
@@ -227,23 +228,18 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         inspectionReports.add("buckets",dataEtlDatacounts.get(inspectionData));
     }
 
-    private JsonObject getElectronicDocumentByValue(List<EtlDatacount> etlDatacounts){
+    private JsonObject getElectronicDocumentByValue(List<EtlDatacount> etlDatacounts, JsonObject config){
         Integer operaCount = 0 ;
         Integer insCount = 0;
         Integer insChaCount = 0;
         for (EtlDatacount etlDatacount : etlDatacounts){
-            String type = etlDatacount.getStatisticsType();
-            if(StringUtils.isEmpty(type)) continue;
-            switch (type){
-                case "电子文档" :
-                    operaCount = operaCount + etlDatacount.getValue();
-                    break;
-                case "检验" :
-                    insCount = insCount + etlDatacount.getValue();
-                    break;
-                case "检查" :
-                    insChaCount = insChaCount +  etlDatacount.getValue();
-                    break;
+            String code = etlDatacount.getCode();
+            if(getReports(config,"inspectionReports").contains(code)){
+                insCount = insCount + etlDatacount.getValue();
+            }else if(getReports(config,"inspectionChaReports").contains(code)){
+                insChaCount = insChaCount +  etlDatacount.getValue();
+            }else if(getReports(config,"auditReports").contains(code)){
+                operaCount = operaCount + etlDatacount.getValue();
             }
         }
         JsonObject result = new JsonObject();
@@ -253,23 +249,18 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         return result;
     }
 
-    private JsonObject getElectronicDocumentByValues(List<EtlDatacount> etlDatacounts){
+    private JsonObject getElectronicDocumentByValues(List<EtlDatacount> etlDatacounts,JsonObject config){
         Integer operaCount = 0 ;
         Integer insCount = 0;
         Integer insChaCount = 0;
         for (EtlDatacount etlDatacount : etlDatacounts){
-            String type = etlDatacount.getStatisticsType();
-            if(StringUtils.isEmpty(type)) continue;
-            switch (type){
-                case "电子文档" :
-                    operaCount = operaCount + etlDatacount.getValues();
-                    break;
-                case "检验" :
-                    insCount = insCount + etlDatacount.getValues();
-                    break;
-                case "检查" :
-                    insChaCount = insChaCount +  etlDatacount.getValues();
-                    break;
+            String code = etlDatacount.getCode();
+            if(getReports(config,"inspectionReports").contains(code)){
+                insCount = insCount + etlDatacount.getValues();
+            }else if(getReports(config,"inspectionChaReports").contains(code)){
+                insChaCount = insChaCount +  etlDatacount.getValues();
+            }else if(getReports(config,"auditReports").contains(code)){
+                operaCount = operaCount + etlDatacount.getValues();
             }
         }
         JsonObject result = new JsonObject();
@@ -365,9 +356,11 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
 
     private int getPatCounts(JsonArray array, Integer counts, EtlDatacount etlDatacount) {
         JsonObject obj = new JsonObject();
+        String code = etlDatacount.getCode();
+        String name = getPatOrVisDisName(code);
         Integer value = etlDatacount.getValue();
         counts = counts + value;
-        obj.addProperty("textType",etlDatacount.getDisplayName());
+        obj.addProperty("textType",name);
         obj.addProperty("dataVolume",value);
         array.add(obj);
         return counts;
@@ -392,9 +385,33 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
 
     private List<String> getVisitInfoList(){
         List<String> visitInfo = new ArrayList<>();
-        visitInfo.add("visit_info_out");
-        visitInfo.add("visit_info_in");
-        visitInfo.add("visit_info_other");
+        visitInfo.add("visits.visit_info_out");
+        visitInfo.add("visits.visit_info_in");
+        visitInfo.add("visits.visit_info_other");
         return visitInfo;
+    }
+
+    private List<String> getReports(JsonObject config,String key){
+        JsonArray arryas = config.getAsJsonArray(key);
+        return gson.fromJson(arryas,new TypeToken<List<String>>(){}.getType());
+    }
+
+    private String getPatOrVisDisName(String code){
+        switch (code){
+            case "patient_info_man" :
+                return "男";
+            case "patient_info_women" :
+                return  "女";
+            case "patient_info_other" :
+                return "未知";
+            case "visits.visit_info_out" :
+                return "门诊";
+            case "visits.visit_info_in" :
+                return "住院";
+            case "visits.visit_info_other" :
+                return "其他";
+            default:
+                return null;
+        }
     }
 }
