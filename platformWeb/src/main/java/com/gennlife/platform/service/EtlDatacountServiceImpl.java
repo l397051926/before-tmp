@@ -91,15 +91,17 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         List<EtlDatacount> savenParseDates = etlDatacountMapper.getStatisticsTableParseDates(dates,codeSqls);
         Map<String,List<EtlDatacount>> result = new LinkedHashMap<>();
         statisticsTableByTime(savenParseDates, result);
-        JsonArray data = transforEtlStatisticsTableResult(result,codes,config);
+        JsonObject data = transforEtlStatisticsTableResult(result,codes,config);
         
         resultBean.setCode(1);
         resultBean.setData(data);
         return gson.toJson(resultBean);
     }
 
-    private JsonArray transforEtlStatisticsTableResult(Map<String, List<EtlDatacount>> result, JsonArray codes, JsonObject config) {
+    private JsonObject transforEtlStatisticsTableResult(Map<String, List<EtlDatacount>> result, JsonArray codes, JsonObject config) {
+        JsonObject resData = new JsonObject();
         JsonArray res = new JsonArray();
+        List<String> xAxis = new LinkedList<>();
         for (JsonElement element : codes){
             JsonObject data = new JsonObject();
             JsonObject object = element.getAsJsonObject();
@@ -115,17 +117,19 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
                 }else {
                     value = getEtlStaisticsVal(code,entry.getValue());
                 }
-                JsonObject obj = new JsonObject();
-                obj.addProperty("x",date);
-                obj.addProperty("y",value);
-                buckets.add(obj);
+                if(!xAxis.contains(date)){
+                    xAxis.add(date);
+                }
+                buckets.add(value);
             }
             data.addProperty("id",code);
-            data.addProperty("title",object.get("name").getAsString());
-            data.add("buckets",buckets);
+            data.addProperty("name",object.get("name").getAsString());
+            data.add("data",buckets);
             res.add(data);
         }
-        return res;
+        resData.add("xAxis",gson.toJsonTree(xAxis));
+        resData.add("series",res);
+        return resData;
     }
 
     private Integer getEtlStaisticsVal(List<String> tmpList, List<EtlDatacount> etlDatacounts) {
