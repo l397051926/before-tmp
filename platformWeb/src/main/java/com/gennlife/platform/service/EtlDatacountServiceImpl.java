@@ -44,7 +44,7 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         //获取右下角
         JsonArray allDataCount = getAllDataCount(etlDatacountList,patAndVis,sort);
         //获取查体报告
-        JsonArray inspectionCha = getInspectionCha(etlDatacountList,sort);
+        JsonArray inspectionCha = getInspectionCha(etlDatacountList,sort,config);
 
         Map<String,List<EtlDatacount>> dataEtlDatacounts = getDataEtlDataCounts();
         JsonObject sevenEtlDataCounts = getSevenEtlDataCounts(dataEtlDatacounts,config);
@@ -298,12 +298,12 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         return result;
     }
 
-    private JsonArray getInspectionCha(List<EtlDatacount> etlDatacounts, JsonArray sort){
+    private JsonArray getInspectionCha(List<EtlDatacount> etlDatacounts, JsonArray sort,JsonObject config){
         JsonArray result = new JsonArray();
         Map<String,EtlDatacount> sortMap = new HashMap<>();
         for (EtlDatacount etlDatacount : etlDatacounts){
-            String type = etlDatacount.getStatisticsType();
-            if("检查".equals(type)){
+            String code = etlDatacount.getCode();
+            if(getReports(config,"inspectionChaReports").contains(code)){
                 sortMap.put(etlDatacount.getCode(),etlDatacount);
             }
         }
