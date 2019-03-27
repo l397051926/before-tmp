@@ -91,25 +91,22 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         List<EtlDatacount> savenParseDates = etlDatacountMapper.getStatisticsTableParseDates(dates,codeSqls);
         Map<String,List<EtlDatacount>> result = new LinkedHashMap<>();
         statisticsTableByTime(savenParseDates, result);
-        JsonObject data = transforEtlStatisticsTableResult(result,codes,config);
+        JsonArray data = transforEtlStatisticsTableResult(result,codes,config);
         
         resultBean.setCode(1);
         resultBean.setData(data);
         return gson.toJson(resultBean);
     }
 
-    private JsonObject transforEtlStatisticsTableResult(Map<String, List<EtlDatacount>> result, JsonArray codes, JsonObject config) {
-        JsonObject resData = new JsonObject();
+    private JsonArray transforEtlStatisticsTableResult(Map<String, List<EtlDatacount>> result, JsonArray codes, JsonObject config) {
         JsonArray res = new JsonArray();
-        List<String> xAxis = new LinkedList<>();
-        for (JsonElement element : codes){
-            JsonObject data = new JsonObject();
-            JsonObject object = element.getAsJsonObject();
-            String code = object.get("id").getAsString();
-            JsonArray buckets = new JsonArray();
-            for (Map.Entry<String,List<EtlDatacount>> entry : result.entrySet()){
-                String date = entry.getKey();
-                Integer value = 0;
+        for (Map.Entry<String,List<EtlDatacount>> entry : result.entrySet()){
+            String date = entry.getKey();
+            Integer value = 0;
+            JsonObject cellObj = new JsonObject();
+            for (JsonElement element : codes){
+                JsonObject object = element.getAsJsonObject();
+                String code = object.get("id").getAsString();
                 if(config.has(code)){
                     JsonArray arryas = config.getAsJsonArray(code);
                     List<String> tmpList = gson.fromJson(arryas,new TypeToken<List<String>>(){}.getType());
@@ -117,19 +114,12 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
                 }else {
                     value = getEtlStaisticsVal(code,entry.getValue());
                 }
-                if(!xAxis.contains(date)){
-                    xAxis.add(date);
-                }
-                buckets.add(value);
+                cellObj.addProperty("date",date);
+                cellObj.addProperty(code,value);
             }
-            data.addProperty("id",code);
-            data.addProperty("name",object.get("name").getAsString());
-            data.add("data",buckets);
-            res.add(data);
+            res.add(cellObj);
         }
-        resData.add("xAxis",gson.toJsonTree(xAxis));
-        resData.add("series",res);
-        return resData;
+        return res;
     }
 
     private Integer getEtlStaisticsVal(List<String> tmpList, List<EtlDatacount> etlDatacounts) {
