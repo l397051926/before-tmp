@@ -101,8 +101,17 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
 
     private JsonArray transforEtlStatisticsTableResult(Map<String, List<EtlDatacount>> result, JsonArray codes, JsonObject config) {
         JsonArray res = new JsonArray();
+        List<String> dateList = new LinkedList<>();
         for (Map.Entry<String,List<EtlDatacount>> entry : result.entrySet()){
             String date = entry.getKey();
+            if(dateList.size()>0){
+                String lastDate = dateList.get(dateList.size()-1);
+                boolean padding = isPadding(date,lastDate);
+                if(padding){
+                    paddingValue(dateList,lastDate,codes,res,date);
+                }
+            }
+            dateList.add(date);
             Integer value = 0;
             JsonObject cellObj = new JsonObject();
             for (JsonElement element : codes){
@@ -121,6 +130,38 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
             res.add(cellObj);
         }
         return res;
+    }
+
+    private void paddingValue(List<String> dateList, String lastDate, JsonArray codes, JsonArray res,String befDate) {
+        Integer value = 0;
+        String date = TimeUtils.getSpecifiedDayAfter(lastDate);
+        dateList.add(date);
+        JsonObject cellObj = new JsonObject();
+        for (JsonElement element : codes){
+            JsonObject object = element.getAsJsonObject();
+            String code = object.get("id").getAsString();
+            cellObj.addProperty("date",date);
+            cellObj.addProperty(code,value);
+        }
+        res.add(cellObj);
+        boolean padding = isPadding(befDate,date);
+        if(padding){
+            paddingValue(dateList,date,codes,res,befDate);
+        }
+    }
+
+    private boolean isPadding(String date, String lastDate) {
+        if (StringUtils.isEmpty(lastDate)){
+            return false;
+        }
+        Date da = TimeUtils.strToDateLong(date);
+        Date lastDa = TimeUtils.strToDateLong(lastDate);
+        long daysBetween=(da.getTime()-lastDa.getTime()+1000000)/(60*60*24*1000);
+        if(daysBetween ==1){
+            return false;
+        }else {
+            return true;
+        }
     }
 
     private Integer getEtlStaisticsVal(List<String> tmpList, List<EtlDatacount> etlDatacounts) {
