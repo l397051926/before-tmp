@@ -15,7 +15,6 @@
     "visits.medicine_order",
     "visits.inspection_reports",
     "visits.ct_reports",
-    "visits.ect_reports",
     "visits.xray_image_reports",
     "visits.mr_reports",
     "visits.microscopic_exam_reports",
@@ -104,10 +103,6 @@
     {
       "id": "visits.ct_reports",
       "name": "CT"
-    },
-    {
-      "id": "visits.ect_reports",
-      "name": "ECT"
     },
     {
       "id": "visits.xray_image_reports",
@@ -249,7 +244,6 @@
   ],
   "inspectionChaReports": [
     "visits.ct_reports",
-    "visits.ect_reports",
     "visits.xray_image_reports",
     "visits.mr_reports",
     "visits.microscopic_exam_reports",
