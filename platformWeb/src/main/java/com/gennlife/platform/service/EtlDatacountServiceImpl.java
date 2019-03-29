@@ -92,16 +92,18 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         List<EtlDatacount> savenParseDates = etlDatacountMapper.getStatisticsTableParseDates(dates,codeSqls);
         Map<String,List<EtlDatacount>> result = new LinkedHashMap<>();
         statisticsTableByTime(savenParseDates, result);
-        JsonArray data = transforEtlStatisticsTableResult(result,codes,config);
+        JsonArray data = transforEtlStatisticsTableResult(result,codes,config,sevenParseDate,days);
         
         resultBean.setCode(1);
         resultBean.setData(data);
         return gson.toJson(resultBean);
     }
 
-    private JsonArray transforEtlStatisticsTableResult(Map<String, List<EtlDatacount>> result, JsonArray codes, JsonObject config) {
+    private JsonArray transforEtlStatisticsTableResult(Map<String, List<EtlDatacount>> result, JsonArray codes, JsonObject config, String sevenParseDate, Integer days) {
         JsonArray res = new JsonArray();
+        String nowDate = TimeUtils.getYMDDateStr(new Date());
         List<String> dateList = new LinkedList<>();
+        dateList.add(sevenParseDate);
         for (Map.Entry<String,List<EtlDatacount>> entry : result.entrySet()){
             String date = entry.getKey();
             if(dateList.size()>0){
@@ -128,6 +130,14 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
                 cellObj.addProperty(code,value);
             }
             res.add(cellObj);
+        }
+        String lastDate = "";
+        if (!nowDate.equals(lastDate)){
+             lastDate = dateList.get(dateList.size()-1);
+            boolean padding = isPadding(nowDate,lastDate);
+            if(padding){
+                paddingValue(dateList,lastDate,codes,res,nowDate);
+            }
         }
         return res;
     }
