@@ -132,7 +132,7 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
             res.add(cellObj);
         }
         String lastDate = "";
-        if (!nowDate.equals(lastDate)){
+        if (res.size() < --days){
              lastDate = dateList.get(dateList.size()-1);
             boolean padding = isPadding(nowDate,lastDate);
             if(padding){
