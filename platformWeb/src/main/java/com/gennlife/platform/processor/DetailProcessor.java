@@ -666,4 +666,64 @@ public class DetailProcessor {
             return ParamUtils.errorParam("获取基本信息 ");
         }
     }
+
+    public String labResultList(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getCaseLab_result_list();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String NewLabResultItemList(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getCaseNew_lab_result_list();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String newMedicalCourse(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getCaseNewMedicalCourse();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String newCourseRecords(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getCaseNewCourseRecords();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String newExamResult(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getCaseNewExamResult();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String newQuotaReports(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getCaseNewQuotaReports();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
 }

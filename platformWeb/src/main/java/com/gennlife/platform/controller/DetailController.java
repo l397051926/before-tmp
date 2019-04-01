@@ -884,4 +884,111 @@ public class DetailController {
         logger.info("获取患者基本信息 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/labResult", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getlabResultList(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            logger.info("检验大项列表 get方式 参数=" + param);
+            resultStr = processor.labResultList(param);
+        } catch (Exception e) {
+            logger.error("检验大项列表", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("检验大项列表 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/newLabResultItem", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getNewLabResultItemList(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            logger.info("新检验子项列表接口 get方式 参数=" + param);
+            resultStr = processor.NewLabResultItemList(param);
+        } catch (Exception e) {
+            logger.error("新检验子项列表接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("新检验子项列表接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/newMedicalCourse", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String newMedicalCourse(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            logger.info("新详情页病病例文书 接口 get方式 参数=" + param);
+            resultStr = processor.newMedicalCourse(param);
+        } catch (Exception e) {
+            logger.error("新详情页病病例文书 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("新详情页病病例文书 接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/newCourseRecords", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String newCourseRecords(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            logger.info("新详情页病程记录 接口 get方式 参数=" + param);
+            resultStr = processor.newCourseRecords(param);
+        } catch (Exception e) {
+            logger.error("新详情页病程记录 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("新详情页病程记录 接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/newExamResult", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String newExamResult(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            logger.info("新详情检查页面 接口 get方式 参数=" + param);
+            resultStr = processor.newExamResult(param);
+        } catch (Exception e) {
+            logger.error("新详情检查页面 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("新详情检查页面 接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+    @RequestMapping(value = "/newQuotaReports", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String newQuotaReports(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            logger.info("新详情检验子项指标绘制图接口 get方式 参数=" + param);
+            resultStr = processor.newQuotaReports(param);
+        } catch (Exception e) {
+            logger.error("新详情页面检验子项指标绘制图接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("新详情页面检验子项指标绘制图接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }

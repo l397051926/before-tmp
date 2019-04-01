@@ -96,6 +96,13 @@
                   value="http://${fileService.ipAndPort}/FileService/part3/applyOutGoing"></property>
         <property name="getPatienSn" value="http://${fileService.ipAndPort}/FileService/PatientDetail/get_patien_sn"></property>
         <property name="tripleTestTable" value="http://${fileService.ipAndPort}/FileService/PatientDetail/tripleTestTable"></property>
+        <property name="caseLab_result_list" value="http://${fileService.ipAndPort}/FileService/PatientDetail/lab_result"></property>
+        <property name="caseNew_lab_result_list" value="http://${fileService.ipAndPort}/FileService/PatientDetail/new_lab_result_item"></property>
+        <property name="caseNewMedicalCourse" value="http://${fileService.ipAndPort}/FileService/PatientDetail/new_medical_course"></property>
+        <property name="caseNewCourseRecords" value="http://${fileService.ipAndPort}/FileService/PatientDetail/new_course_records"></property>
+        <property name="caseNewExamResult" value="http://${fileService.ipAndPort}/FileService/PatientDetail/new_exam_result"></property>
+        <property name="caseNewQuotaReports" value="http://${fileService.ipAndPort}/FileService/PatientDetail/new_quota_reports"></property>
+
         <!--vitaBoard 服务-->
         <property name="caseSimilarServiceVitaboardparam"
                   value="http://${fileService.ipAndPort}/FileService/SimilarService/vitaboardparam"></property>

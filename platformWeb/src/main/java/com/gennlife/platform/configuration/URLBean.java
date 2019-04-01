@@ -275,6 +275,35 @@ public class URLBean {
      */
     private String caseDiagnose = null;
 
+    /**
+     * 检验大项接口
+     */
+    private String caseLab_result_list = null;
+
+    /**
+     * 新检验子项接口
+     */
+    private String caseNew_lab_result_list = null;
+
+    /**
+     * 病例文书
+     */
+    private String caseNewMedicalCourse = null;
+
+    /**
+     * 病程记录
+     */
+    private String caseNewCourseRecords = null;
+
+    /**
+     * 病程记录
+     */
+    private String caseNewExamResult = null;
+
+    /**
+     * 病程记录
+     */
+    private String caseNewQuotaReports = null;
 
     /**
      * 遗传性疾病
@@ -2045,5 +2074,53 @@ public class URLBean {
 
     public void setTripleTestTable(String tripleTestTable) {
         this.tripleTestTable = tripleTestTable;
+    }
+
+    public String getCaseLab_result_list() {
+        return caseLab_result_list;
+    }
+
+    public void setCaseLab_result_list(String caseLab_result_list) {
+        this.caseLab_result_list = caseLab_result_list;
+    }
+
+    public String getCaseNew_lab_result_list() {
+        return caseNew_lab_result_list;
+    }
+
+    public void setCaseNew_lab_result_list(String caseNew_lab_result_list) {
+        this.caseNew_lab_result_list = caseNew_lab_result_list;
+    }
+
+    public String getCaseNewMedicalCourse() {
+        return caseNewMedicalCourse;
+    }
+
+    public void setCaseNewMedicalCourse(String caseNewMedicalCourse) {
+        this.caseNewMedicalCourse = caseNewMedicalCourse;
+    }
+
+    public String getCaseNewCourseRecords() {
+        return caseNewCourseRecords;
+    }
+
+    public void setCaseNewCourseRecords(String caseNewCourseRecords) {
+        this.caseNewCourseRecords = caseNewCourseRecords;
+    }
+
+    public String getCaseNewExamResult() {
+        return caseNewExamResult;
+    }
+
+    public void setCaseNewExamResult(String caseNewExamResult) {
+        this.caseNewExamResult = caseNewExamResult;
+    }
+
+    public String getCaseNewQuotaReports() {
+        return caseNewQuotaReports;
+    }
+
+    public void setCaseNewQuotaReports(String caseNewQuotaReports) {
+        this.caseNewQuotaReports = caseNewQuotaReports;
     }
 }
