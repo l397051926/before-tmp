@@ -150,7 +150,7 @@ public class SessionFilter implements Filter {
         adminSet.add("/bsma/DeleteAllOrg");
         adminSet.add("/common/UploadFileForImportLab");
         adminSet.add("/common/UploadFileForImportStaff");
-        adminSet.add("/etl/getEtlDatacount");
+        okSet.add("/etl/getEtlDatacount");
         okSet.add("/etl/getEtlStatisticsTable");
         okSet.add("/case/SearchItemSet");
         okSet.add("/case/SearchItemSetT");
