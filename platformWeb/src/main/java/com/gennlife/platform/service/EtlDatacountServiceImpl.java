@@ -246,7 +246,7 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         JsonObject visitInfo = new JsonObject();
         visitInfo.addProperty("pnum",patAndVis.get("visitCounts").getAsInt());
         visitInfo.add("buckets",patAndVis.get("visitInfo").getAsJsonArray());
-        addTitle(visitInfo,"就诊总人数");
+        addTitle(visitInfo,"就诊总人次");
 
         JsonObject inspectionReports = new JsonObject();
         inspectionReports.addProperty("pnum",dataCount.get("insCount").getAsInt());
@@ -261,7 +261,7 @@ public class EtlDatacountServiceImpl implements EtlDatacountService{
         JsonObject auditReports = new JsonObject();
         auditReports.addProperty("pnum",dataCount.get("OperaCount").getAsInt());
         addCountBuckets(auditReports,dataEtlDatacounts,"auditData");
-        addTitle(auditReports,"电子文档总数量");
+        addTitle(auditReports,"病历文书总数量");
 
         result.add("patientInfo",patientInfo);
         result.add("visitInfo",visitInfo);

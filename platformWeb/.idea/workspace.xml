@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/etl/etl_data_count_config.json" afterPath="$PROJECT_DIR$/src/main/resources/etl/etl_data_count_config.json" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountServiceImpl.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,11 +47,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SessionFilter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SessionFilter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="154" column="41" lean-forward="true" selection-start-line="154" selection-start-column="41" selection-end-line="154" selection-end-column="41" />
+            <state relative-caret-position="449">
+              <caret line="156" column="41" lean-forward="true" selection-start-line="156" selection-start-column="41" selection-end-line="156" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EtlDatacountServiceImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="431">
+              <caret line="266" column="42" lean-forward="true" selection-start-line="266" selection-start-column="42" selection-end-line="266" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -70,9 +79,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>xa</find>
-      <find>x</find>
-      <find>y</find>
       <find>ya</find>
       <find>getStatisticsTableParseDates</find>
       <find>CourseRecords</find>
@@ -100,6 +106,9 @@
       <find>detail_schem</find>
       <find>caseLab_result_list</find>
       <find>caseNewQuotaReports</find>
+      <find>就诊总人</find>
+      <find>就诊总</find>
+      <find>电子文档</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;open&quot;: false</replace>
@@ -173,7 +182,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/EtlDatacountMapper.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/EtlDatacountMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/TimeUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" />
         <option value="$PROJECT_DIR$/src/main/resources/urlconf.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/DetailProcessor.java" />
@@ -184,6 +192,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/DetailController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/etl/etl_data_count_config.json" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountServiceImpl.java" />
       </list>
     </option>
   </component>
@@ -819,14 +828,7 @@
       <workItem from="1554081279429" duration="6608000" />
       <workItem from="1554100808354" duration="18804000" />
       <workItem from="1554430349939" duration="5673000" />
-      <workItem from="1554450184242" duration="5009000" />
-    </task>
-    <task id="LOCAL-00061" summary="rws 调试">
-      <created>1531919014971</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1531919014971</updated>
+      <workItem from="1554450184242" duration="5458000" />
     </task>
     <task id="LOCAL-00062" summary="rws 调试">
       <created>1531919184662</created>
@@ -1164,7 +1166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1554451921964</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="调整文案数据统计功能">
+      <created>1554694500291</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1554694500293</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1200,7 +1209,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1298831000" />
+    <option name="totallyTimeSpent" value="1299280000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-434" width="1936" height="1176" extended-state="6" />
@@ -1286,7 +1295,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整 rws 配置文件从uiService 获取" />
     <MESSAGE value="修改配置文件" />
     <MESSAGE value="修改淋巴瘤 心脏检查不应选中 功能" />
     <MESSAGE value="增加 mybatis 配置连接池" />
@@ -1311,7 +1319,8 @@
     <MESSAGE value="调整配置文件" />
     <MESSAGE value="更新配置文件" />
     <MESSAGE value="更新配置文件 调整检验项目问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新配置文件 调整检验项目问题" />
+    <MESSAGE value="调整文案数据统计功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整文案数据统计功能" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1644,13 +1653,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="150" column="58" lean-forward="true" selection-start-line="150" selection-start-column="58" selection-end-line="150" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/EtlController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="557">
@@ -1822,8 +1824,8 @@
         <state relative-caret-position="367">
           <caret line="2123" column="32" lean-forward="false" selection-start-line="2123" selection-start-column="13" selection-end-line="2123" selection-end-column="32" />
           <folding>
-            <element signature="e#52455#52456#0" expanded="true" />
-            <element signature="e#52495#52496#0" expanded="true" />
+            <element signature="e#52455#52456#0" expanded="false" />
+            <element signature="e#52495#52496#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1870,8 +1872,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="154" column="41" lean-forward="true" selection-start-line="154" selection-start-column="41" selection-end-line="154" selection-end-column="41" />
+        <state relative-caret-position="449">
+          <caret line="156" column="41" lean-forward="true" selection-start-line="156" selection-start-column="41" selection-end-line="156" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="266" column="42" lean-forward="true" selection-start-line="266" selection-start-column="42" selection-end-line="266" selection-end-column="42" />
           <folding />
         </state>
       </provider>
