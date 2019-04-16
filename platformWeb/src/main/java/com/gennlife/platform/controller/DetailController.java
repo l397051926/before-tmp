@@ -5,6 +5,7 @@ import com.gennlife.platform.processor.DetailProcessor;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
+import com.gennlife.platform.util.RedisUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -841,6 +842,8 @@ public class DetailController {
         String resultStr = null;
         try {
             String param = ParamUtils.getParam(paramRe);
+            String sessionId = paramRe.getSession(true).getId();
+            RedisUtil.setValue(sessionId,"admin_session_hits");
             logger.info("获取患者基本信息 get方式 参数=" + param);
             resultStr = processor.getPatienSn(param);
         } catch (Exception e) {

@@ -67,7 +67,10 @@ public class AuthorityUtil {
         if(param.contains("crfId")){
             return param;
         }
-
+        Object hist = paramRe.getAttribute("admin_session_hits");
+        if(hist !=null && !StringUtils.isEmpty(hist.toString()) && "admin_session_hits".equals(hist.toString()) ){
+            return param;
+        }
         //从request域中获取当前用户
         Object object = paramRe.getAttribute("currentUser");
         if (object == null) {

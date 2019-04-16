@@ -62,6 +62,11 @@ public class SessionFilter implements Filter {
             session.setMaxInactiveInterval(3600 * 5);
             String sessionID = session.getId();
             String uid = RedisUtil.getValue(sessionID);
+            if("admin_session_hits".equals(uid)){
+                servletRequest.setAttribute("admin_session_hits","admin_session_hits");
+                filterChain.doFilter(request, response);
+                return;
+            }
             if (uid == null) {
                 logger.info("RedisUtil.getValue()-> uid is null");
                 logger.info("request url is: " + uri);
@@ -174,6 +179,7 @@ public class SessionFilter implements Filter {
         okSet.add("/case/SearchItemSetForRws");
         okSet.add("/crf/buildIndexForAll");
         okSet.add("/detail/getSchemaData");
+        okSet.add("/detail/get_patien_sn");
 
     }
 }
