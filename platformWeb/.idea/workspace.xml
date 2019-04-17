@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/rocketmq/ProducerService.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/rocketmq/ProjectConsumer.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/rocketmq/RocketMqContent.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/bootstrap.properties" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap.properties" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/profiles/local/bootstrap.properties" afterPath="$PROJECT_DIR$/src/main/resources/profiles/local/bootstrap.properties" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,11 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LaboratoryProcessor.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LaboratoryProcessor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="140" column="32" lean-forward="true" selection-start-line="140" selection-start-column="32" selection-end-line="140" selection-end-column="32" />
+            <state relative-caret-position="486">
+              <caret line="147" column="20" lean-forward="true" selection-start-line="147" selection-start-column="20" selection-end-line="147" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -79,6 +72,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="RwsService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="84" column="83" lean-forward="true" selection-start-line="84" selection-start-column="83" selection-end-line="84" selection-end-column="83" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -90,7 +93,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getAllLabIds</find>
       <find>itaBoard</find>
       <find>AddRole</find>
       <find>paramObj</find>
@@ -120,6 +122,7 @@
       <find>DeleteRoles</find>
       <find>insertUserRoleRelation</find>
       <find>getUserIdByRole</find>
+      <find>PreLiminary</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;open&quot;: false</replace>
@@ -178,7 +181,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/SyUserMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyUserMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java" />
@@ -204,6 +206,7 @@
         <option value="$PROJECT_DIR$/src/main/resources/bootstrap.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java" />
       </list>
     </option>
   </component>
@@ -785,13 +788,6 @@
       <workItem from="1546423259497" duration="202000" />
       <workItem from="1548398437220" duration="3937000" />
     </task>
-    <task id="LOCAL-00030" summary="调整淋巴瘤配置文件">
-      <created>1529486665728</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1529486665728</updated>
-    </task>
     <task id="LOCAL-00031" summary="调整淋巴瘤配置文件">
       <created>1529487541336</created>
       <option name="number" value="00031" />
@@ -1128,7 +1124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1552894287407</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="权限通知 增加完成">
+      <created>1555493401933</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1555493401934</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1164,7 +1167,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1145010000" />
+    <option name="totallyTimeSpent" value="1145390000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-434" width="1936" height="1176" extended-state="6" />
@@ -1312,7 +1315,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="rws 聚合搜索" />
     <MESSAGE value="修改淋巴瘤上方 配置文件" />
     <MESSAGE value="淋巴流 配置文件修改" />
     <MESSAGE value="淋巴流 默认不展开" />
@@ -1337,7 +1339,8 @@
     <MESSAGE value="Merge branches 'release0.0.7.1.dev' and 'release_rwsCg' of http://10.0.0.6/Gennlife-Eng/Ark-UI_Service into release0.0.7.1.dev&#10;&#10;# Conflicts:&#10;#&#9;platformWeb/.idea/workspace.xml&#10;#&#9;platformWeb/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" />
     <MESSAGE value="调整代码" />
     <MESSAGE value="增加启动导出任务接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加启动导出任务接口" />
+    <MESSAGE value="权限通知 增加完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="权限通知 增加完成" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1548,13 +1551,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="837">
-          <caret line="47" column="58" lean-forward="false" selection-start-line="47" selection-start-column="58" selection-end-line="47" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CaseController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="864">
@@ -1683,6 +1679,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
           <caret line="2145" column="5" lean-forward="true" selection-start-line="2145" selection-start-column="5" selection-end-line="2145" selection-end-column="5" />
+          <folding>
+            <element signature="e#10732#10733#0" expanded="true" />
+            <element signature="e#10770#10771#0" expanded="true" />
+            <element signature="e#10832#10833#0" expanded="true" />
+            <element signature="e#10886#10887#0" expanded="true" />
+            <element signature="e#10927#10928#0" expanded="true" />
+            <element signature="e#10964#10965#0" expanded="true" />
+            <element signature="e#53588#53589#0" expanded="true" />
+            <element signature="e#53626#53627#0" expanded="true" />
+            <element signature="e#53688#53689#0" expanded="true" />
+            <element signature="e#53742#53743#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1834,8 +1842,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="140" column="32" lean-forward="true" selection-start-line="140" selection-start-column="32" selection-end-line="140" selection-end-column="32" />
+        <state relative-caret-position="486">
+          <caret line="147" column="20" lean-forward="true" selection-start-line="147" selection-start-column="20" selection-end-line="147" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="84" column="83" lean-forward="true" selection-start-line="84" selection-start-column="83" selection-end-line="84" selection-end-column="83" />
           <folding />
         </state>
       </provider>

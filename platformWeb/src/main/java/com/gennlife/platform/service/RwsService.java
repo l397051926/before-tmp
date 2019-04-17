@@ -52,8 +52,10 @@ public class RwsService implements RwsServiceImpl {
 //            }
 //        }
 //        paramObj.add("power",gson.toJsonTree(searchPowers));
-        JsonArray array = paramObj.getAsJsonObject("power").getAsJsonArray("has_searchExport");
-        paramObj.add("power",array);
+        if(!flag){
+            JsonArray array = paramObj.getAsJsonObject("power").getAsJsonArray("has_searchExport");
+            paramObj.add("power",array);
+        }
         try {
             String crfName = "", crfId = "";
             String projectId = paramObj.get("projectId").getAsString();
