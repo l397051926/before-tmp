@@ -1,6 +1,7 @@
 package com.gennlife.platform.controller;
 
 import com.gennlife.platform.authority.AuthorityUtil;
+import com.gennlife.platform.bean.HitsConfigBean;
 import com.gennlife.platform.processor.DetailProcessor;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.HttpRequestUtils;
@@ -843,7 +844,7 @@ public class DetailController {
         try {
             String param = ParamUtils.getParam(paramRe);
             String sessionId = paramRe.getSession(true).getId();
-            RedisUtil.setValue(sessionId,"admin_session_hits");
+            RedisUtil.setValue(sessionId, HitsConfigBean.HIES_SESSION_ID);
             logger.info("获取患者基本信息 get方式 参数=" + param);
             resultStr = processor.getPatienSn(param);
         } catch (Exception e) {

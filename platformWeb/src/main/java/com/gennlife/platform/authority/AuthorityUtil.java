@@ -1,5 +1,6 @@
 package com.gennlife.platform.authority;
 
+import com.gennlife.platform.bean.HitsConfigBean;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.*;
 import com.gennlife.platform.processor.CaseProcessor;
@@ -67,8 +68,8 @@ public class AuthorityUtil {
         if(param.contains("crfId")){
             return param;
         }
-        Object hist = paramRe.getAttribute("admin_session_hits");
-        if(hist !=null && !StringUtils.isEmpty(hist.toString()) && "admin_session_hits".equals(hist.toString()) ){
+        Object hist = paramRe.getAttribute(HitsConfigBean.HIES_SESSION_ID);
+        if(hist !=null && !StringUtils.isEmpty(hist.toString()) && HitsConfigBean.HIES_SESSION_ID.equals(hist.toString()) ){
             return param;
         }
         //从request域中获取当前用户

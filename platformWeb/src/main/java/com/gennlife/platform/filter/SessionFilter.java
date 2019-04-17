@@ -2,6 +2,7 @@ package com.gennlife.platform.filter;
 
 
 import com.gennlife.platform.authority.AuthorityUtil;
+import com.gennlife.platform.bean.HitsConfigBean;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.User;
@@ -62,8 +63,8 @@ public class SessionFilter implements Filter {
             session.setMaxInactiveInterval(3600 * 5);
             String sessionID = session.getId();
             String uid = RedisUtil.getValue(sessionID);
-            if("admin_session_hits".equals(uid)){
-                servletRequest.setAttribute("admin_session_hits","admin_session_hits");
+            if(HitsConfigBean.HIES_SESSION_ID.equals(uid)){
+                servletRequest.setAttribute(HitsConfigBean.HIES_SESSION_ID,HitsConfigBean.HIES_SESSION_ID);
                 filterChain.doFilter(request, response);
                 return;
             }
