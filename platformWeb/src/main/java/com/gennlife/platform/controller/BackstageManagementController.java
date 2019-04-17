@@ -5,6 +5,7 @@ import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.Lab;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.LaboratoryProcessor;
+import com.gennlife.platform.rocketmq.ProducerService;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.FileUploadUtil;
 import com.gennlife.platform.util.GsonUtil;
@@ -16,6 +17,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +39,9 @@ public class BackstageManagementController {
     private static Gson gson = GsonUtil.getGson();
     private static final Object Lock = FileUploadUtil.Lock;
     private static LaboratoryProcessor processor = new LaboratoryProcessor();
+
+    @Autowired
+    private ProducerService producerService;
 
     @RequestMapping(value = "/OrgMapData", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
@@ -313,7 +318,7 @@ public class BackstageManagementController {
             String param = ParamUtils.getParam(paramRe);
             User user = (User) paramRe.getAttribute("currentUser");
             JsonArray paramObj = (JsonArray) jsonParser.parse(param);
-            resultStr = processor.deleteRoles(paramObj, user);
+            resultStr = processor.deleteRoles(paramObj, user,producerService);
         } catch (DataIntegrityViolationException e) {
             resultStr = DataIntegrityViolationExceptionMsg();
         } catch (Exception e) {
@@ -336,6 +341,7 @@ public class BackstageManagementController {
                 User user = (User) paramRe.getAttribute("currentUser");
                 JsonObject paramObj = (JsonObject) jsonParser.parse(param);
                 resultStr = processor.addRole(paramObj, user);
+                producerService.checkOutPowerByAddRole(paramObj);
             } catch (DataIntegrityViolationException e) {
                 resultStr = DataIntegrityViolationExceptionMsg();
             } catch (Exception e) {
@@ -359,6 +365,7 @@ public class BackstageManagementController {
                 User user = (User) paramRe.getAttribute("currentUser");
                 JsonObject paramObj = (JsonObject) jsonParser.parse(param);
                 resultStr = processor.editRole(paramObj, user);
+                producerService.checkOutPowerByAddRole(paramObj);
             } catch (DataIntegrityViolationException e) {
                 resultStr = DataIntegrityViolationExceptionMsg();
             } catch (Exception e) {
@@ -535,6 +542,7 @@ public class BackstageManagementController {
                 String param = ParamUtils.getParam(paramRe);
                 User user = (User) paramRe.getAttribute("currentUser");
                 resultStr = processor.addGroup(param, user);
+                producerService.checkOutPowerByEditGroup(param);
             } catch (DataIntegrityViolationException e) {
                 resultStr = DataIntegrityViolationExceptionMsg();
             } catch (Exception e) {
@@ -557,6 +565,7 @@ public class BackstageManagementController {
                 String param = ParamUtils.getParam(paramRe);
                 User user = (User) paramRe.getAttribute("currentUser");
                 resultStr = processor.editGroup(param, user);
+                producerService.checkOutPowerByEditGroup(param);
             } catch (DataIntegrityViolationException e) {
                 resultStr = DataIntegrityViolationExceptionMsg();
             } catch (Exception e) {
@@ -598,7 +607,7 @@ public class BackstageManagementController {
         try {
             String param = ParamUtils.getParam(paramRe);
             User user = (User) paramRe.getAttribute("currentUser");
-            resultStr = processor.deleteGroup(param, user);
+            resultStr = processor.deleteGroup(param, user,producerService);
         } catch (DataIntegrityViolationException e) {
             resultStr = DataIntegrityViolationExceptionMsg();
         } catch (Exception e) {

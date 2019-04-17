@@ -6,6 +6,7 @@ import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.dao.OrgMapper;
 import com.gennlife.platform.dao.SyUserMapper;
 import com.gennlife.platform.model.*;
+import com.gennlife.platform.rocketmq.ProducerService;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.*;
 import com.google.gson.*;
@@ -1047,9 +1048,10 @@ public class LaboratoryProcessor {
     /**
      * @param paramObj
      * @param user
+     * @param producerService
      * @return
      */
-    public String deleteRoles(JsonArray paramObj, User user) {
+    public String deleteRoles(JsonArray paramObj, User user, ProducerService producerService) {
         Integer[] paraRoleids = null;
         try {
             paraRoleids = new Integer[paramObj.size()];
@@ -1062,6 +1064,10 @@ public class LaboratoryProcessor {
         }
         List<Integer> checkedRoleids = new LinkedList<>();
         for (Integer roleid : paraRoleids) {
+            List<String> userIds = AllDao.getInstance().getSyRoleDao().getUserIdByRole(roleid);
+            for (String uid : userIds){
+                producerService.checkOutPower(uid);
+            }
             Role role = AllDao.getInstance().getSyRoleDao().getRoleByroleid(roleid);
             if (("0".equals(role.getRole_type()) || StringUtils.isEmpty(role.getRole_type())) && !checkedRoleids.contains(roleid)) {
                 checkedRoleids.add(roleid);
@@ -1576,7 +1582,7 @@ public class LaboratoryProcessor {
         return gson.toJson(re);
     }
 
-    public String deleteGroup(String param, User user) {
+    public String deleteGroup(String param, User user, ProducerService producerService) {
         Set<String> set = new HashSet<>();
         try {
             JsonArray gArray = (JsonArray) jsonParser.parse(param);
@@ -1592,6 +1598,10 @@ public class LaboratoryProcessor {
         TreeSet<String> uids = new TreeSet<>();
         for (String gid : set) {
             int count = AllDao.getInstance().getGroupDao().deleteGroupByGID(gid);
+            List<String> userIds = AllDao.getInstance().getGroupDao().getGroupRelationUid(gid);
+            for (String uid : userIds){
+                producerService.checkOutPower(uid);
+            }
             if (count == 1) {
                 data.put(gid, true);
                 List<String> uidList = AllDao.getInstance().getSyUserDao().getAllUserIDByGroupID(gid);
