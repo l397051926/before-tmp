@@ -69,6 +69,7 @@ public class AuthorityUtil {
             return param;
         }
         Object hist = paramRe.getAttribute(HitsConfigBean.HIES_SESSION_ID);
+        logger.info(" hist: "+ hist);
         if(hist !=null && !StringUtils.isEmpty(hist.toString()) && HitsConfigBean.HIES_SESSION_ID.equals(hist.toString()) ){
             return param;
         }

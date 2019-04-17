@@ -64,6 +64,8 @@ public class SessionFilter implements Filter {
             String sessionID = session.getId();
             String uid = RedisUtil.getValue(sessionID);
             if(HitsConfigBean.HIES_SESSION_ID.equals(uid)){
+                logger.info("hist入口接入了 session:"+sessionID);
+                logger.info("hist入口接入了 request url is: " + uri);
                 servletRequest.setAttribute(HitsConfigBean.HIES_SESSION_ID,HitsConfigBean.HIES_SESSION_ID);
                 filterChain.doFilter(request, response);
                 return;
