@@ -845,6 +845,7 @@ public class DetailController {
             String param = ParamUtils.getParam(paramRe);
             String sessionId = paramRe.getSession(true).getId();
             RedisUtil.setValue(sessionId, HitsConfigBean.HIES_SESSION_ID);
+            logger.info("get_patient_sn  sessionId:"+sessionId);
             logger.info("获取患者基本信息 get方式 参数=" + param);
             resultStr = processor.getPatienSn(param);
         } catch (Exception e) {
