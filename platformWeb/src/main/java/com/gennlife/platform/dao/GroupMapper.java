@@ -53,4 +53,6 @@ public interface GroupMapper {
     int deleteGroupByGID(@Param("gid") String gid);
 
     List<String> getGroupRelationUid(@Param("gid") String gid);
+
+    Group getGroupByGroupId(String gid);
 }

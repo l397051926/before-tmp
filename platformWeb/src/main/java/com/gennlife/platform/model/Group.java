@@ -2,6 +2,8 @@ package com.gennlife.platform.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
 /**
  * Created by chen-song on 2016/11/17.
  */
@@ -171,5 +173,28 @@ public class Group {
 
     public void setMembers(Object members) {
         this.members = members;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null ) return false;
+        Group group = (Group) o;
+        return Objects.equals(has_search, group.has_search) &&
+            Objects.equals(has_searchExport, group.has_searchExport) &&
+            Objects.equals(has_traceCRF, group.has_traceCRF) &&
+            Objects.equals(has_addCRF, group.has_addCRF) &&
+            Objects.equals(has_editCRF, group.has_editCRF) &&
+            Objects.equals(has_deleteCRF, group.has_deleteCRF) &&
+            Objects.equals(has_browseDetail, group.has_browseDetail) &&
+            Objects.equals(has_addBatchCRF, group.has_addBatchCRF) &&
+            Objects.equals(has_searchCRF, group.has_searchCRF) &&
+            Objects.equals(has_importCRF, group.has_importCRF);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(has_search, has_searchExport, has_traceCRF, has_addCRF, has_editCRF, has_deleteCRF, has_browseDetail, has_addBatchCRF, has_searchCRF, has_importCRF);
     }
 }

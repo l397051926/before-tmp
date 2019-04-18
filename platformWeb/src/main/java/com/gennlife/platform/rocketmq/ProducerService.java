@@ -19,7 +19,9 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ProducerService {
@@ -88,6 +90,16 @@ public class ProducerService {
         List<String> list = (List<String>) group.getMembers();
         for (String uid : list){
             checkOutPower(uid);
+        }
+    }
+
+    public void checkOutPowerByUids(List<String> uids) {
+        Set<String> set = new HashSet<>();
+        for (String uid : uids){
+            if(!set.contains(uid)){
+                set.add(uid);
+                checkOutPower(uid);
+            }
         }
     }
 }

@@ -304,4 +304,11 @@
         DELETE from gennlife_group
         WHERE gid=#{gid}
     </delete>
+
+    <select id="getGroupByGroupId" parameterType="java.lang.String" resultMap="Group">
+        SELECT
+        <include refid="GroupColumn"/>
+        FROM gennlife_group
+        WHERE gid=#{gid}
+    </select>
 </mapper>

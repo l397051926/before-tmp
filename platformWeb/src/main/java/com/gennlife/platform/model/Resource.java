@@ -1,5 +1,7 @@
 package com.gennlife.platform.model;
 
+import java.util.Objects;
+
 /**
  * Created by chen-song on 16/9/9.
  */
@@ -289,5 +291,30 @@ public class Resource implements Comparable<Resource> {
         resource.setHas_search("有");
         resource.setHas_searchExport("有");
         return resource;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null ) return false;
+        Resource resource = (Resource) o;
+        return Objects.equals(roleid, resource.roleid) &&
+            Objects.equals(sid, resource.sid) &&
+            Objects.equals(has_search, resource.has_search) &&
+            Objects.equals(has_searchExport, resource.has_searchExport) &&
+            Objects.equals(has_traceCRF, resource.has_traceCRF) &&
+            Objects.equals(has_addCRF, resource.has_addCRF) &&
+            Objects.equals(has_editCRF, resource.has_editCRF) &&
+            Objects.equals(has_deleteCRF, resource.has_deleteCRF) &&
+            Objects.equals(has_browseDetail, resource.has_browseDetail) &&
+            Objects.equals(has_addBatchCRF, resource.has_addBatchCRF) &&
+            Objects.equals(has_searchCRF, resource.has_searchCRF) &&
+            Objects.equals(has_importCRF, resource.has_importCRF);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(roleid, sid, has_search, has_searchExport, has_traceCRF, has_addCRF, has_editCRF, has_deleteCRF, has_browseDetail, has_addBatchCRF, has_searchCRF, has_importCRF);
     }
 }

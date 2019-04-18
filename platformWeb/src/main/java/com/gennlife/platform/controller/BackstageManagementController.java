@@ -364,8 +364,7 @@ public class BackstageManagementController {
                 String param = ParamUtils.getParam(paramRe);
                 User user = (User) paramRe.getAttribute("currentUser");
                 JsonObject paramObj = (JsonObject) jsonParser.parse(param);
-                resultStr = processor.editRole(paramObj, user);
-                producerService.checkOutPowerByAddRole(paramObj);
+                resultStr = processor.editRole(paramObj, user,producerService);
             } catch (DataIntegrityViolationException e) {
                 resultStr = DataIntegrityViolationExceptionMsg();
             } catch (Exception e) {
@@ -564,8 +563,7 @@ public class BackstageManagementController {
             try {
                 String param = ParamUtils.getParam(paramRe);
                 User user = (User) paramRe.getAttribute("currentUser");
-                resultStr = processor.editGroup(param, user);
-                producerService.checkOutPowerByEditGroup(param);
+                resultStr = processor.editGroup(param, user,producerService);
             } catch (DataIntegrityViolationException e) {
                 resultStr = DataIntegrityViolationExceptionMsg();
             } catch (Exception e) {

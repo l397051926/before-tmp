@@ -26,6 +26,10 @@
     gennlife_resource.sid,sname,sdesc,stype,slab_type,slab_name,sorgID,has_search,has_searchExport,has_traceCRF,has_addCRF,
     has_editCRF,has_browseDetail,has_addBatchCRF,has_deleteCRF,stype_role,has_searchCRF,has_importCRF
   </sql>
+  <sql id="resourceRoleProperty">
+    roleid,sid,orgId,has_search,has_searchExport,has_traceCRF,has_addCRF,
+    has_editCRF,has_browseDetail,has_addBatchCRF,has_deleteCRF,has_searchCRF,has_importCRF
+  </sql>
   
   <select id="getResources" resultMap="com.gennlife.platform.model.Resource"  parameterType="map">
     select
@@ -343,5 +347,12 @@
     AND gennlife_role_resource.roleid = #{roleid}
   </select>
 
+  <select id="getResourcesByRoleId" resultMap="com.gennlife.platform.model.Resource" >
+    select
+    <include refid="resourceRoleProperty" />
+    FROM
+    gennlife_role_resource
+    where roleid = #{roleid}
+  </select>
 
 </mapper>

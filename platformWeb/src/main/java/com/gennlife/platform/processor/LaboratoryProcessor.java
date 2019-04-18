@@ -20,6 +20,7 @@ import org.springframework.util.StringUtils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.locks.ReadWriteLock;
 
 /**
  * Created by chen-song on 16/9/12.
@@ -1141,6 +1142,24 @@ public class LaboratoryProcessor {
         }
     }
 
+    private List<String> getNewAddRoleUserIdList(List<String> uidList, List<String> oldUidList) {
+        List<String> resultList = new ArrayList<>();
+        if (oldUidList == null || uidList == null){
+            return resultList;
+        }
+        for (String str : uidList){
+            if(!oldUidList.contains(str)){
+                resultList.add(str);
+            }
+        }
+        for (String str : oldUidList){
+            if(!uidList.contains(str)){
+                resultList.add(str);
+            }
+        }
+        return resultList;
+    }
+
     public String getRoleStaff(JsonObject paramObj, User user) {
         int offset = 0;
         int limit = 12;
@@ -1200,8 +1219,9 @@ public class LaboratoryProcessor {
 
     }
 
-    public String editRole(JsonObject paramObj, User user) {
+    public String editRole(JsonObject paramObj, User user, ProducerService producerService) {
         Role role = null;
+        boolean proSennd = false;
         try {
             role = gson.fromJson(paramObj, Role.class);
         } catch (Exception e) {
@@ -1224,6 +1244,7 @@ public class LaboratoryProcessor {
             return ParamUtils.errorParam("该角色id对应角色不存在");
         } else {
             List<String> updateUids = AllDao.getInstance().getSyRoleDao().getUserIdByRole(role.getRoleid());
+            List<String> newAddUids = getNewAddRoleUserIdList(uids,updateUids);
             if (updateUids == null) updateUids = new LinkedList<>();
             updateUids.addAll(uids);
             String roleName = role.getRole();
@@ -1240,6 +1261,7 @@ public class LaboratoryProcessor {
                     resultBean.setInfo("系统角色 更新完成");
                     SyUserMapper.addSelectRelateUid(updateUids);
                     RedisUtil.updateUserOnLine(new TreeSet<String>(updateUids));
+                    producerService.checkOutPowerByUids(newAddUids);
                     return gson.toJson(resultBean);
                 } else {
                     return ParamUtils.errorParam("该角色id对应角色不存在");
@@ -1252,9 +1274,10 @@ public class LaboratoryProcessor {
                 if (exRenameRole != null) {
                     return ParamUtils.errorParam("角色已经存在");
                 }
+                //todo  因为名字发生改变 适用所有人 考虑 可以更新所有人 但是意义不大 暂不更新
             }
             int counter = AllDao.getInstance().getSyRoleDao().updateUserRole(role);//更新用户信息
-
+            List<Resource> oldResourceList = AllDao.getInstance().getSyResourceDao().getResourcesByRoleId(role.getRoleid());
             if (counter == 0) {
                 return ParamUtils.errorParam("更新失败");
             } else {
@@ -1265,20 +1288,50 @@ public class LaboratoryProcessor {
                     AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(exRole.getRoleid(), uid);//插入新的
                 }
                 List<Object> resourceList = (List<Object>) role.getResources();
+                List<Resource> resourcesList = new LinkedList<>();
                 AllDao.getInstance().getSyRoleDao().deleteRelationsWithReourcesByRoleids(roleids);//删除原有关联关系
                 for (Object resource : resourceList) {
                     Resource resourceObj = gson.fromJson(gson.toJson(resource), Resource.class);
                     resourceObj.setSorgID(user.getOrgID());
                     resourceObj.setRoleid(role.getRoleid());
+                    resourcesList.add(resourceObj);
                     AllDao.getInstance().getSyResourceDao().insertRoleResourceRelation(resourceObj);//插入新的
                 }
+                proSennd = getIsProSennd(oldResourceList,resourcesList);
                 ResultBean resultBean = new ResultBean();
                 resultBean.setCode(1);
                 SyUserMapper.addSelectRelateUid(updateUids);
                 RedisUtil.updateUserOnLine(new TreeSet<String>(updateUids));
+                if(proSennd){
+                    //发生改变 通知所有人
+                    producerService.checkOutPowerByUids(uids);
+                }else {
+                    //未发生改变 通知新加的人
+                    producerService.checkOutPowerByUids(newAddUids);
+                }
                 return gson.toJson(resultBean);
             }
         }
+    }
+
+    private boolean getIsProSennd(List<Resource> oldResourceList, List<Resource> resourceList) {
+        if(oldResourceList == null){
+            return false;
+        }
+        if(oldResourceList.size() != resourceList.size()){
+            return true;
+        }
+        for (Resource ro : oldResourceList){
+            if(!resourceList.contains(ro)){
+                return true;
+            }
+        }
+        for (Resource resource : resourceList) {
+            if(!oldResourceList.contains(resource)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public String getResourceTree(JsonObject paramObj, User user) {
@@ -1472,16 +1525,20 @@ public class LaboratoryProcessor {
         return false;
     }
 
-    public String editGroup(String param, User user) {
+    public String editGroup(String param, User user, ProducerService producerService) {
         Group group = null;
+        boolean proSenndAll = false;
         try {
             group = gson.fromJson(param, Group.class);
         } catch (Exception e) {
             return ParamUtils.errorParam("参数异常");
         }
         if (checkGroupName(user, group)) return ParamUtils.errorParam("小组名称已存在");
+        Group oldGroup = AllDao.getInstance().getGroupDao().getGroupByGroupId(group.getGid());
+        proSenndAll = oldGroup.equals(group);
         List<String> list = (List<String>) group.getMembers();
         List<String> uids = AllDao.getInstance().getGroupDao().getGroupRelationUid(group.getGid());
+        List<String> addGroupUids = getNewAddRoleUserIdList(list,uids);
         if (uids == null) uids = new LinkedList<>();
         int count = AllDao.getInstance().getGroupDao().updateOneGroup(group);
         ResultBean re = new ResultBean();
@@ -1500,6 +1557,11 @@ public class LaboratoryProcessor {
             re.setCode(1);
         } else {
             re.setCode(0);
+        }
+        if(proSenndAll){
+            producerService.checkOutPowerByUids(addGroupUids);
+        }else {
+            producerService.checkOutPowerByUids(list);
         }
         return gson.toJson(re);
     }
