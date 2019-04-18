@@ -94,6 +94,22 @@ public class ReadConditionByRedis {
             LOGGER.error("crf_hit_sort 配置文件读取异常", e);
         }
     }
+    public static JsonObject sysTemMessageConfig(){
+        try{
+            ConfigUtils configUtils = ApplicationContextHelper.getBean(ConfigUtils.class);
+            String sys_message = configUtils.getRemoteUtfFile("system/system_message_config.json");
+            if(StringUtils.isEmpty(sys_message)){
+                LOGGER.warn("没有从配置中心获取到配置文件  改为从本地获取文件");
+                sys_message = FilesUtils.readFile("/system/system_message_config.json");
+            }
+            JsonObject jsonObject = (JsonObject) jsonParser.parse(sys_message);
+            LOGGER.info("crf_hit_sort 配置文件读取完毕");
+            return jsonObject;
+        }catch (Exception e ){
+            LOGGER.error("crf_hit_sort 配置文件读取异常", e);
+            return null;
+        }
+    }
     public static void loadSearchDefinedEventListConfig(String crfId){
         try{
             String search_defined = FilesUtils.readFile("/rws/searchDefinedEventListConfig"+crfId+".json");
@@ -162,6 +178,11 @@ public class ReadConditionByRedis {
             loadCrfHitSort();
         }
         String data = RedisUtil.getValue("crf_"+crfId+"_sort");
+        return data;
+    }
+    public static JsonObject getSysMessageConfig() {
+        loadCrfHitSort();
+        JsonObject data = sysTemMessageConfig();
         return data;
     }
 }

@@ -1,10 +1,10 @@
 package com.gennlife.platform.rocketmq;
 
 import com.alibaba.fastjson.JSONObject;
+import com.gennlife.platform.ReadConfig.ReadConditionByRedis;
 import com.gennlife.platform.model.Group;
 import com.gennlife.platform.model.Role;
 import com.gennlife.platform.util.GsonUtil;
-import com.gennlife.platform.util.ParamUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -73,8 +72,18 @@ public class ProducerService {
         send(rocketMqContent.getTopicAuth(), rocketMqContent.getChangeUserPowerTag(), data.toJSONString());
     }
 
+    public void sendSystemMessage(String content,String msg) {
+        JSONObject data = new JSONObject()
+            .fluentPut("content", addSysMsg(content))
+            .fluentPut("detail", msg);
+        send(rocketMqContent.getTopicSys(), rocketMqContent.getSysUpdateTag(), data.toJSONString());
+    }
+
     private String addPowerMsg(String msg){
         return "【权限】 " + msg;
+    }
+    private String addSysMsg(String msg){
+        return "【系统】 " + msg;
     }
 
     public void checkOutPowerByAddRole(JsonObject paramObj) {
@@ -101,6 +110,14 @@ public class ProducerService {
                 checkOutPower(uid);
             }
         }
+    }
+
+    public void sendSystemStartMessage() {
+        JsonObject config = ReadConditionByRedis.getSysMessageConfig();
+        String content = config.get("content").getAsString();
+        String msg = config.get("detail").getAsString();
+        sendSystemMessage(content,msg);
+
     }
 }
 

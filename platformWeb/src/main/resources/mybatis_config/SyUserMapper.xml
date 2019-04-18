@@ -735,4 +735,11 @@
         </foreach>
     </select>
 
+    <select id="getAllUserId" resultType="java.lang.String">
+        SELECT
+        uid
+        FROM
+        gennlife_user
+    </select>
+
 </mapper>
