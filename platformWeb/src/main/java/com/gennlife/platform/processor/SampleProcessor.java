@@ -477,8 +477,8 @@ public class SampleProcessor {
                 }
             } else {
 //                 String withSid = CaseProcessor.transformSidForImport(gson.toJson(query), user);
-                 String withSid= CaseProcessor.getRelallyPower(gson.toJson(query),user);
-                 JsonObject queryNew = (JsonObject) jsonParser.parse(withSid);
+//                 String withSid= CaseProcessor.getRelallyPower(gson.toJson(query),user);
+                 JsonObject queryNew = query;
                  if (queryNew.has("code") && queryNew.get("code").getAsInt() == 0) {
                      return gson.toJson(queryNew);
                  }

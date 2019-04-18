@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/rocketmq/ProducerService.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/rocketmq/ProducerService.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -33,22 +33,54 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ProducerService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/rocketmq/ProducerService.java">
+      <file leaf-file-name="CrfController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="611">
-              <caret line="115" column="57" lean-forward="false" selection-start-line="115" selection-start-column="57" selection-end-line="115" selection-end-column="57" />
+            <state relative-caret-position="329">
+              <caret line="727" column="30" lean-forward="false" selection-start-line="727" selection-start-column="30" selection-end-line="727" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReadConditionByRedis.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java">
+      <file leaf-file-name="CrfProcessor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="256">
+              <caret line="686" column="18" lean-forward="false" selection-start-line="686" selection-start-column="18" selection-end-line="686" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SampleController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/SampleController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="329">
-              <caret line="96" column="51" lean-forward="true" selection-start-line="96" selection-start-column="51" selection-end-line="96" selection-end-column="51" />
+              <caret line="65" column="41" lean-forward="false" selection-start-line="65" selection-start-column="41" selection-end-line="65" selection-end-column="41" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SampleProcessor.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="422">
+              <caret line="479" column="88" lean-forward="true" selection-start-line="479" selection-start-column="88" selection-end-line="479" selection-end-column="88" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CaseProcessor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="329">
+              <caret line="1184" column="29" lean-forward="false" selection-start-line="1184" selection-start-column="29" selection-end-line="1184" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -64,10 +96,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>topicAuth</find>
-      <find>apache.rocketmq.topicAuth</find>
-      <find>DeleteGroup</find>
-      <find>getAllUserIDByGroupID</find>
       <find>deleteGroupRelationUid</find>
       <find>DeleteRoles</find>
       <find>PreLiminary</find>
@@ -94,6 +122,10 @@
       <find>apache.rocketmq.consumer.PushConsumer</find>
       <find>getUserIdByLabID</find>
       <find>crf_hit_sort</find>
+      <find>import</find>
+      <find>ImportCheck</find>
+      <find>jsonObject</find>
+      <find>query</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;open&quot;: false</replace>
@@ -105,10 +137,10 @@
       <dir>C:\lmx\clooud\Ark-UI_Service\platformWeb</dir>
       <dir>C:\work\Ark-UI_Service\platformWeb\src\main\resources\profiles</dir>
       <dir>C:\work\Ark-UI_Service\platformWeb\src\main\resources\crf</dir>
-      <dir>C:\work\Ark-UI_Service\platformWeb\src\main\java\com\gennlife\platform\controller</dir>
       <dir>C:\work\Ark-UI_Service\platformWeb</dir>
       <dir>C:\gennlifeWork\uiService\Ark-UI_Service\platformWeb</dir>
       <dir>C:\gennlifeWork\uiService\Ark-UI_Service\platformWeb\src\main\java\com\gennlife\platform\controller</dir>
+      <dir>C:\work\Ark-UI_Service\platformWeb\src\main\java\com\gennlife\platform\controller</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -127,7 +159,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/FilesUtils.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/gennlife/platform/ConditionTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/gennlife/platform/RedisTest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/crf/lymphoma_release_1.0.json" />
@@ -178,6 +209,7 @@
         <option value="$PROJECT_DIR$/src/main/resources/system/system_message_config.json" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/rocketmq/ProducerService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java" />
       </list>
     </option>
   </component>
@@ -316,6 +348,17 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="gennlife" type="462c0819:PsiDirectoryNode" />
               <item name="platform" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="platformWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="gennlife" type="462c0819:PsiDirectoryNode" />
+              <item name="platform" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="platform" type="b2602c69:ProjectViewProjectNode" />
@@ -778,14 +821,7 @@
       <workItem from="1546423259497" duration="202000" />
       <workItem from="1548398437220" duration="3937000" />
       <workItem from="1555557040395" duration="9801000" />
-      <workItem from="1555569887068" duration="345000" />
-    </task>
-    <task id="LOCAL-00034" summary="rws 聚合搜索">
-      <created>1529916376498</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1529916376498</updated>
+      <workItem from="1555569887068" duration="3912000" />
     </task>
     <task id="LOCAL-00035" summary="rws 聚合搜索">
       <created>1529918491580</created>
@@ -1123,7 +1159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1555568444378</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="调整日志文件 打印内容">
+      <created>1555570267623</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1555570267624</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1159,7 +1202,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1161058000" />
+    <option name="totallyTimeSpent" value="1164625000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-434" width="1936" height="1176" extended-state="6" />
@@ -1176,6 +1219,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4696824" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32723773" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1184,7 +1228,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4292589" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2196162" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2196162" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1195,7 +1239,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32723773" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="24" side_tool="false" content_ui="tabs" x="1458" y="-334" width="1736" height="976" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
@@ -1280,7 +1323,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="淋巴流 默认不展开  --解决" />
     <MESSAGE value="心血管配置文件修改" />
     <MESSAGE value="修改 用户id 不能保存问题" />
     <MESSAGE value="增加 搜索rws用户展示列表" />
@@ -1305,7 +1347,8 @@
     <MESSAGE value="修改单病种空指针问题" />
     <MESSAGE value="优化发送通知 权限被修改的功能" />
     <MESSAGE value="增加系统通知 升级功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加系统通知 升级功能" />
+    <MESSAGE value="调整日志文件 打印内容" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整日志文件 打印内容" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1321,12 +1364,6 @@
           <line>44</line>
           <properties />
           <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java</url>
-          <line>440</line>
-          <properties />
-          <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/DetailController.java</url>
@@ -1447,34 +1484,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="50" column="38" lean-forward="false" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/SampleController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="972">
-          <caret line="55" column="30" lean-forward="false" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="42" column="41" lean-forward="false" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CaseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="50" column="38" lean-forward="false" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="13">
@@ -1507,14 +1516,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="199" column="36" lean-forward="false" selection-start-line="199" selection-start-column="17" selection-end-line="199" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1298">
-          <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1663,6 +1664,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1674">
           <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1677,6 +1679,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="144" column="12" lean-forward="false" selection-start-line="144" selection-start-column="12" selection-end-line="144" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1706,6 +1709,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
           <caret line="298" column="0" lean-forward="false" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1851,16 +1855,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/rocketmq/ProducerService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="115" column="57" lean-forward="false" selection-start-line="115" selection-start-column="57" selection-end-line="115" selection-end-column="57" />
+        <state relative-caret-position="260">
+          <caret line="102" column="5" lean-forward="true" selection-start-line="102" selection-start-column="5" selection-end-line="102" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="103" column="13" lean-forward="true" selection-start-line="103" selection-start-column="13" selection-end-line="103" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="686" column="18" lean-forward="false" selection-start-line="686" selection-start-column="18" selection-end-line="686" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="329">
-          <caret line="96" column="51" lean-forward="true" selection-start-line="96" selection-start-column="51" selection-end-line="96" selection-end-column="51" />
+          <caret line="727" column="30" lean-forward="false" selection-start-line="727" selection-start-column="30" selection-end-line="727" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/SampleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="65" column="41" lean-forward="false" selection-start-line="65" selection-start-column="41" selection-end-line="65" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="1184" column="29" lean-forward="false" selection-start-line="1184" selection-start-column="29" selection-end-line="1184" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="479" column="88" lean-forward="true" selection-start-line="479" selection-start-column="88" selection-end-line="479" selection-end-column="88" />
           <folding />
         </state>
       </provider>

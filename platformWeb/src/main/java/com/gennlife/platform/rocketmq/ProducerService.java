@@ -116,7 +116,7 @@ public class ProducerService {
         JsonObject config = ReadConditionByRedis.getSysMessageConfig();
         String content = config.get("content").getAsString();
         String msg = config.get("detail").getAsString();
-        sendSystemMessage(content,msg);
+//        sendSystemMessage(content,msg);
 
     }
 }
