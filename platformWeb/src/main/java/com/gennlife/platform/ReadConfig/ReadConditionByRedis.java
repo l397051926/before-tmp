@@ -103,10 +103,10 @@ public class ReadConditionByRedis {
                 sys_message = FilesUtils.readFile("/system/system_message_config.json");
             }
             JsonObject jsonObject = (JsonObject) jsonParser.parse(sys_message);
-            LOGGER.info("crf_hit_sort 配置文件读取完毕");
+            LOGGER.info("system_message_config 配置文件读取完毕");
             return jsonObject;
         }catch (Exception e ){
-            LOGGER.error("crf_hit_sort 配置文件读取异常", e);
+            LOGGER.error("system_message_config 配置文件读取异常", e);
             return null;
         }
     }
@@ -181,7 +181,6 @@ public class ReadConditionByRedis {
         return data;
     }
     public static JsonObject getSysMessageConfig() {
-        loadCrfHitSort();
         JsonObject data = sysTemMessageConfig();
         return data;
     }
