@@ -860,4 +860,15 @@ public class RwsProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String decideInputs(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getDecideInputs();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取项目下所有分组路径 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }

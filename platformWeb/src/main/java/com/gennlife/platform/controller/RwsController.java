@@ -1357,6 +1357,25 @@ public class RwsController {
         return resultStr;
     }
 
+    @RequestMapping(value = "/inputs/decideInputs", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String decideInputs(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("判断任务状态参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.decideInputs(paramObj);
+        } catch (Exception e) {
+            logger.error("判断任务状态 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("判断任务状态 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
     @RequestMapping(value = "/patientGroup/getGroupIdPath", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody

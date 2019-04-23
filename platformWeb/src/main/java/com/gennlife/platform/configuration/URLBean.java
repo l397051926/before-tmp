@@ -649,6 +649,8 @@ public class URLBean {
     private String projectAggregation = null;
     private String projectPowerExamine = null;
     private String groupIdPath = null;
+    private String decideInputs = null;
+
 
     private String eligible = null;
     private String inputInfo = null;
@@ -661,6 +663,14 @@ public class URLBean {
     private String msgUpdate = null;
     private String msgUpdateAll = null;
     private String msgQuery = null;
+
+    public String getDecideInputs() {
+        return decideInputs;
+    }
+
+    public void setDecideInputs(String decideInputs) {
+        this.decideInputs = decideInputs;
+    }
 
     public String getGroupIdPath() {
         return groupIdPath;
