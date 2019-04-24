@@ -346,6 +346,12 @@ public class URLBean {
      */
     private String buildIndexForAll = null;
 
+    private String newOperationRecords = null;
+    private String newMedicineOrder = null;
+    private String newOrdersPharmacy = null;
+
+
+
     public String getBuildIndexForAll() {
         return buildIndexForAll;
     }
@@ -2122,5 +2128,29 @@ public class URLBean {
 
     public void setCaseNewQuotaReports(String caseNewQuotaReports) {
         this.caseNewQuotaReports = caseNewQuotaReports;
+    }
+
+    public String getNewOperationRecords() {
+        return newOperationRecords;
+    }
+
+    public void setNewOperationRecords(String newOperationRecords) {
+        this.newOperationRecords = newOperationRecords;
+    }
+
+    public String getNewMedicineOrder() {
+        return newMedicineOrder;
+    }
+
+    public void setNewMedicineOrder(String newMedicineOrder) {
+        this.newMedicineOrder = newMedicineOrder;
+    }
+
+    public String getNewOrdersPharmacy() {
+        return newOrdersPharmacy;
+    }
+
+    public void setNewOrdersPharmacy(String newOrdersPharmacy) {
+        this.newOrdersPharmacy = newOrdersPharmacy;
     }
 }

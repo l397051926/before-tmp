@@ -102,6 +102,9 @@
         <property name="caseNewCourseRecords" value="http://${fileService.ipAndPort}/FileService/PatientDetail/new_course_records"></property>
         <property name="caseNewExamResult" value="http://${fileService.ipAndPort}/FileService/PatientDetail/new_exam_result"></property>
         <property name="caseNewQuotaReports" value="http://${fileService.ipAndPort}/FileService/PatientDetail/new_quota_reports"></property>
+        <property name="newOperationRecords" value="http://${fileService.ipAndPort}/FileService/PatientDetail/new_operation_records"></property>
+        <property name="newMedicineOrder" value="http://${fileService.ipAndPort}/FileService/PatientDetail/newPharmacy"></property>
+        <property name="newOrdersPharmacy" value="http://${fileService.ipAndPort}/FileService/PatientDetail/new_Orders_Pharmacy"></property>
 
         <!--vitaBoard 服务-->
         <property name="caseSimilarServiceVitaboardparam"

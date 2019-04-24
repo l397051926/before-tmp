@@ -726,4 +726,33 @@ public class DetailProcessor {
             return ParamUtils.errorParam("请求出错");
         }
     }
+
+    public String newOperationRecords(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getNewOperationRecords();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String newMedicineOrder(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getNewMedicineOrder();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+    public String newOrdersPharmacy(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getNewOrdersPharmacy();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
 }

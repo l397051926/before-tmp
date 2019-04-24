@@ -996,4 +996,58 @@ public class DetailController {
         logger.info("新详情页面检验子项指标绘制图接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/newOperationRecords", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String newOperationRecords(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            logger.info("新详情手术 接口 get方式 参数=" + param);
+            resultStr = processor.newOperationRecords(param);
+        } catch (Exception e) {
+            logger.error("新详情手术 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("新详情手术 接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/newMedicineOrder", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String newMedicineOrder(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            logger.info("新详情药品遗嘱接口 get方式 参数=" + param);
+            resultStr = processor.newMedicineOrder(param);
+        } catch (Exception e) {
+            logger.error("新详情药品遗嘱 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("新详情药品遗嘱 接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/newOrdersPharmacy", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String newOrdersPharmacy(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            logger.info("新详情非药品遗嘱 接口 get方式 参数=" + param);
+            resultStr = processor.newOrdersPharmacy(param);
+        } catch (Exception e) {
+            logger.error("新详情非药品遗嘱 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("新详情非药品遗嘱 接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }
