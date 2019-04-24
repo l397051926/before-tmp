@@ -289,5 +289,6 @@
         <property name="msgUpdate" value="http://${msg.ipAndPort}/mc-server/update"/>
         <property name="msgUpdateAll" value="http://${msg.ipAndPort}/mc-server/updateAll"/>
         <property name="msgQuery" value="http://${msg.ipAndPort}/mc-server/query"/>
+        <property name="updateBatch" value="http://${msg.ipAndPort}/mc-server/updateBatch"/>
     </bean>
 </beans>

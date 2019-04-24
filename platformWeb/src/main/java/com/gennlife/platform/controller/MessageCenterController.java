@@ -83,4 +83,23 @@ public class MessageCenterController extends HttpServlet {
         logger.info("查询指定条件的消息 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/updateBatch", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String updateBatch(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("批量消息标记为已读或删除 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.updateBatch(paramObj);
+        } catch (Exception e) {
+            logger.error("批量消息标记为已读或删除 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("批量消息标记为已读或删除 接口 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }

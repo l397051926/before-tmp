@@ -663,6 +663,7 @@ public class URLBean {
     private String msgUpdate = null;
     private String msgUpdateAll = null;
     private String msgQuery = null;
+    private String updateBatch = null;
 
     public String getDecideInputs() {
         return decideInputs;
@@ -2153,5 +2154,13 @@ public class URLBean {
 
     public void setTripleTestTable(String tripleTestTable) {
         this.tripleTestTable = tripleTestTable;
+    }
+
+    public String getUpdateBatch() {
+        return updateBatch;
+    }
+
+    public void setUpdateBatch(String updateBatch) {
+        this.updateBatch = updateBatch;
     }
 }

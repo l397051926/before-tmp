@@ -57,4 +57,15 @@ public class MessageCenterProcessor {
             return ParamUtils.errorParam("请求发生异常");
         }
     }
+
+    public String updateBatch(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getUpdateBatch();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("查询指定条件的消息 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }
