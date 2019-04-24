@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="优化下导出速度问题">
+    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/MessageCenterController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/MessageCenterController.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/MessageCenterProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/MessageCenterProcessor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/urlconf.xml" afterPath="$PROJECT_DIR$/src/main/resources/urlconf.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,18 +36,18 @@
       <file leaf-file-name="MessageCenterController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/MessageCenterController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="746">
-              <caret line="96" column="41" lean-forward="true" selection-start-line="96" selection-start-column="41" selection-end-line="96" selection-end-column="41" />
+            <state relative-caret-position="584">
+              <caret line="95" column="39" lean-forward="true" selection-start-line="95" selection-start-column="39" selection-end-line="95" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MessageCenterProcessor.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MessageCenterProcessor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/MessageCenterProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="746">
-              <caret line="60" column="29" lean-forward="false" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="29" />
+            <state relative-caret-position="476">
+              <caret line="58" column="5" lean-forward="true" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -78,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urlconf.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="urlconf.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/urlconf.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="756">
-              <caret line="289" column="91" lean-forward="true" selection-start-line="289" selection-start-column="91" selection-end-line="289" selection-end-column="91" />
+              <caret line="289" column="91" lean-forward="false" selection-start-line="289" selection-start-column="91" selection-end-line="289" selection-end-column="91" />
               <folding />
             </state>
           </provider>
@@ -209,10 +207,10 @@
         <option value="$PROJECT_DIR$/src/main/resources/profiles/yaitaiyitiji/bootstrap.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/profiles/yaitaimoni/bootstrap.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/profiles/test/bootstrap.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/MessageCenterController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/MessageCenterProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" />
         <option value="$PROJECT_DIR$/src/main/resources/urlconf.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/MessageCenterController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/MessageCenterProcessor.java" />
       </list>
     </option>
   </component>
@@ -851,13 +849,6 @@
       <workItem from="1555557040395" duration="9801000" />
       <workItem from="1555569887068" duration="4641000" />
     </task>
-    <task id="LOCAL-00036" summary="rws 聚合搜索">
-      <created>1529933038030</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1529933038030</updated>
-    </task>
     <task id="LOCAL-00037" summary="修改淋巴瘤上方 配置文件">
       <created>1529981822318</created>
       <option name="number" value="00037" />
@@ -1194,7 +1185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1555582636541</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="增加消息导出批量接口">
+      <created>1556099286432</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1556099286432</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1230,7 +1228,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1165831000" />
+    <option name="totallyTimeSpent" value="1166787000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-434" width="1936" height="1176" extended-state="6" />
@@ -1376,7 +1374,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改 用户id 不能保存问题" />
     <MESSAGE value="增加 搜索rws用户展示列表" />
     <MESSAGE value="调回 fileter" />
     <MESSAGE value="rws 测试调整" />
@@ -1401,7 +1398,8 @@
     <MESSAGE value="增加系统通知 升级功能" />
     <MESSAGE value="调整日志文件 打印内容" />
     <MESSAGE value="优化下导出速度问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化下导出速度问题" />
+    <MESSAGE value="增加消息导出批量接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加消息导出批量接口" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1782,6 +1780,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="329">
           <caret line="65" column="41" lean-forward="false" selection-start-line="65" selection-start-column="41" selection-end-line="65" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1875,18 +1874,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/MessageCenterController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/urlconf.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="746">
-          <caret line="96" column="41" lean-forward="true" selection-start-line="96" selection-start-column="41" selection-end-line="96" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/MessageCenterProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="746">
-          <caret line="60" column="29" lean-forward="false" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="29" />
+        <state relative-caret-position="756">
+          <caret line="289" column="91" lean-forward="false" selection-start-line="289" selection-start-column="91" selection-end-line="289" selection-end-column="91" />
           <folding />
         </state>
       </provider>
@@ -1912,10 +1903,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/urlconf.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/MessageCenterController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="289" column="91" lean-forward="true" selection-start-line="289" selection-start-column="91" selection-end-line="289" selection-end-column="91" />
+        <state relative-caret-position="584">
+          <caret line="95" column="39" lean-forward="true" selection-start-line="95" selection-start-column="39" selection-end-line="95" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/MessageCenterProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="58" column="5" lean-forward="true" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
           <folding />
         </state>
       </provider>

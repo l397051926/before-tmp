@@ -58,10 +58,10 @@ public class MessageCenterProcessor {
         }
     }
 
-    public String updateBatch(JsonObject paramObj) {
+    public String updateBatch(String paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getUpdateBatch();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPost(url, paramObj);
             return result;
         } catch (Exception e) {
             logger.error("查询指定条件的消息 ", e);
