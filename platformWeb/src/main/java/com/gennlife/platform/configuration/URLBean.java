@@ -349,6 +349,7 @@ public class URLBean {
     private String newOperationRecords = null;
     private String newMedicineOrder = null;
     private String newOrdersPharmacy = null;
+    private String newDiagnose = null;
 
 
 
@@ -2152,5 +2153,13 @@ public class URLBean {
 
     public void setNewOrdersPharmacy(String newOrdersPharmacy) {
         this.newOrdersPharmacy = newOrdersPharmacy;
+    }
+
+    public String getNewDiagnose() {
+        return newDiagnose;
+    }
+
+    public void setNewDiagnose(String newDiagnose) {
+        this.newDiagnose = newDiagnose;
     }
 }

@@ -105,7 +105,7 @@
         <property name="newOperationRecords" value="http://${fileService.ipAndPort}/FileService/PatientDetail/new_operation_records"></property>
         <property name="newMedicineOrder" value="http://${fileService.ipAndPort}/FileService/PatientDetail/newPharmacy"></property>
         <property name="newOrdersPharmacy" value="http://${fileService.ipAndPort}/FileService/PatientDetail/new_Orders_Pharmacy"></property>
-
+        <property name="newDiagnose" value="http://${fileService.ipAndPort}/FileService/VisitDetail/newDiagnose"/>
         <!--vitaBoard 服务-->
         <property name="caseSimilarServiceVitaboardparam"
                   value="http://${fileService.ipAndPort}/FileService/SimilarService/vitaboardparam"></property>

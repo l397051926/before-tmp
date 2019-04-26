@@ -1050,4 +1050,21 @@ public class DetailController {
         logger.info("新详情非药品遗嘱 接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+    @RequestMapping(value = "/newVisitDiagnose", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String newVisitDiagnose(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            logger.info("新诊断接口调整 接口 get方式 参数=" + param);
+            resultStr = processor.newVisitDiagnose(param);
+        } catch (Exception e) {
+            logger.error("新诊断接口调整 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("新诊断接口调整 接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }
