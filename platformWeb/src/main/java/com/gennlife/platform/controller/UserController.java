@@ -2,6 +2,7 @@ package com.gennlife.platform.controller;
 
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.configuration.IpConfigBean;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.*;
 import com.gennlife.platform.processor.UserProcessor;
@@ -10,6 +11,7 @@ import com.gennlife.platform.view.View;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +36,8 @@ public class UserController {
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
     private static View view = new View();
+    @Autowired
+    private IpConfigBean ipConfigBean;
 
     //用户登陆
     @RequestMapping(value = "/Login", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
@@ -59,6 +63,7 @@ public class UserController {
             }
             //获取用户名密码hospital_1
             User user = processor.login(email, pwd);
+            user.setMc_ip(ipConfigBean.getMcIpConfig());
             ResultBean resultBean = new ResultBean();
             if (user != null) {
                 SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -124,6 +129,7 @@ public class UserController {
             User user = (User) paramRe.getAttribute("currentUser");
             user.setPower(null);
             user.setGroups(new ArrayList<Group>(0));
+            user.setMc_ip(ipConfigBean.getMcIpConfig());
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
             resultBean.setData(user);

@@ -35,6 +35,7 @@ public class User {
     private String status;  //1:长期有效、2:定期有效、3:禁用
     private String effective_time;   //有效开始时间
     private String failure_time;    //失效时间
+    private String mc_ip;
 
 
     public String getIfRoleAll() {
@@ -247,6 +248,13 @@ public class User {
         this.power = power;
     }
 
+    public String getMc_ip() {
+        return mc_ip;
+    }
+
+    public void setMc_ip(String mc_ip) {
+        this.mc_ip = mc_ip;
+    }
 
     public JsonObject CopyMemberInfo() {
         JsonObject json = new JsonObject();
