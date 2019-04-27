@@ -63,9 +63,9 @@ public class UserController {
             }
             //获取用户名密码hospital_1
             User user = processor.login(email, pwd);
-            user.setMc_ip(ipConfigBean.getMcIpConfig());
             ResultBean resultBean = new ResultBean();
             if (user != null) {
+                user.setMc_ip(ipConfigBean.getMcIpConfig());
                 SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String status=user.getStatus();
                 String failTime=user.getFailure_time();
