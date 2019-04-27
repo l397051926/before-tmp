@@ -1,5 +1,7 @@
 package com.gennlife.platform.model;
 
+import java.util.List;
+
 /**
  * Created by chen-song on 16/9/12.
  */
@@ -20,6 +22,7 @@ public class Lab {
     private String sid;
 
     private String checked;
+    private List<Lab> sunLabList;
 
     private String depart_name; //部门类别
     private String parentLabName;
@@ -163,5 +166,13 @@ public class Lab {
                 .append(",")
                 .append(this.getDepart_name());
         return sb.toString();
+    }
+
+    public List<Lab> getSunLabList() {
+        return sunLabList;
+    }
+
+    public void setSunLabList(List<Lab> sunLabList) {
+        this.sunLabList = sunLabList;
     }
 }

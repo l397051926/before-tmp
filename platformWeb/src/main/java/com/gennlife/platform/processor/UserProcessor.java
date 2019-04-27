@@ -259,7 +259,7 @@ public class UserProcessor {
             user.setFrontEndPower(frontEndPower);//前端可视化
             try {
 //                Map<String, List<String>> mapDep = getDepartmentFromMysql(AllDao.getInstance().getSyRoleDao().getSlabNames());
-                Map<String, List<String>> mapDep = getDepartmentFromMysql(AllDao.getInstance().getSyRoleDao().getLabMAP());
+                Map<String, List<Lab>> mapDep = getDepartmentFromMysql(AllDao.getInstance().getSyRoleDao().getLabMAP());
                 power.setHas_search(addDepartmentPower(power.getHas_search(), mapDep));//更改方案，我查询其父级下面所有子科室
                 power.setHas_searchExport(addDepartmentPower(power.getHas_searchExport(), mapDep));
             } catch (Exception e) {
@@ -368,18 +368,19 @@ public class UserProcessor {
     }
 
     //加一组gennlife_resource 若其下有映射，在加一组拼接特定单词的映射
-    public static Set<Resource> addDepartmentPower(Collection<Resource> list, Map<String, List<String>> departNames) {
+    public static Set<Resource> addDepartmentPower(Collection<Resource> list, Map<String, List<Lab>> departNames) {
         JsonArray resource = gson.toJsonTree(list).getAsJsonArray();
         JsonArray insert = new JsonArray();
         for (JsonElement json : resource) {
             JsonObject jsonobj = json.getAsJsonObject();
             String sid = jsonobj.get("sid").getAsString();
-            List<String> departName = departNames.get(sid);
+            List<Lab> departName = departNames.get(sid);
             insert.add(json);
             if (departName != null && departName.size() > 0) {
-                for (String department : departName) {
+                for (Lab department : departName) {
                     JsonObject jsonCopy = powerSearchCopy(jsonobj);//把特定的词提出来 存入jsonobject
-                    jsonCopy.addProperty("slab_name", department);
+                    jsonCopy.addProperty("sid",department.getLabID());
+                    jsonCopy.addProperty("slab_name", department.getLab_name());
                     insert.add(jsonCopy);
                 }
             }
@@ -408,18 +409,18 @@ public class UserProcessor {
 //    }
 
     //将相同的labid departname放入list中，每个labid 当为key
-    public static Map<String, List<String>> getDepartmentFromMysql(List<Lab> departName) {
-        Map<String, List<String>> mapDep = new HashMap<String, List<String>>();
+    public static Map<String, List<Lab>> getDepartmentFromMysql(List<Lab> departName) {
+        Map<String, List<Lab>> mapDep = new HashMap<>();
         for (Lab dep : departName) {
 
-            List<String> array = new LinkedList<String>();
+            List<Lab> array = new LinkedList<>();
 
-            List<String> arrayList = mapDep.get(dep.getLab_parent());
+            List<Lab> arrayList = mapDep.get(dep.getLab_parent());
             if (arrayList != null && arrayList.size() != 0) {
-                arrayList.add(dep.getLab_name());
+                arrayList.add(dep);
                 mapDep.put(dep.getLab_parent(), arrayList);
             } else {
-                array.add(dep.getLab_name());
+                array.add(dep);
                 mapDep.put(dep.getLab_parent(), array);
             }
         }

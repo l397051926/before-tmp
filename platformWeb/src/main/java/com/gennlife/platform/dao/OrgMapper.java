@@ -198,4 +198,6 @@ public interface OrgMapper {
     List<String> getLabIdByParentId(@Param("labId") String labId);
 
     List<String> getLabIdByParentIds(String labID);
+
+    List<Lab> getLabModelForLabs(String labID);
 }
