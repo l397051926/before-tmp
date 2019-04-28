@@ -170,6 +170,7 @@ public class SessionFilter implements Filter {
         okSet.add("/rws/editActiveName");
         okSet.add("/case/SearchItemSetForRws");
         okSet.add("/crf/buildIndexForAll");
+        okSet.add("/bsma/sendSystemMessage");
 
     }
 }

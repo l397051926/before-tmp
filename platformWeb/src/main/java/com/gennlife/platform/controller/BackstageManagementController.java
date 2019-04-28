@@ -896,7 +896,25 @@ public class BackstageManagementController {
         return resultStr;
     }
 
-
+    @RequestMapping(value = "/sendSystemMessage", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String sendSystemMessage(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.sendSystemMessage(paramObj,producerService);
+        } catch (DataIntegrityViolationException e) {
+            resultStr = DataIntegrityViolationExceptionMsg();
+        } catch (Exception e) {
+            logger.error("", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("发送系统message get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 
 
 

@@ -2090,4 +2090,22 @@ public class LaboratoryProcessor {
 //        }
 
     }
+
+    public String sendSystemMessage(JsonObject paramObj, ProducerService producerService) {
+        ResultBean result = null;
+        String detail = null;
+        String content = null;
+        try {
+            detail = paramObj.get("detail").getAsString();
+            content = paramObj.get("content").getAsString();
+            producerService.sendSystemMessage(content,detail);
+            result = new ResultBean();
+            result.setCode(1);
+            result.setInfo("发送成功");
+        } catch (Exception e) {
+            logger.error("", e);
+            return ParamUtils.errorParam("发送失败");
+        }
+        return gson.toJson(result);
+    }
 }
