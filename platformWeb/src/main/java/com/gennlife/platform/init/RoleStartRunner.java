@@ -28,6 +28,6 @@ public class RoleStartRunner implements CommandLineRunner {
         //读 crfMAPPING
         ReadConditionByRedis.loadCrfMapping();
         processor.addAllRole();
-        producerService.sendSystemStartMessage();
+//        producerService.sendSystemStartMessage();
     }
 }
