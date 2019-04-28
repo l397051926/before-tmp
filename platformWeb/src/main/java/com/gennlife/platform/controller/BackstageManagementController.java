@@ -896,7 +896,7 @@ public class BackstageManagementController {
         return resultStr;
     }
 
-    @RequestMapping(value = "/sendSystemMessage", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/sendSystemMessage", method = {RequestMethod.GET,RequestMethod.POST}, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String sendSystemMessage(HttpServletRequest paramRe) {
