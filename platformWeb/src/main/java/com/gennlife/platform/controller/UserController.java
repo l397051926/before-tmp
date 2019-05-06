@@ -6,6 +6,7 @@ import com.gennlife.platform.configuration.IpConfigBean;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.*;
 import com.gennlife.platform.processor.UserProcessor;
+import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.*;
 import com.gennlife.platform.view.View;
 import com.gennlife.yy.sso.CallService;

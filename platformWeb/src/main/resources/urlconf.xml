@@ -96,8 +96,6 @@
                   value="http://${fileService.ipAndPort}/FileService/part3/applyOutGoing"></property>
         <property name="getPatienSn" value="http://${fileService.ipAndPort}/FileService/PatientDetail/get_patien_sn"></property>
         <property name="tripleTestTable" value="http://${fileService.ipAndPort}/FileService/PatientDetail/tripleTestTable"></property>
-        <property name="getPatienSn" value="http://${fileService.ipAndPort}/FileService/PatientDetail/get_patien_sn"></property>
-        <property name="tripleTestTable" value="http://${fileService.ipAndPort}/FileService/PatientDetail/tripleTestTable"></property>
         <property name="caseLab_result_list" value="http://${fileService.ipAndPort}/FileService/PatientDetail/lab_result"></property>
         <property name="caseNew_lab_result_list" value="http://${fileService.ipAndPort}/FileService/PatientDetail/new_lab_result_item"></property>
         <property name="caseNewMedicalCourse" value="http://${fileService.ipAndPort}/FileService/PatientDetail/new_medical_course"></property>
@@ -303,12 +301,12 @@
         <property name="msgQuery" value="http://${msg.ipAndPort}/mc-server/query"/>
         <property name="updateBatch" value="http://${msg.ipAndPort}/mc-server/updateBatch"/>
         <!-- 对接郑州中心 统一门户 -->
-        <property name="yyssoUrl" value="${yongyou_ssoUrl}" />
-        <property name="isMock" value="${sso_isMock}" />
-        <property name="ssoSysmark" value="${sso_sysmark}" />
-        <property name="ssoErrorRedirectUrl" value="${sso_error_redirect_url}" />
-        <property name="ssoSuccessUrl" value="${sso_success_url}" />
-        <property name="ssoSuccessUrlTemp" value="${sso_success_url_temp}" />
-        <property name="ssoFailUrl" value="${sso_fail_url}" />
+        <!--<property name="yyssoUrl" value="${yongyou_ssoUrl}" />-->
+        <!--<property name="isMock" value="${sso_isMock}" />-->
+        <!--<property name="ssoSysmark" value="${sso_sysmark}" />-->
+        <!--<property name="ssoErrorRedirectUrl" value="${sso_error_redirect_url}" />-->
+        <!--<property name="ssoSuccessUrl" value="${sso_success_url}" />-->
+        <!--<property name="ssoSuccessUrlTemp" value="${sso_success_url_temp}" />-->
+        <!--<property name="ssoFailUrl" value="${sso_fail_url}" />-->
     </bean>
 </beans>
