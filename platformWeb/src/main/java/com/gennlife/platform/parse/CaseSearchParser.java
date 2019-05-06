@@ -27,15 +27,19 @@ public class CaseSearchParser implements Callable<String> {
         addQuery(addquery);
     }
 
+    /**
+     * 临时处理郑州中心 放开所有权限
+     * @param addquery
+     */
     public void addQuery(String addquery) {
         if (StringUtils.isEmpty(addquery)) return;
         if (queryjson.has("query")) {
             String query = queryjson.get("query").getAsString();
-            if (StringUtils.isEmpty(query)) queryjson.addProperty("query", addquery);
-            else {
-                queryjson.addProperty("query", "( " + query + " ) and " + addquery);
-            }
-        } else queryjson.addProperty("query", addquery);
+            if (StringUtils.isEmpty(query)) queryjson.addProperty("query", "[患者基本信息.患者编号] EXIST TRUE");
+//            else {
+//                queryjson.addProperty("query", "( " + query + " ) and " + addquery);
+//            }
+        } else queryjson.addProperty("query", "[患者基本信息.患者编号] EXIST TRUE");
         logger.info("query " + queryjson.get("query"));
     }
 

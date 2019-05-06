@@ -1,0 +1,274 @@
+{
+  "sort": [
+    "patient_info_man",
+    "patient_info_women",
+    "patient_info_other",
+    "visits.visit_info_out",
+    "visits.visit_info_in",
+    "visits.visit_info_other",
+    "visits.diagnose",
+    "visits.medical_record_home_page",
+    "visits.operation_records",
+    "visits.operation_pre_summary",
+    "visits.operation_pre_conference_records",
+    "visits.operation_post_course_records",
+    "visits.medicine_order",
+    "visits.inspection_reports",
+    "visits.ct_reports",
+    "visits.xray_image_reports",
+    "visits.mr_reports",
+    "visits.microscopic_exam_reports",
+    "visits.other_imaging_exam_diagnosis_reports",
+    "visits.pathology_reports",
+    "visits.ultrasonic_diagnosis_reports",
+    "visits.admissions_records",
+    "visits.discharge_records",
+    "visits.first_course_records",
+    "visits.attending_physician_rounds_records",
+    "visits.course_records",
+    "visits.consultation_opinion_records",
+    "visits.death_discuss_records",
+    "visits.death_records",
+    "visits.difficulty_case_records",
+    "visits.rescue_records",
+    "visits.stage_summary",
+    "visits.transferred_in_records",
+    "visits.transferred_out_records",
+    "visits.icu_record",
+    "visits.transfusion_records",
+    "visits.triple_test_table",
+    "visits.orders",
+    "visits.examination_request",
+    "visits.inspect_request",
+    "visits.pathology_request",
+    "visits.operation_request",
+    "visits.transfusion_request",
+    "visits.chinese_medicine_prescription",
+    "visits.order_implemet_records",
+    "visits.invasive_records"
+  ],
+  "catalogue": [
+    {
+      "id": "patient_info",
+      "name": "患者基本信息"
+    },
+    {
+      "id": "visit_info",
+      "name": "就诊基本信息"
+    },
+    {
+      "id": "inspectionReports",
+      "name": "检验报告总数量"
+    },
+    {
+      "id": "inspectionChaReports",
+      "name": "检查报告总数量"
+    },
+    {
+      "id": "auditReports",
+      "name": "病历文书总数量"
+    },
+    {
+      "id": "visits.diagnose",
+      "name": "诊断"
+    },
+    {
+      "id": "visits.medical_record_home_page",
+      "name": "病案首页"
+    },
+    {
+      "id": "visits.operation_records",
+      "name": "手术记录"
+    },
+    {
+      "id": "visits.operation_pre_summary",
+      "name": "术前小结"
+    },
+    {
+      "id": "visits.operation_pre_conference_records",
+      "name": "术前讨论记录"
+    },
+    {
+      "id": "visits.operation_post_course_records",
+      "name": "术后病程记录"
+    },
+    {
+      "id": "visits.medicine_order",
+      "name": "药品医嘱"
+    },
+    {
+      "id": "visits.inspection_reports",
+      "name": "检验报告"
+    },
+    {
+      "id": "visits.ct_reports",
+      "name": "CT"
+    },
+    {
+      "id": "visits.xray_image_reports",
+      "name": "X线"
+    },
+    {
+      "id": "visits.mr_reports",
+      "name": "MR"
+    },
+    {
+      "id": "visits.microscopic_exam_reports",
+      "name": "镜检"
+    },
+    {
+      "id": "visits.other_imaging_exam_diagnosis_reports",
+      "name": "其他影像学"
+    },
+    {
+      "id": "visits.pathology_reports",
+      "name": "病理"
+    },
+    {
+      "id": "visits.ultrasonic_diagnosis_reports",
+      "name": "超声"
+    },
+    {
+      "id": "visits.admissions_records",
+      "name": "入院记录"
+    },
+    {
+      "id": "visits.discharge_records",
+      "name": "出院记录"
+    },
+    {
+      "id": "visits.first_course_records",
+      "name": "首次病程记录"
+    },
+    {
+      "id": "visits.attending_physician_rounds_records",
+      "name": "上级医师查房记录"
+    },
+    {
+      "id": "visits.course_records",
+      "name": "日常病程记录"
+    },
+    {
+      "id": "visits.consultation_opinion_records",
+      "name": "会诊意见记录"
+    },
+    {
+      "id": "visits.death_discuss_records",
+      "name": "死亡病例讨论记录"
+    },
+    {
+      "id": "visits.death_records",
+      "name": "死亡记录"
+    },
+    {
+      "id": "visits.difficulty_case_records",
+      "name": "疑难病例讨论记录"
+    },
+    {
+      "id": "visits.rescue_records",
+      "name": "抢救记录"
+    },
+    {
+      "id": "visits.stage_summary",
+      "name": "阶段小结"
+    },
+    {
+      "id": "visits.transferred_in_records",
+      "name": "转入记录"
+    },
+    {
+      "id": "visits.transferred_out_records",
+      "name": "转出记录"
+    },
+    {
+      "id": "visits.icu_record",
+      "name": "病重（病危）患者护理记录"
+    },
+    {
+      "id": "visits.transfusion_records",
+      "name": "输血记录"
+    },
+    {
+      "id": "visits.triple_test_table",
+      "name": "三测单"
+    },
+    {
+      "id": "visits.orders",
+      "name": "医嘱"
+    },
+    {
+      "id": "visits.examination_request",
+      "name": "检查申请"
+    },
+    {
+      "id": "visits.inspect_request",
+      "name": "检验申请"
+    },
+    {
+      "id": "visits.pathology_request",
+      "name": "病理申请"
+    },
+    {
+      "id": "visits.operation_request",
+      "name": "手术申请"
+    },
+    {
+      "id": "visits.transfusion_request",
+      "name": "输血申请"
+    },
+    {
+      "id": "visits.chinese_medicine_prescription",
+      "name": "中药处方"
+    },
+    {
+      "id": "visits.order_implemet_records",
+      "name": "医嘱处理记录"
+    },
+    {
+      "id": "visits.invasive_records",
+      "name": "有创诊疗操作记录"
+    }
+  ],
+  "patient_info": [
+    "patient_info_man",
+    "patient_info_women",
+    "patient_info_other"
+  ],
+  "visit_info": [
+    "visits.visit_info_out",
+    "visits.visit_info_in",
+    "visits.visit_info_other"
+  ],
+  "inspectionReports": [
+    "visits.inspection_reports"
+  ],
+  "inspectionChaReports": [
+    "visits.ct_reports",
+    "visits.xray_image_reports",
+    "visits.mr_reports",
+    "visits.microscopic_exam_reports",
+    "visits.other_imaging_exam_diagnosis_reports",
+    "visits.pathology_reports",
+    "visits.ultrasonic_diagnosis_reports"
+  ],
+  "auditReports": [
+    "visits.operation_records",
+    "visits.operation_pre_summary",
+    "visits.operation_pre_conference_records",
+    "visits.operation_post_course_records",
+    "visits.admissions_records",
+    "visits.discharge_records",
+    "visits.first_course_records",
+    "visits.attending_physician_rounds_records",
+    "visits.course_records",
+    "visits.consultation_opinion_records",
+    "visits.death_discuss_records",
+    "visits.death_records",
+    "visits.difficulty_case_records",
+    "visits.rescue_records",
+    "visits.stage_summary",
+    "visits.transferred_in_records",
+    "visits.transferred_out_records",
+    "visits.invasive_records"
+  ]
+}

@@ -26,6 +26,12 @@
     <sql id="userProperty">
 		gennlife_user.uid,uname,pwd,uposition,uprofession,gennlife_user.orgID,org_name,labID,lab_name,telphone,uemail,age,sex,ctime,uptime,unumber,status,effective_time,failure_time
 	</sql>
+    <select id="selectUserByUnumber" resultMap="com.gennlife.platform.model.User">
+        SELECT
+        <include refid="userProperty"/>
+        FROM gennlife_user
+        <where>gennlife_user.unumber=#{unumber}</where>
+    </select>
     <select id="getUser" resultMap="com.gennlife.platform.model.User">
         SELECT
         <include refid="userProperty"/>

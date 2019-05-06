@@ -2,6 +2,7 @@ package com.gennlife.platform.filter;
 
 
 import com.gennlife.platform.authority.AuthorityUtil;
+import com.gennlife.platform.bean.HitsConfigBean;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.User;
@@ -62,6 +63,13 @@ public class SessionFilter implements Filter {
             session.setMaxInactiveInterval(3600 * 5);
             String sessionID = session.getId();
             String uid = RedisUtil.getValue(sessionID);
+            if(HitsConfigBean.HIES_SESSION_ID.equals(uid)){
+                logger.info("hist入口接入了 session:"+sessionID);
+                logger.info("hist入口接入了 request url is: " + uri);
+                servletRequest.setAttribute(HitsConfigBean.HIES_SESSION_ID,HitsConfigBean.HIES_SESSION_ID);
+                filterChain.doFilter(request, response);
+                return;
+            }
             if (uid == null) {
                 logger.info("RedisUtil.getValue()-> uid is null");
                 logger.info("request url is: " + uri);
@@ -124,6 +132,7 @@ public class SessionFilter implements Filter {
 
     static {
         okSet.add("/user/Info");
+        okSet.add("/user/ssoLogin");
         okSet.add("/detail/get_patien_sn");
         okSet.add("/user/Login");
         okSet.add("/base/Login");
@@ -149,6 +158,8 @@ public class SessionFilter implements Filter {
         adminSet.add("/bsma/DeleteAllOrg");
         adminSet.add("/common/UploadFileForImportLab");
         adminSet.add("/common/UploadFileForImportStaff");
+        okSet.add("/etl/getEtlDatacount");
+        okSet.add("/etl/getEtlStatisticsTable");
         okSet.add("/case/SearchItemSet");
         okSet.add("/case/SearchItemSetT");
         okSet.add("/rws/PreAggregation");
@@ -170,6 +181,8 @@ public class SessionFilter implements Filter {
         okSet.add("/rws/editActiveName");
         okSet.add("/case/SearchItemSetForRws");
         okSet.add("/crf/buildIndexForAll");
+        okSet.add("/detail/getSchemaData");
+        okSet.add("/detail/get_patien_sn");
         okSet.add("/bsma/sendSystemMessage");
 
     }

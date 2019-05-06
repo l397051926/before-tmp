@@ -775,7 +775,7 @@ public class CaseProcessor {
         }
         String param = transformSid(newParam, user);
         //处理本科室 及 搜索科室及以下子科室
-        param = addPowerContainSun(param,user);
+//        param = addPowerContainSun(param,user);
         JsonObject paramObj = (JsonObject) jsonParser.parse(param);
         if (paramObj.has("code") && paramObj.get("code").getAsInt() == 0) {
             return param;
