@@ -300,6 +300,16 @@
         <property name="msgUpdateAll" value="http://${msg.ipAndPort}/mc-server/updateAll"/>
         <property name="msgQuery" value="http://${msg.ipAndPort}/mc-server/query"/>
         <property name="updateBatch" value="http://${msg.ipAndPort}/mc-server/updateBatch"/>
+
+        <!--消息中心接口展示-->
+        <property name="miningParent" value="http://${drgs.ipAndPort}/drgs-server/drgs/mining/patient"/>
+        <property name="miningDept" value="http://${drgs.ipAndPort}/drgs-server/drgs/mining/dept"/>
+        <property name="miningCatalog" value="http://${drgs.ipAndPort}/drgs-server/drgs/mining/catalog"/>
+        <property name="factorList" value="http://${drgs.ipAndPort}/drgs-server/drgs/factor/list"/>
+        <property name="indexList" value="http://${drgs.ipAndPort}/drgs-server/drgs/index/list"/>
+        <property name="indexSetting" value="http://${drgs.ipAndPort}/drgs-server/drgs/index/list"/>
+        <property name="drgsIndex" value="http://${drgs.ipAndPort}/drgs-server/drgs/index"/>
+
         <!-- 对接郑州中心 统一门户 -->
         <!--<property name="yyssoUrl" value="${yongyou_ssoUrl}" />-->
         <!--<property name="isMock" value="${sso_isMock}" />-->

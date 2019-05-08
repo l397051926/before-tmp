@@ -17,14 +17,6 @@ public class URLBean {
      */
     private String caseDetailCommonUrl;
 
-    public String getCaseAdmission_records() {
-        return caseAdmission_records;
-    }
-
-    public void setCaseAdmission_records(String caseAdmission_records) {
-        this.caseAdmission_records = caseAdmission_records;
-    }
-
     /**
      * 获取当前病人的指定字段的信息
      */
@@ -351,36 +343,19 @@ public class URLBean {
     private String newOrdersPharmacy = null;
     private String newDiagnose = null;
 
-
-
-    public String getBuildIndexForAll() {
-        return buildIndexForAll;
-    }
-
-    public void setBuildIndexForAll(String buildIndexForAll) {
-        this.buildIndexForAll = buildIndexForAll;
-    }
-
-    public String getCaseToDetail() {
-        return CaseToDetail;
-    }
-
-    public void setCaseToDetail(String caseToDetail) {
-        CaseToDetail = caseToDetail;
-    }
+    /*医保控费 接口*/
+    private String drgsIndex = null;
+    private String indexSetting = null;
+    private String indexList = null;
+    private String factorList = null;
+    private String miningCatalog = null;
+    private String miningDept = null;
+    private String miningParent = null;
 
     /**
      * crf 高级搜索调到详情页
      */
     private String CaseToDetail = null;
-
-    public String getHighlight() {
-        return highlight;
-    }
-
-    public void setHighlight(String highlight) {
-        this.highlight = highlight;
-    }
 
     private String highlight = null;
 
@@ -556,6 +531,37 @@ public class URLBean {
     private String exportTaskDownload = null;
     private String exportTaskList = null;
     private String exportTaskStart = null;
+
+    public String getHighlight() {
+        return highlight;
+    }
+
+    public void setHighlight(String highlight) {
+        this.highlight = highlight;
+    }
+
+    public String getBuildIndexForAll() {
+        return buildIndexForAll;
+    }
+
+    public void setBuildIndexForAll(String buildIndexForAll) {
+        this.buildIndexForAll = buildIndexForAll;
+    }
+
+    public String getCaseToDetail() {
+        return CaseToDetail;
+    }
+
+    public void setCaseToDetail(String caseToDetail) {
+        CaseToDetail = caseToDetail;
+    }
+    public String getCaseAdmission_records() {
+        return caseAdmission_records;
+    }
+
+    public void setCaseAdmission_records(String caseAdmission_records) {
+        this.caseAdmission_records = caseAdmission_records;
+    }
 
     public String getExportTaskStart() {
         return exportTaskStart;
@@ -2358,5 +2364,61 @@ public class URLBean {
 
     public void setUpdateBatch(String updateBatch) {
         this.updateBatch = updateBatch;
+    }
+
+    public String getMiningParent() {
+        return miningParent;
+    }
+
+    public void setMiningParent(String miningParent) {
+        this.miningParent = miningParent;
+    }
+
+    public String getMiningDept() {
+        return miningDept;
+    }
+
+    public void setMiningDept(String miningDept) {
+        this.miningDept = miningDept;
+    }
+
+    public String getMiningCatalog() {
+        return miningCatalog;
+    }
+
+    public void setMiningCatalog(String miningCatalog) {
+        this.miningCatalog = miningCatalog;
+    }
+
+    public String getFactorList() {
+        return factorList;
+    }
+
+    public void setFactorList(String factorList) {
+        this.factorList = factorList;
+    }
+
+    public String getIndexList() {
+        return indexList;
+    }
+
+    public void setIndexList(String indexList) {
+        this.indexList = indexList;
+    }
+
+    public String getDrgsIndex() {
+        return drgsIndex;
+    }
+
+    public void setDrgsIndex(String drgsIndex) {
+        this.drgsIndex = drgsIndex;
+    }
+
+    public String getIndexSetting() {
+        return indexSetting;
+    }
+
+    public void setIndexSetting(String indexSetting) {
+        this.indexSetting = indexSetting;
     }
 }

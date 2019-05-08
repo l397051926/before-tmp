@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="合并 郑州中心的代码">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/DragsController.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/DragsService.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/impl/DragsServiceImpl.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/UserController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/bootstrap.properties" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap.properties" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/urlconf.xml" afterPath="$PROJECT_DIR$/src/main/resources/urlconf.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -33,22 +37,226 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DetailController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/DetailController.java">
+      <file leaf-file-name="DragsController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/DragsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="1049" column="44" lean-forward="false" selection-start-line="1049" selection-start-column="44" selection-end-line="1049" selection-end-column="44" />
+            <state relative-caret-position="296">
+              <caret line="38" column="46" lean-forward="false" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="46" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DragsService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/DragsService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="8" column="20" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/UserController.java">
+      <file leaf-file-name="DragsServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/impl/DragsServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="8" column="58" lean-forward="true" selection-start-line="8" selection-start-column="58" selection-end-line="8" selection-end-column="58" />
-              <folding />
+            <state relative-caret-position="378">
+              <caret line="34" column="30" lean-forward="false" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="30" />
+              <folding>
+                <element signature="docComment;class#DragsServiceImpl#0" expanded="false" />
+                <element signature="method#drgsIndex#0;class#DragsServiceImpl#0" expanded="false" />
+                <element signature="method#indexSetting#0;class#DragsServiceImpl#0" expanded="false" />
+                <element signature="method#indexList#0;class#DragsServiceImpl#0" expanded="false" />
+                <element signature="method#factorList#0;class#DragsServiceImpl#0" expanded="false" />
+                <element signature="method#miningCatalog#0;class#DragsServiceImpl#0" expanded="false" />
+                <element signature="method#miningDept#0;class#DragsServiceImpl#0" expanded="false" />
+                <element signature="method#miningParent#0;class#DragsServiceImpl#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="URLBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="346" column="28" lean-forward="false" selection-start-line="346" selection-start-column="19" selection-end-line="346" selection-end-column="28" />
+              <folding>
+                <element signature="docComment;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#casePatientBatchData#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseDetailCommonUrl#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseSimilarServiceSimilarPatientExtraInfo#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#vitaGramServerNccnRecommendPath#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseSimilarServiceSimilarPatientInfo#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseSimilarServiceSimilarBasicDetail#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseSimilarServiceGetSimilars#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#vitaGramServerVitaGramData#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseSimilarServiceVitaboardparam#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseSimilarServiceSimilarParam#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseSimilarServiceSimilarQuery#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseyVisitRadiotherapy#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#casePatientRadiotherapy#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#casePatientDcOrder#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseVisitDcOrder#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CRFIsExistPatient#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CSBaseline#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseDetailVisitClassifyImageURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseDetailVisitClassifySectionURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#sampleUploadAdaptTagURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CRFImportResult#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#sampleDetailSearchURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CRFImportMap#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CRFImportFile#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#fileStoreForCRFImport#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#crfSearchURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#EmailSendURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#EmailURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#toolsURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#sampleImportIURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#sampleImportChecKIURL#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setSampleImportChecKIURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#synonyms#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#getGennomics#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#sampleDetailURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseAdmission_records#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseSearchURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseSuggestURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseSuggestURL2#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseDetailPatientBasicInfoURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseDetailPatientBasicFigureURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#casePatientBasicTimeAxisURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#casePhysical_examination#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#casePhysical_examination_list#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#knowledgeURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseVisit_detail#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseLab_result_item#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#knowledgeDiseaseSearchGenesURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseLab_result_item_list#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#knowledgeGeneInfoURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#knowledgeVariationInfoURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#knowledgeDetailVariationSearchDiseaseURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#knowledgeDetailVariationSearchDrugURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseDiagnose#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseLab_result_list#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseNew_lab_result_list#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseNewMedicalCourse#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseNewCourseRecords#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseNewExamResult#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseNewQuotaReports#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseGenetic_disease#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseDrug_reaction#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseCategory_catalog#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseMolecular_detection#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseBiological_specimen#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseExam_result#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#casePathological_examination#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#knowledgePharmGKBSearchDrugURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseGeneErrorURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#buildIndexForAll#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CaseToDetail#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CRFProjectCRFListURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CRFAutoMapURL#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CRFGetAttrID#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CRFGetGroupID#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CRFModelByProjectID#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CRFModelByCRFID#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CRFUpLoadDataForCheck#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CRFEditModel#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CRFSaveModel#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CRFGetData#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CRFUpLoadData#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CRFSaveData#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CRFSampleCaseList#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CRFDeleteSample#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CRFSearchSampleList#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseMedicalRecord#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseOperationRecords#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#casePharmacy#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseDischargeRecords#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseCourseRecords#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#caseMedicalCourse#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#CSSmg#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#InputSmartPrompt#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#PreLiminaryUrl#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#exportCreateTask#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseAdmission_records#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#yyssoUrl#0;class#URLBean#0" expanded="false" />
+                <element signature="method#getSsoSuccessUrlTemp#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setSsoSuccessUrlTemp#0;class#URLBean#0" expanded="false" />
+                <element signature="method#getSsoErrorRedirectUrl#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setSsoErrorRedirectUrl#0;class#URLBean#0" expanded="false" />
+                <element signature="method#getSsoSysmark#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setSsoSysmark#0;class#URLBean#0" expanded="false" />
+                <element signature="method#getYyssoUrl#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setYyssoUrl#0;class#URLBean#0" expanded="false" />
+                <element signature="method#getIsMock#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setIsMock#0;class#URLBean#0" expanded="false" />
+                <element signature="method#getSsoSuccessUrl#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setSsoSuccessUrl#0;class#URLBean#0" expanded="false" />
+                <element signature="method#getSsoFailUrl#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setSsoFailUrl#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setDeleteResearchVariable#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setSaveResearchVariable#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setInsertGroupDataPatient#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setExportGroupDataPatient#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setPatientGroupCondition#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setContResultForPatientUrl#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCheckActiveDataIsChange#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setGetCalcTotalByActiveId#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setClacIndexResultSearch#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setPreFindForProjectData#0;class#URLBean#0" expanded="false" />
+                <element signature="docComment;field#PatientDetailThumbnail#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setPatientDetailThumbnail#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCRFModelForTraceByCRFID#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCRFPatientVisitDetail#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCRFPatientAllVisitsDetail#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCRFProjectCRFListURL#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setKnowledgePharmGKBSearchDrugURL#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCasePathological_examination#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseCategory_catalog#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseMolecular_detection#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseBiological_specimen#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setKnowledgeDetailVariationSearchDiseaseURL#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setKnowledgeDetailVariationSearchDrugURL#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setKnowledgeVariationInfoURL#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setKnowledgeGeneInfoURL#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseLab_result_item_list#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setKnowledgeDiseaseSearchGenesURL#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCasePhysical_examination_list#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCasePhysical_examination#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCasePatientBasicTimeAxisURL#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseDetailPatientBasicInfoURL#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseDetailPatientBasicFigureURL#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseOperationRecords#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseDischargeRecords#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCRFUpLoadDataForCheck#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setFileStoreForCRFImport#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setSampleDetailSearchURL#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setSampleUploadAdaptTagURL#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseDetailVisitClassifySectionURL#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseDetailVisitClassifyImageURL#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCasePatientRadiotherapy#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseyVisitRadiotherapy#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCasePatientChemotherapyInfo#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseSimilarServiceGetSimilars#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseSimilarServiceVitaboardparam#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseSimilarServiceSimilarParam#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseSimilarServiceSimilarQuery#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseSimilarServiceSimilarBasicDetail#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseSimilarServiceSimilarPatientInfo#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setVitaGramServerVitaGramData#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setVitaGramServerNccnRecommendPath#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setVitaGramServerMedicalHistoryRecommendPath#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseSimilarServiceSimilarPatientExtraInfo#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCasePatientBatchData#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseDetailCommonUrl#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setSaveRelatedPhrasesSelectionBehavior#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseNew_lab_result_list#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseNewMedicalCourse#0;class#URLBean#0" expanded="false" />
+                <element signature="method#setCaseNewCourseRecords#0;class#URLBean#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -56,21 +264,19 @@
       <file leaf-file-name="urlconf.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/urlconf.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="565">
-              <caret line="304" column="63" lean-forward="true" selection-start-line="304" selection-start-column="63" selection-end-line="304" selection-end-column="63" />
+            <state relative-caret-position="308">
+              <caret line="310" column="65" lean-forward="false" selection-start-line="310" selection-start-column="51" selection-end-line="310" selection-end-column="65" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ArkUiServiceApplication.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ArkUiServiceApplication.java">
+      <file leaf-file-name="bootstrap.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/bootstrap.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding>
-                <element signature="e#643#644#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="635">
+              <caret line="45" column="37" lean-forward="false" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -81,8 +287,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -139,7 +345,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="release_0.0.9.0_rocket_mq" />
+        <entry key="$PROJECT_DIR$/.." value="release_0.0.9.1_merge" />
       </map>
     </option>
   </component>
@@ -151,10 +357,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma_release_1.0.json" />
-        <option value="$PROJECT_DIR$/src/main/resources/rws/crf_rws_CVD.json" />
-        <option value="$PROJECT_DIR$/src/main/resources/profiles/local/logback.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SimpleCORSFilter.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CaseController.java" />
@@ -196,12 +398,16 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/DetailController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/DetailProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/resources/detail/detail_schema_data.json" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/demo.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/impl/DragsServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/DragsService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/DragsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" />
         <option value="$PROJECT_DIR$/src/main/resources/urlconf.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/bootstrap.properties" />
       </list>
     </option>
   </component>
@@ -224,27 +430,12 @@
       <expand>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="Profiles" type="6783ec58:MavenProjectsStructure$ProfilesNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
           <item name="ArkUiService" type="9519ce18:MavenProjectsStructure$ProjectNode" />
         </path>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
           <item name="ArkUiService" type="9519ce18:MavenProjectsStructure$ProjectNode" />
           <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="ArkUiService" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="ArkUiService" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
-          <item name="com.squareup.okhttp:okhttp:2.7.5" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
         </path>
       </expand>
       <select />
@@ -297,17 +488,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="platform" type="1abcf292:AndroidViewProjectNode" />
-              <item name="platform" type="1039202d:NonAndroidModuleNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -387,7 +567,11 @@
               <item name="platformWeb" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="gennlife" type="462c0819:PsiDirectoryNode" />
+              <item name="platform" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="platform" type="b2602c69:ProjectViewProjectNode" />
@@ -395,14 +579,24 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="detail" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="platform" type="1abcf292:AndroidViewProjectNode" />
+              <item name="platform" type="1039202d:NonAndroidModuleNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -780,6 +974,7 @@
       <workItem from="1555392577321" duration="13102000" />
       <workItem from="1556080143383" duration="1245000" />
       <workItem from="1557134068910" duration="4285000" />
+      <workItem from="1557296194551" duration="5481000" />
     </task>
     <task id="LOCAL-00068" summary="调整rws 回显树形结构">
       <created>1534254136015</created>
@@ -1160,7 +1355,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1341346000" />
+    <option name="totallyTimeSpent" value="1346827000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-434" width="1936" height="1176" extended-state="6" />
@@ -1497,93 +1692,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="95" column="24" lean-forward="false" selection-start-line="95" selection-start-column="24" selection-end-line="95" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/init/RoleStartRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="1936" column="0" lean-forward="false" selection-start-line="1936" selection-start-column="0" selection-end-line="1936" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/userInfoDB.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="238" column="42" lean-forward="false" selection-start-line="238" selection-start-column="42" selection-end-line="238" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CaseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="398" column="0" lean-forward="false" selection-start-line="398" selection-start-column="0" selection-end-line="398" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/aaa/result/demo.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="0" column="2401" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21249">
-          <caret line="861" column="37" lean-forward="true" selection-start-line="861" selection-start-column="37" selection-end-line="861" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BaseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-216">
-          <caret line="33" column="38" lean-forward="false" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="620">
-          <caret line="261" column="80" lean-forward="true" selection-start-line="261" selection-start-column="80" selection-end-line="261" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/etl/etl_data_count_config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="783">
-          <caret line="68" column="22" lean-forward="false" selection-start-line="68" selection-start-column="22" selection-end-line="68" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.5/commons-lang-2.5-sources.jar!/org/apache/commons/lang/StringUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="654" column="26" lean-forward="false" selection-start-line="654" selection-start-column="26" selection-end-line="654" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/gennlife/yongyou-sso/1.0.0.0-Release/yongyou-sso-1.0.0.0-Release.jar!/com/gennlife/yy/sso/CallService.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="51" column="18" lean-forward="false" selection-start-line="51" selection-start-column="18" selection-end-line="51" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-actuator/1.5.9.RELEASE/spring-boot-actuator-1.5.9.RELEASE.jar!/org/springframework/boot/actuate/trace/WebRequestTraceFilter.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
@@ -1595,13 +1703,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
           <caret line="99" column="23" lean-forward="false" selection-start-line="99" selection-start-column="23" selection-end-line="99" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/FileController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-631">
-          <caret line="41" column="17" lean-forward="true" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -1646,13 +1747,6 @@
         <state relative-caret-position="959">
           <caret line="50" column="13" lean-forward="false" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/view/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1495">
-          <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1795,21 +1889,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="692">
-          <caret line="2150" column="32" lean-forward="false" selection-start-line="2150" selection-start-column="15" selection-end-line="2150" selection-end-column="32" />
-          <folding>
-            <element signature="e#53483#53484#0" expanded="false" />
-            <element signature="e#53523#53524#0" expanded="false" />
-            <element signature="e#53685#53686#0" expanded="false" />
-            <element signature="e#53719#53720#0" expanded="false" />
-            <element signature="e#53773#53774#0" expanded="false" />
-            <element signature="e#53819#53820#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/DetailProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
@@ -1822,23 +1901,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="907">
           <caret line="0" column="45441" lean-forward="false" selection-start-line="0" selection-start-column="45441" selection-end-line="0" selection-end-column="45441" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/demo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="1352" column="18" lean-forward="true" selection-start-line="1352" selection-start-column="18" selection-end-line="1352" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/demo.html" />
     <entry file="file://$USER_HOME$/Desktop/新建文本文档.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="976">
           <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1846,40 +1916,345 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="279">
           <caret line="94" column="60" lean-forward="false" selection-start-line="94" selection-start-column="30" selection-end-line="94" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ArkUiServiceApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
+        <state relative-caret-position="270">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <element signature="e#643#644#0" expanded="true" />
+            <element signature="e#643#644#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/DetailController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
+        <state relative-caret-position="27972">
           <caret line="1049" column="44" lean-forward="false" selection-start-line="1049" selection-start-column="44" selection-end-line="1049" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/urlconf.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="304" column="63" lean-forward="true" selection-start-line="304" selection-start-column="63" selection-end-line="304" selection-end-column="63" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/userInfoDB.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="238" column="42" lean-forward="false" selection-start-line="238" selection-start-column="42" selection-end-line="238" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/FileController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="864">
+          <caret line="41" column="17" lean-forward="true" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/view/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="64" column="16" lean-forward="false" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/ResultBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/EtlController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-199">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="53" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/MessageCenterController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="36" column="56" lean-forward="false" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/MessageCenterProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="26" column="23" lean-forward="false" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="539" column="36" lean-forward="false" selection-start-line="539" selection-start-column="36" selection-end-line="539" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/DragsService.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
-          <caret line="8" column="58" lean-forward="true" selection-start-line="8" selection-start-column="58" selection-end-line="8" selection-end-column="58" />
+          <caret line="8" column="20" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/DragsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="38" column="46" lean-forward="false" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/impl/DragsServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="34" column="30" lean-forward="false" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="30" />
+          <folding>
+            <element signature="docComment;class#DragsServiceImpl#0" expanded="false" />
+            <element signature="method#drgsIndex#0;class#DragsServiceImpl#0" expanded="false" />
+            <element signature="method#indexSetting#0;class#DragsServiceImpl#0" expanded="false" />
+            <element signature="method#indexList#0;class#DragsServiceImpl#0" expanded="false" />
+            <element signature="method#factorList#0;class#DragsServiceImpl#0" expanded="false" />
+            <element signature="method#miningCatalog#0;class#DragsServiceImpl#0" expanded="false" />
+            <element signature="method#miningDept#0;class#DragsServiceImpl#0" expanded="false" />
+            <element signature="method#miningParent#0;class#DragsServiceImpl#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="346" column="28" lean-forward="false" selection-start-line="346" selection-start-column="19" selection-end-line="346" selection-end-column="28" />
+          <folding>
+            <element signature="docComment;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#casePatientBatchData#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseDetailCommonUrl#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseSimilarServiceSimilarPatientExtraInfo#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#vitaGramServerNccnRecommendPath#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseSimilarServiceSimilarPatientInfo#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseSimilarServiceSimilarBasicDetail#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseSimilarServiceGetSimilars#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#vitaGramServerVitaGramData#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseSimilarServiceVitaboardparam#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseSimilarServiceSimilarParam#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseSimilarServiceSimilarQuery#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseyVisitRadiotherapy#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#casePatientRadiotherapy#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#casePatientDcOrder#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseVisitDcOrder#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CRFIsExistPatient#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CSBaseline#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseDetailVisitClassifyImageURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseDetailVisitClassifySectionURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#sampleUploadAdaptTagURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CRFImportResult#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#sampleDetailSearchURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CRFImportMap#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CRFImportFile#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#fileStoreForCRFImport#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#crfSearchURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#EmailSendURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#EmailURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#toolsURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#sampleImportIURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#sampleImportChecKIURL#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setSampleImportChecKIURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#synonyms#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#getGennomics#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#sampleDetailURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseAdmission_records#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseSearchURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseSuggestURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseSuggestURL2#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseDetailPatientBasicInfoURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseDetailPatientBasicFigureURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#casePatientBasicTimeAxisURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#casePhysical_examination#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#casePhysical_examination_list#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#knowledgeURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseVisit_detail#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseLab_result_item#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#knowledgeDiseaseSearchGenesURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseLab_result_item_list#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#knowledgeGeneInfoURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#knowledgeVariationInfoURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#knowledgeDetailVariationSearchDiseaseURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#knowledgeDetailVariationSearchDrugURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseDiagnose#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseLab_result_list#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseNew_lab_result_list#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseNewMedicalCourse#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseNewCourseRecords#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseNewExamResult#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseNewQuotaReports#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseGenetic_disease#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseDrug_reaction#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseCategory_catalog#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseMolecular_detection#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseBiological_specimen#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseExam_result#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#casePathological_examination#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#knowledgePharmGKBSearchDrugURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseGeneErrorURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#buildIndexForAll#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CaseToDetail#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CRFProjectCRFListURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CRFAutoMapURL#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CRFGetAttrID#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CRFGetGroupID#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CRFModelByProjectID#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CRFModelByCRFID#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CRFUpLoadDataForCheck#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CRFEditModel#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CRFSaveModel#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CRFGetData#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CRFUpLoadData#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CRFSaveData#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CRFSampleCaseList#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CRFDeleteSample#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CRFSearchSampleList#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseMedicalRecord#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseOperationRecords#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#casePharmacy#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseDischargeRecords#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseCourseRecords#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#caseMedicalCourse#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#CSSmg#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#InputSmartPrompt#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#PreLiminaryUrl#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#exportCreateTask#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseAdmission_records#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#yyssoUrl#0;class#URLBean#0" expanded="false" />
+            <element signature="method#getSsoSuccessUrlTemp#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setSsoSuccessUrlTemp#0;class#URLBean#0" expanded="false" />
+            <element signature="method#getSsoErrorRedirectUrl#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setSsoErrorRedirectUrl#0;class#URLBean#0" expanded="false" />
+            <element signature="method#getSsoSysmark#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setSsoSysmark#0;class#URLBean#0" expanded="false" />
+            <element signature="method#getYyssoUrl#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setYyssoUrl#0;class#URLBean#0" expanded="false" />
+            <element signature="method#getIsMock#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setIsMock#0;class#URLBean#0" expanded="false" />
+            <element signature="method#getSsoSuccessUrl#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setSsoSuccessUrl#0;class#URLBean#0" expanded="false" />
+            <element signature="method#getSsoFailUrl#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setSsoFailUrl#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setDeleteResearchVariable#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setSaveResearchVariable#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setInsertGroupDataPatient#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setExportGroupDataPatient#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setPatientGroupCondition#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setContResultForPatientUrl#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCheckActiveDataIsChange#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setGetCalcTotalByActiveId#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setClacIndexResultSearch#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setPreFindForProjectData#0;class#URLBean#0" expanded="false" />
+            <element signature="docComment;field#PatientDetailThumbnail#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setPatientDetailThumbnail#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCRFModelForTraceByCRFID#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCRFPatientVisitDetail#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCRFPatientAllVisitsDetail#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCRFProjectCRFListURL#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setKnowledgePharmGKBSearchDrugURL#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCasePathological_examination#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseCategory_catalog#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseMolecular_detection#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseBiological_specimen#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setKnowledgeDetailVariationSearchDiseaseURL#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setKnowledgeDetailVariationSearchDrugURL#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setKnowledgeVariationInfoURL#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setKnowledgeGeneInfoURL#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseLab_result_item_list#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setKnowledgeDiseaseSearchGenesURL#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCasePhysical_examination_list#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCasePhysical_examination#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCasePatientBasicTimeAxisURL#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseDetailPatientBasicInfoURL#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseDetailPatientBasicFigureURL#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseOperationRecords#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseDischargeRecords#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCRFUpLoadDataForCheck#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setFileStoreForCRFImport#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setSampleDetailSearchURL#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setSampleUploadAdaptTagURL#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseDetailVisitClassifySectionURL#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseDetailVisitClassifyImageURL#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCasePatientRadiotherapy#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseyVisitRadiotherapy#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCasePatientChemotherapyInfo#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseSimilarServiceGetSimilars#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseSimilarServiceVitaboardparam#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseSimilarServiceSimilarParam#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseSimilarServiceSimilarQuery#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseSimilarServiceSimilarBasicDetail#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseSimilarServiceSimilarPatientInfo#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setVitaGramServerVitaGramData#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setVitaGramServerNccnRecommendPath#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setVitaGramServerMedicalHistoryRecommendPath#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseSimilarServiceSimilarPatientExtraInfo#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCasePatientBatchData#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseDetailCommonUrl#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setSaveRelatedPhrasesSelectionBehavior#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseNew_lab_result_list#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseNewMedicalCourse#0;class#URLBean#0" expanded="false" />
+            <element signature="method#setCaseNewCourseRecords#0;class#URLBean#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/urlconf.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="310" column="65" lean-forward="false" selection-start-line="310" selection-start-column="51" selection-end-line="310" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/bootstrap.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="635">
+          <caret line="45" column="37" lean-forward="false" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
           <folding />
         </state>
       </provider>
