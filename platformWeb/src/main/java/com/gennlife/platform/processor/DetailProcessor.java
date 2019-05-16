@@ -765,4 +765,23 @@ public class DetailProcessor {
             return ParamUtils.errorParam("请求出错");
         }
     }
+
+    public String getHomePageConfig(String param) {
+        try {
+            String result = ReadConditionByRedis.getCDRHomePageConfig();
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String getNewMyclinicSearchCase(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getNewMyclinicSearchCase();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
 }

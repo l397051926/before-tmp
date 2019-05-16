@@ -1067,4 +1067,40 @@ public class DetailController {
         logger.info("新诊断接口调整 接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/getHomePageConfig", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getHomePageConfig(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            logger.info("我的诊室首页 功能 接口 get方式 参数=" + param);
+            resultStr = processor.getHomePageConfig(param);
+        } catch (Exception e) {
+            logger.error("我的诊室首页 功能 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("我的诊室首页 功能 接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/newMyclinicSearchCase", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getNewMyclinicSearchCase(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            logger.info("我的诊室首页 功能 接口 get方式 参数=" + param);
+            resultStr = processor.getNewMyclinicSearchCase(param);
+        } catch (Exception e) {
+            logger.error("我的诊室首页 功能 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("我的诊室首页 功能 接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }

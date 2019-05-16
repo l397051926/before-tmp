@@ -495,6 +495,10 @@ public class URLBean {
      * 病例文书
      */
     private String caseMedicalCourse = null;
+    /**
+     * 新 我的诊室页面搜索
+     */
+    private String newMyclinicSearchCase = null;
 
     /**
      * 计算服务因子图
@@ -2161,5 +2165,13 @@ public class URLBean {
 
     public void setNewDiagnose(String newDiagnose) {
         this.newDiagnose = newDiagnose;
+    }
+
+    public String getNewMyclinicSearchCase() {
+        return newMyclinicSearchCase;
+    }
+
+    public void setNewMyclinicSearchCase(String newMyclinicSearchCase) {
+        this.newMyclinicSearchCase = newMyclinicSearchCase;
     }
 }

@@ -102,6 +102,17 @@ public class ReadConditionByRedis {
             logger.error("detail_schema 配置文件读取异常", e);
         }
     }
+
+    private static void loadHomePageConfig() {
+        try{
+            String crf_mapping = FilesUtils.readFile("/cdr_config/home_page.json");
+            RedisUtil.setValue("cdr_home_page",crf_mapping);
+            logger.info("home_page 配置文件读取完毕");
+        }catch (Exception e ){
+            logger.error("home_page 配置文件读取异常", e);
+        }
+    }
+
     public static void loadSearchDefinedEventListConfig(String crfId){
         try{
             String search_defined = FilesUtils.readFile("/rws/searchDefinedEventListConfig"+crfId+".json");
@@ -189,5 +200,12 @@ public class ReadConditionByRedis {
         return data;
     }
 
+    public static String getCDRHomePageConfig() {
+        if(!RedisUtil.isExists("cdr_home_page")){
+            loadHomePageConfig();
+        }
+        String data = RedisUtil.getValue("cdr_home_page");
+        return data;
+    }
 
 }
