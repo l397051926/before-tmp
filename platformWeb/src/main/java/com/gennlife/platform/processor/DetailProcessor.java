@@ -1,9 +1,14 @@
 package com.gennlife.platform.processor;
 
 import com.gennlife.platform.ReadConfig.ReadConditionByRedis;
+import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.service.ConfigurationService;
+import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,6 +23,8 @@ import java.net.URL;
  */
 public class DetailProcessor {
     private Logger logger = LoggerFactory.getLogger(DetailProcessor.class);
+    private static Gson gson = GsonUtil.getGson();
+    private static JsonParser jsonParser = new JsonParser();
 
     /**
      * 详情页患者基础信息接口
@@ -766,10 +773,13 @@ public class DetailProcessor {
         }
     }
 
-    public String getHomePageConfig(String param) {
+    public String getHomePageConfig() {
+        ResultBean resultBean = new ResultBean();
         try {
             String result = ReadConditionByRedis.getCDRHomePageConfig();
-            return result;
+            resultBean.setCode(1);
+            resultBean.setData(jsonParser.parse(result).getAsJsonArray());
+            return gson.toJson(resultBean);
         } catch (Exception e) {
             return ParamUtils.errorParam("请求出错");
         }

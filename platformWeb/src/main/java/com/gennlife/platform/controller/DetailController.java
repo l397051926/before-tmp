@@ -2,6 +2,7 @@ package com.gennlife.platform.controller;
 
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.bean.HitsConfigBean;
+import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.processor.DetailProcessor;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.HttpRequestUtils;
@@ -1075,9 +1076,8 @@ public class DetailController {
         Long start = System.currentTimeMillis();
         String resultStr = null;
         try {
-            String param = AuthorityUtil.addTreatedAuthority(paramRe);
-            logger.info("我的诊室首页 功能 接口 get方式 参数=" + param);
-            resultStr = processor.getHomePageConfig(param);
+            resultStr = processor.getHomePageConfig();
+
         } catch (Exception e) {
             logger.error("我的诊室首页 功能 接口", e);
             resultStr = ParamUtils.errorParam("出现异常");

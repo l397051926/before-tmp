@@ -183,6 +183,7 @@ public class SessionFilter implements Filter {
         okSet.add("/crf/buildIndexForAll");
         okSet.add("/detail/getSchemaData");
         okSet.add("/detail/get_patien_sn");
+//        okSet.add("/detail/getHomePageConfig");
 
     }
 }
