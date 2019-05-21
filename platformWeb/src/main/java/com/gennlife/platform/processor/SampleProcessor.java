@@ -516,11 +516,16 @@ public class SampleProcessor {
                  JsonObject hits_02 = jsonParser.parse(data_02).getAsJsonObject().get("hits").getAsJsonObject();
 
                  logger.info("total========= " + hits_01.get("total").getAsInt() + " ======== " + hits_02.get("total").getAsInt());
-                 int count = hits_01.get("total").getAsInt() - hits_02.get("total").getAsInt();
-                 if (count > 0) {
+                 if(hits_02.get("total").getAsInt() < 1){
                      next = false;
-                     export = true;
-                     sub = count;
+                     export = false;
+                 }else {
+                     int count = hits_01.get("total").getAsInt() - hits_02.get("total").getAsInt();
+                     if (count > 0) {
+                         next = false;
+                         export = true;
+                         sub = count;
+                     }
                  }
             }
 
