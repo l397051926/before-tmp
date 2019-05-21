@@ -385,4 +385,6 @@ public interface SyUserMapper {
     List<User> searchUsersByOrgIDNoLimitRws(@Param("skey") String key,@Param("orgID ") String orgID, @Param("uidList") List<String> uidList);
 
     List<String> getAllUserId();
+
+    int getBenKeMemberNum(String uid);
 }

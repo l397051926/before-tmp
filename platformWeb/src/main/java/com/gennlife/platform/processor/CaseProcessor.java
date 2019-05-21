@@ -810,8 +810,10 @@ public class CaseProcessor {
         JsonArray hasSearch = power.getAsJsonArray("has_search");
         JsonObject role = new JsonObject();
         //如果 hasSearch不为空 就不加自己的科室
-        int hasSize = hasSearch==null?0:hasSearch.size();
-        if (hasSize<1){
+        int hasSize = hasSearch == null ? 0: hasSearch.size();
+        int numBer = AllDao.getInstance().getSyUserDao().getBenKeMemberNum(user.getUid());
+
+        if (hasSize<1 && numBer > 0 ){
             role.addProperty("sid",user.getLabID());
             role.addProperty("slab_name",user.getLab_name());
             role.addProperty("has_search","有");
