@@ -573,4 +573,22 @@ public class CaseController {
     }
 
 
+    @RequestMapping(value = "/newMyclinicSearchConfig", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getNewMyclinicSearchConfig(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+
+            resultStr = processor.getNewMyclinicSearchConfig();
+        } catch (Exception e) {
+            logger.error("我的诊室首页 配置文件 功能 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("我的诊室首页 配置文件 功能 接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+
 }

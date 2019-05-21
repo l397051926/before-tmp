@@ -9,6 +9,7 @@ import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.SearchBean;
 import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.dao.AllDao;
+import com.gennlife.platform.enums.VistTypeEnum;
 import com.gennlife.platform.model.Lab;
 import com.gennlife.platform.model.LabResource;
 import com.gennlife.platform.model.Power;
@@ -19,6 +20,7 @@ import com.gennlife.platform.parse.CaseSuggestParser;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.*;
 import com.google.gson.*;
+import org.apache.batik.gvt.text.ArabicTextHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -1183,31 +1185,65 @@ public class CaseProcessor {
         JSONObject power = paramObj.getJSONObject("power");
         Integer page = paramObj.getInteger("page");
         Integer size = paramObj.getInteger("size");
-        JSONObject newPower = transformPower(power,ADMISSION_DEPT,user);
-        SearchBean searchBean = new SearchBean(page,size,ConfigUtils.getSearchIndexName(),newPower);
-        searchBean.setMyclinicSource();
-        Boolean isNull =  searchBean.setMyclinicQuery(paramObj);
-        if(isNull){
-            return ParamUtils.errorParam("必选参数为空了....");
-        }
-        String object = JSONObject.toJSONString(searchBean);
-
-        CaseSearchParser caseSearchParser = new CaseSearchParser(object);
+//        JSONObject newPower = transformPower(power,ADMISSION_DEPT,user);
+//        SearchBean searchBean = new SearchBean(page,size,ConfigUtils.getSearchIndexName(),newPower);
+//        searchBean.setMyclinicSource();
+//        Boolean isNull =  searchBean.setMyclinicQuery(paramObj);
+//        if(isNull){
+//            return ParamUtils.errorParam("必选参数为空了....");
+//        }
+//        String object = JSONObject.toJSONString(searchBean);
+//
+//        CaseSearchParser caseSearchParser = new CaseSearchParser(object);
         try {
-            //去es里搜索数据
-            String searchResultStr = caseSearchParser.parser();
-            if (StringUtils.isEmpty(searchResultStr)) {
-                logger.error("search empty " + caseSearchParser.getQuery());
-                return ParamUtils.errorParam("搜索无结果");
-            }
-            JSONObject searchResult = JSONObject.parseObject(searchResultStr);
-            // 做数据整理 返回给前端
-            transformMyclinicSearchResult(searchResult,paramObj);
-            
+//            //去es里搜索数据
+//            String searchResultStr = caseSearchParser.parser();
+//            if (StringUtils.isEmpty(searchResultStr)) {
+//                logger.error("search empty " + caseSearchParser.getQuery());
+//                return ParamUtils.errorParam("搜索无结果");
+//            }
+//            JSONObject searchResult = JSONObject.parseObject(searchResultStr);
+//            // 做数据整理 返回给前端
+//            transformMyclinicSearchResult(searchResult,paramObj);
+//
             JSONObject result = new JSONObject();
+            JSONObject object = new JSONObject();
+            object.put("GENDER","女");
+            object.put("BIRTH_DATE","1987-12-12");
+            object.put("INPATIENT_OUTPATIENT_SN","123456");
+            object.put("PATIENT_NAME","<span style=\"color:red\">王xxxx</span>");
+            object.put("IDCARD","12345678912345678");
+            object.put("MEDICARECARD","12345678");
+            object.put("VISIT_TYPE","门诊");
+            object.put("ADMISSION_DATE","1876-09-56");
+            object.put("ADMISSION_DEPT","甲状腺外科");
+            object.put("VISIT_SN","vis1234567");
+            JSONObject object1 = new JSONObject();
+            object1.put("GENDER","女");
+            object1.put("BIRTH_DATE","1987-12-12");
+            object1.put("INPATIENT_OUTPATIENT_SN","123456");
+            object1.put("PATIENT_NAME","<span style=\"color:red\">王xxxx</span>");
+            object1.put("IDCARD","12345678912345678");
+            object1.put("MEDICARECARD","12345678");
+            object1.put("VISIT_TYPE","门诊");
+            object1.put("ADMISSION_DATE","1876-09-56");
+            object1.put("ADMISSION_DEPT","甲状腺外科");
+            object1.put("VISIT_SN","vis1234567");
+            JSONObject object2 = new JSONObject();
+            object2.put("GENDER","女");
+            object2.put("BIRTH_DATE","1987-12-12");
+            object2.put("INPATIENT_OUTPATIENT_SN","123456");
+            object2.put("PATIENT_NAME","<span style=\"color:red\">王xxxx</span>");
+            object2.put("IDCARD","12345678912345678");
+            object2.put("MEDICARECARD","12345678");
+            object2.put("VISIT_TYPE","门诊");
+            object2.put("ADMISSION_DATE","1876-09-56");
+            object2.put("ADMISSION_DEPT","甲状腺外科");
+            object2.put("VISIT_SN","vis1234567");
+            JSONArray array = new JSONArray().fluentAdd(object).fluentAdd(object1).fluentAdd(object2);
             result.put("code", 1);
-            result.put("data", searchResult);
-            return gson.toJson(result);
+            result.put("data", array);
+            return result.toJSONString();
         } catch (Exception e) {
             logger.error("error", e);
             return ParamUtils.errorParam("搜索失败");
@@ -1237,9 +1273,15 @@ public class CaseProcessor {
                     if( !StringUtils.isEmpty(visObj.getString("OUTPATIENT_SN")) && !visObj.getString("OUTPATIENT_SN").contains(OUTPATIENT_SN)){
                         continue;
                     }
+                    VistTypeEnum vistTypeEnum = VistTypeEnum.getVistTypeEnum(visObj.getInteger("VISIT_TYPE"));
                     resObj.put("INPATIENT_SN",getMyclinicValue(INPATIENT_SN,visObj,"INPATIENT_SN"));
                     resObj.put("OUTPATIENT_SN",getMyclinicValue(OUTPATIENT_SN,visObj,"OUTPATIENT_SN"));
-                    resObj.put("VISIT_TYPE",visObj.getString("VISIT_TYPE"));
+                    switch (vistTypeEnum){
+                        case hospital: resObj.put("INPATIENT_OUTPATIENT_SN",getMyclinicValue(INPATIENT_SN,visObj,"INPATIENT_SN"));
+                        case outpatient: resObj.put("INPATIENT_OUTPATIENT_SN",getMyclinicValue(OUTPATIENT_SN,visObj,"OUTPATIENT_SN"));
+                        default: outpatient: resObj.put("INPATIENT_OUTPATIENT_SN","");
+                    }
+                    resObj.put("VISIT_TYPE",vistTypeEnum.getName());
                     resObj.put("ADMISSION_DATE",visObj.getString("ADMISSION_DATE"));
                     resObj.put("ADMISSION_DEPT",visObj.getString("ADMISSION_DEPT"));
                     resObj.put("VISIT_SN",visObj.getString("VISIT_SN"));
@@ -1342,4 +1384,12 @@ public class CaseProcessor {
         return result;
     }
 
+    public String getNewMyclinicSearchConfig() {
+        String searchConfig = ReadConditionByRedis.getNewMyclinicSearchConfig();
+        JSONObject object = JSONObject.parseObject(searchConfig);
+        JSONObject result = new JSONObject();
+        result.put("code", 1);
+        result.put("data", object.getJSONArray("config"));
+        return result.toJSONString();
+    }
 }
