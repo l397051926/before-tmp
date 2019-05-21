@@ -1243,6 +1243,9 @@ public class CaseProcessor {
             JSONArray array = new JSONArray().fluentAdd(object).fluentAdd(object1).fluentAdd(object2);
             result.put("code", 1);
             result.put("data", array);
+            result.put("size",size);
+            result.put("page",page);
+            result.put("count",3);
             return result.toJSONString();
         } catch (Exception e) {
             logger.error("error", e);
