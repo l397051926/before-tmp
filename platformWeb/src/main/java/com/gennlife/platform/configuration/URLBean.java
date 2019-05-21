@@ -350,8 +350,16 @@ public class URLBean {
     private String newMedicineOrder = null;
     private String newOrdersPharmacy = null;
     private String newDiagnose = null;
+    private String newMedicalRecords = null;
 
 
+    public String getNewMedicalRecords() {
+        return newMedicalRecords;
+    }
+
+    public void setNewMedicalRecords(String newMedicalRecords) {
+        this.newMedicalRecords = newMedicalRecords;
+    }
 
     public String getBuildIndexForAll() {
         return buildIndexForAll;
