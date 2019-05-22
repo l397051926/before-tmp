@@ -4,9 +4,8 @@
     <bookmark url="file://$PROJECT_DIR$/pom.xml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="增加 病案首页 的数据 展示">
+    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/cdr_config/home_page.json" afterPath="$PROJECT_DIR$/src/main/resources/cdr_config/home_page.json" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -39,31 +38,11 @@
       <file leaf-file-name="DetailController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/DetailController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="678">
-              <caret line="1097" column="43" lean-forward="false" selection-start-line="1097" selection-start-column="43" selection-end-line="1097" selection-end-column="43" />
+            <state relative-caret-position="327">
+              <caret line="1084" column="9" lean-forward="false" selection-start-line="1084" selection-start-column="9" selection-end-line="1084" selection-end-column="9" />
               <folding>
                 <marker date="1558422015190" expanded="true" signature="44707:44795" ph="{...}" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DetailProcessor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/DetailProcessor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="778" column="55" lean-forward="false" selection-start-line="778" selection-start-column="55" selection-end-line="778" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReadConditionByRedis.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="107" column="65" lean-forward="false" selection-start-line="107" selection-start-column="55" selection-end-line="107" selection-end-column="65" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -72,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/cdr_config/home_page.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="763" lean-forward="true" selection-start-line="0" selection-start-column="763" selection-end-line="0" selection-end-column="763" />
+              <caret line="0" column="104" lean-forward="true" selection-start-line="0" selection-start-column="104" selection-end-line="0" selection-end-column="104" />
               <folding />
             </state>
           </provider>
@@ -256,7 +235,7 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1358" />
+    <option name="x" value="1553" />
     <option name="y" value="-434" />
     <option name="width" value="1380" />
     <option name="height" value="744" />
@@ -794,13 +773,6 @@
       <workItem from="1557984831020" duration="8801000" />
       <workItem from="1558315678030" duration="6453000" />
     </task>
-    <task id="LOCAL-00070" summary="调整 分组筛选 接口缺少参数">
-      <created>1537933749454</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1537933749455</updated>
-    </task>
     <task id="LOCAL-00071" summary="导出数据接口调整">
       <created>1541842203220</created>
       <option name="number" value="00071" />
@@ -1137,7 +1109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1558422120980</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="修改配置文件">
+      <created>1558429165866</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1558429165866</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1173,7 +1152,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1379937000" />
+    <option name="totallyTimeSpent" value="1382088000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-434" width="1936" height="1176" extended-state="6" />
@@ -1320,7 +1299,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整权限 以及代码功能" />
     <MESSAGE value="调整数据结构" />
     <MESSAGE value="增加 etl 数据统计功能接口" />
     <MESSAGE value="调整接口数据结构" />
@@ -1345,7 +1323,8 @@
     <MESSAGE value="增加 home pege接口   新增我的真实首页搜索接口" />
     <MESSAGE value="调整配置接口" />
     <MESSAGE value="增加 病案首页 的数据 展示" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加 病案首页 的数据 展示" />
+    <MESSAGE value="修改配置文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改配置文件" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1893,24 +1872,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/DetailController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="678">
-          <caret line="1097" column="43" lean-forward="false" selection-start-line="1097" selection-start-column="43" selection-end-line="1097" selection-end-column="43" />
-          <folding>
-            <marker date="1558422015190" expanded="true" signature="44707:44795" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/DetailProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="778" column="55" lean-forward="false" selection-start-line="778" selection-start-column="55" selection-end-line="778" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="383">
@@ -1919,10 +1880,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/DetailProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="516">
+          <caret line="778" column="55" lean-forward="false" selection-start-line="778" selection-start-column="55" selection-end-line="778" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/DetailController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="1084" column="9" lean-forward="false" selection-start-line="1084" selection-start-column="9" selection-end-line="1084" selection-end-column="9" />
+          <folding>
+            <marker date="1558422015190" expanded="true" signature="44707:44795" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/cdr_config/home_page.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="763" lean-forward="true" selection-start-line="0" selection-start-column="763" selection-end-line="0" selection-end-column="763" />
+          <caret line="0" column="104" lean-forward="true" selection-start-line="0" selection-start-column="104" selection-end-line="0" selection-end-column="104" />
           <folding />
         </state>
       </provider>
