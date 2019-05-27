@@ -1217,7 +1217,8 @@ public class CaseProcessor {
             object.put("VISIT_TYPE","门诊");
             object.put("ADMISSION_DATE","1876-09-56");
             object.put("ADMISSION_DEPT","甲状腺外科");
-            object.put("VISIT_SN","vis1234567");
+            object.put("VISIT_SN","vis_7d29697edf26133dbb507c2a81bc2561");
+            object.put("PATIENT_SN","pat_03bb1fc4d3bb691bb141f3b907cad795");
             JSONObject object1 = new JSONObject();
             object1.put("GENDER","女");
             object1.put("BIRTH_DATE","1987-12-12");
@@ -1228,7 +1229,8 @@ public class CaseProcessor {
             object1.put("VISIT_TYPE","门诊");
             object1.put("ADMISSION_DATE","1876-09-56");
             object1.put("ADMISSION_DEPT","甲状腺外科");
-            object1.put("VISIT_SN","vis1234567");
+            object1.put("VISIT_SN","vis_7d29697edf26133dbb507c2a81bc2561");
+            object1.put("PATIENT_SN","pat_03bb1fc4d3bb691bb141f3b907cad795");
             JSONObject object2 = new JSONObject();
             object2.put("GENDER","女");
             object2.put("BIRTH_DATE","1987-12-12");
@@ -1239,7 +1241,8 @@ public class CaseProcessor {
             object2.put("VISIT_TYPE","门诊");
             object2.put("ADMISSION_DATE","1876-09-56");
             object2.put("ADMISSION_DEPT","甲状腺外科");
-            object2.put("VISIT_SN","vis1234567");
+            object2.put("VISIT_SN","vis_7d29697edf26133dbb507c2a81bc2561");
+            object2.put("PATIENT_SN","pat_03bb1fc4d3bb691bb141f3b907cad795");
             JSONArray array = new JSONArray().fluentAdd(object).fluentAdd(object1).fluentAdd(object2);
             result.put("code", 1);
             result.put("data", array);

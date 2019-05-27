@@ -1,49 +1,57 @@
 {
-  "config":[
+  "config": [
     {
-      "title": "姓名",
-      "dataIndex": "PATIENT_NAME",
-      "key": "PATIENT_NAME"
+      "title": "患者信息",
+      "children": [
+        {
+          "title": "姓名",
+          "dataIndex": "PATIENT_NAME",
+          "key": "PATIENT_NAME"
+        },
+        {
+          "title": "性别",
+          "dataIndex": "GENDER",
+          "key": "GENDER"
+        },
+        {
+          "title": "出生日期",
+          "dataIndex": "BIRTH_DATE",
+          "key": "BIRTH_DATE"
+        },
+        {
+          "title": "证件号",
+          "dataIndex": "IDCARD",
+          "key": "IDCARD"
+        },
+        {
+          "title": "就诊卡号",
+          "dataIndex": "MEDICARECARD",
+          "key": "MEDICARECARD"
+        }
+      ]
     },
     {
-      "title": "性别",
-      "dataIndex": "GENDER",
-      "key": "GENDER"
-    },
-    {
-      "title": "出生日期",
-      "dataIndex": "BIRTH_DATE",
-      "key": "BIRTH_DATE"
-    },
-    {
-      "title": "证件号",
-      "dataIndex": "IDCARD",
-      "key": "IDCARD"
-    },
-    {
-      "title": "就诊卡号",
-      "dataIndex": "MEDICARECARD",
-      "key": "MEDICARECARD"
-    },
-    {
-      "title": "门诊住院号",
-      "dataIndex": "INPATIENT_OUTPATIENT_SN",
-      "key": "INPATIENT_OUTPATIENT_SN"
-    },
-    {
-      "title": "就诊类别",
-      "dataIndex": "VISIT_TYPE",
-      "key": "VISIT_TYPE"
-    },
-    {
-      "title": "就诊日期",
-      "dataIndex": "ADMISSION_DATE",
-      "key": "ADMISSION_DATE"
-    },
-    {
-      "title": "就诊科室",
-      "dataIndex": "ADMISSION_DEPT",
-      "key": "ADMISSION_DEPT"
+      "title":"最近一次满足条件的就诊信息",
+      "children":[
+        {
+          "title": "门诊住院号",
+          "dataIndex": "INPATIENT_OUTPATIENT_SN",
+          "key": "INPATIENT_OUTPATIENT_SN"
+        },{
+          "title": "就诊类别",
+          "dataIndex": "VISIT_TYPE",
+          "key": "VISIT_TYPE"
+        },
+        {
+          "title": "就诊日期",
+          "dataIndex": "ADMISSION_DATE",
+          "key": "ADMISSION_DATE"
+        },
+        {
+          "title": "就诊科室",
+          "dataIndex": "ADMISSION_DEPT",
+          "key": "ADMISSION_DEPT"
+        }]
     }
   ]
 }
