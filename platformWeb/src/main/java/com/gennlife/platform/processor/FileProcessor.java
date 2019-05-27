@@ -195,4 +195,15 @@ public class FileProcessor {
         }
 
     }
+
+    public String exportTaskCancelByProjectId(JsonObject paramObj) {
+        try {
+            String url = ConfigurationService.getUrlBean().getExportTaskCancelByProjectId();
+            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            return result;
+        } catch (Exception e) {
+            logger.error("获取导出任务列表", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
 }

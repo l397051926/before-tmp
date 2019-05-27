@@ -152,6 +152,7 @@
         <property name="exportTaskDelete" value="http://${fileService.ipAndPort}/FileService/Projects/Export/Task/Delete"></property>
         <property name="exportTaskDownload" value="http://${fileService.ipAndPort}/FileService/Projects/Export/Task/Download"></property>
         <property name="exportTaskList" value="http://${fileService.ipAndPort}/FileService/Projects/Export/Task/List"></property>
+        <property name="exportTaskCancelByProjectId" value="http://${fileService.ipAndPort}/FileService/Projects/Export/Task/CancelByProjectId"></property>
 
 
         <!--知识库服务 接口 -->
