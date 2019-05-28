@@ -351,7 +351,6 @@ public class URLBean {
     private String miningCatalog = null;
     private String miningDept = null;
     private String miningParent = null;
-
     /**
      * crf 高级搜索调到详情页
      */
@@ -531,6 +530,8 @@ public class URLBean {
     private String exportTaskDownload = null;
     private String exportTaskList = null;
     private String exportTaskStart = null;
+    private String exportTaskCancelByProjectId = null;
+
 
     public String getHighlight() {
         return highlight;
@@ -2420,5 +2421,13 @@ public class URLBean {
 
     public void setIndexSetting(String indexSetting) {
         this.indexSetting = indexSetting;
+    }
+
+    public String getExportTaskCancelByProjectId() {
+        return exportTaskCancelByProjectId;
+    }
+
+    public void setExportTaskCancelByProjectId(String exportTaskCancelByProjectId) {
+        this.exportTaskCancelByProjectId = exportTaskCancelByProjectId;
     }
 }

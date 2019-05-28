@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="合并 郑州中心的代码">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/DragsController.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/DragsService.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/impl/DragsServiceImpl.java" />
+    <list default="true" id="444d0de0-2a20-475e-9e7c-3d1d07d302a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/IpConfigBean.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/IpConfigBean.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyUserMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyUserMapper.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/parse/CaseSearchParser.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/parse/CaseSearchParser.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/bootstrap.properties" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap.properties" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/urlconf.xml" afterPath="$PROJECT_DIR$/src/main/resources/urlconf.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis_config/SyUserMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis_config/SyUserMapper.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/profiles/local/bootstrap.properties" afterPath="$PROJECT_DIR$/src/main/resources/profiles/local/bootstrap.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,245 +38,134 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DragsController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/DragsController.java">
+      <file leaf-file-name="CaseController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CaseController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="38" column="46" lean-forward="false" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="46" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DragsService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/DragsService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="8" column="20" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+            <state relative-caret-position="355">
+              <caret line="279" column="0" lean-forward="false" selection-start-line="279" selection-start-column="0" selection-end-line="279" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DragsServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/impl/DragsServiceImpl.java">
+      <file leaf-file-name="AuthorityUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="34" column="30" lean-forward="false" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="30" />
-              <folding>
-                <element signature="docComment;class#DragsServiceImpl#0" expanded="false" />
-                <element signature="method#drgsIndex#0;class#DragsServiceImpl#0" expanded="false" />
-                <element signature="method#indexSetting#0;class#DragsServiceImpl#0" expanded="false" />
-                <element signature="method#indexList#0;class#DragsServiceImpl#0" expanded="false" />
-                <element signature="method#factorList#0;class#DragsServiceImpl#0" expanded="false" />
-                <element signature="method#miningCatalog#0;class#DragsServiceImpl#0" expanded="false" />
-                <element signature="method#miningDept#0;class#DragsServiceImpl#0" expanded="false" />
-                <element signature="method#miningParent#0;class#DragsServiceImpl#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="URLBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="346" column="28" lean-forward="false" selection-start-line="346" selection-start-column="19" selection-end-line="346" selection-end-column="28" />
-              <folding>
-                <element signature="docComment;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#casePatientBatchData#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseDetailCommonUrl#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseSimilarServiceSimilarPatientExtraInfo#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#vitaGramServerNccnRecommendPath#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseSimilarServiceSimilarPatientInfo#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseSimilarServiceSimilarBasicDetail#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseSimilarServiceGetSimilars#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#vitaGramServerVitaGramData#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseSimilarServiceVitaboardparam#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseSimilarServiceSimilarParam#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseSimilarServiceSimilarQuery#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseyVisitRadiotherapy#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#casePatientRadiotherapy#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#casePatientDcOrder#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseVisitDcOrder#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CRFIsExistPatient#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CSBaseline#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseDetailVisitClassifyImageURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseDetailVisitClassifySectionURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#sampleUploadAdaptTagURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CRFImportResult#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#sampleDetailSearchURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CRFImportMap#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CRFImportFile#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#fileStoreForCRFImport#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#crfSearchURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#EmailSendURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#EmailURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#toolsURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#sampleImportIURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#sampleImportChecKIURL#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setSampleImportChecKIURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#synonyms#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#getGennomics#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#sampleDetailURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseAdmission_records#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseSearchURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseSuggestURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseSuggestURL2#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseDetailPatientBasicInfoURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseDetailPatientBasicFigureURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#casePatientBasicTimeAxisURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#casePhysical_examination#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#casePhysical_examination_list#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#knowledgeURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseVisit_detail#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseLab_result_item#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#knowledgeDiseaseSearchGenesURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseLab_result_item_list#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#knowledgeGeneInfoURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#knowledgeVariationInfoURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#knowledgeDetailVariationSearchDiseaseURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#knowledgeDetailVariationSearchDrugURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseDiagnose#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseLab_result_list#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseNew_lab_result_list#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseNewMedicalCourse#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseNewCourseRecords#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseNewExamResult#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseNewQuotaReports#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseGenetic_disease#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseDrug_reaction#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseCategory_catalog#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseMolecular_detection#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseBiological_specimen#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseExam_result#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#casePathological_examination#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#knowledgePharmGKBSearchDrugURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseGeneErrorURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#buildIndexForAll#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CaseToDetail#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CRFProjectCRFListURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CRFAutoMapURL#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CRFGetAttrID#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CRFGetGroupID#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CRFModelByProjectID#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CRFModelByCRFID#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CRFUpLoadDataForCheck#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CRFEditModel#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CRFSaveModel#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CRFGetData#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CRFUpLoadData#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CRFSaveData#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CRFSampleCaseList#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CRFDeleteSample#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CRFSearchSampleList#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseMedicalRecord#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseOperationRecords#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#casePharmacy#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseDischargeRecords#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseCourseRecords#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#caseMedicalCourse#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#CSSmg#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#InputSmartPrompt#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#PreLiminaryUrl#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#exportCreateTask#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseAdmission_records#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#yyssoUrl#0;class#URLBean#0" expanded="false" />
-                <element signature="method#getSsoSuccessUrlTemp#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setSsoSuccessUrlTemp#0;class#URLBean#0" expanded="false" />
-                <element signature="method#getSsoErrorRedirectUrl#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setSsoErrorRedirectUrl#0;class#URLBean#0" expanded="false" />
-                <element signature="method#getSsoSysmark#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setSsoSysmark#0;class#URLBean#0" expanded="false" />
-                <element signature="method#getYyssoUrl#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setYyssoUrl#0;class#URLBean#0" expanded="false" />
-                <element signature="method#getIsMock#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setIsMock#0;class#URLBean#0" expanded="false" />
-                <element signature="method#getSsoSuccessUrl#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setSsoSuccessUrl#0;class#URLBean#0" expanded="false" />
-                <element signature="method#getSsoFailUrl#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setSsoFailUrl#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setDeleteResearchVariable#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setSaveResearchVariable#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setInsertGroupDataPatient#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setExportGroupDataPatient#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setPatientGroupCondition#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setContResultForPatientUrl#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCheckActiveDataIsChange#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setGetCalcTotalByActiveId#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setClacIndexResultSearch#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setPreFindForProjectData#0;class#URLBean#0" expanded="false" />
-                <element signature="docComment;field#PatientDetailThumbnail#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setPatientDetailThumbnail#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCRFModelForTraceByCRFID#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCRFPatientVisitDetail#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCRFPatientAllVisitsDetail#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCRFProjectCRFListURL#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setKnowledgePharmGKBSearchDrugURL#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCasePathological_examination#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseCategory_catalog#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseMolecular_detection#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseBiological_specimen#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setKnowledgeDetailVariationSearchDiseaseURL#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setKnowledgeDetailVariationSearchDrugURL#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setKnowledgeVariationInfoURL#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setKnowledgeGeneInfoURL#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseLab_result_item_list#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setKnowledgeDiseaseSearchGenesURL#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCasePhysical_examination_list#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCasePhysical_examination#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCasePatientBasicTimeAxisURL#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseDetailPatientBasicInfoURL#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseDetailPatientBasicFigureURL#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseOperationRecords#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseDischargeRecords#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCRFUpLoadDataForCheck#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setFileStoreForCRFImport#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setSampleDetailSearchURL#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setSampleUploadAdaptTagURL#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseDetailVisitClassifySectionURL#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseDetailVisitClassifyImageURL#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCasePatientRadiotherapy#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseyVisitRadiotherapy#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCasePatientChemotherapyInfo#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseSimilarServiceGetSimilars#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseSimilarServiceVitaboardparam#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseSimilarServiceSimilarParam#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseSimilarServiceSimilarQuery#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseSimilarServiceSimilarBasicDetail#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseSimilarServiceSimilarPatientInfo#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setVitaGramServerVitaGramData#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setVitaGramServerNccnRecommendPath#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setVitaGramServerMedicalHistoryRecommendPath#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseSimilarServiceSimilarPatientExtraInfo#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCasePatientBatchData#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseDetailCommonUrl#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setSaveRelatedPhrasesSelectionBehavior#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseNew_lab_result_list#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseNewMedicalCourse#0;class#URLBean#0" expanded="false" />
-                <element signature="method#setCaseNewCourseRecords#0;class#URLBean#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urlconf.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/urlconf.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="310" column="65" lean-forward="false" selection-start-line="310" selection-start-column="51" selection-end-line="310" selection-end-column="65" />
+            <state relative-caret-position="155">
+              <caret line="174" column="28" lean-forward="false" selection-start-line="174" selection-start-column="23" selection-end-line="174" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bootstrap.properties" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/bootstrap.properties">
+      <file leaf-file-name="CaseProcessor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="635">
-              <caret line="45" column="37" lean-forward="false" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
+            <state relative-caret-position="-217">
+              <caret line="777" column="16" lean-forward="false" selection-start-line="777" selection-start-column="16" selection-end-line="777" selection-end-column="16" />
+              <folding>
+                <element signature="e#33612#33613#0" expanded="true" />
+                <element signature="e#33679#33680#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/UserController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="229">
+              <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserProcessor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/UserProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="256">
+              <caret line="225" column="36" lean-forward="true" selection-start-line="225" selection-start-column="36" selection-end-line="225" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SyUserMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyUserMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="592">
+              <caret line="388" column="25" lean-forward="false" selection-start-line="388" selection-start-column="25" selection-end-line="388" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SyUserMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis_config/SyUserMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="700" column="26" lean-forward="true" selection-start-line="700" selection-start-column="26" selection-end-line="700" selection-end-column="26" />
+              <folding>
+                <marker date="1558419503671" expanded="true" signature="2015:2166" ph="SELECT FROM gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="2275:2429" ph="SELECT FROM gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="2539:2693" ph="SELECT FROM gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="2790:2908" ph="SELECT uid F... gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="3021:3113" ph="SELECT uid F... gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="3224:3352" ph="SELECT FROM gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="3422:3524" ph="UPDATE gennlife_user SE... " />
+                <marker date="1558419503671" expanded="true" signature="3623:5544" ph="UPDATE gennl... gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="5664:5779" ph="SELECT FROM gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="5852:5995" ph="UPDATE gennlife_user SE... " />
+                <marker date="1558419503671" expanded="true" signature="6063:6160" ph="UPDATE gennlife_user SE... " />
+                <marker date="1558419503671" expanded="true" signature="6232:6328" ph="UPDATE gennlife_user S... " />
+                <marker date="1558419503671" expanded="true" signature="6391:6493" ph="UPDATE gennlife_user SE... " />
+                <marker date="1558419503671" expanded="true" signature="6561:6657" ph="UPDATE gennlife_user S... " />
+                <marker date="1558419503671" expanded="true" signature="6738:6835" ph="SELECT count... gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="6927:7026" ph="SELECT gennl... gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="7118:7217" ph="SELECT gennl... gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="7313:7394" ph="SELECT uid F... gennlife_user_group" />
+                <marker date="1558419503671" expanded="true" signature="7476:7609" ph="SELECT count... gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="8467:8667" ph="SELECT uid,p... gennlife_manage" />
+                <marker date="1558419503671" expanded="true" signature="8771:9178" ph="SELECT FROM gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="10218:10717" ph="SELECT FROM gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="10831:11060" ph="SELECT FROM gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="12430:12612" ph="select from searchConditionHistory" />
+                <marker date="1558419503671" expanded="true" signature="12771:12924" ph="select from searchConditionHistory" />
+                <marker date="1558419503671" expanded="true" signature="14597:15326" ph="UPDATE searc... searchConditionHistory" />
+                <marker date="1558419503671" expanded="true" signature="18047:18205" ph="SELECT FROM gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="18325:20072" ph="UPDATE gennl... gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="20176:20420" ph="SELECT FROM gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="20830:21005" ph="SELECT count... gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="21085:21202" ph="SELECT uid F... gennlife_manage" />
+                <marker date="1558419503671" expanded="true" signature="21250:21308" ph="DELETE FROM gennlife_user_vitaConfig... " />
+                <marker date="1558419503671" expanded="true" signature="21356:21432" ph="insert into gennlife_user_vitaConfig... " />
+                <marker date="1558419503671" expanded="true" signature="21506:21579" ph="SELECT dataA... gennlife_user_vitaConfig" />
+                <marker date="1558419503671" expanded="true" signature="21659:21737" ph="SELECT uid F... gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="21817:21872" ph="SELECT pwd F... gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="21961:22049" ph="SELECT failu... gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="22143:22233" ph="SELECT effec... gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="22662:22706" ph="select DISTI... gennlife_user_group" />
+                <marker date="1558419503671" expanded="true" signature="23250:23387" ph="update gennlife_user s... " />
+                <marker date="1558419503671" expanded="true" signature="23834:24125" ph="select a.uid... gennlife_user_group" />
+                <marker date="1558419503671" expanded="true" signature="24184:24460" ph="UPDATE gennl... gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="24547:24644" ph="SELECT count... gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="24741:24842" ph="SELECT count... gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="24941:24947" ph="SELECT count... gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="24941:25100" ph="SELECT COUNT... gennlife_user_role" />
+                <marker date="1558419503671" expanded="true" signature="25031:25083" ph="SELECT rolei... gennlife_role" />
+                <marker date="1558419503671" expanded="true" signature="25212:25655" ph="SELECT FROM gennlife_user" />
+                <marker date="1558419503671" expanded="true" signature="26267:26320" ph="SELECT uid F... gennlife_user" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CaseSearchParser.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/parse/CaseSearchParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="261">
+              <caret line="60" column="45" lean-forward="true" selection-start-line="60" selection-start-column="45" selection-end-line="60" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -286,58 +176,56 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
-        <option value="HTML File" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>caseDetailPatientBasicInfoURL</find>
-      <find>VisitDiagnose</find>
-      <find>caseDiagnose</find>
-      <find>ssoSuccessUrl</find>
-      <find>ssoLogin</find>
-      <find>resultBean</find>
-      <find>set</find>
-      <find>setSessi</find>
-      <find>session</find>
-      <find>paramRe</find>
-      <find>loginSession</find>
-      <find>servletRequest</find>
-      <find>&quot;admin_session_hits&quot;</find>
-      <find>ark-uiservice</find>
-      <find>get_patien_sn</find>
-      <find>PatientBasicInfo</find>
-      <find>sessionID</find>
-      <find>clacIndexResultSearch</find>
-      <find>ClacIndexResultSearch</find>
-      <find>PatientBasicTimeAxis</find>
-      <find>getCasePatientBasicTimeAxisURL</find>
-      <find>casePatientBasicTimeAxisURL</find>
-      <find>CategoryCatalog</find>
-      <find>caseCategory_catalog</find>
-      <find>caseNewCourseRecords</find>
-      <find>getProjectByCrfId</find>
+      <find>updateOneGroup</find>
+      <find>getGroupsBySearchName</find>
+      <find>GroupColumn</find>
+      <find>uids</find>
+      <find>apache.rocketmq.consumer.PushConsumer</find>
+      <find>getUserIdByLabID</find>
+      <find>crf_hit_sort</find>
+      <find>import</find>
+      <find>jsonObject</find>
+      <find>query</find>
+      <find>updateBatch</find>
+      <find>msgQuery</find>
+      <find>getuser</find>
+      <find>jedisClusterNodes</find>
+      <find>getAllResources</find>
+      <find>getLabModelForLabs</find>
+      <find>getLabs</find>
+      <find>getLabMAP</find>
+      <find>Login</find>
+      <find>getUsersByGroupID</find>
+      <find>list</find>
+      <find>全院科室</find>
       <find>power</find>
-      <find>newOrdersPharmacy</find>
-      <find>yongyou_ssoUrl</find>
-      <find>getPatienSn</find>
+      <find>ImportCheck</find>
+      <find>searchcas</find>
+      <find>SearchCase</find>
+      <find>user</find>
+      <find>getBenKeMemberNum</find>
+      <find>getAllUserId</find>
+      <find>existUserNumber</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;open&quot;: false</replace>
       <replace>POST</replace>
       <replace>${rws.ipAndPort}/rws-service</replace>
       <replace>localhost:9000</replace>
-      <replace>visits.dia</replace>
     </replaceStrings>
     <dirStrings>
       <dir>C:\lmx\clooud\Ark-UI_Service\platformWeb</dir>
       <dir>C:\work\Ark-UI_Service\platformWeb\src\main\resources\profiles</dir>
       <dir>C:\work\Ark-UI_Service\platformWeb\src\main\resources\crf</dir>
-      <dir>C:\work\Ark-UI_Service\platformWeb\src\main\java\com\gennlife\platform\controller</dir>
       <dir>C:\gennlifeWork\uiService\Ark-UI_Service\platformWeb</dir>
+      <dir>C:\gennlifeWork\uiService\Ark-UI_Service\platformWeb\src\main\java\com\gennlife\platform\controller</dir>
+      <dir>C:\work\Ark-UI_Service\platformWeb\src\main\java\com\gennlife\platform\controller</dir>
       <dir>C:\work\Ark-UI_Service\platformWeb</dir>
     </dirStrings>
   </component>
@@ -345,7 +233,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="release_0.0.9.1_merge" />
+        <entry key="$PROJECT_DIR$/.." value="release0.0.7.3-release0.0.8.0.sso.dev.hits" />
       </map>
     </option>
   </component>
@@ -357,57 +245,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SimpleCORSFilter.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CaseController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyUserMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/SyUserMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/crf/liver_cancer.json" />
-        <option value="$PROJECT_DIR$/src/main/resources/rws/searchDefinedEventListConfiglymphoma.json" />
-        <option value="$PROJECT_DIR$/src/main/resources/crf/lymphoma.json" />
-        <option value="$PROJECT_DIR$/src/main/resources/rws/crf_rws_lymphoma.json" />
-        <option value="$PROJECT_DIR$/src/main/resources/profiles/local/bootstrap.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybaits.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/OrgMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/OrgMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/init/TimeService.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/Configuration.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BaseController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/EtlDatacountController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/etl/EtlDatacount.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/etl/etl_sort.json" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/EtlController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/enums/EtlStatusTypeEnum.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/EtlDatacountMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/EtlDatacountMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/TimeUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/parse/CaseSearchParser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/init/RoleStartRunner.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/etl/etl_data_count_config.json" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/HitsConfigBean.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/crf/EMR.json" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/FileController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/FileProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/DetailController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/DetailProcessor.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/detail/detail_schema_data.json" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/UserController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/demo.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/impl/DragsServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/DragsService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/DragsController.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/rocketmq/RocketMqContent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyResourceMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/SyResourceMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Resource.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/GroupMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/GroupMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Group.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/SysMessageBean.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/system/systemt_message_config.json" />
+        <option value="$PROJECT_DIR$/src/main/resources/system/system_message_config.json" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/profiles/yantai162/bootstrap.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/profiles/yaitaiyitiji/bootstrap.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/profiles/yaitaimoni/bootstrap.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/profiles/test/bootstrap.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java" />
         <option value="$PROJECT_DIR$/src/main/resources/urlconf.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/MessageCenterController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/MessageCenterProcessor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/IpconfigBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Lab.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/OrgMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/OrgMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/JedisClusterFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/RedisUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/rocketmq/ProducerService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/init/RoleStartRunner.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/rocketmq/ProjectConsumer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/UserProcessor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/profiles/local/bootstrap.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/IpConfigBean.java" />
         <option value="$PROJECT_DIR$/src/main/resources/bootstrap.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyUserMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis_config/SyUserMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gennlife/platform/parse/CaseSearchParser.java" />
       </list>
     </option>
   </component>
@@ -430,12 +318,27 @@
       <expand>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="Profiles" type="6783ec58:MavenProjectsStructure$ProfilesNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
           <item name="ArkUiService" type="9519ce18:MavenProjectsStructure$ProjectNode" />
         </path>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
           <item name="ArkUiService" type="9519ce18:MavenProjectsStructure$ProjectNode" />
           <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="ArkUiService" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="ArkUiService" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+          <item name="com.squareup.okhttp:okhttp:2.7.5" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
         </path>
       </expand>
       <select />
@@ -449,25 +352,6 @@
     <option name="y" value="-434" />
     <option name="width" value="1936" />
     <option name="height" value="1176" />
-  </component>
-  <component name="ProjectInspectionProfilesVisibleTreeState">
-    <entry key="Project Default">
-      <profile-state>
-        <expanded-state>
-          <State>
-            <id />
-          </State>
-          <State>
-            <id>Ali-Check</id>
-          </State>
-        </expanded-state>
-        <selected-state>
-          <State>
-            <id>AlibabaThreadPoolCreation</id>
-          </State>
-        </selected-state>
-      </profile-state>
-    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -488,17 +372,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="platform" type="58d84e3e:PackageViewProjectNode" />
-              <item name="platform" type="616d4139:PackageViewModuleNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -567,11 +441,7 @@
               <item name="platformWeb" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="gennlife" type="462c0819:PsiDirectoryNode" />
-              <item name="platform" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="platform" type="b2602c69:ProjectViewProjectNode" />
@@ -579,11 +449,30 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="crf" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="platformWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="profiles" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="platformWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="profiles" type="462c0819:PsiDirectoryNode" />
+              <item name="local" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -595,34 +484,37 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="platform" type="58d84e3e:PackageViewProjectNode" />
+              <item name="platform" type="616d4139:PackageViewModuleNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="sample&#9;PSI&#9;JAVA://com.gennlife.platform.processor.SampleProcessor&#10;Timeu&#9;FILE&#9;file://C:/work/Ark-UI_Service/platformWeb/src/main/java/com/gennlife/platform/util/TimeUtils.java&#10;CaseProcessor&#9;FILE&#9;file://C:/gennlifeWork/uiService/Ark-UI_Service/platformWeb/src/main/java/com/gennlife/platform/processor/CaseProcessor.java&#10;casePr&#9;FILE&#9;file://C:/work/Ark-UI_Service/platformWeb/src/main/java/com/gennlife/platform/processor/CaseProcessor.java&#10;project&#9;FILE&#9;file://C:/work/Ark-UI_Service/platformWeb/src/main/java/com/gennlife/platform/processor/ProjectProcessor.java&#10;LaboratoryProcessor&#9;FILE&#9;file://C:/work/Ark-UI_Service/platformWeb/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java" />
-    <property name="last_opened_file_path" value="C:/gennlifeWork/oldWebUi/Ark-Web_UI" />
-    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
-    <property name="extract.method.default.visibility" value="private" />
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SearchEverywhereHistoryKey" value="jed&#9;FILE&#9;file://C:/work/Ark-UI_Service/platformWeb/src/main/java/com/gennlife/platform/configuration/JedisClusterFactory.java&#10;url&#9;FILE&#9;file://C:/work/Ark-UI_Service/platformWeb/src/main/resources/urlconf.xml&#10;Detailco&#9;FILE&#9;file://C:/work/Ark-UI_Service/platformWeb/src/main/java/com/gennlife/platform/controller/DetailController.java&#10;Urlbean&#9;FILE&#9;file://C:/work/Ark-UI_Service/platformWeb/src/main/java/com/gennlife/platform/configuration/URLBean.java&#10;Userp&#9;FILE&#9;file://C:/work/Ark-UI_Service/platformWeb/src/main/java/com/gennlife/platform/processor/UserProcessor.java&#10;casePr&#9;FILE&#9;file://C:/work/Ark-UI_Service/platformWeb/src/main/java/com/gennlife/platform/processor/CaseProcessor.java&#10;project&#9;FILE&#9;file://C:/work/Ark-UI_Service/platformWeb/src/main/java/com/gennlife/platform/processor/ProjectProcessor.java&#10;LaboratoryProcessor&#9;FILE&#9;file://C:/work/Ark-UI_Service/platformWeb/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java" />
+    <property name="last_opened_file_path" value="C:/rws_streaming/rws-streaming" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\work\Ark-UI_Service\platformWeb\src\main\resources\detail" />
       <recent name="C:\work\Ark-UI_Service\platformWeb\src\main\resources\crf" />
       <recent name="C:\work\Ark-UI_Service\platformWeb\src\main\resources\rws" />
     </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.gennlife.platform.dao" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\work\Ark-UI_Service\platformWeb\src\main\resources\mybatis_config" />
+      <recent name="C:\work\Ark-UI_Service\platformWeb\src\main\java\com\gennlife\platform" />
+      <recent name="C:\gennlifeWork\uiService\Ark-UI_Service\platformWeb\src\main\resources\crf" />
       <recent name="C:\work\Ark-UI_Service\platformWeb\src\main\resources\profiles\local" />
       <recent name="C:\work\Ark-UI_Service\platformWeb\src\main\resources\rws" />
       <recent name="C:\work\Ark-UI_Service\platformWeb\src\main\resources\crf" />
-      <recent name="C:\work\Ark-UI_Service\platformWeb" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -671,25 +563,6 @@
         </pattern>
       </extension>
       <option name="MAIN_CLASS_NAME" value="com.gennlife.platform.processor.CaseProcessor" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="platform" />
-      <envs />
-    </configuration>
-    <configuration name="EtlDatacountServiceImpl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.gennlife.platform.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.gennlife.platform.service.EtlDatacountServiceImpl" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -809,6 +682,31 @@
       <envs />
       <patterns />
     </configuration>
+    <configuration name="RedisTest.readCrfMapping" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.gennlife.platform.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="platform" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.gennlife.platform" />
+      <option name="MAIN_CLASS_NAME" value="com.gennlife.platform.RedisTest" />
+      <option name="METHOD_NAME" value="readCrfMapping" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -872,19 +770,19 @@
     <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Application.TestModel" />
       <item index="1" class="java.lang.String" itemvalue="Application.ArkUiServiceApplication" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.ConditionTest.jsonObject" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.ConditionTest.read" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.RedisTest.deleteRedisKey" />
-      <item index="5" class="java.lang.String" itemvalue="Application.CaseProcessor" />
-      <item index="6" class="java.lang.String" itemvalue="Application.EtlDatacountServiceImpl" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.RedisTest.readCrfMapping" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.ConditionTest.jsonObject" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.ConditionTest.read" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.RedisTest.deleteRedisKey" />
+      <item index="6" class="java.lang.String" itemvalue="Application.CaseProcessor" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.EtlDatacountServiceImpl" />
-        <item index="1" class="java.lang.String" itemvalue="Application.CaseProcessor" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.RedisTest.deleteRedisKey" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.ConditionTest.read" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.ConditionTest.jsonObject" />
+        <item index="0" class="java.lang.String" itemvalue="Application.CaseProcessor" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.RedisTest.deleteRedisKey" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.ConditionTest.read" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.ConditionTest.jsonObject" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.RedisTest.readCrfMapping" />
       </list>
     </recent_temporary>
   </component>
@@ -956,25 +854,187 @@
       <workItem from="1542426248629" duration="1340000" />
       <workItem from="1543202848550" duration="2914000" />
       <workItem from="1543227214282" duration="3990000" />
-      <workItem from="1546423259497" duration="875000" />
-      <workItem from="1546518272424" duration="628000" />
-      <workItem from="1546659302757" duration="624000" />
-      <workItem from="1546670951819" duration="11223000" />
-      <workItem from="1547539398952" duration="1218000" />
-      <workItem from="1551843690100" duration="7119000" />
-      <workItem from="1551945389891" duration="9357000" />
-      <workItem from="1553478554542" duration="43304000" />
-      <workItem from="1553739809529" duration="4549000" />
-      <workItem from="1553780294591" duration="141000" />
-      <workItem from="1553840756645" duration="5547000" />
-      <workItem from="1554081279429" duration="6608000" />
-      <workItem from="1554100808354" duration="18804000" />
-      <workItem from="1554430349939" duration="5673000" />
-      <workItem from="1554450184242" duration="20867000" />
-      <workItem from="1555392577321" duration="13102000" />
-      <workItem from="1556080143383" duration="1245000" />
-      <workItem from="1557134068910" duration="4285000" />
-      <workItem from="1557296194551" duration="5481000" />
+      <workItem from="1546423259497" duration="202000" />
+      <workItem from="1548398437220" duration="3937000" />
+      <workItem from="1555557040395" duration="9801000" />
+      <workItem from="1555569887068" duration="4641000" />
+      <workItem from="1557643908619" duration="465000" />
+      <workItem from="1558417359359" duration="2732000" />
+    </task>
+    <task id="LOCAL-00043" summary="淋巴流 默认不展开">
+      <created>1530259340354</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1530259340354</updated>
+    </task>
+    <task id="LOCAL-00044" summary="淋巴流 默认不展开">
+      <created>1530259609247</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1530259609247</updated>
+    </task>
+    <task id="LOCAL-00045" summary="淋巴流 默认不展开">
+      <created>1530259904566</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1530259904566</updated>
+    </task>
+    <task id="LOCAL-00046" summary="淋巴流 默认不展开">
+      <created>1530260155128</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1530260155128</updated>
+    </task>
+    <task id="LOCAL-00047" summary="淋巴流 默认不展开">
+      <created>1530260450830</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1530260450830</updated>
+    </task>
+    <task id="LOCAL-00048" summary="淋巴流 默认不展开">
+      <created>1530260707489</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1530260707489</updated>
+    </task>
+    <task id="LOCAL-00049" summary="淋巴流 默认不展开">
+      <created>1530261328878</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1530261328878</updated>
+    </task>
+    <task id="LOCAL-00050" summary="淋巴流 默认不展开">
+      <created>1530261607751</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1530261607752</updated>
+    </task>
+    <task id="LOCAL-00051" summary="淋巴流 默认不展开">
+      <created>1530261732215</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1530261732215</updated>
+    </task>
+    <task id="LOCAL-00052" summary="淋巴流 默认不展开">
+      <created>1530262024534</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1530262024534</updated>
+    </task>
+    <task id="LOCAL-00053" summary="淋巴流 默认不展开  --解决">
+      <created>1530262255067</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1530262255067</updated>
+    </task>
+    <task id="LOCAL-00054" summary="心血管配置文件修改">
+      <created>1530264305475</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1530264305475</updated>
+    </task>
+    <task id="LOCAL-00055" summary="修改 用户id 不能保存问题">
+      <created>1530588342207</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1530588342208</updated>
+    </task>
+    <task id="LOCAL-00056" summary="修改 用户id 不能保存问题">
+      <created>1531182716883</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1531182716884</updated>
+    </task>
+    <task id="LOCAL-00057" summary="增加 搜索rws用户展示列表">
+      <created>1531299239248</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1531299239248</updated>
+    </task>
+    <task id="LOCAL-00058" summary="增加 搜索rws用户展示列表">
+      <created>1531907189505</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1531907189506</updated>
+    </task>
+    <task id="LOCAL-00059" summary="调回 fileter">
+      <created>1531910249583</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1531910249583</updated>
+    </task>
+    <task id="LOCAL-00060" summary="rws 测试调整">
+      <created>1531918191816</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1531918191816</updated>
+    </task>
+    <task id="LOCAL-00061" summary="rws 调试">
+      <created>1531919014971</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1531919014971</updated>
+    </task>
+    <task id="LOCAL-00062" summary="rws 调试">
+      <created>1531919184662</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1531919184662</updated>
+    </task>
+    <task id="LOCAL-00063" summary="rws 调整 权限">
+      <created>1531965695846</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1531965695847</updated>
+    </task>
+    <task id="LOCAL-00064" summary="rws 调整 权限">
+      <created>1533048257629</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1533048257630</updated>
+    </task>
+    <task id="LOCAL-00065" summary="打war包">
+      <created>1533048328966</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1533048328966</updated>
+    </task>
+    <task id="LOCAL-00066" summary="增加修改活动名称功能">
+      <created>1533629537644</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1533629537644</updated>
+    </task>
+    <task id="LOCAL-00067" summary="树级回显功能">
+      <created>1533803108170</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1533803108172</updated>
     </task>
     <task id="LOCAL-00068" summary="调整rws 回显树形结构">
       <created>1534254136015</created>
@@ -1039,287 +1099,112 @@
       <option name="project" value="LOCAL" />
       <updated>1543203268630</updated>
     </task>
-    <task id="LOCAL-00077" summary="数据写死字段">
-      <created>1546423491600</created>
+    <task id="LOCAL-00077" summary="调整代码">
+      <created>1551234865229</created>
       <option name="number" value="00077" />
       <option name="presentableId" value="LOCAL-00077" />
       <option name="project" value="LOCAL" />
-      <updated>1546423491600</updated>
+      <updated>1551234865230</updated>
     </task>
-    <task id="LOCAL-00078" summary="淋巴瘤 配置文件">
-      <created>1547022245381</created>
+    <task id="LOCAL-00078" summary="增加启动导出任务接口">
+      <created>1552894287407</created>
       <option name="number" value="00078" />
       <option name="presentableId" value="LOCAL-00078" />
       <option name="project" value="LOCAL" />
-      <updated>1547022245381</updated>
+      <updated>1552894287407</updated>
     </task>
-    <task id="LOCAL-00079" summary="淋巴瘤 配置文件 增加默认勾选">
-      <created>1547027129920</created>
+    <task id="LOCAL-00079" summary="权限通知 增加完成">
+      <created>1555493401933</created>
       <option name="number" value="00079" />
       <option name="presentableId" value="LOCAL-00079" />
       <option name="project" value="LOCAL" />
-      <updated>1547027129920</updated>
+      <updated>1555493401934</updated>
     </task>
-    <task id="LOCAL-00080" summary="调整导出 权限问题">
-      <created>1547109793825</created>
+    <task id="LOCAL-00080" summary="修改单病种空指针问题">
+      <created>1555493763849</created>
       <option name="number" value="00080" />
       <option name="presentableId" value="LOCAL-00080" />
       <option name="project" value="LOCAL" />
-      <updated>1547109793826</updated>
+      <updated>1555493763849</updated>
     </task>
-    <task id="LOCAL-00081" summary="选择科室 导出权限问题">
-      <created>1547110802899</created>
+    <task id="LOCAL-00081" summary="优化发送通知 权限被修改的功能">
+      <created>1555564947647</created>
       <option name="number" value="00081" />
       <option name="presentableId" value="LOCAL-00081" />
       <option name="project" value="LOCAL" />
-      <updated>1547110802899</updated>
+      <updated>1555564947647</updated>
     </task>
-    <task id="LOCAL-00082" summary="调整淋巴瘤 配置文件">
-      <created>1547123073239</created>
+    <task id="LOCAL-00082" summary="增加系统通知 升级功能">
+      <created>1555568444378</created>
       <option name="number" value="00082" />
       <option name="presentableId" value="LOCAL-00082" />
       <option name="project" value="LOCAL" />
-      <updated>1547123073239</updated>
+      <updated>1555568444378</updated>
     </task>
-    <task id="LOCAL-00083" summary="修改配置文件">
-      <created>1547516577343</created>
+    <task id="LOCAL-00083" summary="调整日志文件 打印内容">
+      <created>1555570267623</created>
       <option name="number" value="00083" />
       <option name="presentableId" value="LOCAL-00083" />
       <option name="project" value="LOCAL" />
-      <updated>1547516577343</updated>
+      <updated>1555570267624</updated>
     </task>
-    <task id="LOCAL-00084" summary="调整 rws 配置文件从uiService 获取">
-      <created>1547545894353</created>
+    <task id="LOCAL-00084" summary="优化下导出速度问题">
+      <created>1555582636541</created>
       <option name="number" value="00084" />
       <option name="presentableId" value="LOCAL-00084" />
       <option name="project" value="LOCAL" />
-      <updated>1547545894353</updated>
+      <updated>1555582636541</updated>
     </task>
-    <task id="LOCAL-00085" summary="修改配置文件">
-      <created>1547602493355</created>
+    <task id="LOCAL-00085" summary="增加消息导出批量接口">
+      <created>1556099286432</created>
       <option name="number" value="00085" />
       <option name="presentableId" value="LOCAL-00085" />
       <option name="project" value="LOCAL" />
-      <updated>1547602493355</updated>
+      <updated>1556099286432</updated>
     </task>
-    <task id="LOCAL-00086" summary="修改淋巴瘤 心脏检查不应选中 功能">
-      <created>1547797147787</created>
+    <task id="LOCAL-00086" summary="将 mcIP  打给前端 在 登陆时">
+      <created>1556273409571</created>
       <option name="number" value="00086" />
       <option name="presentableId" value="LOCAL-00086" />
       <option name="project" value="LOCAL" />
-      <updated>1547797147787</updated>
+      <updated>1556273409571</updated>
     </task>
-    <task id="LOCAL-00087" summary="增加 mybatis 配置连接池">
-      <created>1552011301056</created>
+    <task id="LOCAL-00087" summary="处理 mc为空的问题">
+      <created>1556330167287</created>
       <option name="number" value="00087" />
       <option name="presentableId" value="LOCAL-00087" />
       <option name="project" value="LOCAL" />
-      <updated>1552011301057</updated>
+      <updated>1556330167288</updated>
     </task>
-    <task id="LOCAL-00088" summary="调整mysql连接池">
-      <created>1552015010824</created>
+    <task id="LOCAL-00088" summary="修改权限问题">
+      <created>1556350824524</created>
       <option name="number" value="00088" />
       <option name="presentableId" value="LOCAL-00088" />
       <option name="project" value="LOCAL" />
-      <updated>1552015010824</updated>
+      <updated>1556350824524</updated>
     </task>
-    <task id="LOCAL-00089" summary="增加 稳定每次查询 select 1 数据功能">
-      <created>1552054907532</created>
+    <task id="LOCAL-00089" summary="将 系统通知改成接口形式发送">
+      <created>1556418679445</created>
       <option name="number" value="00089" />
       <option name="presentableId" value="LOCAL-00089" />
       <option name="project" value="LOCAL" />
-      <updated>1552054907532</updated>
+      <updated>1556418679445</updated>
     </task>
-    <task id="LOCAL-00090" summary="增加etl 数据统计接口 给郑州中心临时使用功能">
-      <created>1553241558262</created>
+    <task id="LOCAL-00090" summary="关掉 系统重启时 提示更新内容">
+      <created>1556419380073</created>
       <option name="number" value="00090" />
       <option name="presentableId" value="LOCAL-00090" />
       <option name="project" value="LOCAL" />
-      <updated>1553241558262</updated>
+      <updated>1556419380074</updated>
     </task>
-    <task id="LOCAL-00091" summary="增加视图统计功能">
-      <created>1553499612698</created>
+    <task id="LOCAL-00091" summary="增加导出人数为0 的时候的限制 不让导出了">
+      <created>1558416452185</created>
       <option name="number" value="00091" />
       <option name="presentableId" value="LOCAL-00091" />
       <option name="project" value="LOCAL" />
-      <updated>1553499612699</updated>
+      <updated>1558416452185</updated>
     </task>
-    <task id="LOCAL-00092" summary="调整 增加排序功能">
-      <created>1553508131485</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1553508131485</updated>
-    </task>
-    <task id="LOCAL-00093" summary="调整权限 以及代码功能">
-      <created>1553510567684</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1553510567684</updated>
-    </task>
-    <task id="LOCAL-00094" summary="调整数据结构">
-      <created>1553565876869</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1553565876869</updated>
-    </task>
-    <task id="LOCAL-00095" summary="增加 etl 数据统计功能接口">
-      <created>1553586261184</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1553586261184</updated>
-    </task>
-    <task id="LOCAL-00096" summary="调整接口数据结构">
-      <created>1553652600533</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1553652600533</updated>
-    </task>
-    <task id="LOCAL-00097" summary="再次调整数据结构">
-      <created>1553663868139</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1553663868139</updated>
-    </task>
-    <task id="LOCAL-00098" summary="调整检查bug 问题展示">
-      <created>1553686019502</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1553686019502</updated>
-    </task>
-    <task id="LOCAL-00099" summary="补充时间为空的节点">
-      <created>1553741636091</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1553741636091</updated>
-    </task>
-    <task id="LOCAL-00100" summary="去掉ECT 选项 配置文件中">
-      <created>1553840824135</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1553840824135</updated>
-    </task>
-    <task id="LOCAL-00101" summary="补充日期">
-      <created>1553844783496</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1553844783496</updated>
-    </task>
-    <task id="LOCAL-00102" summary="修改日期超标bug">
-      <created>1553845843045</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1553845843045</updated>
-    </task>
-    <task id="LOCAL-00103" summary="增加新CDR 360视图 接口 包含 检验子项接口 检验大项接口 检查接口 病历文书 病程记录 指标绘制功能">
-      <created>1554083199421</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1554083199422</updated>
-    </task>
-    <task id="LOCAL-00104" summary="合并解决权限问题">
-      <created>1554100931454</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1554100931454</updated>
-    </task>
-    <task id="LOCAL-00105" summary="郑州中心 解除我的诊室权限功能">
-      <created>1554172590292</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1554172590292</updated>
-    </task>
-    <task id="LOCAL-00106" summary="调整配置文件">
-      <created>1554433878331</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1554433878331</updated>
-    </task>
-    <task id="LOCAL-00107" summary="调整配置文件">
-      <created>1554434361483</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
-      <option name="project" value="LOCAL" />
-      <updated>1554434361483</updated>
-    </task>
-    <task id="LOCAL-00108" summary="更新配置文件">
-      <created>1554436482573</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1554436482574</updated>
-    </task>
-    <task id="LOCAL-00109" summary="更新配置文件 调整检验项目问题">
-      <created>1554451921962</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1554451921964</updated>
-    </task>
-    <task id="LOCAL-00110" summary="调整文案数据统计功能">
-      <created>1554694500291</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1554694500293</updated>
-    </task>
-    <task id="LOCAL-00111" summary="修改文案">
-      <created>1554694931979</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1554694931979</updated>
-    </task>
-    <task id="LOCAL-00112" summary="增加 对接hist 功能">
-      <created>1555397406016</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1555397406016</updated>
-    </task>
-    <task id="LOCAL-00113" summary="优化代码">
-      <created>1555465165955</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1555465165956</updated>
-    </task>
-    <task id="LOCAL-00114" summary="增加日志">
-      <created>1555477471188</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1555477471188</updated>
-    </task>
-    <task id="LOCAL-00115" summary="增加诊断新接口">
-      <created>1556261674852</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
-      <option name="project" value="LOCAL" />
-      <updated>1556261674852</updated>
-    </task>
-    <task id="LOCAL-00116" summary="合并 郑州中心的代码">
-      <created>1557138271309</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1557138271309</updated>
-    </task>
-    <option name="localTasksCounter" value="117" />
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1355,46 +1240,46 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1346827000" />
+    <option name="totallyTimeSpent" value="1193388000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-434" width="1936" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32723773" sideWeight="0.5074627" order="13" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19083156" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32723773" sideWeight="0.5074627" order="23" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5591915" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32723773" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17420597" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3253128" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.62078923" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.61020213" sideWeight="0.49253732" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2260128" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.51634616" sideWeight="0.49253732" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4292589" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="19" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="21" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16684435" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Documentation" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="24" side_tool="false" content_ui="tabs" x="1458" y="-334" width="1736" height="976" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="18" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1403,29 +1288,28 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32723773" sideWeight="0.5074627" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19083156" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5591915" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29451397" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32723773" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Documentation" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" x="1458" y="-334" width="1736" height="976" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.62078923" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.61020213" sideWeight="0.49253732" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32723773" sideWeight="0.49253732" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42998353" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2260128" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2927383" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916266" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1477,32 +1361,32 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="增加视图统计功能" />
-    <MESSAGE value="调整 增加排序功能" />
-    <MESSAGE value="调整权限 以及代码功能" />
-    <MESSAGE value="调整数据结构" />
-    <MESSAGE value="增加 etl 数据统计功能接口" />
-    <MESSAGE value="调整接口数据结构" />
-    <MESSAGE value="再次调整数据结构" />
-    <MESSAGE value="调整检查bug 问题展示" />
-    <MESSAGE value="补充时间为空的节点" />
-    <MESSAGE value="去掉ECT 选项 配置文件中" />
-    <MESSAGE value="补充日期" />
-    <MESSAGE value="修改日期超标bug" />
-    <MESSAGE value="增加新CDR 360视图 接口 包含 检验子项接口 检验大项接口 检查接口 病历文书 病程记录 指标绘制功能" />
-    <MESSAGE value="合并解决权限问题" />
-    <MESSAGE value="郑州中心 解除我的诊室权限功能" />
-    <MESSAGE value="调整配置文件" />
-    <MESSAGE value="更新配置文件" />
-    <MESSAGE value="更新配置文件 调整检验项目问题" />
-    <MESSAGE value="调整文案数据统计功能" />
-    <MESSAGE value="修改文案" />
-    <MESSAGE value="增加 对接hist 功能" />
-    <MESSAGE value="优化代码" />
-    <MESSAGE value="增加日志" />
-    <MESSAGE value="增加诊断新接口" />
-    <MESSAGE value="合并 郑州中心的代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="合并 郑州中心的代码" />
+    <MESSAGE value="树级回显功能" />
+    <MESSAGE value="调整rws 回显树形结构" />
+    <MESSAGE value="分组 筛选 数据源 数据" />
+    <MESSAGE value="调整 分组筛选 接口缺少参数" />
+    <MESSAGE value="导出数据接口调整" />
+    <MESSAGE value="crfId 为空 变为 EMR" />
+    <MESSAGE value="增加获取全部研究变量接口" />
+    <MESSAGE value="增加保存研究变量接口" />
+    <MESSAGE value="Merge branches 'release0.0.7.1.dev' and 'release_rwsCg' of http://10.0.0.6/Gennlife-Eng/Ark-UI_Service into release0.0.7.1.dev&#10;&#10;# Conflicts:&#10;#&#9;platformWeb/.idea/workspace.xml&#10;#&#9;platformWeb/src/main/java/com/gennlife/platform/processor/CaseProcessor.java" />
+    <MESSAGE value="调整代码" />
+    <MESSAGE value="增加启动导出任务接口" />
+    <MESSAGE value="权限通知 增加完成" />
+    <MESSAGE value="修改单病种空指针问题" />
+    <MESSAGE value="优化发送通知 权限被修改的功能" />
+    <MESSAGE value="增加系统通知 升级功能" />
+    <MESSAGE value="调整日志文件 打印内容" />
+    <MESSAGE value="优化下导出速度问题" />
+    <MESSAGE value="增加消息导出批量接口" />
+    <MESSAGE value="将 mcIP  打给前端 在 登陆时" />
+    <MESSAGE value="处理 mc为空的问题" />
+    <MESSAGE value="修改权限问题" />
+    <MESSAGE value="将 系统通知改成接口形式发送" />
+    <MESSAGE value="关掉 系统重启时 提示更新内容" />
+    <MESSAGE value="干掉 uiService 的消费信息" />
+    <MESSAGE value="增加导出人数为0 的时候的限制 不让导出了" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加导出人数为0 的时候的限制 不让导出了" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1520,109 +1404,49 @@
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java</url>
-          <line>440</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/DetailController.java</url>
+          <line>803</line>
           <properties />
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java</url>
-          <line>857</line>
-          <properties />
-          <option name="timeStamp" value="106" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java</url>
-          <line>34</line>
-          <properties />
-          <option name="timeStamp" value="136" />
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java</url>
-          <line>653</line>
+          <line>655</line>
           <properties />
           <option name="timeStamp" value="142" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java</url>
-          <line>148</line>
+          <line>128</line>
           <properties />
           <option name="timeStamp" value="143" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java</url>
-          <line>256</line>
-          <properties />
-          <option name="timeStamp" value="148" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/DetailProcessor.java</url>
-          <line>653</line>
-          <properties />
-          <option name="timeStamp" value="149" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java</url>
-          <line>98</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java</url>
+          <line>1280</line>
           <properties />
           <option name="timeStamp" value="156" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CommonProcessor.java</url>
-          <line>74</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java</url>
+          <line>1292</line>
           <properties />
           <option name="timeStamp" value="157" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/FileUploadUtil.java</url>
-          <line>281</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java</url>
+          <line>1541</line>
           <properties />
-          <option name="timeStamp" value="159" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/FileUploadUtil.java</url>
-          <line>365</line>
-          <properties />
-          <option name="timeStamp" value="160" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CaseController.java</url>
-          <line>409</line>
-          <properties />
-          <option name="timeStamp" value="207" />
+          <option name="timeStamp" value="162" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/parse/CaseSearchParser.java</url>
-          <line>82</line>
+          <line>66</line>
           <properties />
-          <option name="timeStamp" value="210" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java</url>
-          <line>775</line>
-          <properties />
-          <option name="timeStamp" value="211" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/UserController.java</url>
-          <line>57</line>
-          <properties />
-          <option name="timeStamp" value="214" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/DetailProcessor.java</url>
-          <line>593</line>
-          <properties />
-          <option name="timeStamp" value="215" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java</url>
-          <line>72</line>
-          <properties />
-          <option name="timeStamp" value="217" />
+          <option name="timeStamp" value="223" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="218" />
+      <option name="time" value="224" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1633,47 +1457,47 @@
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
       <expression>
-        <expression-string>hist !=null &amp;&amp; !StringUtils.isEmpty(hist.toString()) &amp;&amp; HitsConfigBean.HIES_SESSION_ID.equals(hist.toString())</expression-string>
+        <expression-string>queryjson.get(&quot;power&quot;).getAsJsonObject().get(&quot;has_search&quot;).getAsJsonArray().size() == 0</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>hist !=null &amp;&amp; !StringUtils.isEmpty(hist.toString())</expression-string>
+        <expression-string>queryjson</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>paramRe.getSession()</expression-string>
+        <expression-string>user</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>request.getSession(false);</expression-string>
+        <expression-string>role</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>--days</expression-string>
+        <expression-string>newMember</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>res.size()</expression-string>
+        <expression-string>userList</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>dataEtlDatacounts</expression-string>
+        <expression-string>list</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>loadEtlDataCountConfig();</expression-string>
+        <expression-string>json</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>config</expression-string>
+        <expression-string>mapDep</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
@@ -1692,25 +1516,67 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-actuator/1.5.9.RELEASE/spring-boot-actuator-1.5.9.RELEASE.jar!/org/springframework/boot/actuate/trace/WebRequestTraceFilter.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+        <state relative-caret-position="20014">
+          <caret line="1686" column="27" lean-forward="false" selection-start-line="1686" selection-start-column="15" selection-end-line="1686" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.23/tomcat-embed-core-8.5.23.jar!/javax/servlet/http/HttpServletRequestWrapper.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="99" column="23" lean-forward="false" selection-start-line="99" selection-start-column="23" selection-end-line="99" selection-end-column="23" />
+        <state relative-caret-position="270">
+          <caret line="43" column="13" lean-forward="false" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/UserProcessor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/FileUploadUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="246" column="46" lean-forward="false" selection-start-line="246" selection-start-column="46" selection-end-line="246" selection-end-column="46" />
+        <state relative-caret-position="-617">
+          <caret line="114" column="68" lean-forward="false" selection-start-line="114" selection-start-column="68" selection-end-line="114" selection-end-column="68" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/OrgMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="201" column="47" lean-forward="false" selection-start-line="201" selection-start-column="47" selection-end-line="201" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_45/src.zip!/java/lang/System.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="352" column="30" lean-forward="false" selection-start-line="352" selection-start-column="30" selection-end-line="352" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Resource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-216">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/JedisClusterFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="51" column="43" lean-forward="false" selection-start-line="51" selection-start-column="43" selection-end-line="51" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis_config/OrgMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="67" column="34" lean-forward="false" selection-start-line="67" selection-start-column="16" selection-end-line="67" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyResourceMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="118" column="19" lean-forward="false" selection-start-line="118" selection-start-column="19" selection-end-line="118" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -1721,219 +1587,116 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AccessUtils.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_45/src.zip!/java/io/StringReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        <state relative-caret-position="162">
+          <caret line="47" column="11" lean-forward="false" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/JedisClusterFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/FileBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/parse/CaseSearchParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="959">
-          <caret line="50" column="13" lean-forward="false" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/view/Viewer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/conf/ConfItem.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Lab.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/conf/OrgBean.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis_config/SyRoleMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        <state relative-caret-position="193">
+          <caret line="172" column="16" lean-forward="false" selection-start-line="172" selection-start-column="16" selection-end-line="172" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/conf/SystemDefault.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/SearchController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/etl/EtlDatacount.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/list/ColumnBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/list/ColumnPropetity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/searchConditionBean/SearchConditionBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/PoolBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="13" column="23" lean-forward="false" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/HitsConfigBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" column="70" lean-forward="false" selection-start-line="8" selection-start-column="70" selection-end-line="8" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/ParamUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="155" column="43" lean-forward="false" selection-start-line="155" selection-start-column="43" selection-end-line="155" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.23/tomcat-embed-core-8.5.23.jar!/javax/servlet/http/HttpServletRequest.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="58" column="16" lean-forward="false" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/RedisUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="121" column="44" lean-forward="false" selection-start-line="121" selection-start-column="41" selection-end-line="121" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="75" column="26" lean-forward="true" selection-start-line="75" selection-start-column="26" selection-end-line="75" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CommonProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="104" column="56" lean-forward="false" selection-start-line="104" selection-start-column="56" selection-end-line="104" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="172" column="24" lean-forward="false" selection-start-line="172" selection-start-column="24" selection-end-line="172" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CommonController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="733">
-          <caret line="81" column="25" lean-forward="false" selection-start-line="81" selection-start-column="25" selection-end-line="81" selection-end-column="25" />
-          <folding />
+        <state relative-caret-position="-3399">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/RwsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="607">
-          <caret line="640" column="43" lean-forward="false" selection-start-line="640" selection-start-column="43" selection-end-line="640" selection-end-column="43" />
-          <folding />
+        <state relative-caret-position="419">
+          <caret line="43" column="39" lean-forward="true" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/RwsProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="423" column="76" lean-forward="false" selection-start-line="423" selection-start-column="59" selection-end-line="423" selection-end-column="76" />
+        <state relative-caret-position="220">
+          <caret line="43" column="42" lean-forward="false" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/RwsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="54" column="18" lean-forward="true" selection-start-line="54" selection-start-column="18" selection-end-line="54" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/OrgController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1529">
+          <caret line="85" column="5" lean-forward="true" selection-start-line="85" selection-start-column="5" selection-end-line="85" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-942">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="59" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/rocketmq/RocketMqContent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="19" column="27" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/system/system_message_config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/rocketmq/ProducerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2430">
+          <caret line="114" column="21" lean-forward="false" selection-start-line="114" selection-start-column="21" selection-end-line="114" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/init/RoleStartRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/filter/SessionFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4023">
+          <caret line="172" column="42" lean-forward="false" selection-start-line="172" selection-start-column="25" selection-end-line="172" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/LaboratoryProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55998">
+          <caret line="2093" column="18" lean-forward="false" selection-start-line="2093" selection-start-column="18" selection-end-line="2093" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/DetailProcessor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/BackstageManagementController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="744" column="31" lean-forward="true" selection-start-line="744" selection-start-column="31" selection-end-line="744" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/detail/detail_schema_data.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="907">
-          <caret line="0" column="45441" lean-forward="false" selection-start-line="0" selection-start-column="45441" selection-end-line="0" selection-end-column="45441" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/demo.html" />
-    <entry file="file://$USER_HOME$/Desktop/新建文本文档.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="976">
-          <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.13.RELEASE/spring-core-4.3.13.RELEASE.jar!/org/springframework/util/PropertyPlaceholderHelper.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="94" column="60" lean-forward="false" selection-start-line="94" selection-start-column="30" selection-end-line="94" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ArkUiServiceApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#643#644#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/DetailController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27972">
-          <caret line="1049" column="44" lean-forward="false" selection-start-line="1049" selection-start-column="44" selection-end-line="1049" selection-end-column="44" />
-          <folding />
+        <state relative-caret-position="410">
+          <caret line="910" column="31" lean-forward="false" selection-start-line="910" selection-start-column="31" selection-end-line="910" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -1941,320 +1704,248 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/userInfoDB.sql">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/rocketmq/ProjectConsumer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="238" column="42" lean-forward="false" selection-start-line="238" selection-start-column="42" selection-end-line="238" selection-end-column="42" />
-          <folding />
+        <state relative-caret-position="189">
+          <caret line="18" column="73" lean-forward="false" selection-start-line="18" selection-start-column="73" selection-end-line="18" selection-end-column="73" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/FileController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/util/RedisUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="41" column="17" lean-forward="true" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
-          <folding />
+        <state relative-caret-position="99">
+          <caret line="175" column="0" lean-forward="false" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/view/View.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="64" column="16" lean-forward="false" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
-          <folding />
+        <state relative-caret-position="249">
+          <caret line="40" column="18" lean-forward="false" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/bean/ResultBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/EtlController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-199">
-          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="53" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/EtlDatacountServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/MessageCenterController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="36" column="56" lean-forward="false" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/MessageCenterProcessor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Power.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
-          <caret line="26" column="23" lean-forward="false" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+          <caret line="213" column="17" lean-forward="false" selection-start-line="213" selection-start-column="17" selection-end-line="213" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/model/Role.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/ReadConfig/ReadConditionByRedis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5049">
+          <caret line="187" column="0" lean-forward="false" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/UserController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CrfController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="539" column="36" lean-forward="false" selection-start-line="539" selection-start-column="36" selection-end-line="539" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/DragsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" column="20" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+        <state relative-caret-position="19224">
+          <caret line="737" column="43" lean-forward="false" selection-start-line="737" selection-start-column="43" selection-end-line="737" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/DragsController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CrfProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="38" column="46" lean-forward="false" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="17928">
+          <caret line="686" column="18" lean-forward="false" selection-start-line="686" selection-start-column="18" selection-end-line="686" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/service/impl/DragsServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/SampleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1242">
+          <caret line="65" column="50" lean-forward="false" selection-start-line="65" selection-start-column="50" selection-end-line="65" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/SampleProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13932">
+          <caret line="530" column="0" lean-forward="false" selection-start-line="530" selection-start-column="0" selection-end-line="530" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/profiles/local/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/profiles/local/bootstrap.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
-          <caret line="34" column="30" lean-forward="false" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="30" />
-          <folding>
-            <element signature="docComment;class#DragsServiceImpl#0" expanded="false" />
-            <element signature="method#drgsIndex#0;class#DragsServiceImpl#0" expanded="false" />
-            <element signature="method#indexSetting#0;class#DragsServiceImpl#0" expanded="false" />
-            <element signature="method#indexList#0;class#DragsServiceImpl#0" expanded="false" />
-            <element signature="method#factorList#0;class#DragsServiceImpl#0" expanded="false" />
-            <element signature="method#miningCatalog#0;class#DragsServiceImpl#0" expanded="false" />
-            <element signature="method#miningDept#0;class#DragsServiceImpl#0" expanded="false" />
-            <element signature="method#miningParent#0;class#DragsServiceImpl#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/URLBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="346" column="28" lean-forward="false" selection-start-line="346" selection-start-column="19" selection-end-line="346" selection-end-column="28" />
-          <folding>
-            <element signature="docComment;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#casePatientBatchData#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseDetailCommonUrl#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseSimilarServiceSimilarPatientExtraInfo#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#vitaGramServerNccnRecommendPath#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseSimilarServiceSimilarPatientInfo#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseSimilarServiceSimilarBasicDetail#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseSimilarServiceGetSimilars#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#vitaGramServerVitaGramData#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseSimilarServiceVitaboardparam#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseSimilarServiceSimilarParam#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseSimilarServiceSimilarQuery#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseyVisitRadiotherapy#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#casePatientRadiotherapy#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#casePatientDcOrder#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseVisitDcOrder#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CRFIsExistPatient#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CSBaseline#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseDetailVisitClassifyImageURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseDetailVisitClassifySectionURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#sampleUploadAdaptTagURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CRFImportResult#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#sampleDetailSearchURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CRFImportMap#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CRFImportFile#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#fileStoreForCRFImport#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#crfSearchURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#EmailSendURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#EmailURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#toolsURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#sampleImportIURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#sampleImportChecKIURL#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setSampleImportChecKIURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#synonyms#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#getGennomics#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#sampleDetailURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseAdmission_records#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseSearchURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseSuggestURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseSuggestURL2#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseDetailPatientBasicInfoURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseDetailPatientBasicFigureURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#casePatientBasicTimeAxisURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#casePhysical_examination#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#casePhysical_examination_list#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#knowledgeURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseVisit_detail#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseLab_result_item#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#knowledgeDiseaseSearchGenesURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseLab_result_item_list#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#knowledgeGeneInfoURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#knowledgeVariationInfoURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#knowledgeDetailVariationSearchDiseaseURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#knowledgeDetailVariationSearchDrugURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseDiagnose#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseLab_result_list#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseNew_lab_result_list#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseNewMedicalCourse#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseNewCourseRecords#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseNewExamResult#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseNewQuotaReports#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseGenetic_disease#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseDrug_reaction#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseCategory_catalog#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseMolecular_detection#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseBiological_specimen#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseExam_result#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#casePathological_examination#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#knowledgePharmGKBSearchDrugURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseGeneErrorURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#buildIndexForAll#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CaseToDetail#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CRFProjectCRFListURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CRFAutoMapURL#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CRFGetAttrID#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CRFGetGroupID#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CRFModelByProjectID#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CRFModelByCRFID#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CRFUpLoadDataForCheck#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CRFEditModel#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CRFSaveModel#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CRFGetData#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CRFUpLoadData#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CRFSaveData#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CRFSampleCaseList#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CRFDeleteSample#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CRFSearchSampleList#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseMedicalRecord#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseOperationRecords#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#casePharmacy#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseDischargeRecords#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseCourseRecords#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#caseMedicalCourse#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#CSSmg#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#InputSmartPrompt#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#PreLiminaryUrl#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#exportCreateTask#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseAdmission_records#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#yyssoUrl#0;class#URLBean#0" expanded="false" />
-            <element signature="method#getSsoSuccessUrlTemp#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setSsoSuccessUrlTemp#0;class#URLBean#0" expanded="false" />
-            <element signature="method#getSsoErrorRedirectUrl#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setSsoErrorRedirectUrl#0;class#URLBean#0" expanded="false" />
-            <element signature="method#getSsoSysmark#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setSsoSysmark#0;class#URLBean#0" expanded="false" />
-            <element signature="method#getYyssoUrl#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setYyssoUrl#0;class#URLBean#0" expanded="false" />
-            <element signature="method#getIsMock#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setIsMock#0;class#URLBean#0" expanded="false" />
-            <element signature="method#getSsoSuccessUrl#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setSsoSuccessUrl#0;class#URLBean#0" expanded="false" />
-            <element signature="method#getSsoFailUrl#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setSsoFailUrl#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setDeleteResearchVariable#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setSaveResearchVariable#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setInsertGroupDataPatient#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setExportGroupDataPatient#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setPatientGroupCondition#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setContResultForPatientUrl#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCheckActiveDataIsChange#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setGetCalcTotalByActiveId#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setClacIndexResultSearch#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setPreFindForProjectData#0;class#URLBean#0" expanded="false" />
-            <element signature="docComment;field#PatientDetailThumbnail#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setPatientDetailThumbnail#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCRFModelForTraceByCRFID#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCRFPatientVisitDetail#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCRFPatientAllVisitsDetail#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCRFProjectCRFListURL#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setKnowledgePharmGKBSearchDrugURL#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCasePathological_examination#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseCategory_catalog#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseMolecular_detection#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseBiological_specimen#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setKnowledgeDetailVariationSearchDiseaseURL#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setKnowledgeDetailVariationSearchDrugURL#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setKnowledgeVariationInfoURL#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setKnowledgeGeneInfoURL#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseLab_result_item_list#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setKnowledgeDiseaseSearchGenesURL#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCasePhysical_examination_list#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCasePhysical_examination#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCasePatientBasicTimeAxisURL#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseDetailPatientBasicInfoURL#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseDetailPatientBasicFigureURL#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseOperationRecords#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseDischargeRecords#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCRFUpLoadDataForCheck#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setFileStoreForCRFImport#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setSampleDetailSearchURL#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setSampleUploadAdaptTagURL#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseDetailVisitClassifySectionURL#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseDetailVisitClassifyImageURL#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCasePatientRadiotherapy#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseyVisitRadiotherapy#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCasePatientChemotherapyInfo#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseSimilarServiceGetSimilars#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseSimilarServiceVitaboardparam#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseSimilarServiceSimilarParam#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseSimilarServiceSimilarQuery#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseSimilarServiceSimilarBasicDetail#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseSimilarServiceSimilarPatientInfo#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setVitaGramServerVitaGramData#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setVitaGramServerNccnRecommendPath#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setVitaGramServerMedicalHistoryRecommendPath#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseSimilarServiceSimilarPatientExtraInfo#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCasePatientBatchData#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseDetailCommonUrl#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setSaveRelatedPhrasesSelectionBehavior#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseNew_lab_result_list#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseNewMedicalCourse#0;class#URLBean#0" expanded="false" />
-            <element signature="method#setCaseNewCourseRecords#0;class#URLBean#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/urlconf.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="310" column="65" lean-forward="false" selection-start-line="310" selection-start-column="51" selection-end-line="310" selection-end-column="65" />
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/bootstrap.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="635">
-          <caret line="45" column="37" lean-forward="false" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
+        <state relative-caret-position="0">
+          <caret line="0" column="45" lean-forward="false" selection-start-line="0" selection-start-column="45" selection-end-line="0" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/configuration/IpConfigBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="12" column="30" lean-forward="false" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+          <folding>
+            <element signature="e#350#351#0" expanded="false" />
+            <element signature="e#383#384#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.5/gson-2.5.jar!/com/google/gson/stream/JsonReader.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="59" column="11" lean-forward="false" selection-start-line="59" selection-start-column="11" selection-end-line="59" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.5/gson-2.5.jar!/com/google/gson/JsonParser.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/authority/AuthorityUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="174" column="28" lean-forward="false" selection-start-line="174" selection-start-column="23" selection-end-line="174" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/UserProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="225" column="36" lean-forward="true" selection-start-line="225" selection-start-column="36" selection-end-line="225" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/controller/CaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="279" column="0" lean-forward="false" selection-start-line="279" selection-start-column="0" selection-end-line="279" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis_config/SyUserMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="700" column="26" lean-forward="true" selection-start-line="700" selection-start-column="26" selection-end-line="700" selection-end-column="26" />
+          <folding>
+            <marker date="1558419503671" expanded="true" signature="2015:2166" ph="SELECT FROM gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="2275:2429" ph="SELECT FROM gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="2539:2693" ph="SELECT FROM gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="2790:2908" ph="SELECT uid F... gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="3021:3113" ph="SELECT uid F... gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="3224:3352" ph="SELECT FROM gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="3422:3524" ph="UPDATE gennlife_user SE... " />
+            <marker date="1558419503671" expanded="true" signature="3623:5544" ph="UPDATE gennl... gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="5664:5779" ph="SELECT FROM gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="5852:5995" ph="UPDATE gennlife_user SE... " />
+            <marker date="1558419503671" expanded="true" signature="6063:6160" ph="UPDATE gennlife_user SE... " />
+            <marker date="1558419503671" expanded="true" signature="6232:6328" ph="UPDATE gennlife_user S... " />
+            <marker date="1558419503671" expanded="true" signature="6391:6493" ph="UPDATE gennlife_user SE... " />
+            <marker date="1558419503671" expanded="true" signature="6561:6657" ph="UPDATE gennlife_user S... " />
+            <marker date="1558419503671" expanded="true" signature="6738:6835" ph="SELECT count... gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="6927:7026" ph="SELECT gennl... gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="7118:7217" ph="SELECT gennl... gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="7313:7394" ph="SELECT uid F... gennlife_user_group" />
+            <marker date="1558419503671" expanded="true" signature="7476:7609" ph="SELECT count... gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="8467:8667" ph="SELECT uid,p... gennlife_manage" />
+            <marker date="1558419503671" expanded="true" signature="8771:9178" ph="SELECT FROM gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="10218:10717" ph="SELECT FROM gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="10831:11060" ph="SELECT FROM gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="12430:12612" ph="select from searchConditionHistory" />
+            <marker date="1558419503671" expanded="true" signature="12771:12924" ph="select from searchConditionHistory" />
+            <marker date="1558419503671" expanded="true" signature="14597:15326" ph="UPDATE searc... searchConditionHistory" />
+            <marker date="1558419503671" expanded="true" signature="18047:18205" ph="SELECT FROM gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="18325:20072" ph="UPDATE gennl... gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="20176:20420" ph="SELECT FROM gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="20830:21005" ph="SELECT count... gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="21085:21202" ph="SELECT uid F... gennlife_manage" />
+            <marker date="1558419503671" expanded="true" signature="21250:21308" ph="DELETE FROM gennlife_user_vitaConfig... " />
+            <marker date="1558419503671" expanded="true" signature="21356:21432" ph="insert into gennlife_user_vitaConfig... " />
+            <marker date="1558419503671" expanded="true" signature="21506:21579" ph="SELECT dataA... gennlife_user_vitaConfig" />
+            <marker date="1558419503671" expanded="true" signature="21659:21737" ph="SELECT uid F... gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="21817:21872" ph="SELECT pwd F... gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="21961:22049" ph="SELECT failu... gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="22143:22233" ph="SELECT effec... gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="22662:22706" ph="select DISTI... gennlife_user_group" />
+            <marker date="1558419503671" expanded="true" signature="23250:23387" ph="update gennlife_user s... " />
+            <marker date="1558419503671" expanded="true" signature="23834:24125" ph="select a.uid... gennlife_user_group" />
+            <marker date="1558419503671" expanded="true" signature="24184:24460" ph="UPDATE gennl... gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="24547:24644" ph="SELECT count... gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="24741:24842" ph="SELECT count... gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="24941:24947" ph="SELECT count... gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="24941:25100" ph="SELECT COUNT... gennlife_user_role" />
+            <marker date="1558419503671" expanded="true" signature="25031:25083" ph="SELECT rolei... gennlife_role" />
+            <marker date="1558419503671" expanded="true" signature="25212:25655" ph="SELECT FROM gennlife_user" />
+            <marker date="1558419503671" expanded="true" signature="26267:26320" ph="SELECT uid F... gennlife_user" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/dao/SyUserMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="592">
+          <caret line="388" column="25" lean-forward="false" selection-start-line="388" selection-start-column="25" selection-end-line="388" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/processor/CaseProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-217">
+          <caret line="777" column="16" lean-forward="false" selection-start-line="777" selection-start-column="16" selection-end-line="777" selection-end-column="16" />
+          <folding>
+            <element signature="e#33612#33613#0" expanded="true" />
+            <element signature="e#33679#33680#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gennlife/platform/parse/CaseSearchParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="60" column="45" lean-forward="true" selection-start-line="60" selection-start-column="45" selection-end-line="60" selection-end-column="45" />
           <folding />
         </state>
       </provider>

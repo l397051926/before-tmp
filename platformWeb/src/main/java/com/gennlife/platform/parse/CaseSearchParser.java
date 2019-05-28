@@ -65,6 +65,9 @@ public class CaseSearchParser implements Callable<String> {
             item = queryjson.get("keywords");
 
         }
+        if(queryjson.get("power").getAsJsonObject().get("has_search").getAsJsonArray().size() == 0){
+            return ParamUtils.errorParam("无搜索权限");
+        }
         if (item == null) return ParamUtils.errorParam("查询条件为空");
         else {
             if (item.isJsonPrimitive()) {

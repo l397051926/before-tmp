@@ -708,6 +708,14 @@
         <where> gennlife_user.unumber=#{unumber}</where>
     </select>
 
+    <select id="getBenKeMemberNum" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM
+        `gennlife_user_role`
+        where
+        roleid = (SELECT roleid FROM `gennlife_role` where role_type=1) and uid =#{uid} ;
+    </select>
+
     <select id="searchUsersByOrgIDRws" resultType="com.gennlife.platform.model.User">
         SELECT
         <include refid="userProperty"/>

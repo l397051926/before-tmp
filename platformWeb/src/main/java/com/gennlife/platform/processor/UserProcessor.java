@@ -262,6 +262,9 @@ public class UserProcessor {
                     List<Role> roleList = newMember.getRoles();
                     if (roleList != null) {
                         for (Role role : roleList) {
+                            if("全院科室成员".equals(role.getRole())){
+                                user.setIfRoleAll("是");
+                            }
                             if (role.getResources() != null) {
                                 List<Object> resourceList = (List<Object>) role.getResources();
                                 for (Object r : resourceList) {
