@@ -146,7 +146,7 @@ public class SearchBean {
 
     private String getMyclinnicQuery(JSONObject paramObj, String key) {
         Object tmpVal = paramObj.get(key);
-        if(tmpVal == null) {
+        if(tmpVal == null || StringUtils.isEmpty(tmpVal.toString())) {
             return null;
         }
         if(tmpVal instanceof  String) {
