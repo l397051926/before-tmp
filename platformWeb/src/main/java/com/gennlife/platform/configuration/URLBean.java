@@ -351,6 +351,8 @@ public class URLBean {
     private String newOrdersPharmacy = null;
     private String newDiagnose = null;
     private String newMedicalRecords = null;
+    private String swimlane = null;
+    private String ordersPharmacyDay = null;
 
 
     public String getNewMedicalRecords() {
@@ -2181,5 +2183,19 @@ public class URLBean {
 
     public void setNewMyclinicSearchCase(String newMyclinicSearchCase) {
         this.newMyclinicSearchCase = newMyclinicSearchCase;
+    }
+    public String getSwimlane() {
+        return swimlane;
+    }
+    public void setSwimlane(String swimlane) {
+        this.swimlane = swimlane;
+    }
+
+    public String getOrdersPharmacyDay() {
+        return ordersPharmacyDay;
+    }
+
+    public void setOrdersPharmacyDay(String ordersPharmacyDay) {
+        this.ordersPharmacyDay = ordersPharmacyDay;
     }
 }

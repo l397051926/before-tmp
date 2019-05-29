@@ -1185,16 +1185,16 @@ public class CaseProcessor {
         JSONObject power = paramObj.getJSONObject("power");
         Integer page = paramObj.getInteger("page");
         Integer size = paramObj.getInteger("size");
-//        JSONObject newPower = transformPower(power,ADMISSION_DEPT,user);
-//        SearchBean searchBean = new SearchBean(page,size,ConfigUtils.getSearchIndexName(),newPower);
-//        searchBean.setMyclinicSource();
-//        Boolean isNull =  searchBean.setMyclinicQuery(paramObj);
-//        if(isNull){
-//            return ParamUtils.errorParam("必选参数为空了....");
-//        }
-//        String object = JSONObject.toJSONString(searchBean);
-//
-//        CaseSearchParser caseSearchParser = new CaseSearchParser(object);
+        JSONObject newPower = transformPower(power,ADMISSION_DEPT,user);
+        SearchBean searchBean = new SearchBean(page,size,ConfigUtils.getSearchIndexName(),newPower);
+        searchBean.setMyclinicSource();
+        Boolean isNull =  searchBean.setMyclinicQuery(paramObj);
+        if(isNull){
+            return ParamUtils.errorParam("必选参数为空了....");
+        }
+        String object = JSONObject.toJSONString(searchBean);
+        logger.info("病案首页 检索参数为： "+object);
+        CaseSearchParser caseSearchParser = new CaseSearchParser(object);
         try {
 //            //去es里搜索数据
 //            String searchResultStr = caseSearchParser.parser();
@@ -1207,18 +1207,18 @@ public class CaseProcessor {
 //            transformMyclinicSearchResult(searchResult,paramObj);
 //
             JSONObject result = new JSONObject();
-            JSONObject object = new JSONObject();
-            object.put("GENDER","女");
-            object.put("BIRTH_DATE","1987-12-12");
-            object.put("INPATIENT_OUTPATIENT_SN","123456");
-            object.put("PATIENT_NAME","<span style=\"color:red\">王xxxx</span>");
-            object.put("IDCARD","12345678912345678");
-            object.put("MEDICARECARD","12345678");
-            object.put("VISIT_TYPE","门诊");
-            object.put("ADMISSION_DATE","1876-09-56");
-            object.put("ADMISSION_DEPT","甲状腺外科");
-            object.put("VISIT_SN","vis_7d29697edf26133dbb507c2a81bc2561");
-            object.put("PATIENT_SN","pat_03bb1fc4d3bb691bb141f3b907cad795");
+            JSONObject object3 = new JSONObject();
+            object3.put("GENDER","女");
+            object3.put("BIRTH_DATE","1987-12-12");
+            object3.put("INPATIENT_OUTPATIENT_SN","123456");
+            object3.put("PATIENT_NAME","<span style=\"color:red\">王xxxx</span>");
+            object3.put("IDCARD","12345678912345678");
+            object3.put("MEDICARECARD","12345678");
+            object3.put("VISIT_TYPE","门诊");
+            object3.put("ADMISSION_DATE","1876-09-56");
+            object3.put("ADMISSION_DEPT","甲状腺外科");
+            object3.put("VISIT_SN","vis_7d29697edf26133dbb507c2a81bc2561");
+            object3.put("PATIENT_SN","pat_03bb1fc4d3bb691bb141f3b907cad795");
             JSONObject object1 = new JSONObject();
             object1.put("GENDER","女");
             object1.put("BIRTH_DATE","1987-12-12");
