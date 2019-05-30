@@ -46,13 +46,13 @@ public class HttpRequestUtils {
      * @return
      */
     public static String httpPost(String url, String jsonParam) {
-        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(50000).setConnectTimeout(10000).build();
+        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(10*60*1000).setConnectTimeout(10*60*1000).build();
         return httpPostExecute(url, jsonParam, requestConfig);
     }
 
 
     public static String httpPostPubMed(String url, String jsonParam) {
-        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(60000).setConnectTimeout(10000).build();
+        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(10*60*1000).setConnectTimeout(10*60*1000).build();
         return httpPostExecute(url, jsonParam, requestConfig);
     }
 
@@ -64,7 +64,7 @@ public class HttpRequestUtils {
      * @return
      */
     public static String httpPostForSampleImport(String url, String jsonParam, int timeOut) {
-        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(timeOut).setConnectTimeout(10000).build();
+        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(timeOut).setConnectTimeout(1010*60*1000000).build();
         return httpPostExecute(url, jsonParam, requestConfig);
     }
 
@@ -126,7 +126,7 @@ public class HttpRequestUtils {
     }*/
 
     public static String httpGet(String url) {
-        return httpGet(url, 60000);
+        return httpGet(url, 10*60*1000);
     }
 
     public static String httpGet(String url, int time) {
