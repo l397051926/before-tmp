@@ -46,13 +46,13 @@ public class HttpRequestUtils {
      * @return
      */
     public static String httpPost(String url, String jsonParam) {
-        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(10*60*1000).setConnectTimeout(10*60*1000).build();
+        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(600000).setConnectTimeout(600000).build();
         return httpPostExecute(url, jsonParam, requestConfig);
     }
 
 
     public static String httpPostPubMed(String url, String jsonParam) {
-        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(10*60*1000).setConnectTimeout(10*60*1000).build();
+        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(600000).setConnectTimeout(600000).build();
         return httpPostExecute(url, jsonParam, requestConfig);
     }
 
@@ -100,7 +100,10 @@ public class HttpRequestUtils {
                 }
             } else if (result.getStatusLine().getStatusCode() == 404) {
                 logger.error(url + " 不存在");
-            } else {
+            } else if(result.getStatusLine().getStatusCode() == 504){
+                logger.error("超时了 504 url "+ url );
+                throw new RuntimeException("系统繁忙 请稍后再试");
+            }else {
                 logger.error("error code " + result.getStatusLine().getStatusCode() + " url " + url + " param " + jsonParam);
             }
         } catch (IOException e) {
