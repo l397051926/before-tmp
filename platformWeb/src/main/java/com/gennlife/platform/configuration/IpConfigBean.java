@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  **/
 @Component
 public class IpConfigBean {
-    @Value("${msg.ipAndPort}")
+    @Value("${msg.ipAndPort: msgIpAndPort}")
     private String mcIpConfig ;
 
     public String getMcIpConfig() {
