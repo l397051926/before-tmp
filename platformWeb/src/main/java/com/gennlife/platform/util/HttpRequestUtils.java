@@ -101,7 +101,7 @@ public class HttpRequestUtils {
             } else if (result.getStatusLine().getStatusCode() == 404) {
                 logger.error(url + " 不存在");
             } else if(result.getStatusLine().getStatusCode() == 504){
-                logger.error("超时了 504 url "+ url );
+                logger.error("超时了 504 url "+ url +"超时时间 getConnectTimeout" + requestConfig.getConnectTimeout()+" socketTimeout:  "+requestConfig.getSocketTimeout() + "result : " + EntityUtils.toString(result.getEntity()) );
                 throw new RuntimeException("系统繁忙 请稍后再试");
             }else {
                 logger.error("error code " + result.getStatusLine().getStatusCode() + " url " + url + " param " + jsonParam);
