@@ -9,6 +9,7 @@ import com.gennlife.platform.model.Role;
 import com.gennlife.platform.model.Uprofession;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.LaboratoryProcessor;
+import com.gennlife.platform.processor.Part3Processor;
 import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +38,7 @@ public class FileUploadUtil implements InitializingBean {
     private static String tempPath = "/home/tomcat_demo2_web/update/";
     @Autowired
     private FileBean fileBean;
-
+    private static Part3Processor part3Processor = new Part3Processor();
 
     public static String handleStaff(List<String> fileList, User user) throws Exception {
         if (fileList.size() == 0) {
@@ -311,6 +312,7 @@ public class FileUploadUtil implements InitializingBean {
                             srcList.add(line + ",失败,更新后的email是存在的");
                         } else {
                             int counter = AllDao.getInstance().getSyUserDao().updateUserByUnumber(addUser);
+                            part3Processor.userinfo(1, addUser);
                             if (counter >= 1) {
                                 try {
                                     AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role.getRoleid(), exUser.getUid());
@@ -327,6 +329,7 @@ public class FileUploadUtil implements InitializingBean {
                         int counter=0;
                         try {
                             counter = AllDao.getInstance().getSyUserDao().updateUserByUnumber(addUser);
+                            part3Processor.userinfo(1, addUser);
                         }catch (DataIntegrityViolationException e){
                             srcList.add(line + ",失败,数据存在问题");
                             continue;
@@ -347,6 +350,7 @@ public class FileUploadUtil implements InitializingBean {
                         int counter=0;
                         try {
                             counter = AllDao.getInstance().getSyUserDao().insertOneUser(addUser);
+                            part3Processor.userinfo(0, addUser);
                             Role role1 = AllDao.getInstance().getSyRoleDao().getLabMember(addUser.getOrgID());//科室成员
                             AllDao.getInstance().getSyRoleDao().insertUserRoleRelation(role1.getRoleid(), addUser.getUid());
                         }catch (DataIntegrityViolationException e){

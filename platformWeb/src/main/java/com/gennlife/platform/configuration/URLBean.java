@@ -4,7 +4,14 @@ package com.gennlife.platform.configuration;
  * Created by chen-song on 16/5/13.
  */
 public class URLBean {
-
+    /**
+     * 朗珈服务接口
+     */
+    private String accessTokenUrl;
+    //获取第三方链接的url
+    private String skipUrl;
+    //向第三方服务传输用户信息
+    private String userInfoUrl;
     /**
      * 非隐私信息接口
      */
@@ -483,6 +490,8 @@ public class URLBean {
     private String TripleTestTableUrl = null;
 
     private String applyOutGoing = null;
+
+    private String confirmSpecInfos = null;
 
     private String getPatienSn = null;
 
@@ -2162,5 +2171,37 @@ public class URLBean {
 
     public void setUpdateBatch(String updateBatch) {
         this.updateBatch = updateBatch;
+    }
+
+    public String getConfirmSpecInfos() {
+        return confirmSpecInfos;
+    }
+
+    public void setConfirmSpecInfos(String confirmSpecInfos) {
+        this.confirmSpecInfos = confirmSpecInfos;
+    }
+
+    public String getAccessTokenUrl() {
+        return accessTokenUrl;
+    }
+
+    public void setAccessTokenUrl(String accessTokenUrl) {
+        this.accessTokenUrl = accessTokenUrl;
+    }
+
+    public String getSkipUrl() {
+        return skipUrl;
+    }
+
+    public void setSkipUrl(String skipUrl) {
+        this.skipUrl = skipUrl;
+    }
+
+    public String getUserInfoUrl() {
+        return userInfoUrl;
+    }
+
+    public void setUserInfoUrl(String userInfoUrl) {
+        this.userInfoUrl = userInfoUrl;
     }
 }

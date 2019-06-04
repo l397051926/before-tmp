@@ -27,14 +27,16 @@ public class UserProcessor {
     private static JsonParser jsonParser = new JsonParser();
     private static Gson gson = GsonUtil.getGson();
 
-    public User login(String email, String pwd) throws IOException {
+    public User login(String email, String pwd, String isMD5) throws IOException {
         try {
             if (StringUtils.isEmpty(email) || StringUtils.isEmpty(pwd))
                 return null;
             Long start = System.currentTimeMillis();
             User user = null;
             try {
-                pwd = GStringUtils.str2Password(pwd);//通过md5加密处理
+                if (isMD5.trim().equals("false")) {
+                    pwd = GStringUtils.str2Password(pwd);//通过md5加密处理
+                }
                 if (email != null && GStringUtils.checkEmail(email)) {
                     Map<String, Object> confMap = new HashMap<String, Object>();
                     confMap.put("email", email);
@@ -148,6 +150,8 @@ public class UserProcessor {
                 logger.error("", e);
                 return ParamUtils.errorParamResultBean("更新失败");
             }
+
+            new Part3Processor().userinfo(1, user);
             return userBean;
         }
     }

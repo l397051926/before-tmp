@@ -9,6 +9,7 @@ public class ResultBean {
     private Object info;
     private Object data;
     private String msg;
+    private String url;
 
     public String getMsg() {
         return msg;
@@ -40,5 +41,13 @@ public class ResultBean {
 
     public void setInfo(Object info) {
         this.info = info;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

@@ -30,7 +30,7 @@ public class LaboratoryProcessor {
     private static Gson gson = GsonUtil.getGson();
     private static JsonParser jsonParser = new JsonParser();
     private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
+    private static Part3Processor part3Processor = new Part3Processor();
     /**
      * 获取科室组织信息
      *
@@ -1745,6 +1745,9 @@ public class LaboratoryProcessor {
             if (ret == 1) {
                 re.setCode(1);
                 re.setInfo("success");
+
+                user.setPwd(pwd);
+                part3Processor.userinfo(1, user);
             } else {
                 re.setCode(0);
                 re.setInfo("error");
@@ -1771,6 +1774,11 @@ public class LaboratoryProcessor {
                 RedisUtil.userLogoutByUid(uid);
                 re.setCode(1);
                 re.setInfo("success");
+
+
+                User userByUid = AllDao.getInstance().getSyUserDao().getUserByUid(uid);
+                userByUid.setPwd(GStringUtils.getDefaultPasswd());
+                part3Processor.userinfo(1, userByUid);
             } else {
                 re.setCode(0);
                 re.setInfo("wrong");

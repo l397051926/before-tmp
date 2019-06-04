@@ -94,6 +94,8 @@
                   value="http://${fileService.ipAndPort}/FileService/PatientDetail/thumbnail?url="></property>
         <property name="applyOutGoing"
                   value="http://${fileService.ipAndPort}/FileService/part3/applyOutGoing"></property>
+        <property name="confirmSpecInfos"
+                  value="http://${fileService.ipAndPort}/FileService/part3/confirmSpecInfos"></property>
         <property name="getPatienSn" value="http://${fileService.ipAndPort}/FileService/PatientDetail/get_patien_sn"></property>
         <property name="tripleTestTable" value="http://${fileService.ipAndPort}/FileService/PatientDetail/tripleTestTable"></property>
         <!--vitaBoard 服务-->

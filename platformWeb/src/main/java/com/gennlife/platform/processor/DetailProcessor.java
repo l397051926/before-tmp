@@ -624,7 +624,7 @@ public class DetailProcessor {
         }
     }
 
-    public String applyOutGoing(String param) {
+    public synchronized String applyOutGoing(String param) {
         try {
             String url = ConfigurationService.getUrlBean().getApplyOutGoing();
             logger.info("applyOutGoing url=" + url);
@@ -654,6 +654,17 @@ public class DetailProcessor {
             return result;
         } catch (Exception e) {
             return ParamUtils.errorParam("获取基本信息 ");
+        }
+    }
+
+    public String confirmSpecInfos(String newParam) {
+        try {
+            String url = ConfigurationService.getUrlBean().getConfirmSpecInfos();
+            logger.info("confirmSpecInfos url=" + url);
+            String result = HttpRequestUtils.httpPost(url, newParam, 60000*60*5, 60000*60*5);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
         }
     }
 }

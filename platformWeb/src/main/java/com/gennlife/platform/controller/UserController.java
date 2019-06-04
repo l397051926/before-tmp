@@ -49,6 +49,7 @@ public class UserController {
             LogUtils.BussnissLog("Login param=" + param);
             String email = null;
             String pwd = null;
+            String isMD5 = "false";
             try {
                 JsonObject user = (JsonObject) jsonParser.parse(param);
                 if (user.has("email")) {
@@ -56,13 +57,16 @@ public class UserController {
                 } else {
                     email = user.get("user").getAsString();
                 }
-                pwd = user.get("pwd").getAsString();
+                pwd = user.get("pwd").getAsString().trim();
+                if (user.has("isMD5")){
+                    isMD5 = user.get("isMD5").getAsString();
+                }
             } catch (Exception e) {
                 view.viewString(ParamUtils.errorParam("参数错误"), response);
                 return;
             }
             //获取用户名密码hospital_1
-            User user = processor.login(email, pwd);
+            User user = processor.login(email, pwd, isMD5);
             ResultBean resultBean = new ResultBean();
             if (user != null) {
                 user.setMc_ip(ipConfigBean.getMcIpConfig());

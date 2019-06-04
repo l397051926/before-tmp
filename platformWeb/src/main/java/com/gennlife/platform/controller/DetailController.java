@@ -1,10 +1,16 @@
 package com.gennlife.platform.controller;
 
 import com.gennlife.platform.authority.AuthorityUtil;
+import com.gennlife.platform.dao.AllDao;
+import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.DetailProcessor;
 import com.gennlife.platform.service.ConfigurationService;
+import com.gennlife.platform.util.GsonUtil;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -20,7 +26,6 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/detail")
 public class DetailController {
     private Logger logger = LoggerFactory.getLogger(DetailController.class);
-
     private DetailProcessor processor = new DetailProcessor();
 
     @RequestMapping(value = "/PatientBasicInfo", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
@@ -28,9 +33,18 @@ public class DetailController {
     @ResponseBody
     String getPatientBasicInfo(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
+        User user = (User) paramRe.getAttribute("currentUser");
         String resultStr = null;
         try {
             String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            JsonObject jsonObject = new JsonParser().parse(param).getAsJsonObject();
+            jsonObject.addProperty("unumber", user.getUnumber());
+            jsonObject.addProperty("isAdmin", AuthorityUtil.isAdmin(user)+"");
+            String labID = user.getLabID();
+            if(labID.contains("shengwuyangbenku")){
+                jsonObject.addProperty("isAdmin", true);
+            }
+            param = GsonUtil.toJsonStr(jsonObject);
             logger.info("详情页患者基础信息接口 get方式 参数=" + param);
             resultStr = processor.patientBasicInfo(param);
         } catch (Exception e) {
@@ -818,18 +832,49 @@ public class DetailController {
     @RequestMapping(value = "/applyOutGoing", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
-    String applyOutGoing(HttpServletRequest paramRe) {
+    synchronized String applyOutGoing(HttpServletRequest paramRe) {
         Long start = System.currentTimeMillis();
+        User user = (User) paramRe.getAttribute("currentUser");
         String resultStr = null;
         try {
             String param = ParamUtils.getParam(paramRe);
-            logger.info("等处？ get方式 参数=" + param);
-            resultStr = processor.applyOutGoing(param);
+            JsonObject object = new JsonParser().parse(param).getAsJsonObject();
+            object.addProperty("unumber",user.getUnumber());
+            object.addProperty("isAdmin",AuthorityUtil.isAdmin(user));
+            String newParam = new Gson().toJson(object);
+            logger.info("等处？ get方式 参数=" + newParam);
+            resultStr = processor.applyOutGoing(newParam);
         } catch (Exception e) {
             logger.error("等处？", e);
             resultStr = ParamUtils.errorParam("出现异常");
         }
         logger.info("等处？ get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/confirmSpecInfos", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    synchronized String confirmSpecInfos(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        User user = (User) paramRe.getAttribute("currentUser");
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            JsonObject object = new JsonParser().parse(param).getAsJsonObject();
+            String uid = user.getUid();
+            object.addProperty("unumber",user.getUnumber());
+            object.addProperty("isAdmin", AuthorityUtil.isAdmin(user));
+            object.addProperty("uid",user.getUid());
+            object.addProperty("pwd",AllDao.getInstance().getSyUserDao().getPwdByUid(uid));
+            String newParam = new Gson().toJson(object);
+            logger.info("确认需要导出的样本数据 参数=" + newParam);
+            resultStr = processor.confirmSpecInfos(newParam);
+        } catch (Exception e) {
+            logger.error("确认需要导出的数据接口 异常", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("确认需要导出的样本数据 post 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 

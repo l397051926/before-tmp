@@ -387,4 +387,6 @@ public interface SyUserMapper {
     List<String> getAllUserId();
 
     int getBenKeMemberNum(String uid);
+
+    List<User> getAllUsers();
 }
