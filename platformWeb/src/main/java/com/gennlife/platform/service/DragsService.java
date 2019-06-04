@@ -19,4 +19,8 @@ public interface DragsService {
     String miningDept(String param);
 
     String miningParent(String param);
+
+    String drgsHint(String param);
+
+    String indexRedraw(String param);
 }

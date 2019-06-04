@@ -345,12 +345,14 @@ public class URLBean {
 
     /*医保控费 接口*/
     private String drgsIndex = null;
+    private String drgsHint = null;
     private String indexSetting = null;
     private String indexList = null;
     private String factorList = null;
     private String miningCatalog = null;
     private String miningDept = null;
     private String miningParent = null;
+    private String indexRedraw = null;
     /**
      * crf 高级搜索调到详情页
      */
@@ -2429,5 +2431,21 @@ public class URLBean {
 
     public void setExportTaskCancelByProjectId(String exportTaskCancelByProjectId) {
         this.exportTaskCancelByProjectId = exportTaskCancelByProjectId;
+    }
+
+    public String getDrgsHint() {
+        return drgsHint;
+    }
+
+    public void setDrgsHint(String drgsHint) {
+        this.drgsHint = drgsHint;
+    }
+
+    public String getIndexRedraw() {
+        return indexRedraw;
+    }
+
+    public void setIndexRedraw(String indexRedraw) {
+        this.indexRedraw = indexRedraw;
     }
 }

@@ -102,5 +102,29 @@ public class DragsServiceImpl implements DragsService {
             return ParamUtils.errorParam("请求发生异常");
         }    }
 
+    @Override
+    public String drgsHint(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getDrgsHint();
+            String result = HttpRequestUtils.httpPost(url,param);
+            return result;
+        } catch (Exception e) {
+            logger.error("医保控费 hint，返回首页数据 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
+    @Override
+    public String indexRedraw(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getIndexRedraw();
+            String result = HttpRequestUtils.httpPost(url,param);
+            return result;
+        } catch (Exception e) {
+            logger.error("医保控费 用户在首页进行高级设置后的请求接口 ", e);
+            return ParamUtils.errorParam("请求发生异常");
+        }
+    }
+
 
 }

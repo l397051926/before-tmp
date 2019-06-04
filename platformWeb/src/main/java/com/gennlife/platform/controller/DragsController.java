@@ -45,6 +45,21 @@ public class DragsController {
         return resultStr;
     }
 
+    @RequestMapping(value = "/hint", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public String hint(HttpServletRequest paramRe, HttpServletResponse response) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            resultStr = dragsService.drgsHint(param);
+        } catch (Exception e) {
+            LOGGER.error("", e);
+            resultStr = ParamUtils.errorParam("医保控费 hint，返回首页数据 出现异常");
+        }
+        LOGGER.info("医保控费 hint，返回首页数据 出现异常 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
     @RequestMapping(value = "/index/setting", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public String setting(HttpServletRequest paramRe, HttpServletResponse response) {
         Long start = System.currentTimeMillis();
@@ -57,6 +72,21 @@ public class DragsController {
             resultStr = ParamUtils.errorParam("医保控费 用户在首页进行高级设置后的请求接口 出现异常");
         }
         LOGGER.info("医保控费 用户在首页进行高级设置后的请求接口 出现异常 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/index/redraw", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public String redraw(HttpServletRequest paramRe, HttpServletResponse response) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            resultStr = dragsService.indexRedraw(param);
+        } catch (Exception e) {
+            LOGGER.error("", e);
+            resultStr = ParamUtils.errorParam("医保控费 redraw的请求接口 出现异常");
+        }
+        LOGGER.info("医保控费 redraw的请求接口 出现异常 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
 
