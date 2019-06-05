@@ -99,9 +99,6 @@ public class SearchBean {
         this.power = power;
     }
 
-    public String resultQuery(){
-        return "{ " +this.query +" }";
-    }
 
     public void setMyclinicSource() {
         if(this.source == null){
@@ -119,15 +116,63 @@ public class SearchBean {
         String OUTPATIENT_SN =getMyclinnicQuery(paramObj,"OUTPATIENT_SN");
         String INPATIENT_SN =getMyclinnicQuery(paramObj,"INPATIENT_SN");
 
-        if(StringUtils.isEmpty(PATIENT_NAME) && StringUtils.isEmpty(IDCARD) && StringUtils.isEmpty(MEDICARECARD) && StringUtils.isEmpty(OUTPATIENT_SN) ){
+        if(StringUtils.isEmpty(PATIENT_NAME) && StringUtils.isEmpty(IDCARD) && StringUtils.isEmpty(MEDICARECARD) && StringUtils.isEmpty(OUTPATIENT_SN) && StringUtils.isEmpty(INPATIENT_SN) ){
             return true;
         }
-        addMyclinicQuery(new String[]{ADMISSION_DATE,PATIENT_NAME,IDCARD,MEDICARECARD,OUTPATIENT_SN,INPATIENT_SN});
-        resultQuery();
+        addLeftlit();
+        addMyclinicQuery(PATIENT_NAME,IDCARD,MEDICARECARD);
+        addRightlit();
+        addAnd();
+        addLeftBg();
+        addMyclinicQuery(ADMISSION_DATE,OUTPATIENT_SN,INPATIENT_SN);
+        addRightBg();
         return false;
     }
 
-    private void addMyclinicQuery(String[] querys) {
+    public void addAnd(){
+        if(StringUtils.isEmpty(this.query)){
+            LOGGER.warn("query 为空 不能直接 增加 AND ");
+            return;
+        }
+        this.query = this.query + " AND ";
+    }
+    public void addOr(){
+        if(StringUtils.isEmpty(this.query)){
+            LOGGER.warn("query 为空 不能直接 增加 OR ");
+            return;
+        }
+        this.query = this.query + " OR ";
+    }
+    public void addLeftlit(){
+        if(StringUtils.isEmpty(this.query)){
+            this.query = "(";
+        }else {
+            this.query = this.query + "(";
+        }
+    }
+    public void addRightlit(){
+        if(StringUtils.isEmpty(this.query)){
+            LOGGER.warn("query 为空 不能直接 增加 ) ");
+            return;
+        }
+        this.query = this.query + ")";
+    }
+    public void addRightBg(){
+        if(StringUtils.isEmpty(this.query)){
+            LOGGER.warn("query 为空 不能直接 增加 } ");
+            return;
+        }
+        this.query = this.query + "}";
+    }
+    public void addLeftBg(){
+        if(StringUtils.isEmpty(this.query)){
+            this.query = "{";
+        }else {
+            this.query = this.query + "{";
+        }
+    }
+
+    private void addMyclinicQuery(String...querys) {
         for(String str : querys){
             addAndQuery(str);
         }
@@ -139,6 +184,8 @@ public class SearchBean {
         }
         if(StringUtils.isEmpty(this.query)){
             this.query = str;
+        } else  if("(".equals(this.query.substring(this.query.length()-1)) || "{".equals(this.query.substring(this.query.length()-1))){
+            setQuery(this.query.concat(str));
         }else {
             setQuery(this.query.concat(" AND ").concat(str));
         }
@@ -167,10 +214,10 @@ public class SearchBean {
 
     private static final JSONObject MYCLINIC_QUERY_CONFIG = new JSONObject()
         .fluentPut("ADMISSION_DATE","[就诊.就诊基本信息.入院（就诊）时间]")
-        .fluentPut("PATIENT_NAME","[患者基本信息.患者姓名]")
-        .fluentPut("IDCARD","[患者基本信息.证件号码]")
-        .fluentPut("MEDICARECARD","[患者基本信息.医保卡号]")
-        .fluentPut("INPATIENT_SN","[就诊.就诊基本信息.门诊号]")
         .fluentPut("OUTPATIENT_SN","[就诊.就诊基本信息.住院号]")
+        .fluentPut("INPATIENT_SN","[就诊.就诊基本信息.门诊号]")
+        .fluentPut("IDCARD","[患者基本信息.证件号码]")
+        .fluentPut("PATIENT_NAME","[患者基本信息.患者姓名]")
+        .fluentPut("MEDICARECARD","[患者基本信息.医保卡号]")
         ;
 }

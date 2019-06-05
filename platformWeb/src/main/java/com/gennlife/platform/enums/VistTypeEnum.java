@@ -20,6 +20,9 @@ public enum  VistTypeEnum {
 
     public static VistTypeEnum getVistTypeEnum(Integer type){
         switch (type){
+            case 0:{
+                return hospital;
+            }
             case 1:{
                 return outpatient;
             }

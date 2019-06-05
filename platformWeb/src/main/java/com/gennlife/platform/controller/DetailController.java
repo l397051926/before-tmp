@@ -44,6 +44,24 @@ public class DetailController {
         return resultStr;
     }
 
+
+    @RequestMapping(value = "/PatientBasicInfoDetail", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getPatientBasicInfoDetail(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            logger.info("详情页患者基础信息接口 get方式 参数=" + param);
+            resultStr = processor.patientBasicInfoDetail(param);
+        } catch (Exception e) {
+            logger.error("详情页患者基础信息接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("详情页患者基础信息接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
     @RequestMapping(value = "/PatInfo/{type}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody

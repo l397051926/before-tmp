@@ -1196,59 +1196,22 @@ public class CaseProcessor {
         logger.info("病案首页 检索参数为： "+object);
         CaseSearchParser caseSearchParser = new CaseSearchParser(object);
         try {
-//            //去es里搜索数据
-//            String searchResultStr = caseSearchParser.parser();
-//            if (StringUtils.isEmpty(searchResultStr)) {
-//                logger.error("search empty " + caseSearchParser.getQuery());
-//                return ParamUtils.errorParam("搜索无结果");
-//            }
-//            JSONObject searchResult = JSONObject.parseObject(searchResultStr);
-//            // 做数据整理 返回给前端
-//            transformMyclinicSearchResult(searchResult,paramObj);
-//
+//            去es里搜索数据
+            String searchResultStr = caseSearchParser.parser();
+            if (StringUtils.isEmpty(searchResultStr)) {
+                logger.error("search empty " + caseSearchParser.getQuery());
+                return ParamUtils.errorParam("搜索无结果");
+            }
+            JSONObject searchResult = JSONObject.parseObject(searchResultStr);
+            // 做数据整理 返回给前端
+            JSONArray data = transformMyclinicSearchResult(searchResult,paramObj);
+            Integer count = searchResult.getJSONObject("hits").getInteger("total");
             JSONObject result = new JSONObject();
-            JSONObject object3 = new JSONObject();
-            object3.put("GENDER","女");
-            object3.put("BIRTH_DATE","1987-12-12");
-            object3.put("INPATIENT_OUTPATIENT_SN","123456");
-            object3.put("PATIENT_NAME","<span style=\"color:red\">王xxxx</span>");
-            object3.put("IDCARD","12345678912345678");
-            object3.put("MEDICARECARD","12345678");
-            object3.put("VISIT_TYPE","门诊");
-            object3.put("ADMISSION_DATE","1876-09-56");
-            object3.put("ADMISSION_DEPT","甲状腺外科");
-            object3.put("VISIT_SN","vis_7d29697edf26133dbb507c2a81bc2561");
-            object3.put("PATIENT_SN","pat_03bb1fc4d3bb691bb141f3b907cad795");
-            JSONObject object1 = new JSONObject();
-            object1.put("GENDER","女");
-            object1.put("BIRTH_DATE","1987-12-12");
-            object1.put("INPATIENT_OUTPATIENT_SN","123456");
-            object1.put("PATIENT_NAME","<span style=\"color:red\">王xxxx</span>");
-            object1.put("IDCARD","12345678912345678");
-            object1.put("MEDICARECARD","12345678");
-            object1.put("VISIT_TYPE","门诊");
-            object1.put("ADMISSION_DATE","1876-09-56");
-            object1.put("ADMISSION_DEPT","甲状腺外科");
-            object1.put("VISIT_SN","vis_7d29697edf26133dbb507c2a81bc2561");
-            object1.put("PATIENT_SN","pat_03bb1fc4d3bb691bb141f3b907cad795");
-            JSONObject object2 = new JSONObject();
-            object2.put("GENDER","女");
-            object2.put("BIRTH_DATE","1987-12-12");
-            object2.put("INPATIENT_OUTPATIENT_SN","123456");
-            object2.put("PATIENT_NAME","<span style=\"color:red\">王xxxx</span>");
-            object2.put("IDCARD","12345678912345678");
-            object2.put("MEDICARECARD","12345678");
-            object2.put("VISIT_TYPE","门诊");
-            object2.put("ADMISSION_DATE","1876-09-56");
-            object2.put("ADMISSION_DEPT","甲状腺外科");
-            object2.put("VISIT_SN","vis_7d29697edf26133dbb507c2a81bc2561");
-            object2.put("PATIENT_SN","pat_03bb1fc4d3bb691bb141f3b907cad795");
-            JSONArray array = new JSONArray().fluentAdd(object).fluentAdd(object1).fluentAdd(object2);
             result.put("code", 1);
-            result.put("data", array);
+            result.put("data", data);
             result.put("size",size);
             result.put("page",page);
-            result.put("count",3);
+            result.put("count",count);
             return result.toJSONString();
         } catch (Exception e) {
             logger.error("error", e);
@@ -1256,7 +1219,7 @@ public class CaseProcessor {
         }
     }
 
-    private void transformMyclinicSearchResult(JSONObject searchResult, JSONObject paramObj) {
+    private JSONArray transformMyclinicSearchResult(JSONObject searchResult, JSONObject paramObj) {
         JSONArray ADMISSION_DATE = paramObj.getJSONArray("ADMISSION_DATE");
         String PATIENT_NAME = paramObj.getString("PATIENT_NAME");
         String IDCARD = paramObj.getString("IDCARD");
@@ -1265,12 +1228,13 @@ public class CaseProcessor {
         String INPATIENT_SN = paramObj.getString("INPATIENT_SN");
 
         List<JSONObject> source = getSource(searchResult);
+        JSONArray data = new JSONArray();
         for (JSONObject obj : source){
             JSONObject resObj = new JSONObject();
             JSONArray visits = obj.getJSONArray("visits");
 
             for (int i = 0; i < visits.size(); i++) {
-                JSONObject visObj = visits.getJSONObject(i);
+                JSONObject visObj = visits.getJSONObject(i).getJSONArray("visit_info").getJSONObject(0);
                 Boolean comDate = compareDate(ADMISSION_DATE,visObj);
                 if(comDate){
                     if( !StringUtils.isEmpty(visObj.getString("INPATIENT_SN")) && !visObj.getString("INPATIENT_SN").contains(INPATIENT_SN)){
@@ -1295,19 +1259,21 @@ public class CaseProcessor {
                     continue;
                 }
             }
-            JSONObject patientInfo = obj.getJSONObject("patient_info");
-            resObj.put("PATIENT_NAME",getMyclinicValue(PATIENT_NAME,patientInfo,"PATIENT_NAME"));
+            JSONObject patientInfo = obj.getJSONArray("patient_info").getJSONObject(0);
+            resObj.put("PATIENT_NAME",getMyclinicValue(PATIENT_NAME,patientInfo,"PATINAME"));
             resObj.put("GENDER",patientInfo.getString("GENDER"));
             resObj.put("BIRTH_DATE",patientInfo.getString("BIRTH_DATE"));
             resObj.put("PATIENT_SN",patientInfo.getString("PATIENT_SN"));
             resObj.put("IDCARD",getMyclinicValue(IDCARD,patientInfo,"IDCARD"));
             resObj.put("MEDICARECARD",getMyclinicValue(MEDICARECARD,patientInfo,"MEDICARECARD"));
+            data.add(resObj);
         }
+        return data;
 
     }
 
     private Boolean compareDate(JSONArray admission_date, JSONObject visObj) {
-        if(admission_date.size()<2){
+        if( admission_date == null || admission_date.size()<2){
             return true;
         }
         String date1 = admission_date.getString(0);

@@ -788,8 +788,8 @@ public class DetailProcessor {
     public String newMedicalRecords(String param) {
         try {
             String url = ConfigurationService.getUrlBean().getNewMedicalRecords();
-//            String result = HttpRequestUtils.httpPost(url, param);
-            String result =tmpMedicalRecords;
+            String result = HttpRequestUtils.httpPost(url, param);
+//            String result =tmpMedicalRecords;
             return result;
         } catch (Exception e) {
             return ParamUtils.errorParam("请求出错");
@@ -811,6 +811,16 @@ public class DetailProcessor {
     public String getOrdersPharmacyDay(String param) {
         try {
             String url = ConfigurationService.getUrlBean().getOrdersPharmacyDay();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String patientBasicInfoDetail(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getCaseDetailPatientBasicInfoDetailURL();
             String result = HttpRequestUtils.httpPost(url, param);
             return result;
         } catch (Exception e) {

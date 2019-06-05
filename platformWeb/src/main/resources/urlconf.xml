@@ -30,8 +30,8 @@
         <!--FS 详情页 -->
         <property name="caseDetailCommonUrl" value="http://${fileService.ipAndPort}/FileService/PatientDetail/"/>
         <property name="getGennomics" value="http://${fileService.ipAndPort}/FileService/PatientDetail/getGennomics"/>
-        <property name="caseDetailPatientBasicInfoURL"
-                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/patient_basic_info"/>
+        <property name="caseDetailPatientBasicInfoURL" value="http://${fileService.ipAndPort}/FileService/PatientDetail/patient_basic_info"/>
+        <property name="caseDetailPatientBasicInfoDetailURL" value="http://${fileService.ipAndPort}/FileService/PatientDetail/patient_basic_info_detail"/>
         <property name="caseDetailPatientBasicFigureURL"
                   value="http://${fileService.ipAndPort}/FileService/PatientDetail/PatientBasicFigure"/>
         <property name="casePatientBasicTimeAxisURL"

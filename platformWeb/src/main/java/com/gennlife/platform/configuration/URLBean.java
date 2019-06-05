@@ -214,6 +214,11 @@ public class URLBean {
      */
     private String caseDetailPatientBasicInfoURL = null;
     /**
+     * 搜索:V4.0
+     * 详情页患者基础信息接口
+     */
+    private String caseDetailPatientBasicInfoDetailURL = null;
+    /**
      * 搜索:V1.0
      * 基本统计图形&筛选条件
      */
@@ -2197,5 +2202,13 @@ public class URLBean {
 
     public void setOrdersPharmacyDay(String ordersPharmacyDay) {
         this.ordersPharmacyDay = ordersPharmacyDay;
+    }
+
+    public String getCaseDetailPatientBasicInfoDetailURL() {
+        return caseDetailPatientBasicInfoDetailURL;
+    }
+
+    public void setCaseDetailPatientBasicInfoDetailURL(String caseDetailPatientBasicInfoDetailURL) {
+        this.caseDetailPatientBasicInfoDetailURL = caseDetailPatientBasicInfoDetailURL;
     }
 }
