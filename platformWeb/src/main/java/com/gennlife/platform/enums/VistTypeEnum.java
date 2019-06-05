@@ -6,9 +6,10 @@ package com.gennlife.platform.enums;
  * @desc
  **/
 public enum  VistTypeEnum {
-    outpatient(1,"门诊"),
-    hospital(2,"住院"),
-    physical(3,"体检");
+    outpatient(0,"门诊"),
+    hospital(1,"住院"),
+    physical(2,"急诊"),
+    check_ups(3,"体检");
 
     private Integer type;
     private String name;
@@ -21,16 +22,16 @@ public enum  VistTypeEnum {
     public static VistTypeEnum getVistTypeEnum(Integer type){
         switch (type){
             case 0:{
-                return hospital;
-            }
-            case 1:{
                 return outpatient;
             }
-            case 2:{
+            case 1:{
                 return hospital;
             }
-            case 3:{
+            case 2:{
                 return physical;
+            }
+            case 3:{
+                return check_ups;
             }
             default: return null;
         }
