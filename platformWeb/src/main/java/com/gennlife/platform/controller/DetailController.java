@@ -36,6 +36,7 @@ public class DetailController {
         User user = (User) paramRe.getAttribute("currentUser");
         String resultStr = null;
         try {
+            logger.info("==============西安================");
             String param = AuthorityUtil.addTreatedAuthority(paramRe);
             JsonObject jsonObject = new JsonParser().parse(param).getAsJsonObject();
             jsonObject.addProperty("unumber", user.getUnumber());
