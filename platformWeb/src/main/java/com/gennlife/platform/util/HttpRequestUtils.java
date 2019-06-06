@@ -50,6 +50,10 @@ public class HttpRequestUtils {
         return httpPostExecute(url, jsonParam, requestConfig);
     }
 
+    public static String httpPost(String url, String jsonParam, int socketTimeout, int connectTimeout) {
+        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(socketTimeout).setConnectTimeout(connectTimeout).build();
+        return httpPostExecute(url, jsonParam, requestConfig);
+    }
 
     public static String httpPostPubMed(String url, String jsonParam) {
         RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(600000).setConnectTimeout(600000).build();
