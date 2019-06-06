@@ -46,17 +46,13 @@ public class HttpRequestUtils {
      * @return
      */
     public static String httpPost(String url, String jsonParam) {
-        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(50000).setConnectTimeout(10000).build();
+        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(600000).setConnectTimeout(600000).build();
         return httpPostExecute(url, jsonParam, requestConfig);
     }
 
-    public static String httpPost(String url, String jsonParam, int socketTimeout, int connectTimeout) {
-        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(socketTimeout).setConnectTimeout(connectTimeout).build();
-        return httpPostExecute(url, jsonParam, requestConfig);
-    }
 
     public static String httpPostPubMed(String url, String jsonParam) {
-        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(60000).setConnectTimeout(10000).build();
+        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(600000).setConnectTimeout(600000).build();
         return httpPostExecute(url, jsonParam, requestConfig);
     }
 
@@ -68,7 +64,7 @@ public class HttpRequestUtils {
      * @return
      */
     public static String httpPostForSampleImport(String url, String jsonParam, int timeOut) {
-        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(timeOut).setConnectTimeout(10000).build();
+        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(timeOut).setConnectTimeout(1010*60*1000000).build();
         return httpPostExecute(url, jsonParam, requestConfig);
     }
 
@@ -104,7 +100,10 @@ public class HttpRequestUtils {
                 }
             } else if (result.getStatusLine().getStatusCode() == 404) {
                 logger.error(url + " 不存在");
-            } else {
+            } else if(result.getStatusLine().getStatusCode() == 504){
+                logger.error("超时了 504 url "+ url +"超时时间 getConnectTimeout" + requestConfig.getConnectTimeout()+" socketTimeout:  "+requestConfig.getSocketTimeout() + "result : " + EntityUtils.toString(result.getEntity()) );
+                throw new RuntimeException("系统繁忙 请稍后再试");
+            }else {
                 logger.error("error code " + result.getStatusLine().getStatusCode() + " url " + url + " param " + jsonParam);
             }
         } catch (IOException e) {
@@ -130,7 +129,7 @@ public class HttpRequestUtils {
     }*/
 
     public static String httpGet(String url) {
-        return httpGet(url, 90000);
+        return httpGet(url, 10*60*1000);
     }
 
     public static String httpGet(String url, int time) {

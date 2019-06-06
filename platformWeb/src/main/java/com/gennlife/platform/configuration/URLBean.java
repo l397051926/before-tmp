@@ -529,6 +529,8 @@ public class URLBean {
     private String exportTaskDownload = null;
     private String exportTaskList = null;
     private String exportTaskStart = null;
+    private String exportTaskCancelByProjectId = null;
+
 
     public String getExportTaskStart() {
         return exportTaskStart;
@@ -2203,5 +2205,13 @@ public class URLBean {
 
     public void setUserInfoUrl(String userInfoUrl) {
         this.userInfoUrl = userInfoUrl;
+    }
+
+    public String getExportTaskCancelByProjectId() {
+        return exportTaskCancelByProjectId;
+    }
+
+    public void setExportTaskCancelByProjectId(String exportTaskCancelByProjectId) {
+        this.exportTaskCancelByProjectId = exportTaskCancelByProjectId;
     }
 }

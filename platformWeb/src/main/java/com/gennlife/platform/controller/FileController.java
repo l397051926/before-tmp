@@ -297,4 +297,23 @@ public class FileController {
         logger.info("获取导出任务列表 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/Projects/Export/Task/CancelByProjectId", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String exportTaskCancelByProjectId(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = ParamUtils.getParam(paramRe);
+            logger.info("取消项目相关导出任务 参数 = " + param);
+            JsonObject paramObj = (JsonObject) jsonParser.parse(param);
+            resultStr = processor.exportTaskCancelByProjectId(paramObj);
+        } catch (Exception e) {
+            logger.error("取消项目相关导出任务", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("取消项目相关导出任务 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
 }
