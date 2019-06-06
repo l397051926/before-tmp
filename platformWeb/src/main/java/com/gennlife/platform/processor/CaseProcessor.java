@@ -1291,7 +1291,7 @@ public class CaseProcessor {
     private String getMyclinicValue(String resName, JSONObject object, String key) {
         String name = object.getString(key);
         if(!StringUtils.isEmpty(resName)){
-            name.replaceAll(resName,"<span style='color:red'>" + resName + "</span>");
+            name = name.replaceAll(resName,"<span style='color:red'>" + resName + "</span>");
         }
         return name;
     }
