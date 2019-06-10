@@ -14,7 +14,7 @@ public class RocketMqContent {
     private String producerGroup;
     @Value("${apache.rocketmq.consumer.PushConsumer}")
     private String consumerGroup;
-    @Value("${apache.rocketmq.namesrvAddr}")
+    @Value("${apache.rocketmq.namesrvAddr:}")
     private String namesrvAddr;  //地址
     @Value("${apache.rocketmq.topicSys}")
     private String topicSys;    //系统消息

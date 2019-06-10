@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -34,12 +35,17 @@ public class ProducerService {
 
     @PostConstruct
     public void initProducer() {
+        boolean onOff = !StringUtils.isEmpty(rocketMqContent.getNamesrvAddr());
         producer = new DefaultMQProducer(rocketMqContent.getProducerGroup());
         producer.setNamesrvAddr(rocketMqContent.getNamesrvAddr());
         producer.setRetryTimesWhenSendFailed(3);
         try {
-            producer.start();
-            System.out.println("[Producer 已启动]");
+            if(onOff){
+                producer.start();
+                LOGGER.info("[Producer 已启动]");
+            }else {
+                LOGGER.warn("未进行rocketMq 进行配置 没有启动 rocketMq");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

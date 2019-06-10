@@ -299,29 +299,29 @@
         <property name="judgeTaskStatus" value="http://${rws.ipAndPort}/rws-service/rws/inputs/judgeTaskStatus"/>
 
         <!--&lt;!&ndash;消息中心接口展示&ndash;&gt;-->
-        <property name="msgUpdate" value="http://${msg.ipAndPort}/mc-server/update"/>
-        <property name="msgUpdateAll" value="http://${msg.ipAndPort}/mc-server/updateAll"/>
-        <property name="msgQuery" value="http://${msg.ipAndPort}/mc-server/query"/>
-        <property name="updateBatch" value="http://${msg.ipAndPort}/mc-server/updateBatch"/>
+        <property name="msgUpdate" value="http://${msg.ipAndPort:}/mc-server/update"/>
+        <property name="msgUpdateAll" value="http://${msg.ipAndPort:}/mc-server/updateAll"/>
+        <property name="msgQuery" value="http://${msg.ipAndPort:}/mc-server/query"/>
+        <property name="updateBatch" value="http://${msg.ipAndPort:}/mc-server/updateBatch"/>
 
         <!--消息中心接口展示-->
-        <property name="miningParent" value="http://${drgs.ipAndPort}/drgs-server/drgs/mining/patient"/>
-        <property name="miningDept" value="http://${drgs.ipAndPort}/drgs-server/drgs/mining/dept"/>
-        <property name="miningCatalog" value="http://${drgs.ipAndPort}/drgs-server/drgs/mining/catalog"/>
-        <property name="factorList" value="http://${drgs.ipAndPort}/drgs-server/drgs/factor/list"/>
-        <property name="indexList" value="http://${drgs.ipAndPort}/drgs-server/drgs/index/list"/>
-        <property name="indexRedraw" value="http://${drgs.ipAndPort}/drgs-server/drgs/index/redraw"/>
-        <property name="indexSetting" value="http://${drgs.ipAndPort}/drgs-server/drgs/index/list"/>
-        <property name="drgsIndex" value="http://${drgs.ipAndPort}/drgs-server/drgs/index"/>
-        <property name="drgsHint" value="http://${drgs.ipAndPort}/drgs-server/drgs/hint"/>
+        <property name="miningParent" value="http://${drgs.ipAndPort:}/drgs-server/drgs/mining/patient"/>
+        <property name="miningDept" value="http://${drgs.ipAndPort:}/drgs-server/drgs/mining/dept"/>
+        <property name="miningCatalog" value="http://${drgs.ipAndPort:}/drgs-server/drgs/mining/catalog"/>
+        <property name="factorList" value="http://${drgs.ipAndPort:}/drgs-server/drgs/factor/list"/>
+        <property name="indexList" value="http://${drgs.ipAndPort:}/drgs-server/drgs/index/list"/>
+        <property name="indexRedraw" value="http://${drgs.ipAndPort:}/drgs-server/drgs/index/redraw"/>
+        <property name="indexSetting" value="http://${drgs.ipAndPort:}/drgs-server/drgs/index/list"/>
+        <property name="drgsIndex" value="http://${drgs.ipAndPort:}/drgs-server/drgs/index"/>
+        <property name="drgsHint" value="http://${drgs.ipAndPort:}/drgs-server/drgs/hint"/>
 
         <!-- 对接郑州中心 统一门户 -->
-        <property name="yyssoUrl" value="${yongyou_ssoUrl}" />
-        <property name="isMock" value="${sso_isMock}" />
-        <property name="ssoSysmark" value="${sso_sysmark}" />
-        <property name="ssoErrorRedirectUrl" value="${sso_error_redirect_url}" />
-        <property name="ssoSuccessUrl" value="${sso_success_url}" />
-        <property name="ssoSuccessUrlTemp" value="${sso_success_url_temp}" />
-        <property name="ssoFailUrl" value="${sso_fail_url}" />
+        <property name="yyssoUrl" value="${yongyou_ssoUrl:}" />
+        <property name="isMock" value="${sso_isMock:}" />
+        <property name="ssoSysmark" value="${sso_sysmark:}" />
+        <property name="ssoErrorRedirectUrl" value="${sso_error_redirect_url:}" />
+        <property name="ssoSuccessUrl" value="${sso_success_url:}" />
+        <property name="ssoSuccessUrlTemp" value="${sso_success_url_temp:}" />
+        <property name="ssoFailUrl" value="${sso_fail_url:}" />
     </bean>
 </beans>
