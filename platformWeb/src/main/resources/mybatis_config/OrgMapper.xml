@@ -391,6 +391,10 @@
         And (depart_name = '行政管理类' OR depart_name = '业务管理类')
     </select>
 
+    <select id="seleteA" resultType="java.lang.String">
+        select
+        1
+    </select>
 
 
 </mapper>

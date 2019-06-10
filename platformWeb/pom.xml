@@ -27,6 +27,28 @@
 	</properties>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>com.gennlife</groupId>
+			<artifactId>yongyou-sso</artifactId>
+			<version>1.0.0.0-Release</version>
+		</dependency>
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.10</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.yongyou</groupId>
+			<artifactId>idmcas-ws-encoder</artifactId>
+			<version>1.0.0.0-Release</version>
+		</dependency>
+
 		<dependency>
 			<groupId>de.idyl</groupId>
 			<artifactId>winzipaes</artifactId>

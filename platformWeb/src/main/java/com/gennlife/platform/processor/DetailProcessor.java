@@ -1,5 +1,6 @@
 package com.gennlife.platform.processor;
 
+import com.gennlife.platform.ReadConfig.ReadConditionByRedis;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.HttpRequestUtils;
 import com.gennlife.platform.util.ParamUtils;
@@ -662,6 +663,114 @@ public class DetailProcessor {
             String url = ConfigurationService.getUrlBean().getConfirmSpecInfos();
             logger.info("confirmSpecInfos url=" + url);
             String result = HttpRequestUtils.httpPost(url, newParam, 60000*60*5, 60000*60*5);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String getSchemaData() {
+        try {
+            String result = ReadConditionByRedis.getDetailSchemaData();
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("获取基本信息 ");
+        }
+    }
+
+    public String labResultList(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getCaseLab_result_list();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String NewLabResultItemList(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getCaseNew_lab_result_list();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String newMedicalCourse(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getCaseNewMedicalCourse();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String newCourseRecords(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getCaseNewCourseRecords();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String newExamResult(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getCaseNewExamResult();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String newQuotaReports(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getCaseNewQuotaReports();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String newOperationRecords(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getNewOperationRecords();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String newMedicineOrder(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getNewMedicineOrder();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+    public String newOrdersPharmacy(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getNewOrdersPharmacy();
+            String result = HttpRequestUtils.httpPost(url, param);
+            return result;
+        } catch (Exception e) {
+            return ParamUtils.errorParam("请求出错");
+        }
+    }
+
+    public String newVisitDiagnose(String param) {
+        try {
+            String url = ConfigurationService.getUrlBean().getNewDiagnose();
+            String result = HttpRequestUtils.httpPost(url, param);
             return result;
         } catch (Exception e) {
             return ParamUtils.errorParam("请求出错");

@@ -18,6 +18,12 @@ import java.util.Map;
 @Mapper("syUserDao")
 public interface SyUserMapper {
     /**
+     * 用于郑大一附单点登陆
+     * @param unumber
+     * @return
+     */
+    public User selectUserByUnumber(@Param("unumber") String unumber);
+    /**
      * 获取一个用户的信息
      *
      * @param likeCondition

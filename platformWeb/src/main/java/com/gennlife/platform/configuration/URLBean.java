@@ -282,6 +282,35 @@ public class URLBean {
      */
     private String caseDiagnose = null;
 
+    /**
+     * 检验大项接口
+     */
+    private String caseLab_result_list = null;
+
+    /**
+     * 新检验子项接口
+     */
+    private String caseNew_lab_result_list = null;
+
+    /**
+     * 病例文书
+     */
+    private String caseNewMedicalCourse = null;
+
+    /**
+     * 病程记录
+     */
+    private String caseNewCourseRecords = null;
+
+    /**
+     * 病程记录
+     */
+    private String caseNewExamResult = null;
+
+    /**
+     * 病程记录
+     */
+    private String caseNewQuotaReports = null;
 
     /**
      * 遗传性疾病
@@ -323,6 +352,13 @@ public class URLBean {
      * 构建全部索引接口
      */
     private String buildIndexForAll = null;
+
+    private String newOperationRecords = null;
+    private String newMedicineOrder = null;
+    private String newOrdersPharmacy = null;
+    private String newDiagnose = null;
+
+
 
     public String getBuildIndexForAll() {
         return buildIndexForAll;
@@ -762,6 +798,86 @@ public class URLBean {
 
     public void setEligible(String eligible) {
         this.eligible = eligible;
+    }
+
+
+    /**用友单点登陆校验地址*/
+    private String yyssoUrl = null;
+    private Integer isMock = 1;
+    private String ssoSuccessUrl = null;
+    private String ssoFailUrl = null;
+    private String ssoSysmark = null;
+    private String ssoErrorRedirectUrl = null;
+    private String ssoSuccessUrlTemp = null;
+
+    public String getSsoSuccessUrlTemp() {
+
+        return ssoSuccessUrlTemp;
+    }
+
+    public void setSsoSuccessUrlTemp(String ssoSuccessUrlTemp) {
+
+        this.ssoSuccessUrlTemp = ssoSuccessUrlTemp;
+    }
+
+    public String getSsoErrorRedirectUrl() {
+
+        return ssoErrorRedirectUrl;
+    }
+
+    public void setSsoErrorRedirectUrl(String ssoErrorRedirectUrl) {
+
+        this.ssoErrorRedirectUrl = ssoErrorRedirectUrl;
+    }
+
+    public String getSsoSysmark() {
+
+        return ssoSysmark;
+    }
+
+    public void setSsoSysmark(String ssoSysmark) {
+
+        this.ssoSysmark = ssoSysmark;
+    }
+
+    public String getYyssoUrl() {
+
+        return yyssoUrl;
+    }
+
+    public void setYyssoUrl(String yyssoUrl) {
+
+        this.yyssoUrl = yyssoUrl;
+    }
+
+    public Integer getIsMock() {
+
+        return isMock;
+    }
+
+    public void setIsMock(Integer isMock) {
+
+        this.isMock = isMock;
+    }
+
+    public String getSsoSuccessUrl() {
+
+        return ssoSuccessUrl;
+    }
+
+    public void setSsoSuccessUrl(String ssoSuccessUrl) {
+
+        this.ssoSuccessUrl = ssoSuccessUrl;
+    }
+
+    public String getSsoFailUrl() {
+
+        return ssoFailUrl;
+    }
+
+    public void setSsoFailUrl(String ssoFailUrl) {
+
+        this.ssoFailUrl = ssoFailUrl;
     }
 
     public String getProjectPowerExamine() {
@@ -2165,6 +2281,86 @@ public class URLBean {
 
     public void setTripleTestTable(String tripleTestTable) {
         this.tripleTestTable = tripleTestTable;
+    }
+
+    public String getCaseLab_result_list() {
+        return caseLab_result_list;
+    }
+
+    public void setCaseLab_result_list(String caseLab_result_list) {
+        this.caseLab_result_list = caseLab_result_list;
+    }
+
+    public String getCaseNew_lab_result_list() {
+        return caseNew_lab_result_list;
+    }
+
+    public void setCaseNew_lab_result_list(String caseNew_lab_result_list) {
+        this.caseNew_lab_result_list = caseNew_lab_result_list;
+    }
+
+    public String getCaseNewMedicalCourse() {
+        return caseNewMedicalCourse;
+    }
+
+    public void setCaseNewMedicalCourse(String caseNewMedicalCourse) {
+        this.caseNewMedicalCourse = caseNewMedicalCourse;
+    }
+
+    public String getCaseNewCourseRecords() {
+        return caseNewCourseRecords;
+    }
+
+    public void setCaseNewCourseRecords(String caseNewCourseRecords) {
+        this.caseNewCourseRecords = caseNewCourseRecords;
+    }
+
+    public String getCaseNewExamResult() {
+        return caseNewExamResult;
+    }
+
+    public void setCaseNewExamResult(String caseNewExamResult) {
+        this.caseNewExamResult = caseNewExamResult;
+    }
+
+    public String getCaseNewQuotaReports() {
+        return caseNewQuotaReports;
+    }
+
+    public void setCaseNewQuotaReports(String caseNewQuotaReports) {
+        this.caseNewQuotaReports = caseNewQuotaReports;
+    }
+
+    public String getNewOperationRecords() {
+        return newOperationRecords;
+    }
+
+    public void setNewOperationRecords(String newOperationRecords) {
+        this.newOperationRecords = newOperationRecords;
+    }
+
+    public String getNewMedicineOrder() {
+        return newMedicineOrder;
+    }
+
+    public void setNewMedicineOrder(String newMedicineOrder) {
+        this.newMedicineOrder = newMedicineOrder;
+    }
+
+    public String getNewOrdersPharmacy() {
+        return newOrdersPharmacy;
+    }
+
+    public void setNewOrdersPharmacy(String newOrdersPharmacy) {
+        this.newOrdersPharmacy = newOrdersPharmacy;
+    }
+
+    public String getNewDiagnose() {
+        return newDiagnose;
+    }
+
+    public void setNewDiagnose(String newDiagnose) {
+        this.newDiagnose = newDiagnose;
     }
 
     public String getUpdateBatch() {
