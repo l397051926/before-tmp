@@ -38,7 +38,7 @@ public class ProducerService {
         producer.setNamesrvAddr(rocketMqContent.getNamesrvAddr());
         producer.setRetryTimesWhenSendFailed(3);
         try {
-//            producer.start();
+            producer.start();
             System.out.println("[Producer 已启动]");
         } catch (Exception e) {
             e.printStackTrace();

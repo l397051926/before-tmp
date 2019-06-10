@@ -503,6 +503,8 @@ public class URLBean {
 
     private String applyOutGoing = null;
 
+    private String confirmSpecInfos = null;
+
     private String getPatienSn = null;
 
     private String tripleTestTable = null;
