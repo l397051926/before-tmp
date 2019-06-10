@@ -69,7 +69,7 @@ public class UserController {
             User user = processor.login(email, pwd, isMD5);
             ResultBean resultBean = new ResultBean();
             if (user != null) {
-                user.setMc_ip(ipConfigBean.getMcIpConfig());
+                user.setMc_ip(ipConfigBean.getMcOut());
                 SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String status=user.getStatus();
                 String failTime=user.getFailure_time();
@@ -133,7 +133,7 @@ public class UserController {
             User user = (User) paramRe.getAttribute("currentUser");
             user.setPower(null);
             user.setGroups(new ArrayList<Group>(0));
-            user.setMc_ip(ipConfigBean.getMcIpConfig());
+            user.setMc_ip(ipConfigBean.getMcOut());
             ResultBean resultBean = new ResultBean();
             resultBean.setCode(1);
             resultBean.setData(user);

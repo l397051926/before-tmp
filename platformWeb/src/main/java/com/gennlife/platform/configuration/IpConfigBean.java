@@ -2,6 +2,7 @@ package com.gennlife.platform.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 /**
  * @author lmx
@@ -10,8 +11,17 @@ import org.springframework.stereotype.Component;
  **/
 @Component
 public class IpConfigBean {
-    @Value("${mcOut.ipAndPort}")
+    @Value("${mcOut.ipAndPort:}")
+    private String mcOutConfig;
+    @Value("${msg.ipAndPort:}")
     private String mcIpConfig ;
+
+    public String getMcOut(){
+        if(StringUtils.isEmpty(mcOutConfig)){
+            return mcIpConfig;
+        }
+        return mcOutConfig;
+    }
 
     public String getMcIpConfig() {
         return mcIpConfig;
@@ -19,5 +29,13 @@ public class IpConfigBean {
 
     public void setMcIpConfig(String mcIpConfig) {
         this.mcIpConfig = mcIpConfig;
+    }
+
+    public String getMcOutConfig() {
+        return mcOutConfig;
+    }
+
+    public void setMcOutConfig(String mcOutConfig) {
+        this.mcOutConfig = mcOutConfig;
     }
 }
