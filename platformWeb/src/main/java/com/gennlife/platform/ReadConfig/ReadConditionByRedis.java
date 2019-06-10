@@ -134,9 +134,9 @@ public class ReadConditionByRedis {
         try{
             String crf_mapping = FilesUtils.readFile("/cdr_config/home_page.json");
             RedisUtil.setValue("cdr_home_page",crf_mapping);
-            logger.info("home_page 配置文件读取完毕");
+            LOGGER.info("home_page 配置文件读取完毕");
         }catch (Exception e ){
-            logger.error("home_page 配置文件读取异常", e);
+            LOGGER.error("home_page 配置文件读取异常", e);
         }
     }
 
@@ -144,9 +144,9 @@ public class ReadConditionByRedis {
         try{
             String crf_mapping = FilesUtils.readFile("/detail/myclinic_search_config.json");
             RedisUtil.setValue("myclinic_search_config",crf_mapping);
-            logger.info("myclinic_search_config 配置文件读取完毕");
+            LOGGER.info("myclinic_search_config 配置文件读取完毕");
         }catch (Exception e ){
-            logger.error("myclinic_search_config 配置文件读取异常", e);
+            LOGGER.error("myclinic_search_config 配置文件读取异常", e);
         }
     }
 
