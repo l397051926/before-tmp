@@ -129,6 +129,27 @@ public class ReadConditionByRedis {
             LOGGER.error("detail_schema 配置文件读取异常", e);
         }
     }
+
+    private static void loadHomePageConfig() {
+        try{
+            String crf_mapping = FilesUtils.readFile("/cdr_config/home_page.json");
+            RedisUtil.setValue("cdr_home_page",crf_mapping);
+            logger.info("home_page 配置文件读取完毕");
+        }catch (Exception e ){
+            logger.error("home_page 配置文件读取异常", e);
+        }
+    }
+
+    private static void loadNewMyclinicSearchConfig() {
+        try{
+            String crf_mapping = FilesUtils.readFile("/detail/myclinic_search_config.json");
+            RedisUtil.setValue("myclinic_search_config",crf_mapping);
+            logger.info("myclinic_search_config 配置文件读取完毕");
+        }catch (Exception e ){
+            logger.error("myclinic_search_config 配置文件读取异常", e);
+        }
+    }
+
     public static void loadSearchDefinedEventListConfig(String crfId){
         try{
             String search_defined = FilesUtils.readFile("/rws/searchDefinedEventListConfig"+crfId+".json");
@@ -220,5 +241,20 @@ public class ReadConditionByRedis {
         return data;
     }
 
+    public static String getCDRHomePageConfig() {
+        if(!RedisUtil.isExists("cdr_home_page")){
+            loadHomePageConfig();
+        }
+        String data = RedisUtil.getValue("cdr_home_page");
+        return data;
+    }
+
+    public static String getNewMyclinicSearchConfig() {
+        if(!RedisUtil.isExists("myclinic_search_config")){
+            loadNewMyclinicSearchConfig();
+        }
+        String data = RedisUtil.getValue("myclinic_search_config");
+        return data;
+    }
 
 }

@@ -1,16 +1,27 @@
 package com.gennlife.platform.processor;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.gennlife.platform.ReadConfig.ReadConditionByRedis;
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.bean.ResultBean;
+import com.gennlife.platform.bean.SearchBean;
 import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.dao.AllDao;
+import com.gennlife.platform.enums.VistTypeEnum;
+import com.gennlife.platform.model.Lab;
+import com.gennlife.platform.model.LabResource;
+import com.gennlife.platform.model.Power;
+import com.gennlife.platform.model.Resource;
+import com.gennlife.platform.model.User;
 import com.gennlife.platform.model.*;
 import com.gennlife.platform.parse.CaseSearchParser;
 import com.gennlife.platform.parse.CaseSuggestParser;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.*;
 import com.google.gson.*;
+import org.apache.batik.gvt.text.ArabicTextHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -1250,4 +1261,189 @@ public class CaseProcessor {
 
     private static final String SEARCH_POWER_HAVE = "有";
     private static final String ALL_SID = "hospital_all";
+    public String getNewMyclinicSearchCase(String param, User user) {
+        JSONObject paramObj = JSONObject.parseObject(param);
+        String ADMISSION_DEPT = paramObj.getString("ADMISSION_DEPT");
+        JSONObject power = paramObj.getJSONObject("power");
+        Integer page = paramObj.getInteger("page");
+        Integer size = paramObj.getInteger("size");
+        JSONObject newPower = transformPower(power,ADMISSION_DEPT,user);
+        SearchBean searchBean = new SearchBean(page,size,ConfigUtils.getSearchIndexName(),newPower);
+        searchBean.setMyclinicSource();
+        Boolean isNull =  searchBean.setMyclinicQuery(paramObj);
+        if(isNull){
+            return ParamUtils.errorParam("必选参数为空了....");
+        }
+        String object = JSONObject.toJSONString(searchBean);
+        logger.info("病案首页 检索参数为： "+object);
+        CaseSearchParser caseSearchParser = new CaseSearchParser(object);
+        try {
+//            去es里搜索数据
+            String searchResultStr = caseSearchParser.parser();
+            if (StringUtils.isEmpty(searchResultStr)) {
+                logger.error("search empty " + caseSearchParser.getQuery());
+                return ParamUtils.errorParam("搜索无结果");
+            }
+            JSONObject searchResult = JSONObject.parseObject(searchResultStr);
+            // 做数据整理 返回给前端
+            JSONArray data = transformMyclinicSearchResult(searchResult,paramObj);
+            Integer count = searchResult.getJSONObject("hits").getInteger("total");
+            JSONObject result = new JSONObject();
+            result.put("code", 1);
+            result.put("data", data);
+            result.put("size",size);
+            result.put("page",page);
+            result.put("count",count);
+            return result.toJSONString();
+        } catch (Exception e) {
+            logger.error("error", e);
+            return ParamUtils.errorParam("搜索失败");
+        }
+    }
+
+    private JSONArray transformMyclinicSearchResult(JSONObject searchResult, JSONObject paramObj) {
+        JSONArray ADMISSION_DATE = paramObj.getJSONArray("ADMISSION_DATE");
+        String PATIENT_NAME = paramObj.getString("PATIENT_NAME");
+        String IDCARD = paramObj.getString("IDCARD");
+        String MEDICARECARD = paramObj.getString("MEDICARECARD");
+        String OUTPATIENT_SN = paramObj.getString("OUTPATIENT_SN");
+        String INPATIENT_SN = paramObj.getString("INPATIENT_SN");
+
+        List<JSONObject> source = getSource(searchResult);
+        JSONArray data = new JSONArray();
+        for (JSONObject obj : source){
+            JSONObject resObj = new JSONObject();
+            JSONArray visits = obj.getJSONArray("visits");
+
+            for (int i = 0; i < visits.size(); i++) {
+                JSONObject visObj = visits.getJSONObject(i).getJSONArray("visit_info").getJSONObject(0);
+                Boolean comDate = compareDate(ADMISSION_DATE,visObj);
+                if(comDate){
+                    if( !StringUtils.isEmpty(visObj.getString("INPATIENT_SN")) && !visObj.getString("INPATIENT_SN").contains(INPATIENT_SN)){
+                        continue;
+                    }
+                    if( !StringUtils.isEmpty(visObj.getString("OUTPATIENT_SN")) && !visObj.getString("OUTPATIENT_SN").contains(OUTPATIENT_SN)){
+                        continue;
+                    }
+                    VistTypeEnum vistTypeEnum = VistTypeEnum.getVistTypeEnum(visObj.getInteger("VISIT_TYPE"));
+                    resObj.put("INPATIENT_SN",getMyclinicValue(INPATIENT_SN,visObj,"INPATIENT_SN"));
+                    resObj.put("OUTPATIENT_SN",getMyclinicValue(OUTPATIENT_SN,visObj,"OUTPATIENT_SN"));
+                    switch (vistTypeEnum){
+                        case hospital: resObj.put("INPATIENT_OUTPATIENT_SN",getMyclinicValue(INPATIENT_SN,visObj,"INPATIENT_SN"));
+                        case outpatient: resObj.put("INPATIENT_OUTPATIENT_SN",getMyclinicValue(OUTPATIENT_SN,visObj,"OUTPATIENT_SN"));
+                        default: outpatient: resObj.put("INPATIENT_OUTPATIENT_SN","");
+                    }
+                    resObj.put("VISIT_TYPE",vistTypeEnum.getName());
+                    resObj.put("ADMISSION_DATE",visObj.getString("ADMISSION_DATE"));
+                    resObj.put("ADMISSION_DEPT",visObj.getString("ADMISSION_DEPT"));
+                    resObj.put("VISIT_SN",visObj.getString("VISIT_SN"));
+                }else {
+                    continue;
+                }
+            }
+            JSONObject patientInfo = obj.getJSONArray("patient_info").getJSONObject(0);
+            resObj.put("PATIENT_NAME",getMyclinicValue(PATIENT_NAME,patientInfo,"PATINAME"));
+            resObj.put("GENDER",patientInfo.getString("GENDER"));
+            resObj.put("BIRTH_DATE",patientInfo.getString("BIRTH_DATE"));
+            resObj.put("PATIENT_SN",patientInfo.getString("PATIENT_SN"));
+            resObj.put("IDCARD",getMyclinicValue(IDCARD,patientInfo,"IDCARD"));
+            resObj.put("MEDICARECARD",getMyclinicValue(MEDICARECARD,patientInfo,"MEDICARECARD"));
+            data.add(resObj);
+        }
+        return data;
+
+    }
+
+    private Boolean compareDate(JSONArray admission_date, JSONObject visObj) {
+        if( admission_date == null || admission_date.size()<2){
+            return true;
+        }
+        String date1 = admission_date.getString(0);
+        String date2 = admission_date.getString(1);
+        if(StringUtils.isEmpty(date1) || StringUtils.isEmpty(date2)){
+            return true;
+        }
+        String dateVal = visObj.getString("ADMISSION_DATE");
+        if (dateVal.compareTo(date1) >0 && dateVal.compareTo(date2)<0){
+            return true;
+        }
+        return false;
+    }
+
+    private String getMyclinicValue(String resName, JSONObject object, String key) {
+        String name = object.getString(key);
+        if(!StringUtils.isEmpty(resName)){
+            name = name.replaceAll(resName,"<span style='color:red'>" + resName + "</span>");
+        }
+        return name;
+    }
+
+    private JSONObject transformPower(JSONObject power, String admission_dept, User user) {
+        JSONObject newPower = new JSONObject();
+        newPower.put("has_search",power.get("has_search"));
+        if(StringUtils.isEmpty(admission_dept)){
+            if("是".equals(user.getIfRoleAll())){
+                Resource resource = new Resource();
+                resource.setSid("hospital_all");
+                resource.setSlab_name("_all");
+                resource.setHas_search("有");
+                List<Resource> list = new LinkedList<>();
+                list.add(resource);
+                newPower.put("has_search",list);
+            }
+        }else {
+            List<String> list = new ArrayList<>();
+            list.add(admission_dept);
+            List<JSONObject> hasSearch = new LinkedList<>();
+            addHasSearch(list,hasSearch,user);
+            newPower.put("has_search",hasSearch);
+        }
+        return newPower;
+    }
+
+    private void addHasSearch(List<String> list, List<JSONObject> hasSearch,User user) {
+        for (String str : list){
+            Lab lab =  AllDao.getInstance().getOrgDao().getLabBylabID(str);
+            hasSearch.add(new JSONObject()
+                .fluentPut("sid",lab.getLabID())
+                .fluentPut("slab_name",lab.getLab_name())
+                .fluentPut("has_search","有")
+            );
+            List<Lab>  labs =  AllDao.getInstance().getOrgDao().getLabsByparentID(user.getOrgID(),str);
+            addAllLabs(labs,hasSearch);
+        }
+    }
+
+    private void addAllLabs(List<Lab> labs, List<JSONObject> hasSearch) {
+        for (Lab lab :labs){
+            hasSearch.add(new JSONObject()
+                .fluentPut("sid",lab.getLabID())
+                .fluentPut("slab_name",lab.getLab_name())
+                .fluentPut("has_search","有")
+            );
+            List<Lab>  nextLabs =  AllDao.getInstance().getOrgDao().getLabsByparentID(lab.getOrgID(),lab.getLabID());
+            addAllLabs(nextLabs, hasSearch);
+        }
+    }
+
+    private List<JSONObject> getSource(JSONObject paramObj){
+        List<JSONObject> result = new LinkedList<>();
+        JSONObject hitsObj = paramObj.getJSONObject("hits");
+        JSONArray hitsArray = hitsObj.getJSONArray("hits");
+        for (int i = 0; i < hitsArray.size(); i++) {
+            JSONObject object = hitsArray.getJSONObject(i);
+            JSONObject source = object.getJSONObject("_source");
+            result.add(source);
+        }
+        return result;
+    }
+
+    public String getNewMyclinicSearchConfig() {
+        String searchConfig = ReadConditionByRedis.getNewMyclinicSearchConfig();
+        JSONObject object = JSONObject.parseObject(searchConfig);
+        JSONObject result = new JSONObject();
+        result.put("code", 1);
+        result.put("data", object.getJSONArray("config"));
+        return result.toJSONString();
+    }
 }

@@ -30,8 +30,8 @@
         <!--FS 详情页 -->
         <property name="caseDetailCommonUrl" value="http://${fileService.ipAndPort}/FileService/PatientDetail/"/>
         <property name="getGennomics" value="http://${fileService.ipAndPort}/FileService/PatientDetail/getGennomics"/>
-        <property name="caseDetailPatientBasicInfoURL"
-                  value="http://${fileService.ipAndPort}/FileService/PatientDetail/patient_basic_info"/>
+        <property name="caseDetailPatientBasicInfoURL" value="http://${fileService.ipAndPort}/FileService/PatientDetail/patient_basic_info"/>
+        <property name="caseDetailPatientBasicInfoDetailURL" value="http://${fileService.ipAndPort}/FileService/PatientDetail/patient_basic_info_detail"/>
         <property name="caseDetailPatientBasicFigureURL"
                   value="http://${fileService.ipAndPort}/FileService/PatientDetail/PatientBasicFigure"/>
         <property name="casePatientBasicTimeAxisURL"
@@ -108,6 +108,9 @@
         <property name="newMedicineOrder" value="http://${fileService.ipAndPort}/FileService/PatientDetail/newPharmacy"></property>
         <property name="newOrdersPharmacy" value="http://${fileService.ipAndPort}/FileService/PatientDetail/new_Orders_Pharmacy"></property>
         <property name="newDiagnose" value="http://${fileService.ipAndPort}/FileService/VisitDetail/newDiagnose"/>
+        <property name="newMedicalRecords" value="http://${fileService.ipAndPort}/FileService/PatientDetail/newMedical_records"/>
+        <property name="swimlane" value="http://${fileService.ipAndPort}/FileService/PatientDetail/swimlane"/>
+        <property name="ordersPharmacyDay" value="http://${fileService.ipAndPort}/FileService/PatientDetail/orders_pharmacy_day"/>
         <!--vitaBoard 服务-->
         <property name="caseSimilarServiceVitaboardparam"
                   value="http://${fileService.ipAndPort}/FileService/SimilarService/vitaboardparam"></property>

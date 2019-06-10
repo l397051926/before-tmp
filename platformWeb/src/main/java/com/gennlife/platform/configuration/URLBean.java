@@ -213,6 +213,11 @@ public class URLBean {
      */
     private String caseDetailPatientBasicInfoURL = null;
     /**
+     * 搜索:V4.0
+     * 详情页患者基础信息接口
+     */
+    private String caseDetailPatientBasicInfoDetailURL = null;
+    /**
      * 搜索:V1.0
      * 基本统计图形&筛选条件
      */
@@ -349,6 +354,9 @@ public class URLBean {
     private String newMedicineOrder = null;
     private String newOrdersPharmacy = null;
     private String newDiagnose = null;
+    private String newMedicalRecords = null;
+    private String swimlane = null;
+    private String ordersPharmacyDay = null;
 
     /*医保控费 接口*/
     private String drgsIndex = null;
@@ -360,6 +368,31 @@ public class URLBean {
     private String miningDept = null;
     private String miningParent = null;
     private String indexRedraw = null;
+
+    public String getNewMedicalRecords() {
+        return newMedicalRecords;
+    }
+
+    public void setNewMedicalRecords(String newMedicalRecords) {
+        this.newMedicalRecords = newMedicalRecords;
+    }
+
+    public String getBuildIndexForAll() {
+        return buildIndexForAll;
+    }
+
+    public void setBuildIndexForAll(String buildIndexForAll) {
+        this.buildIndexForAll = buildIndexForAll;
+    }
+
+    public String getCaseToDetail() {
+        return CaseToDetail;
+    }
+
+    public void setCaseToDetail(String caseToDetail) {
+        CaseToDetail = caseToDetail;
+    }
+
     /**
      * crf 高级搜索调到详情页
      */
@@ -478,6 +511,10 @@ public class URLBean {
      * 病例文书
      */
     private String caseMedicalCourse = null;
+    /**
+     * 新 我的诊室页面搜索
+     */
+    private String newMyclinicSearchCase = null;
 
     /**
      * 计算服务因子图
@@ -2488,5 +2525,35 @@ public class URLBean {
 
     public void setIndexRedraw(String indexRedraw) {
         this.indexRedraw = indexRedraw;
+    }
+
+    public String getNewMyclinicSearchCase() {
+        return newMyclinicSearchCase;
+    }
+
+    public void setNewMyclinicSearchCase(String newMyclinicSearchCase) {
+        this.newMyclinicSearchCase = newMyclinicSearchCase;
+    }
+    public String getSwimlane() {
+        return swimlane;
+    }
+    public void setSwimlane(String swimlane) {
+        this.swimlane = swimlane;
+    }
+
+    public String getOrdersPharmacyDay() {
+        return ordersPharmacyDay;
+    }
+
+    public void setOrdersPharmacyDay(String ordersPharmacyDay) {
+        this.ordersPharmacyDay = ordersPharmacyDay;
+    }
+
+    public String getCaseDetailPatientBasicInfoDetailURL() {
+        return caseDetailPatientBasicInfoDetailURL;
+    }
+
+    public void setCaseDetailPatientBasicInfoDetailURL(String caseDetailPatientBasicInfoDetailURL) {
+        this.caseDetailPatientBasicInfoDetailURL = caseDetailPatientBasicInfoDetailURL;
     }
 }

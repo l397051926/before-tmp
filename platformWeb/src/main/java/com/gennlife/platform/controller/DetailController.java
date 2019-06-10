@@ -4,6 +4,7 @@ import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.bean.HitsConfigBean;
+import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.processor.DetailProcessor;
 import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.GsonUtil;
@@ -58,6 +59,24 @@ public class DetailController {
         return resultStr;
     }
 
+
+    @RequestMapping(value = "/PatientBasicInfoDetail", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getPatientBasicInfoDetail(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            logger.info("详情页患者基础信息接口 get方式 参数=" + param);
+            resultStr = processor.patientBasicInfoDetail(param);
+        } catch (Exception e) {
+            logger.error("详情页患者基础信息接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("详情页患者基础信息接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
     @RequestMapping(value = "/PatInfo/{type}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
@@ -1113,4 +1132,78 @@ public class DetailController {
         logger.info("新诊断接口调整 接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
         return resultStr;
     }
+
+    @RequestMapping(value = "/newMedical_records", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String newMedical_records(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            logger.info("新诊断接口调整 接口 get方式 参数=" + param);
+            resultStr = processor.newMedicalRecords(param);
+        } catch (Exception e) {
+            logger.error("新诊断接口调整 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("新诊断接口调整 接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/getSwimlane", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getSwimlane(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            logger.info("泳道图 接口 get方式 参数=" + param);
+            resultStr = processor.getSwimlane(param);
+        } catch (Exception e) {
+            logger.error("泳道图 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("泳道图 接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/ordersPharmacyDay", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getOrdersPharmacyDay(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+            String param = AuthorityUtil.addTreatedAuthority(paramRe);
+            logger.info("泳道图 接口 get方式 参数=" + param);
+            resultStr = processor.getOrdersPharmacyDay(param);
+        } catch (Exception e) {
+            logger.error("用药单天记录 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("用药单天记录 接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/getHomePageConfig", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    String getHomePageConfig(HttpServletRequest paramRe) {
+        Long start = System.currentTimeMillis();
+        String resultStr = null;
+        try {
+
+            resultStr = processor.getHomePageConfig();
+
+        } catch (Exception e) {
+            logger.error("我的诊室首页 功能 接口", e);
+            resultStr = ParamUtils.errorParam("出现异常");
+        }
+        logger.info("我的诊室首页 功能 接口 get 耗时" + (System.currentTimeMillis() - start) + "ms");
+        return resultStr;
+    }
+
+
 }

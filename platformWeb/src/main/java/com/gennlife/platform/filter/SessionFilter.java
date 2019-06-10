@@ -185,6 +185,7 @@ public class SessionFilter implements Filter {
         okSet.add("/detail/getSchemaData");
         okSet.add("/detail/get_patien_sn");
         okSet.add("/bsma/sendSystemMessage");
+//        okSet.add("/detail/getHomePageConfig");
 
     }
 }
