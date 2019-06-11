@@ -34,6 +34,11 @@
 			<version>1.0.0.0-Release</version>
 		</dependency>
 		<dependency>
+			<groupId>com.gennlife</groupId>
+			<artifactId>darren-library</artifactId>
+			<version>1.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>com.thoughtworks.xstream</groupId>
 			<artifactId>xstream</artifactId>
 			<version>1.4.10</version>
@@ -201,6 +206,24 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>1.2.38</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/dom4j/dom4j -->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/ca.uhn.hapi/hapi-base -->
+		<dependency>
+			<groupId>ca.uhn.hapi</groupId>
+			<artifactId>hapi-base</artifactId>
+			<version>2.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/ca.uhn.hapi/hapi-structures-v25 -->
+		<dependency>
+			<groupId>ca.uhn.hapi</groupId>
+			<artifactId>hapi-structures-v26</artifactId>
+			<version>2.3</version>
 		</dependency>
 	</dependencies>
 
