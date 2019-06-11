@@ -20,7 +20,6 @@ import org.springframework.util.StringUtils;
 
 import java.io.*;
 import java.math.BigDecimal;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -421,6 +420,14 @@ public class FileUploadUtil implements InitializingBean {
                         String name = data[0].trim();
                         String parentName = data[1].trim();
                         String departName = data[2].trim();
+                        String labId = null;
+                        String parentId = null;
+
+                        if (data.length >= 5) {
+                            labId = data[3].trim();
+                            parentId = data[4].trim();
+                        }
+
                         String partName=null;
 
                         if(partNameMap.containsKey(parentName)){
@@ -461,6 +468,12 @@ public class FileUploadUtil implements InitializingBean {
                         } else {
                             partNameMap.put(name,departName);
                             Lab lab = new Lab();
+                            if (!StringUtils.isEmpty(labId)) {
+                                lab.setLabID(labId);
+                            }
+                            if (!StringUtils.isEmpty(parentId)) {
+                                lab.setLab_parent(parentId);
+                            }
                             lab.setOrgID(orgID);
                             lab.setLab_level(1);
                             lab.setLab_parent(orgID);
@@ -606,8 +619,10 @@ public class FileUploadUtil implements InitializingBean {
                     if (lab.getLab_level() == 1) {
                         if ("未处理".equals(lab.status)) {
                             String name = lab.getLab_name();
-                            String labID = getLabID(name, orgID, labs);
-                            lab.setLabID(labID);
+                            if (StringUtils.isEmpty(lab.getLabID())) {
+                                String labID = getLabID(name, orgID, labs);
+                                lab.setLabID(labID);
+                            }
                         }
                         sort.add(lab);
                         namesMap.put(lab.getLab_name(), lab.getLabID());
@@ -626,8 +641,10 @@ public class FileUploadUtil implements InitializingBean {
                     if (lab.getLab_level() == i) {
                         if ("未处理".equals(lab.status)) {
                             String name = lab.getLab_name();
-                            String labID = getLabID(name, orgID, sort);
-                            lab.setLabID(labID);
+                            if (StringUtils.isEmpty(lab.getLabID())) {
+                                String labID = getLabID(name, orgID, sort);
+                                lab.setLabID(labID);
+                            }
                         }
                         namesMap.put(lab.getLab_name(), lab.getLabID());
                         sort.add(lab);
