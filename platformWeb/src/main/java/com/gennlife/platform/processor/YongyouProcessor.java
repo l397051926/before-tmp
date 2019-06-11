@@ -118,10 +118,10 @@ public class YongyouProcessor {
         final String name = cwe.getCwe2_Text().getValue();
         // 科室类型 <- LOC-2
         final String type = loc.getLoc2_LocationDescription().getValue();
-        // 科室负责人编码 <- MFE-7-1
+        // 科室负责人编码 <- MFE-7-1 ?
         final String leaderId = mfe.getMfe7_EnteredBy().getXcn1_IDNumber().getValue();
-        // 科室负责人 <- MFE-7-2
-        final String leaderName = mfe.getMfe7_EnteredBy().getXcn2_FamilyName().get;
+        // 科室负责人 <- MFE-7-2 ?
+        final String leaderName = mfe.getMfe7_EnteredBy().getXcn2_FamilyName().getFn1_Surname().getValue();
         // 上级科室编号 <- LRL-1-1
         final String parentId = lrl.getLrl1_PrimaryKeyValueLRL().getPl1_PointOfCare().getValue();
         // 上级科室名称
