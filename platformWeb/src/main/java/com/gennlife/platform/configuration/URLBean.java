@@ -377,22 +377,6 @@ public class URLBean {
         this.newMedicalRecords = newMedicalRecords;
     }
 
-    public String getBuildIndexForAll() {
-        return buildIndexForAll;
-    }
-
-    public void setBuildIndexForAll(String buildIndexForAll) {
-        this.buildIndexForAll = buildIndexForAll;
-    }
-
-    public String getCaseToDetail() {
-        return CaseToDetail;
-    }
-
-    public void setCaseToDetail(String caseToDetail) {
-        CaseToDetail = caseToDetail;
-    }
-
     /**
      * crf 高级搜索调到详情页
      */
