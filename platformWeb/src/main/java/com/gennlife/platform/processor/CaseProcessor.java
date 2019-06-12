@@ -1232,7 +1232,7 @@ public class CaseProcessor {
         for (JSONObject obj : source){
             JSONObject resObj = new JSONObject();
             JSONArray visits = obj.getJSONArray("visits");
-
+            visits.stream().map(JSONObject.class :: cast).sorted(Comparator.comparing(o -> o.getJSONArray("visit_info").getJSONObject(0).getString("ADMISSION_DATE")));
             for (int i = 0; i < visits.size(); i++) {
                 JSONObject visObj = visits.getJSONObject(i).getJSONArray("visit_info").getJSONObject(0);
                 Boolean comDate = compareDate(ADMISSION_DATE,visObj);
@@ -1279,6 +1279,9 @@ public class CaseProcessor {
         String date1 = admission_date.getString(0);
         String date2 = admission_date.getString(1);
         if(StringUtils.isEmpty(date1) || StringUtils.isEmpty(date2)){
+            return true;
+        }
+        if(Objects.equals(date1,TIME_EMPTY) && Objects.equals(date2,TIME_EMPTY)){
             return true;
         }
         String dateVal = visObj.getString("ADMISSION_DATE");
@@ -1364,4 +1367,6 @@ public class CaseProcessor {
         result.put("data", object.getJSONArray("config"));
         return result.toJSONString();
     }
+
+    public static final String TIME_EMPTY = " 00:00:00";
 }
