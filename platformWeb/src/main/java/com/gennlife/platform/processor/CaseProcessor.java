@@ -1325,6 +1325,10 @@ public class CaseProcessor {
     private void addHasSearch(List<String> list, List<JSONObject> hasSearch,User user) {
         for (String str : list){
             Lab lab =  AllDao.getInstance().getOrgDao().getLabBylabID(str);
+            if(lab == null) {
+                logger.error("传递参数 问题 未搜导科室 --- 参数为 "+ str);
+                return;
+            }
             hasSearch.add(new JSONObject()
                 .fluentPut("sid",lab.getLabID())
                 .fluentPut("slab_name",lab.getLab_name())
