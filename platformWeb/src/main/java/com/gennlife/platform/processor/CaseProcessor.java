@@ -1253,7 +1253,7 @@ public class CaseProcessor {
                     }
                     resObj.put("VISIT_TYPE",vistTypeEnum.getName());
                     resObj.put("ADMISSION_DATE",visObj.getString("ADMISSION_DATE"));
-                    resObj.put("ADMISSION_DEPT",visObj.getString("ADMISSION_DEPT"));
+                    resObj.put("ADMISSION_DEPT",visObj.getString("ADMISS_DEPT"));
                     resObj.put("VISIT_SN",visObj.getString("VISIT_SN"));
                 }else {
                     continue;
