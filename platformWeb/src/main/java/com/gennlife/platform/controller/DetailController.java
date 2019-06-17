@@ -45,7 +45,7 @@ public class DetailController {
     }
 
 
-    @RequestMapping(value = "/PatientBasicInfoDetail", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/PatientDetailBasiInfo", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
     String getPatientBasicInfoDetail(HttpServletRequest paramRe) {
