@@ -1211,7 +1211,7 @@ public class CaseProcessor {
             result.put("data", data);
             result.put("size",size);
             result.put("page",page);
-            result.put("count",count);
+            result.put("total",count);
             return result.toJSONString();
         } catch (Exception e) {
             logger.error("error", e);
@@ -1247,9 +1247,14 @@ public class CaseProcessor {
                     resObj.put("INPATIENT_SN",getMyclinicValue(INPATIENT_SN,visObj,"INPATIENT_SN"));
                     resObj.put("OUTPATIENT_SN",getMyclinicValue(OUTPATIENT_SN,visObj,"OUTPATIENT_SN"));
                     switch (vistTypeEnum){
-                        case hospital: resObj.put("INPATIENT_OUTPATIENT_SN",getMyclinicValue(INPATIENT_SN,visObj,"INPATIENT_SN"));
-                        case outpatient: resObj.put("INPATIENT_OUTPATIENT_SN",getMyclinicValue(OUTPATIENT_SN,visObj,"OUTPATIENT_SN"));
-                        default: outpatient: resObj.put("INPATIENT_OUTPATIENT_SN","");
+                        case hospital:
+                            resObj.put("INPATIENT_OUTPATIENT_SN",getMyclinicValue(INPATIENT_SN,visObj,"INPATIENT_SN"));
+                            break;
+                        case outpatient:
+                            resObj.put("INPATIENT_OUTPATIENT_SN",getMyclinicValue(OUTPATIENT_SN,visObj,"OUTPATIENT_SN"));
+                            break;
+                        default:
+                            outpatient: resObj.put("INPATIENT_OUTPATIENT_SN","");
                     }
                     resObj.put("VISIT_TYPE",vistTypeEnum.getName());
                     resObj.put("ADMISSION_DATE",visObj.getString("ADMISSION_DATE"));
