@@ -1298,7 +1298,7 @@ public class CaseProcessor {
             return true;
         }
         String dateVal = visObj.getString("ADMISSION_DATE");
-        if (dateVal.compareTo(date1) >0 && dateVal.compareTo(date2)<0){
+        if (!StringUtils.isEmpty(dateVal) && dateVal.compareTo(date1) >0 && dateVal.compareTo(date2)<0){
             return true;
         }
         return false;
@@ -1306,7 +1306,7 @@ public class CaseProcessor {
 
     private String getMyclinicValue(String resName, JSONObject object, String key) {
         String name = object.getString(key);
-        if(!StringUtils.isEmpty(resName)){
+        if(!StringUtils.isEmpty(resName) && !StringUtils.isEmpty(name) ){
             name = name.replaceAll(resName,"<span style='color:red'>" + resName + "</span>");
         }
         return name;
