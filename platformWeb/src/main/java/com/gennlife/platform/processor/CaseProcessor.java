@@ -1221,6 +1221,7 @@ public class CaseProcessor {
 
     private JSONArray transformMyclinicSearchResult(JSONObject searchResult, JSONObject paramObj) {
         JSONArray ADMISSION_DATE = paramObj.getJSONArray("ADMISSION_DATE");
+        String ADMISSION_DEPT = paramObj.getString("ADMISSION_DEPT");
         String PATIENT_NAME = paramObj.getString("PATIENT_NAME");
         String IDCARD = paramObj.getString("IDCARD");
         String MEDICARECARD = paramObj.getString("MEDICARECARD");
@@ -1237,6 +1238,13 @@ public class CaseProcessor {
                 JSONObject visObj = visits.getJSONObject(i).getJSONArray("visit_info").getJSONObject(0);
                 Boolean comDate = compareDate(ADMISSION_DATE,visObj);
                 if(comDate){
+                    String admiss_dept = visObj.getString("ADMISS_DEPT");
+                    if( !StringUtils.isEmpty(ADMISSION_DEPT)){
+                        Lab lab =  AllDao.getInstance().getOrgDao().getLabBylabID(ADMISSION_DEPT);
+                        if(!lab.getLab_name().equals(admiss_dept)){
+                            continue;
+                        }
+                    }
                     if( !StringUtils.isEmpty(visObj.getString("INPATIENT_SN")) && !visObj.getString("INPATIENT_SN").contains(INPATIENT_SN)){
                         continue;
                     }
