@@ -328,9 +328,9 @@
         <property name="ssoFailUrl" value="${sso_fail_url:}" />
 
         <!--对接朗珈-->
-        <property name="accessTokenUrl" value="http://${part3.ipAndPort}/oauth/token"/>
-        <property name="skipUrl" value="http://${part3.ipAndPort}/getUrl/"/>
-        <property name="userInfoUrl" value="http://${part3.ipAndPort}/user/info"/>
+        <property name="accessTokenUrl" value="http://${part3.ipAndPort:}/oauth/token"/>
+        <property name="skipUrl" value="http://${part3.ipAndPort:}/getUrl/"/>
+        <property name="userInfoUrl" value="http://${part3.ipAndPort:}/user/info"/>
 
     </bean>
 </beans>
