@@ -214,8 +214,8 @@ public class SearchBean {
 
     private static final JSONObject MYCLINIC_QUERY_CONFIG = new JSONObject()
         .fluentPut("ADMISSION_DATE","[就诊.就诊基本信息.入院（就诊）时间]")
-        .fluentPut("OUTPATIENT_SN","[就诊.就诊基本信息.住院号]")
-        .fluentPut("INPATIENT_SN","[就诊.就诊基本信息.门诊号]")
+        .fluentPut("INPATIENT_SN","[就诊.就诊基本信息.住院号]")
+        .fluentPut("OUTPATIENT_SN","[就诊.就诊基本信息.门诊号]")
         .fluentPut("IDCARD","[患者基本信息.证件号码]")
         .fluentPut("PATIENT_NAME","[患者基本信息.患者姓名]")
         .fluentPut("MEDICARECARD","[患者基本信息.医保卡号]")

@@ -1293,7 +1293,7 @@ public class CaseProcessor {
             result.put("data", data);
             result.put("size",size);
             result.put("page",page);
-            result.put("count",count);
+            result.put("total",count);
             return result.toJSONString();
         } catch (Exception e) {
             logger.error("error", e);
@@ -1303,6 +1303,7 @@ public class CaseProcessor {
 
     private JSONArray transformMyclinicSearchResult(JSONObject searchResult, JSONObject paramObj) {
         JSONArray ADMISSION_DATE = paramObj.getJSONArray("ADMISSION_DATE");
+        String ADMISSION_DEPT = paramObj.getString("ADMISSION_DEPT");
         String PATIENT_NAME = paramObj.getString("PATIENT_NAME");
         String IDCARD = paramObj.getString("IDCARD");
         String MEDICARECARD = paramObj.getString("MEDICARECARD");
@@ -1314,11 +1315,18 @@ public class CaseProcessor {
         for (JSONObject obj : source){
             JSONObject resObj = new JSONObject();
             JSONArray visits = obj.getJSONArray("visits");
-
+            visits.stream().map(JSONObject.class :: cast).sorted(Comparator.comparing(o -> o.getJSONArray("visit_info").getJSONObject(0).getString("ADMISSION_DATE")));
             for (int i = 0; i < visits.size(); i++) {
                 JSONObject visObj = visits.getJSONObject(i).getJSONArray("visit_info").getJSONObject(0);
                 Boolean comDate = compareDate(ADMISSION_DATE,visObj);
                 if(comDate){
+                    String admiss_dept = visObj.getString("ADMISS_DEPT");
+                    if( !StringUtils.isEmpty(ADMISSION_DEPT)){
+                        Lab lab =  AllDao.getInstance().getOrgDao().getLabBylabID(ADMISSION_DEPT);
+                        if(!lab.getLab_name().equals(admiss_dept)){
+                            continue;
+                        }
+                    }
                     if( !StringUtils.isEmpty(visObj.getString("INPATIENT_SN")) && !visObj.getString("INPATIENT_SN").contains(INPATIENT_SN)){
                         continue;
                     }
@@ -1329,13 +1337,18 @@ public class CaseProcessor {
                     resObj.put("INPATIENT_SN",getMyclinicValue(INPATIENT_SN,visObj,"INPATIENT_SN"));
                     resObj.put("OUTPATIENT_SN",getMyclinicValue(OUTPATIENT_SN,visObj,"OUTPATIENT_SN"));
                     switch (vistTypeEnum){
-                        case hospital: resObj.put("INPATIENT_OUTPATIENT_SN",getMyclinicValue(INPATIENT_SN,visObj,"INPATIENT_SN"));
-                        case outpatient: resObj.put("INPATIENT_OUTPATIENT_SN",getMyclinicValue(OUTPATIENT_SN,visObj,"OUTPATIENT_SN"));
-                        default: outpatient: resObj.put("INPATIENT_OUTPATIENT_SN","");
+                        case hospital:
+                            resObj.put("INPATIENT_OUTPATIENT_SN",getMyclinicValue(INPATIENT_SN,visObj,"INPATIENT_SN"));
+                            break;
+                        case outpatient:
+                            resObj.put("INPATIENT_OUTPATIENT_SN",getMyclinicValue(OUTPATIENT_SN,visObj,"OUTPATIENT_SN"));
+                            break;
+                        default:
+                            outpatient: resObj.put("INPATIENT_OUTPATIENT_SN","");
                     }
                     resObj.put("VISIT_TYPE",vistTypeEnum.getName());
                     resObj.put("ADMISSION_DATE",visObj.getString("ADMISSION_DATE"));
-                    resObj.put("ADMISSION_DEPT",visObj.getString("ADMISSION_DEPT"));
+                    resObj.put("ADMISSION_DEPT",visObj.getString("ADMISS_DEPT"));
                     resObj.put("VISIT_SN",visObj.getString("VISIT_SN"));
                 }else {
                     continue;
@@ -1363,8 +1376,11 @@ public class CaseProcessor {
         if(StringUtils.isEmpty(date1) || StringUtils.isEmpty(date2)){
             return true;
         }
+        if(Objects.equals(date1,TIME_EMPTY) && Objects.equals(date2,TIME_EMPTY)){
+            return true;
+        }
         String dateVal = visObj.getString("ADMISSION_DATE");
-        if (dateVal.compareTo(date1) >0 && dateVal.compareTo(date2)<0){
+        if (!StringUtils.isEmpty(dateVal) && dateVal.compareTo(date1) >0 && dateVal.compareTo(date2)<0){
             return true;
         }
         return false;
@@ -1372,7 +1388,7 @@ public class CaseProcessor {
 
     private String getMyclinicValue(String resName, JSONObject object, String key) {
         String name = object.getString(key);
-        if(!StringUtils.isEmpty(resName)){
+        if(!StringUtils.isEmpty(resName) && !StringUtils.isEmpty(name) ){
             name = name.replaceAll(resName,"<span style='color:red'>" + resName + "</span>");
         }
         return name;
@@ -1404,6 +1420,10 @@ public class CaseProcessor {
     private void addHasSearch(List<String> list, List<JSONObject> hasSearch,User user) {
         for (String str : list){
             Lab lab =  AllDao.getInstance().getOrgDao().getLabBylabID(str);
+            if(lab == null) {
+                logger.error("传递参数 问题 未搜导科室 --- 参数为 "+ str);
+                return;
+            }
             hasSearch.add(new JSONObject()
                 .fluentPut("sid",lab.getLabID())
                 .fluentPut("slab_name",lab.getLab_name())
@@ -1446,4 +1466,6 @@ public class CaseProcessor {
         result.put("data", object.getJSONArray("config"));
         return result.toJSONString();
     }
+
+    public static final String TIME_EMPTY = " 00:00:00";
 }
