@@ -752,6 +752,7 @@ public class LaboratoryProcessor {
 
     public String addStaff(JsonObject paramObj, User user) {
         User adduser = gson.fromJson(gson.toJson(paramObj), User.class);
+        adduser.setUid(user.getUid());
         adduser.setOrgID(user.getOrgID());
         adduser.setCtime(LogUtils.getStringTime());
         adduser.setUptime(LogUtils.getStringTime());
@@ -759,6 +760,8 @@ public class LaboratoryProcessor {
         adduser.setOrg_name(user.getOrg_name());
         JsonObject re = insertUser(adduser);
         // MemCachedUtil.setUserWithTime(adduser.getUid(),adduser, UserController.sessionTimeOut);
+
+        part3Processor.userinfo(0, adduser);
         return gson.toJson(re);
     }
 
@@ -913,6 +916,12 @@ public class LaboratoryProcessor {
                 map.put("succeed", counter);
                 map.put("fail", uids.length - counter + count);
                 re.setData(map);
+
+                for (String s : uids) {
+                    User u = new User();
+                    u.setUid(s);
+                    part3Processor.userinfo(2, u);
+                }
                 return gson.toJson(re);
             } else {
                 re.setCode(0);
