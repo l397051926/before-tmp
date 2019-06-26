@@ -1178,7 +1178,6 @@ public class CaseProcessor {
         return gson.toJson(resultBean);
     }
 
-
     public String getNewMyclinicSearchCase(String param, User user) {
         JSONObject paramObj = JSONObject.parseObject(param);
         String ADMISSION_DEPT = paramObj.getString("ADMISSION_DEPT");
