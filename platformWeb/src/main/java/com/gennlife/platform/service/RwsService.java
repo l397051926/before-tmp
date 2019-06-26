@@ -35,23 +35,6 @@ public class RwsService implements RwsServiceImpl {
         String result = null;
         JsonObject resultObj = new JsonObject();
         boolean flag = paramObj.has("crfId");
-        //处理power
-//        String sid = "";
-//        Set<SearchPower> searchPowers = new HashSet<>();
-//        if(paramObj.has("sid")){
-//            sid = paramObj.get("sid").getAsString();
-//            Lab lab = AllDao.getInstance().getOrgDao().getLabBylabID(sid);
-//            SearchPower searchPower = new SearchPower(lab.getLabID(),lab.getLab_name());
-//            searchPowers.add(searchPower);
-//        }else {
-//            Power power = user.getPower();
-//            Set<Resource> hasExport = power.getHas_searchExport();
-//            for (Resource resource : hasExport){
-//                SearchPower searchPower = new SearchPower(resource.getSid(),resource.getSlab_name());
-//                searchPowers.add(searchPower);
-//            }
-//        }
-//        paramObj.add("power",gson.toJsonTree(searchPowers));
         if(!flag){
             JsonArray array = paramObj.getAsJsonObject("power").getAsJsonArray("has_searchExport");
             paramObj.add("power",array);

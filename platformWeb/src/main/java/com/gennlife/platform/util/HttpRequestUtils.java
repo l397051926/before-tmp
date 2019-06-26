@@ -1,5 +1,6 @@
 package com.gennlife.platform.util;
 
+import com.gennlife.platform.exception.ReadTimeOutException;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -46,7 +47,11 @@ public class HttpRequestUtils {
      * @return
      */
     public static String httpPost(String url, String jsonParam) {
-        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(600000).setConnectTimeout(600000).build();
+        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(50000).setConnectTimeout(50000).build();
+        return httpPostExecute(url, jsonParam, requestConfig);
+    }
+    public static String httpPostToRws(String url, String jsonParam) {
+        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(45000).setConnectTimeout(45000).build();
         return httpPostExecute(url, jsonParam, requestConfig);
     }
 
@@ -110,6 +115,9 @@ public class HttpRequestUtils {
             }else {
                 logger.error("error code " + result.getStatusLine().getStatusCode() + " url " + url + " param " + jsonParam);
             }
+        }catch (SocketTimeoutException e){
+            logger.error("" + url, e);
+            throw new ReadTimeOutException("系统繁忙 请稍后再试");
         } catch (IOException e) {
             logger.error("" + url, e);
         }
