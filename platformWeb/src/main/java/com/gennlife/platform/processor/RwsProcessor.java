@@ -336,7 +336,7 @@ public class RwsProcessor {
             return result;
         }catch (ReadTimeOutException e){
             logger.error("请求超时 临时处理", e);
-            return ParamUtils.errorParam(e.getMessage());
+            return ParamUtils.errorReadParam(e.getMessage());
         }  catch (Exception e) {
             logger.error("获取图形列表 ", e);
             return ParamUtils.errorParam("请求发生异常");
@@ -350,7 +350,7 @@ public class RwsProcessor {
             return result;
         }catch (ReadTimeOutException e){
             logger.error("请求超时 临时处理", e);
-            return ParamUtils.errorParam(e.getMessage());
+            return ParamUtils.errorReadParam(e.getMessage());
         }  catch (Exception e) {
             logger.error("获取计算结果列表 ", e);
             return ParamUtils.errorParam("请求发生异常");

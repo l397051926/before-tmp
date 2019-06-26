@@ -96,6 +96,9 @@ public class ParamUtils {
     public static int getErrorCode() {
         return 0;
     }
+    public static int getReadTimeCode() {
+        return 3;
+    }
 
     public static int getSuccessCode() {
         return 1;
@@ -120,7 +123,14 @@ public class ParamUtils {
         JsonObject json = gson.toJsonTree(resultBean).getAsJsonObject();
         json.addProperty("success", false);
         return gson.toJson(json);
-
+    }
+    public static String errorReadParam(String info) {
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(getReadTimeCode());
+        resultBean.setInfo(info);
+        JsonObject json = gson.toJsonTree(resultBean).getAsJsonObject();
+        json.addProperty("success", false);
+        return gson.toJson(json);
     }
 
     public static String errorAuthorityParam() {
