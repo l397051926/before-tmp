@@ -33,7 +33,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 
 /**
@@ -63,7 +65,7 @@ public class CommonController implements InitializingBean {
      * @param paramRe
      * @return
      */
-    @RequestMapping(value = "/UploadFileForImportLab", method = RequestMethod.POST, produces = {"text/html;charset=UTF-8", "application/json;charset=UTF-8"})
+    @RequestMapping(value = "/UploadFileForImportLab", method = POST, produces = {"text/html;charset=UTF-8", "application/json;charset=UTF-8"})
     public
     @ResponseBody
     String postUploadFileForImportLab(@RequestParam("name") MultipartFile file, HttpServletRequest paramRe) {
@@ -82,6 +84,18 @@ public class CommonController implements InitializingBean {
         return resultStr;
     }
 
+
+    @RequestMapping(value = "/ImportLabsFromExcel", method = POST, produces = APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody String ImportLabsFromExcel(HttpServletRequest request, @RequestParam("name") MultipartFile file) {
+        try {
+            final User user = (User)request.getAttribute("currentUser");
+            return processor.importLabsFromExcel(file, user);
+        } catch (Exception e) {
+            logger.error(e.getLocalizedMessage(), e);
+            return ParamUtils.errorParam("出现异常");
+        }
+    }
+
     @RequestMapping(value = "/DownloadFileForImportLabHistory", method = RequestMethod.GET)
     public void getDownloadFileForImportLabHistory(HttpServletRequest paramRe, HttpServletResponse response) {
         User user = (User) paramRe.getAttribute("currentUser");
@@ -89,7 +103,7 @@ public class CommonController implements InitializingBean {
         processor.downLoadFile(file, response, "最近组织导入结果.csv",false);
     }
 
-    @RequestMapping(value = "/UploadFileForImportStaff", method = RequestMethod.POST, produces = {"text/html;charset=UTF-8", "application/json;charset=UTF-8"})
+    @RequestMapping(value = "/UploadFileForImportStaff", method = POST, produces = {"text/html;charset=UTF-8", "application/json;charset=UTF-8"})
     public
     @ResponseBody
     String postUploadFileForImportStaff(@RequestParam("name") MultipartFile file, HttpServletRequest paramRe) {
@@ -161,7 +175,7 @@ public class CommonController implements InitializingBean {
         logger.info("DownloadFileForExplainCRFImport: " + crfId + " : " + fileName);
         processor.downLoadFile(file, response, fileName,false);
     }
-    @RequestMapping(value = "/DownloadDetailImage",method = { RequestMethod.POST,RequestMethod.GET }, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/DownloadDetailImage",method = { POST,RequestMethod.GET }, produces = "application/json;charset=UTF-8")
     public void DownloadDetailImage( HttpServletRequest paramRe, HttpServletResponse response) throws IOException {
         Long start = System.currentTimeMillis();
         paramRe.setCharacterEncoding("utf-8");//注意编码

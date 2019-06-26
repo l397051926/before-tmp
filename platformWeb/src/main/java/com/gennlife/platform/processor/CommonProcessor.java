@@ -1,16 +1,14 @@
 package com.gennlife.platform.processor;
 
-import ca.uhn.hl7v2.model.v26.datatype.CWE;
-import ca.uhn.hl7v2.model.v26.message.MFN_M02;
-import ca.uhn.hl7v2.model.v26.message.MFN_M05;
-import ca.uhn.hl7v2.model.v26.segment.*;
-import com.gennlife.platform.dao.AllDao;
-import com.gennlife.platform.dao.SyUserMapper;
+import com.gennlife.darren.excel.ExcelFileExtension;
+import com.gennlife.darren.excel.ExcelSheetHelper;
+import com.gennlife.darren.excel.ExcelWorkbookHelper;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.util.ChineseToEnglish;
 import com.gennlife.platform.util.FileUploadUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
@@ -92,6 +90,7 @@ public class CommonProcessor {
 
     public String uploadFileForImportLab(MultipartFile file, User user) {
         try {
+
             byte[] bytes = file.getBytes();
             String string = new String(bytes, "GBK");
             //logger.info("GBK "+string);
@@ -114,6 +113,20 @@ public class CommonProcessor {
         } catch (Exception e) {
             logger.error("", e);
             return ParamUtils.errorParam("出现异常");
+        }
+    }
+
+    public String importLabsFromExcel(MultipartFile file, User user) throws Exception {
+        try {
+            final Workbook wb = ExcelWorkbookHelper.read(file.getInputStream(), ExcelFileExtension.XLSX);
+            final List<FileUploadUtil.Department> lines = ExcelSheetHelper
+                .loadRequestObjects(
+                    wb.getSheetAt(0),
+                    FileUploadUtil.Department.class);
+            return FileUploadUtil.importLabs(lines, user);
+        } catch (IOException e) {
+            logger.error(e.getLocalizedMessage(), e);
+            return ParamUtils.errorParam(e.getLocalizedMessage());
         }
     }
 

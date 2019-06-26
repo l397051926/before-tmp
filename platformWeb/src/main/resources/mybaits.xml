@@ -15,13 +15,13 @@
             <value>${ui.datasource.driverClassName}</value>
         </property>
         <property name="url">
-            <value>${ui.datasource.url}&amp;autoReconnect=true</value>
+            <value>jdbc:mysql://127.0.0.1:3306/ui_service</value>
         </property>
         <property name="username">
-            <value>${ui.datasource.username}</value>
+            <value>root</value>
         </property>
         <property name="password">
-            <value>${ui.datasource.password}</value>
+            <value>1234</value>
         </property>
         <property name="initialSize" value="5"/>
         <property name="minIdle" value="5"/>
