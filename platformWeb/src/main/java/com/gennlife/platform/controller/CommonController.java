@@ -84,18 +84,6 @@ public class CommonController implements InitializingBean {
         return resultStr;
     }
 
-
-    @RequestMapping(value = "/ImportLabsFromExcel", method = POST, produces = APPLICATION_JSON_UTF8_VALUE)
-    public @ResponseBody String ImportLabsFromExcel(HttpServletRequest request, @RequestParam("name") MultipartFile file) {
-        try {
-            final User user = (User)request.getAttribute("currentUser");
-            return processor.importLabsFromExcel(file, user);
-        } catch (Exception e) {
-            logger.error(e.getLocalizedMessage(), e);
-            return ParamUtils.errorParam("出现异常");
-        }
-    }
-
     @RequestMapping(value = "/DownloadFileForImportLabHistory", method = RequestMethod.GET)
     public void getDownloadFileForImportLabHistory(HttpServletRequest paramRe, HttpServletResponse response) {
         User user = (User) paramRe.getAttribute("currentUser");
@@ -315,4 +303,5 @@ public class CommonController implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         FilePath = fileBean.getManageFileLocation();
     }
+
 }

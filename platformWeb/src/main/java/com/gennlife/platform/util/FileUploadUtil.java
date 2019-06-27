@@ -1,7 +1,6 @@
 package com.gennlife.platform.util;
 
 
-import com.gennlife.darren.excel.ExcelTitle;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.configuration.FileBean;
 import com.gennlife.platform.dao.AllDao;
@@ -24,11 +23,6 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static com.gennlife.darren.collection.string.StringTools.nullStringIfBlank;
-import static com.gennlife.darren.controlflow.for_.Foreach.foreach;
-import static java.util.function.Function.identity;
-import static java.util.stream.Collectors.toMap;
-
 /**
  * Created by chen-song on 16/9/6.
  */
@@ -39,7 +33,7 @@ public class FileUploadUtil implements InitializingBean {
     public static Gson gson = GsonUtil.getGson();
     private static SimpleDateFormat time = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
     //文件位置，注意是绝对路径
-    private static String tempPath = "/home/tomcat_demo2_web/update/";
+    public static String tempPath = "/home/tomcat_demo2_web/update/";
     @Autowired
     private FileBean fileBean;
 
@@ -560,144 +554,6 @@ public class FileUploadUtil implements InitializingBean {
         }
     }
 
-    public static final String ROOT_DEPARTMENT_ID = "ROOT";
-    public static final String ROOT_DEPARTMENT_NAME = "医院";
-
-    public static class Department {
-        @ExcelTitle("科室编号")
-        public String id;
-        @ExcelTitle("科室名称")
-        public String name;
-        @ExcelTitle("部门类型")
-        public String type;
-        @ExcelTitle("DEPTTYPENAME")
-        public String originalType;
-        @ExcelTitle("上级科室编号")
-        public String parentId;
-        @ExcelTitle("上级科室名称")
-        public String parentName;
-        @Override
-        public String toString() {
-            return String.join(",", id, name, parentId, parentName, type, originalType);
-        }
-    }
-
-    public static String importLabs(List<Department> departments, User user) throws IOException {
-        final String orgId = user.getOrgID();
-        final String orgName = user.getOrg_name();
-        final String uid = user.getUid();
-        synchronized (Lock) {
-            List<String> results = new LinkedList<>();
-            final Map<String, Lab> importedLabsById = AllDao.getInstance().getOrgDao().getLabs(orgId)
-                .stream()
-                .collect(toMap(Lab::getLabID, identity()));
-            final Lab rootLab = new Lab();
-            {
-                rootLab.setOrgID(orgId);
-                rootLab.setLabID(ROOT_DEPARTMENT_ID);
-                rootLab.setLab_name(ROOT_DEPARTMENT_NAME);
-                rootLab.setLab_parent(orgId);
-                rootLab.setLab_level(1);
-                rootLab.setAdd_user(uid);
-                rootLab.setAdd_time(time.format(new Date()));
-                rootLab.setDepart_name("行政管理类");
-                rootLab.status = "未处理";
-            }
-            final Map<String, Lab> labsById = new HashMap<>(importedLabsById);
-            {
-                labsById.put(ROOT_DEPARTMENT_ID, rootLab);
-            }
-            final Map<String, Department> srcsById = new HashMap<>();
-            for (final Department d : departments) {
-                final String id = nullStringIfBlank(d.id);
-                final String name = nullStringIfBlank(d.name);
-                final String parentId = nullStringIfBlank(d.parentId);
-                final String parentName = nullStringIfBlank(d.parentName);
-                final String type = nullStringIfBlank(d.type);
-                final String originalType = nullStringIfBlank(d.originalType);
-                if (id.isEmpty()) {
-                    results.add(d + ",失败,科室编号为空");
-                    continue;
-                }
-                if (id.equals(ROOT_DEPARTMENT_ID)) {
-                    results.add(d + ",失败," + ROOT_DEPARTMENT_ID + "为根科室编号");
-                    continue;
-                }
-                if (labsById.get(id) != null) {
-                    results.add(d + ",失败,同编号的科室被已定义过");
-                    continue;
-                }
-                if (name.isEmpty()) {
-                    results.add(d + ",失败,科室名称为空");
-                    continue;
-                }
-                if (name.length() > 30) {
-                    results.add(d + ",失败,科室名称大于30个字符");
-                    continue;
-                }
-                if (parentId.isEmpty()) {
-                    results.add(d + ",失败,上级科室编号为空");
-                    continue;
-                }
-                final Lab parent = labsById.get(parentId);
-                if (parent == null) {
-                    results.add(d + ",失败,上级科室编号不存在（根科室编号为" + ROOT_DEPARTMENT_ID + "）");
-                    continue;
-                }
-                if (parentName.isEmpty()) {
-                    results.add(d + ",失败,上级科室名称为空");
-                    continue;
-                }
-                if (!parentName.equals(parent.getLab_parentName())) {
-                    results.add(d + ",失败,上级科室名称与定义不匹配");
-                    continue;
-                }
-                if (type.isEmpty()) {
-                    results.add(d + ",失败,部门类型为空");
-                    continue;
-                }
-                if (DepartDecide.decide(type, parent.getDepart_name())) {
-                    results.add(d + ",失败,上级科室类型为: " + parent.getDepart_name() + " 当前科室类型为: " + type + " 不符合科室类型关系约束");
-                    continue;
-                }
-                final Lab lab = new Lab();
-                {
-                    lab.setOrgID(orgId);
-                    lab.setLabID(id);
-                    lab.setLab_name(name);
-                    lab.setLab_parent(parent.getLabID());
-                    lab.setLab_level(parent.getLab_level() + 1);
-                    lab.setAdd_user(uid);
-                    lab.setAdd_time(time.format(new Date()));
-                    lab.setDepart_name(type);
-                }
-                labsById.put(id, lab);
-                srcsById.put(id, d);
-            }
-            labsById.remove(rootLab.getLabID());
-            foreach(labsById, (id, lab) -> {
-                if (importedLabsById.containsKey(id)) {
-                    // update
-                    final int count = AllDao.getInstance().getOrgDao().updateLabInfoByNameWithLab(lab);
-                    if ("一线临床类".equals(lab.getDepart_name()) || "行政管理类".equals(lab.getDepart_name())) {
-                        AllDao.getInstance().getSyResourceDao().deleteLabsReource(new String[] {lab.getLabID()});
-                    }
-                    if ("业务管理类".equals(lab.getDepart_name())) {
-                        LaboratoryProcessor.addResource(lab);
-                    }
-                    results.add(srcsById.get(id) + (count > 0 ? ",成功,更新科室成功" : ",失败,无法更新科室"));
-                } else {
-                    // insert
-                    final int count = AllDao.getInstance().getOrgDao().insertOneLab(lab);
-                    LaboratoryProcessor.addResource(lab);
-                    results.add(srcsById.get(id) + (count > 0 ? ",成功,插入科室成功" : ",失败,无法插入科室"));
-                }
-            });
-            final File outputFile = new File(tempPath + user.getOrg_name() + "导入科室历史.csv");
-            return writeResultFile(results, outputFile);
-        }
-    }
-
     /**
      * 过滤存在判断
      *
@@ -840,4 +696,5 @@ public class FileUploadUtil implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         tempPath = fileBean.getManageFileLocation();
     }
+
 }

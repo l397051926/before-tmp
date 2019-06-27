@@ -116,18 +116,4 @@ public class CommonProcessor {
         }
     }
 
-    public String importLabsFromExcel(MultipartFile file, User user) throws Exception {
-        try {
-            final Workbook wb = ExcelWorkbookHelper.read(file.getInputStream(), ExcelFileExtension.XLSX);
-            final List<FileUploadUtil.Department> lines = ExcelSheetHelper
-                .loadRequestObjects(
-                    wb.getSheetAt(0),
-                    FileUploadUtil.Department.class);
-            return FileUploadUtil.importLabs(lines, user);
-        } catch (IOException e) {
-            logger.error(e.getLocalizedMessage(), e);
-            return ParamUtils.errorParam(e.getLocalizedMessage());
-        }
-    }
-
 }
