@@ -26,13 +26,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class SyncController {
 
     @RequestMapping(value = "/DownloadLabsExcelTemplate", method = GET, produces = APPLICATION_PDF_VALUE)
-    public void DownloadLabsExcelTemplate(HttpServletRequest paramRe, HttpServletResponse response) {
+    public void DownloadLabsExcelTemplate(HttpServletResponse response) {
         final String file = DIRECTORY + "组织导入模版.xlsx";
         commonProcessor.downLoadFile(file, response, "组织导入模版.xlsx",true);
     }
 
     @RequestMapping(value = "/DownloadStaffsExcelTemplate", method = GET, produces = APPLICATION_PDF_VALUE)
-    public void DownloadStaffsExcelTemplate(HttpServletRequest paramRe, HttpServletResponse response) {
+    public void DownloadStaffsExcelTemplate(HttpServletResponse response) {
         final String file = DIRECTORY + "人员导入模版.xlsx";
         commonProcessor.downLoadFile(file, response, "人员导入模版.xlsx",true);
     }
@@ -64,7 +64,6 @@ public class SyncController {
 
     @Autowired
     private SyncProcessor syncProcessor;
-    @Autowired
-    private CommonProcessor commonProcessor;
+    private CommonProcessor commonProcessor = CommonProcessor.getCommonProcessor();
 
 }

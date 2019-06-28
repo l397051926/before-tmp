@@ -1,16 +1,13 @@
 package com.gennlife.platform.processor;
 
-import com.gennlife.darren.excel.ExcelFileExtension;
-import com.gennlife.darren.excel.ExcelSheetHelper;
-import com.gennlife.darren.excel.ExcelWorkbookHelper;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.util.ChineseToEnglish;
 import com.gennlife.platform.util.FileUploadUtil;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +19,7 @@ import java.util.List;
 /**
  * Created by chen-song on 16/9/15.
  */
+@Service
 public class CommonProcessor {
     private static Logger logger = LoggerFactory.getLogger(CommonProcessor.class);
     private static View view = new View();

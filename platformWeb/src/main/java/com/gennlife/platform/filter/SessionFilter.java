@@ -182,7 +182,7 @@ public class SessionFilter implements Filter {
         okSet.add("/detail/getSchemaData");
         okSet.add("/detail/get_patien_sn");
 //        okSet.add("/detail/getHomePageConfig");
-
-        okSet.add("/common/ImportLabs");
+        okSet.add("/sync/DownloadLabsExcelTemplate");
+        okSet.add("/sync/DownloadStaffsExcelTemplate");
     }
 }
