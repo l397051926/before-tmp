@@ -209,8 +209,7 @@ public class AuthorityUtil {
         }
         boolean isAdmin = false;
         for (Admin admin : admins) {
-            if (admin.getPrivilegeType().equals("admin")
-                    && admin.getPrivilegeValue().equals("admin")) {
+            if (admin.getPrivilegeType().equals("admin")) {
                 isAdmin = true;
             }
         }
