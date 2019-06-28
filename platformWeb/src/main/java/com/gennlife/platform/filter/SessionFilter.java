@@ -184,5 +184,7 @@ public class SessionFilter implements Filter {
 //        okSet.add("/detail/getHomePageConfig");
         okSet.add("/sync/DownloadLabsExcelTemplate");
         okSet.add("/sync/DownloadStaffsExcelTemplate");
+        adminSet.add("/sync/ImportStaffsFromExcel");
+        adminSet.add("/sync/ImportLabsFromExcel");
     }
 }

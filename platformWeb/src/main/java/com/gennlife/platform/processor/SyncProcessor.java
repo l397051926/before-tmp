@@ -63,9 +63,9 @@ public class SyncProcessor {
         try {
             final Workbook wb = ExcelWorkbookHelper.read(file.getInputStream(), ExcelFileExtension.XLSX);
             final Sheet sheet = wb.getSheetAt(0);
-            final List<_RootIdLine> rootIdLines = ExcelSheetHelper.loadRequestObjects(sheet, _RootIdLine.class);
+            final String rootId = ExcelSheetHelper.loadRequestObjects(sheet, _RootIdLine.class).get(0).rootId;
             final List<Department> lines = ExcelSheetHelper.loadRequestObjects(sheet, Department.class);
-            return importLabs(lines, rootIdLines.get(0).rootId, currentUser);
+            return importLabs(lines, rootId, currentUser);
         } catch (Exception e) {
             _LOG.error(e.getLocalizedMessage(), e);
             return ParamUtils.errorParam(e.getLocalizedMessage());
@@ -387,7 +387,8 @@ public class SyncProcessor {
         return writeResultFile(results, outputFile);
     }
 
-    private class _RootIdLine {
+    private static class _RootIdLine {
+        @ExcelTitle("根科室编号")
         String rootId;
     }
 
