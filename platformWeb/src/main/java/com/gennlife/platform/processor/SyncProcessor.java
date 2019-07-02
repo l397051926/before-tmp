@@ -17,6 +17,10 @@ import com.gennlife.platform.util.FileUploadUtil;
 import com.gennlife.platform.util.ParamUtils;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.jgrapht.Graph;
+import org.jgrapht.graph.DefaultDirectedGraph;
+import org.jgrapht.graph.DefaultEdge;
+import org.jgrapht.traverse.TopologicalOrderIterator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -279,36 +283,17 @@ public class SyncProcessor {
         requireNonNull(departments);
         requireNonNull(currentUser);
         requireNonNull(rootId);
+        final List<String> results = new LinkedList<>();
         final String orgId = currentUser.getOrgID();
-        final String orgName = currentUser.getOrg_name();
         final String uid = currentUser.getUid();
         final String timeStr = _DATE_FORMAT.format(new Date());
-        List<String> results = new LinkedList<>();
-        final Lab rootLab = new Lab();
-        {
-            rootLab.setOrgID(orgId);
-            rootLab.setLabID(rootId);
-            rootLab.setLab_name(ROOT_DEPARTMENT_NAME);
-            rootLab.setLab_parent(orgId);
-            rootLab.setLab_level(1);
-            rootLab.setAdd_user(uid);
-            rootLab.setAdd_time(timeStr);
-            rootLab.setDepart_name("行政管理类");
-        }
-        final Map<String, Lab> importedLabsById = AllDao.getInstance().getOrgDao().getLabs(orgId)
-            .stream()
-            .collect(toMap(Lab::getLabID, identity()));
-        final Map<String, Lab> labsById = new HashMap<>(importedLabsById);
-        {
-            labsById.put(rootId, rootLab);
-        }
         final Map<String, Department> srcsById = new HashMap<>();
+        final Map<String, Department> srcsByParentId = new HashMap<>();
         for (final Department src : departments) {
             final String id = nullStringIfBlank(src.id);
             final String name = nullStringIfBlank(src.name);
             final String parentId = nullStringIfBlank(src.parentId);
             final String type = nullStringIfBlank(src.type);
-            final String originalType = nullStringIfBlank(src.originalType);
             if (id.isEmpty()) {
                 results.add(src + ",失败,科室编号为空");
                 continue;
@@ -317,7 +302,7 @@ public class SyncProcessor {
                 results.add(src + ",失败," + rootId + "为根科室编号");
                 continue;
             }
-            if (labsById.get(id) != null) {
+            if (srcsById.containsKey(id)) {
                 results.add(src + ",失败,同编号的科室被已定义过");
                 continue;
             }
@@ -337,34 +322,86 @@ public class SyncProcessor {
                 results.add(src + ",失败,上级科室编号为空");
                 continue;
             }
-            final Lab parent = labsById.get(parentId);
-            if (parent == null) {
-                results.add(src + ",失败,上级科室编号不存在（根科室编号为" + rootId + "）");
-                continue;
-            }
             if (type.isEmpty()) {
                 results.add(src + ",失败,部门类型为空");
                 continue;
             }
-            if (DepartDecide.decide(type, parent.getDepart_name())) {
-                results.add(src + ",失败,上级科室类型为: " + parent.getDepart_name() + " 当前科室类型为: " + type + " 不符合科室类型关系约束");
-                continue;
+            srcsById.put(id, src);
+            if (!srcsByParentId.containsKey(parentId)) {
+                srcsByParentId.put(parentId, src);  // reserve first line
             }
+        }
+        final Map<String, Lab> importedLabsById = AllDao.getInstance().getOrgDao().getLabs(orgId)
+            .stream()
+            .collect(toMap(Lab::getLabID, identity()));
+        final Map<String, Lab> labsById = new HashMap<>(importedLabsById);
+        {
+            final Lab rootLab = new Lab();
+            {
+                rootLab.setOrgID(orgId);
+                rootLab.setLabID(rootId);
+                rootLab.setLab_name(ROOT_DEPARTMENT_NAME);
+                rootLab.setLab_parent(orgId);
+                rootLab.setLab_level(1);
+                rootLab.setAdd_user(uid);
+                rootLab.setAdd_time(timeStr);
+                rootLab.setDepart_name("行政管理类");
+            }
+            labsById.put(rootId, rootLab);
+        }
+        final Graph<String, DefaultEdge> graph = new DefaultDirectedGraph<>(DefaultEdge.class);
+        foreach(srcsById, (id, src) -> {
+            final String name = nullStringIfBlank(src.name);
+            final String parentId = nullStringIfBlank(src.parentId);
+            final String type = nullStringIfBlank(src.type);
             final Lab lab = new Lab();
             {
                 lab.setOrgID(orgId);
                 lab.setLabID(id);
                 lab.setLab_name(name);
-                lab.setLab_parent(parent.getLabID());
-                lab.setLab_level(parent.getLab_level() + 1);
                 lab.setAdd_user(uid);
                 lab.setAdd_time(timeStr);
+                lab.setLab_parent(parentId);
                 lab.setDepart_name(type);
             }
             labsById.put(id, lab);
-            srcsById.put(id, src);
+            graph.addVertex(id);
+            graph.addVertex(parentId);
+            graph.addEdge(parentId, id);
+        });
+        final Iterator<String> it = new TopologicalOrderIterator<>(graph);
+        while (it.hasNext()) {
+            final String id = it.next();
+            if (id.equals(rootId)) {
+                continue;
+            }
+            boolean accepted = false;
+            CHECK: {
+                final Lab lab = labsById.get(id);
+                if (lab == null) {
+                    results.add(srcsByParentId.get(id) + ",失败,上级科室编号不存在");
+                    break CHECK;
+                }
+                final Department src = srcsById.get(id);
+                final Lab parentLab = labsById.get(lab.getLab_parent());
+                if (parentLab == null) {
+                    results.add(src + ",失败,上级科室编号不存在");
+                    break CHECK;
+                }
+                if (DepartDecide.decide(lab.getDepart_name(), parentLab.getDepart_name())) {
+                    results.add(src + ",失败,上级科室类型为: " + parentLab.getDepart_name() + " 当前科室类型为: " + lab.getDepart_name() + " 不符合科室类型关系约束");
+                    break CHECK;
+                }
+                accepted = true;
+                lab.setLab_name(parentLab.getDepart_name());
+            }
+            if (!accepted) {
+                if (!importedLabsById.containsKey(id)) {
+                    labsById.remove(id);
+                }
+            }
         }
-        labsById.remove(rootLab.getLabID());
+        labsById.remove(rootId);
         foreach(labsById, (id, lab) -> {
             if (importedLabsById.containsKey(id)) {
                 // update
