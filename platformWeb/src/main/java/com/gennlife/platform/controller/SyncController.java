@@ -60,7 +60,7 @@ public class SyncController {
         }
     }
 
-    private static String DIRECTORY = "/home/tomcat_demo2_web/update/";//默认位置
+    private static String DIRECTORY = "/home/tomcat_demo2_web/update/";
 
     @Autowired
     private SyncProcessor syncProcessor;
