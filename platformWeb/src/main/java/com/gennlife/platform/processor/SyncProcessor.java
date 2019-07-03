@@ -302,6 +302,10 @@ public class SyncProcessor {
                 results.add(src + ",失败," + rootId + "为根科室编号");
                 continue;
             }
+            if (id.equals(orgId)) {
+                results.add(src + ",失败," + orgId + "为保留根科室编号");
+                continue;
+            }
             if (srcsById.containsKey(id)) {
                 results.add(src + ",失败,同编号的科室被已定义过");
                 continue;
@@ -320,6 +324,10 @@ public class SyncProcessor {
             }
             if (parentId.isEmpty()) {
                 results.add(src + ",失败,上级科室编号为空");
+                continue;
+            }
+            if (parentId.equals(orgId)) {
+                results.add(src + ",失败,上级科室编号为保留根科室编号");
                 continue;
             }
             if (type.isEmpty()) {
@@ -342,7 +350,7 @@ public class SyncProcessor {
                 rootLab.setLabID(rootId);
                 rootLab.setLab_name(ROOT_DEPARTMENT_NAME);
                 rootLab.setLab_parent(orgId);
-                rootLab.setLab_level(1);
+                rootLab.setLab_level(0);
                 rootLab.setAdd_user(uid);
                 rootLab.setAdd_time(timeStr);
                 rootLab.setDepart_name("行政管理类");
@@ -383,7 +391,8 @@ public class SyncProcessor {
                     break CHECK;
                 }
                 final Department src = srcsById.get(id);
-                final Lab parentLab = labsById.get(lab.getLab_parent());
+                final String parentId = lab.getLab_parent();
+                final Lab parentLab = labsById.get(parentId);
                 if (parentLab == null) {
                     results.add(src + ",失败,上级科室编号不存在");
                     break CHECK;
@@ -393,7 +402,8 @@ public class SyncProcessor {
                     break CHECK;
                 }
                 accepted = true;
-                lab.setLab_name(parentLab.getDepart_name());
+                lab.setParentLabName(parentLab.getDepart_name());
+                lab.setLab_level(parentLab.getLab_level() + 1);
             }
             if (!accepted) {
                 if (!importedLabsById.containsKey(id)) {
@@ -403,9 +413,12 @@ public class SyncProcessor {
         }
         labsById.remove(rootId);
         foreach(labsById, (id, lab) -> {
+            if (lab.getLab_parent().equals(rootId)) {
+                lab.setLab_parent(orgId);
+            }
             if (importedLabsById.containsKey(id)) {
                 // update
-                final int count = AllDao.getInstance().getOrgDao().updateLabInfoByNameWithLab(lab);
+                final int count = AllDao.getInstance().getOrgDao().updateLabInfoByIdWithLab(lab);
                 if ("一线临床类".equals(lab.getDepart_name()) || "行政管理类".equals(lab.getDepart_name())) {
                     AllDao.getInstance().getSyResourceDao().deleteLabsReource(new String[] {lab.getLabID()});
                 }
