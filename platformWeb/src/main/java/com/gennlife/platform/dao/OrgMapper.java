@@ -200,4 +200,6 @@ public interface OrgMapper {
     List<String> getLabIdByParentIds(String labID);
 
     void seleteA();
+
+    List<Lab> getLabIdAndParentId();
 }

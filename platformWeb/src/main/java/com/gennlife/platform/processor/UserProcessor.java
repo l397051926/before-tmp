@@ -497,7 +497,7 @@ public class UserProcessor {
                 user.setIfRoleAll("是");
                 role.setResources(reList);
             }else  if ("1".equals(role.getRole_type())) {
-                List<String> labIDs = getAllLabIds(user.getLabID());
+                List<String> labIDs = getAllLabId(user.getLabID());
 //                List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResourcesBySid(user.getOrgID(), user.getLabID(), role.getRoleid());
                 List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResourcesBySids(user.getOrgID(), labIDs, role.getRoleid());
                 List<Resource> reList = new LinkedList<>();
@@ -527,6 +527,21 @@ public class UserProcessor {
             }
         }
         return power;
+    }
+    private static List<String> getAllLabId(String labId){
+        List<Lab> labs = AllDao.getInstance().getOrgDao().getLabIdAndParentId();
+        Set<String> resultIds = new HashSet<>();
+        getAllLabIdsForLabs(labs,labId,resultIds);
+        return new ArrayList<>(resultIds);
+    }
+
+    private static void getAllLabIdsForLabs(List<Lab> labs, String labId, Set<String> resultIds) {
+        for (Lab lab : labs){
+            if(labId.equals(lab.getLab_parent())){
+                resultIds.add(lab.getLabID());
+                getAllLabIdsForLabs(labs,lab.getLabID(),resultIds);
+            }
+        }
     }
 
     private static List<String> getAllLabIds(String labID) {

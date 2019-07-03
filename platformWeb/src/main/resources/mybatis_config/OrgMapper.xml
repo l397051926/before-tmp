@@ -363,5 +363,10 @@
         1
     </select>
 
+    <select id="getLabIdAndParentId" resultMap="com.gennlife.platform.model.Lab" parameterType="String"  >
+        select
+        labID,lab_parent
+        from gennlife_lab
+    </select>
 
 </mapper>
