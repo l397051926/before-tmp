@@ -1,11 +1,5 @@
 package com.gennlife.platform.processor;
 
-import ca.uhn.hl7v2.model.v26.datatype.CWE;
-import ca.uhn.hl7v2.model.v26.message.MFN_M02;
-import ca.uhn.hl7v2.model.v26.message.MFN_M05;
-import ca.uhn.hl7v2.model.v26.segment.*;
-import com.gennlife.platform.dao.AllDao;
-import com.gennlife.platform.dao.SyUserMapper;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.util.ChineseToEnglish;
 import com.gennlife.platform.util.FileUploadUtil;
@@ -13,6 +7,7 @@ import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.view.View;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +19,7 @@ import java.util.List;
 /**
  * Created by chen-song on 16/9/15.
  */
+@Service
 public class CommonProcessor {
     private static Logger logger = LoggerFactory.getLogger(CommonProcessor.class);
     private static View view = new View();
@@ -92,6 +88,7 @@ public class CommonProcessor {
 
     public String uploadFileForImportLab(MultipartFile file, User user) {
         try {
+
             byte[] bytes = file.getBytes();
             String string = new String(bytes, "GBK");
             //logger.info("GBK "+string);

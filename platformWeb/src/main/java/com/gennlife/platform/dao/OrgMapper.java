@@ -4,7 +4,6 @@ import com.gennlife.platform.bean.OrgListBean;
 import com.gennlife.platform.bean.OrgMemberBean;
 import com.gennlife.platform.model.Lab;
 import com.gennlife.platform.model.Organization;
-import com.gennlife.platform.model.User;
 import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.Mapper;
 
@@ -131,6 +130,14 @@ public interface OrgMapper {
     public int updateLabInfoByNameWithLab(Lab lab);
 
     /**
+     * 以ID更新
+     *
+     * @param lab
+     * @return
+     */
+    public int updateLabInfoByIdWithLab(Lab lab);
+
+    /**
      * 职称列表
      *
      * @param orgID
@@ -202,4 +209,6 @@ public interface OrgMapper {
     List<Lab> getLabModelForLabs(String labID);
 
     void seleteA();
+
+    List<Lab> getLabIdAndParentId();
 }

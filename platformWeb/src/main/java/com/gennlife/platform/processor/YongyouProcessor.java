@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class YongyouProcessor {
 
+    // 医疗人员信息服务
     public void ds001(MFN_M02 m) {
         final MSH msh = m.getMSH();
         final MFI mfi = m.getMFI();
@@ -103,6 +104,7 @@ public class YongyouProcessor {
         }
     }
 
+    // 医疗科室信息服务
     public void ds002(MFN_M05 m) {
         final MSH msh = m.getMSH();
         final MFI mfi = m.getMFI();
@@ -142,6 +144,7 @@ public class YongyouProcessor {
             }
             lab.setLabID(id);
             lab.setLab_name(name);
+            lab.setDepart_name("业务管理类");
             lab.setLab_leader(leaderId);
             lab.setLab_leaderName(leaderName);
             lab.setLab_parent(parentId);

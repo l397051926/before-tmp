@@ -3,11 +3,9 @@ package com.gennlife.platform.filter;
 
 import com.gennlife.platform.authority.AuthorityUtil;
 import com.gennlife.platform.bean.HitsConfigBean;
-import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.dao.AllDao;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.processor.UserProcessor;
-import com.gennlife.platform.service.ConfigurationService;
 import com.gennlife.platform.util.LogUtils;
 import com.gennlife.platform.util.ParamUtils;
 import com.gennlife.platform.util.RedisUtil;
@@ -186,6 +184,9 @@ public class SessionFilter implements Filter {
         okSet.add("/detail/get_patien_sn");
         okSet.add("/bsma/sendSystemMessage");
 //        okSet.add("/detail/getHomePageConfig");
-
+        okSet.add("/sync/DownloadLabsExcelTemplate");
+        okSet.add("/sync/DownloadStaffsExcelTemplate");
+        adminSet.add("/sync/ImportStaffsFromExcel");
+        adminSet.add("/sync/ImportLabsFromExcel");
     }
 }

@@ -226,6 +226,23 @@
         </set>
         <where>gennlife_lab.lab_name = #{lab_name,jdbcType=VARCHAR} AND orgID =#{orgID,jdbcType=VARCHAR}</where>
     </update>
+    <update id="updateLabInfoByIdWithLab" parameterType="com.gennlife.platform.model.Lab">
+        UPDATE gennlife_lab
+        <set>
+            <if test="lab_leader != null" >
+                lab_leader=#{lab_leader,jdbcType=VARCHAR},
+            </if>
+            <if test="lab_leaderName != null" >
+                lab_leaderName=#{lab_leaderName,jdbcType=VARCHAR},
+            </if>
+            <if test="depart_name != null" >
+                depart_name=#{depart_name,jdbcType=VARCHAR},
+            </if>
+            lab_level = #{lab_level,jdbcType=INTEGER},
+            lab_parent=#{lab_parent,jdbcType=VARCHAR}
+        </set>
+        <where>gennlife_lab.labID = #{labID,jdbcType=VARCHAR} AND orgID =#{orgID,jdbcType=VARCHAR}</where>
+    </update>
     <select id="getLabBylabName" parameterType="String" resultMap="com.gennlife.platform.model.Lab">
         select
         <include refid="labProperty"></include>
@@ -396,5 +413,10 @@
         1
     </select>
 
+    <select id="getLabIdAndParentId" resultMap="com.gennlife.platform.model.Lab" parameterType="String"  >
+        select
+        labID,lab_parent
+        from gennlife_lab
+    </select>
 
 </mapper>

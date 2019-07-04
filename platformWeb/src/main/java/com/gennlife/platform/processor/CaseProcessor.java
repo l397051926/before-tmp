@@ -1327,6 +1327,9 @@ public class CaseProcessor {
                             continue;
                         }
                     }
+                    if( (!StringUtils.isEmpty(INPATIENT_SN) && StringUtils.isEmpty(visObj.getString("INPATIENT_SN"))) || (!StringUtils.isEmpty(OUTPATIENT_SN) && StringUtils.isEmpty(visObj.getString("OUTPATIENT_SN"))) ){
+                        continue;
+                    }
                     if( !StringUtils.isEmpty(visObj.getString("INPATIENT_SN")) && !visObj.getString("INPATIENT_SN").contains(INPATIENT_SN)){
                         continue;
                     }

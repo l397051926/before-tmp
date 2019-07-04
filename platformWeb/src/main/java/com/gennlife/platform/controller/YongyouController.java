@@ -27,6 +27,7 @@ public class YongyouController {
     private static Logger _LOG = LoggerFactory.getLogger(YongyouController.class);
     private static String _RET = "{}";
 
+    // 医疗人员信息服务
     @RequestMapping(value = "/DS001", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public String DS001(@RequestBody String msgStr) {
         try {
@@ -38,6 +39,7 @@ public class YongyouController {
         return _RET;
     }
 
+    // 医疗科室信息服务
     @RequestMapping(value = "/DS002", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public String DS002(@RequestBody String msgStr) {
         try {

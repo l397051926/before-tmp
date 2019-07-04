@@ -34,7 +34,7 @@ public class FileUploadUtil implements InitializingBean {
     public static Gson gson = GsonUtil.getGson();
     private static SimpleDateFormat time = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
     //文件位置，注意是绝对路径
-    private static String tempPath = "/home/tomcat_demo2_web/update/";
+    public static String tempPath = "/home/tomcat_demo2_web/update/";
     @Autowired
     private FileBean fileBean;
     private static Part3Processor part3Processor = new Part3Processor();
@@ -424,14 +424,6 @@ public class FileUploadUtil implements InitializingBean {
                         String name = data[0].trim();
                         String parentName = data[1].trim();
                         String departName = data[2].trim();
-                        String labId = null;
-                        String parentId = null;
-
-                        if (data.length >= 5) {
-                            labId = data[3].trim();
-                            parentId = data[4].trim();
-                        }
-
                         String partName=null;
 
                         if(partNameMap.containsKey(parentName)){
@@ -472,12 +464,6 @@ public class FileUploadUtil implements InitializingBean {
                         } else {
                             partNameMap.put(name,departName);
                             Lab lab = new Lab();
-                            if (!StringUtils.isEmpty(labId)) {
-                                lab.setLabID(labId);
-                            }
-                            if (!StringUtils.isEmpty(parentId)) {
-                                lab.setLab_parent(parentId);
-                            }
                             lab.setOrgID(orgID);
                             lab.setLab_level(1);
                             lab.setLab_parent(orgID);
@@ -623,10 +609,8 @@ public class FileUploadUtil implements InitializingBean {
                     if (lab.getLab_level() == 1) {
                         if ("未处理".equals(lab.status)) {
                             String name = lab.getLab_name();
-                            if (StringUtils.isEmpty(lab.getLabID())) {
-                                String labID = getLabID(name, orgID, labs);
-                                lab.setLabID(labID);
-                            }
+                            String labID = getLabID(name, orgID, labs);
+                            lab.setLabID(labID);
                         }
                         sort.add(lab);
                         namesMap.put(lab.getLab_name(), lab.getLabID());
@@ -645,10 +629,8 @@ public class FileUploadUtil implements InitializingBean {
                     if (lab.getLab_level() == i) {
                         if ("未处理".equals(lab.status)) {
                             String name = lab.getLab_name();
-                            if (StringUtils.isEmpty(lab.getLabID())) {
-                                String labID = getLabID(name, orgID, sort);
-                                lab.setLabID(labID);
-                            }
+                            String labID = getLabID(name, orgID, sort);
+                            lab.setLabID(labID);
                         }
                         namesMap.put(lab.getLab_name(), lab.getLabID());
                         sort.add(lab);
@@ -718,4 +700,5 @@ public class FileUploadUtil implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         tempPath = fileBean.getManageFileLocation();
     }
+
 }
