@@ -3,6 +3,7 @@ package com.gennlife.platform.processor;
 import com.gennlife.platform.ReadConfig.ReadConditionByRedis;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.dao.AllDao;
+import com.gennlife.platform.exception.ReadTimeOutException;
 import com.gennlife.platform.model.User;
 import com.gennlife.platform.service.ArkService;
 import com.gennlife.platform.service.ConfigurationService;
@@ -21,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,8 +50,11 @@ public class RwsProcessor {
     public String PreAggregation(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getPreAggregationUrl();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
         } catch (Exception e) {
             logger.error("RWS请求图形接口发生异常", e);
             return ParamUtils.errorParam("请求发生异常");
@@ -65,9 +70,12 @@ public class RwsProcessor {
                 logger.info("crf 映射 rws 映射成功！！！" + crfId);
             }
             String url = ConfigurationService.getUrlBean().getPreFindForProjectData();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("RWS图形下面列表接口", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -76,9 +84,12 @@ public class RwsProcessor {
     public String FindByProjectId(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getFindByProjectId();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取项目下所有已定义的事件/指标列表", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -87,9 +98,12 @@ public class RwsProcessor {
     public String getAllActiveOrIndex(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getGetAllActiveOrIndex();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取 事件/指标 下拉选项", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -98,8 +112,11 @@ public class RwsProcessor {
     public String getSavedActivityData(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getGetSavedActivityData();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
+        } catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
         } catch (Exception e) {
             logger.error("获取后台保存的 事件/指标", e);
             return ParamUtils.errorParam("请求发生异常");
@@ -125,9 +142,12 @@ public class RwsProcessor {
             paramObj.add("resultOrderKey", orderObject);
             //返回排序json
             String url = ConfigurationService.getUrlBean().getSaveOrSearchActive();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("搜索或保存接口 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -136,9 +156,12 @@ public class RwsProcessor {
     public String searchClacResultSearch(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getClacResultSearch();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("搜索事件定义页下的详情接口 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -147,9 +170,12 @@ public class RwsProcessor {
     public String searchClacIndexResultSearch(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getClacIndexResultSearch();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("指标定义下定义页下的详情接口 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -158,8 +184,11 @@ public class RwsProcessor {
     public String getCalcTotalByActiveId(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getGetCalcTotalByActiveId();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
+        } catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
         } catch (Exception e) {
             logger.error("获取定义活动患者列表表头数据接口 ", e);
             return ParamUtils.errorParam("请求发生异常");
@@ -169,9 +198,12 @@ public class RwsProcessor {
     public String findTotalForImport(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getFindTotalForImport();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("列表上的总数接口 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -180,9 +212,12 @@ public class RwsProcessor {
     public String deleteByActiveId(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getDeleteByActiveId();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("根据活动id删除活动的全部信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -191,9 +226,12 @@ public class RwsProcessor {
     public String checkActiveIsOnlyOne(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getCheckActiveIsOnlyOne();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("验证事件名称唯一 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -202,9 +240,12 @@ public class RwsProcessor {
     public String activeIsChange(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getCheckActiveDataIsChange();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("验证事件数据是否改变 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -213,9 +254,12 @@ public class RwsProcessor {
     public String dependenceChange(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getDependenceChange();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("验证事件数据是否改变&有被依赖 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -241,7 +285,10 @@ public class RwsProcessor {
             resultBean.setCode(1);
             resultBean.setData(resultArray);
             return gson.toJson(resultBean);
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("事件配置文件获取", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -259,7 +306,10 @@ public class RwsProcessor {
             resultBean.setCode(1);
             resultBean.setData(target);
             return gson.toJson(resultBean);
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("事件配置文件获取", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -268,9 +318,12 @@ public class RwsProcessor {
     public String editActiveName(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getEditActiveName();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("修改指标事件名称 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -279,9 +332,12 @@ public class RwsProcessor {
     public String getContResult(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getContResultUrl();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorReadParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取图形列表 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -290,9 +346,12 @@ public class RwsProcessor {
     public String getContResultForPatient(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getContResultForPatientUrl();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorReadParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取计算结果列表 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -301,8 +360,11 @@ public class RwsProcessor {
     public String getPatientGroupCondition(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getPatientGroupCondition();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
+        } catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
         } catch (Exception e) {
             logger.error("获取对比分析页面搜索条件 ", e);
             return ParamUtils.errorParam("请求发生异常");
@@ -312,9 +374,12 @@ public class RwsProcessor {
     public String getResearchVariable(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getResearchVariableUrl();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取研究变量参数 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -323,9 +388,12 @@ public class RwsProcessor {
     public String saveGroupCondition(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getSaveGroupCondition();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("存储分组信息 对比分析页面 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -334,9 +402,12 @@ public class RwsProcessor {
     public String deletePatientSet(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getDeletePatientSet();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("删除患者集信息 对比分析页面 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -345,9 +416,12 @@ public class RwsProcessor {
     public String getContrasAnalyList(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getContrasAnalyList();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取研究变量创建情况 对比分析页面 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -356,9 +430,12 @@ public class RwsProcessor {
     public String getPatientList(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getPatientList();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取研究变量创建情况 对比分析页面 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -368,9 +445,12 @@ public class RwsProcessor {
     public String getPatientSet(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getPatientSet();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取患者集信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -379,8 +459,11 @@ public class RwsProcessor {
     public String getPatientSetList(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getPatientSetList();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
+        } catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
         } catch (Exception e) {
             logger.error("或者患者集列表 ", e);
             return ParamUtils.errorParam("请求发生异常");
@@ -390,8 +473,11 @@ public class RwsProcessor {
     public String getSearchCondition(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getSearchCondition();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
+        } catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
         } catch (Exception e) {
             logger.error("获取患者集搜索条件 ", e);
             return ParamUtils.errorParam("请求发生异常");
@@ -401,9 +487,12 @@ public class RwsProcessor {
     public String savePatientSet(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getSavePatientSet();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("创建患者集信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -412,9 +501,12 @@ public class RwsProcessor {
     public String updatePatientSet(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getUpdatePatientSet();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("修改患者集信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -423,9 +515,12 @@ public class RwsProcessor {
     public String getProjectByCrfId(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getProjectByCrfId();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("查看用户是否有项目 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -434,9 +529,12 @@ public class RwsProcessor {
     public String deleteProject(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getDeleteProject();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("删除项目信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -445,9 +543,12 @@ public class RwsProcessor {
     public String getProject(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getProject();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取项目信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -456,9 +557,12 @@ public class RwsProcessor {
     public String getProjectList(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getProjectList();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取项目列表信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -467,9 +571,12 @@ public class RwsProcessor {
     public String saveProject(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getSaveProject();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("创建项目 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -478,9 +585,12 @@ public class RwsProcessor {
     public String updateProject(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getUpdateProject();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("修改项目信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -489,9 +599,12 @@ public class RwsProcessor {
     public String deletePatientGroup(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getDeletePatientGroup();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("删除项目分组信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -500,9 +613,12 @@ public class RwsProcessor {
     public String exportGroupDataPatient(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getExportGroupDataPatient();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("进一步筛选患者分组信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -511,9 +627,12 @@ public class RwsProcessor {
     public String getActiveIndexList(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getActiveIndexList();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取筛选条件 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -522,9 +641,12 @@ public class RwsProcessor {
     public String getPatientGroup(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getPatientGroup();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取患者分组信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -533,9 +655,12 @@ public class RwsProcessor {
     public String getPatientGroupList(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getPatientGroupList();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取患者分组列表信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -544,9 +669,12 @@ public class RwsProcessor {
     public String getPatientListForGroup(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getPatientListForGroup();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取患者列表 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -555,9 +683,12 @@ public class RwsProcessor {
     public String insertGroupDataPatient(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getInsertGroupDataPatient();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("进一步筛选患者分组信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -566,9 +697,12 @@ public class RwsProcessor {
     public String saveActiveIndex(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getSaveActiveIndex();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("保存分组详情筛选条件 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -577,9 +711,12 @@ public class RwsProcessor {
     public String saveGroupAndPatient(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getSaveGroupAndPatient();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("拖拽 添加保存患者分组信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -588,9 +725,12 @@ public class RwsProcessor {
     public String savePatientGroup(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getSavePatientGroup();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("新增患者分组信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -599,9 +739,12 @@ public class RwsProcessor {
     public String updatePatientGroup(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getUpdatePatientGroup();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("编辑项目分组信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -610,9 +753,12 @@ public class RwsProcessor {
     public String getOperLogsList(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getOperLogsList();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取项目日志信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -621,9 +767,12 @@ public class RwsProcessor {
     public String deleteProjectMember(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getDeleteProjectMember();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("删除项目成员信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -632,9 +781,12 @@ public class RwsProcessor {
     public String getProjectMember(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getProjectMember();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取项目成员信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -643,9 +795,12 @@ public class RwsProcessor {
     public String getProjectMemberList(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getProjectMemberList();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取项目成员列表信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -654,9 +809,12 @@ public class RwsProcessor {
     public String saveProjectMember(JsonObject paramObj) {
          try {
             String url = ConfigurationService.getUrlBean().getSaveProjectMember();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+             logger.error("请求超时 临时处理", e);
+             return ParamUtils.errorParam(e.getMessage());
+         }  catch (Exception e) {
             logger.error("创建项目成员信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -665,9 +823,12 @@ public class RwsProcessor {
     public String updateProjectMember(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getUpdateProjectMember();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("修改项目成员信息 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -678,7 +839,10 @@ public class RwsProcessor {
             String url = ConfigurationService.getUrlBean().getScientific();
             String result = HttpRequestUtils.httpGet(url);
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取科研类型 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -687,9 +851,12 @@ public class RwsProcessor {
     public String getGroupTypeList(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getGroupTypeList();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取分组类型列表 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -698,9 +865,12 @@ public class RwsProcessor {
     public String groupAggregation(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getGroupAggregation();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("分组圆形统计图展示 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -709,9 +879,12 @@ public class RwsProcessor {
     public String checkName(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getCheckName();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("验证名字是否重复 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -720,9 +893,12 @@ public class RwsProcessor {
     public String getGroupParentData(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getGroupParentData();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("分区筛选数据展示 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -731,9 +907,12 @@ public class RwsProcessor {
     public String getAllResearchVariable(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getAllResearchVariable();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取全部研究变量 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -742,9 +921,12 @@ public class RwsProcessor {
     public String saveResearchVariable(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getSaveResearchVariable();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("保存研究变量接口 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -753,9 +935,12 @@ public class RwsProcessor {
     public String deleteResearchVariable(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getDeleteResearchVariable();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("删除研究变量 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -764,9 +949,12 @@ public class RwsProcessor {
     public String projectAggregation(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getProjectAggregation();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取项目统计列表 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -775,8 +963,11 @@ public class RwsProcessor {
     public String projectPowerExamine(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getProjectPowerExamine();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
+        } catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
         } catch (Exception e) {
             logger.error("权限校验 ", e);
             return ParamUtils.errorParam("请求发生异常");
@@ -786,9 +977,12 @@ public class RwsProcessor {
     public String eligible(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getEligible();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("判断用户是否有资格进入跳转到项目 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -797,9 +991,12 @@ public class RwsProcessor {
     public String inputInfo(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getInputInfo();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取导入数据任务列表 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -808,9 +1005,12 @@ public class RwsProcessor {
     public String cancel(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getCancel();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("取消导出接口 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -820,9 +1020,12 @@ public class RwsProcessor {
     public String restart(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getRestart();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("重启导出数据接口 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -831,9 +1034,12 @@ public class RwsProcessor {
     public String inputDelete(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getInputDelete();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("删除任务接口 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -842,9 +1048,12 @@ public class RwsProcessor {
     public String judgeTaskStatus(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getJudgeTaskStatus();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("判断任务状态接口 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -853,9 +1062,12 @@ public class RwsProcessor {
     public String getGroupIdPath(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getGroupIdPath();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取项目下所有分组路径 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
@@ -864,9 +1076,12 @@ public class RwsProcessor {
     public String decideInputs(JsonObject paramObj) {
         try {
             String url = ConfigurationService.getUrlBean().getDecideInputs();
-            String result = HttpRequestUtils.httpPost(url, gson.toJson(paramObj));
+            String result = HttpRequestUtils.httpPostToRws(url, gson.toJson(paramObj));
             return result;
-        } catch (Exception e) {
+        }catch (ReadTimeOutException e){
+            logger.error("请求超时 临时处理", e);
+            return ParamUtils.errorParam(e.getMessage());
+        }  catch (Exception e) {
             logger.error("获取项目下所有分组路径 ", e);
             return ParamUtils.errorParam("请求发生异常");
         }
