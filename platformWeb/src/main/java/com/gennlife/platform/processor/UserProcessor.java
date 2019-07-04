@@ -1,6 +1,7 @@
 /**/
 package com.gennlife.platform.processor;
 
+import com.gennlife.darren.controlflow.break_.Break;
 import com.gennlife.platform.bean.ResultBean;
 import com.gennlife.platform.bean.conf.SystemDefault;
 import com.gennlife.platform.dao.AllDao;
@@ -18,6 +19,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * Created by chensong on 2015/12/4.
@@ -484,8 +488,22 @@ public class UserProcessor {
         Map<String, Object> confMap = new HashMap<>();
         confMap.put("orgID", user.getOrgID());
         confMap.put("uid", user.getUid());
+        Optional<Role> tmpRole = rolesList.stream().filter( o -> Objects.equals("全院科室成员",o.getRole())).findFirst();
+        if(tmpRole != null) {
+            List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getAllResources(user.getOrgID(), tmpRole.get().getRoleid());
+            List<Resource> reList = new LinkedList<>();
+            for (Resource resource : resourcesList) {
+                reList.add(resource);
+                power = addResourceToPowerForAll(power, resource);
+            }
+            //添加 判断user 权限是否全量
+            user.setIfRoleAll("是");
+            tmpRole.get().setResources(reList);
+        }
         for (Role role : rolesList) {
-
+            if(Objects.equals("是",user.getIfRoleAll())){
+                break;
+            }
             if("全院科室成员".equals(role.getRole())){
                 List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getAllResources(user.getOrgID(), role.getRoleid());
                 List<Resource> reList = new LinkedList<>();
@@ -497,16 +515,26 @@ public class UserProcessor {
                 user.setIfRoleAll("是");
                 role.setResources(reList);
             }else  if ("1".equals(role.getRole_type())) {
-                List<String> labIDs = getAllLabId(user.getLabID());
-//                List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResourcesBySid(user.getOrgID(), user.getLabID(), role.getRoleid());
-                List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResourcesBySids(user.getOrgID(), labIDs, role.getRoleid());
-                List<Resource> reList = new LinkedList<>();
-                for (Resource resource : resourcesList) {
-                    reList.add(resource);
-                    power = addResourceToPower(power, resource);
-//                    break;//保留一个就行了   -- 都要！
+                if(Objects.equals(user.getOrgID(),user.getLabID())){
+                    List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getAllResources(user.getOrgID(), role.getRoleid());
+                    List<Resource> reList = new LinkedList<>();
+                    for (Resource resource : resourcesList) {
+                        reList.add(resource);
+                        power = addResourceToPowerForAll(power, resource);
+                    }
+                    //添加 判断user 权限是否全量
+                    user.setIfRoleAll("是");
+                    role.setResources(reList);
+                }else {
+                    List<String> labIDs = getAllLabId(user.getLabID());
+                    List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResourcesBySids(user.getOrgID(), labIDs, role.getRoleid());
+                    List<Resource> reList = new LinkedList<>();
+                    for (Resource resource : resourcesList) {
+                        reList.add(resource);
+                        power = addResourceToPower(power, resource);
+                    }
+                    role.setResources(reList);
                 }
-                role.setResources(reList);
             } else {
                 confMap.put("roleid", role.getRoleid());
                 List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getResources(confMap);
@@ -530,17 +558,19 @@ public class UserProcessor {
     }
     private static List<String> getAllLabId(String labId){
         List<Lab> labs = AllDao.getInstance().getOrgDao().getLabIdAndParentId();
+        Map<String, Set<Lab>> labsByParentId = labs.stream().collect(groupingBy(Lab::getLab_parent, toSet()));
         Set<String> resultIds = new HashSet<>();
-        getAllLabIdsForLabs(labs,labId,resultIds);
+        getAllLabIdsForLabs(labsByParentId,labId,resultIds);
         return new ArrayList<>(resultIds);
     }
 
-    private static void getAllLabIdsForLabs(List<Lab> labs, String labId, Set<String> resultIds) {
-        for (Lab lab : labs){
-            if(labId.equals(lab.getLab_parent())){
+    private static void getAllLabIdsForLabs(Map<String, Set<Lab>> labsByParentId, String labId, Set<String> resultIds) {
+        if (labsByParentId.containsKey(labId)) {
+            Set<Lab> labs = labsByParentId.get(labId);
+            labs.forEach(lab -> {
                 resultIds.add(lab.getLabID());
-                getAllLabIdsForLabs(labs,lab.getLabID(),resultIds);
-            }
+                getAllLabIdsForLabs(labsByParentId, lab.getLabID(), resultIds);
+            });
         }
     }
 
