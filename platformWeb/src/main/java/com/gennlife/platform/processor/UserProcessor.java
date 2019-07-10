@@ -497,7 +497,7 @@ public class UserProcessor {
         confMap.put("orgID", user.getOrgID());
         confMap.put("uid", user.getUid());
         Optional<Role> tmpRole = rolesList.stream().filter( o -> Objects.equals("全院科室成员",o.getRole())).findFirst();
-        if(tmpRole != null) {
+        if(tmpRole.isPresent()) {
             List<Resource> resourcesList = AllDao.getInstance().getSyResourceDao().getAllResources(user.getOrgID(), tmpRole.get().getRoleid());
             List<Resource> reList = new LinkedList<>();
             for (Resource resource : resourcesList) {
@@ -568,6 +568,7 @@ public class UserProcessor {
         List<Lab> labs = AllDao.getInstance().getOrgDao().getLabIdAndParentId();
         Map<String, Set<Lab>> labsByParentId = labs.stream().collect(groupingBy(Lab::getLab_parent, toSet()));
         Set<String> resultIds = new HashSet<>();
+        resultIds.add(labId);
         getAllLabIdsForLabs(labsByParentId,labId,resultIds);
         return new ArrayList<>(resultIds);
     }

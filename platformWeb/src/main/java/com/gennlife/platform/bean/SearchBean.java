@@ -109,6 +109,7 @@ public class SearchBean {
     }
 
     public boolean setMyclinicQuery(JSONObject paramObj) {
+        String ADMISSION_DEPT_NAME = getMyclinnicQuery(paramObj,"ADMISSION_DEPT_NAME");
         String ADMISSION_DATE = getMyclinnicQuery(paramObj,"ADMISSION_DATE");
         String PATIENT_NAME =getMyclinnicQuery(paramObj,"PATIENT_NAME");
         String IDCARD =getMyclinnicQuery(paramObj,"IDCARD");
@@ -124,7 +125,7 @@ public class SearchBean {
         addRightlit();
         addAnd();
         addLeftBg();
-        addMyclinicQuery(ADMISSION_DATE,OUTPATIENT_SN,INPATIENT_SN);
+        addMyclinicQuery(ADMISSION_DATE,OUTPATIENT_SN,INPATIENT_SN,ADMISSION_DEPT_NAME);
         addRightBg();
         return false;
     }
@@ -200,6 +201,11 @@ public class SearchBean {
             return MYCLINIC_QUERY_CONFIG.getString(key) + " 包含 " + paramObj.getString(key);
         }else if(tmpVal instanceof  JSONArray){
             JSONArray val = paramObj.getJSONArray(key);
+            String time1 = val.getString(0);
+            String time2 = val.getString(1);
+            if(StringUtils.isEmpty(time1) || StringUtils.isEmpty(time2)){
+                return null;
+            }
             if(val.size() == 2){
                 return MYCLINIC_QUERY_CONFIG.getString(key) + " 从 " + val.getString(0) + " 到 " + val.getString(1);
             }else {
@@ -216,6 +222,7 @@ public class SearchBean {
         .fluentPut("ADMISSION_DATE","[就诊.就诊基本信息.入院（就诊）时间]")
         .fluentPut("INPATIENT_SN","[就诊.就诊基本信息.住院号]")
         .fluentPut("OUTPATIENT_SN","[就诊.就诊基本信息.门诊号]")
+        .fluentPut("ADMISSION_DEPT_NAME","[就诊.就诊基本信息.入院（就诊）科室名称]")
         .fluentPut("IDCARD","[患者基本信息.证件号码]")
         .fluentPut("PATIENT_NAME","[患者基本信息.患者姓名]")
         .fluentPut("MEDICARECARD","[患者基本信息.医保卡号]")
