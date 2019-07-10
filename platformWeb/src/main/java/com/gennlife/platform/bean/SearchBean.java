@@ -201,6 +201,11 @@ public class SearchBean {
             return MYCLINIC_QUERY_CONFIG.getString(key) + " 包含 " + paramObj.getString(key);
         }else if(tmpVal instanceof  JSONArray){
             JSONArray val = paramObj.getJSONArray(key);
+            String time1 = val.getString(0);
+            String time2 = val.getString(1);
+            if(StringUtils.isEmpty(time1) || StringUtils.isEmpty(time2)){
+                return null;
+            }
             if(val.size() == 2){
                 return MYCLINIC_QUERY_CONFIG.getString(key) + " 从 " + val.getString(0) + " 到 " + val.getString(1);
             }else {
