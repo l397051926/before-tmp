@@ -1181,6 +1181,9 @@ public class CaseProcessor {
     public String getNewMyclinicSearchCase(String param, User user) {
         JSONObject paramObj = JSONObject.parseObject(param);
         String ADMISSION_DEPT = paramObj.getString("ADMISSION_DEPT");
+        if(!StringUtils.isEmpty(ADMISSION_DEPT)){
+            paramObj.put("ADMISSION_DEPT_NAME",AllDao.getInstance().getOrgDao().getLabBylabID(ADMISSION_DEPT).getLab_name());
+        }
         JSONObject power = paramObj.getJSONObject("power");
         Integer page = paramObj.getInteger("page");
         Integer size = paramObj.getInteger("size");
@@ -1220,7 +1223,7 @@ public class CaseProcessor {
 
     private JSONArray transformMyclinicSearchResult(JSONObject searchResult, JSONObject paramObj) {
         JSONArray ADMISSION_DATE = paramObj.getJSONArray("ADMISSION_DATE");
-        String ADMISSION_DEPT = paramObj.getString("ADMISSION_DEPT");
+        String ADMISSION_DEPT = paramObj.getString("ADMISSION_DEPT_NAME");
         String PATIENT_NAME = paramObj.getString("PATIENT_NAME");
         String IDCARD = paramObj.getString("IDCARD");
         String MEDICARECARD = paramObj.getString("MEDICARECARD");
@@ -1239,8 +1242,7 @@ public class CaseProcessor {
                 if(comDate){
                     String admiss_dept = visObj.getString("ADMISS_DEPT");
                     if( !StringUtils.isEmpty(ADMISSION_DEPT)){
-                        Lab lab =  AllDao.getInstance().getOrgDao().getLabBylabID(ADMISSION_DEPT);
-                        if(!lab.getLab_name().equals(admiss_dept)){
+                        if(!ADMISSION_DEPT.equals(admiss_dept)){
                             continue;
                         }
                     }
@@ -1273,6 +1275,9 @@ public class CaseProcessor {
                 }else {
                     continue;
                 }
+            }
+            if(resObj.size() ==0 ){
+                continue;
             }
             JSONObject patientInfo = obj.getJSONArray("patient_info").getJSONObject(0);
             resObj.put("PATIENT_NAME",getMyclinicValue(PATIENT_NAME,patientInfo,"PATINAME"));
