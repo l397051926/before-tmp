@@ -123,6 +123,9 @@ public class SearchBean {
         addLeftlit();
         addMyclinicQuery(PATIENT_NAME,IDCARD,MEDICARECARD);
         addRightlit();
+        if(StringUtils.isEmpty(ADMISSION_DATE) && StringUtils.isEmpty(OUTPATIENT_SN) && StringUtils.isEmpty(INPATIENT_SN) && StringUtils.isEmpty(ADMISSION_DEPT_NAME)){
+            return false;
+        }
         addAnd();
         addLeftBg();
         addMyclinicQuery(ADMISSION_DATE,OUTPATIENT_SN,INPATIENT_SN,ADMISSION_DEPT_NAME);
