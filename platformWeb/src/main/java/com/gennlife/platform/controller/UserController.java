@@ -98,6 +98,8 @@ public class UserController {
                     }
                 }
                 HttpSession session = paramRe.getSession(true);
+                session.invalidate();
+                session = paramRe.getSession();
                 String sessionID = session.getId();
                 String loginSession = RedisUtil.getValue(user.getUid());
                 if (!StringUtils.isEmpty(loginSession) && !loginSession.equals(sessionID)) {
